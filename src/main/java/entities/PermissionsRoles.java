@@ -1,58 +1,79 @@
 package entities;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
-@Named
-@SessionScoped
-public class PermissionsRoles implements Serializable {
+@Table(name = "permissions_roles", schema = "bibliotheque", catalog = "")
+public class PermissionsRoles {
+    private int permissionsIdPermissions;
+    private int rolesIdRoles;
+    private int idPermissionsRoles;
+    private Permissions permissionsByPermissionsIdPermissions;
+    private Roles rolesByRolesIdRoles;
 
-    private static final long serialVersionUID = 1L;
-
-    @Column(name = "PermissionsIdPermissions", nullable = false)
-    private Integer permissionsIdPermissions;
-
-    @Column(name = "RolesIdRoles", nullable = false)
-    private Integer rolesIdRoles;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdPermissionsRoles", nullable = false)
-    private Integer idPermissionsRoles;
-
-    public void setPermissionsIdPermissions(Integer permissionsIdPermissions) {
-        this.permissionsIdPermissions = permissionsIdPermissions;
-    }
-
-    public Integer getPermissionsIdPermissions() {
+    @Basic
+    @Column(name = "PermissionsIdPermissions")
+    public int getPermissionsIdPermissions() {
         return permissionsIdPermissions;
     }
 
-    public void setRolesIdRoles(Integer rolesIdRoles) {
-        this.rolesIdRoles = rolesIdRoles;
+    public void setPermissionsIdPermissions(int permissionsIdPermissions) {
+        this.permissionsIdPermissions = permissionsIdPermissions;
     }
 
-    public Integer getRolesIdRoles() {
+    @Basic
+    @Column(name = "RolesIdRoles")
+    public int getRolesIdRoles() {
         return rolesIdRoles;
     }
 
-    public void setIdPermissionsRoles(Integer idPermissionsRoles) {
-        this.idPermissionsRoles = idPermissionsRoles;
+    public void setRolesIdRoles(int rolesIdRoles) {
+        this.rolesIdRoles = rolesIdRoles;
     }
 
-    public Integer getIdPermissionsRoles() {
+    @Id
+    @Column(name = "IdPermissionsRoles")
+    public int getIdPermissionsRoles() {
         return idPermissionsRoles;
     }
 
+    public void setIdPermissionsRoles(int idPermissionsRoles) {
+        this.idPermissionsRoles = idPermissionsRoles;
+    }
+
     @Override
-    public String toString() {
-        return "PermissionsRoles{" +
-                "permissionsIdPermissions=" + permissionsIdPermissions + '\'' +
-                "rolesIdRoles=" + rolesIdRoles + '\'' +
-                "idPermissionsRoles=" + idPermissionsRoles + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PermissionsRoles that = (PermissionsRoles) o;
+        return permissionsIdPermissions == that.permissionsIdPermissions &&
+                rolesIdRoles == that.rolesIdRoles &&
+                idPermissionsRoles == that.idPermissionsRoles;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(permissionsIdPermissions, rolesIdRoles, idPermissionsRoles);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "PermissionsIdPermissions", referencedColumnName = "IdPermissions", nullable = false)
+    public Permissions getPermissionsByPermissionsIdPermissions() {
+        return permissionsByPermissionsIdPermissions;
+    }
+
+    public void setPermissionsByPermissionsIdPermissions(Permissions permissionsByPermissionsIdPermissions) {
+        this.permissionsByPermissionsIdPermissions = permissionsByPermissionsIdPermissions;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "RolesIdRoles", referencedColumnName = "IdRoles", nullable = false)
+    public Roles getRolesByRolesIdRoles() {
+        return rolesByRolesIdRoles;
+    }
+
+    public void setRolesByRolesIdRoles(Roles rolesByRolesIdRoles) {
+        this.rolesByRolesIdRoles = rolesByRolesIdRoles;
     }
 }

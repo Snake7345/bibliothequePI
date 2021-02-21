@@ -1,97 +1,125 @@
 package entities;
 
 import javax.persistence.*;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Named
-@SessionScoped
-public class Adresses implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Adresses {
+    private int idAdresses;
+    private String rue;
+    private String boite;
+    private String numero;
+    private int localitesIdLocalites;
+    private Integer bibliothequesIdBibliotheques;
+    private Localites localitesByLocalitesIdLocalites;
+    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
+    private Collection<UtilisateursAdresses> utilisateursAdressesByIdAdresses;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "IdAdresses", nullable = false)
-    private int idAdresses;
-
-    //@Column(name = "Rue", nullable = false)
-    private String rue;
-
-    //@Column(name = "Boite")
-    private String boite;
-
-    //@Column(name = "Numero", nullable = false)
-
-    private String numero;
-
-    //@Column(name = "LocalitesIdLocalites", nullable = false)
-    @ManyToOne
-    private Localites localitesIdLocalites;
-
-    //@Column(name = "BibliothequesIdBibliotheques")
-    @OneToOne
-    private Bibliotheques bibliothequesIdBibliotheques;
+    @Column(name = "IdAdresses")
+    public int getIdAdresses() {
+        return idAdresses;
+    }
 
     public void setIdAdresses(int idAdresses) {
         this.idAdresses = idAdresses;
     }
 
-    public int getIdAdresses() {
-        return idAdresses;
+    @Basic
+    @Column(name = "Rue")
+    public String getRue() {
+        return rue;
     }
 
     public void setRue(String rue) {
         this.rue = rue;
     }
 
-    public String getRue() {
-        return rue;
+    @Basic
+    @Column(name = "Boite")
+    public String getBoite() {
+        return boite;
     }
 
     public void setBoite(String boite) {
         this.boite = boite;
     }
 
-    public String getBoite() {
-        return boite;
+    @Basic
+    @Column(name = "Numero")
+    public String getNumero() {
+        return numero;
     }
 
     public void setNumero(String numero) {
         this.numero = numero;
     }
 
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setLocalitesIdLocalites(Localites localitesIdLocalites) {
-        this.localitesIdLocalites = localitesIdLocalites;
-    }
-
+    @Basic
+    @Column(name = "LocalitesIdLocalites")
     public int getLocalitesIdLocalites() {
         return localitesIdLocalites;
     }
 
-    public void setBibliothequesIdBibliotheques(Bibliotheques bibliothequesIdBibliotheques) {
-        this.bibliothequesIdBibliotheques = bibliothequesIdBibliotheques;
+    public void setLocalitesIdLocalites(int localitesIdLocalites) {
+        this.localitesIdLocalites = localitesIdLocalites;
     }
 
-    public int getBibliothequesIdBibliotheques() {
+    @Basic
+    @Column(name = "BibliothequesIdBibliotheques")
+    public Integer getBibliothequesIdBibliotheques() {
         return bibliothequesIdBibliotheques;
     }
 
+    public void setBibliothequesIdBibliotheques(Integer bibliothequesIdBibliotheques) {
+        this.bibliothequesIdBibliotheques = bibliothequesIdBibliotheques;
+    }
+
     @Override
-    public String toString() {
-        return "Adresses{" +
-                "idAdresses=" + idAdresses + '\'' +
-                "rue=" + rue + '\'' +
-                "boite=" + boite + '\'' +
-                "numero=" + numero + '\'' +
-                "localitesIdLocalites=" + localitesIdLocalites + '\'' +
-                "bibliothequesIdBibliotheques=" + bibliothequesIdBibliotheques + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Adresses adresses = (Adresses) o;
+        return idAdresses == adresses.idAdresses &&
+                localitesIdLocalites == adresses.localitesIdLocalites &&
+                Objects.equals(rue, adresses.rue) &&
+                Objects.equals(boite, adresses.boite) &&
+                Objects.equals(numero, adresses.numero) &&
+                Objects.equals(bibliothequesIdBibliotheques, adresses.bibliothequesIdBibliotheques);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idAdresses, rue, boite, numero, localitesIdLocalites, bibliothequesIdBibliotheques);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "LocalitesIdLocalites", referencedColumnName = "IdLocalites", nullable = false)
+    public Localites getLocalitesByLocalitesIdLocalites() {
+        return localitesByLocalitesIdLocalites;
+    }
+
+    public void setLocalitesByLocalitesIdLocalites(Localites localitesByLocalitesIdLocalites) {
+        this.localitesByLocalitesIdLocalites = localitesByLocalitesIdLocalites;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques")
+    public Bibliotheques getBibliothequesByBibliothequesIdBibliotheques() {
+        return bibliothequesByBibliothequesIdBibliotheques;
+    }
+
+    public void setBibliothequesByBibliothequesIdBibliotheques(Bibliotheques bibliothequesByBibliothequesIdBibliotheques) {
+        this.bibliothequesByBibliothequesIdBibliotheques = bibliothequesByBibliothequesIdBibliotheques;
+    }
+
+    @OneToMany(mappedBy = "adressesByAdressesIdAdresses")
+    public Collection<UtilisateursAdresses> getUtilisateursAdressesByIdAdresses() {
+        return utilisateursAdressesByIdAdresses;
+    }
+
+    public void setUtilisateursAdressesByIdAdresses(Collection<UtilisateursAdresses> utilisateursAdressesByIdAdresses) {
+        this.utilisateursAdressesByIdAdresses = utilisateursAdressesByIdAdresses;
     }
 }

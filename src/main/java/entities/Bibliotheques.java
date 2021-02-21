@@ -1,46 +1,75 @@
 package entities;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Named
-@SessionScoped
-public class Bibliotheques implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Bibliotheques {
+    private int idBibliotheques;
+    private String nom;
+    private Collection<Adresses> adressesByIdBibliotheques;
+    private Collection<ExemplairesLivres> exemplairesLivresByIdBibliotheques;
+    private Collection<Tarifs> tarifsByIdBibliotheques;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdBibliotheques", nullable = false)
-    private Integer idBibliotheques;
+    @Column(name = "IdBibliotheques")
+    public int getIdBibliotheques() {
+        return idBibliotheques;
+    }
 
-    @Column(name = "Nom", nullable = false)
-    private String nom;
-
-    public void setIdBibliotheques(Integer idBibliotheques) {
+    public void setIdBibliotheques(int idBibliotheques) {
         this.idBibliotheques = idBibliotheques;
     }
 
-    public Integer getIdBibliotheques() {
-        return idBibliotheques;
+    @Basic
+    @Column(name = "Nom")
+    public String getNom() {
+        return nom;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public String getNom() {
-        return nom;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bibliotheques that = (Bibliotheques) o;
+        return idBibliotheques == that.idBibliotheques &&
+                Objects.equals(nom, that.nom);
     }
 
     @Override
-    public String toString() {
-        return "Bibliotheques{" +
-                "idBibliotheques=" + idBibliotheques + '\'' +
-                "nom=" + nom + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(idBibliotheques, nom);
+    }
+
+    @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
+    public Collection<Adresses> getAdressesByIdBibliotheques() {
+        return adressesByIdBibliotheques;
+    }
+
+    public void setAdressesByIdBibliotheques(Collection<Adresses> adressesByIdBibliotheques) {
+        this.adressesByIdBibliotheques = adressesByIdBibliotheques;
+    }
+
+    @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
+    public Collection<ExemplairesLivres> getExemplairesLivresByIdBibliotheques() {
+        return exemplairesLivresByIdBibliotheques;
+    }
+
+    public void setExemplairesLivresByIdBibliotheques(Collection<ExemplairesLivres> exemplairesLivresByIdBibliotheques) {
+        this.exemplairesLivresByIdBibliotheques = exemplairesLivresByIdBibliotheques;
+    }
+
+    @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
+    public Collection<Tarifs> getTarifsByIdBibliotheques() {
+        return tarifsByIdBibliotheques;
+    }
+
+    public void setTarifsByIdBibliotheques(Collection<Tarifs> tarifsByIdBibliotheques) {
+        this.tarifsByIdBibliotheques = tarifsByIdBibliotheques;
     }
 }

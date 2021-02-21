@@ -2,6 +2,7 @@
 <project version="4">
   <component name="DatabaseSettingsState">
     <option name="database" value="bibliotheque" />
+    <option name="databaseDriver" value="Mysql-8.0.16" />
     <option name="databaseDriverToJarPath">
       <map>
         <entry key="Mysql-5.1.47" value="$USER_HOME$/.Jpa Support/driver_vendor/Mysql-5.1.47.jar" />
@@ -9,7 +10,6 @@
         <entry key="Mysql-8.0.16" value="$USER_HOME$/.Jpa Support/driver_vendor/Mysql-8.0.16.jar" />
       </map>
     </option>
-    <option name="language" value="fr-BE" />
     <option name="url" value="jdbc:mysql://localhost:3306/bibliotheque" />
   </component>
 </project>

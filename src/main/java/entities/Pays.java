@@ -1,46 +1,55 @@
 package entities;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Named
-@SessionScoped
-public class Pays implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Pays {
+    private int idPays;
+    private String nom;
+    private Collection<Localites> localitesByIdPays;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdPays", nullable = false)
-    private Integer idPays;
+    @Column(name = "IdPays")
+    public int getIdPays() {
+        return idPays;
+    }
 
-    @Column(name = "Nom", nullable = false)
-    private String nom;
-
-    public void setIdPays(Integer idPays) {
+    public void setIdPays(int idPays) {
         this.idPays = idPays;
     }
 
-    public Integer getIdPays() {
-        return idPays;
+    @Basic
+    @Column(name = "Nom")
+    public String getNom() {
+        return nom;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public String getNom() {
-        return nom;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pays pays = (Pays) o;
+        return idPays == pays.idPays &&
+                Objects.equals(nom, pays.nom);
     }
 
     @Override
-    public String toString() {
-        return "Pays{" +
-                "idPays=" + idPays + '\'' +
-                "nom=" + nom + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(idPays, nom);
+    }
+
+    @OneToMany(mappedBy = "paysByPaysIdPays")
+    public Collection<Localites> getLocalitesByIdPays() {
+        return localitesByIdPays;
+    }
+
+    public void setLocalitesByIdPays(Collection<Localites> localitesByIdPays) {
+        this.localitesByIdPays = localitesByIdPays;
     }
 }

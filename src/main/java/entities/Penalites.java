@@ -1,46 +1,55 @@
 package entities;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Named
-@SessionScoped
-public class Penalites implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Penalites {
+    private int idPenalites;
+    private String denomination;
+    private Collection<TarifsPenalites> tarifsPenalitesByIdPenalites;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdPenalites", nullable = false)
-    private Integer idPenalites;
+    @Column(name = "IdPenalites")
+    public int getIdPenalites() {
+        return idPenalites;
+    }
 
-    @Column(name = "Denomination", nullable = false)
-    private String denomination;
-
-    public void setIdPenalites(Integer idPenalites) {
+    public void setIdPenalites(int idPenalites) {
         this.idPenalites = idPenalites;
     }
 
-    public Integer getIdPenalites() {
-        return idPenalites;
+    @Basic
+    @Column(name = "Denomination")
+    public String getDenomination() {
+        return denomination;
     }
 
     public void setDenomination(String denomination) {
         this.denomination = denomination;
     }
 
-    public String getDenomination() {
-        return denomination;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Penalites penalites = (Penalites) o;
+        return idPenalites == penalites.idPenalites &&
+                Objects.equals(denomination, penalites.denomination);
     }
 
     @Override
-    public String toString() {
-        return "Penalites{" +
-                "idPenalites=" + idPenalites + '\'' +
-                "denomination=" + denomination + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(idPenalites, denomination);
+    }
+
+    @OneToMany(mappedBy = "penalitesByPenalitesIdPenalites")
+    public Collection<TarifsPenalites> getTarifsPenalitesByIdPenalites() {
+        return tarifsPenalitesByIdPenalites;
+    }
+
+    public void setTarifsPenalitesByIdPenalites(Collection<TarifsPenalites> tarifsPenalitesByIdPenalites) {
+        this.tarifsPenalitesByIdPenalites = tarifsPenalitesByIdPenalites;
     }
 }

@@ -1,46 +1,55 @@
 package entities;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Named
-@SessionScoped
-public class Jours implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Jours {
+    private int idJours;
+    private int nbrJour;
+    private Collection<TarifsJours> tarifsJoursByIdJours;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdJours", nullable = false)
-    private Integer idJours;
-
-    @Column(name = "NbrJour", nullable = false)
-    private Integer nbrJour;
-
-    public void setIdJours(Integer idJours) {
-        this.idJours = idJours;
-    }
-
-    public Integer getIdJours() {
+    @Column(name = "IdJours")
+    public int getIdJours() {
         return idJours;
     }
 
-    public void setNbrJour(Integer nbrJour) {
-        this.nbrJour = nbrJour;
+    public void setIdJours(int idJours) {
+        this.idJours = idJours;
     }
 
-    public Integer getNbrJour() {
+    @Basic
+    @Column(name = "NbrJour")
+    public int getNbrJour() {
         return nbrJour;
     }
 
+    public void setNbrJour(int nbrJour) {
+        this.nbrJour = nbrJour;
+    }
+
     @Override
-    public String toString() {
-        return "Jours{" +
-                "idJours=" + idJours + '\'' +
-                "nbrJour=" + nbrJour + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Jours jours = (Jours) o;
+        return idJours == jours.idJours &&
+                nbrJour == jours.nbrJour;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idJours, nbrJour);
+    }
+
+    @OneToMany(mappedBy = "joursByJoursIdJours")
+    public Collection<TarifsJours> getTarifsJoursByIdJours() {
+        return tarifsJoursByIdJours;
+    }
+
+    public void setTarifsJoursByIdJours(Collection<TarifsJours> tarifsJoursByIdJours) {
+        this.tarifsJoursByIdJours = tarifsJoursByIdJours;
     }
 }

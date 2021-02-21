@@ -1,46 +1,55 @@
 package entities;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Named
-@SessionScoped
-public class Genres implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Genres {
+    private int idGenres;
+    private String denomination;
+    private Collection<LivresGenres> livresGenresByIdGenres;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdGenres", nullable = false)
-    private Integer idGenres;
+    @Column(name = "IdGenres")
+    public int getIdGenres() {
+        return idGenres;
+    }
 
-    @Column(name = "Denomination", nullable = false)
-    private String denomination;
-
-    public void setIdGenres(Integer idGenres) {
+    public void setIdGenres(int idGenres) {
         this.idGenres = idGenres;
     }
 
-    public Integer getIdGenres() {
-        return idGenres;
+    @Basic
+    @Column(name = "Denomination")
+    public String getDenomination() {
+        return denomination;
     }
 
     public void setDenomination(String denomination) {
         this.denomination = denomination;
     }
 
-    public String getDenomination() {
-        return denomination;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Genres genres = (Genres) o;
+        return idGenres == genres.idGenres &&
+                Objects.equals(denomination, genres.denomination);
     }
 
     @Override
-    public String toString() {
-        return "Genres{" +
-                "idGenres=" + idGenres + '\'' +
-                "denomination=" + denomination + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(idGenres, denomination);
+    }
+
+    @OneToMany(mappedBy = "genresByGenresIdGenres")
+    public Collection<LivresGenres> getLivresGenresByIdGenres() {
+        return livresGenresByIdGenres;
+    }
+
+    public void setLivresGenresByIdGenres(Collection<LivresGenres> livresGenresByIdGenres) {
+        this.livresGenresByIdGenres = livresGenresByIdGenres;
     }
 }

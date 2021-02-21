@@ -1,95 +1,116 @@
 package entities;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
-@Named
-@SessionScoped
-public class TarifsJours implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Column(name = "TarifsIdTarifs", nullable = false)
-    private Integer tarifsIdTarifs;
-
-    @Column(name = "JoursIdJours", nullable = false)
-    private Integer joursIdJours;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdTarifsJours", nullable = false)
-    private Integer idTarifsJours;
-
-    @Column(name = "Prix", nullable = false)
-    private Double prix;
-
-    @Column(name = "DateDebut", nullable = false)
+@Table(name = "tarifs_jours", schema = "bibliotheque", catalog = "")
+public class TarifsJours {
+    private int tarifsIdTarifs;
+    private int joursIdJours;
+    private int idTarifsJours;
+    private double prix;
     private Timestamp dateDebut;
-
-    @Column(name = "DateFin", nullable = false)
     private Timestamp dateFin;
+    private Tarifs tarifsByTarifsIdTarifs;
+    private Jours joursByJoursIdJours;
 
-    public void setTarifsIdTarifs(Integer tarifsIdTarifs) {
-        this.tarifsIdTarifs = tarifsIdTarifs;
-    }
-
-    public Integer getTarifsIdTarifs() {
+    @Basic
+    @Column(name = "TarifsIdTarifs")
+    public int getTarifsIdTarifs() {
         return tarifsIdTarifs;
     }
 
-    public void setJoursIdJours(Integer joursIdJours) {
-        this.joursIdJours = joursIdJours;
+    public void setTarifsIdTarifs(int tarifsIdTarifs) {
+        this.tarifsIdTarifs = tarifsIdTarifs;
     }
 
-    public Integer getJoursIdJours() {
+    @Basic
+    @Column(name = "JoursIdJours")
+    public int getJoursIdJours() {
         return joursIdJours;
     }
 
-    public void setIdTarifsJours(Integer idTarifsJours) {
-        this.idTarifsJours = idTarifsJours;
+    public void setJoursIdJours(int joursIdJours) {
+        this.joursIdJours = joursIdJours;
     }
 
-    public Integer getIdTarifsJours() {
+    @Id
+    @Column(name = "IdTarifsJours")
+    public int getIdTarifsJours() {
         return idTarifsJours;
     }
 
-    public void setPrix(Double prix) {
+    public void setIdTarifsJours(int idTarifsJours) {
+        this.idTarifsJours = idTarifsJours;
+    }
+
+    @Basic
+    @Column(name = "Prix")
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
         this.prix = prix;
     }
 
-    public Double getPrix() {
-        return prix;
+    @Basic
+    @Column(name = "DateDebut")
+    public Timestamp getDateDebut() {
+        return dateDebut;
     }
 
     public void setDateDebut(Timestamp dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Timestamp getDateDebut() {
-        return dateDebut;
+    @Basic
+    @Column(name = "DateFin")
+    public Timestamp getDateFin() {
+        return dateFin;
     }
 
     public void setDateFin(Timestamp dateFin) {
         this.dateFin = dateFin;
     }
 
-    public Timestamp getDateFin() {
-        return dateFin;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TarifsJours that = (TarifsJours) o;
+        return tarifsIdTarifs == that.tarifsIdTarifs &&
+                joursIdJours == that.joursIdJours &&
+                idTarifsJours == that.idTarifsJours &&
+                Double.compare(that.prix, prix) == 0 &&
+                Objects.equals(dateDebut, that.dateDebut) &&
+                Objects.equals(dateFin, that.dateFin);
     }
 
     @Override
-    public String toString() {
-        return "TarifsJours{" +
-                "tarifsIdTarifs=" + tarifsIdTarifs + '\'' +
-                "joursIdJours=" + joursIdJours + '\'' +
-                "idTarifsJours=" + idTarifsJours + '\'' +
-                "prix=" + prix + '\'' +
-                "dateDebut=" + dateDebut + '\'' +
-                "dateFin=" + dateFin + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(tarifsIdTarifs, joursIdJours, idTarifsJours, prix, dateDebut, dateFin);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "TarifsIdTarifs", referencedColumnName = "IdTarifs", nullable = false)
+    public Tarifs getTarifsByTarifsIdTarifs() {
+        return tarifsByTarifsIdTarifs;
+    }
+
+    public void setTarifsByTarifsIdTarifs(Tarifs tarifsByTarifsIdTarifs) {
+        this.tarifsByTarifsIdTarifs = tarifsByTarifsIdTarifs;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "JoursIdJours", referencedColumnName = "IdJours", nullable = false)
+    public Jours getJoursByJoursIdJours() {
+        return joursByJoursIdJours;
+    }
+
+    public void setJoursByJoursIdJours(Jours joursByJoursIdJours) {
+        this.joursByJoursIdJours = joursByJoursIdJours;
     }
 }

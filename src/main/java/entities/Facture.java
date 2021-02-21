@@ -1,95 +1,115 @@
 package entities;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Named
-@SessionScoped
-public class Facture implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Facture {
+    private int idLocations;
+    private Timestamp dateDebut;
+    private Double prixTvac;
+    private String numeroFacture;
+    private Object etat;
+    private int utilisateursIdUtilisateurs;
+    private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
+    private Collection<FactureDetail> factureDetailsByIdLocations;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "IdLocations", nullable = false)
-    private Integer idLocations;
+    @Column(name = "IdLocations")
+    public int getIdLocations() {
+        return idLocations;
+    }
 
-    //@Column(name = "DateDebut", nullable = false)
-    private Timestamp dateDebut;
-
-    //@Column(name = "PrixTVAC")
-    private Double prixTVAC;
-
-    //@Column(name = "NumeroFacture")
-    private String numeroFacture;
-
-    //@Column(name = "Etat", nullable = false)
-    private String etat;
-
-    //@Column(name = "UtilisateursIdUtilisateurs", nullable = false)
-    private Integer utilisateursIdUtilisateurs;
-
-    public void setIdLocations(Integer idLocations) {
+    public void setIdLocations(int idLocations) {
         this.idLocations = idLocations;
     }
 
-    public Integer getIdLocations() {
-        return idLocations;
+    @Basic
+    @Column(name = "DateDebut")
+    public Timestamp getDateDebut() {
+        return dateDebut;
     }
 
     public void setDateDebut(Timestamp dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Timestamp getDateDebut() {
-        return dateDebut;
+    @Basic
+    @Column(name = "PrixTVAC")
+    public Double getPrixTvac() {
+        return prixTvac;
     }
 
-    public void setPrixTVAC(Double prixTVAC) {
-        this.prixTVAC = prixTVAC;
+    public void setPrixTvac(Double prixTvac) {
+        this.prixTvac = prixTvac;
     }
 
-    public Double getPrixTVAC() {
-        return prixTVAC;
+    @Basic
+    @Column(name = "NumeroFacture")
+    public String getNumeroFacture() {
+        return numeroFacture;
     }
 
     public void setNumeroFacture(String numeroFacture) {
         this.numeroFacture = numeroFacture;
     }
 
-    public String getNumeroFacture() {
-        return numeroFacture;
-    }
-
-    public void setEtat(String etat) {
-        this.etat = etat;
-    }
-
-    public String getEtat() {
+    @Basic
+    @Column(name = "Etat")
+    public Object getEtat() {
         return etat;
     }
 
-    public void setUtilisateursIdUtilisateurs(Integer utilisateursIdUtilisateurs) {
-        this.utilisateursIdUtilisateurs = utilisateursIdUtilisateurs;
+    public void setEtat(Object etat) {
+        this.etat = etat;
     }
 
-    public Integer getUtilisateursIdUtilisateurs() {
+    @Basic
+    @Column(name = "UtilisateursIdUtilisateurs")
+    public int getUtilisateursIdUtilisateurs() {
         return utilisateursIdUtilisateurs;
     }
 
+    public void setUtilisateursIdUtilisateurs(int utilisateursIdUtilisateurs) {
+        this.utilisateursIdUtilisateurs = utilisateursIdUtilisateurs;
+    }
+
     @Override
-    public String toString() {
-        return "Facture{" +
-                "idLocations=" + idLocations + '\'' +
-                "dateDebut=" + dateDebut + '\'' +
-                "prixTVAC=" + prixTVAC + '\'' +
-                "numeroFacture=" + numeroFacture + '\'' +
-                "etat=" + etat + '\'' +
-                "utilisateursIdUtilisateurs=" + utilisateursIdUtilisateurs + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Facture facture = (Facture) o;
+        return idLocations == facture.idLocations &&
+                utilisateursIdUtilisateurs == facture.utilisateursIdUtilisateurs &&
+                Objects.equals(dateDebut, facture.dateDebut) &&
+                Objects.equals(prixTvac, facture.prixTvac) &&
+                Objects.equals(numeroFacture, facture.numeroFacture) &&
+                Objects.equals(etat, facture.etat);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idLocations, dateDebut, prixTvac, numeroFacture, etat, utilisateursIdUtilisateurs);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "UtilisateursIdUtilisateurs", referencedColumnName = "IdUtilisateurs", nullable = false)
+    public Utilisateurs getUtilisateursByUtilisateursIdUtilisateurs() {
+        return utilisateursByUtilisateursIdUtilisateurs;
+    }
+
+    public void setUtilisateursByUtilisateursIdUtilisateurs(Utilisateurs utilisateursByUtilisateursIdUtilisateurs) {
+        this.utilisateursByUtilisateursIdUtilisateurs = utilisateursByUtilisateursIdUtilisateurs;
+    }
+
+    @OneToMany(mappedBy = "factureByLocationsIdLocations")
+    public Collection<FactureDetail> getFactureDetailsByIdLocations() {
+        return factureDetailsByIdLocations;
+    }
+
+    public void setFactureDetailsByIdLocations(Collection<FactureDetail> factureDetailsByIdLocations) {
+        this.factureDetailsByIdLocations = factureDetailsByIdLocations;
     }
 }

@@ -1,46 +1,55 @@
 package entities;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Named
-@SessionScoped
-public class Permissions implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Permissions {
+    private int idPermissions;
+    private String denomination;
+    private Collection<PermissionsRoles> permissionsRolesByIdPermissions;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdPermissions", nullable = false)
-    private Integer idPermissions;
+    @Column(name = "IdPermissions")
+    public int getIdPermissions() {
+        return idPermissions;
+    }
 
-    @Column(name = "Denomination", nullable = false)
-    private String denomination;
-
-    public void setIdPermissions(Integer idPermissions) {
+    public void setIdPermissions(int idPermissions) {
         this.idPermissions = idPermissions;
     }
 
-    public Integer getIdPermissions() {
-        return idPermissions;
+    @Basic
+    @Column(name = "Denomination")
+    public String getDenomination() {
+        return denomination;
     }
 
     public void setDenomination(String denomination) {
         this.denomination = denomination;
     }
 
-    public String getDenomination() {
-        return denomination;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Permissions that = (Permissions) o;
+        return idPermissions == that.idPermissions &&
+                Objects.equals(denomination, that.denomination);
     }
 
     @Override
-    public String toString() {
-        return "Permissions{" +
-                "idPermissions=" + idPermissions + '\'' +
-                "denomination=" + denomination + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(idPermissions, denomination);
+    }
+
+    @OneToMany(mappedBy = "permissionsByPermissionsIdPermissions")
+    public Collection<PermissionsRoles> getPermissionsRolesByIdPermissions() {
+        return permissionsRolesByIdPermissions;
+    }
+
+    public void setPermissionsRolesByIdPermissions(Collection<PermissionsRoles> permissionsRolesByIdPermissions) {
+        this.permissionsRolesByIdPermissions = permissionsRolesByIdPermissions;
     }
 }
