@@ -20,7 +20,7 @@ public class Genres {
         this.idGenres = idGenres;
     }
 
-    @Basic
+    
     @Column(name = "Denomination")
     public String getDenomination() {
         return denomination;

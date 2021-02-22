@@ -20,7 +20,7 @@ public class Jours {
         this.idJours = idJours;
     }
 
-    @Basic
+    
     @Column(name = "NbrJour")
     public int getNbrJour() {
         return nbrJour;

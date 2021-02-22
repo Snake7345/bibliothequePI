@@ -25,7 +25,7 @@ public class Tarifs {
         this.idTarifs = idTarifs;
     }
 
-    @Basic
+    
     @Column(name = "Denomination")
     public String getDenomination() {
         return denomination;
@@ -35,7 +35,7 @@ public class Tarifs {
         this.denomination = denomination;
     }
 
-    @Basic
+    
     @Column(name = "BibliothequesIdBibliotheques")
     public int getBibliothequesIdBibliotheques() {
         return bibliothequesIdBibliotheques;
@@ -45,7 +45,7 @@ public class Tarifs {
         this.bibliothequesIdBibliotheques = bibliothequesIdBibliotheques;
     }
 
-    @Basic
+    
     @Column(name = "DateDebut")
     public Timestamp getDateDebut() {
         return dateDebut;

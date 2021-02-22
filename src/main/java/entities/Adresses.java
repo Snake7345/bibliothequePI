@@ -26,7 +26,7 @@ public class Adresses {
         this.idAdresses = idAdresses;
     }
 
-    @Basic
+    
     @Column(name = "Rue")
     public String getRue() {
         return rue;
@@ -36,7 +36,7 @@ public class Adresses {
         this.rue = rue;
     }
 
-    @Basic
+    
     @Column(name = "Boite")
     public String getBoite() {
         return boite;
@@ -46,7 +46,7 @@ public class Adresses {
         this.boite = boite;
     }
 
-    @Basic
+    
     @Column(name = "Numero")
     public String getNumero() {
         return numero;
@@ -56,7 +56,7 @@ public class Adresses {
         this.numero = numero;
     }
 
-    @Basic
+    
     @Column(name = "LocalitesIdLocalites")
     public int getLocalitesIdLocalites() {
         return localitesIdLocalites;
@@ -66,7 +66,7 @@ public class Adresses {
         this.localitesIdLocalites = localitesIdLocalites;
     }
 
-    @Basic
+    
     @Column(name = "BibliothequesIdBibliotheques")
     public Integer getBibliothequesIdBibliotheques() {
         return bibliothequesIdBibliotheques;

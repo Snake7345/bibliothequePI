@@ -29,7 +29,7 @@ public class Utilisateurs {
         this.idUtilisateurs = idUtilisateurs;
     }
 
-    @Basic
+    
     @Column(name = "Nom")
     public String getNom() {
         return nom;
@@ -39,7 +39,7 @@ public class Utilisateurs {
         this.nom = nom;
     }
 
-    @Basic
+    
     @Column(name = "Prenom")
     public String getPrenom() {
         return prenom;
@@ -49,7 +49,7 @@ public class Utilisateurs {
         this.prenom = prenom;
     }
 
-    @Basic
+    
     @Column(name = "Sexe")
     public Object getSexe() {
         return sexe;
@@ -59,7 +59,7 @@ public class Utilisateurs {
         this.sexe = sexe;
     }
 
-    @Basic
+    
     @Column(name = "Courriel")
     public String getCourriel() {
         return courriel;
@@ -69,7 +69,7 @@ public class Utilisateurs {
         this.courriel = courriel;
     }
 
-    @Basic
+    
     @Column(name = "Login")
     public String getLogin() {
         return login;
@@ -79,7 +79,7 @@ public class Utilisateurs {
         this.login = login;
     }
 
-    @Basic
+    
     @Column(name = "Mdp")
     public String getMdp() {
         return mdp;
@@ -89,7 +89,7 @@ public class Utilisateurs {
         this.mdp = mdp;
     }
 
-    @Basic
+    
     @Column(name = "Actif")
     public byte getActif() {
         return actif;
@@ -99,7 +99,7 @@ public class Utilisateurs {
         this.actif = actif;
     }
 
-    @Basic
+    
     @Column(name = "RolesIdRoles")
     public int getRolesIdRoles() {
         return rolesIdRoles;

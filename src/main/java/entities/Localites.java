@@ -23,7 +23,7 @@ public class Localites {
         this.idLocalites = idLocalites;
     }
 
-    @Basic
+    
     @Column(name = "CP")
     public int getCp() {
         return cp;
@@ -33,7 +33,7 @@ public class Localites {
         this.cp = cp;
     }
 
-    @Basic
+    
     @Column(name = "Ville")
     public String getVille() {
         return ville;
@@ -43,7 +43,7 @@ public class Localites {
         this.ville = ville;
     }
 
-    @Basic
+    
     @Column(name = "PaysIdPays")
     public int getPaysIdPays() {
         return paysIdPays;

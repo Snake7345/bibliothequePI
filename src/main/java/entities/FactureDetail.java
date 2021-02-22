@@ -17,7 +17,7 @@ public class FactureDetail {
     private Facture factureByLocationsIdLocations;
     private ExemplairesLivres exemplairesLivresByExemplairesLivresIdExemplairesLivres;
 
-    @Basic
+    
     @Column(name = "LocationsIdLocations")
     public int getLocationsIdLocations() {
         return locationsIdLocations;
@@ -27,7 +27,7 @@ public class FactureDetail {
         this.locationsIdLocations = locationsIdLocations;
     }
 
-    @Basic
+    
     @Column(name = "ExemplairesLivresIdExemplairesLivres")
     public int getExemplairesLivresIdExemplairesLivres() {
         return exemplairesLivresIdExemplairesLivres;
@@ -47,7 +47,7 @@ public class FactureDetail {
         this.idLocationsHistorique = idLocationsHistorique;
     }
 
-    @Basic
+    
     @Column(name = "DateFin")
     public Timestamp getDateFin() {
         return dateFin;
@@ -57,7 +57,7 @@ public class FactureDetail {
         this.dateFin = dateFin;
     }
 
-    @Basic
+    
     @Column(name = "DateRetour")
     public Timestamp getDateRetour() {
         return dateRetour;
@@ -67,7 +67,7 @@ public class FactureDetail {
         this.dateRetour = dateRetour;
     }
 
-    @Basic
+    
     @Column(name = "EtatRendu")
     public String getEtatRendu() {
         return etatRendu;
@@ -77,7 +77,7 @@ public class FactureDetail {
         this.etatRendu = etatRendu;
     }
 
-    @Basic
+    
     @Column(name = "Prix")
     public double getPrix() {
         return prix;

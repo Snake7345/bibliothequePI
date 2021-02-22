@@ -21,7 +21,7 @@ public class Auteurs {
         this.idAuteurs = idAuteurs;
     }
 
-    @Basic
+    
     @Column(name = "Nom")
     public String getNom() {
         return nom;
@@ -31,7 +31,7 @@ public class Auteurs {
         this.nom = nom;
     }
 
-    @Basic
+    
     @Column(name = "Prenom")
     public String getPrenom() {
         return prenom;

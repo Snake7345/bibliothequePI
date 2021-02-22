@@ -20,7 +20,7 @@ public class Permissions {
         this.idPermissions = idPermissions;
     }
 
-    @Basic
+    
     @Column(name = "Denomination")
     public String getDenomination() {
         return denomination;

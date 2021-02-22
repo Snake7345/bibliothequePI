@@ -22,7 +22,7 @@ public class Roles {
         this.idRoles = idRoles;
     }
 
-    @Basic
+    
     @Column(name = "Denomination")
     public String getDenomination() {
         return denomination;
@@ -32,7 +32,7 @@ public class Roles {
         this.denomination = denomination;
     }
 
-    @Basic
+    
     @Column(name = "Actif")
     public byte getActif() {
         return actif;

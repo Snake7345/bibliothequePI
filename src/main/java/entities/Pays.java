@@ -20,7 +20,7 @@ public class Pays {
         this.idPays = idPays;
     }
 
-    @Basic
+    
     @Column(name = "Nom")
     public String getNom() {
         return nom;

@@ -20,7 +20,7 @@ public class Editeurs {
         this.idEditeurs = idEditeurs;
     }
 
-    @Basic
+    
     @Column(name = "Nom")
     public String getNom() {
         return nom;

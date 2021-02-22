@@ -26,7 +26,7 @@ public class Facture {
         this.idLocations = idLocations;
     }
 
-    @Basic
+    
     @Column(name = "DateDebut")
     public Timestamp getDateDebut() {
         return dateDebut;
@@ -36,7 +36,7 @@ public class Facture {
         this.dateDebut = dateDebut;
     }
 
-    @Basic
+    
     @Column(name = "PrixTVAC")
     public Double getPrixTvac() {
         return prixTvac;
@@ -46,7 +46,7 @@ public class Facture {
         this.prixTvac = prixTvac;
     }
 
-    @Basic
+    
     @Column(name = "NumeroFacture")
     public String getNumeroFacture() {
         return numeroFacture;
@@ -56,7 +56,7 @@ public class Facture {
         this.numeroFacture = numeroFacture;
     }
 
-    @Basic
+    
     @Column(name = "Etat")
     public Object getEtat() {
         return etat;
@@ -66,7 +66,7 @@ public class Facture {
         this.etat = etat;
     }
 
-    @Basic
+    
     @Column(name = "UtilisateursIdUtilisateurs")
     public int getUtilisateursIdUtilisateurs() {
         return utilisateursIdUtilisateurs;

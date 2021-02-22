@@ -12,7 +12,7 @@ public class LivresGenres {
     private Livres livresByLivresIdLivres;
     private Genres genresByGenresIdGenres;
 
-    @Basic
+    
     @Column(name = "LivresIdLivres")
     public int getLivresIdLivres() {
         return livresIdLivres;
@@ -22,7 +22,7 @@ public class LivresGenres {
         this.livresIdLivres = livresIdLivres;
     }
 
-    @Basic
+    
     @Column(name = "GenresIdGenres")
     public int getGenresIdGenres() {
         return genresIdGenres;

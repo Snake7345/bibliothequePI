@@ -12,7 +12,7 @@ public class PermissionsRoles {
     private Permissions permissionsByPermissionsIdPermissions;
     private Roles rolesByRolesIdRoles;
 
-    @Basic
+    
     @Column(name = "PermissionsIdPermissions")
     public int getPermissionsIdPermissions() {
         return permissionsIdPermissions;
@@ -22,7 +22,7 @@ public class PermissionsRoles {
         this.permissionsIdPermissions = permissionsIdPermissions;
     }
 
-    @Basic
+    
     @Column(name = "RolesIdRoles")
     public int getRolesIdRoles() {
         return rolesIdRoles;

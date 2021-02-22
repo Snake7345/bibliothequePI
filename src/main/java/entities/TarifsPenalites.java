@@ -16,7 +16,7 @@ public class TarifsPenalites {
     private Tarifs tarifsByTarifsIdTarifs;
     private Penalites penalitesByPenalitesIdPenalites;
 
-    @Basic
+    
     @Column(name = "TarifsIdTarifs")
     public int getTarifsIdTarifs() {
         return tarifsIdTarifs;
@@ -26,7 +26,7 @@ public class TarifsPenalites {
         this.tarifsIdTarifs = tarifsIdTarifs;
     }
 
-    @Basic
+    
     @Column(name = "PenalitesIdPenalites")
     public int getPenalitesIdPenalites() {
         return penalitesIdPenalites;
@@ -46,7 +46,7 @@ public class TarifsPenalites {
         this.idTarifsPenalites = idTarifsPenalites;
     }
 
-    @Basic
+    
     @Column(name = "Prix")
     public double getPrix() {
         return prix;
@@ -56,7 +56,7 @@ public class TarifsPenalites {
         this.prix = prix;
     }
 
-    @Basic
+    
     @Column(name = "DateDebut")
     public Timestamp getDateDebut() {
         return dateDebut;
@@ -66,7 +66,7 @@ public class TarifsPenalites {
         this.dateDebut = dateDebut;
     }
 
-    @Basic
+    
     @Column(name = "DateFin")
     public Timestamp getDateFin() {
         return dateFin;

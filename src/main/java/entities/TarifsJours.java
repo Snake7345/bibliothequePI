@@ -16,7 +16,7 @@ public class TarifsJours {
     private Tarifs tarifsByTarifsIdTarifs;
     private Jours joursByJoursIdJours;
 
-    @Basic
+    
     @Column(name = "TarifsIdTarifs")
     public int getTarifsIdTarifs() {
         return tarifsIdTarifs;
@@ -26,7 +26,7 @@ public class TarifsJours {
         this.tarifsIdTarifs = tarifsIdTarifs;
     }
 
-    @Basic
+    
     @Column(name = "JoursIdJours")
     public int getJoursIdJours() {
         return joursIdJours;
@@ -46,7 +46,7 @@ public class TarifsJours {
         this.idTarifsJours = idTarifsJours;
     }
 
-    @Basic
+    
     @Column(name = "Prix")
     public double getPrix() {
         return prix;
@@ -56,7 +56,7 @@ public class TarifsJours {
         this.prix = prix;
     }
 
-    @Basic
+    
     @Column(name = "DateDebut")
     public Timestamp getDateDebut() {
         return dateDebut;
@@ -66,7 +66,7 @@ public class TarifsJours {
         this.dateDebut = dateDebut;
     }
 
-    @Basic
+    
     @Column(name = "DateFin")
     public Timestamp getDateFin() {
         return dateFin;

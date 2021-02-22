@@ -28,7 +28,7 @@ public class ExemplairesLivres {
         this.idExemplairesLivres = idExemplairesLivres;
     }
 
-    @Basic
+    
     @Column(name = "CodeBarre")
     public String getCodeBarre() {
         return codeBarre;
@@ -38,7 +38,7 @@ public class ExemplairesLivres {
         this.codeBarre = codeBarre;
     }
 
-    @Basic
+    
     @Column(name = "BibliothequesIdBibliotheques")
     public int getBibliothequesIdBibliotheques() {
         return bibliothequesIdBibliotheques;
@@ -48,7 +48,7 @@ public class ExemplairesLivres {
         this.bibliothequesIdBibliotheques = bibliothequesIdBibliotheques;
     }
 
-    @Basic
+    
     @Column(name = "LivresIdLivres")
     public int getLivresIdLivres() {
         return livresIdLivres;
@@ -58,7 +58,7 @@ public class ExemplairesLivres {
         this.livresIdLivres = livresIdLivres;
     }
 
-    @Basic
+    
     @Column(name = "Actif")
     public byte getActif() {
         return actif;
@@ -68,7 +68,7 @@ public class ExemplairesLivres {
         this.actif = actif;
     }
 
-    @Basic
+    
     @Column(name = "Etat")
     public Object getEtat() {
         return etat;
@@ -78,7 +78,7 @@ public class ExemplairesLivres {
         this.etat = etat;
     }
 
-    @Basic
+    
     @Column(name = "CommentaireEtat")
     public String getCommentaireEtat() {
         return commentaireEtat;

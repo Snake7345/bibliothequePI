@@ -22,7 +22,7 @@ public class Bibliotheques {
         this.idBibliotheques = idBibliotheques;
     }
 
-    @Basic
+    
     @Column(name = "Nom")
     public String getNom() {
         return nom;

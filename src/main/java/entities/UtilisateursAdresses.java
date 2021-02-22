@@ -12,7 +12,7 @@ public class UtilisateursAdresses {
     private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
     private Adresses adressesByAdressesIdAdresses;
 
-    @Basic
+    
     @Column(name = "UtilisateursIdUtilisateurs")
     public int getUtilisateursIdUtilisateurs() {
         return utilisateursIdUtilisateurs;
@@ -22,7 +22,7 @@ public class UtilisateursAdresses {
         this.utilisateursIdUtilisateurs = utilisateursIdUtilisateurs;
     }
 
-    @Basic
+    
     @Column(name = "AdressesIdAdresses")
     public int getAdressesIdAdresses() {
         return adressesIdAdresses;

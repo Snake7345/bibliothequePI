@@ -26,7 +26,7 @@ public class Livres {
         this.idLivres = idLivres;
     }
 
-    @Basic
+    
     @Column(name = "Titre")
     public String getTitre() {
         return titre;
@@ -36,7 +36,7 @@ public class Livres {
         this.titre = titre;
     }
 
-    @Basic
+    
     @Column(name = "Annee")
     public int getAnnee() {
         return annee;
@@ -46,7 +46,7 @@ public class Livres {
         this.annee = annee;
     }
 
-    @Basic
+    
     @Column(name = "ISBN")
     public int getIsbn() {
         return isbn;
@@ -56,7 +56,7 @@ public class Livres {
         this.isbn = isbn;
     }
 
-    @Basic
+    
     @Column(name = "EditeursIdEditeurs")
     public int getEditeursIdEditeurs() {
         return editeursIdEditeurs;

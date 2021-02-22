@@ -20,7 +20,7 @@ public class Penalites {
         this.idPenalites = idPenalites;
     }
 
-    @Basic
+    
     @Column(name = "Denomination")
     public String getDenomination() {
         return denomination;
