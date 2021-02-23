@@ -1,22 +1,22 @@
-package managedBean;
+package services;
 
-import entities.Genres;
+import entities.Penalites;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
 @PersistenceUnit (unitName="bibliotheque")
-public class SvcGenres {
+public class SvcTarifsJours {
 	protected EntityManager em;
 
 	//---------------------------------------------------------------------------
-		public SvcGenres()
+		public SvcTarifsJours()
 		{
 			super();
 		}
 
 
-		public SvcGenres(EntityManager em1)
+		public SvcTarifsJours(EntityManager em1)
 		{
 			
 			this.em = em1;
@@ -24,18 +24,18 @@ public class SvcGenres {
 		}
 	//---------------------------------------------------------------------------
 
-		public void create(Genres genres)
+		public void create(Penalites pena)
 		{
-			em.persist(genres);
+			em.persist(pena);
 		}
 		
-		public void update(Genres genres)
+		public void update(Penalites pena)
 		{
-			em.merge(genres);
+			em.merge(pena);
 		}
-		public void remove(Genres genres)
+		public void remove(Penalites pena)
 		{
-			em.remove(genres);
+			em.remove(pena);
 		}
 
 

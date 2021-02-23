@@ -13,7 +13,7 @@ public class Utilisateurs {
     private String courriel;
     private String login;
     private String mdp;
-    private byte actif;
+    private boolean actif;
     private int rolesIdRoles;
     private Collection<Facture> facturesByIdUtilisateurs;
     private Roles rolesByRolesIdRoles;
@@ -91,14 +91,13 @@ public class Utilisateurs {
 
     
     @Column(name = "Actif")
-    public byte getActif() {
+    public boolean isActif() {
         return actif;
     }
 
-    public void setActif(byte actif) {
+    public void setActif(boolean actif) {
         this.actif = actif;
     }
-
     
     @Column(name = "RolesIdRoles")
     public int getRolesIdRoles() {

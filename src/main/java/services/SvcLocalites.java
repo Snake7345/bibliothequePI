@@ -1,22 +1,22 @@
-package managedBean;
+package services;
 
-import entities.Roles;
+import entities.Localites;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
 @PersistenceUnit (unitName="bibliotheque")
-public class SvcRoles {
+public class SvcLocalites {
 	protected EntityManager em;
 
 	//---------------------------------------------------------------------------
-		public SvcRoles()
+		public SvcLocalites()
 		{
 			super();
 		}
 
 
-		public SvcRoles(EntityManager em1)
+		public SvcLocalites(EntityManager em1)
 		{
 			
 			this.em = em1;
@@ -24,18 +24,18 @@ public class SvcRoles {
 		}
 	//---------------------------------------------------------------------------
 
-		public void create(Roles role)
+		public void create(Localites loca)
 		{
-			em.persist(role);
+			em.persist(loca);
 		}
 		
-		public void update(Roles role)
+		public void update(Localites loca)
 		{
-			em.merge(role);
+			em.merge(loca);
 		}
-		public void remove(Roles role)
+		public void remove(Localites loca)
 		{
-			em.remove(role);
+			em.remove(loca);
 		}
 
 

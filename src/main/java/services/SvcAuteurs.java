@@ -1,22 +1,22 @@
-package managedBean;
+package services;
 
-import entities.Jours;
+import entities.Auteurs;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
 @PersistenceUnit (unitName="bibliotheque")
-public class SvcJours {
+public class SvcAuteurs {
 	protected EntityManager em;
 
 	//---------------------------------------------------------------------------
-		public SvcJours()
+		public SvcAuteurs()
 		{
 			super();
 		}
 
 
-		public SvcJours(EntityManager em1)
+		public SvcAuteurs(EntityManager em1)
 		{
 			
 			this.em = em1;
@@ -24,18 +24,18 @@ public class SvcJours {
 		}
 	//---------------------------------------------------------------------------
 
-		public void create(Jours jours)
+		public void create(Auteurs auteur)
 		{
-			em.persist(jours);
+			em.persist(auteur);
 		}
 		
-		public void update(Jours jours)
+		public void update(Auteurs auteur)
 		{
-			em.merge(jours);
+			em.merge(auteur);
 		}
-		public void remove(Jours jours)
+		public void remove(Auteurs auteur)
 		{
-			em.remove(jours);
+			em.remove(auteur);
 		}
 
 

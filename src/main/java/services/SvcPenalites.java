@@ -1,4 +1,4 @@
-package managedBean;
+package services;
 
 import entities.Penalites;
 
@@ -6,17 +6,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
 @PersistenceUnit (unitName="bibliotheque")
-public class SvcTarifsJours {
+public class SvcPenalites {
 	protected EntityManager em;
 
 	//---------------------------------------------------------------------------
-		public SvcTarifsJours()
+		public SvcPenalites()
 		{
 			super();
 		}
 
 
-		public SvcTarifsJours(EntityManager em1)
+		public SvcPenalites(EntityManager em1)
 		{
 			
 			this.em = em1;

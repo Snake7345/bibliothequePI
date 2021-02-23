@@ -1,22 +1,21 @@
-package managedBean;
-
-import entities.PermissionsRoles;
+package services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
+import entities.Utilisateurs;
 @PersistenceUnit (unitName="bibliotheque")
-public class SvcPermissionsRoles {
+public class SvcUtilisateurs {
 	protected EntityManager em;
 
 	//---------------------------------------------------------------------------
-		public SvcPermissionsRoles()
+		public SvcUtilisateurs()
 		{
 			super();
 		}
 
 
-		public SvcPermissionsRoles(EntityManager em1)
+		public SvcUtilisateurs(EntityManager em1)
 		{
 			
 			this.em = em1;
@@ -24,18 +23,18 @@ public class SvcPermissionsRoles {
 		}
 	//---------------------------------------------------------------------------
 
-		public void create(PermissionsRoles penar)
+		public void create(Utilisateurs uti)
 		{
-			em.persist(penar);
+			em.persist(uti);
 		}
 		
-		public void update(PermissionsRoles penar)
+		public void update(Utilisateurs uti)
 		{
-			em.merge(penar);
+			em.merge(uti);
 		}
-		public void remove(PermissionsRoles penar)
+		public void remove(Utilisateurs uti)
 		{
-			em.remove(penar);
+			em.remove(uti);
 		}
 
 

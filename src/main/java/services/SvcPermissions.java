@@ -1,22 +1,22 @@
-package managedBean;
+package services;
 
-import entities.Editeurs;
+import entities.Permissions;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
 @PersistenceUnit (unitName="bibliotheque")
-public class SvcEditeurs {
+public class SvcPermissions {
 	protected EntityManager em;
 
 	//---------------------------------------------------------------------------
-		public SvcEditeurs()
+		public SvcPermissions()
 		{
 			super();
 		}
 
 
-		public SvcEditeurs(EntityManager em1)
+		public SvcPermissions(EntityManager em1)
 		{
 			
 			this.em = em1;
@@ -24,18 +24,18 @@ public class SvcEditeurs {
 		}
 	//---------------------------------------------------------------------------
 
-		public void create(Editeurs editeur)
+		public void create(Permissions perm)
 		{
-			em.persist(editeur);
+			em.persist(perm);
 		}
 		
-		public void update(Editeurs editeur)
+		public void update(Permissions perm)
 		{
-			em.merge(editeur);
+			em.merge(perm);
 		}
-		public void remove(Editeurs editeur)
+		public void remove(Permissions perm)
 		{
-			em.remove(editeur);
+			em.remove(perm);
 		}
 
 

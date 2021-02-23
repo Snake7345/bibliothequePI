@@ -1,22 +1,22 @@
-package managedBean;
+package services;
 
-import entities.FactureDetail;
+import entities.LivresGenres;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
 @PersistenceUnit (unitName="bibliotheque")
-public class SvcFactureDetail {
+public class SvcLivresGenres {
 	protected EntityManager em;
 
 	//---------------------------------------------------------------------------
-		public SvcFactureDetail()
+		public SvcLivresGenres()
 		{
 			super();
 		}
 
 
-		public SvcFactureDetail(EntityManager em1)
+		public SvcLivresGenres(EntityManager em1)
 		{
 			
 			this.em = em1;
@@ -24,18 +24,18 @@ public class SvcFactureDetail {
 		}
 	//---------------------------------------------------------------------------
 
-		public void create(FactureDetail factured)
+		public void create(LivresGenres livresg)
 		{
-			em.persist(factured);
+			em.persist(livresg);
 		}
 		
-		public void update(FactureDetail factured)
+		public void update(LivresGenres livresg)
 		{
-			em.merge(factured);
+			em.merge(livresg);
 		}
-		public void remove(FactureDetail factured)
+		public void remove(LivresGenres livresg)
 		{
-			em.remove(factured);
+			em.remove(livresg);
 		}
 
 

@@ -1,4 +1,4 @@
-package managedBean;
+package services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;

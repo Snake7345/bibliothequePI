@@ -11,7 +11,7 @@ public class ExemplairesLivres {
     private String codeBarre;
     private int bibliothequesIdBibliotheques;
     private int livresIdLivres;
-    private byte actif;
+    private boolean actif;
     private Object etat;
     private String commentaireEtat;
     private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
@@ -60,11 +60,11 @@ public class ExemplairesLivres {
 
     
     @Column(name = "Actif")
-    public byte getActif() {
+    public boolean isActif() {
         return actif;
     }
 
-    public void setActif(byte actif) {
+    public void setActif(boolean actif) {
         this.actif = actif;
     }
 

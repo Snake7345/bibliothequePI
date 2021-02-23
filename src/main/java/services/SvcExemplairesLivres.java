@@ -1,4 +1,4 @@
-package managedBean;
+package services;
 
 import entities.ExemplairesLivres;
 
