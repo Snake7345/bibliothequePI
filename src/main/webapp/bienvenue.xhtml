@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/Template/template.xhtml">
+    <ui:define name="title">#{bundle['application.welcomepage.titre']}</ui:define>
+
+    <ui:define name="content">
+        <br/><br/>
+        <h:panelGrid class="table" columns="3">
+            <p> Bienvenue sur la page d'accueil de cette application</p>
+        </h:panelGrid>
+        <br /><br />
+    </ui:define>
+</ui:composition>
+
+
+
+</html>
