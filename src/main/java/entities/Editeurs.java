@@ -1,55 +1,43 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-public class Editeurs {
-    private int idEditeurs;
-    private String nom;
-    private Collection<Livres> livresByIdEditeurs;
+@Table(name = "editeurs")
+public class Editeurs implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdEditeurs")
-    public int getIdEditeurs() {
-        return idEditeurs;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdEditeurs", nullable = false)
+    private Integer idEditeurs;
 
-    public void setIdEditeurs(int idEditeurs) {
+    @Column(name = "Nom", nullable = false)
+    private String nom;
+
+    public void setIdEditeurs(Integer idEditeurs) {
         this.idEditeurs = idEditeurs;
     }
 
-    
-    @Column(name = "Nom")
-    public String getNom() {
-        return nom;
+    public Integer getIdEditeurs() {
+        return idEditeurs;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Editeurs editeurs = (Editeurs) o;
-        return idEditeurs == editeurs.idEditeurs &&
-                Objects.equals(nom, editeurs.nom);
+    public String getNom() {
+        return nom;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idEditeurs, nom);
-    }
-
-    @OneToMany(mappedBy = "editeursByEditeursIdEditeurs")
-    public Collection<Livres> getLivresByIdEditeurs() {
-        return livresByIdEditeurs;
-    }
-
-    public void setLivresByIdEditeurs(Collection<Livres> livresByIdEditeurs) {
-        this.livresByIdEditeurs = livresByIdEditeurs;
+    public String toString() {
+        return "Editeurs{" +
+                "idEditeurs=" + idEditeurs + '\'' +
+                "nom=" + nom + '\'' +
+                '}';
     }
 }

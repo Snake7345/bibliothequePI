@@ -1,9 +1,10 @@
 package services;
 
+import entities.Utilisateurs;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
-import entities.Utilisateurs;
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcUtilisateurs {
 	protected EntityManager em;

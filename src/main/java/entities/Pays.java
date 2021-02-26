@@ -1,55 +1,43 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-public class Pays {
-    private int idPays;
-    private String nom;
-    private Collection<Localites> localitesByIdPays;
+@Table(name = "pays")
+public class Pays implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdPays")
-    public int getIdPays() {
-        return idPays;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdPays", nullable = false)
+    private Integer idPays;
 
-    public void setIdPays(int idPays) {
+    @Column(name = "Nom", nullable = false)
+    private String nom;
+
+    public void setIdPays(Integer idPays) {
         this.idPays = idPays;
     }
 
-    
-    @Column(name = "Nom")
-    public String getNom() {
-        return nom;
+    public Integer getIdPays() {
+        return idPays;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pays pays = (Pays) o;
-        return idPays == pays.idPays &&
-                Objects.equals(nom, pays.nom);
+    public String getNom() {
+        return nom;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idPays, nom);
-    }
-
-    @OneToMany(mappedBy = "paysByPaysIdPays")
-    public Collection<Localites> getLocalitesByIdPays() {
-        return localitesByIdPays;
-    }
-
-    public void setLocalitesByIdPays(Collection<Localites> localitesByIdPays) {
-        this.localitesByIdPays = localitesByIdPays;
+    public String toString() {
+        return "Pays{" +
+                "idPays=" + idPays + '\'' +
+                "nom=" + nom + '\'' +
+                '}';
     }
 }

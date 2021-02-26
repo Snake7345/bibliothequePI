@@ -1,90 +1,67 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-public class Localites {
-    private int idLocalites;
-    private int cp;
-    private String ville;
-    private int paysIdPays;
-    private Collection<Adresses> adressesByIdLocalites;
-    private Pays paysByPaysIdPays;
+@Table(name = "localites")
+public class Localites implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdLocalites")
-    public int getIdLocalites() {
-        return idLocalites;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdLocalites", nullable = false)
+    private Integer idLocalites;
 
-    public void setIdLocalites(int idLocalites) {
+    @Column(name = "CP", nullable = false)
+    private Integer CP;
+
+    @Column(name = "Ville", nullable = false)
+    private String ville;
+
+    @Column(name = "PaysIdPays", nullable = false)
+    private Integer paysIdPays;
+
+    public void setIdLocalites(Integer idLocalites) {
         this.idLocalites = idLocalites;
     }
 
-    
-    @Column(name = "CP")
-    public int getCp() {
-        return cp;
+    public Integer getIdLocalites() {
+        return idLocalites;
     }
 
-    public void setCp(int cp) {
-        this.cp = cp;
+    public void setCP(Integer CP) {
+        this.CP = CP;
     }
 
-    
-    @Column(name = "Ville")
-    public String getVille() {
-        return ville;
+    public Integer getCP() {
+        return CP;
     }
 
     public void setVille(String ville) {
         this.ville = ville;
     }
 
-    
-    @Column(name = "PaysIdPays")
-    public int getPaysIdPays() {
-        return paysIdPays;
+    public String getVille() {
+        return ville;
     }
 
-    public void setPaysIdPays(int paysIdPays) {
+    public void setPaysIdPays(Integer paysIdPays) {
         this.paysIdPays = paysIdPays;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Localites localites = (Localites) o;
-        return idLocalites == localites.idLocalites &&
-                cp == localites.cp &&
-                paysIdPays == localites.paysIdPays &&
-                Objects.equals(ville, localites.ville);
+    public Integer getPaysIdPays() {
+        return paysIdPays;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idLocalites, cp, ville, paysIdPays);
-    }
-
-    @OneToMany(mappedBy = "localitesByLocalitesIdLocalites")
-    public Collection<Adresses> getAdressesByIdLocalites() {
-        return adressesByIdLocalites;
-    }
-
-    public void setAdressesByIdLocalites(Collection<Adresses> adressesByIdLocalites) {
-        this.adressesByIdLocalites = adressesByIdLocalites;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "PaysIdPays", referencedColumnName = "IdPays", nullable = false)
-    public Pays getPaysByPaysIdPays() {
-        return paysByPaysIdPays;
-    }
-
-    public void setPaysByPaysIdPays(Pays paysByPaysIdPays) {
-        this.paysByPaysIdPays = paysByPaysIdPays;
+    public String toString() {
+        return "Localites{" +
+                "idLocalites=" + idLocalites + '\'' +
+                "CP=" + CP + '\'' +
+                "ville=" + ville + '\'' +
+                "paysIdPays=" + paysIdPays + '\'' +
+                '}';
     }
 }

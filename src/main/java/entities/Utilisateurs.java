@@ -1,159 +1,127 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-public class Utilisateurs {
-    private int idUtilisateurs;
-    private String nom;
-    private String prenom;
-    private Object sexe;
-    private String courriel;
-    private String login;
-    private String mdp;
-    private boolean actif;
-    private int rolesIdRoles;
-    private Collection<Facture> facturesByIdUtilisateurs;
-    private Roles rolesByRolesIdRoles;
-    private Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs;
+@Table(name = "utilisateurs")
+public class Utilisateurs implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdUtilisateurs")
-    public int getIdUtilisateurs() {
-        return idUtilisateurs;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdUtilisateurs", nullable = false)
+    private Integer idUtilisateurs;
 
-    public void setIdUtilisateurs(int idUtilisateurs) {
+    @Column(name = "Nom", nullable = false)
+    private String nom;
+
+    @Column(name = "Prenom", nullable = false)
+    private String prenom;
+
+    @Column(name = "Sexe", nullable = false)
+    private String sexe;
+
+    @Column(name = "Courriel", nullable = false)
+    private String courriel;
+
+    @Column(name = "Login")
+    private String login;
+
+    @Column(name = "Mdp")
+    private String mdp;
+
+    @Column(name = "Actif", nullable = false)
+    private Integer actif = 1;
+
+    @Column(name = "RolesIdRoles", nullable = false)
+    private Integer rolesIdRoles;
+
+    public void setIdUtilisateurs(Integer idUtilisateurs) {
         this.idUtilisateurs = idUtilisateurs;
     }
 
-    
-    @Column(name = "Nom")
-    public String getNom() {
-        return nom;
+    public Integer getIdUtilisateurs() {
+        return idUtilisateurs;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    
-    @Column(name = "Prenom")
-    public String getPrenom() {
-        return prenom;
+    public String getNom() {
+        return nom;
     }
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
-    
-    @Column(name = "Sexe")
-    public Object getSexe() {
-        return sexe;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setSexe(Object sexe) {
+    public void setSexe(String sexe) {
         this.sexe = sexe;
     }
 
-    
-    @Column(name = "Courriel")
-    public String getCourriel() {
-        return courriel;
+    public String getSexe() {
+        return sexe;
     }
 
     public void setCourriel(String courriel) {
         this.courriel = courriel;
     }
 
-    
-    @Column(name = "Login")
-    public String getLogin() {
-        return login;
+    public String getCourriel() {
+        return courriel;
     }
 
     public void setLogin(String login) {
         this.login = login;
     }
 
-    
-    @Column(name = "Mdp")
-    public String getMdp() {
-        return mdp;
+    public String getLogin() {
+        return login;
     }
 
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
 
-    
-    @Column(name = "Actif")
-    public boolean isActif() {
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setActif(Integer actif) {
+        this.actif = actif;
+    }
+
+    public Integer getActif() {
         return actif;
     }
 
-    public void setActif(boolean actif) {
-        this.actif = actif;
-    }
-    
-    @Column(name = "RolesIdRoles")
-    public int getRolesIdRoles() {
-        return rolesIdRoles;
-    }
-
-    public void setRolesIdRoles(int rolesIdRoles) {
+    public void setRolesIdRoles(Integer rolesIdRoles) {
         this.rolesIdRoles = rolesIdRoles;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Utilisateurs that = (Utilisateurs) o;
-        return idUtilisateurs == that.idUtilisateurs &&
-                actif == that.actif &&
-                rolesIdRoles == that.rolesIdRoles &&
-                Objects.equals(nom, that.nom) &&
-                Objects.equals(prenom, that.prenom) &&
-                Objects.equals(sexe, that.sexe) &&
-                Objects.equals(courriel, that.courriel) &&
-                Objects.equals(login, that.login) &&
-                Objects.equals(mdp, that.mdp);
+    public Integer getRolesIdRoles() {
+        return rolesIdRoles;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, actif, rolesIdRoles);
-    }
-
-    @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
-    public Collection<Facture> getFacturesByIdUtilisateurs() {
-        return facturesByIdUtilisateurs;
-    }
-
-    public void setFacturesByIdUtilisateurs(Collection<Facture> facturesByIdUtilisateurs) {
-        this.facturesByIdUtilisateurs = facturesByIdUtilisateurs;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "RolesIdRoles", referencedColumnName = "IdRoles", nullable = false)
-    public Roles getRolesByRolesIdRoles() {
-        return rolesByRolesIdRoles;
-    }
-
-    public void setRolesByRolesIdRoles(Roles rolesByRolesIdRoles) {
-        this.rolesByRolesIdRoles = rolesByRolesIdRoles;
-    }
-
-    @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
-    public Collection<UtilisateursAdresses> getUtilisateursAdressesByIdUtilisateurs() {
-        return utilisateursAdressesByIdUtilisateurs;
-    }
-
-    public void setUtilisateursAdressesByIdUtilisateurs(Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs) {
-        this.utilisateursAdressesByIdUtilisateurs = utilisateursAdressesByIdUtilisateurs;
+    public String toString() {
+        return "Utilisateurs{" +
+                "idUtilisateurs=" + idUtilisateurs + '\'' +
+                "nom=" + nom + '\'' +
+                "prenom=" + prenom + '\'' +
+                "sexe=" + sexe + '\'' +
+                "courriel=" + courriel + '\'' +
+                "login=" + login + '\'' +
+                "mdp=" + mdp + '\'' +
+                "actif=" + actif + '\'' +
+                "rolesIdRoles=" + rolesIdRoles + '\'' +
+                '}';
     }
 }

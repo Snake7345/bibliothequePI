@@ -1,116 +1,92 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.Objects;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
-@Table(name = "tarifs_penalites", schema = "bibliotheque")
-public class TarifsPenalites {
-    private int tarifsIdTarifs;
-    private int penalitesIdPenalites;
-    private int idTarifsPenalites;
-    private double prix;
-    private Timestamp dateDebut;
-    private Timestamp dateFin;
-    private Tarifs tarifsByTarifsIdTarifs;
-    private Penalites penalitesByPenalitesIdPenalites;
+@Table(name = "tarifs_penalites")
+public class TarifsPenalites implements Serializable {
 
-    
-    @Column(name = "TarifsIdTarifs")
-    public int getTarifsIdTarifs() {
-        return tarifsIdTarifs;
-    }
+    private static final long serialVersionUID = 1L;
 
-    public void setTarifsIdTarifs(int tarifsIdTarifs) {
+    @Column(name = "TarifsIdTarifs", nullable = false)
+    private Integer tarifsIdTarifs;
+
+    @Column(name = "PenalitesIdPenalites", nullable = false)
+    private Integer penalitesIdPenalites;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdTarifsPenalites", nullable = false)
+    private Integer idTarifsPenalites;
+
+    @Column(name = "Prix", nullable = false)
+    private Double prix;
+
+    @Column(name = "DateDebut", nullable = false)
+    private Date dateDebut;
+
+    @Column(name = "DateFin", nullable = false)
+    private Date dateFin;
+
+    public void setTarifsIdTarifs(Integer tarifsIdTarifs) {
         this.tarifsIdTarifs = tarifsIdTarifs;
     }
 
-    
-    @Column(name = "PenalitesIdPenalites")
-    public int getPenalitesIdPenalites() {
-        return penalitesIdPenalites;
+    public Integer getTarifsIdTarifs() {
+        return tarifsIdTarifs;
     }
 
-    public void setPenalitesIdPenalites(int penalitesIdPenalites) {
+    public void setPenalitesIdPenalites(Integer penalitesIdPenalites) {
         this.penalitesIdPenalites = penalitesIdPenalites;
     }
 
-    @Id
-    @Column(name = "IdTarifsPenalites")
-    public int getIdTarifsPenalites() {
-        return idTarifsPenalites;
+    public Integer getPenalitesIdPenalites() {
+        return penalitesIdPenalites;
     }
 
-    public void setIdTarifsPenalites(int idTarifsPenalites) {
+    public void setIdTarifsPenalites(Integer idTarifsPenalites) {
         this.idTarifsPenalites = idTarifsPenalites;
     }
 
-    
-    @Column(name = "Prix")
-    public double getPrix() {
-        return prix;
+    public Integer getIdTarifsPenalites() {
+        return idTarifsPenalites;
     }
 
-    public void setPrix(double prix) {
+    public void setPrix(Double prix) {
         this.prix = prix;
     }
 
-    
-    @Column(name = "DateDebut")
-    public Timestamp getDateDebut() {
-        return dateDebut;
+    public Double getPrix() {
+        return prix;
     }
 
-    public void setDateDebut(Timestamp dateDebut) {
+    public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    
-    @Column(name = "DateFin")
-    public Timestamp getDateFin() {
-        return dateFin;
+    public Date getDateDebut() {
+        return dateDebut;
     }
 
-    public void setDateFin(Timestamp dateFin) {
+    public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TarifsPenalites that = (TarifsPenalites) o;
-        return tarifsIdTarifs == that.tarifsIdTarifs &&
-                penalitesIdPenalites == that.penalitesIdPenalites &&
-                idTarifsPenalites == that.idTarifsPenalites &&
-                Double.compare(that.prix, prix) == 0 &&
-                Objects.equals(dateDebut, that.dateDebut) &&
-                Objects.equals(dateFin, that.dateFin);
+    public Date getDateFin() {
+        return dateFin;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(tarifsIdTarifs, penalitesIdPenalites, idTarifsPenalites, prix, dateDebut, dateFin);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "TarifsIdTarifs", referencedColumnName = "IdTarifs", nullable = false)
-    public Tarifs getTarifsByTarifsIdTarifs() {
-        return tarifsByTarifsIdTarifs;
-    }
-
-    public void setTarifsByTarifsIdTarifs(Tarifs tarifsByTarifsIdTarifs) {
-        this.tarifsByTarifsIdTarifs = tarifsByTarifsIdTarifs;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "PenalitesIdPenalites", referencedColumnName = "IdPenalites", nullable = false)
-    public Penalites getPenalitesByPenalitesIdPenalites() {
-        return penalitesByPenalitesIdPenalites;
-    }
-
-    public void setPenalitesByPenalitesIdPenalites(Penalites penalitesByPenalitesIdPenalites) {
-        this.penalitesByPenalitesIdPenalites = penalitesByPenalitesIdPenalites;
+    public String toString() {
+        return "TarifsPenalites{" +
+                "tarifsIdTarifs=" + tarifsIdTarifs + '\'' +
+                "penalitesIdPenalites=" + penalitesIdPenalites + '\'' +
+                "idTarifsPenalites=" + idTarifsPenalites + '\'' +
+                "prix=" + prix + '\'' +
+                "dateDebut=" + dateDebut + '\'' +
+                "dateFin=" + dateFin + '\'' +
+                '}';
     }
 }

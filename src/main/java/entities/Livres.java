@@ -1,122 +1,81 @@
 package entities;
 
-import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
-public class Livres {
-    private int idLivres;
-    private String titre;
-    private int annee;
-    private int isbn;
-    private int editeursIdEditeurs;
-    private Collection<ExemplairesLivres> exemplairesLivresByIdLivres;
-    private Editeurs editeursByEditeursIdEditeurs;
-    private Collection<LivresAuteurs> livresAuteursByIdLivres;
-    private Collection<LivresGenres> livresGenresByIdLivres;
+@Table(name = "livres")
+public class Livres implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdLivres")
-    public int getIdLivres() {
-        return idLivres;
-    }
+    @Column(name = "IdLivres", nullable = false)
+    private Integer idLivres;
 
-    public void setIdLivres(int idLivres) {
+    @Column(name = "Titre", nullable = false)
+    private String titre;
+
+    @Column(name = "Annee", nullable = false)
+    private Integer annee;
+
+    @Column(name = "ISBN", nullable = false)
+    private Integer ISBN;
+
+    @Column(name = "EditeursIdEditeurs", nullable = false)
+    private Integer editeursIdEditeurs;
+
+    public void setIdLivres(Integer idLivres) {
         this.idLivres = idLivres;
     }
 
-    
-    @Column(name = "Titre")
-    public String getTitre() {
-        return titre;
+    public Integer getIdLivres() {
+        return idLivres;
     }
 
     public void setTitre(String titre) {
         this.titre = titre;
     }
 
-    
-    @Column(name = "Annee")
-    public int getAnnee() {
-        return annee;
+    public String getTitre() {
+        return titre;
     }
 
-    public void setAnnee(int annee) {
+    public void setAnnee(Integer annee) {
         this.annee = annee;
     }
 
-    
-    @Column(name = "ISBN")
-    public int getIsbn() {
-        return isbn;
+    public Integer getAnnee() {
+        return annee;
     }
 
-    public void setIsbn(int isbn) {
-        this.isbn = isbn;
+    public void setISBN(Integer ISBN) {
+        this.ISBN = ISBN;
     }
 
-    
-    @Column(name = "EditeursIdEditeurs")
-    public int getEditeursIdEditeurs() {
-        return editeursIdEditeurs;
+    public Integer getISBN() {
+        return ISBN;
     }
 
-    public void setEditeursIdEditeurs(int editeursIdEditeurs) {
+    public void setEditeursIdEditeurs(Integer editeursIdEditeurs) {
         this.editeursIdEditeurs = editeursIdEditeurs;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Livres livres = (Livres) o;
-        return idLivres == livres.idLivres &&
-                annee == livres.annee &&
-                isbn == livres.isbn &&
-                editeursIdEditeurs == livres.editeursIdEditeurs &&
-                Objects.equals(titre, livres.titre);
+    public Integer getEditeursIdEditeurs() {
+        return editeursIdEditeurs;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idLivres, titre, annee, isbn, editeursIdEditeurs);
-    }
-
-    @OneToMany(mappedBy = "livresByLivresIdLivres")
-    public Collection<ExemplairesLivres> getExemplairesLivresByIdLivres() {
-        return exemplairesLivresByIdLivres;
-    }
-
-    public void setExemplairesLivresByIdLivres(Collection<ExemplairesLivres> exemplairesLivresByIdLivres) {
-        this.exemplairesLivresByIdLivres = exemplairesLivresByIdLivres;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "EditeursIdEditeurs", referencedColumnName = "IdEditeurs", nullable = false)
-    public Editeurs getEditeursByEditeursIdEditeurs() {
-        return editeursByEditeursIdEditeurs;
-    }
-
-    public void setEditeursByEditeursIdEditeurs(Editeurs editeursByEditeursIdEditeurs) {
-        this.editeursByEditeursIdEditeurs = editeursByEditeursIdEditeurs;
-    }
-
-    @OneToMany(mappedBy = "livresByLivresIdLivres")
-    public Collection<LivresAuteurs> getLivresAuteursByIdLivres() {
-        return livresAuteursByIdLivres;
-    }
-
-    public void setLivresAuteursByIdLivres(Collection<LivresAuteurs> livresAuteursByIdLivres) {
-        this.livresAuteursByIdLivres = livresAuteursByIdLivres;
-    }
-
-    @OneToMany(mappedBy = "livresByLivresIdLivres")
-    public Collection<LivresGenres> getLivresGenresByIdLivres() {
-        return livresGenresByIdLivres;
-    }
-
-    public void setLivresGenresByIdLivres(Collection<LivresGenres> livresGenresByIdLivres) {
-        this.livresGenresByIdLivres = livresGenresByIdLivres;
+    public String toString() {
+        return "Livres{" +
+                "idLivres=" + idLivres + '\'' +
+                "titre=" + titre + '\'' +
+                "annee=" + annee + '\'' +
+                "ISBN=" + ISBN + '\'' +
+                "editeursIdEditeurs=" + editeursIdEditeurs + '\'' +
+                '}';
     }
 }

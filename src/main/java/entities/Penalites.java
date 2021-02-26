@@ -1,55 +1,43 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-public class Penalites {
-    private int idPenalites;
-    private String denomination;
-    private Collection<TarifsPenalites> tarifsPenalitesByIdPenalites;
+@Table(name = "penalites")
+public class Penalites implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdPenalites")
-    public int getIdPenalites() {
-        return idPenalites;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdPenalites", nullable = false)
+    private Integer idPenalites;
 
-    public void setIdPenalites(int idPenalites) {
+    @Column(name = "Denomination", nullable = false)
+    private String denomination;
+
+    public void setIdPenalites(Integer idPenalites) {
         this.idPenalites = idPenalites;
     }
 
-    
-    @Column(name = "Denomination")
-    public String getDenomination() {
-        return denomination;
+    public Integer getIdPenalites() {
+        return idPenalites;
     }
 
     public void setDenomination(String denomination) {
         this.denomination = denomination;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Penalites penalites = (Penalites) o;
-        return idPenalites == penalites.idPenalites &&
-                Objects.equals(denomination, penalites.denomination);
+    public String getDenomination() {
+        return denomination;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idPenalites, denomination);
-    }
-
-    @OneToMany(mappedBy = "penalitesByPenalitesIdPenalites")
-    public Collection<TarifsPenalites> getTarifsPenalitesByIdPenalites() {
-        return tarifsPenalitesByIdPenalites;
-    }
-
-    public void setTarifsPenalitesByIdPenalites(Collection<TarifsPenalites> tarifsPenalitesByIdPenalites) {
-        this.tarifsPenalitesByIdPenalites = tarifsPenalitesByIdPenalites;
+    public String toString() {
+        return "Penalites{" +
+                "idPenalites=" + idPenalites + '\'' +
+                "denomination=" + denomination + '\'' +
+                '}';
     }
 }

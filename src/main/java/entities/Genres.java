@@ -1,55 +1,43 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-public class Genres {
-    private int idGenres;
-    private String denomination;
-    private Collection<LivresGenres> livresGenresByIdGenres;
+@Table(name = "genres")
+public class Genres implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdGenres")
-    public int getIdGenres() {
-        return idGenres;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdGenres", nullable = false)
+    private Integer idGenres;
 
-    public void setIdGenres(int idGenres) {
+    @Column(name = "Denomination", nullable = false)
+    private String denomination;
+
+    public void setIdGenres(Integer idGenres) {
         this.idGenres = idGenres;
     }
 
-    
-    @Column(name = "Denomination")
-    public String getDenomination() {
-        return denomination;
+    public Integer getIdGenres() {
+        return idGenres;
     }
 
     public void setDenomination(String denomination) {
         this.denomination = denomination;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Genres genres = (Genres) o;
-        return idGenres == genres.idGenres &&
-                Objects.equals(denomination, genres.denomination);
+    public String getDenomination() {
+        return denomination;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idGenres, denomination);
-    }
-
-    @OneToMany(mappedBy = "genresByGenresIdGenres")
-    public Collection<LivresGenres> getLivresGenresByIdGenres() {
-        return livresGenresByIdGenres;
-    }
-
-    public void setLivresGenresByIdGenres(Collection<LivresGenres> livresGenresByIdGenres) {
-        this.livresGenresByIdGenres = livresGenresByIdGenres;
+    public String toString() {
+        return "Genres{" +
+                "idGenres=" + idGenres + '\'' +
+                "denomination=" + denomination + '\'' +
+                '}';
     }
 }

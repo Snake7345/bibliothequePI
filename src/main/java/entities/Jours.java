@@ -1,55 +1,43 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-public class Jours {
-    private int idJours;
-    private int nbrJour;
-    private Collection<TarifsJours> tarifsJoursByIdJours;
+@Table(name = "jours")
+public class Jours implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdJours")
-    public int getIdJours() {
-        return idJours;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdJours", nullable = false)
+    private Integer idJours;
 
-    public void setIdJours(int idJours) {
+    @Column(name = "NbrJour", nullable = false)
+    private Integer nbrJour;
+
+    public void setIdJours(Integer idJours) {
         this.idJours = idJours;
     }
 
-    
-    @Column(name = "NbrJour")
-    public int getNbrJour() {
-        return nbrJour;
+    public Integer getIdJours() {
+        return idJours;
     }
 
-    public void setNbrJour(int nbrJour) {
+    public void setNbrJour(Integer nbrJour) {
         this.nbrJour = nbrJour;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Jours jours = (Jours) o;
-        return idJours == jours.idJours &&
-                nbrJour == jours.nbrJour;
+    public Integer getNbrJour() {
+        return nbrJour;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idJours, nbrJour);
-    }
-
-    @OneToMany(mappedBy = "joursByJoursIdJours")
-    public Collection<TarifsJours> getTarifsJoursByIdJours() {
-        return tarifsJoursByIdJours;
-    }
-
-    public void setTarifsJoursByIdJours(Collection<TarifsJours> tarifsJoursByIdJours) {
-        this.tarifsJoursByIdJours = tarifsJoursByIdJours;
+    public String toString() {
+        return "Jours{" +
+                "idJours=" + idJours + '\'' +
+                "nbrJour=" + nbrJour + '\'' +
+                '}';
     }
 }

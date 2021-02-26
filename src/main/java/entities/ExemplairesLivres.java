@@ -1,138 +1,103 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "exemplaires_livres", schema = "bibliotheque")
-public class ExemplairesLivres {
-    private int idExemplairesLivres;
-    private String codeBarre;
-    private int bibliothequesIdBibliotheques;
-    private int livresIdLivres;
-    private boolean actif;
-    private Object etat;
-    private String commentaireEtat;
-    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
-    private Livres livresByLivresIdLivres;
-    private Collection<FactureDetail> factureDetailsByIdExemplairesLivres;
+@Table(name = "exemplaires_livres")
+public class ExemplairesLivres implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdExemplairesLivres")
-    public int getIdExemplairesLivres() {
-        return idExemplairesLivres;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdExemplairesLivres", nullable = false)
+    private Integer idExemplairesLivres;
 
-    public void setIdExemplairesLivres(int idExemplairesLivres) {
+    @Column(name = "CodeBarre", nullable = false)
+    private String codeBarre;
+
+    @Column(name = "BibliothequesIdBibliotheques", nullable = false)
+    private Integer bibliothequesIdBibliotheques;
+
+    @Column(name = "LivresIdLivres", nullable = false)
+    private Integer livresIdLivres;
+
+    @Column(name = "Actif", nullable = false)
+    private Integer actif = 1;
+
+    @Column(name = "Etat", nullable = false)
+    private String etat;
+
+    @Column(name = "CommentaireEtat", nullable = false)
+    private String commentaireEtat;
+
+    public void setIdExemplairesLivres(Integer idExemplairesLivres) {
         this.idExemplairesLivres = idExemplairesLivres;
     }
 
-    
-    @Column(name = "CodeBarre")
-    public String getCodeBarre() {
-        return codeBarre;
+    public Integer getIdExemplairesLivres() {
+        return idExemplairesLivres;
     }
 
     public void setCodeBarre(String codeBarre) {
         this.codeBarre = codeBarre;
     }
 
-    
-    @Column(name = "BibliothequesIdBibliotheques")
-    public int getBibliothequesIdBibliotheques() {
-        return bibliothequesIdBibliotheques;
+    public String getCodeBarre() {
+        return codeBarre;
     }
 
-    public void setBibliothequesIdBibliotheques(int bibliothequesIdBibliotheques) {
+    public void setBibliothequesIdBibliotheques(Integer bibliothequesIdBibliotheques) {
         this.bibliothequesIdBibliotheques = bibliothequesIdBibliotheques;
     }
 
-    
-    @Column(name = "LivresIdLivres")
-    public int getLivresIdLivres() {
-        return livresIdLivres;
+    public Integer getBibliothequesIdBibliotheques() {
+        return bibliothequesIdBibliotheques;
     }
 
-    public void setLivresIdLivres(int livresIdLivres) {
+    public void setLivresIdLivres(Integer livresIdLivres) {
         this.livresIdLivres = livresIdLivres;
     }
 
-    
-    @Column(name = "Actif")
-    public boolean isActif() {
-        return actif;
+    public Integer getLivresIdLivres() {
+        return livresIdLivres;
     }
 
-    public void setActif(boolean actif) {
+    public void setActif(Integer actif) {
         this.actif = actif;
     }
 
-    
-    @Column(name = "Etat")
-    public Object getEtat() {
-        return etat;
+    public Integer getActif() {
+        return actif;
     }
 
-    public void setEtat(Object etat) {
+    public void setEtat(String etat) {
         this.etat = etat;
     }
 
-    
-    @Column(name = "CommentaireEtat")
-    public String getCommentaireEtat() {
-        return commentaireEtat;
+    public String getEtat() {
+        return etat;
     }
 
     public void setCommentaireEtat(String commentaireEtat) {
         this.commentaireEtat = commentaireEtat;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ExemplairesLivres that = (ExemplairesLivres) o;
-        return idExemplairesLivres == that.idExemplairesLivres &&
-                bibliothequesIdBibliotheques == that.bibliothequesIdBibliotheques &&
-                livresIdLivres == that.livresIdLivres &&
-                actif == that.actif &&
-                Objects.equals(codeBarre, that.codeBarre) &&
-                Objects.equals(etat, that.etat) &&
-                Objects.equals(commentaireEtat, that.commentaireEtat);
+    public String getCommentaireEtat() {
+        return commentaireEtat;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idExemplairesLivres, codeBarre, bibliothequesIdBibliotheques, livresIdLivres, actif, etat, commentaireEtat);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques", nullable = false)
-    public Bibliotheques getBibliothequesByBibliothequesIdBibliotheques() {
-        return bibliothequesByBibliothequesIdBibliotheques;
-    }
-
-    public void setBibliothequesByBibliothequesIdBibliotheques(Bibliotheques bibliothequesByBibliothequesIdBibliotheques) {
-        this.bibliothequesByBibliothequesIdBibliotheques = bibliothequesByBibliothequesIdBibliotheques;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "LivresIdLivres", referencedColumnName = "IdLivres", nullable = false)
-    public Livres getLivresByLivresIdLivres() {
-        return livresByLivresIdLivres;
-    }
-
-    public void setLivresByLivresIdLivres(Livres livresByLivresIdLivres) {
-        this.livresByLivresIdLivres = livresByLivresIdLivres;
-    }
-
-    @OneToMany(mappedBy = "exemplairesLivresByExemplairesLivresIdExemplairesLivres")
-    public Collection<FactureDetail> getFactureDetailsByIdExemplairesLivres() {
-        return factureDetailsByIdExemplairesLivres;
-    }
-
-    public void setFactureDetailsByIdExemplairesLivres(Collection<FactureDetail> factureDetailsByIdExemplairesLivres) {
-        this.factureDetailsByIdExemplairesLivres = factureDetailsByIdExemplairesLivres;
+    public String toString() {
+        return "ExemplairesLivres{" +
+                "idExemplairesLivres=" + idExemplairesLivres + '\'' +
+                "codeBarre=" + codeBarre + '\'' +
+                "bibliothequesIdBibliotheques=" + bibliothequesIdBibliotheques + '\'' +
+                "livresIdLivres=" + livresIdLivres + '\'' +
+                "actif=" + actif + '\'' +
+                "etat=" + etat + '\'' +
+                "commentaireEtat=" + commentaireEtat + '\'' +
+                '}';
     }
 }

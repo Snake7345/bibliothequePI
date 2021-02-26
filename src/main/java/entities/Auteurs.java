@@ -1,67 +1,55 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-public class Auteurs {
-    private int idAuteurs;
-    private String nom;
-    private String prenom;
-    private Collection<LivresAuteurs> livresAuteursByIdAuteurs;
+@Table(name = "auteurs")
+public class Auteurs implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdAuteurs")
-    public int getIdAuteurs() {
-        return idAuteurs;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdAuteurs", nullable = false)
+    private Integer idAuteurs;
 
-    public void setIdAuteurs(int idAuteurs) {
+    @Column(name = "Nom", nullable = false)
+    private String nom;
+
+    @Column(name = "Prenom", nullable = false)
+    private String prenom;
+
+    public void setIdAuteurs(Integer idAuteurs) {
         this.idAuteurs = idAuteurs;
     }
 
-    
-    @Column(name = "Nom")
-    public String getNom() {
-        return nom;
+    public Integer getIdAuteurs() {
+        return idAuteurs;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    
-    @Column(name = "Prenom")
-    public String getPrenom() {
-        return prenom;
+    public String getNom() {
+        return nom;
     }
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Auteurs auteurs = (Auteurs) o;
-        return idAuteurs == auteurs.idAuteurs &&
-                Objects.equals(nom, auteurs.nom) &&
-                Objects.equals(prenom, auteurs.prenom);
+    public String getPrenom() {
+        return prenom;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idAuteurs, nom, prenom);
-    }
-
-    @OneToMany(mappedBy = "auteursByAuteursIdAuteurs")
-    public Collection<LivresAuteurs> getLivresAuteursByIdAuteurs() {
-        return livresAuteursByIdAuteurs;
-    }
-
-    public void setLivresAuteursByIdAuteurs(Collection<LivresAuteurs> livresAuteursByIdAuteurs) {
-        this.livresAuteursByIdAuteurs = livresAuteursByIdAuteurs;
+    public String toString() {
+        return "Auteurs{" +
+                "idAuteurs=" + idAuteurs + '\'' +
+                "nom=" + nom + '\'' +
+                "prenom=" + prenom + '\'' +
+                '}';
     }
 }

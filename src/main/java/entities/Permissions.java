@@ -1,55 +1,43 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-public class Permissions {
-    private int idPermissions;
-    private String denomination;
-    private Collection<PermissionsRoles> permissionsRolesByIdPermissions;
+@Table(name = "permissions")
+public class Permissions implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "IdPermissions")
-    public int getIdPermissions() {
-        return idPermissions;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdPermissions", nullable = false)
+    private Integer idPermissions;
 
-    public void setIdPermissions(int idPermissions) {
+    @Column(name = "Denomination", nullable = false)
+    private String denomination;
+
+    public void setIdPermissions(Integer idPermissions) {
         this.idPermissions = idPermissions;
     }
 
-    
-    @Column(name = "Denomination")
-    public String getDenomination() {
-        return denomination;
+    public Integer getIdPermissions() {
+        return idPermissions;
     }
 
     public void setDenomination(String denomination) {
         this.denomination = denomination;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Permissions that = (Permissions) o;
-        return idPermissions == that.idPermissions &&
-                Objects.equals(denomination, that.denomination);
+    public String getDenomination() {
+        return denomination;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(idPermissions, denomination);
-    }
-
-    @OneToMany(mappedBy = "permissionsByPermissionsIdPermissions")
-    public Collection<PermissionsRoles> getPermissionsRolesByIdPermissions() {
-        return permissionsRolesByIdPermissions;
-    }
-
-    public void setPermissionsRolesByIdPermissions(Collection<PermissionsRoles> permissionsRolesByIdPermissions) {
-        this.permissionsRolesByIdPermissions = permissionsRolesByIdPermissions;
+    public String toString() {
+        return "Permissions{" +
+                "idPermissions=" + idPermissions + '\'' +
+                "denomination=" + denomination + '\'' +
+                '}';
     }
 }

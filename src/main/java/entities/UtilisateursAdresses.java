@@ -1,79 +1,55 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "utilisateurs_adresses", schema = "bibliotheque")
-public class UtilisateursAdresses {
-    private int utilisateursIdUtilisateurs;
-    private int adressesIdAdresses;
-    private int idUtilisateursAdresses;
-    private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
-    private Adresses adressesByAdressesIdAdresses;
+@Table(name = "utilisateurs_adresses")
+public class UtilisateursAdresses implements Serializable {
 
-    
-    @Column(name = "UtilisateursIdUtilisateurs")
-    public int getUtilisateursIdUtilisateurs() {
-        return utilisateursIdUtilisateurs;
-    }
+    private static final long serialVersionUID = 1L;
 
-    public void setUtilisateursIdUtilisateurs(int utilisateursIdUtilisateurs) {
+    @Column(name = "UtilisateursIdUtilisateurs", nullable = false)
+    private Integer utilisateursIdUtilisateurs;
+
+    @Column(name = "AdressesIdAdresses", nullable = false)
+    private Integer adressesIdAdresses;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdUtilisateursAdresses", nullable = false)
+    private Integer idUtilisateursAdresses;
+
+    public void setUtilisateursIdUtilisateurs(Integer utilisateursIdUtilisateurs) {
         this.utilisateursIdUtilisateurs = utilisateursIdUtilisateurs;
     }
 
-    
-    @Column(name = "AdressesIdAdresses")
-    public int getAdressesIdAdresses() {
-        return adressesIdAdresses;
+    public Integer getUtilisateursIdUtilisateurs() {
+        return utilisateursIdUtilisateurs;
     }
 
-    public void setAdressesIdAdresses(int adressesIdAdresses) {
+    public void setAdressesIdAdresses(Integer adressesIdAdresses) {
         this.adressesIdAdresses = adressesIdAdresses;
     }
 
-    @Id
-    @Column(name = "IdUtilisateursAdresses")
-    public int getIdUtilisateursAdresses() {
-        return idUtilisateursAdresses;
+    public Integer getAdressesIdAdresses() {
+        return adressesIdAdresses;
     }
 
-    public void setIdUtilisateursAdresses(int idUtilisateursAdresses) {
+    public void setIdUtilisateursAdresses(Integer idUtilisateursAdresses) {
         this.idUtilisateursAdresses = idUtilisateursAdresses;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UtilisateursAdresses that = (UtilisateursAdresses) o;
-        return utilisateursIdUtilisateurs == that.utilisateursIdUtilisateurs &&
-                adressesIdAdresses == that.adressesIdAdresses &&
-                idUtilisateursAdresses == that.idUtilisateursAdresses;
+    public Integer getIdUtilisateursAdresses() {
+        return idUtilisateursAdresses;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(utilisateursIdUtilisateurs, adressesIdAdresses, idUtilisateursAdresses);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "UtilisateursIdUtilisateurs", referencedColumnName = "IdUtilisateurs", nullable = false)
-    public Utilisateurs getUtilisateursByUtilisateursIdUtilisateurs() {
-        return utilisateursByUtilisateursIdUtilisateurs;
-    }
-
-    public void setUtilisateursByUtilisateursIdUtilisateurs(Utilisateurs utilisateursByUtilisateursIdUtilisateurs) {
-        this.utilisateursByUtilisateursIdUtilisateurs = utilisateursByUtilisateursIdUtilisateurs;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "AdressesIdAdresses", referencedColumnName = "IdAdresses", nullable = false)
-    public Adresses getAdressesByAdressesIdAdresses() {
-        return adressesByAdressesIdAdresses;
-    }
-
-    public void setAdressesByAdressesIdAdresses(Adresses adressesByAdressesIdAdresses) {
-        this.adressesByAdressesIdAdresses = adressesByAdressesIdAdresses;
+    public String toString() {
+        return "UtilisateursAdresses{" +
+                "utilisateursIdUtilisateurs=" + utilisateursIdUtilisateurs + '\'' +
+                "adressesIdAdresses=" + adressesIdAdresses + '\'' +
+                "idUtilisateursAdresses=" + idUtilisateursAdresses + '\'' +
+                '}';
     }
 }

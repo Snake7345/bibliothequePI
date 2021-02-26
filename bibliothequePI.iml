@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="EclipseLink" />
         <datasource-mapping>
-          <factory-entry name="bibliotheque" value="58bd49ac-ab32-4f71-86b6-40f78b73dd22" />
+          <factory-entry name="bibliotheque" value="13af90cb-c831-4625-83fd-97ef0c2466cf" />
           <factory-entry name="default" value="58bd49ac-ab32-4f71-86b6-40f78b73dd22" />
           <factory-entry name="noname-a.xml@0" value="58bd49ac-ab32-4f71-86b6-40f78b73dd22" />
         </datasource-mapping>
