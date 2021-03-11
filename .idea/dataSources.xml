@@ -14,5 +14,15 @@ C:/Users/theba/Documents/GitHub/bibliothequePI/src/main/webapp/META-INF/context.
         <property name="serverTimezone" value="UTC" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="bibliotheque/EclipseLink" uuid="c07319c1-9e15-4b81-8b13-7a9598b68761">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>EclipseLink
+
+C:/Users/theba/Documents/GitHub/bibliothequePI/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/bibliotheque?autoReconnect=true</jdbc-url>
+    </data-source>
   </component>
 </project>

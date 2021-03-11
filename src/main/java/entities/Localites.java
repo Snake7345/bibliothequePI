@@ -1,67 +1,90 @@
 package entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Table(name = "localites")
-public class Localites implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Localites {
+    private int idLocalites;
+    private int cp;
+    private String ville;
+    private int paysIdPays;
+    private Collection<Adresses> adressesByIdLocalites;
+    private Pays paysByPaysIdPays;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLocalites", nullable = false)
-    private Integer idLocalites;
-
-    @Column(name = "CP", nullable = false)
-    private Integer CP;
-
-    @Column(name = "Ville", nullable = false)
-    private String ville;
-
-    @Column(name = "PaysIdPays", nullable = false)
-    private Integer paysIdPays;
-
-    public void setIdLocalites(Integer idLocalites) {
-        this.idLocalites = idLocalites;
-    }
-
-    public Integer getIdLocalites() {
+    public int getIdLocalites() {
         return idLocalites;
     }
 
-    public void setCP(Integer CP) {
-        this.CP = CP;
+    public void setIdLocalites(int idLocalites) {
+        this.idLocalites = idLocalites;
     }
 
-    public Integer getCP() {
-        return CP;
+    @Basic
+    @Column(name = "CP", nullable = false)
+    public int getCp() {
+        return cp;
+    }
+
+    public void setCp(int cp) {
+        this.cp = cp;
+    }
+
+    @Basic
+    @Column(name = "Ville", nullable = false, length = 255)
+    public String getVille() {
+        return ville;
     }
 
     public void setVille(String ville) {
         this.ville = ville;
     }
 
-    public String getVille() {
-        return ville;
-    }
-
-    public void setPaysIdPays(Integer paysIdPays) {
-        this.paysIdPays = paysIdPays;
-    }
-
-    public Integer getPaysIdPays() {
+    @Basic
+    @Column(name = "PaysIdPays", nullable = false)
+    public int getPaysIdPays() {
         return paysIdPays;
     }
 
+    public void setPaysIdPays(int paysIdPays) {
+        this.paysIdPays = paysIdPays;
+    }
+
     @Override
-    public String toString() {
-        return "Localites{" +
-                "idLocalites=" + idLocalites + '\'' +
-                "CP=" + CP + '\'' +
-                "ville=" + ville + '\'' +
-                "paysIdPays=" + paysIdPays + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Localites localites = (Localites) o;
+        return idLocalites == localites.idLocalites &&
+                cp == localites.cp &&
+                paysIdPays == localites.paysIdPays &&
+                Objects.equals(ville, localites.ville);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idLocalites, cp, ville, paysIdPays);
+    }
+
+    @OneToMany(mappedBy = "localitesByLocalitesIdLocalites")
+    public Collection<Adresses> getAdressesByIdLocalites() {
+        return adressesByIdLocalites;
+    }
+
+    public void setAdressesByIdLocalites(Collection<Adresses> adressesByIdLocalites) {
+        this.adressesByIdLocalites = adressesByIdLocalites;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "PaysIdPays", referencedColumnName = "IdPays", nullable = false)
+    public Pays getPaysByPaysIdPays() {
+        return paysByPaysIdPays;
+    }
+
+    public void setPaysByPaysIdPays(Pays paysByPaysIdPays) {
+        this.paysByPaysIdPays = paysByPaysIdPays;
     }
 }

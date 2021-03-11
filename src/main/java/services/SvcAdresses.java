@@ -1,9 +1,8 @@
 package services;
 
-import entities.Adresses;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.Adresses;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcAdresses {

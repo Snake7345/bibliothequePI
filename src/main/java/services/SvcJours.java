@@ -1,9 +1,8 @@
 package services;
 
-import entities.Jours;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.Jours;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcJours {

@@ -1,55 +1,77 @@
 package entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Table(name = "roles")
-public class Roles implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Roles {
+    private int idRoles;
+    private String denomination;
+    private byte actif;
+    private Collection<PermissionsRoles> permissionsRolesByIdRoles;
+    private Collection<Utilisateurs> utilisateursByIdRoles;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdRoles", nullable = false)
-    private Integer idRoles;
+    public int getIdRoles() {
+        return idRoles;
+    }
 
-    @Column(name = "Denomination", nullable = false)
-    private String denomination;
-
-    @Column(name = "Actif", nullable = false)
-    private Integer actif = 1;
-
-    public void setIdRoles(Integer idRoles) {
+    public void setIdRoles(int idRoles) {
         this.idRoles = idRoles;
     }
 
-    public Integer getIdRoles() {
-        return idRoles;
+    @Basic
+    @Column(name = "Denomination", nullable = false, length = 150)
+    public String getDenomination() {
+        return denomination;
     }
 
     public void setDenomination(String denomination) {
         this.denomination = denomination;
     }
 
-    public String getDenomination() {
-        return denomination;
-    }
-
-    public void setActif(Integer actif) {
-        this.actif = actif;
-    }
-
-    public Integer getActif() {
+    @Basic
+    @Column(name = "Actif", nullable = false)
+    public byte getActif() {
         return actif;
     }
 
+    public void setActif(byte actif) {
+        this.actif = actif;
+    }
+
     @Override
-    public String toString() {
-        return "Roles{" +
-                "idRoles=" + idRoles + '\'' +
-                "denomination=" + denomination + '\'' +
-                "actif=" + actif + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Roles roles = (Roles) o;
+        return idRoles == roles.idRoles &&
+                actif == roles.actif &&
+                Objects.equals(denomination, roles.denomination);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idRoles, denomination, actif);
+    }
+
+    @OneToMany(mappedBy = "rolesByRolesIdRoles")
+    public Collection<PermissionsRoles> getPermissionsRolesByIdRoles() {
+        return permissionsRolesByIdRoles;
+    }
+
+    public void setPermissionsRolesByIdRoles(Collection<PermissionsRoles> permissionsRolesByIdRoles) {
+        this.permissionsRolesByIdRoles = permissionsRolesByIdRoles;
+    }
+
+    @OneToMany(mappedBy = "rolesByRolesIdRoles")
+    public Collection<Utilisateurs> getUtilisateursByIdRoles() {
+        return utilisateursByIdRoles;
+    }
+
+    public void setUtilisateursByIdRoles(Collection<Utilisateurs> utilisateursByIdRoles) {
+        this.utilisateursByIdRoles = utilisateursByIdRoles;
     }
 }

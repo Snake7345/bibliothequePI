@@ -1,9 +1,8 @@
 package services;
 
-import entities.Genres;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.Genres;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcGenres {

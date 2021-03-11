@@ -1,9 +1,8 @@
 package services;
 
-import entities.PermissionsRoles;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.PermissionsRoles;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcPermissionsRoles {

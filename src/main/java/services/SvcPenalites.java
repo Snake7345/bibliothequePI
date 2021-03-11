@@ -1,9 +1,8 @@
 package services;
 
-import entities.Penalites;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.Penalites;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcPenalites {

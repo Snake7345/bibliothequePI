@@ -1,104 +1,128 @@
 package entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
-@Table(name = "facture_detail")
-public class FactureDetail implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Column(name = "LocationsIdLocations", nullable = false)
-    private Integer locationsIdLocations;
-
-    @Column(name = "ExemplairesLivresIdExemplairesLivres", nullable = false)
-    private Integer exemplairesLivresIdExemplairesLivres;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdLocationsHistorique", nullable = false)
-    private Integer idLocationsHistorique;
-
-    @Column(name = "DateFin", nullable = false)
-    private Date dateFin;
-
-    @Column(name = "DateRetour")
-    private Date dateRetour;
-
-    @Column(name = "EtatRendu", nullable = false)
+@Table(name = "facture_detail", schema = "bibliotheque", catalog = "")
+public class FactureDetail {
+    private int locationsIdLocations;
+    private int exemplairesLivresIdExemplairesLivres;
+    private int idLocationsHistorique;
+    private Timestamp dateFin;
+    private Timestamp dateRetour;
     private String etatRendu;
+    private double prix;
+    private Facture factureByLocationsIdLocations;
+    private ExemplairesLivres exemplairesLivresByExemplairesLivresIdExemplairesLivres;
 
-    @Column(name = "Prix", nullable = false)
-    private Double prix;
-
-    public void setLocationsIdLocations(Integer locationsIdLocations) {
-        this.locationsIdLocations = locationsIdLocations;
-    }
-
-    public Integer getLocationsIdLocations() {
+    @Basic
+    @Column(name = "LocationsIdLocations", nullable = false)
+    public int getLocationsIdLocations() {
         return locationsIdLocations;
     }
 
-    public void setExemplairesLivresIdExemplairesLivres(Integer exemplairesLivresIdExemplairesLivres) {
-        this.exemplairesLivresIdExemplairesLivres = exemplairesLivresIdExemplairesLivres;
+    public void setLocationsIdLocations(int locationsIdLocations) {
+        this.locationsIdLocations = locationsIdLocations;
     }
 
-    public Integer getExemplairesLivresIdExemplairesLivres() {
+    @Basic
+    @Column(name = "ExemplairesLivresIdExemplairesLivres", nullable = false)
+    public int getExemplairesLivresIdExemplairesLivres() {
         return exemplairesLivresIdExemplairesLivres;
     }
 
-    public void setIdLocationsHistorique(Integer idLocationsHistorique) {
-        this.idLocationsHistorique = idLocationsHistorique;
+    public void setExemplairesLivresIdExemplairesLivres(int exemplairesLivresIdExemplairesLivres) {
+        this.exemplairesLivresIdExemplairesLivres = exemplairesLivresIdExemplairesLivres;
     }
 
-    public Integer getIdLocationsHistorique() {
+    @Id
+    @Column(name = "IdLocationsHistorique", nullable = false)
+    public int getIdLocationsHistorique() {
         return idLocationsHistorique;
     }
 
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
+    public void setIdLocationsHistorique(int idLocationsHistorique) {
+        this.idLocationsHistorique = idLocationsHistorique;
     }
 
-    public Date getDateFin() {
+    @Basic
+    @Column(name = "DateFin", nullable = false)
+    public Timestamp getDateFin() {
         return dateFin;
     }
 
-    public void setDateRetour(Date dateRetour) {
+    public void setDateFin(Timestamp dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    @Basic
+    @Column(name = "DateRetour", nullable = true)
+    public Timestamp getDateRetour() {
+        return dateRetour;
+    }
+
+    public void setDateRetour(Timestamp dateRetour) {
         this.dateRetour = dateRetour;
     }
 
-    public Date getDateRetour() {
-        return dateRetour;
+    @Basic
+    @Column(name = "EtatRendu", nullable = false, length = 500)
+    public String getEtatRendu() {
+        return etatRendu;
     }
 
     public void setEtatRendu(String etatRendu) {
         this.etatRendu = etatRendu;
     }
 
-    public String getEtatRendu() {
-        return etatRendu;
-    }
-
-    public void setPrix(Double prix) {
-        this.prix = prix;
-    }
-
-    public Double getPrix() {
+    @Basic
+    @Column(name = "Prix", nullable = false, precision = 0)
+    public double getPrix() {
         return prix;
     }
 
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
     @Override
-    public String toString() {
-        return "FactureDetail{" +
-                "locationsIdLocations=" + locationsIdLocations + '\'' +
-                "exemplairesLivresIdExemplairesLivres=" + exemplairesLivresIdExemplairesLivres + '\'' +
-                "idLocationsHistorique=" + idLocationsHistorique + '\'' +
-                "dateFin=" + dateFin + '\'' +
-                "dateRetour=" + dateRetour + '\'' +
-                "etatRendu=" + etatRendu + '\'' +
-                "prix=" + prix + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FactureDetail that = (FactureDetail) o;
+        return locationsIdLocations == that.locationsIdLocations &&
+                exemplairesLivresIdExemplairesLivres == that.exemplairesLivresIdExemplairesLivres &&
+                idLocationsHistorique == that.idLocationsHistorique &&
+                Double.compare(that.prix, prix) == 0 &&
+                Objects.equals(dateFin, that.dateFin) &&
+                Objects.equals(dateRetour, that.dateRetour) &&
+                Objects.equals(etatRendu, that.etatRendu);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(locationsIdLocations, exemplairesLivresIdExemplairesLivres, idLocationsHistorique, dateFin, dateRetour, etatRendu, prix);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "LocationsIdLocations", referencedColumnName = "IdLocations", nullable = false)
+    public Facture getFactureByLocationsIdLocations() {
+        return factureByLocationsIdLocations;
+    }
+
+    public void setFactureByLocationsIdLocations(Facture factureByLocationsIdLocations) {
+        this.factureByLocationsIdLocations = factureByLocationsIdLocations;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ExemplairesLivresIdExemplairesLivres", referencedColumnName = "IdExemplairesLivres", nullable = false)
+    public ExemplairesLivres getExemplairesLivresByExemplairesLivresIdExemplairesLivres() {
+        return exemplairesLivresByExemplairesLivresIdExemplairesLivres;
+    }
+
+    public void setExemplairesLivresByExemplairesLivresIdExemplairesLivres(ExemplairesLivres exemplairesLivresByExemplairesLivresIdExemplairesLivres) {
+        this.exemplairesLivresByExemplairesLivresIdExemplairesLivres = exemplairesLivresByExemplairesLivresIdExemplairesLivres;
     }
 }

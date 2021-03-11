@@ -1,55 +1,67 @@
 package entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Table(name = "auteurs")
-public class Auteurs implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Auteurs {
+    private int idAuteurs;
+    private String nom;
+    private String prenom;
+    private Collection<LivresAuteurs> livresAuteursByIdAuteurs;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdAuteurs", nullable = false)
-    private Integer idAuteurs;
+    public int getIdAuteurs() {
+        return idAuteurs;
+    }
 
-    @Column(name = "Nom", nullable = false)
-    private String nom;
-
-    @Column(name = "Prenom", nullable = false)
-    private String prenom;
-
-    public void setIdAuteurs(Integer idAuteurs) {
+    public void setIdAuteurs(int idAuteurs) {
         this.idAuteurs = idAuteurs;
     }
 
-    public Integer getIdAuteurs() {
-        return idAuteurs;
+    @Basic
+    @Column(name = "Nom", nullable = false, length = 200)
+    public String getNom() {
+        return nom;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public String getNom() {
-        return nom;
+    @Basic
+    @Column(name = "Prenom", nullable = false, length = 200)
+    public String getPrenom() {
+        return prenom;
     }
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
-    public String getPrenom() {
-        return prenom;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Auteurs auteurs = (Auteurs) o;
+        return idAuteurs == auteurs.idAuteurs &&
+                Objects.equals(nom, auteurs.nom) &&
+                Objects.equals(prenom, auteurs.prenom);
     }
 
     @Override
-    public String toString() {
-        return "Auteurs{" +
-                "idAuteurs=" + idAuteurs + '\'' +
-                "nom=" + nom + '\'' +
-                "prenom=" + prenom + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(idAuteurs, nom, prenom);
+    }
+
+    @OneToMany(mappedBy = "auteursByAuteursIdAuteurs")
+    public Collection<LivresAuteurs> getLivresAuteursByIdAuteurs() {
+        return livresAuteursByIdAuteurs;
+    }
+
+    public void setLivresAuteursByIdAuteurs(Collection<LivresAuteurs> livresAuteursByIdAuteurs) {
+        this.livresAuteursByIdAuteurs = livresAuteursByIdAuteurs;
     }
 }

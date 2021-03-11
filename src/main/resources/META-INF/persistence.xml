@@ -5,5 +5,32 @@
              version="2.2">
     <persistence-unit name="bibliotheque">
 
+        <class>entities.Adresses</class>
+        <class>entities.Auteurs</class>
+        <class>entities.Bibliotheques</class>
+        <class>entities.Editeurs</class>
+        <class>entities.ExemplairesLivres</class>
+        <class>entities.Facture</class>
+        <class>entities.FactureDetail</class>
+        <class>entities.Genres</class>
+        <class>entities.Jours</class>
+        <class>entities.Livres</class>
+        <class>entities.LivresAuteurs</class>
+        <class>entities.LivresGenres</class>
+        <class>entities.Localites</class>
+        <class>entities.Pays</class>
+        <class>entities.Penalites</class>
+        <class>entities.Permissions</class>
+        <class>entities.PermissionsRoles</class>
+        <class>entities.Roles</class>
+        <class>entities.Tarifs</class>
+        <class>entities.TarifsJours</class>
+        <class>entities.TarifsPenalites</class>
+        <class>entities.Utilisateurs</class>
+        <class>entities.UtilisateursAdresses</class>
+        <properties>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/bibliotheque?autoReconnect=true"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+        </properties>
     </persistence-unit>
 </persistence>

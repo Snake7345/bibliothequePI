@@ -1,9 +1,8 @@
 package services;
 
-import entities.Penalites;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.TarifsJours;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcTarifsJours {
@@ -24,18 +23,18 @@ public class SvcTarifsJours {
 		}
 	//---------------------------------------------------------------------------
 
-		public void create(Penalites pena)
+		public void create(TarifsJours tarifsj)
 		{
-			em.persist(pena);
+			em.persist(tarifsj);
 		}
 		
-		public void update(Penalites pena)
+		public void update(TarifsJours tarifsj)
 		{
-			em.merge(pena);
+			em.merge(tarifsj);
 		}
-		public void remove(Penalites pena)
+		public void remove(TarifsJours tarifsj)
 		{
-			em.remove(pena);
+			em.remove(tarifsj);
 		}
 
 

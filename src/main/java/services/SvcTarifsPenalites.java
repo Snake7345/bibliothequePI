@@ -1,9 +1,8 @@
 package services;
 
-import entities.TarifsPenalites;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.TarifsPenalites;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcTarifsPenalites {

@@ -1,55 +1,79 @@
 package entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
-@Table(name = "livres_genres")
-public class LivresGenres implements Serializable {
+@Table(name = "livres_genres", schema = "bibliotheque", catalog = "")
+public class LivresGenres {
+    private int livresIdLivres;
+    private int genresIdGenres;
+    private int idLivresGenres;
+    private Livres livresByLivresIdLivres;
+    private Genres genresByGenresIdGenres;
 
-    private static final long serialVersionUID = 1L;
-
+    @Basic
     @Column(name = "LivresIdLivres", nullable = false)
-    private Integer livresIdLivres;
-
-    @Column(name = "GenresIdGenres", nullable = false)
-    private Integer genresIdGenres;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdLivresGenres", nullable = false)
-    private Integer idLivresGenres;
-
-    public void setLivresIdLivres(Integer livresIdLivres) {
-        this.livresIdLivres = livresIdLivres;
-    }
-
-    public Integer getLivresIdLivres() {
+    public int getLivresIdLivres() {
         return livresIdLivres;
     }
 
-    public void setGenresIdGenres(Integer genresIdGenres) {
-        this.genresIdGenres = genresIdGenres;
+    public void setLivresIdLivres(int livresIdLivres) {
+        this.livresIdLivres = livresIdLivres;
     }
 
-    public Integer getGenresIdGenres() {
+    @Basic
+    @Column(name = "GenresIdGenres", nullable = false)
+    public int getGenresIdGenres() {
         return genresIdGenres;
     }
 
-    public void setIdLivresGenres(Integer idLivresGenres) {
-        this.idLivresGenres = idLivresGenres;
+    public void setGenresIdGenres(int genresIdGenres) {
+        this.genresIdGenres = genresIdGenres;
     }
 
-    public Integer getIdLivresGenres() {
+    @Id
+    @Column(name = "IdLivresGenres", nullable = false)
+    public int getIdLivresGenres() {
         return idLivresGenres;
     }
 
+    public void setIdLivresGenres(int idLivresGenres) {
+        this.idLivresGenres = idLivresGenres;
+    }
+
     @Override
-    public String toString() {
-        return "LivresGenres{" +
-                "livresIdLivres=" + livresIdLivres + '\'' +
-                "genresIdGenres=" + genresIdGenres + '\'' +
-                "idLivresGenres=" + idLivresGenres + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LivresGenres that = (LivresGenres) o;
+        return livresIdLivres == that.livresIdLivres &&
+                genresIdGenres == that.genresIdGenres &&
+                idLivresGenres == that.idLivresGenres;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(livresIdLivres, genresIdGenres, idLivresGenres);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "LivresIdLivres", referencedColumnName = "IdLivres", nullable = false)
+    public Livres getLivresByLivresIdLivres() {
+        return livresByLivresIdLivres;
+    }
+
+    public void setLivresByLivresIdLivres(Livres livresByLivresIdLivres) {
+        this.livresByLivresIdLivres = livresByLivresIdLivres;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "GenresIdGenres", referencedColumnName = "IdGenres", nullable = false)
+    public Genres getGenresByGenresIdGenres() {
+        return genresByGenresIdGenres;
+    }
+
+    public void setGenresByGenresIdGenres(Genres genresByGenresIdGenres) {
+        this.genresByGenresIdGenres = genresByGenresIdGenres;
     }
 }

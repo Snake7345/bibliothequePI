@@ -1,9 +1,8 @@
 package services;
 
-import entities.Auteurs;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.Auteurs;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcAuteurs {

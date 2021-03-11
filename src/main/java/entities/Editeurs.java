@@ -1,43 +1,55 @@
 package entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Table(name = "editeurs")
-public class Editeurs implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Editeurs {
+    private int idEditeurs;
+    private String nom;
+    private Collection<Livres> livresByIdEditeurs;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdEditeurs", nullable = false)
-    private Integer idEditeurs;
+    public int getIdEditeurs() {
+        return idEditeurs;
+    }
 
-    @Column(name = "Nom", nullable = false)
-    private String nom;
-
-    public void setIdEditeurs(Integer idEditeurs) {
+    public void setIdEditeurs(int idEditeurs) {
         this.idEditeurs = idEditeurs;
     }
 
-    public Integer getIdEditeurs() {
-        return idEditeurs;
+    @Basic
+    @Column(name = "Nom", nullable = false, length = 255)
+    public String getNom() {
+        return nom;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public String getNom() {
-        return nom;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Editeurs editeurs = (Editeurs) o;
+        return idEditeurs == editeurs.idEditeurs &&
+                Objects.equals(nom, editeurs.nom);
     }
 
     @Override
-    public String toString() {
-        return "Editeurs{" +
-                "idEditeurs=" + idEditeurs + '\'' +
-                "nom=" + nom + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(idEditeurs, nom);
+    }
+
+    @OneToMany(mappedBy = "editeursByEditeursIdEditeurs")
+    public Collection<Livres> getLivresByIdEditeurs() {
+        return livresByIdEditeurs;
+    }
+
+    public void setLivresByIdEditeurs(Collection<Livres> livresByIdEditeurs) {
+        this.livresByIdEditeurs = livresByIdEditeurs;
     }
 }

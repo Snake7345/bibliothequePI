@@ -1,9 +1,8 @@
 package services;
 
-import entities.Localites;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.Localites;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcLocalites {

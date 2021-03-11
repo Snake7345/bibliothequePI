@@ -1,9 +1,8 @@
 package services;
 
-import entities.Pays;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.Pays;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcPays {

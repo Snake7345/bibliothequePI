@@ -1,9 +1,8 @@
 package services;
 
-import entities.Facture;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import entities.Facture;
 
 @PersistenceUnit (unitName="bibliotheque")
 public class SvcFacture {
