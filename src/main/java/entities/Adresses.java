@@ -1,9 +1,14 @@
 package entities;
 
+import javax.inject.Named;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
+@NamedQueries
+({
+@NamedQuery(name = "Adresses.findAll", query = "SELECT a FROM Adresses a"),
+})
 @Entity
 public class Adresses {
     private int idAdresses;

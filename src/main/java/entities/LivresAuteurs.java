@@ -3,8 +3,12 @@ package entities;
 import javax.persistence.*;
 import java.util.Objects;
 
+@NamedQueries
+        ({
+                @NamedQuery(name = "LivresAuteurs.findAll", query = "SELECT la FROM LivresAuteurs la"),
+        })
 @Entity
-@Table(name = "livres_auteurs", schema = "bibliotheque", catalog = "")
+@Table(name = "livres_auteurs", schema = "bibliotheque")
 public class LivresAuteurs {
     private int livresIdLivres;
     private int auteursIdAuteurs;

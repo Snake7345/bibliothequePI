@@ -4,14 +4,18 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
+@NamedQueries
+        ({
+                @NamedQuery(name = "ExemplairesLivres.findAll", query = "SELECT el FROM ExemplairesLivres el"),
+        })
 @Entity
-@Table(name = "exemplaires_livres", schema = "bibliotheque", catalog = "")
+@Table(name = "exemplaires_livres", schema = "bibliotheque")
 public class ExemplairesLivres {
     private int idExemplairesLivres;
     private String codeBarre;
     private int bibliothequesIdBibliotheques;
     private int livresIdLivres;
-    private byte actif;
+    private boolean actif;
     private Object etat;
     private String commentaireEtat;
     private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
@@ -60,11 +64,11 @@ public class ExemplairesLivres {
 
     @Basic
     @Column(name = "Actif", nullable = false)
-    public byte getActif() {
-        return actif;
+    public boolean isActif() {
+        return this.actif;
     }
 
-    public void setActif(byte actif) {
+    public void setActif(boolean actif) {
         this.actif = actif;
     }
 

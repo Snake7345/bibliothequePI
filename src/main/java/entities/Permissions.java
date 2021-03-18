@@ -4,6 +4,11 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
+@NamedQueries
+        ({
+                @NamedQuery(name = "Permissions.findAll", query = "SELECT p FROM Permissions p"),
+        })
+
 @Entity
 public class Permissions {
     private int idPermissions;

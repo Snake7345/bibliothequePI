@@ -5,6 +5,11 @@ import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
 
+@NamedQueries
+        ({
+                @NamedQuery(name = "Facture.findAll", query = "SELECT f FROM Facture f"),
+                @NamedQuery(name = "Facture.findOne", query ="SELECT f FROM Facture f WHERE f.numeroFacture=:idLocations"),
+        })
 @Entity
 public class Facture {
     private int idLocations;

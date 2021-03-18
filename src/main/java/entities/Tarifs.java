@@ -5,6 +5,10 @@ import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
 
+@NamedQueries
+        ({
+                @NamedQuery(name = "Tarifs.findAll", query = "SELECT t FROM Tarifs t"),
+        })
 @Entity
 public class Tarifs {
     private int idTarifs;

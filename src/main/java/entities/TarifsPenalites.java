@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+@NamedQueries
+        ({
+                @NamedQuery(name = "TarifsPenalites.findAll", query = "SELECT tp FROM TarifsPenalites tp"),
+        })
 @Entity
 @Table(name = "tarifs_penalites", schema = "bibliotheque", catalog = "")
 public class TarifsPenalites {

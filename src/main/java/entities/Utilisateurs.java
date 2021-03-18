@@ -4,6 +4,12 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
+@NamedQueries
+        ({
+                @NamedQuery(name = "Utilisateurs.findAll", query = "SELECT u FROM Utilisateurs u"),
+                @NamedQuery(name = "Utilisateurs.findActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif='TRUE'"),
+                @NamedQuery(name = "Utilisateurs.findInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif='FALSE'"),
+        })
 @Entity
 public class Utilisateurs {
     private int idUtilisateurs;
@@ -13,7 +19,7 @@ public class Utilisateurs {
     private String courriel;
     private String login;
     private String mdp;
-    private byte actif;
+    private boolean actif;
     private int rolesIdRoles;
     private Collection<Facture> facturesByIdUtilisateurs;
     private Roles rolesByRolesIdRoles;
@@ -91,11 +97,11 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Actif", nullable = false)
-    public byte getActif() {
-        return actif;
+    public boolean isActif() {
+        return this.actif;
     }
 
-    public void setActif(byte actif) {
+    public void setActif(boolean actif) {
         this.actif = actif;
     }
 

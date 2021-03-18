@@ -4,11 +4,16 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
+@NamedQueries
+        ({
+                @NamedQuery(name = "Roles.findAll", query = "SELECT r FROM Roles r"),
+                @NamedQuery(name = "Roles.findActiv", query="SELECT r FROM Roles r WHERE r.actif='true'"),
+        })
 @Entity
 public class Roles {
     private int idRoles;
     private String denomination;
-    private byte actif;
+    private boolean actif;
     private Collection<PermissionsRoles> permissionsRolesByIdRoles;
     private Collection<Utilisateurs> utilisateursByIdRoles;
 
@@ -34,11 +39,11 @@ public class Roles {
 
     @Basic
     @Column(name = "Actif", nullable = false)
-    public byte getActif() {
-        return actif;
+    public boolean isActif() {
+        return this.actif;
     }
 
-    public void setActif(byte actif) {
+    public void setActif(boolean actif) {
         this.actif = actif;
     }
 

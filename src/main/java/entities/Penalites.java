@@ -4,6 +4,11 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
+@NamedQueries
+        ({
+                @NamedQuery(name = "Penalites.findAll", query = "SELECT p FROM Penalites p"),
+        })
+
 @Entity
 public class Penalites {
     private int idPenalites;

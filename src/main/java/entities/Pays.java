@@ -3,6 +3,11 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
+@NamedQueries
+        ({
+                @NamedQuery(name = "Pays.findAll", query = "SELECT p FROM Pays p"),
+                @NamedQuery(name = "Pays.findAllTri", query="SELECT p FROM Pays p ORDER BY p.nom ASC"),
+        })
 
 @Entity
 public class Pays {
