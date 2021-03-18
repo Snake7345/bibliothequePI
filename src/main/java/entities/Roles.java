@@ -3,13 +3,14 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-
+@Entity
+@Table(name = "roles")
 @NamedQueries
         ({
                 @NamedQuery(name = "Roles.findAll", query = "SELECT r FROM Roles r"),
-                @NamedQuery(name = "Roles.findActiv", query="SELECT r FROM Roles r WHERE r.actif='true'"),
+                @NamedQuery(name = "Roles.findActiv", query="SELECT r FROM Roles r WHERE r.actif=TRUE"),
+                @NamedQuery(name = "Roles.findInactiv", query="SELECT r FROM Roles r WHERE r.actif=FALSE"),
         })
-@Entity
 public class Roles {
     private int idRoles;
     private String denomination;
@@ -18,6 +19,7 @@ public class Roles {
     private Collection<Utilisateurs> utilisateursByIdRoles;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdRoles", nullable = false)
     public int getIdRoles() {
         return idRoles;

@@ -3,19 +3,25 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-
+@Entity
+@Table(name = "exemplaires_livres", schema = "bibliotheque")
 @NamedQueries
         ({
                 @NamedQuery(name = "ExemplairesLivres.findAll", query = "SELECT el FROM ExemplairesLivres el"),
+                @NamedQuery(name = "ExemplairesLivres.findOneCB", query = "SELECT el FROM ExemplairesLivres el WHERE el.codeBarre=:codeBarre"),
+                @NamedQuery(name = "ExemplairesLivres.findActiv", query = "SELECT el FROM ExemplairesLivres el WHERE el.actif=TRUE"),
+                @NamedQuery(name = "ExemplairesLivres.findInactiv", query = "SELECT el FROM ExemplairesLivres el WHERE el.actif=FALSE"),
+                @NamedQuery(name = "ExemplairesLivres.findLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=TRUE"),
+                @NamedQuery(name = "ExemplairesLivres.findNotLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=FALSE"),
         })
-@Entity
-@Table(name = "exemplaires_livres", schema = "bibliotheque")
+
 public class ExemplairesLivres {
     private int idExemplairesLivres;
     private String codeBarre;
     private int bibliothequesIdBibliotheques;
     private int livresIdLivres;
     private boolean actif;
+    private boolean loue;
     private Object etat;
     private String commentaireEtat;
     private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
@@ -23,6 +29,7 @@ public class ExemplairesLivres {
     private Collection<FactureDetail> factureDetailsByIdExemplairesLivres;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdExemplairesLivres", nullable = false)
     public int getIdExemplairesLivres() {
         return idExemplairesLivres;
@@ -70,6 +77,16 @@ public class ExemplairesLivres {
 
     public void setActif(boolean actif) {
         this.actif = actif;
+    }
+
+    @Basic
+    @Column(name = "Loue", nullable = false)
+    public boolean isLoue() {
+        return loue;
+    }
+
+    public void setLoue(boolean loue) {
+        this.loue = loue;
     }
 
     @Basic

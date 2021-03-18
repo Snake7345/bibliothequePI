@@ -3,21 +3,25 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-
+@Entity
+@Table(name="auteurs")
 @NamedQueries
         ({
                 @NamedQuery(name = "Auteurs.findAll", query = "SELECT a FROM Auteurs a"),
                 @NamedQuery(name = "Auteurs.findOne", query = "SELECT a FROM Auteurs a WHERE a.nom=:nom AND a.prenom=:prenom "),
                 @NamedQuery(name = "Auteurs.findAllTri", query="SELECT a FROM Auteurs a ORDER BY a.nom ASC"),
+                @NamedQuery(name = "Auteurs.findActiv", query = "SELECT a FROM Auteurs a WHERE a.actif=TRUE"),
+                @NamedQuery(name = "Auteurs.findInactiv", query = "SELECT a FROM Auteurs a WHERE a.actif=FALSE"),
         })
-@Entity
 public class Auteurs {
     private int idAuteurs;
     private String nom;
     private String prenom;
+    private boolean actif;
     private Collection<LivresAuteurs> livresAuteursByIdAuteurs;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdAuteurs", nullable = false)
     public int getIdAuteurs() {
         return idAuteurs;
@@ -47,12 +51,23 @@ public class Auteurs {
         this.prenom = prenom;
     }
 
+    @Basic
+    @Column(name = "Actif", nullable = false)
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Auteurs auteurs = (Auteurs) o;
         return idAuteurs == auteurs.idAuteurs &&
+                actif == auteurs.actif &&
                 Objects.equals(nom, auteurs.nom) &&
                 Objects.equals(prenom, auteurs.prenom);
     }

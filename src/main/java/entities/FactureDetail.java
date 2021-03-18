@@ -3,13 +3,13 @@ package entities;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
-
+@Entity
+@Table(name = "facture_detail", schema = "bibliotheque")
 @NamedQueries
         ({
                 @NamedQuery(name = "FactureDetail.findAll", query = "SELECT fd FROM FactureDetail fd"),
         })
-@Entity
-@Table(name = "facture_detail", schema = "bibliotheque")
+
 public class FactureDetail {
     private int locationsIdLocations;
     private int exemplairesLivresIdExemplairesLivres;
@@ -42,6 +42,7 @@ public class FactureDetail {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLocationsHistorique", nullable = false)
     public int getIdLocationsHistorique() {
         return idLocationsHistorique;

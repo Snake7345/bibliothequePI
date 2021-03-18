@@ -3,19 +3,20 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-
+@Entity
+@Table(name = "penalites")
 @NamedQueries
         ({
-                @NamedQuery(name = "Penalites.findAll", query = "SELECT p FROM Penalites p"),
+                @NamedQuery(name = "Penalites.findAllTri", query = "SELECT p FROM Penalites p ORDER BY p.denomination ASC"),
         })
 
-@Entity
 public class Penalites {
     private int idPenalites;
     private String denomination;
     private Collection<TarifsPenalites> tarifsPenalitesByIdPenalites;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPenalites", nullable = false)
     public int getIdPenalites() {
         return idPenalites;

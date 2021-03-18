@@ -4,12 +4,13 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
+@Entity
+@Table(name = "localites")
 @NamedQueries
         ({
                 @NamedQuery(name = "Localites.findAll", query = "SELECT l FROM Localites l"),
                 @NamedQuery(name= " Localites.findAllTri", query="SELECT l FROM Localites l ORDER BY l.ville ASC"),
         })
-@Entity
 public class Localites {
     private int idLocalites;
     private int cp;
@@ -19,6 +20,7 @@ public class Localites {
     private Pays paysByPaysIdPays;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLocalites", nullable = false)
     public int getIdLocalites() {
         return idLocalites;

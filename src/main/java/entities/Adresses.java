@@ -1,15 +1,15 @@
 package entities;
 
-import javax.inject.Named;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
+@Entity
+@Table(name="Adresses")
 @NamedQueries
 ({
-@NamedQuery(name = "Adresses.findAll", query = "SELECT a FROM Adresses a"),
+        @NamedQuery(name = "Adresses.findAll", query = "SELECT a FROM Adresses a"),
 })
-@Entity
 public class Adresses {
     private int idAdresses;
     private String rue;
@@ -22,6 +22,7 @@ public class Adresses {
     private Collection<UtilisateursAdresses> utilisateursAdressesByIdAdresses;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdAdresses", nullable = false)
     public int getIdAdresses() {
         return idAdresses;

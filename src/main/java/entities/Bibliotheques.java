@@ -3,12 +3,14 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-
+@Entity
+@Table(name="bibliotheques")
 @NamedQueries
         ({
                 @NamedQuery(name = "Bibliotheques.findAll", query = "SELECT b FROM Bibliotheques b"),
+
         })
-@Entity
+
 public class Bibliotheques {
     private int idBibliotheques;
     private String nom;
@@ -17,6 +19,7 @@ public class Bibliotheques {
     private Collection<Tarifs> tarifsByIdBibliotheques;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdBibliotheques", nullable = false)
     public int getIdBibliotheques() {
         return idBibliotheques;

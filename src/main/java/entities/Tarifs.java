@@ -5,11 +5,12 @@ import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tarifs")
 @NamedQueries
         ({
                 @NamedQuery(name = "Tarifs.findAll", query = "SELECT t FROM Tarifs t"),
         })
-@Entity
 public class Tarifs {
     private int idTarifs;
     private String denomination;
@@ -20,6 +21,7 @@ public class Tarifs {
     private Collection<TarifsPenalites> tarifsPenalitesByIdTarifs;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdTarifs", nullable = false)
     public int getIdTarifs() {
         return idTarifs;

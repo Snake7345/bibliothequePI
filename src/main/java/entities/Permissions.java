@@ -3,19 +3,20 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-
+@Entity
+@Table(name = "permissions")
 @NamedQueries
         ({
-                @NamedQuery(name = "Permissions.findAll", query = "SELECT p FROM Permissions p"),
+                @NamedQuery(name = "Permissions.findAllTri", query = "SELECT p FROM Permissions p ORDER BY p.denomination ASC"),
         })
 
-@Entity
 public class Permissions {
     private int idPermissions;
     private String denomination;
     private Collection<PermissionsRoles> permissionsRolesByIdPermissions;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPermissions", nullable = false)
     public int getIdPermissions() {
         return idPermissions;

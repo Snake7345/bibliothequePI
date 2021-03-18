@@ -3,14 +3,15 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-
+@Entity
+@Table(name="utilisateurs")
 @NamedQueries
         ({
                 @NamedQuery(name = "Utilisateurs.findAll", query = "SELECT u FROM Utilisateurs u"),
-                @NamedQuery(name = "Utilisateurs.findActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif='TRUE'"),
-                @NamedQuery(name = "Utilisateurs.findInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif='FALSE'"),
+                @NamedQuery(name = "Utilisateurs.findActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE"),
+                @NamedQuery(name = "Utilisateurs.findInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE"),
+                @NamedQuery(name=  "Utilisateurs.authentify", query="SELECT u FROM Utilisateurs u where u.login=:login and u.mdp=:mdp"),
         })
-@Entity
 public class Utilisateurs {
     private int idUtilisateurs;
     private String nom;
@@ -26,6 +27,7 @@ public class Utilisateurs {
     private Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdUtilisateurs", nullable = false)
     public int getIdUtilisateurs() {
         return idUtilisateurs;

@@ -2,13 +2,13 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+@Entity
+@Table(name = "permissions_roles", schema = "bibliotheque")
 @NamedQueries
         ({
                 @NamedQuery(name = "PermissionsRoles.findAll", query = "SELECT p FROM PermissionsRoles p"),
         })
-@Entity
-@Table(name = "permissions_roles", schema = "bibliotheque")
+
 public class PermissionsRoles {
     private int permissionsIdPermissions;
     private int rolesIdRoles;
@@ -37,6 +37,7 @@ public class PermissionsRoles {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPermissionsRoles", nullable = false)
     public int getIdPermissionsRoles() {
         return idPermissionsRoles;

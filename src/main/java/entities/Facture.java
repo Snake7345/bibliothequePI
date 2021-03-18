@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
-
+@Entity
+@Table(name="facture")
 @NamedQueries
         ({
                 @NamedQuery(name = "Facture.findAll", query = "SELECT f FROM Facture f"),
-                @NamedQuery(name = "Facture.findOne", query ="SELECT f FROM Facture f WHERE f.numeroFacture=:idLocations"),
+                @NamedQuery(name = "Facture.findAllByEtat", query = "SELECT f FROM Facture f WHERE f.etat=:etat"),
         })
-@Entity
+
 public class Facture {
     private int idLocations;
     private Timestamp dateDebut;
@@ -22,6 +23,7 @@ public class Facture {
     private Collection<FactureDetail> factureDetailsByIdLocations;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLocations", nullable = false)
     public int getIdLocations() {
         return idLocations;

@@ -3,26 +3,32 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-
+@Entity
+@Table(name="livres")
 @NamedQueries
         ({
                 @NamedQuery(name = "Livres.findAll", query = "SELECT l FROM Livres l"),
                 @NamedQuery(name = "Livres.findOne", query ="SELECT l FROM Livres l WHERE l.titre=:id"),
                 @NamedQuery(name = "Livres.findAllTri", query="SELECT l FROM Livres l ORDER BY l.titre ASC"),
+                @NamedQuery(name = "Livres.findActiv", query = "SELECT l FROM Livres l WHERE l.actif=TRUE"),
+                @NamedQuery(name = "Livres.findInactiv", query = "SELECT l FROM Livres l WHERE l.actif=FALSE"),
+                @NamedQuery(name = "Livres.findOneByIsbn", query="SELECT l FROM Livres l WHERE l.isbn=:isbn"),
+                @NamedQuery(name = "Livres.findAllByTitre", query="SELECT l FROM Livres l WHERE l.titre=:titre ORDER BY l.titre ASC"),//A verifier
         })
-@Entity
 public class Livres {
     private int idLivres;
     private String titre;
     private int annee;
     private int isbn;
     private int editeursIdEditeurs;
+    private boolean actif;
     private Collection<ExemplairesLivres> exemplairesLivresByIdLivres;
     private Editeurs editeursByEditeursIdEditeurs;
     private Collection<LivresAuteurs> livresAuteursByIdLivres;
     private Collection<LivresGenres> livresGenresByIdLivres;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLivres", nullable = false)
     public int getIdLivres() {
         return idLivres;
@@ -72,12 +78,23 @@ public class Livres {
         this.editeursIdEditeurs = editeursIdEditeurs;
     }
 
+    @Basic
+    @Column(name = "Actif", nullable = false)
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Livres livres = (Livres) o;
         return idLivres == livres.idLivres &&
+                actif == livres.actif &&
                 annee == livres.annee &&
                 isbn == livres.isbn &&
                 editeursIdEditeurs == livres.editeursIdEditeurs &&

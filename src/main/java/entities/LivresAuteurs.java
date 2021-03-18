@@ -2,13 +2,13 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+@Entity
+@Table(name = "livres_auteurs", schema = "bibliotheque")
 @NamedQueries
         ({
                 @NamedQuery(name = "LivresAuteurs.findAll", query = "SELECT la FROM LivresAuteurs la"),
         })
-@Entity
-@Table(name = "livres_auteurs", schema = "bibliotheque")
+
 public class LivresAuteurs {
     private int livresIdLivres;
     private int auteursIdAuteurs;
@@ -37,6 +37,7 @@ public class LivresAuteurs {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLivresAuteurs", nullable = false)
     public int getIdLivresAuteurs() {
         return idLivresAuteurs;
