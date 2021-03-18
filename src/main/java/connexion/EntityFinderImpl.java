@@ -21,34 +21,34 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private EntityManager em;
+	private Class<?> ec;
+
 	/**
      * Default constructor
      */
-	public EntityFinderImpl(){
+	public EntityFinderImpl(Class<?> ec){
 		super();
+		this.ec = ec;
 	}
-	
+
+	public EntityFinderImpl(Class<?> ec, EntityManager em){
+		super();
+		this.ec = ec;
+		this.em = em;
+	}
+
 	// Log4j	 
 	private static final Logger log = Logger.getLogger(EntityFinderImpl.class);
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public T findOne(T t, int id) {
-		
-		EntityManager em = EMF.getEM();		
-		Class<? extends Object> ec = t.getClass();
-		try {
-	        
-	    	t = (T)em.find(ec, id);
-	    	
-	    	em.clear();
-	    	
-	    	log.debug("Bean " + t + " find from database: Ok");
-	    } finally {
-	        em.close();
-	        log.debug("Close em : Ok");
-	    }
-		
+	public T findOne(int id) {
+
+		T t = (T)em.find(ec, id);
+
+		log.debug("Bean " + ec.getSimpleName() + " find from database: Ok");
+
 		return t;
 	}
 //---------------------------------------------------------------------------------------------------------	

@@ -20,8 +20,8 @@ public interface EntityFinder<T> {
 	 *                   
 	 * @return 
 	 * 			Generic backing bean
-	 */	
-	public T findOne(T t, int id);
+	 */
+	public T findOne(int id);
 	
 	/**	 
 	 * Interface method to find a result of entities based on a NamedQuery from the database
