@@ -37,7 +37,7 @@ public interface EntityFinder<T> {
 	 * @return 
 	 * 			List of generic backing beans
 	 */	
-	public <K, V> List<T> findByNamedQuery(String namedQuery, T t, Map<K, V> param);
+	public <K, V> List<T> findByNamedQuery(String namedQuery, Map<K, V> param);
 	
 	/**	 
 	 * Interface method to find a result of entities based on a customQuery from the database

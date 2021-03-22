@@ -7,14 +7,18 @@ import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
+import org.eclipse.persistence.config.CacheUsage;
+import org.eclipse.persistence.config.HintValues;
+import org.eclipse.persistence.config.QueryHints;
+
 
 import org.apache.log4j.Logger;
 
 //import com.og.connection.EMF;
 
-/** 
+/**
  * Class to perform entity CRUD with the database
- * 
+ *
  * @author Renaud DIANA
  */
 public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
@@ -38,9 +42,9 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 		this.em = em;
 	}
 
-	// Log4j	 
+	// Log4j
 	private static final Logger log = Logger.getLogger(EntityFinderImpl.class);
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public T findOne(int id) {
@@ -51,70 +55,67 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 
 		return t;
 	}
-//---------------------------------------------------------------------------------------------------------	
+//---------------------------------------------------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	@Override
-	public <K, V> List<T> findByNamedQuery(String namedQuery, T t, Map<K, V> param) {
-		
-		List<T> listT = new ArrayList<T>();
-		Class<? extends Object> ec = t.getClass();
-		
-		EntityManager em = EMF.getEM();
-		try {
-		    Query query = em.createNamedQuery(namedQuery, ec);
-		    
-	    	if(param != null) {
-	    		
-	    		setParameters(query, param);		
-	    	}
-	    	listT = (List<T>) query.getResultList();
-	    	
-	    	log.debug("List " + t + " size: " + listT.size());       
-	    	log.debug("Named query " + namedQuery + " find from database: Ok");	    
+	public <K, V> List<T> findByNamedQuery(String namedQuery, Map<K, V> param) {
+
+		List<T> listT;
+
+		Query query = em.createNamedQuery(namedQuery, ec);
+
+		if(param != null) {
+
+			setParameters(query, param);
 		}
-		finally {
-			
-			em.clear();
-	        em.close();
-	    }
+
+
+		// Update the JPA session cache with objects that the query returns.
+		// Hence the entity objects in the returned collection always updated.
+		listT = (List<T>) query.setHint(QueryHints.REFRESH, HintValues.TRUE).getResultList();
+
+		log.debug("List " + ec.getSimpleName() + " size: " + listT.size());
+		log.debug("Named query " + namedQuery + " find from database: Ok");
+
 		return listT;
 	}
-//----------------------------------------------------------------------------------------------------------	
+
+	//----------------------------------------------------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	@Override
 	public <K, V> List<T> findByCustomQuery(String customQuery, T t, Map<K, V> param) {
-		
+
 		List<T> listT = new ArrayList<T>();
 		Class<? extends Object> ec = t.getClass();
-	    
+
 		EntityManager em = EMF.getEM();
 		try {
 	    	Query query = em.createQuery(customQuery, ec);
 	    	if(param != null) {
-	    		
+
 	    		setParameters(query, param);
 	    	}
 	    	listT = (List<T>) query.getResultList();
-	    	    	
-	    	log.debug("List " + t + " size: " + listT.size());       
+
+	    	log.debug("List " + t + " size: " + listT.size());
 	    	log.debug("Custom query " + customQuery + " find from database: Ok");
 		}
 		finally {
-			
+
 			em.clear();
 	        em.close();
 	    }
 		return listT;
 	}
 
-	/**  
+	/**
 	 * @param query
 	 * @param param
 	 * @return
 	 * 			the query with parameters
 	 */
 	private <K, V> void setParameters(Query query, Map<K, V> param) {
-		
+
 		Set<Map.Entry<K, V>> entries = param.entrySet();
 		Iterator<Map.Entry<K, V>> itr = entries.iterator();
 		while(itr.hasNext()){
@@ -126,5 +127,5 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 			//log.debug("entry.getValue: " + entry.getValue());
 		}
 	}
-	
+
 }

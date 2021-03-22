@@ -1,42 +1,32 @@
 package services;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import entities.Adresses;
-
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcAdresses {
-	protected EntityManager em;
-
-	//---------------------------------------------------------------------------
-		public SvcAdresses()
-		{
-			super();
-		}
+import org.apache.log4j.Logger;
 
 
-		public SvcAdresses(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
+public class SvcAdresses extends Service<Adresses> implements Serializable {
 
-		public void create(Adresses adresse)
-		{
-			em.persist(adresse);
-		}
-		
-		public void update(Adresses adresse)
-		{
-			em.merge(adresse);
-		}
-		public void remove(Adresses adresse)
-		{
-			em.remove(adresse);
-		}
+	private static final Logger log = Logger.getLogger(SvcAdresses.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
+
+	public SvcAdresses()
+	{
+		super();
+	}
+
+	public List<Adresses> findAllAdresses()
+	{
+		return finder.findByNamedQuery("Adresses.findAll",null);
+	}
 
 
-
+	@Override
+	public Adresses save(Adresses adresses) {
+		return null;
+	}
 }
