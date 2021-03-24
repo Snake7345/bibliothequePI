@@ -2,41 +2,35 @@ package services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+
+import entities.Livres;
 import entities.Localites;
+import org.apache.log4j.Logger;
 
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcLocalites {
-	protected EntityManager em;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-	//---------------------------------------------------------------------------
-		public SvcLocalites()
-		{
-			super();
-		}
+public class SvcLocalites extends Service<Localites> implements Serializable {
+	private static final Logger log = Logger.getLogger(SvcLocalites.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
+
+	public SvcLocalites() {
+		super();
+	}
+
+	@Override
+	public Localites save(Localites localites) {
+		return null;
+	}
 
 
-		public SvcLocalites(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
-
-		public void create(Localites loca)
-		{
-			em.persist(loca);
-		}
-		
-		public void update(Localites loca)
-		{
-			em.merge(loca);
-		}
-		public void remove(Localites loca)
-		{
-			em.remove(loca);
-		}
-
+	public List<Localites> findAllLocalites() {
+		return finder.findByNamedQuery("Localites.findAll", null);
+	}
 
 
 }
+

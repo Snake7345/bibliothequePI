@@ -2,41 +2,34 @@ package services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+
+import entities.Facture;
 import entities.Genres;
+import org.apache.log4j.Logger;
 
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcGenres {
-	protected EntityManager em;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-	//---------------------------------------------------------------------------
-		public SvcGenres()
-		{
-			super();
-		}
+public class SvcGenres extends Service<Genres> implements Serializable {
+	private static final Logger log = Logger.getLogger(SvcGenres.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
+
+	public SvcGenres() {
+		super();
+	}
+
+	@Override
+	public Genres save(Genres genres) {
+		return null;
+	}
 
 
-		public SvcGenres(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
-
-		public void create(Genres genres)
-		{
-			em.persist(genres);
-		}
-		
-		public void update(Genres genres)
-		{
-			em.merge(genres);
-		}
-		public void remove(Genres genres)
-		{
-			em.remove(genres);
-		}
-
+	public List<Genres> findAllGenres() {
+		return finder.findByNamedQuery("Genres.findAll", null);
+	}
 
 
 }

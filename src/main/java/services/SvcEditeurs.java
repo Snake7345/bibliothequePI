@@ -2,41 +2,39 @@ package services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+
+import entities.Bibliotheques;
 import entities.Editeurs;
+import org.apache.log4j.Logger;
 
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcEditeurs {
-	protected EntityManager em;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-	//---------------------------------------------------------------------------
-		public SvcEditeurs()
-		{
-			super();
-		}
+public class SvcEditeurs extends Service<Editeurs> implements Serializable
+{
+	private static final Logger log = Logger.getLogger(SvcEditeurs.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
+
+	public SvcEditeurs()
+	{
+		super();
+	}
+
+	@Override
+	public Editeurs save(Editeurs editeurs) {
+		return null;
+	}
 
 
-		public SvcEditeurs(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
-
-		public void create(Editeurs editeur)
-		{
-			em.persist(editeur);
-		}
-		
-		public void update(Editeurs editeur)
-		{
-			em.merge(editeur);
-		}
-		public void remove(Editeurs editeur)
-		{
-			em.remove(editeur);
-		}
+	public List<Editeurs> findAllEditeurs()
+	{
+		return finder.findByNamedQuery("Editeurs.findAll",null);
+	}
 
 
 
 }
+

@@ -2,41 +2,36 @@ package services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+
+import entities.Livres;
 import entities.LivresAuteurs;
+import entities.LivresGenres;
+import org.apache.log4j.Logger;
 
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcLivresAuteurs {
-	protected EntityManager em;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-	//---------------------------------------------------------------------------
-		public SvcLivresAuteurs()
-		{
-			super();
-		}
+public class SvcLivresAuteurs extends Service<LivresAuteurs> implements Serializable {
+	private static final Logger log = Logger.getLogger(SvcLivresAuteurs.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
 
+	public SvcLivresAuteurs() {
+		super();
+	}
 
-		public SvcLivresAuteurs(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
+	@Override
+	public LivresAuteurs save(LivresAuteurs livresAuteurs) {
+		return null;
+	}
 
-		public void create(LivresAuteurs livresa)
-		{
-			em.persist(livresa);
-		}
-		
-		public void update(LivresAuteurs livresa)
-		{
-			em.merge(livresa);
-		}
-		public void remove(LivresAuteurs livresa)
-		{
-			em.remove(livresa);
-		}
+	public List<LivresAuteurs> findAllLivresAuteurs() {
+		return finder.findByNamedQuery("LivresAuteurs.findAll", null);
+	}
 
 
 
 }
+

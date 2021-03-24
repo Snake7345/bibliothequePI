@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 @Entity
+
 @Table(name = "tarifs_penalites", schema = "bibliotheque")
 @NamedQueries
         ({

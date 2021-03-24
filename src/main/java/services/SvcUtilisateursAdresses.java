@@ -2,41 +2,36 @@ package services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+
+import entities.Livres;
+import entities.Utilisateurs;
 import entities.UtilisateursAdresses;
+import org.apache.log4j.Logger;
 
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcUtilisateursAdresses {
-	protected EntityManager em;
-	
-	//---------------------------------------------------------------------------
-		public SvcUtilisateursAdresses()
-		{
-			super();
-		}
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-		
-		public SvcUtilisateursAdresses(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
+public class SvcUtilisateursAdresses extends Service<UtilisateursAdresses> implements Serializable {
+	private static final Logger log = Logger.getLogger(SvcUtilisateursAdresses.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
 
-		public void create(UtilisateursAdresses utilad)
-		{
-			em.persist(utilad);
-		}
-		
-		public void update(UtilisateursAdresses utilad)
-		{
-			em.merge(utilad);
-		}
-		public void remove(UtilisateursAdresses utilad)
-		{
-			em.remove(utilad);
-		}
+	public SvcUtilisateursAdresses() {
+		super();
+	}
 
+	@Override
+	public UtilisateursAdresses save(UtilisateursAdresses utilisateursAdresses) {
+		return null;
+	}
+
+
+	public List<UtilisateursAdresses> findAllUtilisateursAdresses() {
+		return finder.findByNamedQuery("UtilisateursAdresses.findAll", null);
+	}
 
 
 }
+

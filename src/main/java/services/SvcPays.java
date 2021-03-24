@@ -2,41 +2,35 @@ package services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+
+import entities.Livres;
 import entities.Pays;
+import org.apache.log4j.Logger;
 
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcPays {
-	protected EntityManager em;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-	//---------------------------------------------------------------------------
-		public SvcPays()
-		{
-			super();
-		}
+public class SvcPays extends Service<Pays> implements Serializable {
+	private static final Logger log = Logger.getLogger(SvcPays.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
+
+	public SvcPays() {
+		super();
+	}
+
+	@Override
+	public Pays save(Pays pays) {
+		return null;
+	}
 
 
-		public SvcPays(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
-
-		public void create(Pays pays)
-		{
-			em.persist(pays);
-		}
-		
-		public void update(Pays pays)
-		{
-			em.merge(pays);
-		}
-		public void remove(Pays pays)
-		{
-			em.remove(pays);
-		}
-
+	public List<Pays> findAllPays() {
+		return finder.findByNamedQuery("Pays.findAll", null);
+	}
 
 
 }
+

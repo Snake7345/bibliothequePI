@@ -2,41 +2,34 @@ package services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+
+import entities.ExemplairesLivres;
 import entities.Facture;
+import org.apache.log4j.Logger;
 
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcFacture {
-	protected EntityManager em;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-	//---------------------------------------------------------------------------
-		public SvcFacture()
-		{
-			super();
-		}
+public class SvcFacture extends Service<Facture> implements Serializable {
+	private static final Logger log = Logger.getLogger(SvcFacture.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
+
+	public SvcFacture() {
+		super();
+	}
+
+	@Override
+	public Facture save(Facture facture) {
+		return null;
+	}
 
 
-		public SvcFacture(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
-
-		public void create(Facture facture)
-		{
-			em.persist(facture);
-		}
-		
-		public void update(Facture facture)
-		{
-			em.merge(facture);
-		}
-		public void remove(Facture facture)
-		{
-			em.remove(facture);
-		}
-
+	public List<Facture> findAllFacture() {
+		return finder.findByNamedQuery("Facture.findAll", null);
+	}
 
 
 }

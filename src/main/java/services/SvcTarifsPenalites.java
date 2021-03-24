@@ -1,42 +1,32 @@
 package services;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+
 import entities.TarifsPenalites;
+import org.apache.log4j.Logger;
 
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcTarifsPenalites {
-	protected EntityManager em;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-	//---------------------------------------------------------------------------
-		public SvcTarifsPenalites()
-		{
-			super();
-		}
+public class SvcTarifsPenalites extends Service<TarifsPenalites> implements Serializable {
+	private static final Logger log = Logger.getLogger(SvcTarifsPenalites.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
+
+	public SvcTarifsPenalites() {
+		super();
+	}
+
+	@Override
+	public TarifsPenalites save(TarifsPenalites tarifsPenalites) {
+		return null;
+	}
 
 
-		public SvcTarifsPenalites(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
-
-		public void create(TarifsPenalites tpena)
-		{
-			em.persist(tpena);
-		}
-		
-		public void update(TarifsPenalites tpena)
-		{
-			em.merge(tpena);
-		}
-		public void remove(TarifsPenalites tpena)
-		{
-			em.remove(tpena);
-		}
-
+	public List<TarifsPenalites> findAllTarifsPenalites() {
+		return finder.findByNamedQuery("TarifsPenalites.findAll", null);
+	}
 
 
 }

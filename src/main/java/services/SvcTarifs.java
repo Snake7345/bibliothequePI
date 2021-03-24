@@ -1,42 +1,31 @@
 package services;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
 import entities.Tarifs;
+import org.apache.log4j.Logger;
 
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcTarifs {
-	protected EntityManager em;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-	//---------------------------------------------------------------------------
-		public SvcTarifs()
-		{
-			super();
-		}
+public class SvcTarifs extends Service<Tarifs> implements Serializable {
+	private static final Logger log = Logger.getLogger(SvcTarifs.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
+
+	public SvcTarifs() {
+		super();
+	}
+
+	@Override
+	public Tarifs save(Tarifs tarifs) {
+		return null;
+	}
 
 
-		public SvcTarifs(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
-
-		public void create(Tarifs tarif)
-		{
-			em.persist(tarif);
-		}
-		
-		public void update(Tarifs tarif)
-		{
-			em.merge(tarif);
-		}
-		public void remove(Tarifs tarif)
-		{
-			em.remove(tarif);
-		}
-
+	public List<Tarifs> findAllTarifs() {
+		return finder.findByNamedQuery("Tarifs.findAll", null);
+	}
 
 
 }

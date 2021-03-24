@@ -1,42 +1,32 @@
 package services;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
 import entities.PermissionsRoles;
+import org.apache.log4j.Logger;
 
-@PersistenceUnit (unitName="bibliotheque")
-public class SvcPermissionsRoles {
-	protected EntityManager em;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-	//---------------------------------------------------------------------------
-		public SvcPermissionsRoles()
-		{
-			super();
-		}
+public class SvcPermissionsRoles extends Service<PermissionsRoles> implements Serializable {
+	private static final Logger log = Logger.getLogger(SvcPermissionsRoles.class);
+	private static final long serialVersionUID = 1L;
+	Map<String, Object> params = new HashMap<String, Object>();
+
+	public SvcPermissionsRoles() {
+		super();
+	}
+
+	@Override
+	public PermissionsRoles save(PermissionsRoles permissionsRoles) {
+		return null;
+	}
 
 
-		public SvcPermissionsRoles(EntityManager em1)
-		{
-			
-			this.em = em1;
-			
-		}
-	//---------------------------------------------------------------------------
-
-		public void create(PermissionsRoles penar)
-		{
-			em.persist(penar);
-		}
-		
-		public void update(PermissionsRoles penar)
-		{
-			em.merge(penar);
-		}
-		public void remove(PermissionsRoles penar)
-		{
-			em.remove(penar);
-		}
-
+	public List<PermissionsRoles> findAllPermissionsRoles() {
+		return finder.findByNamedQuery("PermissionsRoles.findAll", null);
+	}
 
 
 }
+
