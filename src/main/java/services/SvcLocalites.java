@@ -23,7 +23,13 @@ public class SvcLocalites extends Service<Localites> implements Serializable {
 
 	@Override
 	public Localites save(Localites localites) {
-		return null;
+		if (localites.getIdLocalites() == 0) {
+			em.persist(localites);
+		} else {
+			localites = em.merge(localites);
+		}
+
+		return localites;
 	}
 
 

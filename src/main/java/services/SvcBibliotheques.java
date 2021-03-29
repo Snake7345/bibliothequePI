@@ -1,6 +1,5 @@
 package services;
 
-import entities.Auteurs;
 import entities.Bibliotheques;
 import org.apache.log4j.Logger;
 
@@ -30,7 +29,13 @@ public class SvcBibliotheques extends Service<Bibliotheques> implements Serializ
 
 	@Override
 	public Bibliotheques save(Bibliotheques bibliotheques) {
-		return null;
+		if (bibliotheques.getIdBibliotheques() == 0) {
+			em.persist(bibliotheques);
+		} else {
+			bibliotheques = em.merge(bibliotheques);
+		}
+
+		return bibliotheques;
 	}
 
 }

@@ -23,7 +23,13 @@ public class SvcFacture extends Service<Facture> implements Serializable {
 
 	@Override
 	public Facture save(Facture facture) {
-		return null;
+		if (facture.getIdLocations() == 0) {
+			em.persist(facture);
+		} else {
+			facture = em.merge(facture);
+		}
+
+		return facture;
 	}
 
 

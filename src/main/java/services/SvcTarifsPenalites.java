@@ -20,7 +20,13 @@ public class SvcTarifsPenalites extends Service<TarifsPenalites> implements Seri
 
 	@Override
 	public TarifsPenalites save(TarifsPenalites tarifsPenalites) {
-		return null;
+		if (tarifsPenalites.getIdTarifsPenalites() == 0) {
+			em.persist(tarifsPenalites);
+		} else {
+			tarifsPenalites = em.merge(tarifsPenalites);
+		}
+
+		return tarifsPenalites;
 	}
 
 

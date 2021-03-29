@@ -25,7 +25,13 @@ public class SvcEditeurs extends Service<Editeurs> implements Serializable
 
 	@Override
 	public Editeurs save(Editeurs editeurs) {
-		return null;
+		if (editeurs.getIdEditeurs() == 0) {
+			em.persist(editeurs);
+		} else {
+			editeurs = em.merge(editeurs);
+		}
+
+		return editeurs;
 	}
 
 

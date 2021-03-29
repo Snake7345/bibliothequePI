@@ -23,7 +23,13 @@ public class SvcPenalites extends Service<Penalites> implements Serializable {
 
 	@Override
 	public Penalites save(Penalites penalites) {
-		return null;
+		if (penalites.getIdPenalites() == 0) {
+			em.persist(penalites);
+		} else {
+			penalites = em.merge(penalites);
+		}
+
+		return penalites;
 	}
 
 

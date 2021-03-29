@@ -1,9 +1,6 @@
 package services;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
 
-import entities.Livres;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 
@@ -23,7 +20,13 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 
 	@Override
 	public Utilisateurs save(Utilisateurs utilisateurs) {
-		return null;
+		if (utilisateurs.getIdUtilisateurs() == 0) {
+			em.persist(utilisateurs);
+		} else {
+			utilisateurs = em.merge(utilisateurs);
+		}
+
+		return utilisateurs;
 	}
 
 

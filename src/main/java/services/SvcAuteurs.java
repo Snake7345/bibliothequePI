@@ -28,7 +28,13 @@ public class SvcAuteurs extends Service<Auteurs> implements Serializable
 
 	@Override
 	public Auteurs save(Auteurs auteurs) {
-		return null;
+		if (auteurs.getIdAuteurs() == 0) {
+			em.persist(auteurs);
+		} else {
+			auteurs = em.merge(auteurs);
+		}
+
+		return auteurs;
 	}
 
 

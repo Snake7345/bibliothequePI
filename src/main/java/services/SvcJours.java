@@ -23,7 +23,13 @@ public class SvcJours extends Service<Jours> implements Serializable {
 
 	@Override
 	public Jours save(Jours jours) {
-		return null;
+		if (jours.getIdJours() == 0) {
+			em.persist(jours);
+		} else {
+			jours = em.merge(jours);
+		}
+
+		return jours;
 	}
 
 

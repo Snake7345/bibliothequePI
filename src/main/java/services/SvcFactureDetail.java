@@ -26,7 +26,13 @@ public class SvcFactureDetail extends Service<FactureDetail> implements Serializ
 
     @Override
     public FactureDetail save(FactureDetail factureDetail) {
-        return null;
+        if (factureDetail.getIdLocationsHistorique() == 0) {
+            em.persist(factureDetail);
+        } else {
+            factureDetail = em.merge(factureDetail);
+        }
+
+        return factureDetail;
     }
 
 

@@ -19,7 +19,13 @@ public class SvcTarifs extends Service<Tarifs> implements Serializable {
 
 	@Override
 	public Tarifs save(Tarifs tarifs) {
-		return null;
+		if (tarifs.getIdTarifs() == 0) {
+			em.persist(tarifs);
+		} else {
+			tarifs = em.merge(tarifs);
+		}
+
+		return tarifs;
 	}
 
 

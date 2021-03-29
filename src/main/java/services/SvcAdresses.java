@@ -27,6 +27,12 @@ public class SvcAdresses extends Service<Adresses> implements Serializable {
 
 	@Override
 	public Adresses save(Adresses adresses) {
-		return null;
+		if (adresses.getIdAdresses() == 0) {
+			em.persist(adresses);
+		} else {
+			adresses = em.merge(adresses);
+		}
+
+		return adresses;
 	}
 }

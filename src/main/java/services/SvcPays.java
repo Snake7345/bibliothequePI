@@ -23,7 +23,13 @@ public class SvcPays extends Service<Pays> implements Serializable {
 
 	@Override
 	public Pays save(Pays pays) {
-		return null;
+		if (pays.getIdPays() == 0) {
+			em.persist(pays);
+		} else {
+			pays = em.merge(pays);
+		}
+
+		return pays;
 	}
 
 

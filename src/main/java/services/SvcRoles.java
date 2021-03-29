@@ -23,7 +23,13 @@ public class SvcRoles extends Service<Roles> implements Serializable {
 
 	@Override
 	public Roles save(Roles roles) {
-		return null;
+		if (roles.getIdRoles() == 0) {
+			em.persist(roles);
+		} else {
+			roles = em.merge(roles);
+		}
+
+		return roles;
 	}
 
 

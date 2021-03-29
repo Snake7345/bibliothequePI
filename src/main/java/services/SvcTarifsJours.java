@@ -21,7 +21,13 @@ public class SvcTarifsJours extends Service<TarifsJours> implements Serializable
 
 	@Override
 	public TarifsJours save(TarifsJours tarifsJours) {
-		return null;
+		if (tarifsJours.getIdTarifsJours() == 0) {
+			em.persist(tarifsJours);
+		} else {
+			tarifsJours = em.merge(tarifsJours);
+		}
+
+		return tarifsJours;
 	}
 
 

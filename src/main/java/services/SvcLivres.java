@@ -23,7 +23,13 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 
 	@Override
 	public Livres save(Livres livres) {
-		return null;
+		if (livres.getIdLivres() == 0) {
+			em.persist(livres);
+		} else {
+			livres = em.merge(livres);
+		}
+
+		return livres;
 	}
 
 

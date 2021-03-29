@@ -33,6 +33,12 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 
 	@Override
 	public ExemplairesLivres save(ExemplairesLivres exemplairesLivres) {
-		return null;
+		if (exemplairesLivres.getIdExemplairesLivres() == 0) {
+			em.persist(exemplairesLivres);
+		} else {
+			exemplairesLivres = em.merge(exemplairesLivres);
+		}
+
+		return exemplairesLivres;
 	}
 }

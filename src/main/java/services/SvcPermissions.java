@@ -23,7 +23,13 @@ public class SvcPermissions extends Service<Permissions> implements Serializable
 
 	@Override
 	public Permissions save(Permissions permissions) {
-		return null;
+		if (permissions.getIdPermissions() == 0) {
+			em.persist(permissions);
+		} else {
+			permissions = em.merge(permissions);
+		}
+
+		return permissions;
 	}
 
 

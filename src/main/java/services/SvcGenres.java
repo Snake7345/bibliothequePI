@@ -23,7 +23,13 @@ public class SvcGenres extends Service<Genres> implements Serializable {
 
 	@Override
 	public Genres save(Genres genres) {
-		return null;
+		if (genres.getIdGenres() == 0) {
+			em.persist(genres);
+		} else {
+			genres = em.merge(genres);
+		}
+
+		return genres;
 	}
 
 
