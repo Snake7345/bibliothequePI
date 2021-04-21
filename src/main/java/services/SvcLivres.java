@@ -3,6 +3,7 @@ package services;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
+import entities.Auteurs;
 import entities.Jours;
 import entities.Livres;
 import org.apache.log4j.Logger;
@@ -37,6 +38,12 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 		return finder.findByNamedQuery("Livres.findAll", null);
 	}
 
+	public List<Livres> getByUser(Auteurs auteur) {
+		Map<String, Auteurs> param = new HashMap<>();
+		param.put("auteur", auteur);
+
+		return finder.findByNamedQuery("Livres.findByAuteur", param);
+	}
 
 }
 

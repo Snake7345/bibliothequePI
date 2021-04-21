@@ -5,8 +5,8 @@
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
     <application>
         <resource-bundle>
-            <base-name>com.atc.messages</base-name>
-            <var>bundle</var>
+            <base-name>messages.properties</base-name>
+            <var>I18N</var>
         </resource-bundle>
     </application>
 </faces-config>

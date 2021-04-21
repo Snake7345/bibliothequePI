@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<!--TODO retravailler la page-->
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['utilisateur.form.nouveau.titre']}</ui:define>
+
+    <ui:define name="content">
+
+            <h:form id="form" prependId="false">
+                <h:title>#{bundle['utilisateur.form.nouveau.titre']}</h:title>
+                <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+
+
+                    <h:outputText value = "#{I18N['utilisateur.label.Nom']}"/>
+                    <h:inputText id="utilNom"
+                                 value="#{utilisateurBean.util.nom}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.nom']}">
+                    </h:inputText>
+                    <h:message for="utilNom" styleClass="errorMessage"/>
+
+                    <h:outputText value = "#{I18N['utilisateur.label.Prenom']}"/>
+                    <h:inputText id="utilPrenom"
+                                 value="#{utilisateurBean.util.prenom}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.prenom']}">
+                    </h:inputText>
+                    <h:message for="utilPrenom" styleClass="errorMessage"/>
+
+                    <h:outputText value = "#{I18N['utilisateur.label.Courriel']}"/>
+                    <h:inputText id="utilCourriel"
+                                 value="#{utilisateurBean.util.Courriel}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.Courriel']}">
+                    </h:inputText>
+                    <h:message for="utilCourriel" styleClass="errorMessage"/>
+
+                    <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
+                    <h:inputText id="utilLogin"
+                                 value="#{utilisateurBean.util.login}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.login']}">
+                    </h:inputText>
+                    <h:message for="utilLogin" styleClass="errorMessage"/>
+
+                    <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
+                    <h:inputText id="utilMdp"
+                                 value="#{utilisateurBean.util.Mdp}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.Mdp']}">
+                    </h:inputText>
+                    <h:message for="utilMdp" styleClass="errorMessage"/>
+
+                    <h:outputText value = "#{I18N['utilisateur.label.Sexe']}"/>
+                    <h:selectOneMenu  value = "#{utilisateurBean.localite.idLocalite}" id="utilSexe">
+                        <f:selectItems value = "#{localiteBean.listLocalite}" var="ll" itemLabel="#{ll.nom}" itemValue="#{ll.idLocalite}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputText value = "#{I18N['utilisateur.label.Role']}"/>
+                    <h:selectOneMenu  value = "#{utilisateurBean.localite.idLocalite}" id="utilRole">
+                        <f:selectItems value = "#{localiteBean.listLocalite}" var="ll" itemLabel="#{ll.nom}" itemValue="#{ll.idLocalite}"/>
+                    </h:selectOneMenu>
+
+                    <!-- A rajouter l'adresse-->
+
+                </h:panelGrid>
+
+                <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateurBean.newUtil}"/>
+                <h:commandButton value="#{I18N['application.button.return']}" action="#{tableUtilisateur}" immediate="true"/>
+            </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:ui="http://java.sun.com/jsf/facelets"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:c="http://java.sun.com/jsp/jstl/core"
+         xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/Template/template.xhtml">
+    <ui:define name="title">#{I18N['application.loginpage.titre']}</ui:define>
+
+    <ui:define name="header">
+        <div id="header">
+            <h:panelGrid class="table-entete" columns="2" >
+                <h:graphicImage value="/Images/logo.jpg" width="550" height="150"/>
+            </h:panelGrid>
+        </div>
+    </ui:define>
+
+    <ui:define name="content">
+        <div id="content">
+
+            <h:form prependId="false">
+                <h:panelGrid columns="3" style="margin: 0 auto">
+                    <h:outputText value="#{I18N['utilisateur.label.Mail']}"></h:outputText>
+                    <h:inputText id="utilisateurLogin" 	value="#{loginBean.utilisateurAuth.mail}"
+                                 required="true"
+                                 requiredMessage="#{I18N['utilisateur.login.validation']}">
+                        <f:validator validatorId = "emailValidator"/>
+                        <f:validateLength maximum = "80" />
+                    </h:inputText>
+                    <h:message for="utilisateurLogin" styleClass="errorMessage"/>
+
+                    <h:outputText value="#{I18N['utilisateur.password']}"></h:outputText>
+                    <h:inputSecret id="password"  value="#{loginBean.utilisateurAuth.password}"
+                                   required="true"
+                                   requiredMessage="#{I18N['utilisateur.password.validation']}">
+                        <f:validateLength minimum = "8" maximum = "40" />
+                    </h:inputSecret>
+                    <h:message for="password" styleClass="errorMessage"/>
+                    <h:commandButton value ="#{I18N['application.button.login']}" action="#{loginBean.auth}" class ="button-design"/>
+                </h:panelGrid>
+
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
