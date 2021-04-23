@@ -46,10 +46,9 @@ public class LoginBean implements Serializable {
         em = emf.createEntityManager();
         FacesMessage m = new FacesMessage("Login ou mot de passe incorrect");
 
-        try
-        {
+        try {
             List<Utilisateurs> results = em.createNamedQuery("Utilisateurs.authentify", Utilisateurs.class)
-                    .setParameter("login", utilisateurAuth.getLogin())
+                    .setParameter("login", utilisateurAuth.getCourriel())
                     .setParameter("mdp", utilisateurAuth.getMdp())
                     .getResultList();
 
@@ -61,27 +60,20 @@ public class LoginBean implements Serializable {
                 utilisateurAuth = results.get(0);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
             }
-        }
-
             if(utilisateurAuth.getRolesByRolesIdRoles().getDenomination().contains("Garagiste"))
                 return "bienvenueG";
             else
                 return "bienvenueEA";
         }
+
         catch(NoResultException nre)
         {
             FacesMessage errorMessage = new FacesMessage("Login ou mot de passe incorrect");
             errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
             return "login";
         }
-        catch(NullPointerException npe) {
-            FacesMessage errorMessage = new FacesMessage("Login ou mot de passe incorrect");
-            errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
-            return "login";
-        }
 
     }
-
 
     /*Cette méthode permet la deconnexion de l'utilisateur*/
     public String deconnexion() throws IOException {

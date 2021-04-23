@@ -1,9 +1,10 @@
 package managedBean;
 
+import javax.annotation.ManagedBean;
 import javax.inject.Named;
 import java.io.Serializable;
 
-@Named("factureDetailBean")
+@ManagedBean("factureDetailBean")
 public class FactureDetailBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
