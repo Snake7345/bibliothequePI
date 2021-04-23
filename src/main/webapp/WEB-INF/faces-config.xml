@@ -5,7 +5,7 @@
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
     <application>
         <resource-bundle>
-            <base-name>messages.properties</base-name>
+            <base-name>bundle.messages</base-name>
             <var>I18N</var>
         </resource-bundle>
     </application>

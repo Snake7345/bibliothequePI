@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -18,17 +19,17 @@ import org.apache.log4j.Logger;
 
 import entities.Utilisateurs;
 
-
-@Named ("loginBean")
+@ManagedBean("loginBean")
 @SessionScoped
 
 public class LoginBean implements Serializable {
     /*Déclaration des variables*/
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(LoginBean.class);
-    @PersistenceUnit  (unitName = "dbconcessionnaire")
-    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("dbconcessionnaire");
+    @PersistenceUnit  (unitName = "bibliotheque")
+    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("bibliotheque");
     public static EntityManager em;
+
 
     Utilisateurs utilisateurAuth = new Utilisateurs();
 
@@ -39,15 +40,17 @@ public class LoginBean implements Serializable {
      * on vérifie son rôle et on affiche la page d'accueil correspondant à son role
      *
      * */
-    public String auth() {
+    public String auth()
+    {
         log.debug("---------------------------------debut--------------------------");
         em = emf.createEntityManager();
         FacesMessage m = new FacesMessage("Login ou mot de passe incorrect");
 
-        try {
+        try
+        {
             List<Utilisateurs> results = em.createNamedQuery("Utilisateurs.authentify", Utilisateurs.class)
-                    .setParameter("mail", utilisateurAuth.getMail())
-                    .setParameter("password", utilisateurAuth.getPassword())
+                    .setParameter("login", utilisateurAuth.getLogin())
+                    .setParameter("mdp", utilisateurAuth.getMdp())
                     .getResultList();
 
             if (results.isEmpty()) {
@@ -58,7 +61,9 @@ public class LoginBean implements Serializable {
                 utilisateurAuth = results.get(0);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
             }
-            if(utilisateurAuth.getRole().getNom().contains("Garagiste"))
+        }
+
+            if(utilisateurAuth.getRolesByRolesIdRoles().getDenomination().contains("Garagiste"))
                 return "bienvenueG";
             else
                 return "bienvenueEA";
@@ -77,6 +82,7 @@ public class LoginBean implements Serializable {
 
     }
 
+
     /*Cette méthode permet la deconnexion de l'utilisateur*/
     public String deconnexion() throws IOException {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
@@ -90,8 +96,8 @@ public class LoginBean implements Serializable {
     public Utilisateurs getUtilisateurAuth() {
         return utilisateurAuth;
     }
-    public void setUtilisateursAuth(Utilisateurs Utilisateurs) {
-        this.utilisateurAuth = Utilisateurs;
+    public void setUtilisateurAuth(Utilisateurs utilisateurAuth) {
+        this.utilisateurAuth = utilisateurAuth;
     }
 
 }

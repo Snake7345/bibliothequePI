@@ -23,16 +23,14 @@
             <h:form prependId="false">
                 <h:panelGrid columns="3" style="margin: 0 auto">
                     <h:outputText value="#{I18N['utilisateur.label.Courriel']}"/>
-                    <h:inputText id="utilisateurLogin" 	value="#{loginBean.utilisateurAuth.mail}"
+                    <h:inputText id="utilisateurLogin" 	value="#{loginBean.utilisateurAuth.login}"
                                  required="true"
                                  requiredMessage="#{I18N['utilisateur.login.validation']}">
-                        <f:validator validatorId = "emailValidator"/>
                         <f:validateLength maximum = "80" />
                     </h:inputText>
                     <h:message for="utilisateurLogin" styleClass="errorMessage"/>
-
-                    <h:outputText value="#{I18N['utilisateur.password']}"/>
-                    <h:inputSecret id="password"  value="#{loginBean.utilisateurAuth.password}"
+                    <h:outputText value="#{I18N['utilisateur.label.Mdp']}"/>
+                    <h:inputSecret id="password"  value="#{loginBean.utilisateurAuth.mdp}"
                                    required="true"
                                    requiredMessage="#{I18N['utilisateur.password.validation']}">
                         <f:validateLength minimum = "8" maximum = "40" />
