@@ -8,7 +8,6 @@ import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -51,19 +50,19 @@ public class LoginBean implements Serializable {
                     .setParameter("login", utilisateurAuth.getCourriel())
                     .setParameter("mdp", utilisateurAuth.getMdp())
                     .getResultList();
+            
 
             if (results.isEmpty()) {
                 FacesContext.getCurrentInstance().addMessage(null, m);
+                return "login";
 
             }
             else {
                 utilisateurAuth = results.get(0);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
+                return "bienvenue";
             }
-            if(utilisateurAuth.getRolesByRolesIdRoles().getDenomination().contains("Garagiste"))
-                return "bienvenueG";
-            else
-                return "bienvenueEA";
+
         }
 
         catch(NoResultException nre)
