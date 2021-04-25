@@ -1,5 +1,8 @@
 package entities;
 
+import enumeration.ExemplairesLivresEtatEnum;
+import enumeration.FactureEtatEnum;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -9,15 +12,14 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Facture.findAll", query = "SELECT f FROM Facture f"),
-                @NamedQuery(name = "Facture.findAllByEtat", query = "SELECT f FROM Facture f WHERE f.etat=:etat"),
+                @NamedQuery(name = "Facture.findAllByEtat", query = "SELECT f FROM Facture f WHERE f.Etat=:Etat"),
         })
 
 public class Facture {
-    private int idLocations;
+
     private Timestamp dateDebut;
     private Double prixTvac;
     private String numeroFacture;
-    private Object etat;
     private int utilisateursIdUtilisateurs;
     private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
     private Collection<FactureDetail> factureDetailsByIdLocations;
@@ -25,6 +27,8 @@ public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLocations", nullable = false)
+    private int idLocations;
+
     public int getIdLocations() {
         return idLocations;
     }
@@ -63,14 +67,16 @@ public class Facture {
         this.numeroFacture = numeroFacture;
     }
 
-    @Basic
-    @Column(name = "Etat", nullable = false)
-    public Object getEtat() {
-        return etat;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "Etat")
+    private FactureEtatEnum Etat;
+
+    public FactureEtatEnum getEtat() {
+        return Etat;
     }
 
-    public void setEtat(Object etat) {
-        this.etat = etat;
+    public void setEtat(FactureEtatEnum etat) {
+        Etat = etat;
     }
 
     @Basic
@@ -93,12 +99,12 @@ public class Facture {
                 Objects.equals(dateDebut, facture.dateDebut) &&
                 Objects.equals(prixTvac, facture.prixTvac) &&
                 Objects.equals(numeroFacture, facture.numeroFacture) &&
-                Objects.equals(etat, facture.etat);
+                Objects.equals(Etat, facture.Etat);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLocations, dateDebut, prixTvac, numeroFacture, etat, utilisateursIdUtilisateurs);
+        return Objects.hash(idLocations, dateDebut, prixTvac, numeroFacture, Etat, utilisateursIdUtilisateurs);
     }
 
     @ManyToOne
