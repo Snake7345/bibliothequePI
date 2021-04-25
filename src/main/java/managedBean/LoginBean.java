@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 
 import entities.Utilisateurs;
 
-@ManagedBean("loginBean")
+@Named
 @SessionScoped
 
 public class LoginBean implements Serializable {
@@ -50,7 +50,6 @@ public class LoginBean implements Serializable {
                     .setParameter("login", utilisateurAuth.getCourriel())
                     .setParameter("mdp", utilisateurAuth.getMdp())
                     .getResultList();
-            
 
             if (results.isEmpty()) {
                 FacesContext.getCurrentInstance().addMessage(null, m);
