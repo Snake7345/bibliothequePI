@@ -1,5 +1,8 @@
 package entities;
 
+import enumeration.FactureEtatEnum;
+import enumeration.UtilisateurSexeEnum;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -13,10 +16,9 @@ import java.util.Objects;
                 @NamedQuery(name=  "Utilisateurs.authentify", query="SELECT u FROM Utilisateurs u where u.login=:login and u.mdp=:mdp"),
         })
 public class Utilisateurs {
-    private int idUtilisateurs;
+
     private String nom;
     private String prenom;
-    private Object sexe;
     private String courriel;
     private String login;
     private String mdp;
@@ -29,6 +31,8 @@ public class Utilisateurs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdUtilisateurs", nullable = false)
+    private int idUtilisateurs;
+
     public int getIdUtilisateurs() {
         return idUtilisateurs;
     }
@@ -57,14 +61,16 @@ public class Utilisateurs {
         this.prenom = prenom;
     }
 
-    @Basic
-    @Column(name = "Sexe", nullable = false)
-    public Object getSexe() {
-        return sexe;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "Sexe")
+    private UtilisateurSexeEnum Sexe;
+
+    public UtilisateurSexeEnum getSexe() {
+        return Sexe;
     }
 
-    public void setSexe(Object sexe) {
-        this.sexe = sexe;
+    public void setSexe(UtilisateurSexeEnum sexe) {
+        Sexe = sexe;
     }
 
     @Basic
@@ -127,7 +133,7 @@ public class Utilisateurs {
                 rolesIdRoles == that.rolesIdRoles &&
                 Objects.equals(nom, that.nom) &&
                 Objects.equals(prenom, that.prenom) &&
-                Objects.equals(sexe, that.sexe) &&
+                Objects.equals(Sexe, that.Sexe) &&
                 Objects.equals(courriel, that.courriel) &&
                 Objects.equals(login, that.login) &&
                 Objects.equals(mdp, that.mdp);
@@ -135,7 +141,7 @@ public class Utilisateurs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, actif, rolesIdRoles);
+        return Objects.hash(idUtilisateurs, nom, prenom, Sexe, courriel, login, mdp, actif, rolesIdRoles);
     }
 
     @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")

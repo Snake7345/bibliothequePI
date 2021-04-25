@@ -1,5 +1,7 @@
 package entities;
 
+import enumeration.ExemplairesLivresEtatEnum;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -16,13 +18,12 @@ import java.util.Objects;
         })
 
 public class ExemplairesLivres {
-    private int idExemplairesLivres;
+
     private String codeBarre;
     private int bibliothequesIdBibliotheques;
     private int livresIdLivres;
     private boolean actif;
     private boolean loue;
-    private Object etat;
     private String commentaireEtat;
     private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
     private Livres livresByLivresIdLivres;
@@ -31,6 +32,8 @@ public class ExemplairesLivres {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdExemplairesLivres", nullable = false)
+    private int idExemplairesLivres;
+
     public int getIdExemplairesLivres() {
         return idExemplairesLivres;
     }
@@ -89,14 +92,16 @@ public class ExemplairesLivres {
         this.loue = loue;
     }
 
-    @Basic
-    @Column(name = "Etat", nullable = false)
-    public Object getEtat() {
-        return etat;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "Etat")
+    private ExemplairesLivresEtatEnum Etat;
+
+    public ExemplairesLivresEtatEnum getEtat() {
+        return Etat;
     }
 
-    public void setEtat(Object etat) {
-        this.etat = etat;
+    public void setEtat(ExemplairesLivresEtatEnum etat) {
+        Etat = etat;
     }
 
     @Basic
@@ -109,6 +114,7 @@ public class ExemplairesLivres {
         this.commentaireEtat = commentaireEtat;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -118,14 +124,15 @@ public class ExemplairesLivres {
                 bibliothequesIdBibliotheques == that.bibliothequesIdBibliotheques &&
                 livresIdLivres == that.livresIdLivres &&
                 actif == that.actif &&
+                loue == that.loue &&
                 Objects.equals(codeBarre, that.codeBarre) &&
-                Objects.equals(etat, that.etat) &&
-                Objects.equals(commentaireEtat, that.commentaireEtat);
+                Objects.equals(commentaireEtat, that.commentaireEtat) &&
+                Objects.equals(bibliothequesByBibliothequesIdBibliotheques, that.bibliothequesByBibliothequesIdBibliotheques);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idExemplairesLivres, codeBarre, bibliothequesIdBibliotheques, livresIdLivres, actif, etat, commentaireEtat);
+        return Objects.hash(idExemplairesLivres, codeBarre, bibliothequesIdBibliotheques, livresIdLivres, actif, loue, commentaireEtat, bibliothequesByBibliothequesIdBibliotheques);
     }
 
     @ManyToOne
