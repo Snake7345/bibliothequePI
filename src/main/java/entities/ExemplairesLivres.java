@@ -8,6 +8,15 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "exemplaires_livres", schema = "bibliotheque")
+@NamedQueries
+        ({
+                @NamedQuery(name = "ExemplairesLivres.findAll", query = "SELECT el FROM ExemplairesLivres el"),
+                @NamedQuery(name = "ExemplairesLivres.findOneCB", query = "SELECT el FROM ExemplairesLivres el WHERE el.codeBarre=:codeBarre"),
+                @NamedQuery(name = "ExemplairesLivres.findActiv", query = "SELECT el FROM ExemplairesLivres el WHERE el.actif=TRUE"),
+                @NamedQuery(name = "ExemplairesLivres.findInactiv", query = "SELECT el FROM ExemplairesLivres el WHERE el.actif=FALSE"),
+                @NamedQuery(name = "ExemplairesLivres.findLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=TRUE"),
+                @NamedQuery(name = "ExemplairesLivres.findNotLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=FALSE"),
+        })
 public class ExemplairesLivres {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +25,6 @@ public class ExemplairesLivres {
     private int bibliothequesIdBibliotheques;
     private int livresIdLivres;
     private boolean actif;
-    private ExemplairesLivresEtatEnum etat;
     private String commentaireEtat;
     private boolean loue;
     private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
@@ -76,15 +84,15 @@ public class ExemplairesLivres {
     }
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "Etat")
-    private ExemplairesLivresEtatEnum Etat;
+    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "etat")
+    private ExemplairesLivresEtatEnum etat;
 
     public ExemplairesLivresEtatEnum getEtat() {
-        return Etat;
+        return etat;
     }
 
     public void setEtat(ExemplairesLivresEtatEnum etat) {
-        Etat = etat;
+        this.etat = etat;
     }
 
     @Basic
@@ -119,17 +127,16 @@ public class ExemplairesLivres {
                 actif == that.actif &&
                 loue == that.loue &&
                 Objects.equals(codeBarre, that.codeBarre) &&
-                etat == that.etat &&
                 Objects.equals(commentaireEtat, that.commentaireEtat) &&
                 Objects.equals(bibliothequesByBibliothequesIdBibliotheques, that.bibliothequesByBibliothequesIdBibliotheques) &&
                 Objects.equals(livresByLivresIdLivres, that.livresByLivresIdLivres) &&
                 Objects.equals(factureDetailsByIdExemplairesLivres, that.factureDetailsByIdExemplairesLivres) &&
-                Etat == that.Etat;
+                etat == that.etat;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idExemplairesLivres, codeBarre, bibliothequesIdBibliotheques, livresIdLivres, actif, etat, commentaireEtat, loue, bibliothequesByBibliothequesIdBibliotheques, livresByLivresIdLivres, factureDetailsByIdExemplairesLivres, Etat);
+        return Objects.hash(idExemplairesLivres, codeBarre, bibliothequesIdBibliotheques, livresIdLivres, actif, etat, commentaireEtat, loue, bibliothequesByBibliothequesIdBibliotheques, livresByLivresIdLivres, factureDetailsByIdExemplairesLivres, etat);
     }
 
     @ManyToOne

@@ -33,6 +33,7 @@ public class Utilisateurs {
     private Roles rolesByRolesIdRoles;
     private Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs;
 
+
     @Id
     @Column(name = "IdUtilisateurs", nullable = false)
     public int getIdUtilisateurs() {
@@ -64,15 +65,14 @@ public class Utilisateurs {
     }
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "Sexe")
-    private UtilisateurSexeEnum Sexe;
+    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "sexe")
 
     public UtilisateurSexeEnum getSexe() {
-        return Sexe;
+        return sexe;
     }
 
     public void setSexe(UtilisateurSexeEnum sexe) {
-        Sexe = sexe;
+        this.sexe = sexe;
     }
 
     @Basic

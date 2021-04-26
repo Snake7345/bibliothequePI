@@ -5,6 +5,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "livres_auteurs", schema = "bibliotheque")
+@NamedQueries
+        ({
+                @NamedQuery(name = "LivresAuteurs.findAll", query = "SELECT la FROM LivresAuteurs la"),
+        })
 public class LivresAuteurs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,6 +5,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name="bibliotheques")
+@NamedQueries
+        ({
+                @NamedQuery(name = "Bibliotheques.findAll", query = "SELECT b FROM Bibliotheques b"),
+
+        })
 public class Bibliotheques {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

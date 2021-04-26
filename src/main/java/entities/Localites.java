@@ -5,6 +5,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "localites")
+@NamedQueries
+        ({
+                @NamedQuery(name = "Localites.findAll", query = "SELECT l FROM Localites l"),
+                @NamedQuery(name= " Localites.findAllTri", query="SELECT l FROM Localites l ORDER BY l.ville ASC"),
+        })
 public class Localites {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

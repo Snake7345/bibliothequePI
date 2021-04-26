@@ -45,6 +45,7 @@ public class LoginBean implements Serializable {
         FacesMessage m = new FacesMessage("Login ou mot de passe incorrect");
 
         try {
+            log.debug(utilisateurAuth.getLogin() + " + " + utilisateurAuth.getMdp());
             List<Utilisateurs> results = em.createNamedQuery("Utilisateurs.authentify", Utilisateurs.class)
                     .setParameter("login", utilisateurAuth.getLogin())
                     .setParameter("mdp", utilisateurAuth.getMdp())

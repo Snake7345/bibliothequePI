@@ -8,6 +8,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name="facture")
+@NamedQueries
+        ({
+                @NamedQuery(name = "Facture.findAll", query = "SELECT f FROM Facture f"),
+                @NamedQuery(name = "Facture.findAllByEtat", query = "SELECT f FROM Facture f WHERE f.etat=:etat"),
+        })
 public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,12 +66,16 @@ public class Facture {
         this.numeroFacture = numeroFacture;
     }
 
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "Etat")
-    private FactureEtatEnum Etat;
+    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "etat")
 
     public FactureEtatEnum getEtat() {
-        return Etat;
+        return etat;
+    }
+
+    public void setEtat(FactureEtatEnum etat) {
+        this.etat = etat;
     }
 
     @Basic
@@ -90,13 +100,12 @@ public class Facture {
                 Objects.equals(numeroFacture, facture.numeroFacture) &&
                 etat == facture.etat &&
                 Objects.equals(utilisateursByUtilisateursIdUtilisateurs, facture.utilisateursByUtilisateursIdUtilisateurs) &&
-                Objects.equals(factureDetailsByIdLocations, facture.factureDetailsByIdLocations) &&
-                Etat == facture.Etat;
+                Objects.equals(factureDetailsByIdLocations, facture.factureDetailsByIdLocations);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLocations, dateDebut, prixTvac, numeroFacture, etat, utilisateursIdUtilisateurs, utilisateursByUtilisateursIdUtilisateurs, factureDetailsByIdLocations, Etat);
+        return Objects.hash(idLocations, dateDebut, prixTvac, numeroFacture, etat, utilisateursIdUtilisateurs, utilisateursByUtilisateursIdUtilisateurs, factureDetailsByIdLocations);
     }
 
     @ManyToOne

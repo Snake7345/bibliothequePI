@@ -5,6 +5,13 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name="editeurs")
+@NamedQueries
+        ({
+                @NamedQuery(name = "Editeurs.findAll", query = "SELECT e FROM Editeurs e"),
+                @NamedQuery(name = "Editeurs.findOne", query ="SELECT e FROM Editeurs e WHERE e.nom=:id"),
+                @NamedQuery(name = "Editeurs.findAllTri", query="SELECT e FROM Editeurs e ORDER BY e.nom ASC"),
+        })
 public class Editeurs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

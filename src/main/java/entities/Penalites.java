@@ -5,6 +5,11 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "penalites")
+@NamedQueries
+        ({
+                @NamedQuery(name = "Penalites.findAllTri", query = "SELECT p FROM Penalites p ORDER BY p.denomination ASC"),
+        })
 public class Penalites {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
