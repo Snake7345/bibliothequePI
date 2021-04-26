@@ -21,20 +21,11 @@ import java.util.Objects;
         })
 
 public class Livres {
-    private int idLivres;
-    private String titre;
-    private int annee;
-    private int isbn;
-    private int editeursIdEditeurs;
-    private boolean actif;
-    private Collection<ExemplairesLivres> exemplairesLivresByIdLivres;
-    private Editeurs editeursByEditeursIdEditeurs;
-    private Collection<LivresAuteurs> livresAuteursByIdLivres;
-    private Collection<LivresGenres> livresGenresByIdLivres;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLivres", nullable = false)
+    private int idLivres;
     public int getIdLivres() {
         return idLivres;
     }
@@ -45,6 +36,7 @@ public class Livres {
 
     @Basic
     @Column(name = "Titre", nullable = false, length = 255)
+    private String titre;
     public String getTitre() {
         return titre;
     }
@@ -55,6 +47,7 @@ public class Livres {
 
     @Basic
     @Column(name = "Annee", nullable = false)
+    private int annee;
     public int getAnnee() {
         return annee;
     }
@@ -65,6 +58,7 @@ public class Livres {
 
     @Basic
     @Column(name = "ISBN", nullable = false)
+    private int isbn;
     public int getIsbn() {
         return isbn;
     }
@@ -75,6 +69,7 @@ public class Livres {
 
     @Basic
     @Column(name = "EditeursIdEditeurs", nullable = false)
+    private int editeursIdEditeurs;
     public int getEditeursIdEditeurs() {
         return editeursIdEditeurs;
     }
@@ -85,6 +80,7 @@ public class Livres {
 
     @Basic
     @Column(name = "Actif", nullable = false)
+    private boolean actif;
     public boolean isActif() {
         return actif;
     }
@@ -112,6 +108,7 @@ public class Livres {
     }
 
     @OneToMany(mappedBy = "livresByLivresIdLivres")
+    private Collection<ExemplairesLivres> exemplairesLivresByIdLivres;
     public Collection<ExemplairesLivres> getExemplairesLivresByIdLivres() {
         return exemplairesLivresByIdLivres;
     }
@@ -122,6 +119,7 @@ public class Livres {
 
     @ManyToOne
     @JoinColumn(name = "EditeursIdEditeurs", referencedColumnName = "IdEditeurs", nullable = false)
+    private Editeurs editeursByEditeursIdEditeurs;
     public Editeurs getEditeursByEditeursIdEditeurs() {
         return editeursByEditeursIdEditeurs;
     }
@@ -131,6 +129,7 @@ public class Livres {
     }
 
     @OneToMany(mappedBy = "livresByLivresIdLivres")
+    private Collection<LivresAuteurs> livresAuteursByIdLivres;
     public Collection<LivresAuteurs> getLivresAuteursByIdLivres() {
         return livresAuteursByIdLivres;
     }
@@ -140,6 +139,7 @@ public class Livres {
     }
 
     @OneToMany(mappedBy = "livresByLivresIdLivres")
+    private Collection<LivresGenres> livresGenresByIdLivres;
     public Collection<LivresGenres> getLivresGenresByIdLivres() {
         return livresGenresByIdLivres;
     }

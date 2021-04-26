@@ -12,19 +12,11 @@ import java.util.Objects;
         
 })
 public class Adresses {
-    private int idAdresses;
-    private String rue;
-    private String boite;
-    private String numero;
-    private int localitesIdLocalites;
-    private int bibliothequesIdBibliotheques;
-    private Localites localitesByLocalitesIdLocalites;
-    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
-    private Collection<UtilisateursAdresses> utilisateursAdressesByIdAdresses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdAdresses", nullable = false)
+    private int idAdresses;
     public int getIdAdresses() {
         return idAdresses;
     }
@@ -35,6 +27,7 @@ public class Adresses {
 
     @Basic
     @Column(name = "Rue", nullable = false, length = 255)
+    private String rue;
     public String getRue() {
         return rue;
     }
@@ -45,6 +38,7 @@ public class Adresses {
 
     @Basic
     @Column(name = "Boite", nullable = true, length = 4)
+    private String boite;
     public String getBoite() {
         return boite;
     }
@@ -55,6 +49,7 @@ public class Adresses {
 
     @Basic
     @Column(name = "Numero", nullable = false, length = 6)
+    private String numero;
     public String getNumero() {
         return numero;
     }
@@ -65,6 +60,7 @@ public class Adresses {
 
     @Basic
     @Column(name = "LocalitesIdLocalites", nullable = false)
+    private int localitesIdLocalites;
     public int getLocalitesIdLocalites() {
         return localitesIdLocalites;
     }
@@ -75,6 +71,7 @@ public class Adresses {
 
     @Basic
     @Column(name = "BibliothequesIdBibliotheques", nullable = true)
+    private int bibliothequesIdBibliotheques;
     public int getBibliothequesIdBibliotheques() {
         return bibliothequesIdBibliotheques;
     }
@@ -103,6 +100,7 @@ public class Adresses {
 
     @ManyToOne
     @JoinColumn(name = "LocalitesIdLocalites", referencedColumnName = "IdLocalites", nullable = false)
+    private Localites localitesByLocalitesIdLocalites;
     public Localites getLocalitesByLocalitesIdLocalites() {
         return localitesByLocalitesIdLocalites;
     }
@@ -113,6 +111,7 @@ public class Adresses {
 
     @ManyToOne
     @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques")
+    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
     public Bibliotheques getBibliothequesByBibliothequesIdBibliotheques() {
         return bibliothequesByBibliothequesIdBibliotheques;
     }
@@ -122,6 +121,7 @@ public class Adresses {
     }
 
     @OneToMany(mappedBy = "adressesByAdressesIdAdresses")
+    private Collection<UtilisateursAdresses> utilisateursAdressesByIdAdresses;
     public Collection<UtilisateursAdresses> getUtilisateursAdressesByIdAdresses() {
         return utilisateursAdressesByIdAdresses;
     }

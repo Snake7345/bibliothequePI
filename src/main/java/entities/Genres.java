@@ -12,13 +12,14 @@ import java.util.Objects;
                 @NamedQuery(name = "Genres.findAllTri", query = "SELECT g FROM Genres g ORDER BY g.denomination ASC"),
         })
 public class Genres {
-    private int idGenres;
-    private String denomination;
-    private Collection<LivresGenres> livresGenresByIdGenres;
+
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdGenres", nullable = false)
+    private int idGenres;
     public int getIdGenres() {
         return idGenres;
     }
@@ -29,6 +30,7 @@ public class Genres {
 
     @Basic
     @Column(name = "Denomination", nullable = false, length = 255)
+    private String denomination;
     public String getDenomination() {
         return denomination;
     }
@@ -52,6 +54,7 @@ public class Genres {
     }
 
     @OneToMany(mappedBy = "genresByGenresIdGenres")
+    private Collection<LivresGenres> livresGenresByIdGenres;
     public Collection<LivresGenres> getLivresGenresByIdGenres() {
         return livresGenresByIdGenres;
     }

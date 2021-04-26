@@ -12,16 +12,10 @@ import java.util.Objects;
                 @NamedQuery(name= " Localites.findAllTri", query="SELECT l FROM Localites l ORDER BY l.ville ASC"),
         })
 public class Localites {
-    private int idLocalites;
-    private int cp;
-    private String ville;
-    private int paysIdPays;
-    private Collection<Adresses> adressesByIdLocalites;
-    private Pays paysByPaysIdPays;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLocalites", nullable = false)
+    private int idLocalites;
     public int getIdLocalites() {
         return idLocalites;
     }
@@ -32,6 +26,7 @@ public class Localites {
 
     @Basic
     @Column(name = "CP", nullable = false)
+    private int cp;
     public int getCp() {
         return cp;
     }
@@ -42,6 +37,7 @@ public class Localites {
 
     @Basic
     @Column(name = "Ville", nullable = false, length = 255)
+    private String ville;
     public String getVille() {
         return ville;
     }
@@ -52,6 +48,7 @@ public class Localites {
 
     @Basic
     @Column(name = "PaysIdPays", nullable = false)
+    private int paysIdPays;
     public int getPaysIdPays() {
         return paysIdPays;
     }
@@ -77,6 +74,7 @@ public class Localites {
     }
 
     @OneToMany(mappedBy = "localitesByLocalitesIdLocalites")
+    private Collection<Adresses> adressesByIdLocalites;
     public Collection<Adresses> getAdressesByIdLocalites() {
         return adressesByIdLocalites;
     }
@@ -87,6 +85,7 @@ public class Localites {
 
     @ManyToOne
     @JoinColumn(name = "PaysIdPays", referencedColumnName = "IdPays", nullable = false)
+    private Pays paysByPaysIdPays;
     public Pays getPaysByPaysIdPays() {
         return paysByPaysIdPays;
     }

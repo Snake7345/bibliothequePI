@@ -17,16 +17,16 @@ import java.util.Objects;
         })
 public class Utilisateurs {
 
-    private String nom;
-    private String prenom;
-    private String courriel;
-    private String login;
-    private String mdp;
-    private boolean actif;
-    private int rolesIdRoles;
-    private Collection<Facture> facturesByIdUtilisateurs;
-    private Roles rolesByRolesIdRoles;
-    private Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs;
+
+
+
+
+
+
+
+
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +43,7 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Nom", nullable = false, length = 150)
+    private String nom;
     public String getNom() {
         return nom;
     }
@@ -53,6 +54,7 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Prenom", nullable = false, length = 150)
+    private String prenom;
     public String getPrenom() {
         return prenom;
     }
@@ -75,6 +77,7 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Courriel", nullable = false, length = 255)
+    private String courriel;
     public String getCourriel() {
         return courriel;
     }
@@ -85,6 +88,7 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Login", nullable = true, length = 255)
+    private String login;
     public String getLogin() {
         return login;
     }
@@ -95,6 +99,7 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Mdp", nullable = true, length = 255)
+    private String mdp;
     public String getMdp() {
         return mdp;
     }
@@ -105,6 +110,7 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Actif", nullable = false)
+    private boolean actif;
     public boolean isActif() {
         return this.actif;
     }
@@ -115,6 +121,7 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "RolesIdRoles", nullable = false)
+    private int rolesIdRoles;
     public int getRolesIdRoles() {
         return rolesIdRoles;
     }
@@ -145,6 +152,7 @@ public class Utilisateurs {
     }
 
     @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
+    private Collection<Facture> facturesByIdUtilisateurs;
     public Collection<Facture> getFacturesByIdUtilisateurs() {
         return facturesByIdUtilisateurs;
     }
@@ -155,6 +163,7 @@ public class Utilisateurs {
 
     @ManyToOne
     @JoinColumn(name = "RolesIdRoles", referencedColumnName = "IdRoles", nullable = false)
+    private Roles rolesByRolesIdRoles;
     public Roles getRolesByRolesIdRoles() {
         return rolesByRolesIdRoles;
     }
@@ -164,6 +173,7 @@ public class Utilisateurs {
     }
 
     @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
+    private Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs;
     public Collection<UtilisateursAdresses> getUtilisateursAdressesByIdUtilisateurs() {
         return utilisateursAdressesByIdUtilisateurs;
     }

@@ -19,16 +19,6 @@ import java.util.Objects;
 
 public class ExemplairesLivres {
 
-    private String codeBarre;
-    private int bibliothequesIdBibliotheques;
-    private int livresIdLivres;
-    private boolean actif;
-    private boolean loue;
-    private String commentaireEtat;
-    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
-    private Livres livresByLivresIdLivres;
-    private Collection<FactureDetail> factureDetailsByIdExemplairesLivres;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdExemplairesLivres", nullable = false)
@@ -44,6 +34,7 @@ public class ExemplairesLivres {
 
     @Basic
     @Column(name = "CodeBarre", nullable = false, length = 45)
+    private String codeBarre;
     public String getCodeBarre() {
         return codeBarre;
     }
@@ -54,6 +45,7 @@ public class ExemplairesLivres {
 
     @Basic
     @Column(name = "BibliothequesIdBibliotheques", nullable = false)
+    private int bibliothequesIdBibliotheques;
     public int getBibliothequesIdBibliotheques() {
         return bibliothequesIdBibliotheques;
     }
@@ -64,6 +56,7 @@ public class ExemplairesLivres {
 
     @Basic
     @Column(name = "LivresIdLivres", nullable = false)
+    private int livresIdLivres;
     public int getLivresIdLivres() {
         return livresIdLivres;
     }
@@ -74,6 +67,7 @@ public class ExemplairesLivres {
 
     @Basic
     @Column(name = "Actif", nullable = false)
+    private boolean actif;
     public boolean isActif() {
         return this.actif;
     }
@@ -84,6 +78,7 @@ public class ExemplairesLivres {
 
     @Basic
     @Column(name = "Loue", nullable = false)
+    private boolean loue;
     public boolean isLoue() {
         return loue;
     }
@@ -106,6 +101,7 @@ public class ExemplairesLivres {
 
     @Basic
     @Column(name = "CommentaireEtat", nullable = false, length = 500)
+    private String commentaireEtat;
     public String getCommentaireEtat() {
         return commentaireEtat;
     }
@@ -137,6 +133,7 @@ public class ExemplairesLivres {
 
     @ManyToOne
     @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques", nullable = false)
+    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
     public Bibliotheques getBibliothequesByBibliothequesIdBibliotheques() {
         return bibliothequesByBibliothequesIdBibliotheques;
     }
@@ -147,6 +144,7 @@ public class ExemplairesLivres {
 
     @ManyToOne
     @JoinColumn(name = "LivresIdLivres", referencedColumnName = "IdLivres", nullable = false)
+    private Livres livresByLivresIdLivres;
     public Livres getLivresByLivresIdLivres() {
         return livresByLivresIdLivres;
     }
@@ -156,6 +154,7 @@ public class ExemplairesLivres {
     }
 
     @OneToMany(mappedBy = "exemplairesLivresByExemplairesLivresIdExemplairesLivres")
+    private Collection<FactureDetail> factureDetailsByIdExemplairesLivres;
     public Collection<FactureDetail> getFactureDetailsByIdExemplairesLivres() {
         return factureDetailsByIdExemplairesLivres;
     }

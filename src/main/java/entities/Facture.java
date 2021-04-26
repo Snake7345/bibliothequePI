@@ -17,13 +17,6 @@ import java.util.Objects;
 
 public class Facture {
 
-    private Timestamp dateDebut;
-    private Double prixTvac;
-    private String numeroFacture;
-    private int utilisateursIdUtilisateurs;
-    private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
-    private Collection<FactureDetail> factureDetailsByIdLocations;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLocations", nullable = false)
@@ -39,6 +32,7 @@ public class Facture {
 
     @Basic
     @Column(name = "DateDebut", nullable = false)
+    private Timestamp dateDebut;
     public Timestamp getDateDebut() {
         return dateDebut;
     }
@@ -49,6 +43,7 @@ public class Facture {
 
     @Basic
     @Column(name = "PrixTVAC", nullable = true, precision = 0)
+    private Double prixTvac;
     public Double getPrixTvac() {
         return prixTvac;
     }
@@ -59,6 +54,7 @@ public class Facture {
 
     @Basic
     @Column(name = "NumeroFacture", nullable = true, length = 45)
+    private String numeroFacture;
     public String getNumeroFacture() {
         return numeroFacture;
     }
@@ -81,6 +77,7 @@ public class Facture {
 
     @Basic
     @Column(name = "UtilisateursIdUtilisateurs", nullable = false)
+    private int utilisateursIdUtilisateurs;
     public int getUtilisateursIdUtilisateurs() {
         return utilisateursIdUtilisateurs;
     }
@@ -109,6 +106,7 @@ public class Facture {
 
     @ManyToOne
     @JoinColumn(name = "UtilisateursIdUtilisateurs", referencedColumnName = "IdUtilisateurs", nullable = false)
+    private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
     public Utilisateurs getUtilisateursByUtilisateursIdUtilisateurs() {
         return utilisateursByUtilisateursIdUtilisateurs;
     }
@@ -118,6 +116,7 @@ public class Facture {
     }
 
     @OneToMany(mappedBy = "factureByLocationsIdLocations")
+    private Collection<FactureDetail> factureDetailsByIdLocations;
     public Collection<FactureDetail> getFactureDetailsByIdLocations() {
         return factureDetailsByIdLocations;
     }

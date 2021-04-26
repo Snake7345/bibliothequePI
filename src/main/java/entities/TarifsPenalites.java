@@ -12,17 +12,13 @@ import java.util.Objects;
         })
 
 public class TarifsPenalites {
-    private int tarifsIdTarifs;
-    private int penalitesIdPenalites;
-    private int idTarifsPenalites;
-    private double prix;
-    private Timestamp dateDebut;
-    private Timestamp dateFin;
-    private Tarifs tarifsByTarifsIdTarifs;
-    private Penalites penalitesByPenalitesIdPenalites;
+
+
+
 
     @Basic
     @Column(name = "TarifsIdTarifs", nullable = false)
+    private int tarifsIdTarifs;
     public int getTarifsIdTarifs() {
         return tarifsIdTarifs;
     }
@@ -33,6 +29,7 @@ public class TarifsPenalites {
 
     @Basic
     @Column(name = "PenalitesIdPenalites", nullable = false)
+    private int penalitesIdPenalites;
     public int getPenalitesIdPenalites() {
         return penalitesIdPenalites;
     }
@@ -44,6 +41,7 @@ public class TarifsPenalites {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdTarifsPenalites", nullable = false)
+    private int idTarifsPenalites;
     public int getIdTarifsPenalites() {
         return idTarifsPenalites;
     }
@@ -54,6 +52,7 @@ public class TarifsPenalites {
 
     @Basic
     @Column(name = "Prix", nullable = false, precision = 0)
+    private double prix;
     public double getPrix() {
         return prix;
     }
@@ -64,6 +63,7 @@ public class TarifsPenalites {
 
     @Basic
     @Column(name = "DateDebut", nullable = false)
+    private Timestamp dateDebut;
     public Timestamp getDateDebut() {
         return dateDebut;
     }
@@ -74,6 +74,7 @@ public class TarifsPenalites {
 
     @Basic
     @Column(name = "DateFin", nullable = false)
+    private Timestamp dateFin;
     public Timestamp getDateFin() {
         return dateFin;
     }
@@ -102,6 +103,7 @@ public class TarifsPenalites {
 
     @ManyToOne
     @JoinColumn(name = "TarifsIdTarifs", referencedColumnName = "IdTarifs", nullable = false)
+    private Tarifs tarifsByTarifsIdTarifs;
     public Tarifs getTarifsByTarifsIdTarifs() {
         return tarifsByTarifsIdTarifs;
     }
@@ -112,6 +114,7 @@ public class TarifsPenalites {
 
     @ManyToOne
     @JoinColumn(name = "PenalitesIdPenalites", referencedColumnName = "IdPenalites", nullable = false)
+    private Penalites penalitesByPenalitesIdPenalites;
     public Penalites getPenalitesByPenalitesIdPenalites() {
         return penalitesByPenalitesIdPenalites;
     }

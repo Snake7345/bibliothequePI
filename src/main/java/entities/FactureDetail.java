@@ -11,18 +11,19 @@ import java.util.Objects;
         })
 
 public class FactureDetail {
-    private int locationsIdLocations;
-    private int exemplairesLivresIdExemplairesLivres;
-    private int idLocationsHistorique;
-    private Timestamp dateFin;
-    private Timestamp dateRetour;
-    private String etatRendu;
-    private double prix;
-    private Facture factureByLocationsIdLocations;
-    private ExemplairesLivres exemplairesLivresByExemplairesLivresIdExemplairesLivres;
+
+
+
+
+
+
+
+
+
 
     @Basic
     @Column(name = "LocationsIdLocations", nullable = false)
+    private int locationsIdLocations;
     public int getLocationsIdLocations() {
         return locationsIdLocations;
     }
@@ -33,6 +34,7 @@ public class FactureDetail {
 
     @Basic
     @Column(name = "ExemplairesLivresIdExemplairesLivres", nullable = false)
+    private int exemplairesLivresIdExemplairesLivres;
     public int getExemplairesLivresIdExemplairesLivres() {
         return exemplairesLivresIdExemplairesLivres;
     }
@@ -44,6 +46,7 @@ public class FactureDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLocationsHistorique", nullable = false)
+    private int idLocationsHistorique;
     public int getIdLocationsHistorique() {
         return idLocationsHistorique;
     }
@@ -54,6 +57,7 @@ public class FactureDetail {
 
     @Basic
     @Column(name = "DateFin", nullable = false)
+    private Timestamp dateFin;
     public Timestamp getDateFin() {
         return dateFin;
     }
@@ -64,6 +68,7 @@ public class FactureDetail {
 
     @Basic
     @Column(name = "DateRetour", nullable = true)
+    private Timestamp dateRetour;
     public Timestamp getDateRetour() {
         return dateRetour;
     }
@@ -74,6 +79,7 @@ public class FactureDetail {
 
     @Basic
     @Column(name = "EtatRendu", nullable = false, length = 500)
+    private String etatRendu;
     public String getEtatRendu() {
         return etatRendu;
     }
@@ -84,6 +90,7 @@ public class FactureDetail {
 
     @Basic
     @Column(name = "Prix", nullable = false, precision = 0)
+    private double prix;
     public double getPrix() {
         return prix;
     }
@@ -113,6 +120,7 @@ public class FactureDetail {
 
     @ManyToOne
     @JoinColumn(name = "LocationsIdLocations", referencedColumnName = "IdLocations", nullable = false)
+    private Facture factureByLocationsIdLocations;
     public Facture getFactureByLocationsIdLocations() {
         return factureByLocationsIdLocations;
     }
@@ -123,6 +131,7 @@ public class FactureDetail {
 
     @ManyToOne
     @JoinColumn(name = "ExemplairesLivresIdExemplairesLivres", referencedColumnName = "IdExemplairesLivres", nullable = false)
+    private ExemplairesLivres exemplairesLivresByExemplairesLivresIdExemplairesLivres;
     public ExemplairesLivres getExemplairesLivresByExemplairesLivresIdExemplairesLivres() {
         return exemplairesLivresByExemplairesLivresIdExemplairesLivres;
     }

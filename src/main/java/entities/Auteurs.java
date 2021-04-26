@@ -14,14 +14,9 @@ import java.util.Objects;
                 @NamedQuery(name = "Auteurs.findInactiv", query = "SELECT a FROM Auteurs a WHERE a.actif=FALSE"),
         })
 public class Auteurs {
-    private int idAuteurs;
-    private String nom;
-    private String prenom;
-    private boolean actif;
-    private Collection<LivresAuteurs> livresAuteursByIdAuteurs;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idAuteurs;
     @Column(name = "IdAuteurs", nullable = false)
     public int getIdAuteurs() {
         return idAuteurs;
@@ -33,6 +28,7 @@ public class Auteurs {
 
     @Basic
     @Column(name = "Nom", nullable = false, length = 200)
+    private String nom;
     public String getNom() {
         return nom;
     }
@@ -43,6 +39,7 @@ public class Auteurs {
 
     @Basic
     @Column(name = "Prenom", nullable = false, length = 200)
+    private String prenom;
     public String getPrenom() {
         return prenom;
     }
@@ -53,6 +50,7 @@ public class Auteurs {
 
     @Basic
     @Column(name = "Actif", nullable = false)
+    private boolean actif;
     public boolean isActif() {
         return actif;
     }
@@ -78,6 +76,7 @@ public class Auteurs {
     }
 
     @OneToMany(mappedBy = "auteursByAuteursIdAuteurs")
+    private Collection<LivresAuteurs> livresAuteursByIdAuteurs;
     public Collection<LivresAuteurs> getLivresAuteursByIdAuteurs() {
         return livresAuteursByIdAuteurs;
     }

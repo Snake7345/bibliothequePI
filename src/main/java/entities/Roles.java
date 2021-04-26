@@ -12,15 +12,11 @@ import java.util.Objects;
                 @NamedQuery(name = "Roles.findInactiv", query="SELECT r FROM Roles r WHERE r.actif=FALSE"),
         })
 public class Roles {
-    private int idRoles;
-    private String denomination;
-    private boolean actif;
-    private Collection<PermissionsRoles> permissionsRolesByIdRoles;
-    private Collection<Utilisateurs> utilisateursByIdRoles;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdRoles", nullable = false)
+    private int idRoles;
     public int getIdRoles() {
         return idRoles;
     }
@@ -31,6 +27,7 @@ public class Roles {
 
     @Basic
     @Column(name = "Denomination", nullable = false, length = 150)
+    private String denomination;
     public String getDenomination() {
         return denomination;
     }
@@ -41,6 +38,7 @@ public class Roles {
 
     @Basic
     @Column(name = "Actif", nullable = false)
+    private boolean actif;
     public boolean isActif() {
         return this.actif;
     }
@@ -65,6 +63,7 @@ public class Roles {
     }
 
     @OneToMany(mappedBy = "rolesByRolesIdRoles")
+    private Collection<PermissionsRoles> permissionsRolesByIdRoles;
     public Collection<PermissionsRoles> getPermissionsRolesByIdRoles() {
         return permissionsRolesByIdRoles;
     }
@@ -74,6 +73,7 @@ public class Roles {
     }
 
     @OneToMany(mappedBy = "rolesByRolesIdRoles")
+    private Collection<Utilisateurs> utilisateursByIdRoles;
     public Collection<Utilisateurs> getUtilisateursByIdRoles() {
         return utilisateursByIdRoles;
     }

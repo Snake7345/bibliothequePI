@@ -12,13 +12,14 @@ import java.util.Objects;
         })
 
 public class Pays {
-    private int idPays;
-    private String nom;
-    private Collection<Localites> localitesByIdPays;
+
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPays", nullable = false)
+    private int idPays;
     public int getIdPays() {
         return idPays;
     }
@@ -29,6 +30,7 @@ public class Pays {
 
     @Basic
     @Column(name = "Nom", nullable = false, length = 150)
+    private String nom;
     public String getNom() {
         return nom;
     }
@@ -52,6 +54,7 @@ public class Pays {
     }
 
     @OneToMany(mappedBy = "paysByPaysIdPays")
+    private Collection<Localites> localitesByIdPays;
     public Collection<Localites> getLocalitesByIdPays() {
         return localitesByIdPays;
     }

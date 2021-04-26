@@ -12,15 +12,10 @@ import java.util.Objects;
         })
 
 public class Bibliotheques {
-    private int idBibliotheques;
-    private String nom;
-    private Collection<Adresses> adressesByIdBibliotheques;
-    private Collection<ExemplairesLivres> exemplairesLivresByIdBibliotheques;
-    private Collection<Tarifs> tarifsByIdBibliotheques;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdBibliotheques", nullable = false)
+    private int idBibliotheques;
     public int getIdBibliotheques() {
         return idBibliotheques;
     }
@@ -31,6 +26,7 @@ public class Bibliotheques {
 
     @Basic
     @Column(name = "Nom", nullable = false, length = 255)
+    private String nom;
     public String getNom() {
         return nom;
     }
@@ -54,6 +50,7 @@ public class Bibliotheques {
     }
 
     @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
+    private Collection<Adresses> adressesByIdBibliotheques;
     public Collection<Adresses> getAdressesByIdBibliotheques() {
         return adressesByIdBibliotheques;
     }
@@ -63,6 +60,7 @@ public class Bibliotheques {
     }
 
     @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
+    private Collection<ExemplairesLivres> exemplairesLivresByIdBibliotheques;
     public Collection<ExemplairesLivres> getExemplairesLivresByIdBibliotheques() {
         return exemplairesLivresByIdBibliotheques;
     }
@@ -72,6 +70,7 @@ public class Bibliotheques {
     }
 
     @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
+    private Collection<Tarifs> tarifsByIdBibliotheques;
     public Collection<Tarifs> getTarifsByIdBibliotheques() {
         return tarifsByIdBibliotheques;
     }

@@ -11,13 +11,14 @@ import java.util.Objects;
         })
 
 public class Permissions {
-    private int idPermissions;
-    private String denomination;
-    private Collection<PermissionsRoles> permissionsRolesByIdPermissions;
+
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPermissions", nullable = false)
+    private int idPermissions;
     public int getIdPermissions() {
         return idPermissions;
     }
@@ -28,6 +29,7 @@ public class Permissions {
 
     @Basic
     @Column(name = "Denomination", nullable = false, length = 150)
+    private String denomination;
     public String getDenomination() {
         return denomination;
     }
@@ -51,6 +53,7 @@ public class Permissions {
     }
 
     @OneToMany(mappedBy = "permissionsByPermissionsIdPermissions")
+    private Collection<PermissionsRoles> permissionsRolesByIdPermissions;
     public Collection<PermissionsRoles> getPermissionsRolesByIdPermissions() {
         return permissionsRolesByIdPermissions;
     }

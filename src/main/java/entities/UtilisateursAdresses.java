@@ -10,14 +10,10 @@ import java.util.Objects;
         })
 
 public class UtilisateursAdresses {
-    private int utilisateursIdUtilisateurs;
-    private int adressesIdAdresses;
-    private int idUtilisateursAdresses;
-    private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
-    private Adresses adressesByAdressesIdAdresses;
 
     @Basic
     @Column(name = "UtilisateursIdUtilisateurs", nullable = false)
+    private int utilisateursIdUtilisateurs;
     public int getUtilisateursIdUtilisateurs() {
         return utilisateursIdUtilisateurs;
     }
@@ -28,6 +24,7 @@ public class UtilisateursAdresses {
 
     @Basic
     @Column(name = "AdressesIdAdresses", nullable = false)
+    private int adressesIdAdresses;
     public int getAdressesIdAdresses() {
         return adressesIdAdresses;
     }
@@ -39,6 +36,7 @@ public class UtilisateursAdresses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdUtilisateursAdresses", nullable = false)
+    private int idUtilisateursAdresses;
     public int getIdUtilisateursAdresses() {
         return idUtilisateursAdresses;
     }
@@ -64,6 +62,7 @@ public class UtilisateursAdresses {
 
     @ManyToOne
     @JoinColumn(name = "UtilisateursIdUtilisateurs", referencedColumnName = "IdUtilisateurs", nullable = false)
+    private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
     public Utilisateurs getUtilisateursByUtilisateursIdUtilisateurs() {
         return utilisateursByUtilisateursIdUtilisateurs;
     }
@@ -74,6 +73,7 @@ public class UtilisateursAdresses {
 
     @ManyToOne
     @JoinColumn(name = "AdressesIdAdresses", referencedColumnName = "IdAdresses", nullable = false)
+    private Adresses adressesByAdressesIdAdresses;
     public Adresses getAdressesByAdressesIdAdresses() {
         return adressesByAdressesIdAdresses;
     }
