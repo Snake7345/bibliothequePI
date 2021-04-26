@@ -6,6 +6,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tarifs_penalites", schema = "bibliotheque")
+@NamedQueries
+        ({
+                @NamedQuery(name = "TarifsPenalites.findAll", query = "SELECT tp FROM TarifsPenalites tp"),
+        })
 public class TarifsPenalites {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,6 +5,13 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "roles")
+@NamedQueries
+        ({
+                @NamedQuery(name = "Roles.findAll", query = "SELECT r FROM Roles r"),
+                @NamedQuery(name = "Roles.findActiv", query="SELECT r FROM Roles r WHERE r.actif=TRUE"),
+                @NamedQuery(name = "Roles.findInactiv", query="SELECT r FROM Roles r WHERE r.actif=FALSE"),
+        })
 public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
