@@ -30,7 +30,7 @@ public class SvcPermissions extends Service<Permissions> implements Serializable
 
 
 	public List<Permissions> findAllPermissions() {
-		return finder.findByNamedQuery("Permissions.findAll", null);
+		return finder.findByNamedQuery("Permissions.findAllTri", null);
 	}
 
 

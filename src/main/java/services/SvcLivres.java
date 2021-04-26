@@ -1,6 +1,8 @@
 package services;
 
 import entities.Auteurs;
+import entities.Editeurs;
+import entities.Genres;
 import entities.Livres;
 import org.apache.log4j.Logger;
 
@@ -29,16 +31,34 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 		return livres;
 	}
 
-
 	public List<Livres> findAllLivres() {
-		return finder.findByNamedQuery("Livres.findAll", null);
+		return finder.findByNamedQuery("Livres.findAllTri", null);
+	}
+	public List<Livres> findAllLivresActiv() {
+		return finder.findByNamedQuery("Livres.findAllActiv", null);
+	}
+	public List<Livres> findAllLivresInactiv() {
+		return finder.findByNamedQuery("Livres.findAllInactiv", null);
 	}
 
-	public List<Livres> getByUser(Auteurs auteur) {
+	public List<Livres> getByAuteurs(Auteurs auteur) {
 		Map<String, Auteurs> param = new HashMap<>();
 		param.put("auteur", auteur);
 
 		return finder.findByNamedQuery("Livres.findByAuteur", param);
+	}
+
+	public List<Livres> getByEditeurs(Editeurs editeur) {
+		Map<String, Editeurs> param = new HashMap<>();
+		param.put("editeur", editeur);
+
+		return finder.findByNamedQuery("Livres.findByEditeurs", param);
+	}
+	public List<Livres> getByGenres(Genres genre) {
+		Map<String, Genres> param = new HashMap<>();
+		param.put("genre", genre);
+
+		return finder.findByNamedQuery("Livres.findByGenres", param);
 	}
 
 }

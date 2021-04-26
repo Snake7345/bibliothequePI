@@ -32,6 +32,12 @@ public class SvcRoles extends Service<Roles> implements Serializable {
 	public List<Roles> findAllRoles() {
 		return finder.findByNamedQuery("Roles.findAll", null);
 	}
+	public List<Roles> findAllRolesActiv() {
+		return finder.findByNamedQuery("Roles.findActiv", null);
+	}
+	public List<Roles> findAllRolesInactiv() {
+		return finder.findByNamedQuery("Roles.findInactiv", null);
+	}
 
 
 }

@@ -30,7 +30,7 @@ public class SvcPays extends Service<Pays> implements Serializable {
 
 
 	public List<Pays> findAllPays() {
-		return finder.findByNamedQuery("Pays.findAll", null);
+		return finder.findByNamedQuery("Pays.findAllTri", null);
 	}
 
 

@@ -29,10 +29,16 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		return utilisateurs;
 	}
 
-
 	public List<Utilisateurs> findAllUtilisateurs() {
 		return finder.findByNamedQuery("Utilisateurs.findAll", null);
 	}
+	public List<Utilisateurs> findAllUtilisateursActiv() {
+		return finder.findByNamedQuery("Utilisateurs.findActiv", null);
+	}
+	public List<Utilisateurs> findAllUtilisateursInactiv() {
+		return finder.findByNamedQuery("Utilisateurs.findInactiv", null);
+	}
+
 
 
 }

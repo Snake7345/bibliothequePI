@@ -23,7 +23,15 @@ public class SvcAuteurs extends Service<Auteurs> implements Serializable
 
 	public List<Auteurs> findAllAuteurs()
 	{
-		return finder.findByNamedQuery("Auteurs.findAll",null);
+		return finder.findByNamedQuery("Auteurs.findAllTri",null);
+	}
+	public List<Auteurs> findAllAuteursActiv()
+	{
+		return finder.findByNamedQuery("Auteurs.findAllActiv",null);
+	}
+	public List<Auteurs> findAllAuteursInactiv()
+	{
+		return finder.findByNamedQuery("Auteurs.findAllInactiv",null);
 	}
 
 	@Override

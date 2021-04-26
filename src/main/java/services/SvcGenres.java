@@ -30,7 +30,7 @@ public class SvcGenres extends Service<Genres> implements Serializable {
 
 
 	public List<Genres> findAllGenres() {
-		return finder.findByNamedQuery("Genres.findAll", null);
+		return finder.findByNamedQuery("Genres.findAllTri", null);
 	}
 
 

@@ -33,7 +33,7 @@ public class SvcEditeurs extends Service<Editeurs> implements Serializable
 
 	public List<Editeurs> findAllEditeurs()
 	{
-		return finder.findByNamedQuery("Editeurs.findAll",null);
+		return finder.findByNamedQuery("Editeurs.findAllTri",null);
 	}
 
 
