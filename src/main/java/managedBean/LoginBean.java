@@ -47,7 +47,7 @@ public class LoginBean implements Serializable {
 
         try {
             List<Utilisateurs> results = em.createNamedQuery("Utilisateurs.authentify", Utilisateurs.class)
-                    .setParameter("login", utilisateurAuth.getCourriel())
+                    .setParameter("login", utilisateurAuth.getLogin())
                     .setParameter("mdp", utilisateurAuth.getMdp())
                     .getResultList();
 

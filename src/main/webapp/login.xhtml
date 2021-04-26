@@ -22,8 +22,8 @@
 
             <h:form prependId="false">
                 <h:panelGrid columns="3" style="margin: 0 auto">
-                    <h:outputText value="#{I18N['utilisateur.label.Courriel']}"/>
-                    <h:inputText id="utilisateurLogin" 	value="#{loginBean.utilisateurAuth.courriel}"
+                    <h:outputText value="#{I18N['utilisateur.label.Login']}"/>
+                    <h:inputText id="utilisateurLogin" 	value="#{loginBean.utilisateurAuth.login}"
                                  required="true"
                                  requiredMessage="#{I18N['utilisateur.login.validation']}">
                         <f:validateLength maximum = "80" />
