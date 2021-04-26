@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -10,7 +11,8 @@ import java.util.Objects;
         ({
                 @NamedQuery(name = "FactureDetail.findAll", query = "SELECT fd FROM FactureDetail fd"),
         })
-public class FactureDetail {
+public class FactureDetail implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int locationsIdLocations;

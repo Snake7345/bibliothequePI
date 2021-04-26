@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -11,7 +12,8 @@ import java.util.Objects;
                 @NamedQuery(name = "Adresses.findAll", query = "SELECT a FROM Adresses a"),
 
         })
-public class Adresses {
+public class Adresses implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAdresses;

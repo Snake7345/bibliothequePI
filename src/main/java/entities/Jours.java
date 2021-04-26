@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -10,7 +11,8 @@ import java.util.Objects;
         ({
                 @NamedQuery(name = "Jours.findAll", query = "SELECT j FROM Jours j"),
         })
-public class Jours {
+public class Jours implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idJours;

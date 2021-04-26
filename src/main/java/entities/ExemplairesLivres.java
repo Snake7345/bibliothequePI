@@ -3,6 +3,7 @@ package entities;
 import enumeration.ExemplairesLivresEtatEnum;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -17,7 +18,8 @@ import java.util.Objects;
                 @NamedQuery(name = "ExemplairesLivres.findLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=TRUE"),
                 @NamedQuery(name = "ExemplairesLivres.findNotLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=FALSE"),
         })
-public class ExemplairesLivres {
+public class ExemplairesLivres implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idExemplairesLivres;

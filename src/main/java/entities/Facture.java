@@ -3,6 +3,7 @@ package entities;
 import enumeration.FactureEtatEnum;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
@@ -14,7 +15,8 @@ import java.util.Objects;
                 @NamedQuery(name = "Facture.findAll", query = "SELECT f FROM Facture f"),
                 @NamedQuery(name = "Facture.findAllByEtat", query = "SELECT f FROM Facture f WHERE f.etat=:etat"),
         })
-public class Facture {
+public class Facture implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idLocations;

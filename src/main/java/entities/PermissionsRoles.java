@@ -1,11 +1,13 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "permissions_roles", schema = "bibliotheque")
-public class PermissionsRoles {
+public class PermissionsRoles implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int permissionsIdPermissions;

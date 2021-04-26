@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -14,7 +15,8 @@ import java.util.Objects;
                 @NamedQuery(name = "Auteurs.findActiv", query = "SELECT a FROM Auteurs a WHERE a.actif=TRUE"),
                 @NamedQuery(name = "Auteurs.findInactiv", query = "SELECT a FROM Auteurs a WHERE a.actif=FALSE"),
         })
-public class Auteurs {
+public class Auteurs implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAuteurs;
