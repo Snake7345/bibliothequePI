@@ -3,17 +3,23 @@ package entities;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
+
 @Entity
 @Table(name = "tarifs_jours", schema = "bibliotheque")
-@NamedQueries
-        ({
-                @NamedQuery(name = "TarifsJours.findAll", query = "SELECT tj FROM TarifsJours tj"),
-        })
-
 public class TarifsJours {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int tarifsIdTarifs;
+    private int joursIdJours;
+    private int idTarifsJours;
+    private double prix;
+    private Timestamp dateDebut;
+    private Timestamp dateFin;
+    private Tarifs tarifsByTarifsIdTarifs;
+    private Jours joursByJoursIdJours;
+
     @Basic
     @Column(name = "TarifsIdTarifs", nullable = false)
-    private int tarifsIdTarifs;
     public int getTarifsIdTarifs() {
         return tarifsIdTarifs;
     }
@@ -24,7 +30,6 @@ public class TarifsJours {
 
     @Basic
     @Column(name = "JoursIdJours", nullable = false)
-    private int joursIdJours;
     public int getJoursIdJours() {
         return joursIdJours;
     }
@@ -34,9 +39,7 @@ public class TarifsJours {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdTarifsJours", nullable = false)
-    private int idTarifsJours;
     public int getIdTarifsJours() {
         return idTarifsJours;
     }
@@ -47,7 +50,6 @@ public class TarifsJours {
 
     @Basic
     @Column(name = "Prix", nullable = false, precision = 0)
-    private double prix;
     public double getPrix() {
         return prix;
     }
@@ -58,7 +60,6 @@ public class TarifsJours {
 
     @Basic
     @Column(name = "DateDebut", nullable = false)
-    private Timestamp dateDebut;
     public Timestamp getDateDebut() {
         return dateDebut;
     }
@@ -69,7 +70,6 @@ public class TarifsJours {
 
     @Basic
     @Column(name = "DateFin", nullable = false)
-    private Timestamp dateFin;
     public Timestamp getDateFin() {
         return dateFin;
     }
@@ -98,7 +98,6 @@ public class TarifsJours {
 
     @ManyToOne
     @JoinColumn(name = "TarifsIdTarifs", referencedColumnName = "IdTarifs", nullable = false)
-    private Tarifs tarifsByTarifsIdTarifs;
     public Tarifs getTarifsByTarifsIdTarifs() {
         return tarifsByTarifsIdTarifs;
     }
@@ -109,7 +108,6 @@ public class TarifsJours {
 
     @ManyToOne
     @JoinColumn(name = "JoursIdJours", referencedColumnName = "IdJours", nullable = false)
-    private Jours joursByJoursIdJours;
     public Jours getJoursByJoursIdJours() {
         return joursByJoursIdJours;
     }

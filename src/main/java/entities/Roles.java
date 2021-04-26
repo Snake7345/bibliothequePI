@@ -3,20 +3,19 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-@Entity
-@Table(name = "roles")
-@NamedQueries
-        ({
-                @NamedQuery(name = "Roles.findAll", query = "SELECT r FROM Roles r"),
-                @NamedQuery(name = "Roles.findActiv", query="SELECT r FROM Roles r WHERE r.actif=TRUE"),
-                @NamedQuery(name = "Roles.findInactiv", query="SELECT r FROM Roles r WHERE r.actif=FALSE"),
-        })
-public class Roles {
 
+@Entity
+public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdRoles", nullable = false)
     private int idRoles;
+    private String denomination;
+    private boolean actif;
+    private Collection<PermissionsRoles> permissionsRolesByIdRoles;
+    private Collection<Utilisateurs> utilisateursByIdRoles;
+
+    @Id
+    @Column(name = "IdRoles", nullable = false)
     public int getIdRoles() {
         return idRoles;
     }
@@ -27,7 +26,6 @@ public class Roles {
 
     @Basic
     @Column(name = "Denomination", nullable = false, length = 150)
-    private String denomination;
     public String getDenomination() {
         return denomination;
     }
@@ -36,11 +34,11 @@ public class Roles {
         this.denomination = denomination;
     }
 
+
     @Basic
     @Column(name = "Actif", nullable = false)
-    private boolean actif;
     public boolean isActif() {
-        return this.actif;
+        return actif;
     }
 
     public void setActif(boolean actif) {
@@ -54,16 +52,17 @@ public class Roles {
         Roles roles = (Roles) o;
         return idRoles == roles.idRoles &&
                 actif == roles.actif &&
-                Objects.equals(denomination, roles.denomination);
+                Objects.equals(denomination, roles.denomination) &&
+                Objects.equals(permissionsRolesByIdRoles, roles.permissionsRolesByIdRoles) &&
+                Objects.equals(utilisateursByIdRoles, roles.utilisateursByIdRoles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idRoles, denomination, actif);
+        return Objects.hash(idRoles, denomination, actif, permissionsRolesByIdRoles, utilisateursByIdRoles);
     }
 
     @OneToMany(mappedBy = "rolesByRolesIdRoles")
-    private Collection<PermissionsRoles> permissionsRolesByIdRoles;
     public Collection<PermissionsRoles> getPermissionsRolesByIdRoles() {
         return permissionsRolesByIdRoles;
     }
@@ -73,7 +72,6 @@ public class Roles {
     }
 
     @OneToMany(mappedBy = "rolesByRolesIdRoles")
-    private Collection<Utilisateurs> utilisateursByIdRoles;
     public Collection<Utilisateurs> getUtilisateursByIdRoles() {
         return utilisateursByIdRoles;
     }

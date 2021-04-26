@@ -2,17 +2,20 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Objects;
+
 @Entity
 @Table(name = "livres_genres", schema = "bibliotheque")
-@NamedQueries
-        ({
-                @NamedQuery(name = "LivresGenres.findAll", query = "SELECT lg FROM LivresGenres lg"),
-        })
-
 public class LivresGenres {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int livresIdLivres;
+    private int genresIdGenres;
+    private int idLivresGenres;
+    private Livres livresByLivresIdLivres;
+    private Genres genresByGenresIdGenres;
+
     @Basic
     @Column(name = "LivresIdLivres", nullable = false)
-    private int livresIdLivres;
     public int getLivresIdLivres() {
         return livresIdLivres;
     }
@@ -23,7 +26,6 @@ public class LivresGenres {
 
     @Basic
     @Column(name = "GenresIdGenres", nullable = false)
-    private int genresIdGenres;
     public int getGenresIdGenres() {
         return genresIdGenres;
     }
@@ -33,9 +35,7 @@ public class LivresGenres {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLivresGenres", nullable = false)
-    private int idLivresGenres;
     public int getIdLivresGenres() {
         return idLivresGenres;
     }
@@ -61,7 +61,6 @@ public class LivresGenres {
 
     @ManyToOne
     @JoinColumn(name = "LivresIdLivres", referencedColumnName = "IdLivres", nullable = false)
-    private Livres livresByLivresIdLivres;
     public Livres getLivresByLivresIdLivres() {
         return livresByLivresIdLivres;
     }
@@ -72,7 +71,6 @@ public class LivresGenres {
 
     @ManyToOne
     @JoinColumn(name = "GenresIdGenres", referencedColumnName = "IdGenres", nullable = false)
-    private Genres genresByGenresIdGenres;
     public Genres getGenresByGenresIdGenres() {
         return genresByGenresIdGenres;
     }

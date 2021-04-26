@@ -3,23 +3,17 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
+
 @Entity
-@Table(name="genres")
-@NamedQueries
-        ({
-                @NamedQuery(name = "Genres.findAll", query = "SELECT g FROM Genres g"),
-                @NamedQuery(name = "Genres.findOne", query ="SELECT g FROM Genres g WHERE g.denomination=:id"),
-                @NamedQuery(name = "Genres.findAllTri", query = "SELECT g FROM Genres g ORDER BY g.denomination ASC"),
-        })
 public class Genres {
-
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdGenres", nullable = false)
     private int idGenres;
+    private String denomination;
+    private Collection<LivresGenres> livresGenresByIdGenres;
+
+    @Id
+    @Column(name = "IdGenres", nullable = false)
     public int getIdGenres() {
         return idGenres;
     }
@@ -30,7 +24,6 @@ public class Genres {
 
     @Basic
     @Column(name = "Denomination", nullable = false, length = 255)
-    private String denomination;
     public String getDenomination() {
         return denomination;
     }
@@ -54,7 +47,6 @@ public class Genres {
     }
 
     @OneToMany(mappedBy = "genresByGenresIdGenres")
-    private Collection<LivresGenres> livresGenresByIdGenres;
     public Collection<LivresGenres> getLivresGenresByIdGenres() {
         return livresGenresByIdGenres;
     }

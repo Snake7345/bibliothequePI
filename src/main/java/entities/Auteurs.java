@@ -3,20 +3,18 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
+
 @Entity
-@Table(name="auteurs")
-@NamedQueries
-        ({
-                @NamedQuery(name = "Auteurs.findAll", query = "SELECT a FROM Auteurs a"),
-                @NamedQuery(name = "Auteurs.findOne", query = "SELECT a FROM Auteurs a WHERE a.nom=:nom AND a.prenom=:prenom "),
-                @NamedQuery(name = "Auteurs.findAllTri", query="SELECT a FROM Auteurs a ORDER BY a.nom ASC"),
-                @NamedQuery(name = "Auteurs.findActiv", query = "SELECT a FROM Auteurs a WHERE a.actif=TRUE"),
-                @NamedQuery(name = "Auteurs.findInactiv", query = "SELECT a FROM Auteurs a WHERE a.actif=FALSE"),
-        })
 public class Auteurs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAuteurs;
+    private String nom;
+    private String prenom;
+    private boolean actif;
+    private Collection<LivresAuteurs> livresAuteursByIdAuteurs;
+
+    @Id
     @Column(name = "IdAuteurs", nullable = false)
     public int getIdAuteurs() {
         return idAuteurs;
@@ -28,7 +26,6 @@ public class Auteurs {
 
     @Basic
     @Column(name = "Nom", nullable = false, length = 200)
-    private String nom;
     public String getNom() {
         return nom;
     }
@@ -39,7 +36,6 @@ public class Auteurs {
 
     @Basic
     @Column(name = "Prenom", nullable = false, length = 200)
-    private String prenom;
     public String getPrenom() {
         return prenom;
     }
@@ -48,9 +44,10 @@ public class Auteurs {
         this.prenom = prenom;
     }
 
+
     @Basic
     @Column(name = "Actif", nullable = false)
-    private boolean actif;
+
     public boolean isActif() {
         return actif;
     }
@@ -67,16 +64,16 @@ public class Auteurs {
         return idAuteurs == auteurs.idAuteurs &&
                 actif == auteurs.actif &&
                 Objects.equals(nom, auteurs.nom) &&
-                Objects.equals(prenom, auteurs.prenom);
+                Objects.equals(prenom, auteurs.prenom) &&
+                Objects.equals(livresAuteursByIdAuteurs, auteurs.livresAuteursByIdAuteurs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAuteurs, nom, prenom);
+        return Objects.hash(idAuteurs, nom, prenom, actif, livresAuteursByIdAuteurs);
     }
 
     @OneToMany(mappedBy = "auteursByAuteursIdAuteurs")
-    private Collection<LivresAuteurs> livresAuteursByIdAuteurs;
     public Collection<LivresAuteurs> getLivresAuteursByIdAuteurs() {
         return livresAuteursByIdAuteurs;
     }

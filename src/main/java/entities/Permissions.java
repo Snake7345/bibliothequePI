@@ -3,22 +3,17 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
+
 @Entity
-@Table(name = "permissions")
-@NamedQueries
-        ({
-                @NamedQuery(name = "Permissions.findAllTri", query = "SELECT p FROM Permissions p ORDER BY p.denomination ASC"),
-        })
-
 public class Permissions {
-
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdPermissions", nullable = false)
     private int idPermissions;
+    private String denomination;
+    private Collection<PermissionsRoles> permissionsRolesByIdPermissions;
+
+    @Id
+    @Column(name = "IdPermissions", nullable = false)
     public int getIdPermissions() {
         return idPermissions;
     }
@@ -29,7 +24,6 @@ public class Permissions {
 
     @Basic
     @Column(name = "Denomination", nullable = false, length = 150)
-    private String denomination;
     public String getDenomination() {
         return denomination;
     }
@@ -53,7 +47,6 @@ public class Permissions {
     }
 
     @OneToMany(mappedBy = "permissionsByPermissionsIdPermissions")
-    private Collection<PermissionsRoles> permissionsRolesByIdPermissions;
     public Collection<PermissionsRoles> getPermissionsRolesByIdPermissions() {
         return permissionsRolesByIdPermissions;
     }

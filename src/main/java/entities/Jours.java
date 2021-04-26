@@ -3,22 +3,17 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
+
 @Entity
-@Table(name="jours")
-@NamedQueries
-        ({
-                @NamedQuery(name = "Jours.findAll", query = "SELECT j FROM Jours j"),
-        })
-
 public class Jours {
-
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdJours", nullable = false)
     private int idJours;
+    private int nbrJour;
+    private Collection<TarifsJours> tarifsJoursByIdJours;
+
+    @Id
+    @Column(name = "IdJours", nullable = false)
     public int getIdJours() {
         return idJours;
     }
@@ -29,7 +24,6 @@ public class Jours {
 
     @Basic
     @Column(name = "NbrJour", nullable = false)
-    private int nbrJour;
     public int getNbrJour() {
         return nbrJour;
     }
@@ -53,7 +47,6 @@ public class Jours {
     }
 
     @OneToMany(mappedBy = "joursByJoursIdJours")
-    private Collection<TarifsJours> tarifsJoursByIdJours;
     public Collection<TarifsJours> getTarifsJoursByIdJours() {
         return tarifsJoursByIdJours;
     }

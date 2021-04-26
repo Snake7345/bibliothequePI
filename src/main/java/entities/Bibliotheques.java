@@ -3,19 +3,19 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
+
 @Entity
-@Table(name="bibliotheques")
-@NamedQueries
-        ({
-                @NamedQuery(name = "Bibliotheques.findAll", query = "SELECT b FROM Bibliotheques b"),
-
-        })
-
 public class Bibliotheques {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdBibliotheques", nullable = false)
     private int idBibliotheques;
+    private String nom;
+    private Collection<Adresses> adressesByIdBibliotheques;
+    private Collection<ExemplairesLivres> exemplairesLivresByIdBibliotheques;
+    private Collection<Tarifs> tarifsByIdBibliotheques;
+
+    @Id
+    @Column(name = "IdBibliotheques", nullable = false)
     public int getIdBibliotheques() {
         return idBibliotheques;
     }
@@ -26,7 +26,6 @@ public class Bibliotheques {
 
     @Basic
     @Column(name = "Nom", nullable = false, length = 255)
-    private String nom;
     public String getNom() {
         return nom;
     }
@@ -50,7 +49,6 @@ public class Bibliotheques {
     }
 
     @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
-    private Collection<Adresses> adressesByIdBibliotheques;
     public Collection<Adresses> getAdressesByIdBibliotheques() {
         return adressesByIdBibliotheques;
     }
@@ -60,7 +58,6 @@ public class Bibliotheques {
     }
 
     @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
-    private Collection<ExemplairesLivres> exemplairesLivresByIdBibliotheques;
     public Collection<ExemplairesLivres> getExemplairesLivresByIdBibliotheques() {
         return exemplairesLivresByIdBibliotheques;
     }
@@ -70,7 +67,6 @@ public class Bibliotheques {
     }
 
     @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
-    private Collection<Tarifs> tarifsByIdBibliotheques;
     public Collection<Tarifs> getTarifsByIdBibliotheques() {
         return tarifsByIdBibliotheques;
     }

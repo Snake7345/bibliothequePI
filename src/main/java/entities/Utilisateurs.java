@@ -1,11 +1,13 @@
 package entities;
 
-import enumeration.FactureEtatEnum;
 import enumeration.UtilisateurSexeEnum;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
+
+
+
 @Entity
 @Table(name="utilisateurs")
 @NamedQueries
@@ -16,23 +18,23 @@ import java.util.Objects;
                 @NamedQuery(name=  "Utilisateurs.authentify", query="SELECT u FROM Utilisateurs u where u.login=:login and u.mdp=:mdp"),
         })
 public class Utilisateurs {
-
-
-
-
-
-
-
-
-
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdUtilisateurs", nullable = false)
     private int idUtilisateurs;
+    private String nom;
+    private String prenom;
+    private UtilisateurSexeEnum sexe;
+    private String courriel;
+    private String login;
+    private String mdp;
+    private boolean actif;
+    private int rolesIdRoles;
+    private Collection<Facture> facturesByIdUtilisateurs;
+    private Roles rolesByRolesIdRoles;
+    private Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs;
 
+    @Id
+    @Column(name = "IdUtilisateurs", nullable = false)
     public int getIdUtilisateurs() {
         return idUtilisateurs;
     }
@@ -43,7 +45,6 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Nom", nullable = false, length = 150)
-    private String nom;
     public String getNom() {
         return nom;
     }
@@ -54,7 +55,6 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Prenom", nullable = false, length = 150)
-    private String prenom;
     public String getPrenom() {
         return prenom;
     }
@@ -77,7 +77,6 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Courriel", nullable = false, length = 255)
-    private String courriel;
     public String getCourriel() {
         return courriel;
     }
@@ -88,7 +87,6 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Login", nullable = true, length = 255)
-    private String login;
     public String getLogin() {
         return login;
     }
@@ -99,7 +97,6 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "Mdp", nullable = true, length = 255)
-    private String mdp;
     public String getMdp() {
         return mdp;
     }
@@ -108,11 +105,13 @@ public class Utilisateurs {
         this.mdp = mdp;
     }
 
+
+
     @Basic
     @Column(name = "Actif", nullable = false)
-    private boolean actif;
+
     public boolean isActif() {
-        return this.actif;
+        return actif;
     }
 
     public void setActif(boolean actif) {
@@ -121,7 +120,6 @@ public class Utilisateurs {
 
     @Basic
     @Column(name = "RolesIdRoles", nullable = false)
-    private int rolesIdRoles;
     public int getRolesIdRoles() {
         return rolesIdRoles;
     }
@@ -140,19 +138,21 @@ public class Utilisateurs {
                 rolesIdRoles == that.rolesIdRoles &&
                 Objects.equals(nom, that.nom) &&
                 Objects.equals(prenom, that.prenom) &&
-                Objects.equals(Sexe, that.Sexe) &&
+                Objects.equals(sexe, that.sexe) &&
                 Objects.equals(courriel, that.courriel) &&
                 Objects.equals(login, that.login) &&
-                Objects.equals(mdp, that.mdp);
+                Objects.equals(mdp, that.mdp) &&
+                Objects.equals(facturesByIdUtilisateurs, that.facturesByIdUtilisateurs) &&
+                Objects.equals(rolesByRolesIdRoles, that.rolesByRolesIdRoles) &&
+                Objects.equals(utilisateursAdressesByIdUtilisateurs, that.utilisateursAdressesByIdUtilisateurs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUtilisateurs, nom, prenom, Sexe, courriel, login, mdp, actif, rolesIdRoles);
+        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, actif, rolesIdRoles, facturesByIdUtilisateurs, rolesByRolesIdRoles, utilisateursAdressesByIdUtilisateurs);
     }
 
     @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
-    private Collection<Facture> facturesByIdUtilisateurs;
     public Collection<Facture> getFacturesByIdUtilisateurs() {
         return facturesByIdUtilisateurs;
     }
@@ -163,7 +163,6 @@ public class Utilisateurs {
 
     @ManyToOne
     @JoinColumn(name = "RolesIdRoles", referencedColumnName = "IdRoles", nullable = false)
-    private Roles rolesByRolesIdRoles;
     public Roles getRolesByRolesIdRoles() {
         return rolesByRolesIdRoles;
     }
@@ -173,7 +172,6 @@ public class Utilisateurs {
     }
 
     @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
-    private Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs;
     public Collection<UtilisateursAdresses> getUtilisateursAdressesByIdUtilisateurs() {
         return utilisateursAdressesByIdUtilisateurs;
     }

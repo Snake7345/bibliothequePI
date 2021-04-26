@@ -14,9 +14,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
 
-import org.apache.log4j.Logger;
-
 import entities.Utilisateurs;
+import org.apache.log4j.Logger;
 
 @Named
 @SessionScoped

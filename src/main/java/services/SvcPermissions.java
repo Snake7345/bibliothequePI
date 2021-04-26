@@ -1,9 +1,5 @@
 package services;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
-
-import entities.Livres;
 import entities.Permissions;
 import org.apache.log4j.Logger;
 

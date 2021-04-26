@@ -6,24 +6,19 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tarifs")
-@NamedQueries
-        ({
-                @NamedQuery(name = "Tarifs.findAll", query = "SELECT t FROM Tarifs t"),
-        })
 public class Tarifs {
-
-
-
-
-
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdTarifs", nullable = false)
     private int idTarifs;
+    private String denomination;
+    private int bibliothequesIdBibliotheques;
+    private Timestamp dateDebut;
+    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
+    private Collection<TarifsJours> tarifsJoursByIdTarifs;
+    private Collection<TarifsPenalites> tarifsPenalitesByIdTarifs;
+
+    @Id
+    @Column(name = "IdTarifs", nullable = false)
     public int getIdTarifs() {
         return idTarifs;
     }
@@ -34,7 +29,6 @@ public class Tarifs {
 
     @Basic
     @Column(name = "Denomination", nullable = false, length = 255)
-    private String denomination;
     public String getDenomination() {
         return denomination;
     }
@@ -45,7 +39,6 @@ public class Tarifs {
 
     @Basic
     @Column(name = "BibliothequesIdBibliotheques", nullable = false)
-    private int bibliothequesIdBibliotheques;
     public int getBibliothequesIdBibliotheques() {
         return bibliothequesIdBibliotheques;
     }
@@ -56,7 +49,6 @@ public class Tarifs {
 
     @Basic
     @Column(name = "DateDebut", nullable = false)
-    private Timestamp dateDebut;
     public Timestamp getDateDebut() {
         return dateDebut;
     }
@@ -83,7 +75,6 @@ public class Tarifs {
 
     @ManyToOne
     @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques", nullable = false)
-    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
     public Bibliotheques getBibliothequesByBibliothequesIdBibliotheques() {
         return bibliothequesByBibliothequesIdBibliotheques;
     }
@@ -93,7 +84,6 @@ public class Tarifs {
     }
 
     @OneToMany(mappedBy = "tarifsByTarifsIdTarifs")
-    private Collection<TarifsJours> tarifsJoursByIdTarifs;
     public Collection<TarifsJours> getTarifsJoursByIdTarifs() {
         return tarifsJoursByIdTarifs;
     }
@@ -103,7 +93,6 @@ public class Tarifs {
     }
 
     @OneToMany(mappedBy = "tarifsByTarifsIdTarifs")
-    private Collection<TarifsPenalites> tarifsPenalitesByIdTarifs;
     public Collection<TarifsPenalites> getTarifsPenalitesByIdTarifs() {
         return tarifsPenalitesByIdTarifs;
     }

@@ -3,23 +3,17 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
+
 @Entity
-@Table(name="editeurs")
-@NamedQueries
-        ({
-                @NamedQuery(name = "Editeurs.findAll", query = "SELECT e FROM Editeurs e"),
-                @NamedQuery(name = "Editeurs.findOne", query ="SELECT e FROM Editeurs e WHERE e.nom=:id"),
-                @NamedQuery(name = "Editeurs.findAllTri", query="SELECT e FROM Editeurs e ORDER BY e.nom ASC"),
-        })
 public class Editeurs {
-
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdEditeurs", nullable = false)
     private int idEditeurs;
+    private String nom;
+    private Collection<Livres> livresByIdEditeurs;
+
+    @Id
+    @Column(name = "IdEditeurs", nullable = false)
     public int getIdEditeurs() {
         return idEditeurs;
     }
@@ -30,7 +24,6 @@ public class Editeurs {
 
     @Basic
     @Column(name = "Nom", nullable = false, length = 255)
-    private String nom;
     public String getNom() {
         return nom;
     }
@@ -54,7 +47,6 @@ public class Editeurs {
     }
 
     @OneToMany(mappedBy = "editeursByEditeursIdEditeurs")
-    private Collection<Livres> livresByIdEditeurs;
     public Collection<Livres> getLivresByIdEditeurs() {
         return livresByIdEditeurs;
     }

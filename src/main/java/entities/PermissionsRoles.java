@@ -2,18 +2,20 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Objects;
+
 @Entity
 @Table(name = "permissions_roles", schema = "bibliotheque")
-@NamedQueries
-        ({
-                @NamedQuery(name = "PermissionsRoles.findAll", query = "SELECT p FROM PermissionsRoles p"),
-        })
-
 public class PermissionsRoles {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int permissionsIdPermissions;
+    private int rolesIdRoles;
+    private int idPermissionsRoles;
+    private Permissions permissionsByPermissionsIdPermissions;
+    private Roles rolesByRolesIdRoles;
 
     @Basic
     @Column(name = "PermissionsIdPermissions", nullable = false)
-    private int permissionsIdPermissions;
     public int getPermissionsIdPermissions() {
         return permissionsIdPermissions;
     }
@@ -24,7 +26,6 @@ public class PermissionsRoles {
 
     @Basic
     @Column(name = "RolesIdRoles", nullable = false)
-    private int rolesIdRoles;
     public int getRolesIdRoles() {
         return rolesIdRoles;
     }
@@ -34,9 +35,7 @@ public class PermissionsRoles {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdPermissionsRoles", nullable = false)
-    private int idPermissionsRoles;
     public int getIdPermissionsRoles() {
         return idPermissionsRoles;
     }
@@ -62,7 +61,6 @@ public class PermissionsRoles {
 
     @ManyToOne
     @JoinColumn(name = "PermissionsIdPermissions", referencedColumnName = "IdPermissions", nullable = false)
-    private Permissions permissionsByPermissionsIdPermissions;
     public Permissions getPermissionsByPermissionsIdPermissions() {
         return permissionsByPermissionsIdPermissions;
     }
@@ -73,7 +71,6 @@ public class PermissionsRoles {
 
     @ManyToOne
     @JoinColumn(name = "RolesIdRoles", referencedColumnName = "IdRoles", nullable = false)
-    private Roles rolesByRolesIdRoles;
     public Roles getRolesByRolesIdRoles() {
         return rolesByRolesIdRoles;
     }

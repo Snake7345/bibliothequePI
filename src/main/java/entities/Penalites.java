@@ -3,22 +3,17 @@ package entities;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
+
 @Entity
-@Table(name = "penalites")
-@NamedQueries
-        ({
-                @NamedQuery(name = "Penalites.findAllTri", query = "SELECT p FROM Penalites p ORDER BY p.denomination ASC"),
-        })
-
 public class Penalites {
-
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdPenalites", nullable = false)
     private int idPenalites;
+    private String denomination;
+    private Collection<TarifsPenalites> tarifsPenalitesByIdPenalites;
+
+    @Id
+    @Column(name = "IdPenalites", nullable = false)
     public int getIdPenalites() {
         return idPenalites;
     }
@@ -29,7 +24,6 @@ public class Penalites {
 
     @Basic
     @Column(name = "Denomination", nullable = false, length = 150)
-    private String denomination;
     public String getDenomination() {
         return denomination;
     }
@@ -53,7 +47,6 @@ public class Penalites {
     }
 
     @OneToMany(mappedBy = "penalitesByPenalitesIdPenalites")
-    private Collection<TarifsPenalites> tarifsPenalitesByIdPenalites;
     public Collection<TarifsPenalites> getTarifsPenalitesByIdPenalites() {
         return tarifsPenalitesByIdPenalites;
     }

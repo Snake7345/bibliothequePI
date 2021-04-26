@@ -1,27 +1,27 @@
 package entities;
 
-import enumeration.ExemplairesLivresEtatEnum;
 import enumeration.FactureEtatEnum;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
+
 @Entity
-@Table(name="facture")
-@NamedQueries
-        ({
-                @NamedQuery(name = "Facture.findAll", query = "SELECT f FROM Facture f"),
-                @NamedQuery(name = "Facture.findAllByEtat", query = "SELECT f FROM Facture f WHERE f.Etat=:Etat"),
-        })
-
 public class Facture {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdLocations", nullable = false)
     private int idLocations;
+    private Timestamp dateDebut;
+    private Double prixTvac;
+    private String numeroFacture;
+    private FactureEtatEnum etat;
+    private int utilisateursIdUtilisateurs;
+    private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
+    private Collection<FactureDetail> factureDetailsByIdLocations;
 
+    @Id
+    @Column(name = "IdLocations", nullable = false)
     public int getIdLocations() {
         return idLocations;
     }
@@ -32,7 +32,6 @@ public class Facture {
 
     @Basic
     @Column(name = "DateDebut", nullable = false)
-    private Timestamp dateDebut;
     public Timestamp getDateDebut() {
         return dateDebut;
     }
@@ -43,7 +42,6 @@ public class Facture {
 
     @Basic
     @Column(name = "PrixTVAC", nullable = true, precision = 0)
-    private Double prixTvac;
     public Double getPrixTvac() {
         return prixTvac;
     }
@@ -54,7 +52,6 @@ public class Facture {
 
     @Basic
     @Column(name = "NumeroFacture", nullable = true, length = 45)
-    private String numeroFacture;
     public String getNumeroFacture() {
         return numeroFacture;
     }
@@ -71,13 +68,8 @@ public class Facture {
         return Etat;
     }
 
-    public void setEtat(FactureEtatEnum etat) {
-        Etat = etat;
-    }
-
     @Basic
     @Column(name = "UtilisateursIdUtilisateurs", nullable = false)
-    private int utilisateursIdUtilisateurs;
     public int getUtilisateursIdUtilisateurs() {
         return utilisateursIdUtilisateurs;
     }
@@ -96,17 +88,19 @@ public class Facture {
                 Objects.equals(dateDebut, facture.dateDebut) &&
                 Objects.equals(prixTvac, facture.prixTvac) &&
                 Objects.equals(numeroFacture, facture.numeroFacture) &&
-                Objects.equals(Etat, facture.Etat);
+                etat == facture.etat &&
+                Objects.equals(utilisateursByUtilisateursIdUtilisateurs, facture.utilisateursByUtilisateursIdUtilisateurs) &&
+                Objects.equals(factureDetailsByIdLocations, facture.factureDetailsByIdLocations) &&
+                Etat == facture.Etat;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLocations, dateDebut, prixTvac, numeroFacture, Etat, utilisateursIdUtilisateurs);
+        return Objects.hash(idLocations, dateDebut, prixTvac, numeroFacture, etat, utilisateursIdUtilisateurs, utilisateursByUtilisateursIdUtilisateurs, factureDetailsByIdLocations, Etat);
     }
 
     @ManyToOne
     @JoinColumn(name = "UtilisateursIdUtilisateurs", referencedColumnName = "IdUtilisateurs", nullable = false)
-    private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
     public Utilisateurs getUtilisateursByUtilisateursIdUtilisateurs() {
         return utilisateursByUtilisateursIdUtilisateurs;
     }
@@ -116,7 +110,6 @@ public class Facture {
     }
 
     @OneToMany(mappedBy = "factureByLocationsIdLocations")
-    private Collection<FactureDetail> factureDetailsByIdLocations;
     public Collection<FactureDetail> getFactureDetailsByIdLocations() {
         return factureDetailsByIdLocations;
     }
