@@ -78,7 +78,7 @@ public class Roles {
         this.permissionsRolesByIdRoles = permissionsRolesByIdRoles;
     }
 
-    @OneToMany(mappedBy = "rolesByRolesIdRoles")
+    @OneToMany(mappedBy = "RolesIdRoles")
     public Collection<Utilisateurs> getUtilisateursByIdRoles() {
         return utilisateursByIdRoles;
     }

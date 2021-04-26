@@ -23,16 +23,15 @@ public class Utilisateurs {
     private int idUtilisateurs;
     private String nom;
     private String prenom;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, name = "sexe")
     private UtilisateurSexeEnum sexe;
     private String courriel;
     private String login;
     private String mdp;
     private boolean actif;
-    private int rolesIdRoles;
     private Collection<Facture> facturesByIdUtilisateurs;
-    private Roles rolesByRolesIdRoles;
     private Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs;
-
 
     @Id
     @Column(name = "IdUtilisateurs", nullable = false)
@@ -64,8 +63,6 @@ public class Utilisateurs {
         this.prenom = prenom;
     }
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "sexe")
 
     public UtilisateurSexeEnum getSexe() {
         return sexe;
@@ -106,10 +103,8 @@ public class Utilisateurs {
     }
 
 
-
     @Basic
     @Column(name = "Actif", nullable = false)
-
     public boolean isActif() {
         return actif;
     }
@@ -118,14 +113,14 @@ public class Utilisateurs {
         this.actif = actif;
     }
 
-    @Basic
-    @Column(name = "RolesIdRoles", nullable = false)
-    public int getRolesIdRoles() {
-        return rolesIdRoles;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RolesIdRoles")
+    private Roles roles;
+    public Roles getRoles() {
+        return roles;
     }
-
-    public void setRolesIdRoles(int rolesIdRoles) {
-        this.rolesIdRoles = rolesIdRoles;
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -135,7 +130,7 @@ public class Utilisateurs {
         Utilisateurs that = (Utilisateurs) o;
         return idUtilisateurs == that.idUtilisateurs &&
                 actif == that.actif &&
-                rolesIdRoles == that.rolesIdRoles &&
+                roles == that.roles &&
                 Objects.equals(nom, that.nom) &&
                 Objects.equals(prenom, that.prenom) &&
                 Objects.equals(sexe, that.sexe) &&
@@ -143,13 +138,12 @@ public class Utilisateurs {
                 Objects.equals(login, that.login) &&
                 Objects.equals(mdp, that.mdp) &&
                 Objects.equals(facturesByIdUtilisateurs, that.facturesByIdUtilisateurs) &&
-                Objects.equals(rolesByRolesIdRoles, that.rolesByRolesIdRoles) &&
                 Objects.equals(utilisateursAdressesByIdUtilisateurs, that.utilisateursAdressesByIdUtilisateurs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, actif, rolesIdRoles, facturesByIdUtilisateurs, rolesByRolesIdRoles, utilisateursAdressesByIdUtilisateurs);
+        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, actif, roles, facturesByIdUtilisateurs, utilisateursAdressesByIdUtilisateurs);
     }
 
     @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
@@ -159,16 +153,6 @@ public class Utilisateurs {
 
     public void setFacturesByIdUtilisateurs(Collection<Facture> facturesByIdUtilisateurs) {
         this.facturesByIdUtilisateurs = facturesByIdUtilisateurs;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "RolesIdRoles", referencedColumnName = "IdRoles", nullable = false)
-    public Roles getRolesByRolesIdRoles() {
-        return rolesByRolesIdRoles;
-    }
-
-    public void setRolesByRolesIdRoles(Roles rolesByRolesIdRoles) {
-        this.rolesByRolesIdRoles = rolesByRolesIdRoles;
     }
 
     @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")

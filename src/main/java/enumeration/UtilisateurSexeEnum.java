@@ -2,11 +2,11 @@ package enumeration;
 
 public enum UtilisateurSexeEnum
 {
-    MADAME("F"),
-    MONSIEUR("M"),
-    AUTRE("A");
+    F("F"),
+    M("M"),
+    A("A");
 
-    private String label;
+    private final String label;
 
     UtilisateurSexeEnum(String label)
     {
@@ -17,4 +17,3 @@ public enum UtilisateurSexeEnum
         return label;
     }
 }
-
