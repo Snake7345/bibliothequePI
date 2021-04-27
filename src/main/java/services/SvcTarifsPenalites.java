@@ -1,13 +1,15 @@
 package services;
 
 
-import entities.TarifsPenalites;
+import entities.*;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+//Todo: Vérifier la méthode createTarifsPenalites il faut ajouter les dates
 
 public class SvcTarifsPenalites extends Service<TarifsPenalites> implements Serializable {
 	private static final Logger log = Logger.getLogger(SvcTarifsPenalites.class);
@@ -32,6 +34,15 @@ public class SvcTarifsPenalites extends Service<TarifsPenalites> implements Seri
 
 	public List<TarifsPenalites> findAllTarifsPenalites() {
 		return finder.findByNamedQuery("TarifsPenalites.findAll", null);
+	}
+
+	public TarifsPenalites createTarifsPenalites(Tarifs t, Penalites p)
+	{
+		TarifsPenalites tp = new TarifsPenalites();
+		tp.setPenalite(p);
+		tp.setTarif(t);
+
+		return tp;
 	}
 
 
