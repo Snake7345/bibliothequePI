@@ -36,4 +36,6 @@ public class SvcAdresses extends Service<Adresses> implements Serializable {
 
 		return adresses;
 	}
+
+
 }

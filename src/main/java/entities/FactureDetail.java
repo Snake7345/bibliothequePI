@@ -13,46 +13,25 @@ import java.util.Objects;
         })
 public class FactureDetail implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int locationsIdLocations;
-    private int exemplairesLivresIdExemplairesLivres;
-    private int idLocationsHistorique;
+    private int idFactureDetail;
     private Timestamp dateFin;
     private Timestamp dateRetour;
     private String etatRendu;
     private double prix;
-    private Facture factureByLocationsIdLocations;
-    private ExemplairesLivres exemplairesLivresByExemplairesLivresIdExemplairesLivres;
 
-    @Basic
-    @Column(name = "LocationsIdLocations", nullable = false)
-    public int getLocationsIdLocations() {
-        return locationsIdLocations;
-    }
-
-    public void setLocationsIdLocations(int locationsIdLocations) {
-        this.locationsIdLocations = locationsIdLocations;
-    }
-
-    @Basic
-    @Column(name = "ExemplairesLivresIdExemplairesLivres", nullable = false)
-    public int getExemplairesLivresIdExemplairesLivres() {
-        return exemplairesLivresIdExemplairesLivres;
-    }
-
-    public void setExemplairesLivresIdExemplairesLivres(int exemplairesLivresIdExemplairesLivres) {
-        this.exemplairesLivresIdExemplairesLivres = exemplairesLivresIdExemplairesLivres;
-    }
 
     @Id
-    @Column(name = "IdLocationsHistorique", nullable = false)
-    public int getIdLocationsHistorique() {
-        return idLocationsHistorique;
+    @Column(name = "idFactureDetail", nullable = false)
+
+    public int getIdFactureDetail() {
+        return idFactureDetail;
     }
 
-    public void setIdLocationsHistorique(int idLocationsHistorique) {
-        this.idLocationsHistorique = idLocationsHistorique;
+    public void setIdFactureDetail(int idFactureDetail) {
+        this.idFactureDetail = idFactureDetail;
     }
 
     @Basic
@@ -95,42 +74,47 @@ public class FactureDetail implements Serializable {
         this.prix = prix;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "FacturesIdFactures",  nullable = false)
+    private Facture facture;
+
+    public Facture getFacture() {
+        return facture;
+    }
+
+    public void setFacture(Facture facture) {
+        this.facture = facture;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "ExemplairesLivresIdExemplairesLivres", nullable = false)
+    private ExemplairesLivres exemplairesLivre;
+
+    public ExemplairesLivres getExemplairesLivre() {
+        return exemplairesLivre;
+    }
+
+    public void setExemplairesLivre(ExemplairesLivres exemplairesLivre) {
+        this.exemplairesLivre = exemplairesLivre;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FactureDetail that = (FactureDetail) o;
-        return locationsIdLocations == that.locationsIdLocations &&
-                exemplairesLivresIdExemplairesLivres == that.exemplairesLivresIdExemplairesLivres &&
-                idLocationsHistorique == that.idLocationsHistorique &&
+        return idFactureDetail == that.idFactureDetail &&
                 Double.compare(that.prix, prix) == 0 &&
                 Objects.equals(dateFin, that.dateFin) &&
                 Objects.equals(dateRetour, that.dateRetour) &&
-                Objects.equals(etatRendu, that.etatRendu);
+                Objects.equals(etatRendu, that.etatRendu) &&
+                Objects.equals(facture, that.facture) &&
+                Objects.equals(exemplairesLivre, that.exemplairesLivre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(locationsIdLocations, exemplairesLivresIdExemplairesLivres, idLocationsHistorique, dateFin, dateRetour, etatRendu, prix);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "LocationsIdLocations", referencedColumnName = "IdLocations", nullable = false)
-    public Facture getFactureByLocationsIdLocations() {
-        return factureByLocationsIdLocations;
-    }
-
-    public void setFactureByLocationsIdLocations(Facture factureByLocationsIdLocations) {
-        this.factureByLocationsIdLocations = factureByLocationsIdLocations;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "ExemplairesLivresIdExemplairesLivres", referencedColumnName = "IdExemplairesLivres", nullable = false)
-    public ExemplairesLivres getExemplairesLivresByExemplairesLivresIdExemplairesLivres() {
-        return exemplairesLivresByExemplairesLivresIdExemplairesLivres;
-    }
-
-    public void setExemplairesLivresByExemplairesLivresIdExemplairesLivres(ExemplairesLivres exemplairesLivresByExemplairesLivresIdExemplairesLivres) {
-        this.exemplairesLivresByExemplairesLivresIdExemplairesLivres = exemplairesLivresByExemplairesLivresIdExemplairesLivres;
+        return Objects.hash(idFactureDetail, dateFin, dateRetour, etatRendu, prix, facture, exemplairesLivre);
     }
 }

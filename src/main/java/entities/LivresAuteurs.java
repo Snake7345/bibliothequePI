@@ -12,76 +12,43 @@ import java.util.Objects;
         })
 public class LivresAuteurs implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int livresIdLivres;
-    private int auteursIdAuteurs;
-    private int idLivresAuteurs;
-    private Livres livresByLivresIdLivres;
-    private Auteurs auteursByAuteursIdAuteurs;
-
-    @Basic
-    @Column(name = "LivresIdLivres", nullable = false)
-    public int getLivresIdLivres() {
-        return livresIdLivres;
-    }
-
-    public void setLivresIdLivres(int livresIdLivres) {
-        this.livresIdLivres = livresIdLivres;
-    }
-
-    @Basic
-    @Column(name = "AuteursIdAuteurs", nullable = false)
-    public int getAuteursIdAuteurs() {
-        return auteursIdAuteurs;
-    }
-
-    public void setAuteursIdAuteurs(int auteursIdAuteurs) {
-        this.auteursIdAuteurs = auteursIdAuteurs;
-    }
+    private int IdLivresAuteurs;
 
     @Id
     @Column(name = "IdLivresAuteurs", nullable = false)
     public int getIdLivresAuteurs() {
-        return idLivresAuteurs;
+        return IdLivresAuteurs;
     }
 
     public void setIdLivresAuteurs(int idLivresAuteurs) {
-        this.idLivresAuteurs = idLivresAuteurs;
+        IdLivresAuteurs = idLivresAuteurs;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LivresAuteurs that = (LivresAuteurs) o;
-        return livresIdLivres == that.livresIdLivres &&
-                auteursIdAuteurs == that.auteursIdAuteurs &&
-                idLivresAuteurs == that.idLivresAuteurs;
+
+    @ManyToOne
+    @JoinColumn(name = "AuteursIdAuteurs", nullable = false)
+    private Auteurs auteur;
+
+    public Auteurs getAuteur() {
+        return auteur;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(livresIdLivres, auteursIdAuteurs, idLivresAuteurs);
+    public void setAuteur(Auteurs auteur) {
+        this.auteur = auteur;
     }
 
     @ManyToOne
-    @JoinColumn(name = "LivresIdLivres", referencedColumnName = "IdLivres", nullable = false)
-    public Livres getLivresByLivresIdLivres() {
-        return livresByLivresIdLivres;
+    @JoinColumn(name = "LivresIdLivres", nullable = false)
+    private Livres livre;
+
+    public Livres getLivre() {
+        return livre;
     }
 
-    public void setLivresByLivresIdLivres(Livres livresByLivresIdLivres) {
-        this.livresByLivresIdLivres = livresByLivresIdLivres;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "AuteursIdAuteurs", referencedColumnName = "IdAuteurs", nullable = false)
-    public Auteurs getAuteursByAuteursIdAuteurs() {
-        return auteursByAuteursIdAuteurs;
-    }
-
-    public void setAuteursByAuteursIdAuteurs(Auteurs auteursByAuteursIdAuteurs) {
-        this.auteursByAuteursIdAuteurs = auteursByAuteursIdAuteurs;
+    public void setLivre(Livres livre) {
+        this.livre = livre;
     }
 }

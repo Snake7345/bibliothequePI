@@ -17,25 +17,26 @@ import java.util.Objects;
         })
 public class Facture implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idLocations;
+    private int idFactures;
     private Timestamp dateDebut;
     private Double prixTvac;
     private String numeroFacture;
     private FactureEtatEnum etat;
     private int utilisateursIdUtilisateurs;
     private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
-    private Collection<FactureDetail> factureDetailsByIdLocations;
+    private Collection<FactureDetail> factureDetailsByIdFactures;
 
     @Id
-    @Column(name = "IdLocations", nullable = false)
-    public int getIdLocations() {
-        return idLocations;
+    @Column(name = "IdFactures", nullable = false)
+    public int getIdFactures() {
+        return idFactures;
     }
 
-    public void setIdLocations(int idLocations) {
-        this.idLocations = idLocations;
+    public void setIdFactures(int idFactures) {
+        this.idFactures = idFactures;
     }
 
     @Basic
@@ -95,19 +96,19 @@ public class Facture implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Facture facture = (Facture) o;
-        return idLocations == facture.idLocations &&
+        return idFactures == facture.idFactures &&
                 utilisateursIdUtilisateurs == facture.utilisateursIdUtilisateurs &&
                 Objects.equals(dateDebut, facture.dateDebut) &&
                 Objects.equals(prixTvac, facture.prixTvac) &&
                 Objects.equals(numeroFacture, facture.numeroFacture) &&
                 etat == facture.etat &&
                 Objects.equals(utilisateursByUtilisateursIdUtilisateurs, facture.utilisateursByUtilisateursIdUtilisateurs) &&
-                Objects.equals(factureDetailsByIdLocations, facture.factureDetailsByIdLocations);
+                Objects.equals(factureDetailsByIdFactures, facture.factureDetailsByIdFactures);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLocations, dateDebut, prixTvac, numeroFacture, etat, utilisateursIdUtilisateurs, utilisateursByUtilisateursIdUtilisateurs, factureDetailsByIdLocations);
+        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, etat, utilisateursIdUtilisateurs, utilisateursByUtilisateursIdUtilisateurs, factureDetailsByIdFactures);
     }
 
     @ManyToOne
@@ -121,11 +122,12 @@ public class Facture implements Serializable {
     }
 
     @OneToMany(mappedBy = "factureByLocationsIdLocations")
-    public Collection<FactureDetail> getFactureDetailsByIdLocations() {
-        return factureDetailsByIdLocations;
+
+    public Collection<FactureDetail> getFactureDetailsByIdFactures() {
+        return factureDetailsByIdFactures;
     }
 
-    public void setFactureDetailsByIdLocations(Collection<FactureDetail> factureDetailsByIdLocations) {
-        this.factureDetailsByIdLocations = factureDetailsByIdLocations;
+    public void setFactureDetailsByIdFactures(Collection<FactureDetail> factureDetailsByIdFactures) {
+        this.factureDetailsByIdFactures = factureDetailsByIdFactures;
     }
 }

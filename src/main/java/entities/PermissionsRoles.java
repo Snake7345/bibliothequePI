@@ -10,31 +10,7 @@ public class PermissionsRoles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int permissionsIdPermissions;
-    private int rolesIdRoles;
     private int idPermissionsRoles;
-    private Permissions permissionsByPermissionsIdPermissions;
-    private Roles rolesByRolesIdRoles;
-
-    @Basic
-    @Column(name = "PermissionsIdPermissions", nullable = false)
-    public int getPermissionsIdPermissions() {
-        return permissionsIdPermissions;
-    }
-
-    public void setPermissionsIdPermissions(int permissionsIdPermissions) {
-        this.permissionsIdPermissions = permissionsIdPermissions;
-    }
-
-    @Basic
-    @Column(name = "RolesIdRoles", nullable = false)
-    public int getRolesIdRoles() {
-        return rolesIdRoles;
-    }
-
-    public void setRolesIdRoles(int rolesIdRoles) {
-        this.rolesIdRoles = rolesIdRoles;
-    }
 
     @Id
     @Column(name = "IdPermissionsRoles", nullable = false)
@@ -51,33 +27,37 @@ public class PermissionsRoles implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PermissionsRoles that = (PermissionsRoles) o;
-        return permissionsIdPermissions == that.permissionsIdPermissions &&
-                rolesIdRoles == that.rolesIdRoles &&
-                idPermissionsRoles == that.idPermissionsRoles;
+        return idPermissionsRoles == that.idPermissionsRoles &&
+                Objects.equals(permissions, that.permissions) &&
+                Objects.equals(role, that.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(permissionsIdPermissions, rolesIdRoles, idPermissionsRoles);
+        return Objects.hash(idPermissionsRoles, permissions, role);
     }
 
     @ManyToOne
-    @JoinColumn(name = "PermissionsIdPermissions", referencedColumnName = "IdPermissions", nullable = false)
-    public Permissions getPermissionsByPermissionsIdPermissions() {
-        return permissionsByPermissionsIdPermissions;
+    @JoinColumn(name = "PermissionsIdPermissions", nullable = false)
+    private Permissions permissions;
+
+    public Permissions getPermissions() {
+        return permissions;
     }
 
-    public void setPermissionsByPermissionsIdPermissions(Permissions permissionsByPermissionsIdPermissions) {
-        this.permissionsByPermissionsIdPermissions = permissionsByPermissionsIdPermissions;
+    public void setPermissions(Permissions permissions) {
+        this.permissions = permissions;
     }
 
     @ManyToOne
-    @JoinColumn(name = "RolesIdRoles", referencedColumnName = "IdRoles", nullable = false)
-    public Roles getRolesByRolesIdRoles() {
-        return rolesByRolesIdRoles;
+    @JoinColumn(name = "RolesIdRoles", nullable = false)
+    private Roles role;
+
+    public Roles getRole() {
+        return role;
     }
 
-    public void setRolesByRolesIdRoles(Roles rolesByRolesIdRoles) {
-        this.rolesByRolesIdRoles = rolesByRolesIdRoles;
+    public void setRole(Roles role) {
+        this.role = role;
     }
 }

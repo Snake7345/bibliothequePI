@@ -1,10 +1,12 @@
 package services;
 
 
+import entities.Adresses;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +30,7 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 
 		return utilisateurs;
 	}
+
 
 	public List<Utilisateurs> findAllUtilisateurs() {
 		return finder.findByNamedQuery("Utilisateurs.findAll", null);
