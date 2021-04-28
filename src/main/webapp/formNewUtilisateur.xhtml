@@ -12,59 +12,54 @@
     <ui:define name="content">
 
             <h:form id="form" prependId="false">
-                <h:title>#{bundle['utilisateur.form.nouveau.titre']}</h:title>
+                <h:head>
+                <title>#{I18N['utilisateur.form.nouveau.titre']}</title>
+                </h:head>
                 <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
                     <h:outputText value = "#{I18N['utilisateur.label.Nom']}"/>
-                    <h:inputText id="utilNom"
-                                 value="#{utilisateurBean.util.nom}"
+                    <h:inputText id="utilisateurNom"
+                                 value="#{utilisateursBean.utilisateur.nom}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.nom']}">
                     </h:inputText>
-                    <h:message for="utilNom" styleClass="errorMessage"/>
+                    <h:message for="utilisateurNom" styleClass="errorMessage"/>
 
                     <h:outputText value = "#{I18N['utilisateur.label.Prenom']}"/>
-                    <h:inputText id="utilPrenom"
-                                 value="#{utilisateurBean.util.prenom}"
+                    <h:inputText id="utilisateurPrenom"
+                                 value="#{utilisateursBean.utilisateur.prenom}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.prenom']}">
                     </h:inputText>
-                    <h:message for="utilPrenom" styleClass="errorMessage"/>
+                    <h:message for="utilisateurPrenom" styleClass="errorMessage"/>
+
+                    <h:outputText value = "#{I18N['utilisateur.label.Sexe']}"/>
+                    <h:selectOneRadio id="sexe" value="#{utilisateursBean.utilisateur.sexe}">
+                        <f:selectItems value="#{utilisateursBean.UtilisateurSexeEnum}" />
+                    </h:selectOneRadio>
 
                     <h:outputText value = "#{I18N['utilisateur.label.Courriel']}"/>
-                    <h:inputText id="utilCourriel"
-                                 value="#{utilisateurBean.util.Courriel}"
+                    <h:inputText id="utilisateurCourriel"
+                                 value="#{utilisateursBean.utilisateur.courriel}"
                                  required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.Courriel']}">
+                                 requiredMessage="#{I18N['formulaire.message.required.courriel']}">
                     </h:inputText>
-                    <h:message for="utilCourriel" styleClass="errorMessage"/>
+                    <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 
                     <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
                     <h:inputText id="utilLogin"
-                                 value="#{utilisateurBean.util.login}"
-                                 required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.login']}">
+                                 value="#{utilisateursBean.utilisateur.login}"
+                                 required="false">
                     </h:inputText>
-                    <h:message for="utilLogin" styleClass="errorMessage"/>
 
                     <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
-                    <h:inputText id="utilMdp"
-                                 value="#{utilisateurBean.util.Mdp}"
-                                 required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.Mdp']}">
+                    <h:inputText id="utilisateurMdp"
+                                 value="#{utilisateursBean.utilisateur.mdp}"
+                                 required="false">
                     </h:inputText>
-                    <h:message for="utilMdp" styleClass="errorMessage"/>
 
-                    <h:outputText value = "#{I18N['utilisateur.label.Sexe']}"/>
-                    <h:selectOneMenu  value = "#{utilisateurBean.localite.idLocalite}" id="utilSexe">
-                        <f:selectItems value = "#{localiteBean.listLocalite}" var="ll" itemLabel="#{ll.nom}" itemValue="#{ll.idLocalite}"/>
-                    </h:selectOneMenu>
 
-                    <h:outputText value = "#{I18N['utilisateur.label.Role']}"/>
-                    <h:selectOneMenu  value = "#{utilisateurBean.localite.idLocalite}" id="utilRole">
-                        <f:selectItems value = "#{localiteBean.listLocalite}" var="ll" itemLabel="#{ll.nom}" itemValue="#{ll.idLocalite}"/>
-                    </h:selectOneMenu>
 
                     <!-- A rajouter l'adresse-->
 
