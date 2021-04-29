@@ -20,8 +20,8 @@ public class Roles implements Serializable {
     private int idRoles;
     private String denomination;
     private boolean actif;
-    private Collection<PermissionsRoles> permissionsRolesByIdRoles;
-    private Collection<Utilisateurs> utilisateursByIdRoles;
+    private Collection<PermissionsRoles> permissionsRoles;
+    private Collection<Utilisateurs> utilisateurs;
 
     @Id
     @Column(name = "IdRoles", nullable = false)
@@ -62,30 +62,30 @@ public class Roles implements Serializable {
         return idRoles == roles.idRoles &&
                 actif == roles.actif &&
                 Objects.equals(denomination, roles.denomination) &&
-                Objects.equals(permissionsRolesByIdRoles, roles.permissionsRolesByIdRoles) &&
-                Objects.equals(utilisateursByIdRoles, roles.utilisateursByIdRoles);
+                Objects.equals(permissionsRoles, roles.permissionsRoles) &&
+                Objects.equals(utilisateurs, roles.utilisateurs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idRoles, denomination, actif, permissionsRolesByIdRoles, utilisateursByIdRoles);
-    }
-
-    @OneToMany(mappedBy = "rolesByRolesIdRoles")
-    public Collection<PermissionsRoles> getPermissionsRolesByIdRoles() {
-        return permissionsRolesByIdRoles;
-    }
-
-    public void setPermissionsRolesByIdRoles(Collection<PermissionsRoles> permissionsRolesByIdRoles) {
-        this.permissionsRolesByIdRoles = permissionsRolesByIdRoles;
+        return Objects.hash(idRoles, denomination, actif, permissionsRoles, utilisateurs);
     }
 
     @OneToMany(mappedBy = "RolesIdRoles")
-    public Collection<Utilisateurs> getUtilisateursByIdRoles() {
-        return utilisateursByIdRoles;
+    public Collection<PermissionsRoles> getPermissionsRoles() {
+        return permissionsRoles;
     }
 
-    public void setUtilisateursByIdRoles(Collection<Utilisateurs> utilisateursByIdRoles) {
-        this.utilisateursByIdRoles = utilisateursByIdRoles;
+    public void setPermissionsRoles(Collection<PermissionsRoles> pr) {
+        this.permissionsRoles = pr;
+    }
+
+    @OneToMany(mappedBy = "RolesIdRoles")
+    public Collection<Utilisateurs> getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(Collection<Utilisateurs> user) {
+        this.utilisateurs = user;
     }
 }
