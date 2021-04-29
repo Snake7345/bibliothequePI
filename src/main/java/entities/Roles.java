@@ -68,7 +68,7 @@ public class Roles implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idRoles, denomination, actif, permissionsRoles, utilisateurs);
+        return Objects.hash(idRoles, denomination, actif);
     }
 
     @OneToMany(mappedBy = "RolesIdRoles")

@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.Utilisateurs;
 import enumeration.UtilisateurSexeEnum;
+import org.apache.log4j.Logger;
 import services.SvcUtilisateurs;
 
 import javax.annotation.ManagedBean;
@@ -23,6 +24,7 @@ public class UtilisateursBean implements Serializable
 
     private Utilisateurs utilisateur;
     private final SvcUtilisateurs service = new SvcUtilisateurs();
+    private static final Logger log = Logger.getLogger(UtilisateursBean.class);
 
     public UtilisateursBean()
     {
@@ -39,23 +41,29 @@ public class UtilisateursBean implements Serializable
     {
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
+        log.debug("J'vais essayer d'sauver l'utilisateur");
         transaction.begin();
 
         try {
-            Utilisateurs u = this.utilisateur;
-            service.save(u);
+
+            service.save(utilisateur);
 
             transaction.commit();
-            utilisateur = new Utilisateurs();
+            log.debug("J'ai sauvé l'utilisateur");
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-
+                log.debug("J'ai fait une erreur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
-                utilisateur = new Utilisateurs();
+
                 return "";
+            }
+            else
+            {
+                log.debug("je suis censé avoir réussi");
+                init();
             }
 
             service.close();
