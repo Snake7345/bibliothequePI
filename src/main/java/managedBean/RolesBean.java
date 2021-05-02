@@ -1,6 +1,9 @@
 package managedBean;
 
+import entities.Pays;
 import entities.Roles;
+import org.apache.log4j.Logger;
+import services.SvcPays;
 import services.SvcRoles;
 
 import javax.enterprise.context.SessionScoped;
@@ -13,6 +16,8 @@ import java.util.List;
 @SessionScoped
 public class RolesBean implements Serializable {
     private static final long serialVersionUID = 1L;
+    private Roles role;
+    private static final Logger log = Logger.getLogger(RolesBean.class);
     private final SvcRoles service = new SvcRoles();
 
     public List<Roles> getReadAll()
@@ -24,4 +29,12 @@ public class RolesBean implements Serializable {
         return listRole;
     }
 
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
 }
