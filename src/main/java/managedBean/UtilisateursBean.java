@@ -36,6 +36,7 @@ public class UtilisateursBean implements Serializable
     public void init()
     {
         utilisateur = new Utilisateurs();
+        edit();
     }
 
     public String newUtil()
@@ -77,14 +78,16 @@ public class UtilisateursBean implements Serializable
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            utiliTemp.setFields(utili);
+            utiliTemp.setFields(utilisateur);
             service.save(utiliTemp);
             transaction.commit();
-            message.display(FacesMessage.SEVERITY_INFO, "Modifications rÃ©ussies");
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-                message.display(FacesMessage.SEVERITY_ERROR, "Unknown error");
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("Erreur inconnue"));
             }
             service.close();
         }

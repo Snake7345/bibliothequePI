@@ -63,4 +63,20 @@ public class Editeurs implements Serializable {
     public void setLivresByIdEditeurs(Collection<Livres> livresByIdEditeurs) {
         this.livresByIdEditeurs = livresByIdEditeurs;
     }
+
+    @Override
+    public Editeurs clone(){
+        Editeurs edit = null;
+        try{
+            edit = (Editeurs) super.clone();
+        }catch (CloneNotSupportedException e) {
+            e.printStackTrace(System.err);
+        }
+        return edit;
+    }
+
+    public void setFields(Editeurs edit) {
+        this.nom = edit.nom;
+        this.livresByIdEditeurs = edit.livresByIdEditeurs;
+    }
 }

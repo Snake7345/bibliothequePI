@@ -82,4 +82,22 @@ public class Bibliotheques implements Serializable {
     public void setTarifsByIdBibliotheques(Collection<Tarifs> tarifsByIdBibliotheques) {
         this.tarifsByIdBibliotheques = tarifsByIdBibliotheques;
     }
+
+    @Override
+    public Bibliotheques clone(){
+        Bibliotheques biblio = null;
+        try{
+            biblio = (Bibliotheques) super.clone();
+        }catch (CloneNotSupportedException e) {
+            e.printStackTrace(System.err);
+        }
+        return biblio;
+    }
+
+    public void setFields(Bibliotheques biblio) {
+        this.nom = biblio.nom;
+        this.adressesByIdBibliotheques = biblio.adressesByIdBibliotheques;
+        this.exemplairesLivresByIdBibliotheques = biblio.exemplairesLivresByIdBibliotheques;
+        this.tarifsByIdBibliotheques = biblio.tarifsByIdBibliotheques;
+    }
 }

@@ -63,4 +63,20 @@ public class Genres implements Serializable {
     public void setLivresGenresByIdGenres(Collection<LivresGenres> livresGenresByIdGenres) {
         this.livresGenresByIdGenres = livresGenresByIdGenres;
     }
+
+    @Override
+    public Genres clone(){
+        Genres gen = null;
+        try{
+            gen = (Genres) super.clone();
+        }catch (CloneNotSupportedException e) {
+            e.printStackTrace(System.err);
+        }
+        return gen;
+    }
+
+    public void setFields(Genres gen) {
+        this.denomination = gen.denomination;
+        this.livresGenresByIdGenres = gen.livresGenresByIdGenres;
+    }
 }

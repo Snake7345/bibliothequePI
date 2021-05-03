@@ -1,5 +1,6 @@
 package entities;
 
+import javax.management.relation.Role;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -87,5 +88,23 @@ public class Roles implements Serializable {
 
     public void setUtilisateurs(Collection<Utilisateurs> user) {
         this.utilisateurs = user;
+    }
+
+    @Override
+    public Roles clone(){
+        Roles role = null;
+        try{
+            role = (Roles) super.clone();
+        }catch (CloneNotSupportedException e) {
+            e.printStackTrace(System.err);
+        }
+        return role;
+    }
+
+    public void setFields(Roles role) {
+        this.denomination = role.denomination;
+        this.actif = role.actif;
+        this.permissionsRoles = role.permissionsRoles;
+        this.utilisateurs = role.utilisateurs;
     }
 }

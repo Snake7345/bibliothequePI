@@ -92,4 +92,21 @@ public class Auteurs implements Serializable {
     public void setLivresAuteursByIdAuteurs(Collection<LivresAuteurs> livresAuteursByIdAuteurs) {
         this.livresAuteursByIdAuteurs = livresAuteursByIdAuteurs;
     }
+
+    public Auteurs clone(){
+        Auteurs aut = null;
+        try{
+            aut = (Auteurs) super.clone();
+        }catch (CloneNotSupportedException e) {
+            e.printStackTrace(System.err);
+        }
+        return aut;
+    }
+
+    public void setFields(Auteurs aut) {
+        this.nom = aut.nom;
+        this.prenom = aut.prenom;
+        this.actif = aut.actif;
+        this.livresAuteursByIdAuteurs = aut.livresAuteursByIdAuteurs;
+    }
 }

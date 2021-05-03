@@ -156,4 +156,29 @@ public class Livres implements Serializable {
     public void setLivresGenresByIdLivres(Collection<LivresGenres> livresGenresByIdLivres) {
         this.livresGenresByIdLivres = livresGenresByIdLivres;
     }
+
+    @Override
+    public Livres clone(){
+        Livres liv = null;
+        try{
+            liv = (Livres) super.clone();
+        }catch (CloneNotSupportedException e) {
+            e.printStackTrace(System.err);
+        }
+        return liv;
+    }
+
+    public void setFields(Livres liv) {
+        this.titre = liv.titre;
+        this.annee = liv.annee;
+        this.isbn = liv.isbn;
+        this.actif = liv.actif;
+        this.editeursIdEditeurs = liv.editeursIdEditeurs;
+        this.exemplairesLivresByIdLivres = liv.exemplairesLivresByIdLivres;
+        this.editeursByEditeursIdEditeurs = liv.editeursByEditeursIdEditeurs;
+        this.livresAuteursByIdLivres = liv.livresAuteursByIdLivres;
+        this.livresGenresByIdLivres = liv.livresGenresByIdLivres;
+
+
+    }
 }

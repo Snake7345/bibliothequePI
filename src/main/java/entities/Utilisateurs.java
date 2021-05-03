@@ -32,8 +32,8 @@ public class Utilisateurs implements Serializable {
     private String login;
     private String mdp;
     private boolean actif;
-    private Collection<Facture> facturesByIdUtilisateurs;
-    private Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs;
+    private Collection<Facture> factures;
+    private Collection<UtilisateursAdresses> utilisateursAdresses;
 
     @Id
     @Column(name = "IdUtilisateurs", nullable = false)
@@ -139,31 +139,31 @@ public class Utilisateurs implements Serializable {
                 Objects.equals(courriel, that.courriel) &&
                 Objects.equals(login, that.login) &&
                 Objects.equals(mdp, that.mdp) &&
-                Objects.equals(facturesByIdUtilisateurs, that.facturesByIdUtilisateurs) &&
-                Objects.equals(utilisateursAdressesByIdUtilisateurs, that.utilisateursAdressesByIdUtilisateurs);
+                Objects.equals(factures, that.factures) &&
+                Objects.equals(utilisateursAdresses, that.utilisateursAdresses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, actif, roles, facturesByIdUtilisateurs, utilisateursAdressesByIdUtilisateurs);
+        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, actif, roles, factures, utilisateursAdresses);
     }
 
     @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
-    public Collection<Facture> getFacturesByIdUtilisateurs() {
-        return facturesByIdUtilisateurs;
+    public Collection<Facture> getFactures() {
+        return factures;
     }
 
-    public void setFacturesByIdUtilisateurs(Collection<Facture> facturesByIdUtilisateurs) {
-        this.facturesByIdUtilisateurs = facturesByIdUtilisateurs;
+    public void setFactures(Collection<Facture> facturesByIdUtilisateurs) {
+        this.factures = facturesByIdUtilisateurs;
     }
 
     @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
-    public Collection<UtilisateursAdresses> getUtilisateursAdressesByIdUtilisateurs() {
-        return utilisateursAdressesByIdUtilisateurs;
+    public Collection<UtilisateursAdresses> getUtilisateursAdresses() {
+        return utilisateursAdresses;
     }
 
-    public void setUtilisateursAdressesByIdUtilisateurs(Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs) {
-        this.utilisateursAdressesByIdUtilisateurs = utilisateursAdressesByIdUtilisateurs;
+    public void setUtilisateursAdresses(Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs) {
+        this.utilisateursAdresses = utilisateursAdressesByIdUtilisateurs;
     }
 
     @Override
@@ -182,10 +182,11 @@ public class Utilisateurs implements Serializable {
         this.prenom = utilisateur.prenom;
         this.sexe = utilisateur.sexe;
         this.courriel = utilisateur.courriel;
+        this.login = utilisateur.login;
         this.mdp = utilisateur.mdp;
         this.actif = utilisateur.actif;
-        this.facturesByIdUtilisateurs = utilisateur.facturesByIdUtilisateurs;
-        this.utilisateursAdressesByIdUtilisateurs = utilisateur.utilisateursAdressesByIdUtilisateurs;
+        this.factures = utilisateur.factures;
+        this.utilisateursAdresses = utilisateur.utilisateursAdresses;
     }
 
 }
