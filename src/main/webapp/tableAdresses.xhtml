@@ -35,13 +35,31 @@
                             <!-- column header -->
                             <f:facet name="header">#{I18N['adresse.label.Boite']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ad.rue}"/>
+                            <h:outputLabel value ="#{ad.boite}"/>
                         </h:column>
                         <h:column>
                             <!-- column header -->
                             <f:facet name="header">#{I18N['adresse.label.Numero']}</f:facet>
                             <!-- row record -->
                             <h:outputLabel value ="#{ad.numero}"/>
+                        </h:column>
+                        <h:column>
+                            <!-- column header -->
+                            <f:facet name="header">#{I18N['adresse.label.Numero']}</f:facet>
+                            <!-- row record -->
+                            <h:outputLabel value ="#{ad.numero}"/>
+                        </h:column>
+                        <h:column>
+                            <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
+                            <f:facet name="header">#{I18N['localite.label.Cp']}</f:facet>
+                            <!-- row record -->
+                            <h:outputLabel value ="#{ad.localitesByLocalitesIdLocalites.cp}"> </h:outputLabel>
+                        </h:column>
+                        <h:column>
+                            <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
+                            <f:facet name="header">#{I18N['localite.label.Ville']}</f:facet>
+                            <!-- row record -->
+                            <h:outputLabel value ="#{ad.localitesByLocalitesIdLocalites.ville}"> </h:outputLabel>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
