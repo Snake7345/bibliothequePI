@@ -12,23 +12,24 @@
     <ui:define name="content">
 
         <h:form id="form" prependId="false">
-            <h:title>#{bundle['bibliotheque.form.nouveau.titre']}</h:title>
+            <h:head>
+                <title>#{I18N['bibliotheque.form.nouveau.titre']}</title>
+            </h:head>
             <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
-
 
                 <h:outputText value = "#{I18N['bibliotheque.label.Nom']}"/>
                 <h:inputText id="bibliothequeNom"
-                             value="#{utilisateurBean.util.nom}"
+                             value="#{bibliothequesBean.bibliotheque.nom}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.Nom']}">
+                             requiredMessage="#{I18N['formulaire.message.required.nom']}">
                 </h:inputText>
                 <h:message for="bibliothequeNom" styleClass="errorMessage"/>
 
 
             </h:panelGrid>
 
-            <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateurBean.newUtil}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="#{tableUtilisateur}" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="tableBibliotheques" immediate="true"/>
         </h:form>
     </ui:define>
 </ui:composition>

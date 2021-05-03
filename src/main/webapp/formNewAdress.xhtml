@@ -11,50 +11,49 @@
 
         <h:form id="form" prependId="false">
             <h:head>
-                <title>#{I18N['utilisateur.form.nouveau.titre']}</title>
+                <title>#{I18N['adresse.form.nouveau.titre']}</title>
             </h:head>
             <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
                 <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
                 <h:inputText id="adresseRue"
-                             value="#{utilisateurBean.util.nom}"
+                             value="#{adressesBean.adresse.rue}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.nom']}">
+                             requiredMessage="#{I18N['formulaire.message.required.rue']}">
                 </h:inputText>
                 <h:message for="adresseRue" styleClass="errorMessage"/>
 
                 <h:outputText value = "#{I18N['adresse.label.Boite']}"/>
                 <h:inputText id="adresseBoite"
-                             value="#{utilisateurBean.util.prenom}"
-                             required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.prenom']}">
+                             value="#{adressesBean.adresse.boite}">
                 </h:inputText>
                 <h:message for="adresseBoite" styleClass="errorMessage"/>
 
                 <h:outputText value = "#{I18N['adresse.label.Numero']}"/>
                 <h:inputText id="adresseNumero"
-                             value="#{utilisateurBean.util.Courriel}"
+                             value="#{adressesBean.adresse.numero}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.Courriel']}">
+                             requiredMessage="#{I18N['formulaire.message.required.numero']}">
                 </h:inputText>
                 <h:message for="adresseNumero" styleClass="errorMessage"/>
 
-                <h:outputText value = "#{I18N['adresse.label.Localite']}"/>
-                <h:selectOneMenu  value = "#{utilisateurBean.localite.idLocalite}" id="utilSexe">
-                    <f:selectItems value = "#{localiteBean.listLocalite}" var="ll" itemLabel="#{ll.nom}" itemValue="#{ll.idLocalite}"/>
+                <h:outputText value = "#{I18N['localite.label.Cp']}"/>
+                <h:selectOneMenu  value = "#{adressesBean.adresse.localitesByLocalitesIdLocalites.idLocalites}" id="adressLoca">
+                    <f:selectItems value = "#{localitesBean.readAll}" var="loca"
+                                   itemLabel="#{loca.cp}" itemValue="#{loca.idLocalites}"/>
                 </h:selectOneMenu>
 
-                <h:outputText value = "#{I18N['utilisateur.label.Bibliotheque']}"/>
-                <h:selectOneMenu  value = "#{utilisateurBean.localite.idLocalite}" id="utilRole">
-                    <f:selectItems value = "#{localiteBean.listLocalite}" var="ll" itemLabel="#{ll.nom}" itemValue="#{ll.idLocalite}"/>
+                <h:outputText value = "#{I18N['bibliotheque.label.Nom']}"/>
+                <h:selectOneMenu  value = "#{adressesBean.adresse.bibliothequesByBibliothequesIdBibliotheques.idBibliotheques}" id="adressBiblio">
+                    <f:selectItems value = "#{bibliothequesBean.readAll}" var="biblio"
+                                   itemLabel="#{biblio.nom}" itemValue="#{biblio.idBibliotheques}"/>
                 </h:selectOneMenu>
-
 
             </h:panelGrid>
 
-            <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateurBean.newUtil}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="#{tableUtilisateur}" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="tableAdresses" immediate="true"/>
         </h:form>
     </ui:define>
 </ui:composition>

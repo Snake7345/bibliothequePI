@@ -7,36 +7,37 @@
       xmlns:h="http://java.sun.com/jsf/html">
 <!--TODO retravailler la page-->
 <ui:composition template="Template/template.xhtml">
-    <ui:define name="title">#{I18N['localite.form.nouveau.titre']}</ui:define>
+    <ui:define name="title">#{I18N['auteur.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
 
         <h:form id="form" prependId="false">
-            <h:title>#{bundle['auteur.form.nouveau.titre']}</h:title>
+            <h:head>
+                <title>#{I18N['auteur.form.nouveau.titre']}</title>
+            </h:head>
             <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
-
 
                 <h:outputText value = "#{I18N['auteur.label.Nom']}"/>
                 <h:inputText id="auteurNom"
-                             value="#{utilisateurBean.util.nom}"
+                             value="#{auteursBean.auteur.nom}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.CP']}">
+                             requiredMessage="#{I18N['formulaire.message.required.nom']}">
                 </h:inputText>
                 <h:message for="auteurNom" styleClass="errorMessage"/>
 
                 <h:outputText value = "#{I18N['auteur.label.Prenom']}"/>
                 <h:inputText id="auteurPrenom"
-                             value="#{utilisateurBean.util.nom}"
+                             value="#{auteursBean.auteur.prenom}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.Ville']}">
+                             requiredMessage="#{I18N['formulaire.message.required.prenom']}">
                 </h:inputText>
                 <h:message for="auteurPrenom" styleClass="errorMessage"/>
 
 
             </h:panelGrid>
 
-            <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateurBean.newUtil}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="#{tableUtilisateur}" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.validate']}" action="#{auteursBean.newAuteur}"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="tableAuteurs" immediate="true"/>
         </h:form>
     </ui:define>
 </ui:composition>

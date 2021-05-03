@@ -12,23 +12,25 @@
     <ui:define name="content">
 
         <h:form id="form" prependId="false">
-            <h:title>#{bundle['editeur.form.nouveau.titre']}</h:title>
+            <h:head>
+                <title>#{I18N['editeur.form.nouveau.titre']}</title>
+            </h:head>
             <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
-                <h:outputText value = "#{I18N['editeur.label.nom']}"/>
+                <h:outputText value = "#{I18N['editeur.label.Nom']}"/>
                 <h:inputText id="editeurNom"
-                             value="#{utilisateurBean.util.nom}"
+                             value="#{editeursBean.editeur.nom}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.Nom']}">
+                             requiredMessage="#{I18N['formulaire.message.required.nom']}">
                 </h:inputText>
                 <h:message for="editeurNom" styleClass="errorMessage"/>
 
 
             </h:panelGrid>
 
-            <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateurBean.newUtil}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="#{tableUtilisateur}" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.validate']}" action="#{editeursBean.newEditeur}"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="tableEditeurs" immediate="true"/>
         </h:form>
     </ui:define>
 </ui:composition>
