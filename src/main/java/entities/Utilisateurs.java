@@ -165,4 +165,27 @@ public class Utilisateurs implements Serializable {
     public void setUtilisateursAdressesByIdUtilisateurs(Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs) {
         this.utilisateursAdressesByIdUtilisateurs = utilisateursAdressesByIdUtilisateurs;
     }
+
+    @Override
+    public Utilisateurs clone(){
+        Utilisateurs utili = null;
+        try{
+            utili = (Utilisateurs) super.clone();
+        }catch (CloneNotSupportedException e) {
+            e.printStackTrace(System.err);
+        }
+        return utili;
+    }
+
+    public void setFields(Utilisateurs utilisateur) {
+        this.nom = utilisateur.nom;
+        this.prenom = utilisateur.prenom;
+        this.sexe = utilisateur.sexe;
+        this.courriel = utilisateur.courriel;
+        this.mdp = utilisateur.mdp;
+        this.actif = utilisateur.actif;
+        this.facturesByIdUtilisateurs = utilisateur.facturesByIdUtilisateurs;
+        this.utilisateursAdressesByIdUtilisateurs = utilisateur.utilisateursAdressesByIdUtilisateurs;
+    }
+
 }

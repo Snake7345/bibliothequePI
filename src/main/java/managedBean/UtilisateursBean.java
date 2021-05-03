@@ -25,6 +25,7 @@ public class UtilisateursBean implements Serializable
     private Utilisateurs utilisateur;
     private final SvcUtilisateurs service = new SvcUtilisateurs();
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
+    private Utilisateurs utiliTemp;
 
     public UtilisateursBean()
     {
@@ -71,6 +72,32 @@ public class UtilisateursBean implements Serializable
 
     }
 
+    public void save()
+    {
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            utiliTemp.setFields(utili);
+            service.save(utiliTemp);
+            transaction.commit();
+            message.display(FacesMessage.SEVERITY_INFO, "Modifications rÃ©ussies");
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                message.display(FacesMessage.SEVERITY_ERROR, "Unknown error");
+            }
+            service.close();
+        }
+
+    }
+
+
+    public void edit()
+    {
+        this.utiliTemp = utilisateur.clone();
+    }
+
+
     public List<Utilisateurs> getReadAll()
     {
         List<Utilisateurs> listUtil = new ArrayList<Utilisateurs>();
@@ -88,6 +115,14 @@ public class UtilisateursBean implements Serializable
 
     public void setUtilisateur(Utilisateurs utilisateur) {
         this.utilisateur = utilisateur;
+    }
+
+    public Utilisateurs getUtiliTemp() {
+        return utiliTemp;
+    }
+
+    public void setUtiliTemp(Utilisateurs utiliTemp) {
+        this.utiliTemp = utiliTemp;
     }
 
 

@@ -25,6 +25,16 @@ public class AdressesBean implements Serializable {
     private final SvcAdresses service = new SvcAdresses();
     private static final Logger log = Logger.getLogger(AdressesBean.class);
 
+    public Adresses getAdresseTemp() {
+        return adresseTemp;
+    }
+
+    public void setAdresseTemp(Adresses adresseTemp) {
+        this.adresseTemp = adresseTemp;
+    }
+
+    private Adresses adresseTemp;
+
 
     @PostConstruct
     public void init()
@@ -65,6 +75,7 @@ public class AdressesBean implements Serializable {
         }
 
     }
+
 
     public List<Adresses> getReadAll()
     {
