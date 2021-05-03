@@ -43,17 +43,6 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{ad.numero}"/>
                         </h:column>
-                        <h:column>
-                            <h:commandButton  image="Images//edit.png" action="#{clientBean.findOneClient}">
-                                <f:setPropertyActionListener target="#{clientBean.idClient}" value="#{cl.idClient}" />
-                            </h:commandButton>
-                        </h:column>
-                        <h:column>
-                            <h:commandButton image="Images//activdesactiv.png" action="#{clientBean.activdesactivCli}"
-                                             rendered="#{loginBean.utilisateurAuth.role.nom eq 'Administrateur' or (loginBean.utilisateurAuth.role.nom eq 'Employe' and cl.actif)}">
-                                <f:setPropertyActionListener target="#{clientBean.idClient}" value="#{cl.idClient}" />
-                            </h:commandButton>
-                        </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <h:commandButton value="#{I18N['application.button.new']}" action="formNewAdress" />
