@@ -1,9 +1,7 @@
 package managedBean;
 
-import entities.Pays;
 import entities.Roles;
 import org.apache.log4j.Logger;
-import services.SvcPays;
 import services.SvcRoles;
 
 import javax.enterprise.context.SessionScoped;

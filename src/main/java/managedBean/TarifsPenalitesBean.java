@@ -1,6 +1,7 @@
 package managedBean;
 
 import entities.Pays;
+import entities.Roles;
 import entities.TarifsPenalites;
 import org.apache.log4j.Logger;
 import services.SvcPays;
@@ -10,6 +11,8 @@ import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Named
 @SessionScoped
@@ -19,6 +22,14 @@ public class TarifsPenalitesBean implements Serializable {
     private final SvcTarifsPenalites service = new SvcTarifsPenalites();
     private static final Logger log = Logger.getLogger(TarifsPenalites.class);
 
+    public List<TarifsPenalites> getReadAll()
+    {
+        List<TarifsPenalites> listTarifsPenalites = new ArrayList<TarifsPenalites>();
+        listTarifsPenalites = service.findAllTarifsPenalites();
+
+
+        return listTarifsPenalites;
+    }
 
     public TarifsPenalites getTarifsPenalite() {
         return tarifsPenalite;

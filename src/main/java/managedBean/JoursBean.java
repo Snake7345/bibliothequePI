@@ -1,6 +1,7 @@
 package managedBean;
 
 import entities.Facture;
+import entities.FactureDetail;
 import entities.Jours;
 import org.apache.log4j.Logger;
 import services.SvcFacture;
@@ -10,6 +11,8 @@ import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Named
 @SessionScoped
@@ -18,5 +21,23 @@ public class JoursBean implements Serializable {
     private Jours jour;
     private final SvcJours service = new SvcJours();
     private static final Logger log = Logger.getLogger(JoursBean.class);
+
+    public List<Jours> getReadAll()
+    {
+        List<Jours> listJours = new ArrayList<Jours>();
+        listJours= service.findAllJours();
+
+
+        return listJours;
+    }
+
+    public Jours getJour() {
+        return jour;
+    }
+
+    public void setJour(Jours jour) {
+        this.jour = jour;
+    }
+
 
 }
