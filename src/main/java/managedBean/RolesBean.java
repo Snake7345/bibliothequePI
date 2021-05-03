@@ -22,6 +22,7 @@ public class RolesBean implements Serializable {
     private Roles role;
     private static final Logger log = Logger.getLogger(RolesBean.class);
     private final SvcRoles service = new SvcRoles();
+    private Roles rolTemp;
 
     @PostConstruct
     public void init()
@@ -61,6 +62,41 @@ public class RolesBean implements Serializable {
             service.close();
         }
 
+    }
+
+    public void save()
+    {
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            rolTemp.setFields(role);
+            service.save(rolTemp);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("Erreur inconnue"));
+            }
+            service.close();
+        }
+
+    }
+
+
+    public void edit()
+    {
+        this.rolTemp = role.clone();
+    }
+
+    public Roles getRolTemp() {
+        return rolTemp;
+    }
+
+    public void setRolTemp(Roles rolTemp) {
+        this.rolTemp = rolTemp;
     }
 
     public List<Roles> getReadAll()

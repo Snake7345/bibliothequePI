@@ -26,6 +26,7 @@ public class GenresBean implements Serializable {
     private Genres genre;
     private final SvcGenres service = new SvcGenres();
     private static final Logger log = Logger.getLogger(GenresBean.class);
+    private Genres genTemp;
 
     @PostConstruct
     public void init()
@@ -65,6 +66,40 @@ public class GenresBean implements Serializable {
             service.close();
         }
 
+    }
+
+    public void save()
+    {
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            genTemp.setFields(genre);
+            service.save(genTemp);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("Erreur inconnue"));
+            }
+            service.close();
+        }
+
+    }
+
+    public void edit()
+    {
+        this.genTemp = genre.clone();
+    }
+
+    public Genres getGenTemp() {
+        return genTemp;
+    }
+
+    public void setGenTemp(Genres genTemp) {
+        this.genTemp = genTemp;
     }
 
     public List<Genres> getReadAll()

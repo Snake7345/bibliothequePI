@@ -25,6 +25,7 @@ public class EditeursBean implements Serializable {
     private Editeurs editeur;
     private final SvcEditeurs service = new SvcEditeurs();
     private static final Logger log = Logger.getLogger(EditeursBean.class);
+    private Editeurs editTemp;
 
     @PostConstruct
     public void init()
@@ -64,6 +65,40 @@ public class EditeursBean implements Serializable {
             service.close();
         }
 
+    }
+
+    public void save()
+    {
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            editTemp.setFields(editeur);
+            service.save(editTemp);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("Erreur inconnue"));
+            }
+            service.close();
+        }
+
+    }
+
+    public void edit()
+    {
+        this.editTemp = editeur.clone();
+    }
+
+    public Editeurs getEditTemp() {
+        return editTemp;
+    }
+
+    public void setEditTemp(Editeurs editTemp) {
+        this.editTemp = editTemp;
     }
 
     public List<Editeurs> getReadAll()

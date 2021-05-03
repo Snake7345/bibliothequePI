@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.Adresses;
 import entities.Auteurs;
+import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import services.SvcAdresses;
 import services.SvcAuteurs;
@@ -24,6 +25,7 @@ public class AuteursBean implements Serializable {
     private Auteurs auteur;
     private final SvcAuteurs service = new SvcAuteurs();
     private static final Logger log = Logger.getLogger(AuteursBean.class);
+    private Auteurs autTemp;
 
 
     @PostConstruct
@@ -66,6 +68,34 @@ public class AuteursBean implements Serializable {
 
     }
 
+
+    public void save()
+    {
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            autTemp.setFields(auteur);
+            service.save(autTemp);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("Erreur inconnue"));
+            }
+            service.close();
+        }
+
+    }
+
+
+    public void edit()
+    {
+        this.autTemp = auteur.clone();
+    }
+
     public List<Auteurs> getReadAll()
     {
         List<Auteurs> listAut = new ArrayList<Auteurs>();
@@ -81,6 +111,14 @@ public class AuteursBean implements Serializable {
 
     public void setAuteur(Auteurs auteur) {
         this.auteur = auteur;
+    }
+
+    public Auteurs getAutTemp() {
+        return autTemp;
+    }
+
+    public void setAutTemp(Auteurs autTemp) {
+        this.autTemp = autTemp;
     }
 
 }

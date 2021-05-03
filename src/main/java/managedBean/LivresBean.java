@@ -26,6 +26,7 @@ public class LivresBean implements Serializable {
     private Livres livre;
     private final SvcLivres service = new SvcLivres();
     private static final Logger log = Logger.getLogger(LivresBean.class);
+    private Livres livTemp;
 
     @PostConstruct
     public void init()
@@ -65,6 +66,32 @@ public class LivresBean implements Serializable {
             service.close();
         }
 
+    }
+
+    public void save()
+    {
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            livTemp.setFields(livre);
+            service.save(livTemp);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("Erreur inconnue"));
+            }
+            service.close();
+        }
+
+    }
+
+    public void edit()
+    {
+        this.livTemp = livre.clone();
     }
 
 
