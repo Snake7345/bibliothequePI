@@ -7,8 +7,12 @@ import services.SvcAuteurs;
 import services.SvcBibliotheques;
 
 import javax.annotation.ManagedBean;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,46 @@ public class BibliothequesBean implements Serializable {
     private Bibliotheques bibliotheque;
     private final SvcBibliotheques service = new SvcBibliotheques();
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
+
+    @PostConstruct
+    public void init()
+    {
+        bibliotheque = new Bibliotheques();
+    }
+
+    public String newBiblio()
+    {
+        EntityTransaction transaction = service.getTransaction();
+        //Todo mettre/faire une verification de l'objet utilisateur,
+        log.debug("J'vais essayer d'sauver la bibliotheque");
+        transaction.begin();
+
+        try {
+
+            service.save(bibliotheque);
+
+            transaction.commit();
+            log.debug("J'ai sauvé la bibliotheque");
+            return "/tableBibliotheques.xhtml?faces-redirect=true";
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                log.debug("J'ai fait une erreur et je suis con");
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+
+                return "";
+            }
+            else
+            {
+                log.debug("je suis censé avoir réussi");
+                init();
+            }
+
+            service.close();
+        }
+
+    }
 
     public List<Bibliotheques> getReadAll()
     {

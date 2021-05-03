@@ -1,5 +1,6 @@
 package managedBean;
 
+import entities.Auteurs;
 import entities.Pays;
 import entities.Penalites;
 import entities.Permissions;
@@ -8,8 +9,12 @@ import services.SvcPays;
 import services.SvcPermissions;
 
 import javax.annotation.ManagedBean;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +27,46 @@ public class PermissionsBean implements Serializable {
     private Permissions permission;
     private final SvcPermissions service = new SvcPermissions();
     private static final Logger log = Logger.getLogger(PermissionsBean.class);
+
+    @PostConstruct
+    public void init()
+    {
+        permission = new Permissions();
+    }
+
+    public String newPermission()
+    {
+        EntityTransaction transaction = service.getTransaction();
+        //Todo mettre/faire une verification de l'objet utilisateur,
+        log.debug("J'vais essayer d'sauver la permission");
+        transaction.begin();
+
+        try {
+
+            service.save(permission);
+
+            transaction.commit();
+            log.debug("J'ai sauvé le permission");
+            return "/tablePermissions.xhtml?faces-redirect=true";
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                log.debug("J'ai fait une erreur et je suis con");
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+
+                return "";
+            }
+            else
+            {
+                log.debug("je suis censé avoir réussi");
+                init();
+            }
+
+            service.close();
+        }
+
+    }
 
     public List<Permissions> getReadAll()
     {
