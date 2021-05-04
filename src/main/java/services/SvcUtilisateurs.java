@@ -2,6 +2,7 @@ package services;
 
 
 import entities.Adresses;
+import entities.Auteurs;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 
@@ -40,6 +41,12 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 	}
 	public List<Utilisateurs> findAllUtilisateursInactiv() {
 		return finder.findByNamedQuery("Utilisateurs.findInactiv", null);
+	}
+
+	public Utilisateurs deleteUtilisateur(Utilisateurs util){
+		System.out.println("Je delete l'utilisateur :" + util.getNom() + util.getPrenom());
+		util.setActif(false);
+		return util;
 	}
 
 

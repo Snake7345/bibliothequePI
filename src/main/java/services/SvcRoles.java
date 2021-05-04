@@ -1,5 +1,6 @@
 package services;
 
+import entities.Auteurs;
 import entities.Roles;
 import org.apache.log4j.Logger;
 
@@ -37,6 +38,12 @@ public class SvcRoles extends Service<Roles> implements Serializable {
 	}
 	public List<Roles> findAllRolesInactiv() {
 		return finder.findByNamedQuery("Roles.findInactiv", null);
+	}
+
+	public Roles deleteRole(Roles rol){
+		System.out.println("Je delete le role :" + rol.getDenomination());
+		rol.setActif(false);
+		return rol;
 	}
 
 

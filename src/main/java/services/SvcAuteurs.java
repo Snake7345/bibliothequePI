@@ -45,6 +45,13 @@ public class SvcAuteurs extends Service<Auteurs> implements Serializable
 		return auteurs;
 	}
 
+	public Auteurs deleteAuteur(Auteurs aut){
+		System.out.println("Je delete l'auteur :" + aut.getNom());
+		aut.setActif(false);
+		return aut;
+	}
+
+
 
 
 

@@ -1,5 +1,6 @@
 package services;
 
+import entities.Auteurs;
 import entities.ExemplairesLivres;
 import org.apache.log4j.Logger;
 
@@ -36,5 +37,11 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 		}
 
 		return exemplairesLivres;
+	}
+
+	public ExemplairesLivres deleteexempl(ExemplairesLivres exemliv){
+		System.out.println("Je delete l'exemplaire livre :" + exemliv.getCodeBarre());
+		exemliv.setActif(false);
+		return exemliv;
 	}
 }
