@@ -5,6 +5,7 @@ import entities.Editeurs;
 import entities.ExemplairesLivres;
 import org.apache.log4j.Logger;
 import services.SvcBibliotheques;
+import services.SvcEditeurs;
 import services.SvcExemplairesLivres;
 
 import javax.annotation.ManagedBean;
@@ -23,7 +24,8 @@ import java.util.List;
 public class ExemplairesLivresBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private ExemplairesLivres exemplairesLivre;
-    private final SvcExemplairesLivres service = new SvcExemplairesLivres();
+    SvcExemplairesLivres service = new SvcExemplairesLivres();
+    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(ExemplairesLivresBean.class);
 
 
@@ -32,7 +34,7 @@ public class ExemplairesLivresBean implements Serializable {
         List<ExemplairesLivres> listExemplaires = new ArrayList<ExemplairesLivres>();
         listExemplaires= service.findAllExemplairesLivres();
 
-
+        service.close();
         return listExemplaires;
     }
 

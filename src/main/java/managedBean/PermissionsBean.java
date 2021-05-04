@@ -6,6 +6,7 @@ import entities.Penalites;
 import entities.Permissions;
 import org.apache.log4j.Logger;
 import services.SvcPays;
+import services.SvcPenalites;
 import services.SvcPermissions;
 
 import javax.annotation.ManagedBean;
@@ -25,7 +26,8 @@ public class PermissionsBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Permissions permission;
-    private final SvcPermissions service = new SvcPermissions();
+    SvcPermissions service = new SvcPermissions();
+    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(PermissionsBean.class);
 
     @PostConstruct
@@ -36,6 +38,7 @@ public class PermissionsBean implements Serializable {
 
     public String newPermission()
     {
+        SvcPermissions service = new SvcPermissions();
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
         log.debug("J'vais essayer d'sauver la permission");
@@ -73,7 +76,7 @@ public class PermissionsBean implements Serializable {
         List<Permissions> listPermissions = new ArrayList<Permissions>();
         listPermissions = service.findAllPermissions();
 
-
+        service.close();
         return listPermissions;
     }
 

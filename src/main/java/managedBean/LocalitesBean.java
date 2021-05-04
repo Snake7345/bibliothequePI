@@ -5,11 +5,13 @@ import entities.Localites;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import services.SvcFacture;
+import services.SvcLivres;
 import services.SvcLocalites;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,8 @@ import java.util.List;
 public class LocalitesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Localites localite;
-    private final SvcLocalites service = new SvcLocalites();
+    SvcLocalites service = new SvcLocalites();
+    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(LocalitesBean.class);
 
     public List<Localites> getReadAll()

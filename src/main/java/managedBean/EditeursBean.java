@@ -23,7 +23,8 @@ import java.util.List;
 public class EditeursBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Editeurs editeur;
-    private final SvcEditeurs service = new SvcEditeurs();
+    SvcEditeurs service = new SvcEditeurs();
+    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(EditeursBean.class);
     private Editeurs editTemp;
 
@@ -35,6 +36,7 @@ public class EditeursBean implements Serializable {
 
     public String newEditeur()
     {
+        SvcEditeurs service = new SvcEditeurs();
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
         log.debug("J'vais essayer d'sauver l'editeur");
@@ -69,6 +71,7 @@ public class EditeursBean implements Serializable {
 
     public void save()
     {
+        SvcEditeurs service = new SvcEditeurs();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
@@ -88,6 +91,15 @@ public class EditeursBean implements Serializable {
 
     }
 
+    public List<Editeurs> getReadAll()
+    {
+        List<Editeurs> listEditeurs = new ArrayList<Editeurs>();
+        listEditeurs= service.findAllEditeurs();
+
+        service.close();
+        return listEditeurs;
+    }
+
     public void edit()
     {
         this.editTemp = editeur.clone();
@@ -101,14 +113,7 @@ public class EditeursBean implements Serializable {
         this.editTemp = editTemp;
     }
 
-    public List<Editeurs> getReadAll()
-    {
-        List<Editeurs> listEditeurs = new ArrayList<Editeurs>();
-        listEditeurs= service.findAllEditeurs();
 
-
-        return listEditeurs;
-    }
 
     public Editeurs getEditeur() {
         return editeur;

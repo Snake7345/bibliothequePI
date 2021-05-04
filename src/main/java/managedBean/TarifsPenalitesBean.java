@@ -10,6 +10,7 @@ import services.SvcTarifsPenalites;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,8 @@ import java.util.List;
 public class TarifsPenalitesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private TarifsPenalites tarifsPenalite;
-    private final SvcTarifsPenalites service = new SvcTarifsPenalites();
+    SvcTarifsPenalites service = new SvcTarifsPenalites();
+    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(TarifsPenalites.class);
 
     public List<TarifsPenalites> getReadAll()
@@ -27,7 +29,7 @@ public class TarifsPenalitesBean implements Serializable {
         List<TarifsPenalites> listTarifsPenalites = new ArrayList<TarifsPenalites>();
         listTarifsPenalites = service.findAllTarifsPenalites();
 
-
+        service.close();
         return listTarifsPenalites;
     }
 

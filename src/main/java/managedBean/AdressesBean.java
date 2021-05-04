@@ -22,16 +22,9 @@ import java.util.List;
 public class AdressesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Adresses adresse;
-    private final SvcAdresses service = new SvcAdresses();
+    SvcAdresses service = new SvcAdresses();
     private static final Logger log = Logger.getLogger(AdressesBean.class);
-
-    public Adresses getAdresseTemp() {
-        return adresseTemp;
-    }
-
-    public void setAdresseTemp(Adresses adresseTemp) {
-        this.adresseTemp = adresseTemp;
-    }
+    EntityTransaction transaction = this.service.getTransaction();
 
     private Adresses adresseTemp;
 
@@ -44,6 +37,7 @@ public class AdressesBean implements Serializable {
 
     public String newAdress()
     {
+        SvcAdresses service = new SvcAdresses();
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
         log.debug("J'vais essayer d'sauver l'adresse");
@@ -82,7 +76,7 @@ public class AdressesBean implements Serializable {
         List<Adresses> listAd = new ArrayList<Adresses>();
         listAd= service.findAllAdresses();
 
-
+        service.close();
         return listAd;
     }
 
@@ -94,6 +88,14 @@ public class AdressesBean implements Serializable {
     public void setAdresse(Adresses adresse) {
         this.adresse = adresse;
     }
+
+    public Adresses getAdresseTemp() {
+        return adresseTemp;
+    }
+    public void setAdresseTemp(Adresses adresseTemp) {
+        this.adresseTemp = adresseTemp;
+    }
+
 
 
 }

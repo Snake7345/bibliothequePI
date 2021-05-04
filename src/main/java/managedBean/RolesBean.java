@@ -3,6 +3,7 @@ package managedBean;
 import entities.Auteurs;
 import entities.Roles;
 import org.apache.log4j.Logger;
+import services.SvcPermissions;
 import services.SvcRoles;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +22,8 @@ public class RolesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Roles role;
     private static final Logger log = Logger.getLogger(RolesBean.class);
-    private final SvcRoles service = new SvcRoles();
+    SvcRoles service = new SvcRoles();
+    EntityTransaction transaction = service.getTransaction();
     private Roles rolTemp;
 
     @PostConstruct
@@ -32,6 +34,7 @@ public class RolesBean implements Serializable {
 
     public String newRoles()
     {
+        SvcRoles service = new SvcRoles();
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
         log.debug("J'vais essayer d'sauver le role");

@@ -24,7 +24,8 @@ import java.util.List;
 public class LivresBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Livres livre;
-    private final SvcLivres service = new SvcLivres();
+    SvcLivres service = new SvcLivres();
+    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(LivresBean.class);
     private Livres livTemp;
 
@@ -36,6 +37,7 @@ public class LivresBean implements Serializable {
 
     public String newLivre()
     {
+        SvcLivres service = new SvcLivres();
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
         log.debug("J'vais essayer d'sauver le livre");
@@ -70,6 +72,7 @@ public class LivresBean implements Serializable {
 
     public void save()
     {
+        SvcLivres service = new SvcLivres();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {

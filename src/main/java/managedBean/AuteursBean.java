@@ -23,7 +23,8 @@ import java.util.List;
 public class AuteursBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Auteurs auteur;
-    private final SvcAuteurs service = new SvcAuteurs();
+    SvcAuteurs service = new SvcAuteurs();
+    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(AuteursBean.class);
     private Auteurs autTemp;
 
@@ -35,6 +36,7 @@ public class AuteursBean implements Serializable {
 
     public String newAuteur()
     {
+        SvcAuteurs service = new SvcAuteurs();
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
         log.debug("J'vais essayer d'sauver l'auteur");
@@ -70,6 +72,7 @@ public class AuteursBean implements Serializable {
 
     public void save()
     {
+        SvcAuteurs service = new SvcAuteurs();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
@@ -101,7 +104,7 @@ public class AuteursBean implements Serializable {
         List<Auteurs> listAut = new ArrayList<Auteurs>();
         listAut= service.findAllAuteurs();
 
-
+        service.close();
         return listAut;
     }
 

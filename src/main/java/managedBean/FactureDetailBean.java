@@ -17,8 +17,8 @@ import java.util.List;
 @SessionScoped
 public class FactureDetailBean implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Facture facture;
-    private final SvcFactureDetail service = new SvcFactureDetail();
+    FactureDetail factureDetail;
+    SvcFactureDetail service = new SvcFactureDetail();
     private static final Logger log = Logger.getLogger(FactureDetailBean.class);
 
     public List<FactureDetail> getReadAll()
@@ -26,17 +26,20 @@ public class FactureDetailBean implements Serializable {
         List<FactureDetail> listFactD = new ArrayList<FactureDetail>();
         listFactD= service.findAllFactureDetail();
 
-
+        service.close();
         return listFactD;
     }
 
-    public Facture getFacture() {
-        return facture;
+    public FactureDetail getFactureDetail() {
+        return factureDetail;
     }
 
-    public void setFacture(Facture facture) {
-        this.facture = facture;
+    public void setFactureDetail(FactureDetail factureDetail) {
+        this.factureDetail = factureDetail;
     }
+
+
+
 
 
 

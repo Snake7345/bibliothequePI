@@ -22,7 +22,8 @@ import java.util.List;
 public class BibliothequesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Bibliotheques bibliotheque;
-    private final SvcBibliotheques service = new SvcBibliotheques();
+    SvcBibliotheques service = new SvcBibliotheques();
+    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
 
     @PostConstruct
@@ -33,6 +34,7 @@ public class BibliothequesBean implements Serializable {
 
     public String newBiblio()
     {
+        SvcBibliotheques service = new SvcBibliotheques();
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
         log.debug("J'vais essayer d'sauver la bibliotheque");
@@ -70,7 +72,7 @@ public class BibliothequesBean implements Serializable {
         List<Bibliotheques> listBib = new ArrayList<Bibliotheques>();
         listBib= service.findAllBibliotheques();
 
-
+        service.close();
         return listBib;
     }
 
