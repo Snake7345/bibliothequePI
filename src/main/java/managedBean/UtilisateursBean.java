@@ -21,8 +21,6 @@ import java.util.List;
 public class UtilisateursBean implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    SvcUtilisateurs service = new SvcUtilisateurs();
-    EntityTransaction transaction = service.getTransaction();
 
     private Utilisateurs utilisateur;
 

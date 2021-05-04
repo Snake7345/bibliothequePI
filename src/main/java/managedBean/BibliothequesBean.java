@@ -22,8 +22,6 @@ import java.util.List;
 public class BibliothequesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Bibliotheques bibliotheque;
-    SvcBibliotheques service = new SvcBibliotheques();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
 
     @PostConstruct
@@ -69,6 +67,7 @@ public class BibliothequesBean implements Serializable {
 
     public List<Bibliotheques> getReadAll()
     {
+        SvcBibliotheques service = new SvcBibliotheques();
         List<Bibliotheques> listBib = new ArrayList<Bibliotheques>();
         listBib= service.findAllBibliotheques();
 

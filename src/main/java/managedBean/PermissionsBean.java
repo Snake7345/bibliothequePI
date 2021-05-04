@@ -24,10 +24,7 @@ import java.util.List;
 @SessionScoped
 public class PermissionsBean implements Serializable {
     private static final long serialVersionUID = 1L;
-
     private Permissions permission;
-    SvcPermissions service = new SvcPermissions();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(PermissionsBean.class);
 
     @PostConstruct
@@ -73,9 +70,9 @@ public class PermissionsBean implements Serializable {
 
     public List<Permissions> getReadAll()
     {
+        SvcPermissions service = new SvcPermissions();
         List<Permissions> listPermissions = new ArrayList<Permissions>();
         listPermissions = service.findAllPermissions();
-
         service.close();
         return listPermissions;
     }

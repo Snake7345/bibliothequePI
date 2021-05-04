@@ -21,12 +21,11 @@ import java.util.List;
 public class JoursBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Jours jour;
-    SvcJours service = new SvcJours();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(JoursBean.class);
 
     public List<Jours> getReadAll()
     {
+        SvcJours service = new SvcJours();
         List<Jours> listJours = new ArrayList<Jours>();
         listJours= service.findAllJours();
 

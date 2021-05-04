@@ -21,12 +21,11 @@ import java.util.List;
 public class LocalitesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Localites localite;
-    SvcLocalites service = new SvcLocalites();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(LocalitesBean.class);
 
     public List<Localites> getReadAll()
     {
+        SvcLocalites service = new SvcLocalites();
         List<Localites> listLoca = new ArrayList<Localites>();
         listLoca = service.findAllLocalites();
 

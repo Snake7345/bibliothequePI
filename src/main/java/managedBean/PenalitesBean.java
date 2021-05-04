@@ -18,14 +18,12 @@ import java.util.List;
 @SessionScoped
 public class PenalitesBean implements Serializable {
     private static final long serialVersionUID = 1L;
-
     private Penalites penalite;
-    SvcPenalites service = new SvcPenalites();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(PenalitesBean.class);
 
     public List<Penalites> getReadAll()
     {
+        SvcPenalites service = new SvcPenalites();
         List<Penalites> listPenalites = new ArrayList<Penalites>();
         listPenalites = service.findAllPenalites();
 

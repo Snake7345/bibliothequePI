@@ -24,13 +24,12 @@ import java.util.List;
 public class ExemplairesLivresBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private ExemplairesLivres exemplairesLivre;
-    SvcExemplairesLivres service = new SvcExemplairesLivres();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(ExemplairesLivresBean.class);
 
 
     public List<ExemplairesLivres> getReadAll()
     {
+        SvcExemplairesLivres service = new SvcExemplairesLivres();
         List<ExemplairesLivres> listExemplaires = new ArrayList<ExemplairesLivres>();
         listExemplaires= service.findAllExemplairesLivres();
 

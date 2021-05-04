@@ -17,12 +17,13 @@ import java.util.List;
 @SessionScoped
 public class FactureDetailBean implements Serializable {
     private static final long serialVersionUID = 1L;
-    FactureDetail factureDetail;
-    SvcFactureDetail service = new SvcFactureDetail();
+    private FactureDetail factureDetail;
+
     private static final Logger log = Logger.getLogger(FactureDetailBean.class);
 
     public List<FactureDetail> getReadAll()
     {
+        SvcFactureDetail service = new SvcFactureDetail();
         List<FactureDetail> listFactD = new ArrayList<FactureDetail>();
         listFactD= service.findAllFactureDetail();
 

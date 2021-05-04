@@ -24,8 +24,6 @@ import java.util.List;
 public class LivresBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Livres livre;
-    SvcLivres service = new SvcLivres();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(LivresBean.class);
     private Livres livTemp;
 
@@ -100,6 +98,7 @@ public class LivresBean implements Serializable {
 
     public List<Livres> getReadAll()
     {
+        SvcLivres service = new SvcLivres();
         List<Livres> listLiv = new ArrayList<Livres>();
         listLiv= service.findAllLivres();
 

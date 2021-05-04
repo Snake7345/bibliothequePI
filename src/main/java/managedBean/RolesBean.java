@@ -22,8 +22,6 @@ public class RolesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Roles role;
     private static final Logger log = Logger.getLogger(RolesBean.class);
-    SvcRoles service = new SvcRoles();
-    EntityTransaction transaction = service.getTransaction();
     private Roles rolTemp;
 
     @PostConstruct
@@ -69,6 +67,7 @@ public class RolesBean implements Serializable {
 
     public void save()
     {
+        SvcRoles service = new SvcRoles();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
@@ -104,8 +103,9 @@ public class RolesBean implements Serializable {
 
     public List<Roles> getReadAll()
     {
+        SvcRoles service = new SvcRoles();
         List<Roles> listRole = new ArrayList<Roles>();
-        listRole = service.findAllRolesActiv();
+        listRole = service.findAllRoles();
 
 
         return listRole;

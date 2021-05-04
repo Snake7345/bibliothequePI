@@ -23,8 +23,6 @@ import java.util.List;
 public class AuteursBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Auteurs auteur;
-    SvcAuteurs service = new SvcAuteurs();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(AuteursBean.class);
     private Auteurs autTemp;
 
@@ -101,6 +99,7 @@ public class AuteursBean implements Serializable {
 
     public List<Auteurs> getReadAll()
     {
+        SvcAuteurs service = new SvcAuteurs();
         List<Auteurs> listAut = new ArrayList<Auteurs>();
         listAut= service.findAllAuteurs();
 

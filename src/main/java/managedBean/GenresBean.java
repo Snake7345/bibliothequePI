@@ -24,8 +24,6 @@ import java.util.List;
 public class GenresBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Genres genre;
-    SvcGenres service = new SvcGenres();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(GenresBean.class);
     private Genres genTemp;
 
@@ -72,6 +70,7 @@ public class GenresBean implements Serializable {
 
     public void save()
     {
+        SvcGenres service = new SvcGenres();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
@@ -106,6 +105,7 @@ public class GenresBean implements Serializable {
 
     public List<Genres> getReadAll()
     {
+        SvcGenres service = new SvcGenres();
         List<Genres> listGenres = new ArrayList<Genres>();
         listGenres= service.findAllGenres();
 

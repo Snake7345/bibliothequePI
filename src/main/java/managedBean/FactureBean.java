@@ -18,12 +18,12 @@ import java.util.List;
 public class FactureBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    Facture facture;
-    SvcFacture service = new SvcFacture();
+    private Facture facture;
     private static final Logger log = Logger.getLogger(FactureBean.class);
 
     public List<Facture> getReadAll()
     {
+        SvcFacture service = new SvcFacture();
         List<Facture> listFact = new ArrayList<Facture>();
         listFact= service.findAllFacture();
 

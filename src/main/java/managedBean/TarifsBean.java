@@ -21,12 +21,11 @@ import java.util.List;
 public class TarifsBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Tarifs tarif;
-    SvcTarifs service = new SvcTarifs();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(TarifsBean.class);
 
     public List<Tarifs> getReadAll()
     {
+        SvcTarifs service = new SvcTarifs();
         List<Tarifs> listTarifs = new ArrayList<Tarifs>();
         listTarifs = service.findAllTarifs();
 

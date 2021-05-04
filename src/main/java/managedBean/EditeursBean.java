@@ -23,8 +23,6 @@ import java.util.List;
 public class EditeursBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Editeurs editeur;
-    SvcEditeurs service = new SvcEditeurs();
-    EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(EditeursBean.class);
     private Editeurs editTemp;
 
@@ -93,6 +91,7 @@ public class EditeursBean implements Serializable {
 
     public List<Editeurs> getReadAll()
     {
+        SvcEditeurs service = new SvcEditeurs();
         List<Editeurs> listEditeurs = new ArrayList<Editeurs>();
         listEditeurs= service.findAllEditeurs();
 
@@ -112,8 +111,6 @@ public class EditeursBean implements Serializable {
     public void setEditTemp(Editeurs editTemp) {
         this.editTemp = editTemp;
     }
-
-
 
     public Editeurs getEditeur() {
         return editeur;
