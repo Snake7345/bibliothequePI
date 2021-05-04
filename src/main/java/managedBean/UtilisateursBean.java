@@ -21,9 +21,11 @@ import java.util.List;
 public class UtilisateursBean implements Serializable
 {
     private static final long serialVersionUID = 1L;
+    SvcUtilisateurs service = new SvcUtilisateurs();
+    EntityTransaction transaction = service.getTransaction();
 
     private Utilisateurs utilisateur;
-    private final SvcUtilisateurs service = new SvcUtilisateurs();
+
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
     private Utilisateurs utiliTemp;
 
@@ -36,11 +38,11 @@ public class UtilisateursBean implements Serializable
     public void init()
     {
         utilisateur = new Utilisateurs();
-        edit();
     }
 
     public String newUtil()
     {
+        SvcUtilisateurs service = new SvcUtilisateurs();
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
         log.debug("J'vais essayer d'sauver l'utilisateur");
@@ -67,7 +69,6 @@ public class UtilisateursBean implements Serializable
                 log.debug("je suis censé avoir réussi");
                 init();
             }
-
             service.close();
         }
 
@@ -75,6 +76,7 @@ public class UtilisateursBean implements Serializable
 
     public void save()
     {
+        SvcUtilisateurs service = new SvcUtilisateurs();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
@@ -95,18 +97,13 @@ public class UtilisateursBean implements Serializable
     }
 
 
-    public void edit()
-    {
-        this.utiliTemp = utilisateur.clone();
-    }
-
-
     public List<Utilisateurs> getReadAll()
     {
+        SvcUtilisateurs service = new SvcUtilisateurs();
         List<Utilisateurs> listUtil = new ArrayList<Utilisateurs>();
              listUtil = service.findAllUtilisateurs();
 
-
+        service.close();
         return listUtil;
     }
 

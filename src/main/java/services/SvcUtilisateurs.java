@@ -23,6 +23,7 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 
 	@Override
 	public Utilisateurs save(Utilisateurs utilisateurs) {
+		log.debug("Valeur utilisateur" + utilisateurs.getPrenom() +' '+utilisateurs.getNom()+' '+utilisateurs.getMdp()+' '+ utilisateurs.getCourriel()+' '+ utilisateurs.getIdUtilisateurs()+' '+ utilisateurs.getRoles().getDenomination()+' '+ utilisateurs.isActif());
 		if (utilisateurs.getIdUtilisateurs() == 0) {
 			em.persist(utilisateurs);
 		} else {

@@ -62,9 +62,7 @@ public class Roles implements Serializable {
         Roles roles = (Roles) o;
         return idRoles == roles.idRoles &&
                 actif == roles.actif &&
-                Objects.equals(denomination, roles.denomination) &&
-                Objects.equals(permissionsRoles, roles.permissionsRoles) &&
-                Objects.equals(utilisateurs, roles.utilisateurs);
+                Objects.equals(denomination, roles.denomination);
     }
 
     @Override

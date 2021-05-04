@@ -53,6 +53,4 @@ public class SvcAuteurs extends Service<Auteurs> implements Serializable
 
 
 
-
-
 }

@@ -27,7 +27,6 @@ public class AuteursBean implements Serializable {
     private static final Logger log = Logger.getLogger(AuteursBean.class);
     private Auteurs autTemp;
 
-
     @PostConstruct
     public void init()
     {
@@ -95,6 +94,7 @@ public class AuteursBean implements Serializable {
     {
         this.autTemp = auteur.clone();
     }
+
 
     public List<Auteurs> getReadAll()
     {

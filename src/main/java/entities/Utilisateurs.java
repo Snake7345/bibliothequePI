@@ -31,7 +31,7 @@ public class Utilisateurs implements Serializable {
     private String courriel;
     private String login;
     private String mdp;
-    private boolean actif;
+    private boolean actif = true;
     private Collection<Facture> factures;
     private Collection<UtilisateursAdresses> utilisateursAdresses;
 
