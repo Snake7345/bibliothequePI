@@ -22,9 +22,7 @@ import java.util.List;
 public class AdressesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Adresses adresse;
-    SvcAdresses service = new SvcAdresses();
     private static final Logger log = Logger.getLogger(AdressesBean.class);
-    EntityTransaction transaction = this.service.getTransaction();
 
     private Adresses adresseTemp;
 
@@ -73,6 +71,7 @@ public class AdressesBean implements Serializable {
 
     public List<Adresses> getReadAll()
     {
+        SvcAdresses service = new SvcAdresses();
         List<Adresses> listAd = new ArrayList<Adresses>();
         listAd= service.findAllAdresses();
 
