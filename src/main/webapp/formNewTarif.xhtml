@@ -12,13 +12,15 @@
     <ui:define name="content">
 
         <h:form id="form" prependId="false">
-            <h:title>#{bundle['tarif.form.nouveau.titre']}</h:title>
+            <h:head>
+                <title>#{I18N['tarif.form.nouveau.titre']}</title>
+            </h:head>
             <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
                 <h:outputText value = "#{I18N['tarif.label.Denomination']}"/>
                 <h:inputText id="tarifDenomination"
-                             value="#{utilisateurBean.util.nom}"
+                             value="#{tarifsBean.tarif.denomination}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.nom']}">
                 </h:inputText>
