@@ -19,9 +19,8 @@ public class Localites implements Serializable {
     private int idLocalites;
     private int cp;
     private String ville;
-    private int paysIdPays;
-    private Collection<Adresses> adressesByIdLocalites;
-    private Pays paysByPaysIdPays;
+    private Collection<Adresses> adresses;
+
 
     @Id
     @Column(name = "IdLocalites", nullable = false)
@@ -53,16 +52,6 @@ public class Localites implements Serializable {
         this.ville = ville;
     }
 
-    @Basic
-    @Column(name = "PaysIdPays", nullable = false)
-    public int getPaysIdPays() {
-        return paysIdPays;
-    }
-
-    public void setPaysIdPays(int paysIdPays) {
-        this.paysIdPays = paysIdPays;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,31 +59,31 @@ public class Localites implements Serializable {
         Localites localites = (Localites) o;
         return idLocalites == localites.idLocalites &&
                 cp == localites.cp &&
-                paysIdPays == localites.paysIdPays &&
                 Objects.equals(ville, localites.ville);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLocalites, cp, ville, paysIdPays);
+        return Objects.hash(idLocalites, cp, ville);
     }
 
     @OneToMany(mappedBy = "localitesByLocalitesIdLocalites")
-    public Collection<Adresses> getAdressesByIdLocalites() {
-        return adressesByIdLocalites;
+    public Collection<Adresses> getAdresses() {
+        return adresses;
     }
 
-    public void setAdressesByIdLocalites(Collection<Adresses> adressesByIdLocalites) {
-        this.adressesByIdLocalites = adressesByIdLocalites;
+    public void setAdresses(Collection<Adresses> adresses1) {
+        this.adresses = adresses1;
     }
 
     @ManyToOne
     @JoinColumn(name = "PaysIdPays", referencedColumnName = "IdPays", nullable = false)
-    public Pays getPaysByPaysIdPays() {
-        return paysByPaysIdPays;
+    private Pays pays;
+    public Pays getPays() {
+        return pays;
     }
 
-    public void setPaysByPaysIdPays(Pays paysByPaysIdPays) {
-        this.paysByPaysIdPays = paysByPaysIdPays;
+    public void setPays(Pays paysByPaysIdPays) {
+        this.pays = paysByPaysIdPays;
     }
 }
