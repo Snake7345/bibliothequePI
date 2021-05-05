@@ -20,7 +20,7 @@ public class Roles implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRoles;
     private String denomination;
-    private boolean actif;
+    private boolean actif = true;
     private Collection<PermissionsRoles> permissionsRoles;
     private Collection<Utilisateurs> utilisateurs;
 

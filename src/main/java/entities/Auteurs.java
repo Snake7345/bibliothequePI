@@ -22,7 +22,7 @@ public class Auteurs implements Serializable {
     private int idAuteurs;
     private String nom;
     private String prenom;
-    private boolean actif;
+    private boolean actif = true;
     private Collection<LivresAuteurs> livresAuteursByIdAuteurs;
 
     @Id

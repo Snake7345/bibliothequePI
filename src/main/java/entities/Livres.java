@@ -30,7 +30,7 @@ public class Livres implements Serializable {
     private int annee;
     private int isbn;
     private int editeursIdEditeurs;
-    private boolean actif;
+    private boolean actif = true;
     private Collection<ExemplairesLivres> exemplairesLivresByIdLivres;
     private Editeurs editeursByEditeursIdEditeurs;
     private Collection<LivresAuteurs> livresAuteursByIdLivres;

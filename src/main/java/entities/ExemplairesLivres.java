@@ -26,7 +26,7 @@ public class ExemplairesLivres implements Serializable {
     private String codeBarre;
     private int bibliothequesIdBibliotheques;
     private int livresIdLivres;
-    private boolean actif;
+    private boolean actif = true;
     private String commentaireEtat;
     private boolean loue;
     private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
