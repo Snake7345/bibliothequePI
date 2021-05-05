@@ -39,13 +39,13 @@
                 <h:message for="adresseNumero" styleClass="errorMessage"/>
 
                 <h:outputText value = "#{I18N['localite.label.Cp']}"/>
-                <h:selectOneMenu  value = "#{adressesBean.adresse.localitesByLocalitesIdLocalites.idLocalites}" id="adressLoca">
+                <h:selectOneMenu value = "#{adressesBean.adresse.localites.idLocalites}" id="adressLoca">
                     <f:selectItems value = "#{localitesBean.readAll}" var="loca"
                                    itemLabel="#{loca.cp}" itemValue="#{loca.idLocalites}"/>
                 </h:selectOneMenu>
 
                 <h:outputText value = "#{I18N['bibliotheque.label.Nom']}"/>
-                <h:selectOneMenu  value = "#{adressesBean.adresse.bibliothequesByBibliothequesIdBibliotheques.idBibliotheques}" id="adressBiblio">
+                <h:selectOneMenu value = "#{adressesBean.adresse.bibliotheques.idBibliotheques}" id="adressBiblio">
                     <f:selectItems value = "#{bibliothequesBean.readAll}" var="biblio"
                                    itemLabel="#{biblio.nom}" itemValue="#{biblio.idBibliotheques}"/>
                 </h:selectOneMenu>

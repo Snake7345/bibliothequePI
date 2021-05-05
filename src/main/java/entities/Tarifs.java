@@ -18,11 +18,10 @@ public class Tarifs implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTarifs;
     private String denomination;
-    private int bibliothequesIdBibliotheques;
     private Timestamp dateDebut;
-    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
-    private Collection<TarifsJours> tarifsJoursByIdTarifs;
-    private Collection<TarifsPenalites> tarifsPenalitesByIdTarifs;
+
+    private Collection<TarifsJours> tarifsJours;
+    private Collection<TarifsPenalites> tarifsPenalites;
 
     @Id
     @Column(name = "IdTarifs", nullable = false)
@@ -44,15 +43,7 @@ public class Tarifs implements Serializable {
         this.denomination = denomination;
     }
 
-    @Basic
-    @Column(name = "BibliothequesIdBibliotheques", nullable = false)
-    public int getBibliothequesIdBibliotheques() {
-        return bibliothequesIdBibliotheques;
-    }
 
-    public void setBibliothequesIdBibliotheques(int bibliothequesIdBibliotheques) {
-        this.bibliothequesIdBibliotheques = bibliothequesIdBibliotheques;
-    }
 
     @Basic
     @Column(name = "DateDebut", nullable = false)
@@ -70,41 +61,42 @@ public class Tarifs implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Tarifs tarifs = (Tarifs) o;
         return idTarifs == tarifs.idTarifs &&
-                bibliothequesIdBibliotheques == tarifs.bibliothequesIdBibliotheques &&
                 Objects.equals(denomination, tarifs.denomination) &&
                 Objects.equals(dateDebut, tarifs.dateDebut);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idTarifs, denomination, bibliothequesIdBibliotheques, dateDebut);
+        return Objects.hash(idTarifs, denomination, dateDebut);
     }
 
     @ManyToOne
     @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques", nullable = false)
-    public Bibliotheques getBibliothequesByBibliothequesIdBibliotheques() {
-        return bibliothequesByBibliothequesIdBibliotheques;
+    private Bibliotheques bibliotheques;
+
+    public Bibliotheques getBibliotheques() {
+        return bibliotheques;
     }
 
-    public void setBibliothequesByBibliothequesIdBibliotheques(Bibliotheques bibliothequesByBibliothequesIdBibliotheques) {
-        this.bibliothequesByBibliothequesIdBibliotheques = bibliothequesByBibliothequesIdBibliotheques;
-    }
-
-    @OneToMany(mappedBy = "tarifsByTarifsIdTarifs")
-    public Collection<TarifsJours> getTarifsJoursByIdTarifs() {
-        return tarifsJoursByIdTarifs;
-    }
-
-    public void setTarifsJoursByIdTarifs(Collection<TarifsJours> tarifsJoursByIdTarifs) {
-        this.tarifsJoursByIdTarifs = tarifsJoursByIdTarifs;
+    public void setBibliotheques(Bibliotheques bibliotheques1) {
+        this.bibliotheques = bibliotheques1;
     }
 
     @OneToMany(mappedBy = "tarifsByTarifsIdTarifs")
-    public Collection<TarifsPenalites> getTarifsPenalitesByIdTarifs() {
-        return tarifsPenalitesByIdTarifs;
+    public Collection<TarifsJours> getTarifsJours() {
+        return tarifsJours;
     }
 
-    public void setTarifsPenalitesByIdTarifs(Collection<TarifsPenalites> tarifsPenalitesByIdTarifs) {
-        this.tarifsPenalitesByIdTarifs = tarifsPenalitesByIdTarifs;
+    public void setTarifsJours(Collection<TarifsJours> tarifsJoursByIdTarifs) {
+        this.tarifsJours = tarifsJoursByIdTarifs;
+    }
+
+    @OneToMany(mappedBy = "tarifsByTarifsIdTarifs")
+    public Collection<TarifsPenalites> getTarifsPenalites() {
+        return tarifsPenalites;
+    }
+
+    public void setTarifsPenalites(Collection<TarifsPenalites> tarifsPenalitesByIdTarifs) {
+        this.tarifsPenalites = tarifsPenalitesByIdTarifs;
     }
 }

@@ -17,9 +17,9 @@ import java.util.Objects;
                 @NamedQuery(name = "Livres.findInactiv", query = "SELECT l FROM Livres l WHERE l.actif=FALSE"),
                 @NamedQuery(name = "Livres.findOneByIsbn", query="SELECT l FROM Livres l WHERE l.isbn=:isbn"),
                 @NamedQuery(name = "Livres.findAllByTitre", query="SELECT l FROM Livres l WHERE l.titre=:titre ORDER BY l.titre ASC"),//A verifier
-                @NamedQuery(name = "Livres.findByAuteurs", query = "SELECT l FROM Livres l WHERE l.livresAuteursByIdLivres=:auteur"), // Join a verifier
-                @NamedQuery(name = "Livres.findByEditeurs", query = "SELECT l FROM Livres l WHERE l.editeursByEditeursIdEditeurs=:editeur"),
-                @NamedQuery(name = "Livres.findByGenres", query = "SELECT l FROM Livres l WHERE l.livresGenresByIdLivres=:genre"),
+                @NamedQuery(name = "Livres.findByAuteurs", query = "SELECT l FROM Livres l WHERE l.livresAuteurs=:auteur"), // Join a verifier
+                @NamedQuery(name = "Livres.findByEditeurs", query = "SELECT l FROM Livres l WHERE l.editeurs=:editeur"),
+                @NamedQuery(name = "Livres.findByGenres", query = "SELECT l FROM Livres l WHERE l.livresGenres=:genre"),
         })
 public class Livres implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -29,12 +29,10 @@ public class Livres implements Serializable {
     private String titre;
     private int annee;
     private int isbn;
-    private int editeursIdEditeurs;
     private boolean actif = true;
-    private Collection<ExemplairesLivres> exemplairesLivresByIdLivres;
-    private Editeurs editeursByEditeursIdEditeurs;
-    private Collection<LivresAuteurs> livresAuteursByIdLivres;
-    private Collection<LivresGenres> livresGenresByIdLivres;
+    private Collection<ExemplairesLivres> exemplairesLivres;
+    private Collection<LivresAuteurs> livresAuteurs;
+    private Collection<LivresGenres> livresGenres;
 
     @Id
     @Column(name = "IdLivres", nullable = false)
@@ -76,16 +74,6 @@ public class Livres implements Serializable {
         this.isbn = isbn;
     }
 
-    @Basic
-    @Column(name = "EditeursIdEditeurs", nullable = false)
-    public int getEditeursIdEditeurs() {
-        return editeursIdEditeurs;
-    }
-
-    public void setEditeursIdEditeurs(int editeursIdEditeurs) {
-        this.editeursIdEditeurs = editeursIdEditeurs;
-    }
-
 
     @Basic
     @Column(name = "Actif", nullable = false)
@@ -106,55 +94,52 @@ public class Livres implements Serializable {
         return idLivres == livres.idLivres &&
                 annee == livres.annee &&
                 isbn == livres.isbn &&
-                editeursIdEditeurs == livres.editeursIdEditeurs &&
                 actif == livres.actif &&
                 Objects.equals(titre, livres.titre) &&
-                Objects.equals(exemplairesLivresByIdLivres, livres.exemplairesLivresByIdLivres) &&
-                Objects.equals(editeursByEditeursIdEditeurs, livres.editeursByEditeursIdEditeurs) &&
-                Objects.equals(livresAuteursByIdLivres, livres.livresAuteursByIdLivres) &&
-                Objects.equals(livresGenresByIdLivres, livres.livresGenresByIdLivres);
+                Objects.equals(editeurs, livres.editeurs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLivres, titre, annee, isbn, editeursIdEditeurs, actif, exemplairesLivresByIdLivres, editeursByEditeursIdEditeurs, livresAuteursByIdLivres, livresGenresByIdLivres);
+        return Objects.hash(idLivres, titre, annee, isbn, actif, editeurs);
     }
 
     @OneToMany(mappedBy = "livresByLivresIdLivres")
-    public Collection<ExemplairesLivres> getExemplairesLivresByIdLivres() {
-        return exemplairesLivresByIdLivres;
+    public Collection<ExemplairesLivres> getExemplairesLivres() {
+        return exemplairesLivres;
     }
 
-    public void setExemplairesLivresByIdLivres(Collection<ExemplairesLivres> exemplairesLivresByIdLivres) {
-        this.exemplairesLivresByIdLivres = exemplairesLivresByIdLivres;
+    public void setExemplairesLivres(Collection<ExemplairesLivres> exemplairesLivresByIdLivres) {
+        this.exemplairesLivres = exemplairesLivresByIdLivres;
     }
 
     @ManyToOne
     @JoinColumn(name = "EditeursIdEditeurs", referencedColumnName = "IdEditeurs", nullable = false)
-    public Editeurs getEditeursByEditeursIdEditeurs() {
-        return editeursByEditeursIdEditeurs;
+    private Editeurs editeurs;
+    public Editeurs getEditeurs() {
+        return editeurs;
     }
 
-    public void setEditeursByEditeursIdEditeurs(Editeurs editeursByEditeursIdEditeurs) {
-        this.editeursByEditeursIdEditeurs = editeursByEditeursIdEditeurs;
-    }
-
-    @OneToMany(mappedBy = "livresByLivresIdLivres")
-    public Collection<LivresAuteurs> getLivresAuteursByIdLivres() {
-        return livresAuteursByIdLivres;
-    }
-
-    public void setLivresAuteursByIdLivres(Collection<LivresAuteurs> livresAuteursByIdLivres) {
-        this.livresAuteursByIdLivres = livresAuteursByIdLivres;
+    public void setEditeurs(Editeurs editeursByEditeursIdEditeurs) {
+        this.editeurs = editeursByEditeursIdEditeurs;
     }
 
     @OneToMany(mappedBy = "livresByLivresIdLivres")
-    public Collection<LivresGenres> getLivresGenresByIdLivres() {
-        return livresGenresByIdLivres;
+    public Collection<LivresAuteurs> getLivresAuteurs() {
+        return livresAuteurs;
     }
 
-    public void setLivresGenresByIdLivres(Collection<LivresGenres> livresGenresByIdLivres) {
-        this.livresGenresByIdLivres = livresGenresByIdLivres;
+    public void setLivresAuteurs(Collection<LivresAuteurs> livresAuteursByIdLivres) {
+        this.livresAuteurs = livresAuteursByIdLivres;
+    }
+
+    @OneToMany(mappedBy = "livresByLivresIdLivres")
+    public Collection<LivresGenres> getLivresGenres() {
+        return livresGenres;
+    }
+
+    public void setLivresGenres(Collection<LivresGenres> livresGenresByIdLivres) {
+        this.livresGenres = livresGenresByIdLivres;
     }
 
     @Override
@@ -173,11 +158,10 @@ public class Livres implements Serializable {
         this.annee = liv.annee;
         this.isbn = liv.isbn;
         this.actif = liv.actif;
-        this.editeursIdEditeurs = liv.editeursIdEditeurs;
-        this.exemplairesLivresByIdLivres = liv.exemplairesLivresByIdLivres;
-        this.editeursByEditeursIdEditeurs = liv.editeursByEditeursIdEditeurs;
-        this.livresAuteursByIdLivres = liv.livresAuteursByIdLivres;
-        this.livresGenresByIdLivres = liv.livresGenresByIdLivres;
+        this.exemplairesLivres = liv.exemplairesLivres;
+        this.editeurs = liv.editeurs;
+        this.livresAuteurs = liv.livresAuteurs;
+        this.livresGenres = liv.livresGenres;
 
 
     }

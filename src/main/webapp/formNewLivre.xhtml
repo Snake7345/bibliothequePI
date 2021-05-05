@@ -44,7 +44,7 @@
                 <h:message for="livreISBN" styleClass="errorMessage"/>
 
                 <h:outputText value = "#{I18N['editeur.label.Nom']}"/>
-                <h:selectOneMenu  value = "#{livresBean.livre.editeursByEditeursIdEditeurs.idEditeurs}" id="livreEdit">
+                <h:selectOneMenu value = "#{livresBean.livre.editeurs.idEditeurs}" id="livreEdit">
                     <f:selectItems value = "#{editeursBean.readAll}" var="lived" itemLabel="#{lived.nom}" itemValue="#{lived.idEditeurs}"/>
                 </h:selectOneMenu>
 

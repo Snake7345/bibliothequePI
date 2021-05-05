@@ -20,11 +20,8 @@ public class Adresses implements Serializable {
     private String rue;
     private String boite;
     private String numero;
-    private int localitesIdLocalites;
-    private int bibliothequesIdBibliotheques;
-    private Localites localitesByLocalitesIdLocalites;
-    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
-    private Collection<UtilisateursAdresses> utilisateursAdressesByIdAdresses;
+
+    private Collection<UtilisateursAdresses> utilisateursAdresses;
 
     @Id
     @Column(name = "IdAdresses", nullable = false)
@@ -66,55 +63,36 @@ public class Adresses implements Serializable {
         this.numero = numero;
     }
 
-    @Basic
-    @Column(name = "LocalitesIdLocalites", nullable = false)
-    public int getLocalitesIdLocalites() {
-        return localitesIdLocalites;
-    }
-
-    public void setLocalitesIdLocalites(int localitesIdLocalites) {
-        this.localitesIdLocalites = localitesIdLocalites;
-    }
-
-    @Basic
-    @Column(name = "BibliothequesIdBibliotheques", nullable = true)
-
-    public int getBibliothequesIdBibliotheques() {
-        return bibliothequesIdBibliotheques;
-    }
-
-    public void setBibliothequesIdBibliotheques(int bibliothequesIdBibliotheques) {
-        this.bibliothequesIdBibliotheques = bibliothequesIdBibliotheques;
-    }
-
 
     @ManyToOne
     @JoinColumn(name = "LocalitesIdLocalites", referencedColumnName = "IdLocalites", nullable = false)
-    public Localites getLocalitesByLocalitesIdLocalites() {
-        return localitesByLocalitesIdLocalites;
+    private Localites localites;
+    public Localites getLocalites() {
+        return localites;
     }
 
-    public void setLocalitesByLocalitesIdLocalites(Localites localitesByLocalitesIdLocalites) {
-        this.localitesByLocalitesIdLocalites = localitesByLocalitesIdLocalites;
+    public void setLocalites(Localites localitesByLocalitesIdLocalites) {
+        this.localites = localitesByLocalitesIdLocalites;
     }
 
     @ManyToOne
     @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques")
-    public Bibliotheques getBibliothequesByBibliothequesIdBibliotheques() {
-        return bibliothequesByBibliothequesIdBibliotheques;
+    private Bibliotheques bibliotheques;
+    public Bibliotheques getBibliotheques() {
+        return bibliotheques;
     }
 
-    public void setBibliothequesByBibliothequesIdBibliotheques(Bibliotheques bibliothequesByBibliothequesIdBibliotheques) {
-        this.bibliothequesByBibliothequesIdBibliotheques = bibliothequesByBibliothequesIdBibliotheques;
+    public void setBibliotheques(Bibliotheques bibliothequesByBibliothequesIdBibliotheques) {
+        this.bibliotheques = bibliothequesByBibliothequesIdBibliotheques;
     }
 
     @OneToMany(mappedBy = "adressesByAdressesIdAdresses")
-    public Collection<UtilisateursAdresses> getUtilisateursAdressesByIdAdresses() {
-        return utilisateursAdressesByIdAdresses;
+    public Collection<UtilisateursAdresses> getUtilisateursAdresses() {
+        return utilisateursAdresses;
     }
 
-    public void setUtilisateursAdressesByIdAdresses(Collection<UtilisateursAdresses> utilisateursAdressesByIdAdresses) {
-        this.utilisateursAdressesByIdAdresses = utilisateursAdressesByIdAdresses;
+    public void setUtilisateursAdresses(Collection<UtilisateursAdresses> utilisateursAdressesByIdAdresses) {
+        this.utilisateursAdresses = utilisateursAdressesByIdAdresses;
     }
 
 
@@ -124,18 +102,16 @@ public class Adresses implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Adresses adresses = (Adresses) o;
         return idAdresses == adresses.idAdresses &&
-                localitesIdLocalites == adresses.localitesIdLocalites &&
-                bibliothequesIdBibliotheques == adresses.bibliothequesIdBibliotheques &&
                 Objects.equals(rue, adresses.rue) &&
                 Objects.equals(boite, adresses.boite) &&
                 Objects.equals(numero, adresses.numero) &&
-                Objects.equals(localitesByLocalitesIdLocalites, adresses.localitesByLocalitesIdLocalites) &&
-                Objects.equals(bibliothequesByBibliothequesIdBibliotheques, adresses.bibliothequesByBibliothequesIdBibliotheques) &&
-                Objects.equals(utilisateursAdressesByIdAdresses, adresses.utilisateursAdressesByIdAdresses);
+                Objects.equals(localites, adresses.localites) &&
+                Objects.equals(bibliotheques, adresses.bibliotheques) &&
+                Objects.equals(utilisateursAdresses, adresses.utilisateursAdresses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAdresses, rue, boite, numero, localitesIdLocalites, bibliothequesIdBibliotheques, localitesByLocalitesIdLocalites, bibliothequesByBibliothequesIdBibliotheques, utilisateursAdressesByIdAdresses);
+        return Objects.hash(idAdresses, rue, boite, numero, localites, bibliotheques, utilisateursAdresses);
     }
 }
