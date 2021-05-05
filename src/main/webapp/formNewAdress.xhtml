@@ -44,12 +44,6 @@
                                    itemLabel="#{loca.cp}" itemValue="#{loca.idLocalites}"/>
                 </h:selectOneMenu>
 
-                <h:outputText value = "#{I18N['bibliotheque.label.Nom']}"/>
-                <h:selectOneMenu value = "#{adressesBean.adresse.bibliotheques.idBibliotheques}" id="adressBiblio">
-                    <f:selectItems value = "#{bibliothequesBean.readAll}" var="biblio"
-                                   itemLabel="#{biblio.nom}" itemValue="#{biblio.idBibliotheques}"/>
-                </h:selectOneMenu>
-
             </h:panelGrid>
 
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}"/>

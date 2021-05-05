@@ -25,12 +25,10 @@ public class Facture implements Serializable {
     private Double prixTvac;
     private String numeroFacture;
     private FactureEtatEnum etat;
-    private int utilisateursIdUtilisateurs;
-    private Utilisateurs utilisateursByUtilisateursIdUtilisateurs;
-    private Collection<FactureDetail> factureDetailsByIdFactures;
+    private Collection<FactureDetail> factureDetails;
 
     @Id
-    @Column(name = "IdFactures", nullable = false)
+    @Column(name = "IdFacture", nullable = false)
     public int getIdFactures() {
         return idFactures;
     }
@@ -81,15 +79,6 @@ public class Facture implements Serializable {
         this.etat = etat;
     }
 
-    @Basic
-    @Column(name = "UtilisateursIdUtilisateurs", nullable = false)
-    public int getUtilisateursIdUtilisateurs() {
-        return utilisateursIdUtilisateurs;
-    }
-
-    public void setUtilisateursIdUtilisateurs(int utilisateursIdUtilisateurs) {
-        this.utilisateursIdUtilisateurs = utilisateursIdUtilisateurs;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -97,37 +86,36 @@ public class Facture implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Facture facture = (Facture) o;
         return idFactures == facture.idFactures &&
-                utilisateursIdUtilisateurs == facture.utilisateursIdUtilisateurs &&
                 Objects.equals(dateDebut, facture.dateDebut) &&
                 Objects.equals(prixTvac, facture.prixTvac) &&
                 Objects.equals(numeroFacture, facture.numeroFacture) &&
                 etat == facture.etat &&
-                Objects.equals(utilisateursByUtilisateursIdUtilisateurs, facture.utilisateursByUtilisateursIdUtilisateurs) &&
-                Objects.equals(factureDetailsByIdFactures, facture.factureDetailsByIdFactures);
+                Objects.equals(utilisateurs, facture.utilisateurs) &&
+                Objects.equals(factureDetails, facture.factureDetails);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, etat, utilisateursIdUtilisateurs, utilisateursByUtilisateursIdUtilisateurs, factureDetailsByIdFactures);
+        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, etat, utilisateurs, factureDetails);
     }
 
     @ManyToOne
     @JoinColumn(name = "UtilisateursIdUtilisateurs", referencedColumnName = "IdUtilisateurs", nullable = false)
-    public Utilisateurs getUtilisateursByUtilisateursIdUtilisateurs() {
-        return utilisateursByUtilisateursIdUtilisateurs;
+    private Utilisateurs utilisateurs;
+    public Utilisateurs getUtilisateurs() {
+        return utilisateurs;
     }
-
-    public void setUtilisateursByUtilisateursIdUtilisateurs(Utilisateurs utilisateursByUtilisateursIdUtilisateurs) {
-        this.utilisateursByUtilisateursIdUtilisateurs = utilisateursByUtilisateursIdUtilisateurs;
+    public void setUtilisateurs(Utilisateurs utilisateurs1) {
+        this.utilisateurs = utilisateurs1;
     }
 
     @OneToMany(mappedBy = "factureByLocationsIdLocations")
 
-    public Collection<FactureDetail> getFactureDetailsByIdFactures() {
-        return factureDetailsByIdFactures;
+    public Collection<FactureDetail> getFactureDetails() {
+        return factureDetails;
     }
 
-    public void setFactureDetailsByIdFactures(Collection<FactureDetail> factureDetailsByIdFactures) {
-        this.factureDetailsByIdFactures = factureDetailsByIdFactures;
+    public void setFactureDetails(Collection<FactureDetail> factureDetails1) {
+        this.factureDetails = factureDetails1;
     }
 }
