@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:c="http://java.sun.com/jsp/jstl/core">
+<!-- Attention Code a modifier -->
+<ui:composition template="Template/template.xhtml">
+	<ui:define name="title">#{I18N['application.auteurs.titleSearch']}</ui:define>
+
+	<ui:define name="content">
+	<h:form prependId="false">
+	<h:panelGroup layout="block" id="content">
+		<h2 style="text-align:center">#{I18N['application.auteurs.titleSearch']}</h2>
+		
+			<h:outputLabel value ="#{I18N['application.auteurs.titleSearch']}"/>
+			<h:inputText id="autRech"
+						value="#{auteursBean.plaque2}"
+						maxlength="9">							
+			</h:inputText>
+			<h:commandButton value="#{I18N['application.button.find']}" action="#{auteursBean.SearchAuteur}"/>
+			<h:message for="autRech" styleClass="errorMessage"/>
+				
+		<h:dataTable value="#{auteursBean.listVoiture2}" var="aut" id="tableAuteurs"
+								Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+			<h:column>
+				<!-- column header -->
+				<f:facet name="header">#{I18N['auteur.label.Id']}</f:facet>
+				<!-- row record -->
+				<h:outputLabel value ="#{aut.idAuteurs}"/>
+			</h:column>
+			<h:column>
+				<!-- column header -->
+				<f:facet name="header">#{I18N['auteur.label.Nom']}</f:facet>
+				<!-- row record -->
+				<h:outputLabel value ="#{aut.nom}"/>
+			</h:column>
+			<h:column>
+				<!-- column header -->
+				<f:facet name="header">#{I18N['auteur.label.Prenom']}</f:facet>
+				<!-- row record -->
+				<h:outputLabel value ="#{aut.prenom}"/>
+			</h:column>
+			<h:column>
+				<!-- column header -->
+				<f:facet name="header">#{I18N['commune.label.actif']}</f:facet>
+				<!-- row record -->
+				<h:outputLabel value ="#{aut.actif}"/>
+			</h:column>
+		</h:dataTable>
+		</h:panelGroup>
+				<h:commandButton value="#{I18N['application.button.return']}" action="#{voitureBean.flushVoit}" immediate="true"></h:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
