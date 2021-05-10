@@ -33,7 +33,10 @@ public class SvcAuteurs extends Service<Auteurs> implements Serializable
 	{
 		return finder.findByNamedQuery("Auteurs.findAllInactiv",null);
 	}
-
+	public List<Auteurs> findSearchName(String nom)
+	{
+		return finder.findByNamedQuery("Auteurs.searchName",nom);
+	}
 	@Override
 	public Auteurs save(Auteurs auteurs) {
 		if (auteurs.getIdAuteurs() == 0) {

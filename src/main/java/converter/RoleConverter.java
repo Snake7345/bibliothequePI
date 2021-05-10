@@ -1,4 +1,4 @@
-package converters;
+package converter;
 
 import entities.Roles;
 import org.apache.log4j.Logger;

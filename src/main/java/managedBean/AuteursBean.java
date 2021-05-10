@@ -90,6 +90,31 @@ public class AuteursBean implements Serializable {
 
     }
 
+    public String SearchAuteur(String nom)
+    {
+
+        try
+        {
+            listVoiture2 =
+                    .setParameter("plaque", plaque2)
+                    .getResultList();
+            log.debug("list voiture2 " + listVoiture2.size());
+            if(listVoiture2.isEmpty())
+            {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("voitRech", new FacesMessage("la voiture n'a pas été trouvé"));
+                return null;
+            }
+
+        }
+        finally{
+            em.clear();
+            em.close();
+        }
+        plaque2 = "";
+        return "formSearchVoiture?faces-redirect=true";
+    }
+
 
     public void edit()
     {

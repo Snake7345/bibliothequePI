@@ -68,8 +68,13 @@
                             <h:outputLabel value ="#{ut.roles.denomination}"> </h:outputLabel>
                         </h:column>
                         <h:column>
-                            <h:commandButton image="Images//activdesactiv.png" action="#{utilisateursBean.activdesactivVoit}">
-                                <f:setPropertyActionListener target="#{utilisateursBean.utilisateur.idUtilisateurs}" value="#{ut.idUtilisateurs}" />
+                            <h:commandButton  image="Images//edit.png" action="formEditUtilisateur">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
+                            </h:commandButton>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton image="Images//activdesactiv.png" action="#{utilisateursBean.activdesactivUtil}">
+                                <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                             </h:commandButton>
                         </h:column>
                     </h:dataTable>
