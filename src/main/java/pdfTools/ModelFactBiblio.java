@@ -27,10 +27,10 @@ import entities.Voiture;
 
 @WebServlet("/ModelFactGarage")
 
-public class ModelFactGarage implements Serializable
+public class ModelFactBiblio implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(ModelFactGarage.class);
+	private static final Logger log = Logger.getLogger(ModelFactBiblio.class);
 	
 	/*Creation de la facture en PDF*/
 	
@@ -41,7 +41,7 @@ public class ModelFactGarage implements Serializable
 		
 		Calendar cal = Calendar.getInstance();
 		//Date date = cal.getTime();
-		//variable à mettre dans la facture	
+		//variable ï¿½ mettre dans la facture	
 		String numfacture = interv.getFacture().getNumFact();
 		Client client = interv.getRendezvous().getClient();
 		String nompreClient = client.getNom() + " " + client.getPrenom();
@@ -73,7 +73,7 @@ public class ModelFactGarage implements Serializable
 		double prixHTVATotal = prixMOHTTotal + prixHTActions;
 		double TVA = prixHTVATotal*0.21;
 		double prixTVAC = prixHTVATotal + TVA;	
-		//String total4 = String.format("%5.02f €", TVA);
+		//String total4 = String.format("%5.02f ï¿½", TVA);
 		
 		//Creer le pdf
 		PDDocument doc = new PDDocument();
@@ -85,7 +85,7 @@ public class ModelFactGarage implements Serializable
 	    //Creating the PDDocumentInformation object 
 	    PDDocumentInformation pdd = doc.getDocumentInformation();    
 	    pdd.setAuthor("Audi");										//Setting the author of the document
-	    pdd.setTitle("Facture n°"+numfacture); 							// Setting the title of the document
+	    pdd.setTitle("Facture nï¿½"+numfacture); 							// Setting the title of the document
 	    pdd.setSubject("Facturation du client: " + client); 	//Setting the subject of the document 
 	    pdd.setCreationDate(cal); 	    						//Setting the created date of the document 
 
@@ -107,7 +107,7 @@ public class ModelFactGarage implements Serializable
 	    contentStream.setNonStrokingColor(Color.GRAY);
 	    contentStream.setLeading(24.5f);
 	    
-	    //Création de l'entete de la page
+	    //Crï¿½ation de l'entete de la page
 	    contentStream.newLineAtOffset(198, 725);	    							//Setting the position for the line (l x h)
 	    String entete1 = "Audi SA";
 	    String entete2 = "Rue du Fort, 29 - 6000  CHARLEROI";
@@ -121,7 +121,7 @@ public class ModelFactGarage implements Serializable
 	    contentStream.showText(entete3);
 	    contentStream.endText();
 	    
-	    // ligne d'entête
+	    // ligne d'entï¿½te
 	    contentStream.setLineWidth(2);
 		contentStream.moveTo(35, 670);
 		contentStream.lineTo(550, 670);
@@ -129,7 +129,7 @@ public class ModelFactGarage implements Serializable
 	    
 	    Encadrement.creation(contentStream, 350,615,200,80);
 	    
-	  //Création de l'étiquette du client
+	  //Crï¿½ation de l'ï¿½tiquette du client
 	    PDFont font = PDType1Font.TIMES_ROMAN;
 	    contentStream.beginText();
 		contentStream.setFont(font, 14);
@@ -155,7 +155,7 @@ public class ModelFactGarage implements Serializable
 	    contentStream.setFont(PDType1Font.TIMES_BOLD,12);
 	    contentStream.setLeading(14.5f);
 	    contentStream.newLineAtOffset(80, 600);	 
-	    String entetef1 = "Facture n° : " + numfacture + " créée le " + laDateDuJour;
+	    String entetef1 = "Facture nï¿½ : " + numfacture + " crï¿½ï¿½e le " + laDateDuJour;
 	    String entetef3 = "plaque: " + numPlaque ;
 	    String entetef4 = "Votre rendez-vous du " + date ;
 	   
@@ -175,10 +175,10 @@ public class ModelFactGarage implements Serializable
 		
 	    //cadre
 	    
-	    //travaux effectués
+	    //travaux effectuï¿½s
 	    contentStream.beginText();
 	    contentStream.newLineAtOffset(80, 455);	
-	    contentStream.showText("Action(s) effectuée(s) :");
+	    contentStream.showText("Action(s) effectuï¿½e(s) :");
 	    contentStream.newLine();
 	    contentStream.newLine();
 
@@ -187,7 +187,7 @@ public class ModelFactGarage implements Serializable
 	    	contentStream.showText(listAction.get(i).getTypeAction().getDenomination());
 	    	contentStream.newLine();
 		}
-	    contentStream.showText("Main d'oeuvre : " + heure + " h, le prix étant de " + prixMOHT + " /h");
+	    contentStream.showText("Main d'oeuvre : " + heure + " h, le prix ï¿½tant de " + prixMOHT + " /h");
 	    contentStream.newLine();
 	    contentStream.endText();
 	    
@@ -199,16 +199,16 @@ public class ModelFactGarage implements Serializable
 	    
 	    for (int i=0; i<listAction.size(); i++) 
 		{ 
-	    	String prix = String.format("%5.02f €", listAction.get(i).getTypeAction().getPrixHT());
+	    	String prix = String.format("%5.02f ï¿½", listAction.get(i).getTypeAction().getPrixHT());
 	    	contentStream.showText(prix);
 	    	contentStream.newLine();
 		}
-	    String prixMO = String.format("%5.02f €",prixMOHTTotal);
+	    String prixMO = String.format("%5.02f ï¿½",prixMOHTTotal);
 	    contentStream.showText(prixMO);
 	    contentStream.endText();
 	    // dessiner le cadre
 	    
-	    //décompte
+	    //dï¿½compte
 	    contentStream.setNonStrokingColor(Color.BLACK);
 	    contentStream.addRect(57, 260, 500, 2);
 	    contentStream.fill();
@@ -218,7 +218,7 @@ public class ModelFactGarage implements Serializable
 	    contentStream.newLineAtOffset(363, 235);	 
 	    String total1 = "Sous-total";
 	    String total2 = "TVA";
-	    String total3 = "Total à payer";
+	    String total3 = "Total ï¿½ payer";
 	    contentStream.showText(total1);
 	    contentStream.newLine();
 	    contentStream.showText(total2);
@@ -229,9 +229,9 @@ public class ModelFactGarage implements Serializable
 	    contentStream.beginText();
 	    contentStream.setLeading(17.5f);
 	    contentStream.newLineAtOffset(475, 235);
-	    String total4 = String.format("%5.02f €", prixHTVATotal);
-	    String total5 = String.format("%5.02f €", TVA);
-	    String total6 = String.format("%5.02f €", prixTVAC);
+	    String total4 = String.format("%5.02f ï¿½", prixHTVATotal);
+	    String total5 = String.format("%5.02f ï¿½", TVA);
+	    String total6 = String.format("%5.02f ï¿½", prixTVAC);
 	    contentStream.showText(total4);
 	    contentStream.newLine();
 	    contentStream.showText(total5);
@@ -248,12 +248,12 @@ public class ModelFactGarage implements Serializable
 	    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
 	    contentStream.setLeading(7.25f);
 	    contentStream.newLineAtOffset(57, 90);	 
-	    String pdp1 = "Conditions générales";
-	    String pdp2 = "Toutes nos factures doivent être payé au moment de la création de la facture. Toute heure commencée est due ";
-	    String pdp3 = "Les commandes sont disponibles au maximum 15 jours après la commande ";
-	    String pdp4 = "Les réclamations doivent être introduites par lettre recommandée, sous peine de déchéance, dans les 8 jours de la réception de la facture.";
+	    String pdp1 = "Conditions gï¿½nï¿½rales";
+	    String pdp2 = "Toutes nos factures doivent ï¿½tre payï¿½ au moment de la crï¿½ation de la facture. Toute heure commencï¿½e est due ";
+	    String pdp3 = "Les commandes sont disponibles au maximum 15 jours aprï¿½s la commande ";
+	    String pdp4 = "Les rï¿½clamations doivent ï¿½tre introduites par lettre recommandï¿½e, sous peine de dï¿½chï¿½ance, dans les 8 jours de la rï¿½ception de la facture.";
 	    String pdp5 = "Tout retard dans le paiement de la facture entrainera une majoration de 2% par jour de retard";
-	    String pdp6 = "A défaut, nos factures sont réputées conformes.";
+	    String pdp6 = "A dï¿½faut, nos factures sont rï¿½putï¿½es conformes.";
 	    
 
 	    contentStream.showText(pdp1);
@@ -280,7 +280,7 @@ public class ModelFactGarage implements Serializable
 	    File file = new File(path);
 	    if(file.mkdir()) 
 	    {
-	    	log.debug("Le dossier a bien été créé");
+	    	log.debug("Le dossier a bien ï¿½tï¿½ crï¿½ï¿½");
 	    }
 	    doc.save(path + numfacture + ".pdf");
 	    //doc.save(System.getProperty("user.dir")+"\\WebContent\\Factures\\"+numfacture+".pdf");
