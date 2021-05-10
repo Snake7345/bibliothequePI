@@ -1,7 +1,6 @@
-package converter;
+package converters;
 
 import entities.Roles;
-import managedBean.AdressesBean;
 import org.apache.log4j.Logger;
 import services.SvcRoles;
 
