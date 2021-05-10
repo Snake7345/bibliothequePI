@@ -67,6 +67,11 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{ut.roles.denomination}"> </h:outputLabel>
                         </h:column>
+                        <h:column>
+                            <h:commandButton image="Images//activdesactiv.png" action="#{utilisateursBean.activdesactivVoit}">
+                                <f:setPropertyActionListener target="#{utilisateursBean.utilisateur.idUtilisateurs}" value="#{ut.idUtilisateurs}" />
+                            </h:commandButton>
+                        </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <h:commandButton value="#{I18N['application.button.new']}" action="formNewUtilisateur" />

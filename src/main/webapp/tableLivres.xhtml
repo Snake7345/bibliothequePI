@@ -55,6 +55,11 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{liv.editeurs.nom}"/>
                         </h:column>
+                        <h:column>
+                            <h:commandButton image="Images//activdesactiv.png" action="#{livresBean.activdesactivVoit}">
+                                <f:setPropertyActionListener target="#{livresBean.livre.idLivres}" value="#{liv.idLivres}" />
+                            </h:commandButton>
+                        </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <h:commandButton value="#{I18N['application.button.new']}" action="formNewLivre" />

@@ -36,6 +36,11 @@
                         <!-- row record -->
                         <h:outputLabel value ="#{rol.actif}"/>
                     </h:column>
+                    <h:column>
+                        <h:commandButton image="Images//activdesactiv.png" action="#{rolesBean.activdesactivVoit}">
+                            <f:setPropertyActionListener target="#{rolesBean.role.idRoles}" value="#{rol.idRoles}" />
+                        </h:commandButton>
+                    </h:column>
                 </h:dataTable>
             </h:panelGroup>
             <h:commandButton value="#{I18N['application.button.new']}" action="formNewRole" />
