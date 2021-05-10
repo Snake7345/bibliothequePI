@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<!--TODO retravailler la page-->
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['utilisateur.form.modif.titre']}</ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="form" prependId="false">
+            <h:head>
+                <title>#{I18N['utilisateur.form.modif.titre']}</title>
+            </h:head>
+            <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+
+
+                <h:outputText value = "#{I18N['utilisateur.label.Nom']}"/>
+                <h:inputText id="utilisateurNom"
+                             value="#{utilisateursBean.utilisateur.nom}"
+                             required="true"
+                             requiredMessage="#{I18N['formulaire.message.required.nom']}">
+                </h:inputText>
+                <h:message for="utilisateurNom" styleClass="errorMessage"/>
+
+                <h:outputText value = "#{I18N['utilisateur.label.Prenom']}"/>
+                <h:inputText id="utilisateurPrenom"
+                             value="#{utilisateursBean.utilisateur.prenom}"
+                             required="true"
+                             requiredMessage="#{I18N['formulaire.message.required.prenom']}">
+                </h:inputText>
+                <h:message for="utilisateurPrenom" styleClass="errorMessage"/>
+
+                <h:outputText value = "#{I18N['utilisateur.label.Sexe']}"/>
+                <h:selectOneRadio id="sexe" value="#{utilisateursBean.utilisateur.sexe}">
+                    <f:selectItems value="#{utilisateursEnumBean.sexeEnum}" />
+                </h:selectOneRadio>
+
+                <h:outputText value = "#{I18N['utilisateur.label.Courriel']}"/>
+                <h:inputText id="utilisateurCourriel"
+                             value="#{utilisateursBean.utilisateur.courriel}"
+                             required="true"
+                             requiredMessage="#{I18N['formulaire.message.required.courriel']}">
+                </h:inputText>
+                <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
+
+                <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
+                <h:inputText id="utilLogin"
+                             value="#{utilisateursBean.utilisateur.login}"
+                             required="false">
+                </h:inputText>
+
+                <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
+                <h:inputText id="utilisateurMdp"
+                             value="#{utilisateursBean.utilisateur.mdp}"
+                             required="false">
+                </h:inputText>
+
+                <h:outputText value = "#{I18N['role.label.Denomination']}"/>
+                <h:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                                 converter="roleConverter">
+                    <f:selectItems value = "#{rolesBean.readAll}" var="ro"
+                                   itemLabel="#{ro.denomination}"
+                                   itemValue="#{ro}"/>
+                </h:selectOneMenu>
+
+
+                <!-- A rajouter l'adresse-->
+
+            </h:panelGrid>
+
+            <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="tableUtilisateurs" immediate="true"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>
