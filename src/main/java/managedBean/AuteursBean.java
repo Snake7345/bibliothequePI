@@ -16,8 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Named
 @SessionScoped
@@ -26,6 +25,7 @@ public class AuteursBean implements Serializable {
     private Auteurs auteur;
     private static final Logger log = Logger.getLogger(AuteursBean.class);
     private Auteurs autTemp;
+    private List<Auteurs> searchResults;
 
     @PostConstruct
     public void init()
@@ -139,32 +139,35 @@ public class AuteursBean implements Serializable {
     public String flushAut()
     {
         init();
+        searchResults.clear();
         return "tableAuteurs?faces-redirect=true";
     }
 
-    public String SearchAuteur(String nom)
+    public String searchAuteur()
     {
 
-        try
-        {
-            listVoiture2 =
-                    .setParameter("plaque", plaque2)
-                    .getResultList();
-            log.debug("list voiture2 " + listVoiture2.size());
-            if(listVoiture2.isEmpty())
+        SvcAuteurs service = new SvcAuteurs();
+        //try
+        //{
+
+            log.debug("list auteur " + service.getByName(auteur.getNom()).size());
+            if(service.getByName(auteur.getNom()).isEmpty())
             {
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("voitRech", new FacesMessage("la voiture n'a pas été trouvé"));
+                fc.addMessage("autRech", new FacesMessage("l'auteur n'a pas été trouvé"));
                 return null;
             }
+            else
+            {
+                searchResults = service.getByName(auteur.getNom());
+            }
 
-        }
-        finally{
-            em.clear();
-            em.close();
-        }
-        plaque2 = "";
-        return "formSearchVoiture?faces-redirect=true";
+        //}
+        //catch
+        //{
+
+        //}
+        return "formSearchAuteur?faces-redirect=true";
     }
 
 
@@ -200,6 +203,14 @@ public class AuteursBean implements Serializable {
 
     public void setAutTemp(Auteurs autTemp) {
         this.autTemp = autTemp;
+    }
+
+    public List<Auteurs> getSearchResults() {
+        return searchResults;
+    }
+
+    public void setSearchResults(List<Auteurs> searchResults) {
+        this.searchResults = searchResults;
     }
 
 }

@@ -33,10 +33,8 @@ public class SvcAuteurs extends Service<Auteurs> implements Serializable
 	{
 		return finder.findByNamedQuery("Auteurs.findAllInactiv",null);
 	}
-	public List<Auteurs> findSearchName(String nom)
-	{
-		return finder.findByNamedQuery("Auteurs.searchName",nom);
-	}
+
+
 	@Override
 	public Auteurs save(Auteurs auteurs) {
 		if (auteurs.getIdAuteurs() == 0) {
@@ -47,6 +45,14 @@ public class SvcAuteurs extends Service<Auteurs> implements Serializable
 
 		return auteurs;
 	}
+
+	public List<Auteurs> getByName(String nom) {
+		Map<String, String> param = new HashMap<>();
+		param.put("nom", nom);
+
+		return finder.findByNamedQuery("Auteurs.searchName", param);
+	}
+
 
 	public Auteurs deleteAuteur(Auteurs aut){
 		System.out.println("Je delete l'auteur :" + aut.getNom());

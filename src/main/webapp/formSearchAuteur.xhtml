@@ -21,7 +21,7 @@
 			<h:commandButton value="#{I18N['application.button.find']}" action="#{auteursBean.searchAuteur}"/>
 			<h:message for="autRech" styleClass="errorMessage"/>
 				
-		<h:dataTable value="#{auteursBean.listVoiture2}" var="aut" id="tableAuteurs"
+		<h:dataTable value="#{auteursBean.searchResults}" var="aut" id="tableAuteurs"
 								Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
 			<h:column>
 				<!-- column header -->
@@ -49,7 +49,7 @@
 			</h:column>
 		</h:dataTable>
 		</h:panelGroup>
-				<h:commandButton value="#{I18N['application.button.return']}" action="#{voitureBean.flushVoit}" immediate="true"/>
+				<h:commandButton value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>
 		</h:form>
 	</ui:define>
 </ui:composition>
