@@ -37,8 +37,8 @@
                         <h:outputLabel value ="#{rol.actif}"/>
                     </h:column>
                     <h:column>
-                        <h:commandButton image="Images//activdesactiv.png" action="#{rolesBean.activdesactivVoit}">
-                            <f:setPropertyActionListener target="#{rolesBean.role.idRoles}" value="#{rol.idRoles}" />
+                        <h:commandButton image="Images//activdesactiv.png" action="#{rolesBean.activdesactivRol}">
+                            <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                         </h:commandButton>
                     </h:column>
                 </h:dataTable>

@@ -30,6 +30,11 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{ed.nom}"/>
                         </h:column>
+                        <h:column>
+                            <h:commandButton  image="Images//edit.png" action="formEditEditeur">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{editeursBean.editeur}" value="#{ed}" /><!-- u minuscule -->
+                            </h:commandButton>
+                        </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <h:commandButton value="#{I18N['application.button.new']}" action="formNewEditeur" />

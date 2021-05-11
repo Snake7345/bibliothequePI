@@ -29,8 +29,8 @@
 
             </h:panelGrid>
 
-            <h:commandButton value="#{I18N['application.button.validate']}" action="#{editeursBean.editEditeur}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="tableEditeurs" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.validate']}" action="#{editeursBean.newEditeur}"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{editeursBean.flushEd}" immediate="true"/>
         </h:form>
     </ui:define>
 </ui:composition>

@@ -30,8 +30,8 @@
 
             </h:panelGrid>
 
-            <h:commandButton value="#{I18N['application.button.validate']}" action="#{permissionsBean.editPermission}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="tablePermissions" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.validate']}" action="#{permissionsBean.newPermission}"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{genresBean.flushGen}" immediate="true"/>
         </h:form>
     </ui:define>
 </ui:composition>

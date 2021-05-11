@@ -65,6 +65,12 @@ public class BibliothequesBean implements Serializable {
 
     }
 
+    public String flushBiblio()
+    {
+        init();
+        return "tableBibliotheques?faces-redirect=true";
+    }
+
     public List<Bibliotheques> getReadAll()
     {
         SvcBibliotheques service = new SvcBibliotheques();

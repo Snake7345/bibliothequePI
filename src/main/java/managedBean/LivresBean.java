@@ -5,6 +5,7 @@ import entities.Facture;
 import entities.Jours;
 import entities.Livres;
 import org.apache.log4j.Logger;
+import services.SvcAuteurs;
 import services.SvcFacture;
 import services.SvcLivres;
 
@@ -88,6 +89,57 @@ public class LivresBean implements Serializable {
             service.close();
         }
 
+    }
+
+    public String activdesactivLiv()
+    {
+        SvcLivres service = new SvcLivres();
+        EntityTransaction transaction = service.getTransaction();
+        log.debug("je débute la méthode activdésactive");
+        try
+        {
+            transaction.begin();
+            /*Si la voiture est active alors on la désactive*/
+            if(livre.isActif())
+            {
+                log.debug("je passe le if de désactive");
+                livre.setActif(false);
+            }
+
+            else
+            {
+                livre.setActif(true);
+            }
+
+
+            service.save(livre);
+
+            transaction.commit();
+            log.debug("J'ai modifié le livre");
+            return "/tableLivres.xhtml?faces-redirect=true";
+        }
+        finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                log.debug("J'ai fait une erreur et je suis con");
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+
+                return "";
+            }
+            else
+            {
+                log.debug("je suis censé avoir réussi");
+                init();
+            }
+            service.close();
+        }
+    }
+
+    public String flushLiv()
+    {
+        init();
+        return "tableLivres?faces-redirect=true";
     }
 
     public void edit()

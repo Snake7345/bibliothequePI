@@ -68,6 +68,12 @@ public class PermissionsBean implements Serializable {
 
     }
 
+    public String flushAut()
+    {
+        init();
+        return "tablePermissions?faces-redirect=true";
+    }
+
     public List<Permissions> getReadAll()
     {
         SvcPermissions service = new SvcPermissions();

@@ -52,7 +52,7 @@
             </h:panelGrid>
 
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{livresBean.newLivre}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="tableLivres" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}" immediate="true"/>
         </h:form>
     </ui:define>
 </ui:composition>

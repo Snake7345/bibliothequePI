@@ -56,8 +56,13 @@
                             <h:outputLabel value ="#{liv.editeurs.nom}"/>
                         </h:column>
                         <h:column>
-                            <h:commandButton image="Images//activdesactiv.png" action="#{livresBean.activdesactivVoit}">
-                                <f:setPropertyActionListener target="#{livresBean.livre.idLivres}" value="#{liv.idLivres}" />
+                            <h:commandButton  image="Images//edit.png" action="formEditLivre">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
+                            </h:commandButton>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton image="Images//activdesactiv.png" action="#{livresBean.activdesactivLiv}">
+                                <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                             </h:commandButton>
                         </h:column>
                     </h:dataTable>

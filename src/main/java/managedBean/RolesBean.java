@@ -3,6 +3,7 @@ package managedBean;
 import entities.Auteurs;
 import entities.Roles;
 import org.apache.log4j.Logger;
+import services.SvcAuteurs;
 import services.SvcPermissions;
 import services.SvcRoles;
 
@@ -65,6 +66,51 @@ public class RolesBean implements Serializable {
 
     }
 
+    public String activdesactivRol()
+    {
+        SvcRoles service = new SvcRoles();
+        EntityTransaction transaction = service.getTransaction();
+        log.debug("je débute la méthode activdésactive");
+        try
+        {
+            transaction.begin();
+            /*Si la voiture est active alors on la désactive*/
+            if(role.isActif())
+            {
+                log.debug("je passe le if de désactive");
+                role.setActif(false);
+            }
+
+            else
+            {
+                role.setActif(true);
+            }
+
+
+            service.save(role);
+
+            transaction.commit();
+            log.debug("J'ai modifié le role");
+            return "/tableAuteurs.xhtml?faces-redirect=true";
+        }
+        finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                log.debug("J'ai fait une erreur et je suis con");
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+
+                return "";
+            }
+            else
+            {
+                log.debug("je suis censé avoir réussi");
+                init();
+            }
+            service.close();
+        }
+    }
+
     public void save()
     {
         SvcRoles service = new SvcRoles();
@@ -85,6 +131,12 @@ public class RolesBean implements Serializable {
             service.close();
         }
 
+    }
+
+    public String flushRol()
+    {
+        init();
+        return "tableRoles?faces-redirect=true";
     }
 
 

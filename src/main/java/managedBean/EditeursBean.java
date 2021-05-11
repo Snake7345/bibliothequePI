@@ -89,6 +89,12 @@ public class EditeursBean implements Serializable {
 
     }
 
+    public String flushEd()
+    {
+        init();
+        return "tableEditeurs?faces-redirect=true";
+    }
+
     public List<Editeurs> getReadAll()
     {
         SvcEditeurs service = new SvcEditeurs();

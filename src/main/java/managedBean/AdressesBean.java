@@ -68,6 +68,12 @@ public class AdressesBean implements Serializable {
 
     }
 
+    public String flushAdd()
+    {
+        init();
+        return "tableAddresses?faces-redirect=true";
+    }
+
 
     public List<Adresses> getReadAll()
     {

@@ -6,6 +6,7 @@ import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import services.SvcAdresses;
 import services.SvcAuteurs;
+import services.SvcUtilisateurs;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
@@ -90,6 +91,57 @@ public class AuteursBean implements Serializable {
 
     }
 
+    public String activdesactivAut()
+    {
+        SvcAuteurs service = new SvcAuteurs();
+        EntityTransaction transaction = service.getTransaction();
+        log.debug("je débute la méthode activdésactive");
+        try
+        {
+            transaction.begin();
+            /*Si la voiture est active alors on la désactive*/
+            if(auteur.isActif())
+            {
+                log.debug("je passe le if de désactive");
+                auteur.setActif(false);
+            }
+
+            else
+            {
+                auteur.setActif(true);
+            }
+
+
+            service.save(auteur);
+
+            transaction.commit();
+            log.debug("J'ai modifié l'auteur");
+            return "/tableAuteurs.xhtml?faces-redirect=true";
+        }
+        finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                log.debug("J'ai fait une erreur et je suis con");
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+
+                return "";
+            }
+            else
+            {
+                log.debug("je suis censé avoir réussi");
+                init();
+            }
+            service.close();
+        }
+    }
+
+    public String flushAut()
+    {
+        init();
+        return "tableAuteurs?faces-redirect=true";
+    }
+
     public String SearchAuteur(String nom)
     {
 
@@ -114,6 +166,8 @@ public class AuteursBean implements Serializable {
         plaque2 = "";
         return "formSearchVoiture?faces-redirect=true";
     }
+
+
 
 
     public void edit()

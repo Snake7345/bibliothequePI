@@ -90,6 +90,12 @@ public class GenresBean implements Serializable {
 
     }
 
+    public String flushGen()
+    {
+        init();
+        return "tableGenres?faces-redirect=true";
+    }
+
     public void edit()
     {
         this.genTemp = genre.clone();
