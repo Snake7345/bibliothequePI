@@ -23,7 +23,6 @@ public class RolesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Roles role;
     private static final Logger log = Logger.getLogger(RolesBean.class);
-    private Roles rolTemp;
 
     @PostConstruct
     public void init()
@@ -117,8 +116,7 @@ public class RolesBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            rolTemp.setFields(role);
-            service.save(rolTemp);
+            service.save(role);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
@@ -137,20 +135,6 @@ public class RolesBean implements Serializable {
     {
         init();
         return "tableRoles?faces-redirect=true";
-    }
-
-
-    public void edit()
-    {
-        this.rolTemp = role.clone();
-    }
-
-    public Roles getRolTemp() {
-        return rolTemp;
-    }
-
-    public void setRolTemp(Roles rolTemp) {
-        this.rolTemp = rolTemp;
     }
 
     public List<Roles> getReadAll()

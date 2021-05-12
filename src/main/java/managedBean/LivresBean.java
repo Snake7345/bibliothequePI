@@ -26,7 +26,6 @@ public class LivresBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Livres livre;
     private static final Logger log = Logger.getLogger(LivresBean.class);
-    private Livres livTemp;
 
     private List<Livres> searchResults;
 
@@ -77,8 +76,7 @@ public class LivresBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            livTemp.setFields(livre);
-            service.save(livTemp);
+            service.save(livre);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
@@ -173,11 +171,6 @@ public class LivresBean implements Serializable {
             searchResults.clear();
         }
         return "tableLivres?faces-redirect=true";
-    }
-
-    public void edit()
-    {
-        this.livTemp = livre.clone();
     }
 
 

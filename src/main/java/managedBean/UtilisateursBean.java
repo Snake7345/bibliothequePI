@@ -28,7 +28,6 @@ public class UtilisateursBean implements Serializable
     private Utilisateurs utilisateur;
     private Adresses adresse;
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
-    private Utilisateurs utiliTemp;
 
     private List<Utilisateurs> searchResults;
 
@@ -83,8 +82,7 @@ public class UtilisateursBean implements Serializable
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            utiliTemp.setFields(utilisateur);
-            service.save(utiliTemp);
+            service.save(utilisateur);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
@@ -200,14 +198,6 @@ public class UtilisateursBean implements Serializable
 
     public void setUtilisateur(Utilisateurs utilisateur) {
         this.utilisateur = utilisateur;
-    }
-
-    public Utilisateurs getUtiliTemp() {
-        return utiliTemp;
-    }
-
-    public void setUtiliTemp(Utilisateurs utiliTemp) {
-        this.utiliTemp = utiliTemp;
     }
 
     public List<Utilisateurs> getSearchResults() {

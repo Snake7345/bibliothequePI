@@ -75,8 +75,7 @@ public class AuteursBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            autTemp.setFields(auteur);
-            service.save(autTemp);
+            service.save(auteur);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
@@ -195,14 +194,6 @@ public class AuteursBean implements Serializable {
 
     public void setAuteur(Auteurs auteur) {
         this.auteur = auteur;
-    }
-
-    public Auteurs getAutTemp() {
-        return autTemp;
-    }
-
-    public void setAutTemp(Auteurs autTemp) {
-        this.autTemp = autTemp;
     }
 
     public List<Auteurs> getSearchResults() {

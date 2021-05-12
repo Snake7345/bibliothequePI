@@ -25,7 +25,6 @@ public class GenresBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Genres genre;
     private static final Logger log = Logger.getLogger(GenresBean.class);
-    private Genres genTemp;
 
     @PostConstruct
     public void init()
@@ -74,8 +73,7 @@ public class GenresBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            genTemp.setFields(genre);
-            service.save(genTemp);
+            service.save(genre);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
@@ -94,19 +92,6 @@ public class GenresBean implements Serializable {
     {
         init();
         return "tableGenres?faces-redirect=true";
-    }
-
-    public void edit()
-    {
-        this.genTemp = genre.clone();
-    }
-
-    public Genres getGenTemp() {
-        return genTemp;
-    }
-
-    public void setGenTemp(Genres genTemp) {
-        this.genTemp = genTemp;
     }
 
     public List<Genres> getReadAll()

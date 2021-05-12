@@ -24,7 +24,6 @@ public class EditeursBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Editeurs editeur;
     private static final Logger log = Logger.getLogger(EditeursBean.class);
-    private Editeurs editTemp;
 
     @PostConstruct
     public void init()
@@ -73,8 +72,7 @@ public class EditeursBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            editTemp.setFields(editeur);
-            service.save(editTemp);
+            service.save(editeur);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
@@ -105,18 +103,6 @@ public class EditeursBean implements Serializable {
         return listEditeurs;
     }
 
-    public void edit()
-    {
-        this.editTemp = editeur.clone();
-    }
-
-    public Editeurs getEditTemp() {
-        return editTemp;
-    }
-
-    public void setEditTemp(Editeurs editTemp) {
-        this.editTemp = editTemp;
-    }
 
     public Editeurs getEditeur() {
         return editeur;

@@ -24,9 +24,6 @@ public class AdressesBean implements Serializable {
     private Adresses adresse;
     private static final Logger log = Logger.getLogger(AdressesBean.class);
 
-    private Adresses adresseTemp;
-
-
     @PostConstruct
     public void init()
     {
@@ -92,13 +89,6 @@ public class AdressesBean implements Serializable {
 
     public void setAdresse(Adresses adresse) {
         this.adresse = adresse;
-    }
-
-    public Adresses getAdresseTemp() {
-        return adresseTemp;
-    }
-    public void setAdresseTemp(Adresses adresseTemp) {
-        this.adresseTemp = adresseTemp;
     }
 
 
