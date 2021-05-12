@@ -1,5 +1,6 @@
 package managedBean;
 
+import entities.Adresses;
 import entities.Utilisateurs;
 import enumeration.UtilisateurSexeEnum;
 import org.apache.log4j.Logger;
@@ -23,7 +24,7 @@ public class UtilisateursBean implements Serializable
     private static final long serialVersionUID = 1L;
 
     private Utilisateurs utilisateur;
-
+    private Adresses adresse;
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
     private Utilisateurs utiliTemp;
 
@@ -48,10 +49,10 @@ public class UtilisateursBean implements Serializable
 
         try {
 
-            service.save(utilisateur);
+            utilisateur= service.save(utilisateur);
 
             transaction.commit();
-            log.debug("J'ai sauvé l'utilisateur");
+            log.debug("J'ai sauvé l'utilisateur " + utilisateur.getIdUtilisateurs());
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
         } finally {
             if (transaction.isActive()) {

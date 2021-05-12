@@ -139,7 +139,10 @@ public class AuteursBean implements Serializable {
     public String flushAut()
     {
         init();
-        searchResults.clear();
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
         return "tableAuteurs?faces-redirect=true";
     }
 

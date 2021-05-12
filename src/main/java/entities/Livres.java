@@ -28,7 +28,7 @@ public class Livres implements Serializable {
     private int idLivres;
     private String titre;
     private int annee;
-    private int isbn;
+    private String isbn;
     private boolean actif = true;
     private Collection<ExemplairesLivres> exemplairesLivres;
     private Collection<LivresAuteurs> livresAuteurs;
@@ -64,13 +64,15 @@ public class Livres implements Serializable {
         this.annee = annee;
     }
 
+
     @Basic
     @Column(name = "ISBN", nullable = false)
-    public int getIsbn() {
+
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -93,7 +95,7 @@ public class Livres implements Serializable {
         Livres livres = (Livres) o;
         return idLivres == livres.idLivres &&
                 annee == livres.annee &&
-                isbn == livres.isbn &&
+                isbn.equals(livres.isbn) &&
                 actif == livres.actif &&
                 Objects.equals(titre, livres.titre) &&
                 Objects.equals(editeurs, livres.editeurs);
