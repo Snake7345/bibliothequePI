@@ -41,7 +41,7 @@
                 <h:outputText value = "#{I18N['localite.label.Cp']}"/>
                 <h:selectOneMenu value = "#{adressesBean.adresse.localites.idLocalites}" id="adressLoca">
                     <f:selectItems value = "#{localitesBean.readAll}" var="loca"
-                                   itemLabel="#{loca.cp}" itemValue="#{loca.idLocalites}"/>
+                                   itemLabel="#{loca.cp} - #{loca.ville}" itemValue="#{loca.idLocalites}"/>
                 </h:selectOneMenu>
 
             </h:panelGrid>
