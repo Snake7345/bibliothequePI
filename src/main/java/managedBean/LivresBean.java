@@ -1,13 +1,8 @@
 package managedBean;
 
-import entities.Auteurs;
-import entities.Facture;
-import entities.Jours;
-import entities.Livres;
+import entities.*;
 import org.apache.log4j.Logger;
-import services.SvcAuteurs;
-import services.SvcFacture;
-import services.SvcLivres;
+import services.*;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
@@ -27,6 +22,12 @@ public class LivresBean implements Serializable {
     private Livres livre;
     private static final Logger log = Logger.getLogger(LivresBean.class);
 
+    private LivresAuteurs livresAuteur;
+    private List<Auteurs> auteur;
+    private LivresGenres livresGenre;
+    private Genres genre;
+
+
     private List<Livres> searchResults;
 
     @PostConstruct
@@ -38,17 +39,17 @@ public class LivresBean implements Serializable {
     public String newLivre()
     {
         SvcLivres service = new SvcLivres();
+        //SvcLivresGenres serviceLG = new SvcLivresGenres();
         EntityTransaction transaction = service.getTransaction();
-        //Todo mettre/faire une verification de l'objet utilisateur,
+        //Todo mettre/faire une verification de l'objet Livre,
         log.debug("J'vais essayer d'sauver le livre");
-        transaction.begin();
 
+        transaction.begin();
         try {
 
-            service.save(livre);
-
+            livre = service.save(livre);
             transaction.commit();
-            log.debug("J'ai sauvé l'adresse");
+            log.debug("J'ai sauvé le livre");
             return "/tableLivres.xhtml?faces-redirect=true";
         } finally {
             if (transaction.isActive()) {
@@ -61,13 +62,45 @@ public class LivresBean implements Serializable {
             }
             else
             {
+                newLivreAuteur();
                 log.debug("je suis censé avoir réussi");
                 init();
             }
 
             service.close();
         }
+    }
 
+    public void newLivreAuteur()
+    {
+        SvcLivresAuteurs serviceLA = new SvcLivresAuteurs();
+        //SvcLivresGenres serviceLG = new SvcLivresGenres();
+        EntityTransaction transaction = serviceLA.getTransaction();
+        //Todo mettre/faire une verification de l'objet livreAuteur,
+        log.debug("J'vais essayer d'sauver le bidule");
+
+        transaction.begin();
+        try {
+
+            for (Auteurs auteurs : auteur) {
+                livresAuteur = serviceLA.createLivresAuteurs(livre, auteurs);
+                serviceLA.save(livresAuteur);
+            }
+            transaction.commit();
+            log.debug("J'ai sauvé le bidule");
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                log.debug("J'ai fait une erreur et je suis con");
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+            }
+            else
+            {
+                log.debug("je suis censé avoir réussi");
+                init();
+            }
+        }
     }
 
     public void save()
@@ -200,7 +233,35 @@ public class LivresBean implements Serializable {
         this.searchResults = searchResults;
     }
 
+    public LivresAuteurs getLivresAuteur() {
+        return livresAuteur;
+    }
 
+    public void setLivresAuteur(LivresAuteurs livresAuteur) {
+        this.livresAuteur = livresAuteur;
+    }
 
+    public LivresGenres getLivresGenre() {
+        return livresGenre;
+    }
 
+    public void setLivresGenre(LivresGenres livresGenre) {
+        this.livresGenre = livresGenre;
+    }
+
+    public Genres getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genres genre) {
+        this.genre = genre;
+    }
+
+    public List<Auteurs> getAuteur() {
+        return auteur;
+    }
+
+    public void setAuteur(List<Auteurs> auteur) {
+        this.auteur = auteur;
+    }
 }

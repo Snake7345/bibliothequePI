@@ -26,8 +26,8 @@
                 </h:inputText>
                 <h:message for="livreTitre" styleClass="errorMessage"/>
 
-                <h:selectManyListbox value = "#{auteursBean.readAll}">
-                    <f:selectItems value = "#{auteursBean.readAll}" var="lived" itemLabel="#{lived.nom}" itemValue="#{lived.idEditeurs}"/>
+                <h:selectManyListbox value = "#{livresBean.auteur}">
+                    <f:selectItems value = "#{auteursBean.readAll}" var="livaut" itemLabel="#{livaut.nom} #{livaut.prenom}" itemValue="#{livaut}"/>
                 </h:selectManyListbox>
 
                 <h:outputText value = "#{I18N['livre.label.Annee']}"/>
@@ -50,8 +50,9 @@
                 <h:message for="livreISBN" styleClass="errorMessage"/>
 
                 <h:outputText value = "#{I18N['editeur.label.Nom']}"/>
-                <h:selectOneMenu value = "#{livresBean.livre.editeurs.idEditeurs}" id="livreEdit">
-                    <f:selectItems value = "#{editeursBean.readAll}" var="lived" itemLabel="#{lived.nom}" itemValue="#{lived.idEditeurs}"/>
+                <h:selectOneMenu value = "#{livresBean.livre.editeurs}" id="livreEdit"
+                                 converter="editeurConverter">
+                    <f:selectItems value = "#{editeursBean.readAll}" var="lived" itemLabel="#{lived.nom}" itemValue="#{lived}" />
                 </h:selectOneMenu>
 
 

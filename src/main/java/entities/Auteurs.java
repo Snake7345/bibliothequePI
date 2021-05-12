@@ -24,7 +24,7 @@ public class Auteurs implements Serializable {
     private String nom;
     private String prenom;
     private boolean actif = true;
-    private Collection<LivresAuteurs> livresAuteursByIdAuteurs;
+    private Collection<LivresAuteurs> livresAuteur;
 
     @Id
     @Column(name = "IdAuteurs", nullable = false)
@@ -76,38 +76,21 @@ public class Auteurs implements Serializable {
         return idAuteurs == auteurs.idAuteurs &&
                 actif == auteurs.actif &&
                 Objects.equals(nom, auteurs.nom) &&
-                Objects.equals(prenom, auteurs.prenom) &&
-                Objects.equals(livresAuteursByIdAuteurs, auteurs.livresAuteursByIdAuteurs);
+                Objects.equals(prenom, auteurs.prenom);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAuteurs, nom, prenom, actif, livresAuteursByIdAuteurs);
+        return Objects.hash(idAuteurs, nom, prenom, actif);
     }
 
-    @OneToMany(mappedBy = "auteursByAuteursIdAuteurs")
-    public Collection<LivresAuteurs> getLivresAuteursByIdAuteurs() {
-        return livresAuteursByIdAuteurs;
+    @OneToMany(mappedBy = "auteur")
+    public Collection<LivresAuteurs> getLivresAuteur() {
+        return livresAuteur;
     }
 
-    public void setLivresAuteursByIdAuteurs(Collection<LivresAuteurs> livresAuteursByIdAuteurs) {
-        this.livresAuteursByIdAuteurs = livresAuteursByIdAuteurs;
+    public void setLivresAuteur(Collection<LivresAuteurs> livresAuteursByIdAuteurs) {
+        this.livresAuteur = livresAuteursByIdAuteurs;
     }
 
-    public Auteurs clone(){
-        Auteurs aut = null;
-        try{
-            aut = (Auteurs) super.clone();
-        }catch (CloneNotSupportedException e) {
-            e.printStackTrace(System.err);
-        }
-        return aut;
-    }
-
-    public void setFields(Auteurs aut) {
-        this.nom = aut.nom;
-        this.prenom = aut.prenom;
-        this.actif = aut.actif;
-        this.livresAuteursByIdAuteurs = aut.livresAuteursByIdAuteurs;
-    }
 }

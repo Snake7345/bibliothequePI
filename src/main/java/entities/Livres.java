@@ -123,17 +123,17 @@ public class Livres implements Serializable {
         return editeurs;
     }
 
-    public void setEditeurs(Editeurs editeursByEditeursIdEditeurs) {
-        this.editeurs = editeursByEditeursIdEditeurs;
+    public void setEditeurs(Editeurs editeurs) {
+        this.editeurs = editeurs;
     }
 
-    @OneToMany(mappedBy = "livresByLivresIdLivres")
+    @OneToMany(mappedBy = "livre")
     public Collection<LivresAuteurs> getLivresAuteurs() {
         return livresAuteurs;
     }
 
-    public void setLivresAuteurs(Collection<LivresAuteurs> livresAuteursByIdLivres) {
-        this.livresAuteurs = livresAuteursByIdLivres;
+    public void setLivresAuteurs(Collection<LivresAuteurs> livresAuteurs) {
+        this.livresAuteurs = livresAuteurs;
     }
 
     @OneToMany(mappedBy = "livresByLivresIdLivres")
@@ -141,8 +141,8 @@ public class Livres implements Serializable {
         return livresGenres;
     }
 
-    public void setLivresGenres(Collection<LivresGenres> livresGenresByIdLivres) {
-        this.livresGenres = livresGenresByIdLivres;
+    public void setLivresGenres(Collection<LivresGenres> livresGenres) {
+        this.livresGenres = livresGenres;
     }
 
     @Override
