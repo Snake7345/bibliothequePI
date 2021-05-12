@@ -21,7 +21,8 @@
                 <h:inputText id="auteurNom"
                              value="#{auteursBean.auteur.nom}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.nom']}">
+                             requiredMessage="#{I18N['formulaire.message.required.nom']}"
+                             minlength ="2">
                 </h:inputText>
                 <h:message for="auteurNom" styleClass="errorMessage"/>
 
@@ -29,7 +30,8 @@
                 <h:inputText id="auteurPrenom"
                              value="#{auteursBean.auteur.prenom}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.prenom']}">
+                             requiredMessage="#{I18N['formulaire.message.required.prenom']}"
+                             minlength ="2">
                 </h:inputText>
                 <h:message for="auteurPrenom" styleClass="errorMessage"/>
 

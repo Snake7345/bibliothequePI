@@ -1,13 +1,10 @@
 package services;
 
 
-import entities.Adresses;
-import entities.Auteurs;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +45,13 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		System.out.println("Je delete l'utilisateur :" + util.getNom() + util.getPrenom());
 		util.setActif(false);
 		return util;
+	}
+
+	public List<Utilisateurs> getByName(String nom) {
+		Map<String, String> param = new HashMap<>();
+		param.put("nom", nom);
+
+		return finder.findByNamedQuery("Utilisateurs.searchName", param);
 	}
 
 

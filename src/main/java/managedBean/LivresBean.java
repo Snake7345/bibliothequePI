@@ -28,6 +28,8 @@ public class LivresBean implements Serializable {
     private static final Logger log = Logger.getLogger(LivresBean.class);
     private Livres livTemp;
 
+    private List<Livres> searchResults;
+
     @PostConstruct
     public void init()
     {
@@ -136,9 +138,40 @@ public class LivresBean implements Serializable {
         }
     }
 
+    public String searchLivre()
+    {
+
+        SvcLivres service = new SvcLivres();
+        //try
+        //{
+
+        log.debug("list livres " + service.getByTitre(livre.getTitre()).size());
+        if(service.getByTitre(livre.getTitre()).isEmpty())
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("livRech", new FacesMessage("le livre n'a pas été trouvé"));
+            return null;
+        }
+        else
+        {
+            searchResults = service.getByTitre(livre.getTitre());
+        }
+
+        //}
+        //catch
+        //{
+
+        //}
+        return "formSearchLivre?faces-redirect=true";
+    }
+
     public String flushLiv()
     {
         init();
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
         return "tableLivres?faces-redirect=true";
     }
 
@@ -164,6 +197,14 @@ public class LivresBean implements Serializable {
 
     public void setLivre(Livres livre) {
         this.livre = livre;
+    }
+
+    public List<Livres> getSearchResults() {
+        return searchResults;
+    }
+
+    public void setSearchResults(List<Livres> searchResults) {
+        this.searchResults = searchResults;
     }
 
 

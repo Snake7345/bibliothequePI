@@ -1,9 +1,6 @@
 package services;
 
-import entities.Auteurs;
-import entities.Editeurs;
-import entities.Genres;
-import entities.Livres;
+import entities.*;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -65,6 +62,13 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 		System.out.println("Je delete le livre :" + liv.getTitre());
 		liv.setActif(false);
 		return liv;
+	}
+
+	public List<Livres> getByTitre(String titre) {
+		Map<String, String> param = new HashMap<>();
+		param.put("titre", titre);
+
+		return finder.findByNamedQuery("Livres.searchTitre", param);
 	}
 
 }

@@ -21,7 +21,8 @@
                 <h:inputText id="utilisateurNom"
                              value="#{utilisateursBean.utilisateur.nom}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.nom']}">
+                             requiredMessage="#{I18N['formulaire.message.required.nom']}"
+                             minlength ="2">
                 </h:inputText>
                 <h:message for="utilisateurNom" styleClass="errorMessage"/>
 
@@ -29,7 +30,8 @@
                 <h:inputText id="utilisateurPrenom"
                              value="#{utilisateursBean.utilisateur.prenom}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.prenom']}">
+                             requiredMessage="#{I18N['formulaire.message.required.prenom']}"
+                             minlength ="2">
                 </h:inputText>
                 <h:message for="utilisateurPrenom" styleClass="errorMessage"/>
 
@@ -42,20 +44,23 @@
                 <h:inputText id="utilisateurCourriel"
                              value="#{utilisateursBean.utilisateur.courriel}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.courriel']}">
+                             requiredMessage="#{I18N['formulaire.message.required.courriel']}"
+                             minlength ="5">
                 </h:inputText>
                 <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 
                 <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
                 <h:inputText id="utilLogin"
                              value="#{utilisateursBean.utilisateur.login}"
-                             required="false">
+                             required="false"
+                             minlength ="2">
                 </h:inputText>
 
                 <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
                 <h:inputText id="utilisateurMdp"
                              value="#{utilisateursBean.utilisateur.mdp}"
-                             required="false">
+                             required="false"
+                             minlength ="3">
                 </h:inputText>
 
                 <h:outputText value = "#{I18N['role.label.Denomination']}"/>

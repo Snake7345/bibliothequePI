@@ -173,9 +173,6 @@ public class AuteursBean implements Serializable {
         return "formSearchAuteur?faces-redirect=true";
     }
 
-
-
-
     public void edit()
     {
         this.autTemp = auteur.clone();

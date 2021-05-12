@@ -1,9 +1,11 @@
 package managedBean;
 
 import entities.Adresses;
+import entities.Auteurs;
 import entities.Utilisateurs;
 import enumeration.UtilisateurSexeEnum;
 import org.apache.log4j.Logger;
+import services.SvcAuteurs;
 import services.SvcUtilisateurs;
 
 import javax.annotation.ManagedBean;
@@ -27,6 +29,8 @@ public class UtilisateursBean implements Serializable
     private Adresses adresse;
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
     private Utilisateurs utiliTemp;
+
+    private List<Utilisateurs> searchResults;
 
     public UtilisateursBean()
     {
@@ -140,9 +144,40 @@ public class UtilisateursBean implements Serializable
         }
     }
 
+    public String searchUtilisateur()
+    {
+
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        //try
+        //{
+
+        log.debug("list auteur " + service.getByName(utilisateur.getNom()).size());
+        if(service.getByName(utilisateur.getNom()).isEmpty())
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("utilRech", new FacesMessage("l'utilisateur n'a pas été trouvé"));
+            return null;
+        }
+        else
+        {
+            searchResults = service.getByName(utilisateur.getNom());
+        }
+
+        //}
+        //catch
+        //{
+
+        //}
+        return "formSearchUtilisateur?faces-redirect=true";
+    }
+
     public String flushUtil()
     {
         init();
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
         return "tableUtilisateurs?faces-redirect=true";
     }
 
@@ -173,6 +208,14 @@ public class UtilisateursBean implements Serializable
 
     public void setUtiliTemp(Utilisateurs utiliTemp) {
         this.utiliTemp = utiliTemp;
+    }
+
+    public List<Utilisateurs> getSearchResults() {
+        return searchResults;
+    }
+
+    public void setSearchResults(List<Utilisateurs> searchResults) {
+        this.searchResults = searchResults;
     }
 
 

@@ -20,6 +20,7 @@ import java.util.Objects;
                 @NamedQuery(name = "Livres.findByAuteurs", query = "SELECT l FROM Livres l WHERE l.livresAuteurs=:auteur"), // Join a verifier
                 @NamedQuery(name = "Livres.findByEditeurs", query = "SELECT l FROM Livres l WHERE l.editeurs=:editeur"),
                 @NamedQuery(name = "Livres.findByGenres", query = "SELECT l FROM Livres l WHERE l.livresGenres=:genre"),
+                @NamedQuery(name="Livres.searchLivre", query="SELECT l FROM Livres l WHERE l.titre=:titre"),
         })
 public class Livres implements Serializable {
     private static final long serialVersionUID = 1L;
