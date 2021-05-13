@@ -9,6 +9,7 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "LivresAuteurs.findAll", query = "SELECT la FROM LivresAuteurs la"),
+                @NamedQuery(name = "LivresAuteurs.findBylivre", query = "SELECT la FROM LivresAuteurs la where la.livre=:livre"),
         })
 public class LivresAuteurs implements Serializable {
     private static final long serialVersionUID = 1L;

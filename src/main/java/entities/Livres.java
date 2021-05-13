@@ -1,5 +1,9 @@
 package entities;
 
+import services.SvcLivresAuteurs;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -127,9 +131,17 @@ public class Livres implements Serializable {
         this.editeurs = editeurs;
     }
 
-    @OneToMany(mappedBy = "livre")
+    @OneToMany(mappedBy = "LivresIdLivres")
     public Collection<LivresAuteurs> getLivresAuteurs() {
-        return livresAuteurs;
+        SvcLivresAuteurs service = new SvcLivresAuteurs();
+        if(service.GetByLivre(this).isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            return service.GetByLivre(this);
+        }
     }
 
     public void setLivresAuteurs(Collection<LivresAuteurs> livresAuteurs) {
@@ -137,35 +149,12 @@ public class Livres implements Serializable {
     }
 
     @OneToMany(mappedBy = "livresByLivresIdLivres")
-    public Collection<LivresGenres> getLivresGenres() {
+    public Collection<LivresGenres> getLivresGenres()
+    {
         return livresGenres;
     }
 
     public void setLivresGenres(Collection<LivresGenres> livresGenres) {
         this.livresGenres = livresGenres;
-    }
-
-    @Override
-    public Livres clone(){
-        Livres liv = null;
-        try{
-            liv = (Livres) super.clone();
-        }catch (CloneNotSupportedException e) {
-            e.printStackTrace(System.err);
-        }
-        return liv;
-    }
-
-    public void setFields(Livres liv) {
-        this.titre = liv.titre;
-        this.annee = liv.annee;
-        this.isbn = liv.isbn;
-        this.actif = liv.actif;
-        this.exemplairesLivres = liv.exemplairesLivres;
-        this.editeurs = liv.editeurs;
-        this.livresAuteurs = liv.livresAuteurs;
-        this.livresGenres = liv.livresGenres;
-
-
     }
 }

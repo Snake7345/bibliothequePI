@@ -4,6 +4,10 @@ import entities.*;
 import managedBean.LivresBean;
 import org.apache.log4j.Logger;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class SvcLivresAuteurs extends Service<LivresAuteurs>{
 
     public SvcLivresAuteurs()
@@ -12,6 +16,12 @@ public class SvcLivresAuteurs extends Service<LivresAuteurs>{
     }
     private static final Logger log = Logger.getLogger(SvcLivresAuteurs.class);
 
+    public List<LivresAuteurs> GetByLivre(Livres livres) {
+        Map<String, Livres> param = new HashMap<>();
+        param.put("livre", livres);
+
+        return finder.findByNamedQuery("LivresAuteurs.findBylivre", param);
+    }
     @Override
     public LivresAuteurs save(LivresAuteurs livresAuteurs)
     {

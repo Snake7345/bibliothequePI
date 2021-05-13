@@ -28,7 +28,7 @@ public class Facture implements Serializable {
     private Collection<FactureDetail> factureDetails;
 
     @Id
-    @Column(name = "IdFacture", nullable = false)
+    @Column(name = "IdFactures", nullable = false)
     public int getIdFactures() {
         return idFactures;
     }

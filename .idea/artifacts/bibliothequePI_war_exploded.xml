@@ -12,7 +12,6 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="bibliothequePI" />
-          <element id="file-copy" path="$USER_HOME$/Google Drive/Projet d'intégration - J.Gillain _ A. Bauduin/log4j.properties" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.7.7" />
@@ -43,7 +42,6 @@
           <element id="library" level="project" name="Maven: org.apache.pdfbox:pdfbox:2.0.19" />
           <element id="library" level="project" name="Maven: org.apache.pdfbox:fontbox:2.0.19" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
-          <element id="file-copy" path="$USER_HOME$/Google Drive/Projet d'intégration - J.Gillain _ A. Bauduin/log4j.properties" />
         </element>
       </element>
       <element id="directory" name="META-INF">
