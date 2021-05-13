@@ -29,7 +29,7 @@
         <class>entities.Utilisateurs</class>
         <class>entities.UtilisateursAdresses</class>
         <properties>
-            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/bibliotheque?autoReconnect=true&amp;useSSL=false&amp;serverTimezone=UTC"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/bibliotheque?autoReconnect=true"/>
             <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="eclipselink.jdbc.user" value="root" />
             <property name="eclipselink.jdbc.password" value="root" />
