@@ -1,9 +1,5 @@
 package entities;
 
-import services.SvcLivresAuteurs;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -36,6 +32,7 @@ public class Livres implements Serializable {
     private String isbn;
     private boolean actif = true;
     private Collection<ExemplairesLivres> exemplairesLivres;
+    @OneToMany(mappedBy = "livre")
     private Collection<LivresAuteurs> livresAuteurs;
     private Collection<LivresGenres> livresGenres;
 
@@ -131,18 +128,11 @@ public class Livres implements Serializable {
         this.editeurs = editeurs;
     }
 
-    @OneToMany(mappedBy = "LivresIdLivres")
+
     public Collection<LivresAuteurs> getLivresAuteurs() {
-        SvcLivresAuteurs service = new SvcLivresAuteurs();
-        if(service.GetByLivre(this).isEmpty())
-        {
-            return null;
-        }
-        else
-        {
-            return service.GetByLivre(this);
-        }
+        return livresAuteurs;
     }
+
 
     public void setLivresAuteurs(Collection<LivresAuteurs> livresAuteurs) {
         this.livresAuteurs = livresAuteurs;

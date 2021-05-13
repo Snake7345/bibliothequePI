@@ -3,6 +3,7 @@
   <component name="AutoGeneratorSettingsState">
     <option name="generateDatetimeDefaultValue" value="true" />
     <option name="generateDefaultValue" value="true" />
+    <option name="generateRepository" value="false" />
     <option name="ignoredFields">
       <set>
         <option value="" />
@@ -16,7 +17,7 @@
             <ModuleSettings>
               <option name="entityPackageName" value="entities" />
               <option name="entityParentDirectory" value="$PROJECT_DIR$/src/main/java" />
-              <option name="repositoryPackageName" value="repository" />
+              <option name="repositoryPackageName" value="eee" />
               <option name="repositoryParentDirectory" value="$PROJECT_DIR$/src/main/java" />
             </ModuleSettings>
           </value>
