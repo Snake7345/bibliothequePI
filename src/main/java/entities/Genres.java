@@ -19,7 +19,8 @@ public class Genres implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idGenres;
     private String denomination;
-    private Collection<LivresGenres> livresGenresByIdGenres;
+    @OneToMany(mappedBy = "genre")
+    private Collection<LivresGenres> livresGenres;
 
     @Id
     @Column(name = "IdGenres", nullable = false)
@@ -55,13 +56,13 @@ public class Genres implements Serializable {
         return Objects.hash(idGenres, denomination);
     }
 
-    @OneToMany(mappedBy = "genresByGenresIdGenres")
-    public Collection<LivresGenres> getLivresGenresByIdGenres() {
-        return livresGenresByIdGenres;
+
+    public Collection<LivresGenres> getLivresGenres() {
+        return livresGenres;
     }
 
-    public void setLivresGenresByIdGenres(Collection<LivresGenres> livresGenresByIdGenres) {
-        this.livresGenresByIdGenres = livresGenresByIdGenres;
+    public void setLivresGenres(Collection<LivresGenres> livresGenres) {
+        this.livresGenres = livresGenres;
     }
 
     @Override
@@ -77,6 +78,6 @@ public class Genres implements Serializable {
 
     public void setFields(Genres gen) {
         this.denomination = gen.denomination;
-        this.livresGenresByIdGenres = gen.livresGenresByIdGenres;
+        this.livresGenres = gen.livresGenres;
     }
 }

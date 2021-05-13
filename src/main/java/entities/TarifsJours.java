@@ -21,8 +21,8 @@ public class TarifsJours implements Serializable {
     private double prix;
     private Timestamp dateDebut;
     private Timestamp dateFin;
-    private Tarifs tarifsByTarifsIdTarifs;
-    private Jours joursByJoursIdJours;
+    private Tarifs tarifs;
+    private Jours jours;
 
     @Basic
     @Column(name = "TarifsIdTarifs", nullable = false)
@@ -104,21 +104,21 @@ public class TarifsJours implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "TarifsIdTarifs", referencedColumnName = "IdTarifs", nullable = false)
-    public Tarifs getTarifsByTarifsIdTarifs() {
-        return tarifsByTarifsIdTarifs;
+    public Tarifs getTarifs() {
+        return tarifs;
     }
 
-    public void setTarifsByTarifsIdTarifs(Tarifs tarifsByTarifsIdTarifs) {
-        this.tarifsByTarifsIdTarifs = tarifsByTarifsIdTarifs;
+    public void setTarifs(Tarifs tarifsByTarifsIdTarifs) {
+        this.tarifs = tarifsByTarifsIdTarifs;
     }
 
     @ManyToOne
     @JoinColumn(name = "JoursIdJours", referencedColumnName = "IdJours", nullable = false)
-    public Jours getJoursByJoursIdJours() {
-        return joursByJoursIdJours;
+    public Jours getJours() {
+        return jours;
     }
 
-    public void setJoursByJoursIdJours(Jours joursByJoursIdJours) {
-        this.joursByJoursIdJours = joursByJoursIdJours;
+    public void setJours(Jours joursByJoursIdJours) {
+        this.jours = joursByJoursIdJours;
     }
 }

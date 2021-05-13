@@ -29,9 +29,10 @@ public class ExemplairesLivres implements Serializable {
     private boolean actif = true;
     private String commentaireEtat;
     private boolean loue;
-    private Bibliotheques bibliothequesByBibliothequesIdBibliotheques;
-    private Livres livresByLivresIdLivres;
-    private Collection<FactureDetail> factureDetailsByIdExemplairesLivres;
+    private Bibliotheques bibliotheques;
+    private Livres livres;
+    @OneToMany(mappedBy = "exemplairesLivre")
+    private Collection<FactureDetail> factureDetails;
 
     @Id
     @Column(name = "IdExemplairesLivres", nullable = false)
@@ -130,43 +131,43 @@ public class ExemplairesLivres implements Serializable {
                 loue == that.loue &&
                 Objects.equals(codeBarre, that.codeBarre) &&
                 Objects.equals(commentaireEtat, that.commentaireEtat) &&
-                Objects.equals(bibliothequesByBibliothequesIdBibliotheques, that.bibliothequesByBibliothequesIdBibliotheques) &&
-                Objects.equals(livresByLivresIdLivres, that.livresByLivresIdLivres) &&
-                Objects.equals(factureDetailsByIdExemplairesLivres, that.factureDetailsByIdExemplairesLivres) &&
+                Objects.equals(bibliotheques, that.bibliotheques) &&
+                Objects.equals(livres, that.livres) &&
+                Objects.equals(factureDetails, that.factureDetails) &&
                 etat == that.etat;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idExemplairesLivres, codeBarre, bibliothequesIdBibliotheques, livresIdLivres, actif, etat, commentaireEtat, loue, bibliothequesByBibliothequesIdBibliotheques, livresByLivresIdLivres, factureDetailsByIdExemplairesLivres, etat);
+        return Objects.hash(idExemplairesLivres, codeBarre, bibliothequesIdBibliotheques, livresIdLivres, actif, etat, commentaireEtat, loue, bibliotheques, livres, factureDetails, etat);
     }
 
     @ManyToOne
     @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques", nullable = false)
-    public Bibliotheques getBibliothequesByBibliothequesIdBibliotheques() {
-        return bibliothequesByBibliothequesIdBibliotheques;
+    public Bibliotheques getBibliotheques() {
+        return bibliotheques;
     }
 
-    public void setBibliothequesByBibliothequesIdBibliotheques(Bibliotheques bibliothequesByBibliothequesIdBibliotheques) {
-        this.bibliothequesByBibliothequesIdBibliotheques = bibliothequesByBibliothequesIdBibliotheques;
+    public void setBibliotheques(Bibliotheques bibliothequesByBibliothequesIdBibliotheques) {
+        this.bibliotheques = bibliothequesByBibliothequesIdBibliotheques;
     }
 
     @ManyToOne
     @JoinColumn(name = "LivresIdLivres", referencedColumnName = "IdLivres", nullable = false)
-    public Livres getLivresByLivresIdLivres() {
-        return livresByLivresIdLivres;
+    public Livres getLivres() {
+        return livres;
     }
 
-    public void setLivresByLivresIdLivres(Livres livresByLivresIdLivres) {
-        this.livresByLivresIdLivres = livresByLivresIdLivres;
+    public void setLivres(Livres livresByLivresIdLivres) {
+        this.livres = livresByLivresIdLivres;
     }
 
-    @OneToMany(mappedBy = "exemplairesLivresByExemplairesLivresIdExemplairesLivres")
-    public Collection<FactureDetail> getFactureDetailsByIdExemplairesLivres() {
-        return factureDetailsByIdExemplairesLivres;
+
+    public Collection<FactureDetail> getFactureDetails() {
+        return factureDetails;
     }
 
-    public void setFactureDetailsByIdExemplairesLivres(Collection<FactureDetail> factureDetailsByIdExemplairesLivres) {
-        this.factureDetailsByIdExemplairesLivres = factureDetailsByIdExemplairesLivres;
+    public void setFactureDetails(Collection<FactureDetail> factureDetailsByIdExemplairesLivres) {
+        this.factureDetails = factureDetailsByIdExemplairesLivres;
     }
 }

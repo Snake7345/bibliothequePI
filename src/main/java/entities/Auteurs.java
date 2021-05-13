@@ -24,6 +24,7 @@ public class Auteurs implements Serializable {
     private String nom;
     private String prenom;
     private boolean actif = true;
+    @OneToMany(mappedBy = "auteur")
     private Collection<LivresAuteurs> livresAuteur;
 
     @Id
@@ -84,7 +85,7 @@ public class Auteurs implements Serializable {
         return Objects.hash(idAuteurs, nom, prenom, actif);
     }
 
-    @OneToMany(mappedBy = "auteur")
+
     public Collection<LivresAuteurs> getLivresAuteur() {
         return livresAuteur;
     }

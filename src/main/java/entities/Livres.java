@@ -31,9 +31,11 @@ public class Livres implements Serializable {
     private int annee;
     private String isbn;
     private boolean actif = true;
+    @OneToMany(mappedBy = "livre")
     private Collection<ExemplairesLivres> exemplairesLivres;
     @OneToMany(mappedBy = "livre")
     private Collection<LivresAuteurs> livresAuteurs;
+    @OneToMany(mappedBy = "livre")
     private Collection<LivresGenres> livresGenres;
 
     @Id
@@ -108,7 +110,7 @@ public class Livres implements Serializable {
         return Objects.hash(idLivres, titre, annee, isbn, actif, editeurs);
     }
 
-    @OneToMany(mappedBy = "livresByLivresIdLivres")
+
     public Collection<ExemplairesLivres> getExemplairesLivres() {
         return exemplairesLivres;
     }
@@ -116,6 +118,26 @@ public class Livres implements Serializable {
     public void setExemplairesLivres(Collection<ExemplairesLivres> exemplairesLivresByIdLivres) {
         this.exemplairesLivres = exemplairesLivresByIdLivres;
     }
+
+
+    public Collection<LivresAuteurs> getLivresAuteurs() {
+        return livresAuteurs;
+    }
+
+    public void setLivresAuteurs(Collection<LivresAuteurs> livresAuteurs) {
+        this.livresAuteurs = livresAuteurs;
+    }
+
+
+    public Collection<LivresGenres> getLivresGenres()
+    {
+        return livresGenres;
+    }
+
+    public void setLivresGenres(Collection<LivresGenres> livresGenres) {
+        this.livresGenres = livresGenres;
+    }
+
 
     @ManyToOne
     @JoinColumn(name = "EditeursIdEditeurs", referencedColumnName = "IdEditeurs", nullable = false)
@@ -129,22 +151,4 @@ public class Livres implements Serializable {
     }
 
 
-    public Collection<LivresAuteurs> getLivresAuteurs() {
-        return livresAuteurs;
-    }
-
-
-    public void setLivresAuteurs(Collection<LivresAuteurs> livresAuteurs) {
-        this.livresAuteurs = livresAuteurs;
-    }
-
-    @OneToMany(mappedBy = "livresByLivresIdLivres")
-    public Collection<LivresGenres> getLivresGenres()
-    {
-        return livresGenres;
-    }
-
-    public void setLivresGenres(Collection<LivresGenres> livresGenres) {
-        this.livresGenres = livresGenres;
-    }
 }

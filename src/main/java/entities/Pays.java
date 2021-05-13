@@ -19,7 +19,8 @@ public class Pays implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPays;
     private String nom;
-    private Collection<Localites> localitesByIdPays;
+    @OneToMany(mappedBy = "pays")
+    private Collection<Localites> localites;
 
     @Id
     @Column(name = "IdPays", nullable = false)
@@ -55,12 +56,12 @@ public class Pays implements Serializable {
         return Objects.hash(idPays, nom);
     }
 
-    @OneToMany(mappedBy = "paysByPaysIdPays")
-    public Collection<Localites> getLocalitesByIdPays() {
-        return localitesByIdPays;
+
+    public Collection<Localites> getLocalites() {
+        return localites;
     }
 
-    public void setLocalitesByIdPays(Collection<Localites> localitesByIdPays) {
-        this.localitesByIdPays = localitesByIdPays;
+    public void setLocalites(Collection<Localites> localites) {
+        this.localites = localites;
     }
 }

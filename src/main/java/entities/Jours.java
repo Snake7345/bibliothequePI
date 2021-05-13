@@ -17,7 +17,8 @@ public class Jours implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idJours;
     private int nbrJour;
-    private Collection<TarifsJours> tarifsJoursByIdJours;
+    @OneToMany(mappedBy = "jours")
+    private Collection<TarifsJours> tarifsJours;
 
     @Id
     @Column(name = "IdJours", nullable = false)
@@ -53,12 +54,12 @@ public class Jours implements Serializable {
         return Objects.hash(idJours, nbrJour);
     }
 
-    @OneToMany(mappedBy = "joursByJoursIdJours")
-    public Collection<TarifsJours> getTarifsJoursByIdJours() {
-        return tarifsJoursByIdJours;
+
+    public Collection<TarifsJours> getTarifsJours() {
+        return tarifsJours;
     }
 
-    public void setTarifsJoursByIdJours(Collection<TarifsJours> tarifsJoursByIdJours) {
-        this.tarifsJoursByIdJours = tarifsJoursByIdJours;
+    public void setTarifsJours(Collection<TarifsJours> tarifsJoursByIdJours) {
+        this.tarifsJours = tarifsJoursByIdJours;
     }
 }

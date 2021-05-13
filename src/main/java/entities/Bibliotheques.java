@@ -18,9 +18,12 @@ public class Bibliotheques implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idBibliotheques;
     private String nom;
-    private Collection<Adresses> adressesByIdBibliotheques;
-    private Collection<ExemplairesLivres> exemplairesLivresByIdBibliotheques;
-    private Collection<Tarifs> tarifsByIdBibliotheques;
+    @OneToMany(mappedBy = "bibliotheques")
+    private Collection<Adresses> adresses;
+    @OneToMany(mappedBy = "bibliotheques")
+    private Collection<ExemplairesLivres> exemplairesLivres;
+    @OneToMany(mappedBy = "bibliotheques")
+    private Collection<Tarifs> tarifs;
 
     @Id
     @Column(name = "IdBibliotheques", nullable = false)
@@ -56,31 +59,29 @@ public class Bibliotheques implements Serializable {
         return Objects.hash(idBibliotheques, nom);
     }
 
-    @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
-    public Collection<Adresses> getAdressesByIdBibliotheques() {
-        return adressesByIdBibliotheques;
+
+    public Collection<Adresses> getAdresses() {
+        return adresses;
     }
 
-    public void setAdressesByIdBibliotheques(Collection<Adresses> adressesByIdBibliotheques) {
-        this.adressesByIdBibliotheques = adressesByIdBibliotheques;
+    public void setAdresses(Collection<Adresses> adresses) {
+        this.adresses = adresses;
     }
 
-    @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
-    public Collection<ExemplairesLivres> getExemplairesLivresByIdBibliotheques() {
-        return exemplairesLivresByIdBibliotheques;
+    public Collection<ExemplairesLivres> getExemplairesLivres() {
+        return exemplairesLivres;
     }
 
-    public void setExemplairesLivresByIdBibliotheques(Collection<ExemplairesLivres> exemplairesLivresByIdBibliotheques) {
-        this.exemplairesLivresByIdBibliotheques = exemplairesLivresByIdBibliotheques;
+    public void setExemplairesLivres(Collection<ExemplairesLivres> exemplairesLivres) {
+        this.exemplairesLivres = exemplairesLivres;
     }
 
-    @OneToMany(mappedBy = "bibliothequesByBibliothequesIdBibliotheques")
-    public Collection<Tarifs> getTarifsByIdBibliotheques() {
-        return tarifsByIdBibliotheques;
+    public Collection<Tarifs> getTarifs() {
+        return tarifs;
     }
 
-    public void setTarifsByIdBibliotheques(Collection<Tarifs> tarifsByIdBibliotheques) {
-        this.tarifsByIdBibliotheques = tarifsByIdBibliotheques;
+    public void setTarifs(Collection<Tarifs> tarifs) {
+        this.tarifs = tarifs;
     }
 
     @Override
@@ -96,8 +97,8 @@ public class Bibliotheques implements Serializable {
 
     public void setFields(Bibliotheques biblio) {
         this.nom = biblio.nom;
-        this.adressesByIdBibliotheques = biblio.adressesByIdBibliotheques;
-        this.exemplairesLivresByIdBibliotheques = biblio.exemplairesLivresByIdBibliotheques;
-        this.tarifsByIdBibliotheques = biblio.tarifsByIdBibliotheques;
+        this.adresses = biblio.adresses;
+        this.exemplairesLivres = biblio.exemplairesLivres;
+        this.tarifs = biblio.tarifs;
     }
 }

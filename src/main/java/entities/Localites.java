@@ -19,6 +19,7 @@ public class Localites implements Serializable {
     private int idLocalites;
     private int cp;
     private String ville;
+    @OneToMany(mappedBy = "localites")
     private Collection<Adresses> adresses;
 
 
@@ -67,7 +68,7 @@ public class Localites implements Serializable {
         return Objects.hash(idLocalites, cp, ville);
     }
 
-    @OneToMany(mappedBy = "localitesByLocalitesIdLocalites")
+
     public Collection<Adresses> getAdresses() {
         return adresses;
     }

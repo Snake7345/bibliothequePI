@@ -19,8 +19,9 @@ public class Tarifs implements Serializable {
     private int idTarifs;
     private String denomination;
     private Timestamp dateDebut;
-
+    @OneToMany(mappedBy = "tarifs")
     private Collection<TarifsJours> tarifsJours;
+    @OneToMany(mappedBy = "tarif")
     private Collection<TarifsPenalites> tarifsPenalites;
 
     @Id
@@ -82,7 +83,7 @@ public class Tarifs implements Serializable {
         this.bibliotheques = bibliotheques1;
     }
 
-    @OneToMany(mappedBy = "tarifsByTarifsIdTarifs")
+
     public Collection<TarifsJours> getTarifsJours() {
         return tarifsJours;
     }
@@ -91,7 +92,7 @@ public class Tarifs implements Serializable {
         this.tarifsJours = tarifsJoursByIdTarifs;
     }
 
-    @OneToMany(mappedBy = "tarifsByTarifsIdTarifs")
+
     public Collection<TarifsPenalites> getTarifsPenalites() {
         return tarifsPenalites;
     }

@@ -22,7 +22,7 @@ public class Adresses implements Serializable {
     private String rue;
     private String boite;
     private String numero;
-
+    @OneToMany(mappedBy = "adresse")
     private Collection<UtilisateursAdresses> utilisateursAdresses;
 
     @Id
@@ -88,7 +88,7 @@ public class Adresses implements Serializable {
         this.bibliotheques = bibliothequesByBibliothequesIdBibliotheques;
     }
 
-    @OneToMany(mappedBy = "adressesByAdressesIdAdresses")
+
     public Collection<UtilisateursAdresses> getUtilisateursAdresses() {
         return utilisateursAdresses;
     }

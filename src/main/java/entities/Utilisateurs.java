@@ -33,7 +33,9 @@ public class Utilisateurs implements Serializable {
     private String login;
     private String mdp;
     private boolean actif = true;
+    @OneToMany(mappedBy = "utilisateurs")
     private Collection<Facture> factures;
+    @OneToMany(mappedBy = "utilisateur")
     private Collection<UtilisateursAdresses> utilisateursAdresses;
 
     @Id
@@ -149,7 +151,7 @@ public class Utilisateurs implements Serializable {
         return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, actif, roles, factures, utilisateursAdresses);
     }
 
-    @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
+
     public Collection<Facture> getFactures() {
         return factures;
     }
@@ -158,7 +160,7 @@ public class Utilisateurs implements Serializable {
         this.factures = facturesByIdUtilisateurs;
     }
 
-    @OneToMany(mappedBy = "utilisateursByUtilisateursIdUtilisateurs")
+
     public Collection<UtilisateursAdresses> getUtilisateursAdresses() {
         return utilisateursAdresses;
     }

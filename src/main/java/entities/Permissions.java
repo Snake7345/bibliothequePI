@@ -17,7 +17,8 @@ public class Permissions implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPermissions;
     private String denomination;
-    private Collection<PermissionsRoles> permissionsRolesByIdPermissions;
+    @OneToMany(mappedBy = "permissions")
+    private Collection<PermissionsRoles> permissionsRoles;
 
     @Id
     @Column(name = "IdPermissions", nullable = false)
@@ -53,12 +54,12 @@ public class Permissions implements Serializable {
         return Objects.hash(idPermissions, denomination);
     }
 
-    @OneToMany(mappedBy = "permissionsByPermissionsIdPermissions")
-    public Collection<PermissionsRoles> getPermissionsRolesByIdPermissions() {
-        return permissionsRolesByIdPermissions;
+
+    public Collection<PermissionsRoles> getPermissionsRoles() {
+        return permissionsRoles;
     }
 
-    public void setPermissionsRolesByIdPermissions(Collection<PermissionsRoles> permissionsRolesByIdPermissions) {
-        this.permissionsRolesByIdPermissions = permissionsRolesByIdPermissions;
+    public void setPermissionsRoles(Collection<PermissionsRoles> permissionsRolesByIdPermissions) {
+        this.permissionsRoles = permissionsRolesByIdPermissions;
     }
 }

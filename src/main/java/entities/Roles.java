@@ -21,7 +21,9 @@ public class Roles implements Serializable {
     private int idRoles;
     private String denomination;
     private boolean actif = true;
+    @OneToMany(mappedBy = "role")
     private Collection<PermissionsRoles> permissionsRoles;
+    @OneToMany(mappedBy = "roles")
     private Collection<Utilisateurs> utilisateurs;
 
     @Id
@@ -70,7 +72,6 @@ public class Roles implements Serializable {
         return Objects.hash(idRoles, denomination, actif);
     }
 
-    @OneToMany(mappedBy = "RolesIdRoles")
     public Collection<PermissionsRoles> getPermissionsRoles() {
         return permissionsRoles;
     }
@@ -79,7 +80,7 @@ public class Roles implements Serializable {
         this.permissionsRoles = pr;
     }
 
-    @OneToMany(mappedBy = "RolesIdRoles")
+
     public Collection<Utilisateurs> getUtilisateurs() {
         return utilisateurs;
     }

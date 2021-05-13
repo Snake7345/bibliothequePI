@@ -19,7 +19,8 @@ public class Editeurs implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEditeurs;
     private String nom;
-    private Collection<Livres> livresByIdEditeurs;
+    @OneToMany(mappedBy = "editeurs")
+    private Collection<Livres> livres;
 
     @Id
     @Column(name = "IdEditeurs", nullable = false)
@@ -55,13 +56,13 @@ public class Editeurs implements Serializable {
         return Objects.hash(idEditeurs, nom);
     }
 
-    @OneToMany(mappedBy = "editeursByEditeursIdEditeurs")
-    public Collection<Livres> getLivresByIdEditeurs() {
-        return livresByIdEditeurs;
+
+    public Collection<Livres> getLivres() {
+        return livres;
     }
 
-    public void setLivresByIdEditeurs(Collection<Livres> livresByIdEditeurs) {
-        this.livresByIdEditeurs = livresByIdEditeurs;
+    public void setLivres(Collection<Livres> livresByIdEditeurs) {
+        this.livres = livresByIdEditeurs;
     }
 
     @Override
@@ -77,6 +78,6 @@ public class Editeurs implements Serializable {
 
     public void setFields(Editeurs edit) {
         this.nom = edit.nom;
-        this.livresByIdEditeurs = edit.livresByIdEditeurs;
+        this.livres = edit.livres;
     }
 }

@@ -25,6 +25,7 @@ public class Facture implements Serializable {
     private Double prixTvac;
     private String numeroFacture;
     private FactureEtatEnum etat;
+    @OneToMany(mappedBy = "facture")
     private Collection<FactureDetail> factureDetails;
 
     @Id
@@ -79,7 +80,13 @@ public class Facture implements Serializable {
         this.etat = etat;
     }
 
+    public Collection<FactureDetail> getFactureDetails() {
+        return factureDetails;
+    }
 
+    public void setFactureDetails(Collection<FactureDetail> factureDetails1) {
+        this.factureDetails = factureDetails1;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -109,13 +116,7 @@ public class Facture implements Serializable {
         this.utilisateurs = utilisateurs1;
     }
 
-    @OneToMany(mappedBy = "factureByLocationsIdLocations")
 
-    public Collection<FactureDetail> getFactureDetails() {
-        return factureDetails;
-    }
 
-    public void setFactureDetails(Collection<FactureDetail> factureDetails1) {
-        this.factureDetails = factureDetails1;
-    }
+
 }

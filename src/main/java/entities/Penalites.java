@@ -17,7 +17,8 @@ public class Penalites implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPenalites;
     private String denomination;
-    private Collection<TarifsPenalites> tarifsPenalitesByIdPenalites;
+    @OneToMany(mappedBy = "penalite")
+    private Collection<TarifsPenalites> tarifsPenalites;
 
     @Id
     @Column(name = "IdPenalites", nullable = false)
@@ -39,6 +40,13 @@ public class Penalites implements Serializable {
         this.denomination = denomination;
     }
 
+    public Collection<TarifsPenalites> getTarifsPenalites() {
+        return tarifsPenalites;
+    }
+
+    public void setTarifsPenalites(Collection<TarifsPenalites> tarifsPenalites) {
+        this.tarifsPenalites = tarifsPenalites;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -53,12 +61,6 @@ public class Penalites implements Serializable {
         return Objects.hash(idPenalites, denomination);
     }
 
-    @OneToMany(mappedBy = "penalitesByPenalitesIdPenalites")
-    public Collection<TarifsPenalites> getTarifsPenalitesByIdPenalites() {
-        return tarifsPenalitesByIdPenalites;
-    }
 
-    public void setTarifsPenalitesByIdPenalites(Collection<TarifsPenalites> tarifsPenalitesByIdPenalites) {
-        this.tarifsPenalitesByIdPenalites = tarifsPenalitesByIdPenalites;
-    }
+
 }
