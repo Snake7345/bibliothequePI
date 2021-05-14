@@ -16,7 +16,7 @@ import java.util.Objects;
                 @NamedQuery(name = "Utilisateurs.findAll", query = "SELECT u FROM Utilisateurs u"),
                 @NamedQuery(name = "Utilisateurs.findActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE"),
                 @NamedQuery(name = "Utilisateurs.findInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE"),
-                @NamedQuery(name=  "Utilisateurs.authentify", query="SELECT u FROM Utilisateurs u where u.login=:login and u.mdp=:mdp"),
+                @NamedQuery(name=  "Utilisateurs.authentify", query="SELECT u FROM Utilisateurs u where u.login=:login and u.mdp=:mdp and u.actif=TRUE"),
                 @NamedQuery(name="Utilisateurs.searchName", query="SELECT u FROM Utilisateurs u WHERE u.nom=:nom"),
         })
 public class Utilisateurs implements Serializable {

@@ -26,7 +26,6 @@ public class UtilisateursBean implements Serializable
     private static final long serialVersionUID = 1L;
 
     private Utilisateurs utilisateur;
-    private Adresses adresse;
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
 
     private List<Utilisateurs> searchResults;
