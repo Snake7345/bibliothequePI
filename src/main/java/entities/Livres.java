@@ -31,7 +31,7 @@ public class Livres implements Serializable {
     private int annee;
     private String isbn;
     private boolean actif = true;
-    @OneToMany(mappedBy = "livre")
+    @OneToMany(mappedBy = "livres")
     private Collection<ExemplairesLivres> exemplairesLivres;
     @OneToMany(mappedBy = "livre")
     private Collection<LivresAuteurs> livresAuteurs;
