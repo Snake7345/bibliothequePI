@@ -43,6 +43,7 @@
                                  value="#{utilisateursBean.utilisateur.courriel}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.courriel']}">
+                                 <f:validator validatorId = "emailValidator"/>
                     </h:inputText>
                     <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 
