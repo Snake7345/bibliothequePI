@@ -71,10 +71,7 @@ public class RolesBean implements Serializable {
     public String activdesactivRol()
     {
         SvcRoles service = new SvcRoles();
-        SvcUtilisateurs serviceU = new SvcUtilisateurs();
-        Collection<Utilisateurs> listUtilisateur;
         EntityTransaction transaction = service.getTransaction();
-        EntityTransaction transactionU = serviceU.getTransaction();
         log.debug("je débute la méthode activdésactive");
         try
         {
@@ -84,14 +81,6 @@ public class RolesBean implements Serializable {
             {
                 log.debug("je passe le if de désactive");
                 role.setActif(false);
-                transactionU.begin();
-                listUtilisateur = role.getUtilisateurs();
-                for (Utilisateurs util : listUtilisateur)
-                {
-                    util.setActif(false);
-                    serviceU.save(util);
-                }
-
             }
 
             else
@@ -99,22 +88,15 @@ public class RolesBean implements Serializable {
                 role.setActif(true);
             }
 
-            transactionU.commit();
+
             service.save(role);
+
             transaction.commit();
             log.debug("J'ai modifié le role");
             return "/tableRoles.xhtml?faces-redirect=true";
         }
         finally {
             if (transaction.isActive()) {
-                if(transactionU.isActive())
-                {
-                    transactionU.rollback();
-                    log.debug("J'ai fait une erreur et je suis con");
-                    FacesContext fc = FacesContext.getCurrentInstance();
-                    fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
-                }
-
                 transaction.rollback();
                 log.debug("J'ai fait une erreur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
@@ -128,7 +110,6 @@ public class RolesBean implements Serializable {
                 init();
             }
             service.close();
-            serviceU.close();
         }
     }
 

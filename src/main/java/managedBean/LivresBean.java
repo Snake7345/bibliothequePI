@@ -131,10 +131,7 @@ public class LivresBean implements Serializable {
     public String activdesactivLiv()
     {
         SvcLivres service = new SvcLivres();
-        SvcExemplairesLivres serviceE = new SvcExemplairesLivres();
         EntityTransaction transaction = service.getTransaction();
-        EntityTransaction transactionE = serviceE.getTransaction();
-        Collection<ExemplairesLivres> listExemplairesLivres;
         log.debug("je débute la méthode activdésactive");
         try
         {
@@ -144,14 +141,6 @@ public class LivresBean implements Serializable {
             {
                 log.debug("je passe le if de désactive");
                 livre.setActif(false);
-                transactionE.begin();
-                listExemplairesLivres = livre.getExemplairesLivres();
-                for(ExemplairesLivres el : listExemplairesLivres)
-                {
-                    el.setActif(false);
-                    serviceE.save(el);
-                }
-
             }
 
             else
@@ -162,21 +151,12 @@ public class LivresBean implements Serializable {
 
             service.save(livre);
 
-            transactionE.commit();
-            service.save(livre);
             transaction.commit();
             log.debug("J'ai modifié le livre");
             return "/tableLivres.xhtml?faces-redirect=true";
         }
         finally {
             if (transaction.isActive()) {
-                if(transactionE.isActive())
-                {
-                    transactionE.rollback();
-                    log.debug("J'ai fait une erreur et je suis con");
-                    FacesContext fc = FacesContext.getCurrentInstance();
-                    fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
-                }
                 transaction.rollback();
                 log.debug("J'ai fait une erreur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
@@ -190,7 +170,6 @@ public class LivresBean implements Serializable {
                 init();
             }
             service.close();
-            serviceE.close();
         }
     }
 

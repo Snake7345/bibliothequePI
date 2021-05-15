@@ -159,6 +159,7 @@ public class UtilisateursBean implements Serializable {
 
     public String flushBienv()
     {
+        //ToDO a optimiser
         init();
         return "bienvenue?faces-redirect=true";
     }
