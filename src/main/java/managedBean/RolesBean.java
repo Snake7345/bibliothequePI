@@ -103,7 +103,7 @@ public class RolesBean implements Serializable {
             service.save(role);
             transaction.commit();
             log.debug("J'ai modifié le role");
-            return "/tableAuteurs.xhtml?faces-redirect=true";
+            return "/tableRoles.xhtml?faces-redirect=true";
         }
         finally {
             if (transaction.isActive()) {
