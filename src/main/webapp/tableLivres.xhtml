@@ -17,7 +17,7 @@
             <h:panelGroup layout="block" id="content">
 
                 <h2 style="text-align:center">#{I18N['application.livre.title']}</h2>
-                <h:dataTable value="#{livresBean.readAll}" var="liv" id="tableLivres"
+                <h:dataTable value="#{livresBean.listLiv}" var="liv" id="tableLivres"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <h:column>
                         <!-- column header -->
@@ -63,7 +63,9 @@
             </h:panelGroup>
             <h:commandButton value="#{I18N['application.button.new']}" action="formNewLivre" />
             <h:commandButton value="#{I18N['application.button.find']}" action="formSearchLivre"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="bienvenue"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushBienv}"/>
+            <h:commandButton value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}"/>
+            <h:commandButton value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}"/>
         </h:form>
     </ui:define>
 </ui:composition>

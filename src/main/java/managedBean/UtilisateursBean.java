@@ -21,28 +21,25 @@ import java.util.List;
 
 @Named
 @SessionScoped
-public class UtilisateursBean implements Serializable
-{
+public class UtilisateursBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Utilisateurs utilisateur;
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
-
+    private List<Utilisateurs> listUtil = new ArrayList<Utilisateurs>();
     private List<Utilisateurs> searchResults;
 
-    public UtilisateursBean()
-    {
+    public UtilisateursBean() {
         super();
     }
 
     @PostConstruct
-    public void init()
-    {
+    public void init() {
+        listUtil = getReadAll();
         utilisateur = new Utilisateurs();
     }
 
-    public String newUtil()
-    {
+    public String newUtil() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
@@ -51,7 +48,7 @@ public class UtilisateursBean implements Serializable
 
         try {
 
-            utilisateur= service.save(utilisateur);
+            utilisateur = service.save(utilisateur);
 
             transaction.commit();
             log.debug("J'ai sauvé l'utilisateur " + utilisateur.getIdUtilisateurs());
@@ -64,9 +61,7 @@ public class UtilisateursBean implements Serializable
                 fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
 
                 return "";
-            }
-            else
-            {
+            } else {
                 log.debug("je suis censé avoir réussi");
                 init();
             }
@@ -75,8 +70,7 @@ public class UtilisateursBean implements Serializable
 
     }
 
-    public void save()
-    {
+    public void save() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
@@ -96,23 +90,17 @@ public class UtilisateursBean implements Serializable
 
     }
 
-    public String activdesactivUtil()
-    {
+    public String activdesactivUtil() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         EntityTransaction transaction = service.getTransaction();
         log.debug("je débute la méthode activdésactive");
-        try
-        {
+        try {
             transaction.begin();
             /*Si la voiture est active alors on la désactive*/
-            if(utilisateur.isActif())
-            {
+            if (utilisateur.isActif()) {
                 log.debug("je passe le if de désactive");
                 utilisateur.setActif(false);
-            }
-
-            else
-            {
+            } else {
                 utilisateur.setActif(true);
             }
 
@@ -122,8 +110,7 @@ public class UtilisateursBean implements Serializable
             transaction.commit();
             log.debug("J'ai modifié l'utilisateur");
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
-        }
-        finally {
+        } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
                 log.debug("J'ai fait une erreur et je suis con");
@@ -131,9 +118,7 @@ public class UtilisateursBean implements Serializable
                 fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
 
                 return "";
-            }
-            else
-            {
+            } else {
                 log.debug("je suis censé avoir réussi");
                 init();
             }
@@ -141,22 +126,18 @@ public class UtilisateursBean implements Serializable
         }
     }
 
-    public String searchUtilisateur()
-    {
+    public String searchUtilisateur() {
 
         SvcUtilisateurs service = new SvcUtilisateurs();
         //try
         //{
 
         log.debug("list auteur " + service.getByName(utilisateur.getNom()).size());
-        if(service.getByName(utilisateur.getNom()).isEmpty())
-        {
+        if (service.getByName(utilisateur.getNom()).isEmpty()) {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("utilRech", new FacesMessage("l'utilisateur n'a pas été trouvé"));
             return null;
-        }
-        else
-        {
+        } else {
             searchResults = service.getByName(utilisateur.getNom());
         }
 
@@ -168,22 +149,41 @@ public class UtilisateursBean implements Serializable
         return "formSearchUtilisateur?faces-redirect=true";
     }
 
-    public String flushUtil()
-    {
+    public String flushUtil() {
         init();
-        if(searchResults!= null)
-        {
+        if (searchResults != null) {
             searchResults.clear();
         }
         return "tableUtilisateurs?faces-redirect=true";
     }
 
+    public String flushBienv()
+    {
+        init();
+        return "bienvenue?faces-redirect=true";
+    }
+
+    public List<Utilisateurs> getReadActiv()
+    {
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        listUtil = service.findAllUtilisateursActiv();
+
+        service.close();
+        return listUtil;
+    }
+    public List<Utilisateurs> getReadInactiv()
+    {
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        listUtil = service.findAllUtilisateursInactiv();
+
+        service.close();
+        return listUtil;
+    }
 
     public List<Utilisateurs> getReadAll()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();
-        List<Utilisateurs> listUtil = new ArrayList<Utilisateurs>();
-             listUtil = service.findAllUtilisateurs();
+        listUtil = service.findAllUtilisateurs();
 
         service.close();
         return listUtil;
@@ -208,6 +208,13 @@ public class UtilisateursBean implements Serializable
     }
 
 
+    public List<Utilisateurs> getListUtil() {
+        return listUtil;
+    }
+
+    public void setListUtil(List<Utilisateurs> listUtil) {
+        this.listUtil = listUtil;
+    }
 
 }
 

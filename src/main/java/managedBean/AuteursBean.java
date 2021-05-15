@@ -26,10 +26,12 @@ public class AuteursBean implements Serializable {
     private static final Logger log = Logger.getLogger(AuteursBean.class);
     private Auteurs autTemp;
     private List<Auteurs> searchResults;
+    private List<Auteurs> listAut;
 
     @PostConstruct
     public void init()
     {
+        listAut = getReadAll();
         auteur = new Auteurs();
     }
 
@@ -181,8 +183,31 @@ public class AuteursBean implements Serializable {
     public List<Auteurs> getReadAll()
     {
         SvcAuteurs service = new SvcAuteurs();
-        List<Auteurs> listAut = new ArrayList<Auteurs>();
+
         listAut= service.findAllAuteurs();
+
+        service.close();
+        return listAut;
+    }
+
+    public String flushBienv()
+    {
+        init();
+        return "bienvenue?faces-redirect=true";
+    }
+
+    public List<Auteurs> getReadActiv()
+    {
+        SvcAuteurs service = new SvcAuteurs();
+        listAut = service.findAllAuteursActiv();
+
+        service.close();
+        return listAut;
+    }
+    public List<Auteurs> getReadInactiv()
+    {
+        SvcAuteurs service = new SvcAuteurs();
+        listAut = service.findAllAuteursInactiv();
 
         service.close();
         return listAut;
@@ -203,5 +228,15 @@ public class AuteursBean implements Serializable {
     public void setSearchResults(List<Auteurs> searchResults) {
         this.searchResults = searchResults;
     }
+
+
+    public List<Auteurs> getListAut() {
+        return listAut;
+    }
+
+    public void setListAut(List<Auteurs> listAut) {
+        this.listAut = listAut;
+    }
+
 
 }

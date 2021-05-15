@@ -28,12 +28,15 @@ public class LivresBean implements Serializable {
     private LivresGenres livresGenre;
     private Genres genre;
 
+    private List<Livres> listLiv = new ArrayList<Livres>();
+
 
     private List<Livres> searchResults;
 
     @PostConstruct
     public void init()
     {
+        listLiv = getReadAll();
         livre = new Livres();
     }
 
@@ -232,11 +235,34 @@ public class LivresBean implements Serializable {
     public List<Livres> getReadAll()
     {
         SvcLivres service = new SvcLivres();
-        List<Livres> listLiv = new ArrayList<Livres>();
+
         listLiv= service.findAllLivres();
 
 
         return listLiv;
+    }
+
+    public List<Livres> getReadActiv()
+    {
+        SvcLivres service = new SvcLivres();
+        listLiv = service.findAllLivresActiv();
+
+        service.close();
+        return listLiv;
+    }
+    public List<Livres> getReadInactiv()
+    {
+        SvcLivres service = new SvcLivres();
+        listLiv = service.findAllLivresInactiv();
+
+        service.close();
+        return listLiv;
+    }
+
+    public String flushBienv()
+    {
+        init();
+        return "bienvenue?faces-redirect=true";
     }
 
     public Livres getLivre() {
@@ -285,5 +311,13 @@ public class LivresBean implements Serializable {
 
     public void setAuteur(List<Auteurs> auteur) {
         this.auteur = auteur;
+    }
+
+    public List<Livres> getListLiv() {
+        return listLiv;
+    }
+
+    public void setListLiv(List<Livres> listLiv) {
+        this.listLiv = listLiv;
     }
 }
