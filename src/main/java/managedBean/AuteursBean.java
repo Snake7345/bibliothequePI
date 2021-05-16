@@ -1,14 +1,9 @@
 package managedBean;
 
-import entities.Adresses;
 import entities.Auteurs;
-import entities.Utilisateurs;
 import org.apache.log4j.Logger;
-import services.SvcAdresses;
 import services.SvcAuteurs;
-import services.SvcUtilisateurs;
 
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -16,7 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
-import java.util.*;
+import java.util.List;
 
 @Named
 @SessionScoped

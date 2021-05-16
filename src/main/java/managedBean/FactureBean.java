@@ -1,12 +1,9 @@
 package managedBean;
 
-import entities.ExemplairesLivres;
 import entities.Facture;
 import org.apache.log4j.Logger;
-import services.SvcExemplairesLivres;
 import services.SvcFacture;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;

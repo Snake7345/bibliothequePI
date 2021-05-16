@@ -1,13 +1,8 @@
 package managedBean;
 
-import entities.Auteurs;
 import entities.Roles;
-import entities.Utilisateurs;
 import org.apache.log4j.Logger;
-import services.SvcAuteurs;
-import services.SvcPermissions;
 import services.SvcRoles;
-import services.SvcUtilisateurs;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -17,7 +12,6 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Named

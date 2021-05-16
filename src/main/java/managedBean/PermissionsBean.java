@@ -1,15 +1,9 @@
 package managedBean;
 
-import entities.Auteurs;
-import entities.Pays;
-import entities.Penalites;
 import entities.Permissions;
 import org.apache.log4j.Logger;
-import services.SvcPays;
-import services.SvcPenalites;
 import services.SvcPermissions;
 
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;

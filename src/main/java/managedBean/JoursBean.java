@@ -1,17 +1,11 @@
 package managedBean;
 
-import entities.Facture;
-import entities.FactureDetail;
 import entities.Jours;
 import org.apache.log4j.Logger;
-import services.SvcFacture;
-import services.SvcGenres;
 import services.SvcJours;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

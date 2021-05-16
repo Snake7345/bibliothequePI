@@ -2,9 +2,9 @@ package managedBean;
 
 import entities.*;
 import org.apache.log4j.Logger;
-import services.*;
+import services.SvcLivres;
+import services.SvcLivresAuteurs;
 
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -13,7 +13,6 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Named

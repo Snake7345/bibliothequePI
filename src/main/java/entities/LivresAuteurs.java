@@ -2,7 +2,6 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "livres_auteurs", schema = "bibliotheque")

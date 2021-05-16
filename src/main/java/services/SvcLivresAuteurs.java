@@ -1,7 +1,8 @@
 package services;
 
-import entities.*;
-import managedBean.LivresBean;
+import entities.Auteurs;
+import entities.Livres;
+import entities.LivresAuteurs;
 import org.apache.log4j.Logger;
 
 import java.util.HashMap;

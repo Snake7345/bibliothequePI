@@ -1,13 +1,9 @@
 package managedBean;
 
-import entities.Pays;
-import entities.Roles;
 import entities.TarifsPenalites;
 import org.apache.log4j.Logger;
-import services.SvcPays;
 import services.SvcTarifsPenalites;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;

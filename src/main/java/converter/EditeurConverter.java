@@ -1,17 +1,12 @@
 package converter;
 
 import entities.Editeurs;
-import entities.Roles;
 import org.apache.log4j.Logger;
 import services.SvcEditeurs;
-import services.SvcRoles;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
-import javax.faces.convert.DateTimeConverter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Named;
 

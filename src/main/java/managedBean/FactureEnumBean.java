@@ -2,8 +2,6 @@ package managedBean;
 
 import enumeration.FactureEtatEnum;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import java.io.Serializable;
 
 public class FactureEnumBean implements Serializable{

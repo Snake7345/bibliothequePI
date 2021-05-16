@@ -1,11 +1,12 @@
 package services;
 
-import entities.*;
+import entities.Adresses;
+import entities.Utilisateurs;
+import entities.UtilisateursAdresses;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SvcUtilisateursAdresses extends Service<UtilisateursAdresses> implements Serializable

@@ -2,8 +2,6 @@ package managedBean;
 
 import enumeration.ExemplairesLivresEtatEnum;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import java.io.Serializable;
 
 public class ExemplairesLivresEnumBean implements Serializable{

@@ -1,6 +1,9 @@
 package services;
 
-import entities.*;
+
+import entities.Genres;
+import entities.Livres;
+import entities.LivresGenres;
 
 public class SvcLivresGenres extends Service<LivresGenres>
 

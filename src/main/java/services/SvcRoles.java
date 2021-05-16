@@ -1,6 +1,5 @@
 package services;
 
-import entities.Auteurs;
 import entities.Roles;
 import org.apache.log4j.Logger;
 

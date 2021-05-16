@@ -1,17 +1,11 @@
 package managedBean;
 
-import entities.Pays;
-import entities.Roles;
 import entities.Tarifs;
 import org.apache.log4j.Logger;
-import services.SvcPays;
-import services.SvcRoles;
 import services.SvcTarifs;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

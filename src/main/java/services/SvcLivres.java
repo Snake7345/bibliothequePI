@@ -1,6 +1,10 @@
 package services;
 
-import entities.*;
+
+import entities.Auteurs;
+import entities.Editeurs;
+import entities.Genres;
+import entities.Livres;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;

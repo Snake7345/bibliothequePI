@@ -1,14 +1,9 @@
 package managedBean;
 
-import entities.Auteurs;
-import entities.Facture;
-import entities.FactureDetail;
 import entities.Genres;
 import org.apache.log4j.Logger;
-import services.SvcFacture;
 import services.SvcGenres;
 
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;

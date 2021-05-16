@@ -4,8 +4,6 @@ import entities.Permissions;
 import entities.PermissionsRoles;
 import entities.Roles;
 
-import java.util.List;
-
 public class SvcPermissionRoles extends Service<PermissionsRoles>
 {
 

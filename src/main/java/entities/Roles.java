@@ -1,6 +1,5 @@
 package entities;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
