@@ -75,10 +75,13 @@ public class LoginBean implements Serializable {
 
     /*Cette méthode permet la deconnexion de l'utilisateur*/
     public String deconnexion() throws IOException {
+        log.debug("test deco " + utilisateurAuth.getNom());
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
-        return null;
+        utilisateurAuth = new Utilisateurs();
+        log.debug("test deco2 " + utilisateurAuth.getNom());
+        return "login";
     }
 
     //-------------------------Getter & Setter--------------------------------------------------------------------------------

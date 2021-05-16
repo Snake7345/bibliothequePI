@@ -11,8 +11,10 @@
 	<ui:insert name="header">
 		<h:panelGrid columns="1">
 			<h:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
-			<h:button value="#{I18N['application.button.deconnexion']}" action="#{loginBean.deconnexion}"
-							   class="lienMenu"/>
+			<h:form>
+				<h:commandButton value="#{I18N['application.button.deconnexion']}" action="#{loginBean.deconnexion}"
+								 class="lienMenu"/>
+			</h:form>
 		</h:panelGrid>
 	</ui:insert>
 	</div>
