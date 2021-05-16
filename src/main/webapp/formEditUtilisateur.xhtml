@@ -67,7 +67,7 @@
                 <h:outputText value = "#{I18N['role.label.Denomination']}"/>
                 <h:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                  converter="roleConverter">
-                    <f:selectItems value = "#{rolesBean.readAll}" var="ro"
+                    <f:selectItems value = "#{rolesBean.readActiv}" var="ro"
                                    itemLabel="#{ro.denomination}"
                                    itemValue="#{ro}"/>
                 </h:selectOneMenu>

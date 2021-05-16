@@ -27,7 +27,7 @@
                 <h:message for="livreTitre" styleClass="errorMessage"/>
 
                 <h:selectManyListbox value = "#{livresBean.auteur}">
-                    <f:selectItems value = "#{auteursBean.readAll}" var="livaut" itemLabel="#{livaut.nom} #{livaut.prenom}" itemValue="#{livaut}"/>
+                    <f:selectItems value = "#{auteursBean.readActiv}" var="livaut" itemLabel="#{livaut.nom} #{livaut.prenom}" itemValue="#{livaut}"/>
                 </h:selectManyListbox>
 
                 <h:outputText value = "#{I18N['livre.label.Annee']}"/>

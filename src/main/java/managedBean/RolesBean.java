@@ -53,7 +53,7 @@ public class RolesBean implements Serializable {
                 transaction.rollback();
                 log.debug("J'ai fait une erreur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
 
                 return "";
             }
@@ -100,7 +100,7 @@ public class RolesBean implements Serializable {
                 transaction.rollback();
                 log.debug("J'ai fait une erreur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
 
                 return "";
             }
@@ -127,7 +127,7 @@ public class RolesBean implements Serializable {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("Erreur inconnue"));
+                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
             }
             service.close();
         }
@@ -145,6 +145,25 @@ public class RolesBean implements Serializable {
         SvcRoles service = new SvcRoles();
         List<Roles> listRole = new ArrayList<Roles>();
         listRole = service.findAllRoles();
+
+
+        return listRole;
+    }
+
+    public List<Roles> getReadActiv()
+    {
+        SvcRoles service = new SvcRoles();
+        List<Roles> listRole = new ArrayList<Roles>();
+        listRole = service.findAllRolesActiv();
+
+
+        return listRole;
+    }
+    public List<Roles> getReadInactiv()
+    {
+        SvcRoles service = new SvcRoles();
+        List<Roles> listRole = new ArrayList<Roles>();
+        listRole = service.findAllRolesInactiv();
 
 
         return listRole;

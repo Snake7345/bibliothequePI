@@ -53,7 +53,7 @@ public class PermissionsBean implements Serializable {
                 transaction.rollback();
                 log.debug("J'ai fait une erreur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
 
                 return "";
             }

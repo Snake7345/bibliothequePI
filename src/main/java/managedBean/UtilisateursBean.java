@@ -1,14 +1,9 @@
 package managedBean;
 
-import entities.Adresses;
-import entities.Auteurs;
 import entities.Utilisateurs;
-import enumeration.UtilisateurSexeEnum;
 import org.apache.log4j.Logger;
-import services.SvcAuteurs;
 import services.SvcUtilisateurs;
 
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -58,7 +53,7 @@ public class UtilisateursBean implements Serializable {
                 transaction.rollback();
                 log.debug("J'ai fait une erreur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
 
                 return "";
             } else {
@@ -83,7 +78,7 @@ public class UtilisateursBean implements Serializable {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("Erreur inconnue"));
+                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
             }
             service.close();
         }
@@ -101,7 +96,18 @@ public class UtilisateursBean implements Serializable {
                 log.debug("je passe le if de désactive");
                 utilisateur.setActif(false);
             } else {
-                utilisateur.setActif(true);
+                if((!utilisateur.isActif()) && (!utilisateur.getRoles().isActif()))
+                {
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.addMessage("erreurId", new FacesMessage("L'utilisateur ne peut pas être réactivé tant que le rôle est désactivé"));
+
+                    return "/tableUtilisateurs.xhtml?faces-redirect=true";
+                }
+                else
+                {
+                    utilisateur.setActif(true);
+                }
+
             }
 
 
@@ -110,14 +116,17 @@ public class UtilisateursBean implements Serializable {
             transaction.commit();
             log.debug("J'ai modifié l'utilisateur");
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
-        } finally {
+        }
+        finally
+        {
             if (transaction.isActive()) {
                 transaction.rollback();
                 log.debug("J'ai fait une erreur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("Erreur inconnue"));
+                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
 
                 return "";
+
             } else {
                 log.debug("je suis censé avoir réussi");
                 init();

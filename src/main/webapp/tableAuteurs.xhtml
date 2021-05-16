@@ -16,6 +16,7 @@
 
             <h:form prependId="false">
                 <h:panelGroup layout="block" id="content">
+                    <h:messages styleClass="errorBlock" role="alert"/>
                     <h2 style="text-align:center">#{I18N['application.auteur.title']}</h2>
                     <h:dataTable value="#{auteursBean.listAut}" var="aut" id="tableAuteurs"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
