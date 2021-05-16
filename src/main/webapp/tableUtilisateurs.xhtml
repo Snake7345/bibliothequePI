@@ -71,10 +71,9 @@
                             <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['adresse.label.complete']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.utilisateursAdresses.stream.findFirst.get.adresse.rue}"/>
-                            <h:outputLabel value ="#{ut.utilisateursAdresses.stream.findFirst.get.adresse.numero}"/>
-                            <h:outputLabel value ="#{ut.utilisateursAdresses.stream.findFirst.get.adresse.boite}"/>
-                            <h:outputLabel value ="#{ut.utilisateursAdresses.stream.findFirst.get.adresse.localites.ville}"/>
+                            <ui:repeat value="#{ut.utilisateursAdresses}" var="utad">
+                                    <h:outputLabel value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
+                            </ui:repeat>
                         </h:column>
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="formEditUtilisateur">		<!-- u minuscule -->
