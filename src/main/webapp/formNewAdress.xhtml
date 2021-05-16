@@ -39,7 +39,8 @@
                 <h:message for="adresseNumero" styleClass="errorMessage"/>
 
                 <h:outputText value = "#{I18N['localite.label.Cp']}"/>
-                <h:selectOneMenu value = "#{adressesBean.adresse.localites}" id="adressLoca">
+                <h:selectOneMenu value = "#{adressesBean.adresse.localites}" id="adressLoca"
+                converter="localiteConverter">
                     <f:selectItems value = "#{localitesBean.readAll}" var="loca"
                                    itemLabel="#{loca.cp} - #{loca.ville}" itemValue="#{loca}"/>
                 </h:selectOneMenu>
