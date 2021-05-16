@@ -1,6 +1,6 @@
 package managedBean;
 
-import entities.FactureDetail;
+import entities.FacturesDetail;
 import org.apache.log4j.Logger;
 import services.SvcFactureDetail;
 
@@ -15,14 +15,14 @@ import java.util.List;
 public class FactureDetailBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
-    private FactureDetail factureDetail;
+    private FacturesDetail factureDetail;
 
     private static final Logger log = Logger.getLogger(FactureDetailBean.class);
 
-    public List<FactureDetail> getReadAll()
+    public List<FacturesDetail> getReadAll()
     {
         SvcFactureDetail service = new SvcFactureDetail();
-        List<FactureDetail> listFactD = new ArrayList<FactureDetail>();
+        List<FacturesDetail> listFactD = new ArrayList<FacturesDetail>();
         listFactD= service.findAllFactureDetail();
 
         service.close();
@@ -31,11 +31,11 @@ public class FactureDetailBean implements Serializable {
 
     //-------------------------------Getter & Setter--------------------------------------------
 
-    public FactureDetail getFactureDetail() {
+    public FacturesDetail getFactureDetail() {
         return factureDetail;
     }
 
-    public void setFactureDetail(FactureDetail factureDetail) {
+    public void setFactureDetail(FacturesDetail factureDetail) {
         this.factureDetail = factureDetail;
     }
 

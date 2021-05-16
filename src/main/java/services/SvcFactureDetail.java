@@ -1,6 +1,6 @@
 package services;
 
-import entities.FactureDetail;
+import entities.FacturesDetail;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class SvcFactureDetail extends Service<FactureDetail> implements Serializable
+public class SvcFactureDetail extends Service<FacturesDetail> implements Serializable
 {
     private static final Logger log = Logger.getLogger(SvcFactureDetail.class);
     private static final long serialVersionUID = 1L;
@@ -21,7 +21,7 @@ public class SvcFactureDetail extends Service<FactureDetail> implements Serializ
     }
 
     @Override
-    public FactureDetail save(FactureDetail factureDetail) {
+    public FacturesDetail save(FacturesDetail factureDetail) {
         if (factureDetail.getIdFactureDetail() == 0) {
             em.persist(factureDetail);
         } else {
@@ -32,9 +32,9 @@ public class SvcFactureDetail extends Service<FactureDetail> implements Serializ
     }
 
 
-    public List<FactureDetail> findAllFactureDetail()
+    public List<FacturesDetail> findAllFactureDetail()
     {
-        return finder.findByNamedQuery("FactureDetail.findAll",null);
+        return finder.findByNamedQuery("FacturesDetail.findAll",null);
     }
 
 

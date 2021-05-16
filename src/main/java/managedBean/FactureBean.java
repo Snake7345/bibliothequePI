@@ -1,6 +1,6 @@
 package managedBean;
 
-import entities.Facture;
+import entities.Factures;
 import org.apache.log4j.Logger;
 import services.SvcFacture;
 
@@ -16,13 +16,13 @@ public class FactureBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
 
-    private Facture facture;
+    private Factures facture;
     private static final Logger log = Logger.getLogger(FactureBean.class);
 
-    public List<Facture> getReadAll()
+    public List<Factures> getReadAll()
     {
         SvcFacture service = new SvcFacture();
-        List<Facture> listFact = new ArrayList<Facture>();
+        List<Factures> listFact = new ArrayList<Factures>();
         listFact= service.findAllFacture();
 
         service.close();
@@ -31,11 +31,11 @@ public class FactureBean implements Serializable {
 
     //-------------------------------Getter & Setter--------------------------------------------
 
-    public Facture getFacture() {
+    public Factures getFacture() {
         return facture;
     }
 
-    public void setFacture(Facture facture) {
+    public void setFacture(Factures facture) {
         this.facture = facture;
     }
 

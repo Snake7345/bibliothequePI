@@ -34,7 +34,7 @@ public class Utilisateurs implements Serializable {
     private String mdp;
     private boolean actif = true;
     @OneToMany(mappedBy = "utilisateurs")
-    private Collection<Facture> factures;
+    private Collection<Factures> factures;
     @OneToMany(mappedBy = "utilisateur")
     private Collection<UtilisateursAdresses> utilisateursAdresses;
 
@@ -152,11 +152,11 @@ public class Utilisateurs implements Serializable {
     }
 
 
-    public Collection<Facture> getFactures() {
+    public Collection<Factures> getFactures() {
         return factures;
     }
 
-    public void setFactures(Collection<Facture> facturesByIdUtilisateurs) {
+    public void setFactures(Collection<Factures> facturesByIdUtilisateurs) {
         this.factures = facturesByIdUtilisateurs;
     }
 

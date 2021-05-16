@@ -14,7 +14,7 @@ public class UtilisateursAdresses implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUtilisateursAdresses;
-
+    private boolean actif = true;
 
     @Id
     @Column(name = "IdUtilisateursAdresses", nullable = false)
@@ -48,4 +48,13 @@ public class UtilisateursAdresses implements Serializable {
         this.adresse = adresse;
     }
 
+    @Basic
+    @Column(name = "Actif", nullable = false)
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
 }

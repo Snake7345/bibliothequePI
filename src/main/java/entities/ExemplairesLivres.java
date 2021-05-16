@@ -3,7 +3,6 @@ package entities;
 import enumeration.ExemplairesLivresEtatEnum;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -18,21 +17,19 @@ import java.util.Objects;
                 @NamedQuery(name = "ExemplairesLivres.findLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=TRUE"),
                 @NamedQuery(name = "ExemplairesLivres.findNotLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=FALSE"),
         })
-public class ExemplairesLivres implements Serializable {
+public class ExemplairesLivres {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idExemplairesLivres;
     private String codeBarre;
-    private int bibliothequesIdBibliotheques;
-    private int livresIdLivres;
     private boolean actif = true;
     private String commentaireEtat;
-    private boolean loue;
+    private boolean loue = false;
     private Bibliotheques bibliotheques;
     private Livres livres;
     @OneToMany(mappedBy = "exemplairesLivre")
-    private Collection<FactureDetail> factureDetails;
+    private Collection<FacturesDetail> factureDetails;
 
     @Id
     @Column(name = "IdExemplairesLivres", nullable = false)
@@ -52,26 +49,6 @@ public class ExemplairesLivres implements Serializable {
 
     public void setCodeBarre(String codeBarre) {
         this.codeBarre = codeBarre;
-    }
-
-    @Basic
-    @Column(name = "BibliothequesIdBibliotheques", nullable = false)
-    public int getBibliothequesIdBibliotheques() {
-        return bibliothequesIdBibliotheques;
-    }
-
-    public void setBibliothequesIdBibliotheques(int bibliothequesIdBibliotheques) {
-        this.bibliothequesIdBibliotheques = bibliothequesIdBibliotheques;
-    }
-
-    @Basic
-    @Column(name = "LivresIdLivres", nullable = false)
-    public int getLivresIdLivres() {
-        return livresIdLivres;
-    }
-
-    public void setLivresIdLivres(int livresIdLivres) {
-        this.livresIdLivres = livresIdLivres;
     }
 
 
@@ -97,7 +74,6 @@ public class ExemplairesLivres implements Serializable {
     public void setEtat(ExemplairesLivresEtatEnum etat) {
         this.etat = etat;
     }
-
     @Basic
     @Column(name = "CommentaireEtat", nullable = false, length = 500)
     public String getCommentaireEtat() {
@@ -107,7 +83,6 @@ public class ExemplairesLivres implements Serializable {
     public void setCommentaireEtat(String commentaireEtat) {
         this.commentaireEtat = commentaireEtat;
     }
-
 
     @Basic
     @Column(name = "Loue", nullable = false)
@@ -119,37 +94,14 @@ public class ExemplairesLivres implements Serializable {
         this.loue = loue;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ExemplairesLivres that = (ExemplairesLivres) o;
-        return idExemplairesLivres == that.idExemplairesLivres &&
-                bibliothequesIdBibliotheques == that.bibliothequesIdBibliotheques &&
-                livresIdLivres == that.livresIdLivres &&
-                actif == that.actif &&
-                loue == that.loue &&
-                Objects.equals(codeBarre, that.codeBarre) &&
-                Objects.equals(commentaireEtat, that.commentaireEtat) &&
-                Objects.equals(bibliotheques, that.bibliotheques) &&
-                Objects.equals(livres, that.livres) &&
-                Objects.equals(factureDetails, that.factureDetails) &&
-                etat == that.etat;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idExemplairesLivres, codeBarre, bibliothequesIdBibliotheques, livresIdLivres, actif, etat, commentaireEtat, loue, bibliotheques, livres, factureDetails, etat);
-    }
-
     @ManyToOne
     @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques", nullable = false)
     public Bibliotheques getBibliotheques() {
         return bibliotheques;
     }
 
-    public void setBibliotheques(Bibliotheques bibliothequesByBibliothequesIdBibliotheques) {
-        this.bibliotheques = bibliothequesByBibliothequesIdBibliotheques;
+    public void setBibliotheques(Bibliotheques bibliotheques) {
+        this.bibliotheques = bibliotheques;
     }
 
     @ManyToOne
@@ -158,16 +110,15 @@ public class ExemplairesLivres implements Serializable {
         return livres;
     }
 
-    public void setLivres(Livres livresByLivresIdLivres) {
-        this.livres = livresByLivresIdLivres;
+    public void setLivres(Livres livres) {
+        this.livres = livres;
     }
 
-
-    public Collection<FactureDetail> getFactureDetails() {
+    public Collection<FacturesDetail> getFactureDetails() {
         return factureDetails;
     }
 
-    public void setFactureDetails(Collection<FactureDetail> factureDetailsByIdExemplairesLivres) {
-        this.factureDetails = factureDetailsByIdExemplairesLivres;
+    public void setFactureDetails(Collection<FacturesDetail> factureDetails) {
+        this.factureDetails = factureDetails;
     }
 }

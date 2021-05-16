@@ -9,13 +9,13 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name="facture")
+@Table(name="factures")
 @NamedQueries
         ({
-                @NamedQuery(name = "Facture.findAll", query = "SELECT f FROM Facture f"),
-                @NamedQuery(name = "Facture.findAllByEtat", query = "SELECT f FROM Facture f WHERE f.etat=:etat"),
+                @NamedQuery(name = "Factures.findAll", query = "SELECT f FROM Factures f"),
+                @NamedQuery(name = "Factures.findAllByEtat", query = "SELECT f FROM Factures f WHERE f.etat=:etat"),
         })
-public class Facture implements Serializable {
+public class Factures implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -25,8 +25,8 @@ public class Facture implements Serializable {
     private Double prixTvac;
     private String numeroFacture;
     private FactureEtatEnum etat;
-    @OneToMany(mappedBy = "facture")
-    private Collection<FactureDetail> factureDetails;
+    @OneToMany(mappedBy = "factures")
+    private Collection<FacturesDetail> factureDetails;
 
     @Id
     @Column(name = "IdFactures", nullable = false)
@@ -80,25 +80,25 @@ public class Facture implements Serializable {
         this.etat = etat;
     }
 
-    public Collection<FactureDetail> getFactureDetails() {
+    public Collection<FacturesDetail> getFactureDetails() {
         return factureDetails;
     }
 
-    public void setFactureDetails(Collection<FactureDetail> factureDetails1) {
+    public void setFactureDetails(Collection<FacturesDetail> factureDetails1) {
         this.factureDetails = factureDetails1;
     }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Facture facture = (Facture) o;
-        return idFactures == facture.idFactures &&
-                Objects.equals(dateDebut, facture.dateDebut) &&
-                Objects.equals(prixTvac, facture.prixTvac) &&
-                Objects.equals(numeroFacture, facture.numeroFacture) &&
-                etat == facture.etat &&
-                Objects.equals(utilisateurs, facture.utilisateurs) &&
-                Objects.equals(factureDetails, facture.factureDetails);
+        Factures factures = (Factures) o;
+        return idFactures == factures.idFactures &&
+                Objects.equals(dateDebut, factures.dateDebut) &&
+                Objects.equals(prixTvac, factures.prixTvac) &&
+                Objects.equals(numeroFacture, factures.numeroFacture) &&
+                etat == factures.etat &&
+                Objects.equals(utilisateurs, factures.utilisateurs) &&
+                Objects.equals(factureDetails, factures.factureDetails);
     }
 
     @Override
