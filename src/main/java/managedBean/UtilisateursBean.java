@@ -43,7 +43,8 @@ public class UtilisateursBean implements Serializable {
         transaction.begin();
 
         try {
-
+            utilisateur.setNom(utilisateur.getNom().substring(0,0).toUpperCase() + utilisateur.getNom().substring(1));
+            utilisateur.setPrenom(utilisateur.getPrenom().substring(0,0).toUpperCase() + utilisateur.getPrenom().substring(1));
             utilisateur = service.save(utilisateur);
             transaction.commit();
             log.debug("J'ai sauvé l'utilisateur " + utilisateur.getIdUtilisateurs());
