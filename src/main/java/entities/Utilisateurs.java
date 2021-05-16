@@ -118,7 +118,7 @@ public class Utilisateurs implements Serializable {
         this.actif = actif;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "RolesIdRoles")
     private Roles roles;
     public Roles getRoles() {
