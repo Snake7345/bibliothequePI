@@ -18,19 +18,19 @@ public class SvcFacture extends Service<Factures> implements Serializable {
 	}
 
 	@Override
-	public Factures save(Factures facture) {
-		if (facture.getIdFactures() == 0) {
-			em.persist(facture);
+	public Factures save(Factures factures) {
+		if (factures.getIdFactures() == 0) {
+			em.persist(factures);
 		} else {
-			facture = em.merge(facture);
+			factures = em.merge(factures);
 		}
 
-		return facture;
+		return factures;
 	}
 
 
 	public List<Factures> findAllFacture() {
-		return finder.findByNamedQuery("Factures.findAll", null);
+		return finder.findByNamedQuery("Facture.findAll", null);
 	}
 
 

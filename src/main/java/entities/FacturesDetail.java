@@ -1,20 +1,31 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "factures_detail", schema = "bibliotheque")
-public class FacturesDetail {
+@NamedQueries
+        ({
+                @NamedQuery(name = "FacturesDetail.findAll", query = "SELECT fd FROM FacturesDetail fd"),
+        })
+public class FacturesDetail implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idFactureDetail;
     private Timestamp dateFin;
     private Timestamp dateRetour;
     private String etatRendu;
     private double prix;
 
+
     @Id
-    @Column(name = "IdFactureDetail", nullable = false)
+    @Column(name = "idFactureDetail", nullable = false)
+
     public int getIdFactureDetail() {
         return idFactureDetail;
     }
@@ -63,5 +74,47 @@ public class FacturesDetail {
         this.prix = prix;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "FacturesIdFactures",  nullable = false)
+    private Factures factures;
 
+    public Factures getFacture() {
+        return factures;
+    }
+
+    public void setFacture(Factures factures) {
+        this.factures = factures;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "ExemplairesLivresIdExemplairesLivres", nullable = false)
+    private ExemplairesLivres exemplairesLivre;
+
+    public ExemplairesLivres getExemplairesLivre() {
+        return exemplairesLivre;
+    }
+
+    public void setExemplairesLivre(ExemplairesLivres exemplairesLivre) {
+        this.exemplairesLivre = exemplairesLivre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FacturesDetail that = (FacturesDetail) o;
+        return idFactureDetail == that.idFactureDetail &&
+                Double.compare(that.prix, prix) == 0 &&
+                Objects.equals(dateFin, that.dateFin) &&
+                Objects.equals(dateRetour, that.dateRetour) &&
+                Objects.equals(etatRendu, that.etatRendu) &&
+                Objects.equals(factures, that.factures) &&
+                Objects.equals(exemplairesLivre, that.exemplairesLivre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idFactureDetail, dateFin, dateRetour, etatRendu, prix, factures, exemplairesLivre);
+    }
 }

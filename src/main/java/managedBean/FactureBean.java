@@ -16,7 +16,7 @@ public class FactureBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
 
-    private Factures facture;
+    private Factures factures;
     private static final Logger log = Logger.getLogger(FactureBean.class);
 
     public List<Factures> getReadAll()
@@ -32,11 +32,11 @@ public class FactureBean implements Serializable {
     //-------------------------------Getter & Setter--------------------------------------------
 
     public Factures getFacture() {
-        return facture;
+        return factures;
     }
 
-    public void setFacture(Factures facture) {
-        this.facture = facture;
+    public void setFacture(Factures factures) {
+        this.factures = factures;
     }
 
 }

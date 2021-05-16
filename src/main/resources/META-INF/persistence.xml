@@ -10,8 +10,8 @@
         <class>entities.Bibliotheques</class>
         <class>entities.Editeurs</class>
         <class>entities.ExemplairesLivres</class>
-        <class>entities.Facture</class>
-        <class>entities.FactureDetail</class>
+        <class>entities.Factures</class>
+        <class>entities.FacturesDetail</class>
         <class>entities.Genres</class>
         <class>entities.Jours</class>
         <class>entities.Livres</class>
@@ -28,7 +28,6 @@
         <class>entities.TarifsPenalites</class>
         <class>entities.Utilisateurs</class>
         <class>entities.UtilisateursAdresses</class>
-        <class>entities.FacturesDetail</class>
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/bibliotheque?autoReconnect=true"/>
             <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

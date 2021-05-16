@@ -47,31 +47,31 @@
                             <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['utilisateur.label.Courriel']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.courriel}"/>
+                            <h:outputLabel value ="#{ut.courriel}"> </h:outputLabel>
                         </h:column>
                         <h:column>
                             <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['utilisateur.label.Login']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.login}"/>
+                            <h:outputLabel value ="#{ut.login}"> </h:outputLabel>
                         </h:column>
                         <h:column>
                             <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['utilisateur.label.Mdp']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.mdp}"/>
+                            <h:outputLabel value ="#{ut.mdp}"> </h:outputLabel>
                         </h:column>
                         <h:column>
                             <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['utilisateur.label.Role']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.roles.denomination}"/>
+                            <h:outputLabel value ="#{ut.roles.denomination}"> </h:outputLabel>
                         </h:column>
                         <h:column>
                             <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['adresse.label.complete']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.utilisateursAdresses.stream.findFirst.get.adresse.rue} #{ut.utilisateursAdresses.stream.findFirst.get.adresse.numero} #{ut.utilisateursAdresses.stream.findFirst.get.adresse.boite} #{ut.utilisateursAdresses.stream.findFirst.get.adresse.localites.cp}"/>
+                            <h:outputLabel value ="#{ut.utilisateursAdresses}"> </h:outputLabel>
                         </h:column>
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="formEditUtilisateur">		<!-- u minuscule -->

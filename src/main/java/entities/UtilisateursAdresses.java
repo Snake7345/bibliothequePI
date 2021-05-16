@@ -25,6 +25,15 @@ public class UtilisateursAdresses implements Serializable {
     public void setIdUtilisateursAdresses(int idUtilisateursAdresses) {
         this.idUtilisateursAdresses = idUtilisateursAdresses;
     }
+    @Basic
+    @Column(name = "Actif", nullable = false)
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
 
     @ManyToOne
     @JoinColumn(name = "UtilisateursIdUtilisateurs", nullable = false)
@@ -48,13 +57,4 @@ public class UtilisateursAdresses implements Serializable {
         this.adresse = adresse;
     }
 
-    @Basic
-    @Column(name = "Actif", nullable = false)
-    public boolean isActif() {
-        return actif;
-    }
-
-    public void setActif(boolean actif) {
-        this.actif = actif;
-    }
 }

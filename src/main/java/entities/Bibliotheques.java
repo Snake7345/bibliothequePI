@@ -84,5 +84,21 @@ public class Bibliotheques implements Serializable {
         this.tarifs = tarifs;
     }
 
+    @Override
+    public Bibliotheques clone(){
+        Bibliotheques biblio = null;
+        try{
+            biblio = (Bibliotheques) super.clone();
+        }catch (CloneNotSupportedException e) {
+            e.printStackTrace(System.err);
+        }
+        return biblio;
+    }
 
+    public void setFields(Bibliotheques biblio) {
+        this.nom = biblio.nom;
+        this.adresses = biblio.adresses;
+        this.exemplairesLivres = biblio.exemplairesLivres;
+        this.tarifs = biblio.tarifs;
+    }
 }

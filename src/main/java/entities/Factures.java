@@ -12,8 +12,8 @@ import java.util.Objects;
 @Table(name="factures")
 @NamedQueries
         ({
-                @NamedQuery(name = "Factures.findAll", query = "SELECT f FROM Factures f"),
-                @NamedQuery(name = "Factures.findAllByEtat", query = "SELECT f FROM Factures f WHERE f.etat=:etat"),
+                @NamedQuery(name = "Facture.findAll", query = "SELECT f FROM Factures f"),
+                @NamedQuery(name = "Facture.findAllByEtat", query = "SELECT f FROM Factures f WHERE f.etat=:etat"),
         })
 public class Factures implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -26,7 +26,7 @@ public class Factures implements Serializable {
     private String numeroFacture;
     private FactureEtatEnum etat;
     @OneToMany(mappedBy = "factures")
-    private Collection<FacturesDetail> factureDetails;
+    private Collection<FacturesDetail> facturesDetails;
 
     @Id
     @Column(name = "IdFactures", nullable = false)
@@ -81,11 +81,11 @@ public class Factures implements Serializable {
     }
 
     public Collection<FacturesDetail> getFactureDetails() {
-        return factureDetails;
+        return facturesDetails;
     }
 
-    public void setFactureDetails(Collection<FacturesDetail> factureDetails1) {
-        this.factureDetails = factureDetails1;
+    public void setFactureDetails(Collection<FacturesDetail> facturesDetails1) {
+        this.facturesDetails = facturesDetails1;
     }
     @Override
     public boolean equals(Object o) {
@@ -98,12 +98,12 @@ public class Factures implements Serializable {
                 Objects.equals(numeroFacture, factures.numeroFacture) &&
                 etat == factures.etat &&
                 Objects.equals(utilisateurs, factures.utilisateurs) &&
-                Objects.equals(factureDetails, factures.factureDetails);
+                Objects.equals(facturesDetails, factures.facturesDetails);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, etat, utilisateurs, factureDetails);
+        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, etat, utilisateurs, facturesDetails);
     }
 
     @ManyToOne

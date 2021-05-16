@@ -21,20 +21,20 @@ public class SvcFactureDetail extends Service<FacturesDetail> implements Seriali
     }
 
     @Override
-    public FacturesDetail save(FacturesDetail factureDetail) {
-        if (factureDetail.getIdFactureDetail() == 0) {
-            em.persist(factureDetail);
+    public FacturesDetail save(FacturesDetail facturesDetail) {
+        if (facturesDetail.getIdFactureDetail() == 0) {
+            em.persist(facturesDetail);
         } else {
-            factureDetail = em.merge(factureDetail);
+            facturesDetail = em.merge(facturesDetail);
         }
 
-        return factureDetail;
+        return facturesDetail;
     }
 
 
     public List<FacturesDetail> findAllFactureDetail()
     {
-        return finder.findByNamedQuery("FacturesDetail.findAll",null);
+        return finder.findByNamedQuery("FactureDetail.findAll",null);
     }
 
 
