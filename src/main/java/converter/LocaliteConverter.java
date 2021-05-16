@@ -3,6 +3,7 @@ package converter;
 import entities.Localites;
 import entities.Roles;
 import org.apache.log4j.Logger;
+import services.SvcLocalites;
 import services.SvcRoles;
 
 import javax.faces.component.UIComponent;
@@ -16,7 +17,7 @@ import javax.inject.Named;
 @FacesConverter(value = "localiteConverter")
 public class LocaliteConverter implements Converter {
     private static final Logger log = Logger.getLogger(LocaliteConverter.class);
-    private final SvcRoles service = new SvcRoles();
+    private final SvcLocalites service = new SvcLocalites();
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
