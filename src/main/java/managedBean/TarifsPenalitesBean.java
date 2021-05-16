@@ -22,6 +22,10 @@ public class TarifsPenalitesBean implements Serializable {
     EntityTransaction transaction = service.getTransaction();
     private static final Logger log = Logger.getLogger(TarifsPenalites.class);
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de toutes les pénalités
+     */
+
     public List<TarifsPenalites> getReadAll()
     {
         List<TarifsPenalites> listTarifsPenalites = new ArrayList<TarifsPenalites>();

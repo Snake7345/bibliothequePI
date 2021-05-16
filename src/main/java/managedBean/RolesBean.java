@@ -135,6 +135,9 @@ public class RolesBean implements Serializable {
         return "tableRoles?faces-redirect=true";
     }
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les roles
+     */
     public List<Roles> getReadAll()
     {
         SvcRoles service = new SvcRoles();
@@ -144,6 +147,9 @@ public class RolesBean implements Serializable {
 
         return listRole;
     }
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les roles actifs
+     */
 
     public List<Roles> getReadActiv()
     {
@@ -154,6 +160,9 @@ public class RolesBean implements Serializable {
 
         return listRole;
     }
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les roles inactifs
+     */
     public List<Roles> getReadInactiv()
     {
         SvcRoles service = new SvcRoles();

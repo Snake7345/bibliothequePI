@@ -20,6 +20,9 @@ public class PaysBean implements Serializable {
     private final SvcPays service = new SvcPays();
     private static final Logger log = Logger.getLogger(PaysBean.class);
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les pays
+     */
     public List<Pays> getReadAll()
     {
         List<Pays> listPays = new ArrayList<Pays>();

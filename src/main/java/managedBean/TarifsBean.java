@@ -18,6 +18,11 @@ public class TarifsBean implements Serializable {
     private Tarifs tarif;
     private static final Logger log = Logger.getLogger(TarifsBean.class);
 
+
+    /*
+     * Méthode qui permet via le service de retourner la liste de toutes les grilles tarifaires
+     */
+
     public List<Tarifs> getReadAll()
     {
         SvcTarifs service = new SvcTarifs();

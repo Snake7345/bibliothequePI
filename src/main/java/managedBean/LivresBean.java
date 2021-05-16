@@ -211,6 +211,9 @@ public class LivresBean implements Serializable {
     }
 
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les livres
+     */
     public List<Livres> getReadAll()
     {
         SvcLivres service = new SvcLivres();
@@ -221,6 +224,9 @@ public class LivresBean implements Serializable {
         return listLiv;
     }
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les livres actifs
+     */
     public List<Livres> getReadActiv()
     {
         SvcLivres service = new SvcLivres();
@@ -229,6 +235,9 @@ public class LivresBean implements Serializable {
         service.close();
         return listLiv;
     }
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les inactifs
+     */
     public List<Livres> getReadInactiv()
     {
         SvcLivres service = new SvcLivres();

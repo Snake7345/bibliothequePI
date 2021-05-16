@@ -173,6 +173,9 @@ public class UtilisateursBean implements Serializable {
         init();
         return "bienvenue?faces-redirect=true";
     }
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les utilisateurs actifs
+     */
 
     public List<Utilisateurs> getReadActiv()
     {
@@ -182,6 +185,9 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listUtil;
     }
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les utilisateurs inactifs
+     */
     public List<Utilisateurs> getReadInactiv()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();
@@ -190,7 +196,9 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listUtil;
     }
-
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les utilisateurs
+     */
     public List<Utilisateurs> getReadAll()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();

@@ -18,6 +18,9 @@ public class JoursBean implements Serializable {
     private Jours jour;
     private static final Logger log = Logger.getLogger(JoursBean.class);
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les jours
+     */
     public List<Jours> getReadAll()
     {
         SvcJours service = new SvcJours();

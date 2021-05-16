@@ -46,7 +46,7 @@ public class EditeursBean implements Serializable {
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
+                log.debug("J'ai fait une erreur");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
 
@@ -72,7 +72,7 @@ public class EditeursBean implements Serializable {
             service.save(editeur);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+            fc.addMessage("ModifEd", new FacesMessage("Modification réussie"));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
@@ -84,12 +84,19 @@ public class EditeursBean implements Serializable {
 
     }
 
+    /*
+     * Méthode qui permet de vider les variables et de revenir sur le table Editeurs .
+     */
     public String flushEd()
     {
         init();
         return "tableEditeurs?faces-redirect=true";
     }
 
+    /*
+     * Méthode qui permet via le service de retourner
+     * la liste de tous les éditeurs
+     */
     public List<Editeurs> getReadAll()
     {
         SvcEditeurs service = new SvcEditeurs();

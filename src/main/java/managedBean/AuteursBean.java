@@ -43,12 +43,12 @@ public class AuteursBean implements Serializable {
             service.save(auteur);
 
             transaction.commit();
-            log.debug("J'ai sauvé l'adresse");
+            log.debug("J'ai sauvé l'auteur");
             return "/tableAuteurs.xhtml?faces-redirect=true";
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
+                log.debug("J'ai fait une erreur");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
 
@@ -87,6 +87,7 @@ public class AuteursBean implements Serializable {
 
     }
 
+    /*Méthode qui permet d'activer et de désactiver un auteur*/
     public String activdesactivAut()
     {
         SvcAuteurs service = new SvcAuteurs();
@@ -117,7 +118,7 @@ public class AuteursBean implements Serializable {
         finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
+                log.debug("J'ai fait une erreur");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
 
@@ -174,7 +175,10 @@ public class AuteursBean implements Serializable {
 
     //}
 
-
+    /*
+     * Méthode qui permet via le service de retourner
+     * la liste de tous les auteurs
+     */
     public List<Auteurs> getReadAll()
     {
         SvcAuteurs service = new SvcAuteurs();
@@ -185,12 +189,18 @@ public class AuteursBean implements Serializable {
         return listAut;
     }
 
+    /*
+     * Méthode qui permet de vider les variables et de les mettres a leur valeur initiale avant de revenir sur la page web Bienvenue .
+     * */
     public String flushBienv()
     {
         init();
         return "bienvenue?faces-redirect=true";
     }
-
+    /*
+     * Méthode qui permet via le service de retourner
+     * la liste de tous les auteurs actifs
+     */
     public List<Auteurs> getReadActiv()
     {
         SvcAuteurs service = new SvcAuteurs();
@@ -199,6 +209,10 @@ public class AuteursBean implements Serializable {
         service.close();
         return listAut;
     }
+    /*
+     * Méthode qui permet via le service de retourner
+     * la liste de tous les auteurs inactifs
+     */
     public List<Auteurs> getReadInactiv()
     {
         SvcAuteurs service = new SvcAuteurs();

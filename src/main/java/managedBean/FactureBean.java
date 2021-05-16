@@ -19,6 +19,9 @@ public class FactureBean implements Serializable {
     private Factures factures;
     private static final Logger log = Logger.getLogger(FactureBean.class);
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de toutes les factures
+     */
     public List<Factures> getReadAll()
     {
         SvcFacture service = new SvcFacture();

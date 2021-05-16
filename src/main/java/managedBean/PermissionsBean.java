@@ -69,6 +69,9 @@ public class PermissionsBean implements Serializable {
         return "tablePermissions?faces-redirect=true";
     }
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de toutes les permissions
+     */
     public List<Permissions> getReadAll()
     {
         SvcPermissions service = new SvcPermissions();

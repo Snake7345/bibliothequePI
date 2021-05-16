@@ -18,7 +18,9 @@ public class ExemplairesLivresBean implements Serializable {
     private ExemplairesLivres exemplairesLivre;
     private static final Logger log = Logger.getLogger(ExemplairesLivresBean.class);
 
-
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les exemplaires livres
+     */
     public List<ExemplairesLivres> getReadAll()
     {
         SvcExemplairesLivres service = new SvcExemplairesLivres();

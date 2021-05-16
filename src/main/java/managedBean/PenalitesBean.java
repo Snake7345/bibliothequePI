@@ -18,6 +18,9 @@ public class PenalitesBean implements Serializable {
     private Penalites penalite;
     private static final Logger log = Logger.getLogger(PenalitesBean.class);
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les pénalités
+     */
     public List<Penalites> getReadAll()
     {
         SvcPenalites service = new SvcPenalites();

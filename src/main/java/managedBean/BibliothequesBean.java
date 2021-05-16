@@ -63,12 +63,19 @@ public class BibliothequesBean implements Serializable {
 
     }
 
+    /*
+     * Méthode qui permet de vider les variables et de revenir sur le table Bibliothèques .
+     *
+     */
     public String flushBiblio()
     {
         init();
         return "tableBibliotheques?faces-redirect=true";
     }
-
+    /*
+     * Méthode qui permet via le service de retourner
+     * la liste de toutes les bibliothèques
+     */
     public List<Bibliotheques> getReadAll()
     {
         SvcBibliotheques service = new SvcBibliotheques();

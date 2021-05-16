@@ -47,7 +47,7 @@ public class AdressesBean implements Serializable {
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
+                log.debug("J'ai fait une erreur");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
 
@@ -64,13 +64,20 @@ public class AdressesBean implements Serializable {
 
     }
 
+    /*
+     * Méthode qui permet de vider les variables et de revenir sur le table des Adresses .
+     * */
     public String flushAdd()
     {
         init();
-        return "tableAddresses?faces-redirect=true";
+        return "tableAdresses?faces-redirect=true";
     }
 
 
+    /*
+     * Méthode qui permet via le service de retourner
+     * la liste des adresses
+     */
     public List<Adresses> getReadAll()
     {
         SvcAdresses service = new SvcAdresses();

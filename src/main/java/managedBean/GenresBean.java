@@ -84,12 +84,16 @@ public class GenresBean implements Serializable {
 
     }
 
+
     public String flushGen()
     {
         init();
         return "tableGenres?faces-redirect=true";
     }
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les genres
+     */
     public List<Genres> getReadAll()
     {
         SvcGenres service = new SvcGenres();

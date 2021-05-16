@@ -18,6 +18,9 @@ public class LocalitesBean implements Serializable {
     private Localites localite;
     private static final Logger log = Logger.getLogger(LocalitesBean.class);
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de toutes les localités
+     */
     public List<Localites> getReadAll()
     {
         SvcLocalites service = new SvcLocalites();
