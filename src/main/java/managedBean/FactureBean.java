@@ -13,6 +13,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class FactureBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
 
     private Facture facture;
@@ -27,6 +28,8 @@ public class FactureBean implements Serializable {
         service.close();
         return listFact;
     }
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Facture getFacture() {
         return facture;

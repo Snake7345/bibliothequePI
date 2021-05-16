@@ -17,6 +17,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class PermissionsBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Permissions permission;
     private static final Logger log = Logger.getLogger(PermissionsBean.class);
@@ -76,6 +77,9 @@ public class PermissionsBean implements Serializable {
         service.close();
         return listPermissions;
     }
+
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Permissions getPermission() {
         return permission;

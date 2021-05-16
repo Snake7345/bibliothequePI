@@ -13,6 +13,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class ExemplairesLivresBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private ExemplairesLivres exemplairesLivre;
     private static final Logger log = Logger.getLogger(ExemplairesLivresBean.class);
@@ -27,6 +28,8 @@ public class ExemplairesLivresBean implements Serializable {
         service.close();
         return listExemplaires;
     }
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public ExemplairesLivres getExemplairesLivre() {
         return exemplairesLivre;

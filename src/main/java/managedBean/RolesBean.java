@@ -17,6 +17,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class RolesBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Roles role;
     private static final Logger log = Logger.getLogger(RolesBean.class);
@@ -163,6 +164,7 @@ public class RolesBean implements Serializable {
         return listRole;
     }
 
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Roles getRole() {
         return role;

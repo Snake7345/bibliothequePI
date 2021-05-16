@@ -13,6 +13,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class TarifsBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Tarifs tarif;
     private static final Logger log = Logger.getLogger(TarifsBean.class);
@@ -26,6 +27,8 @@ public class TarifsBean implements Serializable {
         service.close();
         return listTarifs;
     }
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Tarifs getTarif() {
         return tarif;

@@ -14,6 +14,8 @@ import java.util.List;
 @Named
 @SessionScoped
 public class TarifsPenalitesBean implements Serializable {
+
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private TarifsPenalites tarifsPenalite;
     SvcTarifsPenalites service = new SvcTarifsPenalites();
@@ -28,6 +30,9 @@ public class TarifsPenalitesBean implements Serializable {
         service.close();
         return listTarifsPenalites;
     }
+
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public TarifsPenalites getTarifsPenalite() {
         return tarifsPenalite;

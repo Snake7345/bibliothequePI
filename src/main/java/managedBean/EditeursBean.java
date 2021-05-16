@@ -17,6 +17,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class EditeursBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Editeurs editeur;
     private static final Logger log = Logger.getLogger(EditeursBean.class);
@@ -99,6 +100,7 @@ public class EditeursBean implements Serializable {
         return listEditeurs;
     }
 
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Editeurs getEditeur() {
         return editeur;

@@ -17,6 +17,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class BibliothequesBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Bibliotheques bibliotheque;
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
@@ -77,6 +78,7 @@ public class BibliothequesBean implements Serializable {
         service.close();
         return listBib;
     }
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Bibliotheques getBibliotheque() {
         return bibliotheque;

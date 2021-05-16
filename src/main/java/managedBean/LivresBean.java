@@ -18,6 +18,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class LivresBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Livres livre;
     private static final Logger log = Logger.getLogger(LivresBean.class);
@@ -242,6 +243,8 @@ public class LivresBean implements Serializable {
         init();
         return "bienvenue?faces-redirect=true";
     }
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Livres getLivre() {
         return livre;

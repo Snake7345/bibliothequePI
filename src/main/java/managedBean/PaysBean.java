@@ -13,6 +13,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class PaysBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
 
     private Pays pays;
@@ -27,6 +28,9 @@ public class PaysBean implements Serializable {
 
         return listPays;
     }
+
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Pays getPays() {
         return pays;

@@ -17,6 +17,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class GenresBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Genres genre;
     private static final Logger log = Logger.getLogger(GenresBean.class);
@@ -98,6 +99,8 @@ public class GenresBean implements Serializable {
         service.close();
         return listGenres;
     }
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Genres getGenre() {
         return genre;

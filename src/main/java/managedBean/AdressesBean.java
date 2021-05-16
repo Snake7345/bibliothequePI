@@ -82,6 +82,8 @@ public class AdressesBean implements Serializable {
     }
 
 
+//-------------------------------Getter & Setter--------------------------------------------
+
     public Adresses getAdresse() {
         return adresse;
     }

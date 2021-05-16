@@ -13,6 +13,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class JoursBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Jours jour;
     private static final Logger log = Logger.getLogger(JoursBean.class);
@@ -26,6 +27,9 @@ public class JoursBean implements Serializable {
         service.close();
         return listJours;
     }
+
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Jours getJour() {
         return jour;

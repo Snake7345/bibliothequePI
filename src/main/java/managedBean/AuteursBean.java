@@ -16,6 +16,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class AuteursBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Auteurs auteur;
     private static final Logger log = Logger.getLogger(AuteursBean.class);
@@ -206,6 +207,7 @@ public class AuteursBean implements Serializable {
         service.close();
         return listAut;
     }
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Auteurs getAuteur() {
         return auteur;

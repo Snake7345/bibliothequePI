@@ -13,6 +13,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class PenalitesBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Penalites penalite;
     private static final Logger log = Logger.getLogger(PenalitesBean.class);
@@ -26,6 +27,8 @@ public class PenalitesBean implements Serializable {
 
         return listPenalites;
     }
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Penalites getPenalite() {
         return penalite;

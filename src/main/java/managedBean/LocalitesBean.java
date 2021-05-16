@@ -13,6 +13,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class LocalitesBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Localites localite;
     private static final Logger log = Logger.getLogger(LocalitesBean.class);
@@ -26,6 +27,9 @@ public class LocalitesBean implements Serializable {
 
         return listLoca;
     }
+
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Localites getLocalite() {
         return localite;
