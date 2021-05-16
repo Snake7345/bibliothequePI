@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SvcLivres extends Service<Livres> implements Serializable {
+	//Déclaration des variables
 	private static final Logger log = Logger.getLogger(SvcLivres.class);
 	private static final long serialVersionUID = 1L;
 	Map<String, Object> params = new HashMap<String, Object>();
@@ -21,6 +22,7 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 		super();
 	}
 
+	// Méthode qui permet de sauver un livre et de le mettre en DB
 	@Override
 	public Livres save(Livres livres) {
 		if (livres.getIdLivres() == 0) {
@@ -32,12 +34,15 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 		return livres;
 	}
 
+	//Méthode qui permet via une requete de retourner la liste entière des livres
 	public List<Livres> findAllLivres() {
 		return finder.findByNamedQuery("Livres.findAllTri", null);
 	}
+	//Méthode qui permet via une requete de retourner la liste entière des livres actifs
 	public List<Livres> findAllLivresActiv() {
 		return finder.findByNamedQuery("Livres.findAllActiv", null);
 	}
+	//Méthode qui permet via une requete de retourner la liste entière des livres inactifs
 	public List<Livres> findAllLivresInactiv() {
 		return finder.findByNamedQuery("Livres.findAllInactiv", null);
 	}

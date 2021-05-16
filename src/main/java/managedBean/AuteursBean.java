@@ -19,7 +19,6 @@ public class AuteursBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Auteurs auteur;
     private static final Logger log = Logger.getLogger(AuteursBean.class);
-    private Auteurs autTemp;
     private List<Auteurs> searchResults;
     private List<Auteurs> listAut;
 

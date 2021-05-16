@@ -12,6 +12,7 @@ public class SvcPermissionRoles extends Service<PermissionsRoles>
         super();
     }
 
+    // Méthode qui permet de sauver une permissionsRoles et de le mettre en DB
     @Override
     public PermissionsRoles save(PermissionsRoles permissionsRoles)
     {
@@ -23,6 +24,7 @@ public class SvcPermissionRoles extends Service<PermissionsRoles>
 
         return permissionsRoles;
     }
+
 
     public PermissionsRoles createPermissionRoles(Permissions p, Roles r)
     {

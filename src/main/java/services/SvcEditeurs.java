@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class SvcEditeurs extends Service<Editeurs> implements Serializable
 {
+	// Déclaration des variables
 	private static final Logger log = Logger.getLogger(SvcEditeurs.class);
 	private static final long serialVersionUID = 1L;
 	Map<String, Object> params = new HashMap<String, Object>();
@@ -19,6 +20,7 @@ public class SvcEditeurs extends Service<Editeurs> implements Serializable
 		super();
 	}
 
+	// Méthode qui permet de sauver un éditeur et de le mettre en DB
 	@Override
 	public Editeurs save(Editeurs editeurs) {
 		if (editeurs.getIdEditeurs() == 0) {
@@ -31,6 +33,7 @@ public class SvcEditeurs extends Service<Editeurs> implements Serializable
 	}
 
 
+	//Méthode qui permet via une requete de retourner la liste entière des éditeurs
 	public List<Editeurs> findAllEditeurs()
 	{
 		return finder.findByNamedQuery("Editeurs.findAllTri",null);

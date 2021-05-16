@@ -17,6 +17,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class AdressesBean implements Serializable {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Adresses adresse;
     private static final Logger log = Logger.getLogger(AdressesBean.class);
@@ -26,6 +27,7 @@ public class AdressesBean implements Serializable {
     {
         adresse = new Adresses();
     }
+
 
     public String newAdress()
     {

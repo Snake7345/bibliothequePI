@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SvcPenalites extends Service<Penalites> implements Serializable {
+	// Déclaration des variables
 	private static final Logger log = Logger.getLogger(SvcPenalites.class);
 	private static final long serialVersionUID = 1L;
 	Map<String, Object> params = new HashMap<String, Object>();
@@ -16,7 +17,7 @@ public class SvcPenalites extends Service<Penalites> implements Serializable {
 	public SvcPenalites() {
 		super();
 	}
-
+	// Méthode qui permet de sauver une pénalité et de le mettre en DB
 	@Override
 	public Penalites save(Penalites penalites) {
 		if (penalites.getIdPenalites() == 0) {
@@ -28,7 +29,7 @@ public class SvcPenalites extends Service<Penalites> implements Serializable {
 		return penalites;
 	}
 
-
+	//Méthode qui permet via une requete de retourner la liste entière des pénalités
 	public List<Penalites> findAllPenalites() {
 		return finder.findByNamedQuery("Penalites.findAll", null);
 	}

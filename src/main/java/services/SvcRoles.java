@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SvcRoles extends Service<Roles> implements Serializable {
+	// Déclaration des variables
 	private static final Logger log = Logger.getLogger(SvcRoles.class);
 	private static final long serialVersionUID = 1L;
 	Map<String, Object> params = new HashMap<String, Object>();
@@ -17,6 +18,7 @@ public class SvcRoles extends Service<Roles> implements Serializable {
 		super();
 	}
 
+	// Méthode qui permet de sauver un role et de le mettre en DB
 	@Override
 	public Roles save(Roles roles) {
 		if (roles.getIdRoles() == 0) {
@@ -28,13 +30,15 @@ public class SvcRoles extends Service<Roles> implements Serializable {
 		return roles;
 	}
 
-
+	//Méthode qui permet via une requete de retourner la liste entière des roles
 	public List<Roles> findAllRoles() {
 		return finder.findByNamedQuery("Roles.findAll", null);
 	}
+	//Méthode qui permet via une requete de retourner la liste entière des roles actifs
 	public List<Roles> findAllRolesActiv() {
 		return finder.findByNamedQuery("Roles.findActiv", null);
 	}
+	//Méthode qui permet via une requete de retourner la liste entière des roles inactifs
 	public List<Roles> findAllRolesInactiv() {
 		return finder.findByNamedQuery("Roles.findInactiv", null);
 	}

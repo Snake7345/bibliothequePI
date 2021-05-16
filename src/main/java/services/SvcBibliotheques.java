@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class SvcBibliotheques extends Service<Bibliotheques> implements Serializable
 {
+	// Déclaration des variables
 	private static final Logger log = Logger.getLogger(SvcBibliotheques.class);
 	private static final long serialVersionUID = 1L;
 	Map<String, Object> params = new HashMap<String, Object>();
@@ -21,12 +22,13 @@ public class SvcBibliotheques extends Service<Bibliotheques> implements Serializ
 	}
 
 
-
+	//Méthode qui permet via une requete de retourner la liste entière des bibliothèques
 	public List<Bibliotheques> findAllBibliotheques()
 	{
 		return finder.findByNamedQuery("Bibliotheques.findAll",null);
 	}
 
+	// Méthode qui permet de sauver une bibliothèque et de la mettre en DB
 	@Override
 	public Bibliotheques save(Bibliotheques bibliotheques) {
 		if (bibliotheques.getIdBibliotheques() == 0) {

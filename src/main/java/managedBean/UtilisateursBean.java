@@ -44,7 +44,6 @@ public class UtilisateursBean implements Serializable {
         try {
 
             utilisateur = service.save(utilisateur);
-
             transaction.commit();
             log.debug("J'ai sauvé l'utilisateur " + utilisateur.getIdUtilisateurs());
             return "/tableUtilisateurs.xhtml?faces-redirect=true";

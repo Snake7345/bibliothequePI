@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SvcPermissions extends Service<Permissions> implements Serializable {
+	// Déclaration des variables
 	private static final Logger log = Logger.getLogger(SvcPermissions.class);
 	private static final long serialVersionUID = 1L;
 	Map<String, Object> params = new HashMap<String, Object>();
@@ -17,6 +18,7 @@ public class SvcPermissions extends Service<Permissions> implements Serializable
 		super();
 	}
 
+	// Méthode qui permet de sauver une permission et de la mettre en DB
 	@Override
 	public Permissions save(Permissions permissions) {
 		if (permissions.getIdPermissions() == 0) {
@@ -28,7 +30,7 @@ public class SvcPermissions extends Service<Permissions> implements Serializable
 		return permissions;
 	}
 
-
+	//Méthode qui permet via une requete de retourner la liste entière des permissions
 	public List<Permissions> findAllPermissions() {
 		return finder.findByNamedQuery("Permissions.findAllTri", null);
 	}
