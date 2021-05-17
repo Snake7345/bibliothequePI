@@ -11,8 +11,8 @@
 
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['application.genre.title']}</ui:define>
-
     <ui:define name="content">
+        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(40,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form prependId="false">
                 <h:panelGroup layout="block" id="content">
                     <h2 style="text-align:center">#{I18N['application.genre.title']}</h2>
@@ -30,16 +30,24 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{gen.denomination}"/>
                         </h:column>
+                        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(18,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="formEditGenre">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{genresBean.genre}" value="#{gen}" /><!-- u minuscule -->
                             </h:commandButton>
                         </h:column>
+                        </c:if>
                     </h:dataTable>
                 </h:panelGroup>
+                <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(7,loginBean.utilisateurAuth.roles.idRoles)}">
                 <h:commandButton value="#{I18N['application.button.new']}" action="formNewGenre" />
+                </c:if>
                 <h:commandButton value="#{I18N['application.button.return']}" action="bienvenue"/>
             </h:form>
+    </c:if>
+    <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(40,loginBean.utilisateurAuth.roles.idRoles))}">
+        <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+    </c:if>
     </ui:define>
 </ui:composition>
 </html>

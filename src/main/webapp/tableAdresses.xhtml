@@ -63,14 +63,18 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{ad.localites.ville}"> </h:outputLabel>
                         </h:column>
+                        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(13,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="formEditAdress">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{adressesBean.adresse}" value="#{ad}" /><!-- u minuscule -->
                             </h:commandButton>
                         </h:column>
+                        </c:if>
                     </h:dataTable>
                 </h:panelGroup>
+                <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(1,loginBean.utilisateurAuth.roles.idRoles)}">
                 <h:commandButton value="#{I18N['application.button.new']}" action="formNewAdress" />
+                </c:if>
                 <h:commandButton value="#{I18N['application.button.return']}" action="bienvenue"/>
             </h:form>
         </c:if>

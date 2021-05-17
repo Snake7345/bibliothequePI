@@ -11,8 +11,8 @@
 
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['application.livre.title']}</ui:define>
-
     <ui:define name="content">
+        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(42,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form prependId="false">
             <h:panelGroup layout="block" id="content">
                 <h:messages styleClass="errorBlock" role="alert"/>
@@ -49,24 +49,35 @@
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </h:commandButton>
                     </h:column>
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(19,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
                         <h:commandButton  image="Images//edit.png" action="formEditLivre">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </h:commandButton>
                     </h:column>
+                    </c:if>
+                    <!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(26,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
                         <h:commandButton image="Images//activdesactiv.png" action="#{livresBean.activdesactivLiv}">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </h:commandButton>
                     </h:column>
+                    </c:if>
                 </h:dataTable>
             </h:panelGroup>
+            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(8,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.new']}" action="formNewLivre" />
+            </c:if>
             <h:commandButton value="#{I18N['application.button.find']}" action="formSearchLivre"/>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushBienv}"/>
             <h:commandButton value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}"/>
             <h:commandButton value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}"/>
         </h:form>
+        </c:if>
+        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(42,loginBean.utilisateurAuth.roles.idRoles))}">
+            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+        </c:if>
     </ui:define>
 </ui:composition>
 </html>

@@ -13,7 +13,8 @@
     <ui:define name="title">#{I18N['application.editeur.title']}</ui:define>
 
     <ui:define name="content">
-            <h:form prependId="false">
+        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(37,loginBean.utilisateurAuth.roles.idRoles)}">
+        <h:form prependId="false">
                 <h:panelGroup layout="block" id="content">
                     <h2 style="text-align:center">#{I18N['application.editeur.title']}</h2>
                     <h:dataTable value="#{editeursBean.readAll}" var="ed" id="tableEditeurs"
@@ -30,16 +31,24 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{ed.nom}"/>
                         </h:column>
+                        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(16,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="formEditEditeur">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{editeursBean.editeur}" value="#{ed}" /><!-- u minuscule -->
                             </h:commandButton>
                         </h:column>
+                        </c:if>
                     </h:dataTable>
                 </h:panelGroup>
-                <h:commandButton value="#{I18N['application.button.new']}" action="formNewEditeur" />
+            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(4,loginBean.utilisateurAuth.roles.idRoles)}">
+            <h:commandButton value="#{I18N['application.button.new']}" action="formNewEditeur" />
+            </c:if>
                 <h:commandButton value="#{I18N['application.button.return']}" action="bienvenue"/>
             </h:form>
+    </c:if>
+    <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(37,loginBean.utilisateurAuth.roles.idRoles))}">
+        <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+    </c:if>
     </ui:define>
 </ui:composition>
 </html>
