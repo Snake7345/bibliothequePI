@@ -1,7 +1,10 @@
 package managedBean;
 
+import entities.TarifsJours;
 import entities.TarifsPenalites;
 import org.apache.log4j.Logger;
+import services.SvcTarifs;
+import services.SvcTarifsJours;
 import services.SvcTarifsPenalites;
 
 import javax.enterprise.context.SessionScoped;
@@ -15,20 +18,22 @@ import java.util.List;
 
 @Named
 @SessionScoped
-public class TarifsPenalitesBean implements Serializable {
+public class TarifsJoursBean implements Serializable {
 
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
-    private TarifsPenalites tarifsPenalite;
-    private static final Logger log = Logger.getLogger(TarifsPenalites.class);
+    private TarifsJours tarifsJours;
 
-        public void save()
+
+    private static final Logger log = Logger.getLogger(TarifsJoursBean.class);
+
+    public void save()
     {
-        SvcTarifsPenalites service = new SvcTarifsPenalites();
+        SvcTarifsJours service = new SvcTarifsJours();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            service.save(tarifsPenalite);
+            service.save(tarifsJours);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
@@ -43,25 +48,27 @@ public class TarifsPenalitesBean implements Serializable {
     }
 
     /*
-     * Méthode qui permet via le service de retourner la liste de toutes les pénalités
+     * Méthode qui permet via le service de retourner la liste de toutes les tarifs journalier
      */
-    public List<TarifsPenalites> getReadAll()
-    {
-        SvcTarifsPenalites service = new SvcTarifsPenalites();
-        List<TarifsPenalites> listTarifsPenalites = service.findAllTarifsPenalites();
-        service.close();
 
-        return listTarifsPenalites;
+    public List<TarifsJours> getReadAll()
+    {
+        SvcTarifsJours service = new SvcTarifsJours();
+        List<TarifsJours> listTarifsJours = service.findAllTarifsJours();
+
+        service.close();
+        return listTarifsJours;
     }
 
 
     //-------------------------------Getter & Setter--------------------------------------------
 
-    public TarifsPenalites getTarifsPenalite() {
-        return tarifsPenalite;
+
+    public TarifsJours getTarifsJours() {
+        return tarifsJours;
     }
 
-    public void setTarifsPenalite(TarifsPenalites tarifsPenalite) {
-        this.tarifsPenalite = tarifsPenalite;
+    public void setTarifsJours(TarifsJours tarifsJours) {
+        this.tarifsJours = tarifsJours;
     }
 }

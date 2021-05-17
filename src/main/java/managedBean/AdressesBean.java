@@ -3,6 +3,7 @@ package managedBean;
 import entities.Adresses;
 import org.apache.log4j.Logger;
 import services.SvcAdresses;
+import services.SvcAuteurs;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -31,39 +32,33 @@ public class AdressesBean implements Serializable {
 
     public String newAdress()
     {
+        //Todo mettre/faire une verification de l'objet adresse,
+        save();
+        return "/tableAdresses.xhtml?faces-redirect=true";
+    }
+    public void save()
+    {
         SvcAdresses service = new SvcAdresses();
         EntityTransaction transaction = service.getTransaction();
-        //Todo mettre/faire une verification de l'objet utilisateur,
-        log.debug("J'vais essayer d'sauver l'adresse");
         transaction.begin();
-
         try {
-
             service.save(adresse);
-
             transaction.commit();
-            log.debug("J'ai sauvé l'adresse");
-            return "/tableAdresses.xhtml?faces-redirect=true";
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-                log.debug("J'ai fait une erreur");
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-
-                return "";
+                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
             }
             else
             {
-                log.debug("je suis censé avoir réussi");
                 init();
             }
-
             service.close();
         }
-
     }
-
     /*
      * Méthode qui permet de vider les variables et de revenir sur le table des Adresses .
      * */

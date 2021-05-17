@@ -2,10 +2,14 @@ package managedBean;
 
 import entities.Penalites;
 import org.apache.log4j.Logger;
+import services.SvcAdresses;
 import services.SvcPenalites;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,29 @@ public class PenalitesBean implements Serializable {
     /*
      * Méthode qui permet via le service de retourner la liste de tous les pénalités
      */
+    public void save()
+    {
+        SvcPenalites service = new SvcPenalites();
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            service.save(penalite);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+            }
+            else
+            {
+                //init();
+            }
+            service.close();
+        }
+    }
     public List<Penalites> getReadAll()
     {
         SvcPenalites service = new SvcPenalites();

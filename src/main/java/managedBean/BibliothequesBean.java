@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.Bibliotheques;
 import org.apache.log4j.Logger;
+import services.SvcAuteurs;
 import services.SvcBibliotheques;
 
 import javax.annotation.PostConstruct;
@@ -30,37 +31,33 @@ public class BibliothequesBean implements Serializable {
 
     public String newBiblio()
     {
+        //Todo mettre/faire une verification de l'objet bibliotheque,
+        save();
+        return "/tableBibliotheques.xhtml?faces-redirect=true";
+    }
+
+    public void save()
+    {
         SvcBibliotheques service = new SvcBibliotheques();
         EntityTransaction transaction = service.getTransaction();
-        //Todo mettre/faire une verification de l'objet utilisateur,
-        log.debug("J'vais essayer d'sauver la bibliotheque");
         transaction.begin();
-
         try {
-
             service.save(bibliotheque);
-
             transaction.commit();
-            log.debug("J'ai sauvé la bibliotheque");
-            return "/tableBibliotheques.xhtml?faces-redirect=true";
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-
-                return "";
+                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
             }
             else
             {
-                log.debug("je suis censé avoir réussi");
                 init();
             }
-
             service.close();
         }
-
     }
 
     /*

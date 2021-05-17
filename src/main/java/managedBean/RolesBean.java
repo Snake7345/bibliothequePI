@@ -30,82 +30,25 @@ public class RolesBean implements Serializable {
 
     public String newRoles()
     {
-        SvcRoles service = new SvcRoles();
-        EntityTransaction transaction = service.getTransaction();
-        //Todo mettre/faire une verification de l'objet utilisateur,
-        log.debug("J'vais essayer d'sauver le role");
-        transaction.begin();
-
-        try {
-
-            service.save(role);
-
-            transaction.commit();
-            log.debug("J'ai sauvé le role");
-            return "/tableRoles.xhtml?faces-redirect=true";
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-
-                return "";
-            }
-            else
-            {
-                log.debug("je suis censé avoir réussi");
-                init();
-            }
-
-            service.close();
-        }
-
+        //Todo mettre/faire une verification de l'objet role
+        save();
+        return "/tableRoles.xhtml?faces-redirect=true";
     }
 
     public String activdesactivRol()
     {
-        SvcRoles service = new SvcRoles();
-        EntityTransaction transaction = service.getTransaction();
-        log.debug("je débute la méthode activdésactive");
-        try
+        if(role.isActif())
         {
-            transaction.begin();
-            /*Si la voiture est active alors on la désactive*/
-            if(role.isActif())
-            {
-                log.debug("je passe le if de désactive");
-                role.setActif(false);
-            }
-
-            else
-            {
-                role.setActif(true);
-            }
-
-
-            service.save(role);
-
-            transaction.commit();
-            log.debug("J'ai modifié le role");
-            return "/tableRoles.xhtml?faces-redirect=true";
+            log.debug("je passe le if de désactive");
+            role.setActif(false);
         }
-        finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
 
-                return "";
-            }
-            else
-            {
-                log.debug("je suis censé avoir réussi");
-                init();
-            }
-            service.close();
+        else
+        {
+            role.setActif(true);
         }
+        save();
+        return "/tableRoles.xhtml?faces-redirect=true";
     }
 
     public void save()

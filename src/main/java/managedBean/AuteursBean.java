@@ -32,37 +32,9 @@ public class AuteursBean implements Serializable {
 
     public String newAuteur()
     {
-        SvcAuteurs service = new SvcAuteurs();
-        EntityTransaction transaction = service.getTransaction();
-        //Todo mettre/faire une verification de l'objet utilisateur,
-        log.debug("J'vais essayer d'sauver l'auteur");
-        transaction.begin();
-
-        try {
-
-            service.save(auteur);
-
-            transaction.commit();
-            log.debug("J'ai sauvé l'auteur");
-            return "/tableAuteurs.xhtml?faces-redirect=true";
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur");
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-
-                return "";
-            }
-            else
-            {
-                log.debug("je suis censé avoir réussi");
-                init();
-            }
-
-            service.close();
-        }
-
+        //Todo mettre/faire une verification de l'objet auteur,
+        save();
+        return "/tableAuteurs.xhtml?faces-redirect=true";
     }
 
 
@@ -80,11 +52,14 @@ public class AuteursBean implements Serializable {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+            }
+            else
+            {
+                init();
             }
             service.close();
         }
-
     }
 
     /*Méthode qui permet d'activer et de désactiver un auteur*/
@@ -93,44 +68,18 @@ public class AuteursBean implements Serializable {
         SvcAuteurs service = new SvcAuteurs();
         EntityTransaction transaction = service.getTransaction();
         log.debug("je débute la méthode activdésactive");
-        try
-        {
-            transaction.begin();
-            /*Si la voiture est active alors on la désactive*/
-            if(auteur.isActif())
+
+        if(auteur.isActif())
             {
-                log.debug("je passe le if de désactive");
-                auteur.setActif(false);
+            auteur.setActif(false);
             }
-
-            else
+        else
             {
-                auteur.setActif(true);
+            auteur.setActif(true);
             }
+        save();
+        return "/tableAuteurs.xhtml?faces-redirect=true";
 
-
-            service.save(auteur);
-
-            transaction.commit();
-            log.debug("J'ai modifié l'auteur");
-            return "/tableAuteurs.xhtml?faces-redirect=true";
-        }
-        finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur");
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-
-                return "";
-            }
-            else
-            {
-                log.debug("je suis censé avoir réussi");
-                init();
-            }
-            service.close();
-        }
     }
 
     public String flushAut()

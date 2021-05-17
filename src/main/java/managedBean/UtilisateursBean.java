@@ -35,36 +35,7 @@ public class UtilisateursBean implements Serializable {
         utilisateur = new Utilisateurs();
     }
 
-    public String newUtil() {
-        SvcUtilisateurs service = new SvcUtilisateurs();
-        EntityTransaction transaction = service.getTransaction();
-        //Todo mettre/faire une verification de l'objet utilisateur,
-        log.debug("J'vais essayer d'sauver l'utilisateur");
-        transaction.begin();
 
-        try {
-            utilisateur.setNom(utilisateur.getNom().substring(0,0).toUpperCase() + utilisateur.getNom().substring(1));
-            utilisateur.setPrenom(utilisateur.getPrenom().substring(0,0).toUpperCase() + utilisateur.getPrenom().substring(1));
-            utilisateur = service.save(utilisateur);
-            transaction.commit();
-            log.debug("J'ai sauvé l'utilisateur " + utilisateur.getIdUtilisateurs());
-            return "/tableUtilisateurs.xhtml?faces-redirect=true";
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-
-                return "";
-            } else {
-                log.debug("je suis censé avoir réussi");
-                init();
-            }
-            service.close();
-        }
-
-    }
 
     public void save() {
         SvcUtilisateurs service = new SvcUtilisateurs();
@@ -81,58 +52,39 @@ public class UtilisateursBean implements Serializable {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
             }
+            else {
+                init();
+            }
             service.close();
         }
 
     }
 
+    public String newUtil() {
+        utilisateur.setNom(utilisateur.getNom().substring(0,0).toUpperCase() + utilisateur.getNom().substring(1));
+        utilisateur.setPrenom(utilisateur.getPrenom().substring(0,0).toUpperCase() + utilisateur.getPrenom().substring(1));
+        save();
+        return "/tableUtilisateurs.xhtml?faces-redirect=true";
+
+    }
+
     public String activdesactivUtil() {
-        SvcUtilisateurs service = new SvcUtilisateurs();
-        EntityTransaction transaction = service.getTransaction();
-        log.debug("je débute la méthode activdésactive");
-        try {
-            transaction.begin();
-            /*Si la voiture est active alors on la désactive*/
-            if (utilisateur.isActif()) {
-                log.debug("je passe le if de désactive");
-                utilisateur.setActif(false);
-            } else {
-                if((!utilisateur.isActif()) && (!utilisateur.getRoles().isActif()))
-                {
-                    FacesContext fc = FacesContext.getCurrentInstance();
-                    fc.addMessage("erreurId", new FacesMessage("L'utilisateur ne peut pas être réactivé tant que le rôle est désactivé"));
-
-                    return "/tableUtilisateurs.xhtml?faces-redirect=true";
-                }
-                else
-                {
-                    utilisateur.setActif(true);
-                }
-
-            }
-
-
-            service.save(utilisateur);
-
-            transaction.commit();
-            log.debug("J'ai modifié l'utilisateur");
+        if (utilisateur.isActif()) {
+            log.debug("je passe le if de désactive");
+            utilisateur.setActif(false);
+            save();
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
-        }
-        finally
-        {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
+        } else {
+            if ((!utilisateur.isActif()) && (!utilisateur.getRoles().isActif())) {
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
+                fc.addMessage("erreurId", new FacesMessage("L'utilisateur ne peut pas être réactivé tant que le rôle est désactivé"));
 
-                return "";
-
+                return "/tableUtilisateurs.xhtml?faces-redirect=true";
             } else {
-                log.debug("je suis censé avoir réussi");
-                init();
+                utilisateur.setActif(true);
+                save();
+                return "/tableUtilisateurs.xhtml?faces-redirect=true";
             }
-            service.close();
         }
     }
 

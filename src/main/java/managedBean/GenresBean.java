@@ -30,37 +30,10 @@ public class GenresBean implements Serializable {
 
     public String newGenres()
     {
-        SvcGenres service = new SvcGenres();
-        EntityTransaction transaction = service.getTransaction();
-        //Todo mettre/faire une verification de l'objet utilisateur,
-        log.debug("J'vais essayer d'sauver le genre");
-        transaction.begin();
 
-        try {
-
-            service.save(genre);
-
-            transaction.commit();
-            log.debug("J'ai sauvé le genre");
-            return "/tableGenres.xhtml?faces-redirect=true";
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-
-                return "";
-            }
-            else
-            {
-                log.debug("je suis censé avoir réussi");
-                init();
-            }
-
-            service.close();
-        }
-
+        //Todo mettre/faire une verification de l'objet genre,
+        save();
+        return "/tableGenres.xhtml?faces-redirect=true";
     }
 
     public void save()
@@ -77,7 +50,7 @@ public class GenresBean implements Serializable {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
             }
             service.close();
         }

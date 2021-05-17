@@ -30,36 +30,10 @@ public class EditeursBean implements Serializable {
 
     public String newEditeur()
     {
-        SvcEditeurs service = new SvcEditeurs();
-        EntityTransaction transaction = service.getTransaction();
-        //Todo mettre/faire une verification de l'objet utilisateur,
-        log.debug("J'vais essayer d'sauver l'editeur");
-        transaction.begin();
+        //Todo mettre/faire une verification de l'objet editeur,
+        save();
+        return "/tableEditeurs.xhtml?faces-redirect=true";
 
-        try {
-
-            service.save(editeur);
-
-            transaction.commit();
-            log.debug("J'ai sauvé l'editeur");
-            return "/tableEditeurs.xhtml?faces-redirect=true";
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur");
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-
-                return "";
-            }
-            else
-            {
-                log.debug("je suis censé avoir réussi");
-                init();
-            }
-
-            service.close();
-        }
 
     }
 
@@ -77,7 +51,7 @@ public class EditeursBean implements Serializable {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
             }
             service.close();
         }
