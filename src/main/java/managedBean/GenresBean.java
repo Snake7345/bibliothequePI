@@ -63,27 +63,6 @@ public class GenresBean implements Serializable {
 
     }
 
-    public void save()
-    {
-        SvcGenres service = new SvcGenres();
-        EntityTransaction transaction = service.getTransaction();
-        transaction.begin();
-        try {
-            service.save(genre);
-            transaction.commit();
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
-            }
-            service.close();
-        }
-
-    }
-
 
     public String flushGen()
     {

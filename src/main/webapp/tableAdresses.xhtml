@@ -13,7 +13,7 @@
     <ui:define name="title">#{I18N['application.adresse.title']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{loginBean.utilisateurAuth.roles.permissionsRoles. eq 'Administrateur' or loginBean.utilisateurAuth.role.nom eq 'Employe'}">
+        <c:if test= "#{loginBean.utilisateurAuth.roles.permissionsRoles. or loginBean.utilisateurAuth.role.nom eq 'Employe'}">
             <h:form prependId="false">
 
                 <h:panelGroup layout="block" id="content">

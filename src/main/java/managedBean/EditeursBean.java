@@ -63,27 +63,6 @@ public class EditeursBean implements Serializable {
 
     }
 
-    public void save()
-    {
-        SvcEditeurs service = new SvcEditeurs();
-        EntityTransaction transaction = service.getTransaction();
-        transaction.begin();
-        try {
-            service.save(editeur);
-            transaction.commit();
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifEd", new FacesMessage("Modification réussie"));
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
-            }
-            service.close();
-        }
-
-    }
-
     /*
      * Méthode qui permet de vider les variables et de revenir sur le table Editeurs .
      */
