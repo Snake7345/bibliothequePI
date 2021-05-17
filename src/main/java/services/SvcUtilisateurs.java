@@ -58,6 +58,14 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		return finder.findByNamedQuery("Utilisateurs.searchName", param);
 	}
 
+	public List<Utilisateurs> authentify(String login, String mdp) {
+		Map<String, String> param = new HashMap<>();
+		param.put("login", login);
+		param.put("mdp", mdp);
+
+		return finder.findByNamedQuery("Utilisateurs.authentify", param);
+	}
+
 
 
 }

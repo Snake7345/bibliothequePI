@@ -16,6 +16,7 @@ import javax.persistence.PersistenceUnit;
 
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
+import services.SvcUtilisateurs;
 
 @Named
 @SessionScoped
@@ -25,8 +26,6 @@ public class LoginBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(LoginBean.class);
     @PersistenceUnit  (unitName = "bibliotheque")
-    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("bibliotheque");
-    public static EntityManager em;
 
 
     Utilisateurs utilisateurAuth = new Utilisateurs();
@@ -41,20 +40,23 @@ public class LoginBean implements Serializable {
     public String auth()
     {
         log.debug("---------------------------------debut--------------------------");
-        em = emf.createEntityManager();
         FacesMessage m = new FacesMessage("Login ou mot de passe incorrect");
+        SvcUtilisateurs service= new SvcUtilisateurs();
+        RolesBean RB = new RolesBean();
 
         try {
             log.debug(utilisateurAuth.getLogin() + " + " + utilisateurAuth.getMdp());
-            List<Utilisateurs> results = em.createNamedQuery("Utilisateurs.authentify", Utilisateurs.class)
-                    .setParameter("login", utilisateurAuth.getLogin())
-                    .setParameter("mdp", utilisateurAuth.getMdp())
-                    .getResultList();
+            List<Utilisateurs> results = service.authentify(utilisateurAuth.getLogin(),utilisateurAuth.getMdp());
 
             if (results.isEmpty()) {
                 FacesContext.getCurrentInstance().addMessage(null, m);
                 return "login";
 
+            }
+            else if(!RB.checkPermission(48,results.get(0).getRoles().getIdRoles())){
+                m = new FacesMessage("Connexion refuse: utilisateur non autorise");
+                FacesContext.getCurrentInstance().addMessage(null, m);
+                return "login";
             }
             else {
                 utilisateurAuth = results.get(0);
