@@ -2,6 +2,8 @@ package managedBean;
 
 import entities.Roles;
 import org.apache.log4j.Logger;
+import services.SvcPermissionRoles;
+import services.SvcPermissions;
 import services.SvcRoles;
 
 import javax.annotation.PostConstruct;
@@ -10,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +109,26 @@ public class RolesBean implements Serializable {
             }
             service.close();
         }
+    }
+
+    public boolean checkPermission(int permission, int role)
+    {
+        boolean flag = false;
+        SvcPermissionRoles service = new SvcPermissionRoles();
+        try
+        {
+            log.debug("je passe dans le check permission" + service.findPermissionsAndRoles(permission, role));
+            if(!service.findPermissionsAndRoles(permission,role).isEmpty())
+            {
+                log.debug("mon flag est true");
+                flag = true;
+            }
+        }
+        catch(NoResultException nre)
+        {
+            log.debug("pas de résultat trouvé");
+        }
+        return flag;
     }
 
     public void save()

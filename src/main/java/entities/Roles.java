@@ -12,6 +12,7 @@ import java.util.Objects;
                 @NamedQuery(name = "Roles.findAll", query = "SELECT r FROM Roles r"),
                 @NamedQuery(name = "Roles.findActiv", query="SELECT r FROM Roles r WHERE r.actif=TRUE"),
                 @NamedQuery(name = "Roles.findInactiv", query="SELECT r FROM Roles r WHERE r.actif=FALSE"),
+
         })
 public class Roles implements Serializable {
     private static final long serialVersionUID = 1L;

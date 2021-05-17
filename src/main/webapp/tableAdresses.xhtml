@@ -13,7 +13,7 @@
     <ui:define name="title">#{I18N['application.adresse.title']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{loginBean.utilisateurAuth.roles.permissionsRoles. eq 'Administrateur' or loginBean.utilisateurAuth.role.nom eq 'Employe'}">
+        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form prependId="false">
 
                 <h:panelGroup layout="block" id="content">
@@ -74,7 +74,7 @@
                 <h:commandButton value="#{I18N['application.button.return']}" action="bienvenue"/>
             </h:form>
         </c:if>
-        <c:if test="#{loginBean.utilisateurAuth.role.nom eq 'Garagiste'}">
+        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles))}">
             <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>

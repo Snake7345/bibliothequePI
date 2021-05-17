@@ -6,6 +6,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "permissions_roles", schema = "bibliotheque")
+@NamedQueries
+        ({
+                @NamedQuery(name="PermissionsRoles.findPermissionsRoles",  query ="SELECT pr FROM PermissionsRoles pr WHERE pr.permissions.idPermissions=:permission AND pr.role.idRoles=:role"),
+        })
 public class PermissionsRoles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

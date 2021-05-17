@@ -3,6 +3,11 @@ package services;
 import entities.Permissions;
 import entities.PermissionsRoles;
 import entities.Roles;
+import entities.Utilisateurs;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SvcPermissionRoles extends Service<PermissionsRoles>
 {
@@ -35,7 +40,12 @@ public class SvcPermissionRoles extends Service<PermissionsRoles>
         return pr;
     }
 
-
+    public List<PermissionsRoles> findPermissionsAndRoles(int permission, int role) {
+        Map<String, Integer> param = new HashMap<>();
+        param.put("permission", permission);
+        param.put("role", role);
+        return finder.findByNamedQuery("PermissionsRoles.findPermissionsRoles", param);
+    }
 
 
 

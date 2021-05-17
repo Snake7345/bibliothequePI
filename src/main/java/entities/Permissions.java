@@ -1,5 +1,6 @@
 package entities;
 
+import javax.inject.Named;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -10,6 +11,7 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Permissions.findAllTri", query = "SELECT p FROM Permissions p ORDER BY p.denomination ASC"),
+
         })
 public class Permissions implements Serializable {
     private static final long serialVersionUID = 1L;
