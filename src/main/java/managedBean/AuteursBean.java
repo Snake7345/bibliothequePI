@@ -66,6 +66,27 @@ public class AuteursBean implements Serializable {
     }
 
 
+    public void save()
+    {
+        SvcAuteurs service = new SvcAuteurs();
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            service.save(auteur);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+            }
+            service.close();
+        }
+
+    }
+
     /*Méthode qui permet d'activer et de désactiver un auteur*/
     public String activdesactivAut()
     {
@@ -75,6 +96,7 @@ public class AuteursBean implements Serializable {
         try
         {
             transaction.begin();
+            /*Si la voiture est active alors on la désactive*/
             if(auteur.isActif())
             {
                 log.debug("je passe le if de désactive");

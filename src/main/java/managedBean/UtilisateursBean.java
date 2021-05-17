@@ -66,6 +66,26 @@ public class UtilisateursBean implements Serializable {
 
     }
 
+    public void save() {
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            service.save(utilisateur);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+            }
+            service.close();
+        }
+
+    }
+
     public String activdesactivUtil() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         EntityTransaction transaction = service.getTransaction();

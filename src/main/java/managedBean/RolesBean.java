@@ -108,6 +108,27 @@ public class RolesBean implements Serializable {
         }
     }
 
+    public void save()
+    {
+        SvcRoles service = new SvcRoles();
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            service.save(role);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+            }
+            service.close();
+        }
+
+    }
+
     public String flushRol()
     {
         init();
