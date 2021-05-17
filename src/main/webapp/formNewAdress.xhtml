@@ -8,13 +8,12 @@
     <ui:define name="title">#{I18N['adresse.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-
+        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(1,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['adresse.form.nouveau.titre']}</title>
             </h:head>
             <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
-
 
                 <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
                 <h:inputText id="adresseRue"
@@ -50,6 +49,7 @@
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}"/>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{adressesBean.flushAdd}" immediate="true"/>
         </h:form>
+        </c:if>
     </ui:define>
 </ui:composition>
 

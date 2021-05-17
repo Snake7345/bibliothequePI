@@ -3,13 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html">
+
 <!--TODO retravailler la page-->
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['utilisateur.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-
+        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(12,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form id="form" prependId="false">
                 <h:head>
                 <title>#{I18N['utilisateur.form.nouveau.titre']}</title>
@@ -83,6 +85,7 @@
                 <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}"/>
                 <h:commandButton value="#{I18N['application.button.return']}" action="tableUtilisateurs" immediate="true"/>
             </h:form>
+        </c:if>
     </ui:define>
 </ui:composition>
 

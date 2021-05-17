@@ -10,7 +10,7 @@
     <ui:define name="title">#{I18N['tarif.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-
+        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['tarif.form.nouveau.titre']}</title>
@@ -41,6 +41,7 @@
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{tarifsBean.}"/>
             <h:commandButton value="#{I18N['application.button.return']}" action="tableTarifs" immediate="true"/>
         </h:form>
+        </c:if>
     </ui:define>
 </ui:composition>
 
