@@ -54,6 +54,7 @@ public class RolesBean implements Serializable {
         return "/tableRoles.xhtml?faces-redirect=true";
     }
 
+    //TODO a optimiser
     public boolean checkPermission(int permission, int role)
     {
         boolean flag = false;
