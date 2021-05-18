@@ -17,7 +17,7 @@
             <h:panelGroup layout="block" id="content">
 
                 <h2 style="text-align:center">#{I18N['application.livre.title']}</h2>
-                <h:dataTable value="#{livresBean.readAll}" var="liv" id="tableLivres"
+                <h:dataTable value="#{livresBean.readlivre}" var="liv" id="tableLivres"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <h:column>
                         <!-- column header -->
@@ -56,6 +56,22 @@
                         <h:outputLabel value ="#{liv.editeurs.nom}"/>
                     </h:column>
                     <h:column>
+                        <f:facet name="header">#{I18N['auteur.label.NomPrenom']}</f:facet>
+                        <ui:repeat value="#{liv.livresAuteurs}" var="livauth">
+                            <li>
+                                <h:outputLabel value ="#{livauth.auteur.nom} - #{livauth.auteur.prenom}"/>
+                            </li>
+                        </ui:repeat>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{I18N['genre.label.Denomination']}</f:facet>
+                        <ui:repeat value="#{liv.livresGenres}" var="livgen">
+                            <li>
+                                <h:outputLabel value ="#{livgen.genre.denomination}"/>
+                            </li>
+                        </ui:repeat>
+                    </h:column>
+                    <h:column>
                         <h:commandButton  image="Images//edit.png" action="formEditLivre">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </h:commandButton>
@@ -68,7 +84,7 @@
                 </h:dataTable>
             </h:panelGroup>
             <h:commandButton value="#{I18N['application.button.new']}" action="formNewLivre" />
-            <h:commandButton value="#{I18N['application.button.return']}" action="bienvenue"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushBienv}"/>
         </h:form>
     </ui:define>
 </ui:composition>

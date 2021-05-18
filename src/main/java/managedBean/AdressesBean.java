@@ -3,7 +3,6 @@ package managedBean;
 import entities.Adresses;
 import org.apache.log4j.Logger;
 import services.SvcAdresses;
-import services.SvcAuteurs;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;

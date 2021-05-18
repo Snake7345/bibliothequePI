@@ -31,7 +31,6 @@ public class LivresBean implements Serializable {
 
     private List<Livres> listLiv = new ArrayList<Livres>();
 
-
     private List<Livres> searchResults;
 
     @PostConstruct
@@ -44,15 +43,23 @@ public class LivresBean implements Serializable {
     public String newLivre()
     {
         SvcLivres service = new SvcLivres();
-        //SvcLivresGenres serviceLG = new SvcLivresGenres();
+        SvcLivresGenres serviceLG = new SvcLivresGenres();
+        SvcLivresAuteurs serviceLA = new SvcLivresAuteurs();
         EntityTransaction transaction = service.getTransaction();
-        //Todo mettre/faire une verification de l'objet Livre,
+        serviceLA.setEm(service.getEm());
+        serviceLG.setEm(service.getEm());
+        //Todo mettre/faire une verification de l'objet Livre, ainsi que des auteurs et du genre
         log.debug("J'vais essayer d'sauver le livre");
 
         transaction.begin();
         try {
-
             livre = service.save(livre);
+            for (Auteurs auteurs : auteur) {
+                serviceLA.save(serviceLA.createLivresAuteurs(livre, auteurs));
+            }
+            for (Genres genres : genre) {
+                serviceLG.save(serviceLG.createLivresGenres(livre, genres));
+            }
             transaction.commit();
             log.debug("J'ai sauvé le livre");
             return "/tableLivres.xhtml?faces-redirect=true";
@@ -65,8 +72,7 @@ public class LivresBean implements Serializable {
             }
             else
             {
-                newLivreAuteur();
-                newLivreGenre();
+
                 log.debug("je suis censé avoir réussi");
                 init();
             }
@@ -74,69 +80,7 @@ public class LivresBean implements Serializable {
             service.close();
         }
     }
-
-    public void newLivreAuteur()
-    {
-        SvcLivresAuteurs serviceLA = new SvcLivresAuteurs();
-        //SvcLivresGenres serviceLG = new SvcLivresGenres();
-        EntityTransaction transaction = serviceLA.getTransaction();
-        //Todo mettre/faire une verification de l'objet livreAuteur,
-        log.debug("J'vais essayer d'sauver le bidule");
-
-        transaction.begin();
-        try {
-
-            for (Auteurs auteurs : auteur) {
-                livresAuteur = serviceLA.createLivresAuteurs(livre, auteurs);
-                serviceLA.save(livresAuteur);
-            }
-            transaction.commit();
-            log.debug("J'ai sauvé le bidule");
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur dans livreAuteur et je suis con");
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-            }
-            else
-            {
-                log.debug("je suis censé avoir réussi");
-            }
-        }
-    }
-
-    public void newLivreGenre()
-    {
-        //SvcLivresAuteurs serviceLA = new SvcLivresAuteurs();
-        SvcLivresGenres serviceLG = new SvcLivresGenres();
-        EntityTransaction transaction = serviceLG.getTransaction();
-        //Todo mettre/faire une verification de l'objet livresGenre,
-        log.debug("J'vais essayer d'sauver le bidule");
-
-        transaction.begin();
-        try {
-
-            for (Genres genres : genre) {
-                livresGenre = serviceLG.createLivresGenres(livre, genres);
-                serviceLG.save(livresGenre);
-            }
-            transaction.commit();
-            log.debug("J'ai sauvé le bidule");
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur dans livregenre et je suis con");
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-            }
-            else
-            {
-                log.debug("je suis censé avoir réussi");
-            }
-        }
-    }
-
+    //TODO modifier ou supprimer la fonction save puisque obsolete tel que.
     public void save()
     {
         SvcLivres service = new SvcLivres();
@@ -245,6 +189,16 @@ public class LivresBean implements Serializable {
 
         listLiv= service.findAllLivres();
 
+        service.close();
+        return listLiv;
+    }
+    /*
+     * Méthode qui permet via le service de retourner sous une liste le livre actuel
+     */
+    public List<Livres> getReadlivre()
+    {
+        listLiv.clear();
+        listLiv.add(livre);
 
         return listLiv;
     }

@@ -17,6 +17,7 @@ import java.util.Objects;
                 @NamedQuery(name = "ExemplairesLivres.findInactiv", query = "SELECT el FROM ExemplairesLivres el WHERE el.actif=FALSE"),
                 @NamedQuery(name = "ExemplairesLivres.findLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=TRUE"),
                 @NamedQuery(name = "ExemplairesLivres.findNotLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=FALSE"),
+                @NamedQuery(name = "ExemplairesLivres.findLastExemplaire", query = "SELECT el FROM ExemplairesLivres el WHERE el.idExemplairesLivres IN (SELECT max(exli.idExemplairesLivres) from ExemplairesLivres exli)"),
         })
 public class ExemplairesLivres implements Serializable {
     private static final long serialVersionUID = 1L;

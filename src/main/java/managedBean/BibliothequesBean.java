@@ -2,7 +2,6 @@ package managedBean;
 
 import entities.Bibliotheques;
 import org.apache.log4j.Logger;
-import services.SvcAuteurs;
 import services.SvcBibliotheques;
 
 import javax.annotation.PostConstruct;

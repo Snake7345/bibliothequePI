@@ -40,11 +40,11 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 	}
 	//Méthode qui permet via une requete de retourner la liste entière des livres actifs
 	public List<Livres> findAllLivresActiv() {
-		return finder.findByNamedQuery("Livres.findAllActiv", null);
+		return finder.findByNamedQuery("Livres.findActiv", null);
 	}
 	//Méthode qui permet via une requete de retourner la liste entière des livres inactifs
 	public List<Livres> findAllLivresInactiv() {
-		return finder.findByNamedQuery("Livres.findAllInactiv", null);
+		return finder.findByNamedQuery("Livres.findInactiv", null);
 	}
 
 	public List<Livres> getByAuteurs(Auteurs auteur) {
