@@ -75,7 +75,7 @@
             <h:outputLink value="tableFactures.xhtml">
                 <h:graphicImage value="/Images/facture.jpg" width="100" height="100"/>
             </h:outputLink>
-
+            </c:if>
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(50,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputText value="Gestion des Locations" />
             </c:if>
@@ -107,8 +107,8 @@
             <h:outputText value="Gestion des editeurs" />
             </c:if>
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(35,loginBean.utilisateurAuth.roles.idRoles)}">
-            </c:if>
             <h:outputText value="Gestion des auteurs" />
+            </c:if>
             <p/>
         </h:panelGrid>
         <br /><br />

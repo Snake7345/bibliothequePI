@@ -38,9 +38,18 @@
                         <h:outputLabel value ="#{liv.editeurs.nom}"/>
                     </h:column>
                     <h:column>
+                        <f:facet name="header">#{I18N['auteur.label.NomPrenom']}</f:facet>
                         <ui:repeat value="#{liv.livresAuteurs}" var="livauth">
                             <li>
                                 <h:outputLabel value ="#{livauth.auteur.nom} - #{livauth.auteur.prenom}"/>
+                            </li>
+                        </ui:repeat>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{I18N['genre.label.Denomination']}</f:facet>
+                        <ui:repeat value="#{liv.livresGenres}" var="livgen">
+                            <li>
+                                <h:outputLabel value ="#{livgen.genre.denomination}"/>
                             </li>
                         </ui:repeat>
                     </h:column>

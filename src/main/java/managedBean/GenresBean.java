@@ -33,6 +33,7 @@ public class GenresBean implements Serializable {
 
         //Todo mettre/faire une verification de l'objet genre,
         save();
+        init();
         return "/tableGenres.xhtml?faces-redirect=true";
     }
 

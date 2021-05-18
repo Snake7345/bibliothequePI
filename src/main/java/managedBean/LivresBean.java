@@ -4,6 +4,7 @@ import entities.*;
 import org.apache.log4j.Logger;
 import services.SvcLivres;
 import services.SvcLivresAuteurs;
+import services.SvcLivresGenres;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -26,7 +27,7 @@ public class LivresBean implements Serializable {
     private LivresAuteurs livresAuteur;
     private List<Auteurs> auteur;
     private LivresGenres livresGenre;
-    private Genres genre;
+    private List<Genres> genre;
 
     private List<Livres> listLiv = new ArrayList<Livres>();
 
@@ -58,15 +59,14 @@ public class LivresBean implements Serializable {
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
+                log.debug("J'ai fait une erreur dans livre et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-
-                return "";
             }
             else
             {
                 newLivreAuteur();
+                newLivreGenre();
                 log.debug("je suis censé avoir réussi");
                 init();
             }
@@ -95,14 +95,44 @@ public class LivresBean implements Serializable {
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
+                log.debug("J'ai fait une erreur dans livreAuteur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
             }
             else
             {
                 log.debug("je suis censé avoir réussi");
-                init();
+            }
+        }
+    }
+
+    public void newLivreGenre()
+    {
+        //SvcLivresAuteurs serviceLA = new SvcLivresAuteurs();
+        SvcLivresGenres serviceLG = new SvcLivresGenres();
+        EntityTransaction transaction = serviceLG.getTransaction();
+        //Todo mettre/faire une verification de l'objet livresGenre,
+        log.debug("J'vais essayer d'sauver le bidule");
+
+        transaction.begin();
+        try {
+
+            for (Genres genres : genre) {
+                livresGenre = serviceLG.createLivresGenres(livre, genres);
+                serviceLG.save(livresGenre);
+            }
+            transaction.commit();
+            log.debug("J'ai sauvé le bidule");
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                log.debug("J'ai fait une erreur dans livregenre et je suis con");
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
+            }
+            else
+            {
+                log.debug("je suis censé avoir réussi");
             }
         }
     }
@@ -142,13 +172,10 @@ public class LivresBean implements Serializable {
                 log.debug("je passe le if de désactive");
                 livre.setActif(false);
             }
-
             else
             {
                 livre.setActif(true);
             }
-
-
             service.save(livre);
 
             transaction.commit();
@@ -161,8 +188,6 @@ public class LivresBean implements Serializable {
                 log.debug("J'ai fait une erreur et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-
-                return "";
             }
             else
             {
@@ -287,11 +312,11 @@ public class LivresBean implements Serializable {
         this.livresGenre = livresGenre;
     }
 
-    public Genres getGenre() {
+    public List<Genres> getGenre() {
         return genre;
     }
 
-    public void setGenre(Genres genre) {
+    public void setGenre(List<Genres> genre) {
         this.genre = genre;
     }
 
