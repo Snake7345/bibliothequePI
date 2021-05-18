@@ -2,7 +2,6 @@ package managedBean;
 
 import entities.Jours;
 import org.apache.log4j.Logger;
-import services.SvcFacture;
 import services.SvcJours;
 
 import javax.enterprise.context.SessionScoped;

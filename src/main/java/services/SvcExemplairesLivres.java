@@ -25,7 +25,10 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 	{
 		return finder.findByNamedQuery("ExemplairesLivres.findAll",null);
 	}
-
+	public List<ExemplairesLivres> findlastExemplairesLivres()
+	{
+		return finder.findByNamedQuery("ExemplairesLivres.findLastExemplaire",null);
+	}
 
 	@Override
 	public ExemplairesLivres save(ExemplairesLivres exemplairesLivres) {
@@ -38,8 +41,8 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 		return exemplairesLivres;
 	}
 
-	public ExemplairesLivres deleteexempl(ExemplairesLivres exemliv){
-		System.out.println("Je delete l'exemplaire livre :" + exemliv.getCodeBarre());
+	public ExemplairesLivres desactivExemplaireLivre(ExemplairesLivres exemliv){
+		System.out.println("Je desactive l'exemplaire livre :" + exemliv.getCodeBarre());
 		exemliv.setActif(false);
 		return exemliv;
 	}
