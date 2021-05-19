@@ -14,6 +14,7 @@ import java.util.Objects;
         ({
                 @NamedQuery(name = "Facture.findAll", query = "SELECT f FROM Factures f"),
                 @NamedQuery(name = "Facture.findAllByEtat", query = "SELECT f FROM Factures f WHERE f.etat=:etat"),
+                @NamedQuery(name="Facture.findLastId", query="SELECT f FROM Factures f ORDER BY f.idFactures DESC")
         })
 public class Factures implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -27,6 +28,7 @@ public class Factures implements Serializable {
     private FactureEtatEnum etat;
     @OneToMany(mappedBy = "factures")
     private Collection<FacturesDetail> facturesDetails;
+    private String lienPdf;
 
     @Id
     @Column(name = "IdFactures", nullable = false)
@@ -66,6 +68,16 @@ public class Factures implements Serializable {
 
     public void setNumeroFacture(String numeroFacture) {
         this.numeroFacture = numeroFacture;
+    }
+
+    @Basic
+    @Column(name = "LienPdf", nullable = false, length = 255)
+    public String getLienPdf() {
+        return lienPdf;
+    }
+
+    public void setLienPdf(String lienPdf) {
+        this.lienPdf = lienPdf;
     }
 
 

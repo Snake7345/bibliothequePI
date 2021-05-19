@@ -1,6 +1,7 @@
 package services;
 
 import entities.Factures;
+import entities.Livres;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -31,6 +32,9 @@ public class SvcFacture extends Service<Factures> implements Serializable {
 
 	public List<Factures> findAllFacture() {
 		return finder.findByNamedQuery("Facture.findAll", null);
+	}
+	public List<Factures> findAllFactureDesc() {
+		return finder.findByNamedQuery("Facture.findLastId", null);
 	}
 
 
