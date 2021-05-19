@@ -2,9 +2,9 @@ package enumeration;
 
 public enum ExemplairesLivresEtatEnum
 {
-        BON("Bon"),
-        MOYEN("Moyen"),
-        MAUVAIS("Mauvais");
+        Bon("Bon"),
+        Moyen("Moyen"),
+        Mauvais("Mauvais");
 
         private String label;
 

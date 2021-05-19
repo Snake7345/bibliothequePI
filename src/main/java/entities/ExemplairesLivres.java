@@ -1,6 +1,7 @@
 package entities;
 
 import enumeration.ExemplairesLivresEtatEnum;
+import org.apache.log4j.Logger;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,21 +18,18 @@ import java.util.Objects;
                 @NamedQuery(name = "ExemplairesLivres.findInactiv", query = "SELECT el FROM ExemplairesLivres el WHERE el.actif=FALSE"),
                 @NamedQuery(name = "ExemplairesLivres.findLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=TRUE"),
                 @NamedQuery(name = "ExemplairesLivres.findNotLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=FALSE"),
-                @NamedQuery(name = "ExemplairesLivres.findLastExemplaire", query = "SELECT el FROM ExemplairesLivres el WHERE el.idExemplairesLivres IN (SELECT max(exli.idExemplairesLivres) from ExemplairesLivres exli)"),
+                @NamedQuery(name = "ExemplairesLivres.findLastExemplaire", query = "SELECT el FROM ExemplairesLivres el ORDER BY el.codeBarre DESC"),
         })
 public class ExemplairesLivres implements Serializable {
     private static final long serialVersionUID = 1L;
+    private static final Logger log = Logger.getLogger(ExemplairesLivres.class);
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idExemplairesLivres;
     private String codeBarre;
-    private int bibliothequesIdBibliotheques;
-    private int livresIdLivres;
     private boolean actif = true;
-    private String commentaireEtat;
-    private boolean loue;
-    private Bibliotheques bibliotheques;
-    private Livres livres;
+    private String commentaireEtat="Neuf";
+    private boolean loue=false;
     @OneToMany(mappedBy = "exemplairesLivre")
     private Collection<FacturesDetail> facturesDetails;
 
@@ -54,28 +52,6 @@ public class ExemplairesLivres implements Serializable {
     public void setCodeBarre(String codeBarre) {
         this.codeBarre = codeBarre;
     }
-
-    @Basic
-    @Column(name = "BibliothequesIdBibliotheques", nullable = false)
-    public int getBibliothequesIdBibliotheques() {
-        return bibliothequesIdBibliotheques;
-    }
-
-    public void setBibliothequesIdBibliotheques(int bibliothequesIdBibliotheques) {
-        this.bibliothequesIdBibliotheques = bibliothequesIdBibliotheques;
-    }
-
-    @Basic
-    @Column(name = "LivresIdLivres", nullable = false)
-    public int getLivresIdLivres() {
-        return livresIdLivres;
-    }
-
-    public void setLivresIdLivres(int livresIdLivres) {
-        this.livresIdLivres = livresIdLivres;
-    }
-
-
 
     @Basic
     @Column(name = "Actif", nullable = false)
@@ -126,35 +102,33 @@ public class ExemplairesLivres implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         ExemplairesLivres that = (ExemplairesLivres) o;
         return idExemplairesLivres == that.idExemplairesLivres &&
-                bibliothequesIdBibliotheques == that.bibliothequesIdBibliotheques &&
-                livresIdLivres == that.livresIdLivres &&
                 actif == that.actif &&
                 loue == that.loue &&
                 Objects.equals(codeBarre, that.codeBarre) &&
-                Objects.equals(commentaireEtat, that.commentaireEtat) &&
-                Objects.equals(bibliotheques, that.bibliotheques) &&
-                Objects.equals(livres, that.livres) &&
-                Objects.equals(facturesDetails, that.facturesDetails) &&
-                etat == that.etat;
+                Objects.equals(commentaireEtat, that.commentaireEtat);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idExemplairesLivres, codeBarre, bibliothequesIdBibliotheques, livresIdLivres, actif, etat, commentaireEtat, loue, bibliotheques, livres, facturesDetails, etat);
+        return Objects.hash(idExemplairesLivres, codeBarre, actif, etat, commentaireEtat, loue);
     }
 
     @ManyToOne
-    @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques", nullable = false)
+    @JoinColumn(name = "BibliothequesIdBibliotheques", nullable = false)
+    private Bibliotheques bibliotheques;
     public Bibliotheques getBibliotheques() {
         return bibliotheques;
     }
 
-    public void setBibliotheques(Bibliotheques bibliothequesByBibliothequesIdBibliotheques) {
-        this.bibliotheques = bibliothequesByBibliothequesIdBibliotheques;
+    public void setBibliotheques(Bibliotheques bibliotheques1) {
+        log.debug("test");
+        log.debug(bibliotheques1.getNom());
+        this.bibliotheques = bibliotheques1;
     }
 
     @ManyToOne
-    @JoinColumn(name = "LivresIdLivres", referencedColumnName = "IdLivres", nullable = false)
+    @JoinColumn(name = "LivresIdLivres", nullable = false)
+    private Livres livres;
     public Livres getLivres() {
         return livres;
     }
@@ -168,7 +142,7 @@ public class ExemplairesLivres implements Serializable {
         return facturesDetails;
     }
 
-    public void setFactureDetails(Collection<FacturesDetail> facturesDetailsByIdExemplairesLivres) {
-        this.facturesDetails = facturesDetailsByIdExemplairesLivres;
+    public void setFactureDetails(Collection<FacturesDetail> facturesDetails1) {
+        this.facturesDetails = facturesDetails1;
     }
 }

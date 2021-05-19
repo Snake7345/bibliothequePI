@@ -1,8 +1,11 @@
 package managedBean;
 
+import entities.Bibliotheques;
 import entities.ExemplairesLivres;
 import entities.Livres;
+import enumeration.ExemplairesLivresEtatEnum;
 import org.apache.log4j.Logger;
+import services.SvcBibliotheques;
 import services.SvcExemplairesLivres;
 
 import javax.enterprise.context.SessionScoped;
@@ -22,31 +25,52 @@ public class ExemplairesLivresBean implements Serializable {
     private ExemplairesLivres exemplairesLivre;
     private static final Logger log = Logger.getLogger(ExemplairesLivresBean.class);
     private int nombreExemplaire;
+    private Bibliotheques bibli;
     private Livres livre;
     private String LastBarCode;
     public void init()
     {
-        nombreExemplaire=0;
+        exemplairesLivre = new ExemplairesLivres();
         SvcExemplairesLivres service = new SvcExemplairesLivres();
-
+        SvcBibliotheques serviceB = new SvcBibliotheques();
+        bibli= serviceB.getById(1);
+        log.debug("retour serviceb " + serviceB.getById(1).getNom());
+        log.debug("bibli choisie " + bibli.getNom());
         if (service.findlastExemplairesLivres().size()==0){
             LastBarCode = "0";
         }
         else {
-
             LastBarCode=service.findlastExemplairesLivres().get(0).getCodeBarre();
         }
-                livre = new Livres();
+        service.close();
+        serviceB.close();
     }
     public String addExemplaireLivre(int nombreExemplaire){
-
+        init();
+        log.debug("rentree ajout exemplaire");
         SvcExemplairesLivres service = new SvcExemplairesLivres();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
+        log.debug("debut transaction");
         try {
-            for (int i = 0; i < nombreExemplaire; i++) {
+            log.debug("debut for");
+            for (int i = 0; i < 5; i++) {
+
+                log.debug("boucle "+i);
+                log.debug("set bibli");
+
+                log.debug("bibli choisie ? " + bibli.getNom());
+                log.debug(bibli.getIdBibliotheques());
+                exemplairesLivre.setBibliotheques(bibli);
+                log.debug("set etat");
+                exemplairesLivre.setEtat(ExemplairesLivresEtatEnum.Bon);
+                log.debug("set livre");
+                exemplairesLivre.setLivres(livre);
+                log.debug("set code");
                 exemplairesLivre.setCodeBarre(generateBarCode());
+                log.debug("save exemplaire");
                 service.save(exemplairesLivre);
+                exemplairesLivre = new ExemplairesLivres();
             }
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -66,15 +90,15 @@ public class ExemplairesLivresBean implements Serializable {
         return "";
     }
     public String generateBarCode(){
-        String barCode;
+
         if (LastBarCode=="0"){
-            barCode=livre.getIsbn()+"00000";
+            LastBarCode="100000001";
+            return LastBarCode;
         }
         else{
-            barCode=String.valueOf(Integer.parseInt(LastBarCode)+1);
+            LastBarCode=String.valueOf(Integer.parseInt(LastBarCode)+1);
+            return LastBarCode;
         }
-
-        return barCode;
     }
 
     //méthode save probablement inutile dans ce bean puisque appel custom
