@@ -5,6 +5,7 @@ import entities.*;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,15 +33,20 @@ public class SvcTarifsPenalites extends Service<TarifsPenalites> implements Seri
 	}
 
 
+
+
 	public List<TarifsPenalites> findAllTarifsPenalites() {
 		return finder.findByNamedQuery("TarifsPenalites.findAll", null);
 	}
 
-	public TarifsPenalites createTarifsPenalites(Tarifs t, Penalites p)
+	public TarifsPenalites createTarifsPenalites(Tarifs t, Penalites pe, Double pr, Timestamp db, Timestamp df)
 	{
 		TarifsPenalites tp = new TarifsPenalites();
-		tp.setPenalite(p);
+		tp.setPenalite(pe);
 		tp.setTarif(t);
+		tp.setPrix(pr);
+		tp.setDateDebut(db);
+		tp.setDateFin(df);
 
 		return tp;
 	}

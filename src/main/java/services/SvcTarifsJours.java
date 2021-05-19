@@ -2,10 +2,11 @@ package services;
 
 
 
-import entities.TarifsJours;
+import entities.*;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,18 @@ public class SvcTarifsJours extends Service<TarifsJours> implements Serializable
 		}
 
 		return tarifsJours;
+	}
+
+	public TarifsJours createTarifsJours(Tarifs t, Jours j, Double p, Timestamp db, Timestamp df)
+	{
+		log.debug("truc a la con numeroshlag");
+		TarifsJours tj = new TarifsJours();
+		tj.setJours(j);
+		tj.setTarifs(t);
+		tj.setPrix(p);
+		tj.setDateDebut(db);
+		tj.setDateFin(df);
+		return tj;
 	}
 
 
