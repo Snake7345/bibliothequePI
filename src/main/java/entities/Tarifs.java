@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -22,7 +23,7 @@ public class Tarifs implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTarifs;
     private String denomination;
-    private Timestamp dateDebut;
+    private Date dateDebut;
     @OneToMany(mappedBy = "tarif")
     private Collection<TarifsJours> tarifsJours;
     @OneToMany(mappedBy = "tarif")
@@ -52,11 +53,12 @@ public class Tarifs implements Serializable {
 
     @Basic
     @Column(name = "DateDebut", nullable = false)
-    public Timestamp getDateDebut() {
+
+    public Date getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Timestamp dateDebut) {
+    public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
     }
 

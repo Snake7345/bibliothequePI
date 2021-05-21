@@ -81,15 +81,15 @@ public class TarifsBean implements Serializable {
         try {
             tarif.setBibliotheques(bibli);
             tarif.setDenomination(denominationTarif);
-            tarif.setDateDebut(new Timestamp(dateDebut.getTime()));
+            tarif.setDateDebut(dateDebut);
             tarif = service.save(tarif);
             for (PenaCustom p: grillePena) {
                 penalites= serviceP.addPena(p.getName());
-                serviceTP.save(serviceTP.createTarifsPenalites( tarif, penalites,p.getPrix(), new Timestamp( p.getDateDebut().getTime()),new Timestamp(p.getDateFin().getTime())));
+                serviceTP.save(serviceTP.createTarifsPenalites( tarif, penalites,p.getPrix(), p.getDateDebut(),p.getDateFin()));
             }
             for (JourCustom j: grilleJour) {
                 jours= serviceJ.addJours(j.getNbrJours());
-                serviceTJ.save(serviceTJ.createTarifsJours( tarif, jours,j.getPrix(), new Timestamp( j.getDateDebut().getTime()),new Timestamp(j.getDateFin().getTime())));
+                serviceTJ.save(serviceTJ.createTarifsJours( tarif, jours,j.getPrix(), j.getDateDebut(),j.getDateFin()));
             }
             transaction.commit();
             log.debug("J'ai sauvé le tarif");

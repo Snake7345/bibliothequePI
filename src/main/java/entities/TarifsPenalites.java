@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -13,8 +14,8 @@ public class TarifsPenalites implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTarifsPenalites;
     private double prix;
-    private Timestamp dateDebut;
-    private Timestamp dateFin;
+    private Date dateDebut;
+    private Date dateFin;
 
     @Id
     @Column(name = "IdTarifsPenalites", nullable = false)
@@ -60,25 +61,30 @@ public class TarifsPenalites implements Serializable {
         this.prix = prix;
     }
 
+
+
     @Basic
     @Column(name = "DateDebut", nullable = false)
-    public Timestamp getDateDebut() {
+    public Date getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Timestamp dateDebut) {
+    public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
     }
 
+
     @Basic
     @Column(name = "DateFin", nullable = false)
-    public Timestamp getDateFin() {
+
+    public Date getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Timestamp dateFin) {
+    public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
+
 
     @Override
     public boolean equals(Object o) {

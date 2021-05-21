@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class SvcTarifsJours extends Service<TarifsJours> implements Serializable
 		return tarifsJours;
 	}
 
-	public TarifsJours createTarifsJours(Tarifs t, Jours j, Double p, Timestamp db, Timestamp df)
+	public TarifsJours createTarifsJours(Tarifs t, Jours j, Double p, Date db, Date df)
 	{
 		log.debug("truc a la con numeroshlag");
 		TarifsJours tj = new TarifsJours();

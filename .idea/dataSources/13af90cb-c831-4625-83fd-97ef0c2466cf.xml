@@ -1478,7 +1478,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </column>
     <column id="380" parent="256" name="DateDebut">
       <Position>4</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="381" parent="256" name="fk_Tarifs_Bibliotheques1_idx">
@@ -1518,12 +1518,12 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </column>
     <column id="388" parent="257" name="DateDebut">
       <Position>5</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="389" parent="257" name="DateFin">
       <Position>6</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="390" parent="257" name="fk_Tarifs_has_Jours_Tarifs1_idx">
@@ -1572,12 +1572,12 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </column>
     <column id="399" parent="258" name="DateDebut">
       <Position>5</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="400" parent="258" name="DateFin">
       <Position>6</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="401" parent="258" name="fk_Tarifs_has_Penalites_Tarifs1_idx">
