@@ -12,7 +12,6 @@ public class TarifsPenalites implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTarifsPenalites;
-
     private double prix;
     private Timestamp dateDebut;
     private Timestamp dateFin;

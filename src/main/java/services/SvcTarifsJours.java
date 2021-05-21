@@ -36,7 +36,7 @@ public class SvcTarifsJours extends Service<TarifsJours> implements Serializable
 		log.debug("truc a la con numeroshlag");
 		TarifsJours tj = new TarifsJours();
 		tj.setJours(j);
-		tj.setTarifs(t);
+		tj.setTarif(t);
 		tj.setPrix(p);
 		tj.setDateDebut(db);
 		tj.setDateFin(df);

@@ -22,9 +22,10 @@ import java.util.List;
 @SessionScoped
 public class TarifsBean implements Serializable {
     // Déclaration des variables globales
+    private static final Logger log = Logger.getLogger(TarifsBean.class);
     private static final long serialVersionUID = 1L;
     private Tarifs tarif;
-    private static final Logger log = Logger.getLogger(TarifsBean.class);
+
     private List<PenaCustom> grillePena = new ArrayList<PenaCustom>();
     private List<JourCustom> grilleJour = new ArrayList<JourCustom>();
     private Bibliotheques bibli;
@@ -34,6 +35,7 @@ public class TarifsBean implements Serializable {
     @PostConstruct
     public void init()
     {
+        tarif=new Tarifs();
         grillePena.add(new PenaCustom());
         grilleJour.add(new JourCustom());
     }
@@ -179,7 +181,6 @@ public class TarifsBean implements Serializable {
 
     public void setBibli(Bibliotheques bibli) {
         this.bibli = bibli;
-        log.debug("test " +bibli.getNom());
     }
 
     public String getDenominationTarif() {

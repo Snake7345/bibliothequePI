@@ -1,5 +1,8 @@
 package entities;
 
+import managedBean.TarifsBean;
+import org.apache.log4j.Logger;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -14,12 +17,13 @@ import java.util.Objects;
         })
 public class Tarifs implements Serializable {
     private static final long serialVersionUID = 1L;
+    private static final Logger log = Logger.getLogger(Tarifs.class);
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTarifs;
     private String denomination;
     private Timestamp dateDebut;
-    @OneToMany(mappedBy = "tarifs")
+    @OneToMany(mappedBy = "tarif")
     private Collection<TarifsJours> tarifsJours;
     @OneToMany(mappedBy = "tarif")
     private Collection<TarifsPenalites> tarifsPenalites;
@@ -72,7 +76,7 @@ public class Tarifs implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques", nullable = false)
+    @JoinColumn(name = "BibliothequesIdBibliotheques", nullable = false)
     private Bibliotheques bibliotheques;
 
     public Bibliotheques getBibliotheques() {
