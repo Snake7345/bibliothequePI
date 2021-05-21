@@ -56,7 +56,7 @@
                             <h:outputText value="Date de mise en application" />
                         </f:facet>
                         <h:inputText value="#{J.dateDebut}">
-                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                            <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
 
@@ -65,7 +65,7 @@
                             <h:outputText value="Date de fin d'application" />
                         </f:facet>
                         <h:inputText value="#{J.dateFin}">
-                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                            <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
                 </h:dataTable>
@@ -100,7 +100,7 @@
                             <h:outputText value="Date de mise en application" />
                         </f:facet>
                         <h:inputText value="#{P.dateDebut}">
-                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                            <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
 
@@ -109,7 +109,7 @@
                             <h:outputText value="Date de fin d'application" />
                         </f:facet>
                         <h:inputText value="#{P.dateFin}">
-                                     <f:convertDateTime pattern="dd/mm/yyyy"/>
+                                     <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
                 </h:dataTable>
