@@ -1,10 +1,8 @@
 package converter;
 
 import entities.Localites;
-import entities.Roles;
 import org.apache.log4j.Logger;
 import services.SvcLocalites;
-import services.SvcRoles;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

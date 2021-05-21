@@ -1,10 +1,8 @@
 package converter;
 
 import entities.Adresses;
-import entities.Editeurs;
 import org.apache.log4j.Logger;
 import services.SvcAdresses;
-import services.SvcEditeurs;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
