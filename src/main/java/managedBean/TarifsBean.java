@@ -26,8 +26,8 @@ public class TarifsBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Tarifs tarif;
 
-    private List<PenaCustom> grillePena = new ArrayList<PenaCustom>();
-    private List<JourCustom> grilleJour = new ArrayList<JourCustom>();
+    private List<PenaCustom> grillePena = new ArrayList<>();
+    private List<JourCustom> grilleJour = new ArrayList<>();
     private Bibliotheques bibli;
     private String denominationTarif;
     private Date dateDebut;
@@ -142,7 +142,7 @@ public class TarifsBean implements Serializable {
     public List<Tarifs> getReadAll()
     {
         SvcTarifs service = new SvcTarifs();
-        List<Tarifs> listTarifs = new ArrayList<Tarifs>();
+        List<Tarifs> listTarifs;
         listTarifs = service.findAllTarifs();
 
         service.close();
