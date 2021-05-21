@@ -42,7 +42,7 @@
                         <f:facet name="header">#{I18N['tarif.label.DateDebut']}</f:facet>
                         <!-- row record -->
                         <h:outputLabel value ="#{tar.dateDebut}">
-                            <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd-MM-yyyy"/>
+                            <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:outputLabel>
                     </h:column>
                 </h:dataTable>
