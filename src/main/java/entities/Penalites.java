@@ -10,6 +10,7 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Penalites.findAllTri", query = "SELECT p FROM Penalites p ORDER BY p.denomination ASC"),
+                @NamedQuery(name = "Penalites.findByName", query = "SELECT p FROM Penalites p WHERE p.denomination=:denomination"),
         })
 public class Penalites implements Serializable {
     private static final long serialVersionUID = 1L;

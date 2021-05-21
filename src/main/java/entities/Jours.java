@@ -10,6 +10,7 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Jours.findAll", query = "SELECT j FROM Jours j"),
+                @NamedQuery(name = "Jours.findByNbrJ", query = "SELECT j FROM Jours j WHERE j.nbrJour=:nbrJour"),
         })
 public class Jours implements Serializable {
     private static final long serialVersionUID = 1L;

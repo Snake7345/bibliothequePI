@@ -29,9 +29,33 @@ public class SvcPenalites extends Service<Penalites> implements Serializable {
 		return penalites;
 	}
 
+	public Penalites addPena(String d)
+	{
+
+		findByName(d);
+		if(findByName(d).size() == 1)
+		{
+			return findByName(d).get(0);
+		}
+		else
+		{
+			Penalites penalites = new Penalites();
+			penalites.setDenomination(d);
+			save(penalites);
+			return penalites;
+		}
+	}
+
 	//Méthode qui permet via une requete de retourner la liste entière des pénalités
 	public List<Penalites> findAllPenalites() {
 		return finder.findByNamedQuery("Penalites.findAll", null);
+	}
+
+	public List<Penalites> findByName(String denom) {
+		Map<String, String> param = new HashMap<>();
+		param.put("denomination", denom);
+
+		return finder.findByNamedQuery("Penalites.findByName", param);
 	}
 
 

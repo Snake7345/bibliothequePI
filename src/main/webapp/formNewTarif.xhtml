@@ -14,109 +14,110 @@
         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form>
                 <!-- faut champ bibliotheque -->
+                <h:selectOneMenu value = "#{tarifsBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                                 converter="biblioConverter">
+                    <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
+                                   itemLabel="#{bi.nom}"
+                                   itemValue="#{bi}"/>
+                </h:selectOneMenu>
                 <!-- Faut date début-->
+                <h:outputText value="Date de début de la grille tarifaire" />
+                <h:inputText value="#{tarifsBean.dateDebut}">
+                    <f:convertDateTime pattern="dd/mm/yyyy"/>
+                </h:inputText>
+                <h:outputText value="nom de la grille tarifaire" />
+                <h:inputText value="#{tarifsBean.denominationTarif}" />
                 <!-- faut le nom de la grille tarifaire-->
                 <!-- -->
-                <h:dataTable value="#{tarifsBean.grillejour}" var="J">
+                <h:dataTable value="#{tarifsBean.grilleJour}" var="J">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Prix location" />
                         </f:facet>
-                        <h:outputText value="-" />
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nom" />
-                        </f:facet>
-                        <h:inputText value="#{J.name}" />
+                        <h:outputText value="Prix location" />
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Nombre de jours" />
                         </f:facet>
-                        <h:inputText value="#{J.value}" />
+                        <h:inputText value="#{J.nbrJours}" />
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Prix" />
                         </f:facet>
-                        <h:inputText value="#{J.value}" />
+                        <h:inputText value="#{J.prix}" />
                     </h:column>
                     <!-- La date NE PEUT être avant celle de la grille (voir valeur au dessus)-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Date de mise en application" />
                         </f:facet>
-                        <h:inputText value="#{J.value}" />
+                        <h:inputText value="#{J.dateDebut}">
+                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                        </h:inputText>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Date de fin d'application" />
                         </f:facet>
-                        <h:inputText value="#{J.value}" />
+                        <h:inputText value="#{J.dateFin}">
+                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                        </h:inputText>
                     </h:column>
                 </h:dataTable>
 
                 <h:commandButton value="Add" action="#{tarifsBean.addNewJourRow}" />
+                <h:commandButton value="Del" action="#{tarifsBean.delJourRow}" />
 
-                <h:dataTable value="#{tarifsBean.grillepena}" var="P">
+                <h:dataTable value="#{tarifsBean.grillePena}" var="P">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Penalite" />
                         </f:facet>
-                        <h:outputText value="-" />
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Name" />
-                        </f:facet>
-                        <h:inputText value="#{P.name}" />
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nom" />
-                        </f:facet>
-                        <h:inputText value="#{P.name}" />
+                        <h:outputText value="Penalite made in jeje" />
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Nom de la pénalité" />
                         </f:facet>
-                        <h:inputText value="#{P.value}" />
+                        <h:inputText value="#{P.name}" />
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Prix" />
                         </f:facet>
-                        <h:inputText value="#{P.value}" />
+                        <h:inputText value="#{P.prix}" />
                     </h:column>
                     <!-- La date NE PEUT être avant celle de la grille (voir valeur au dessus)-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Date de mise en application" />
                         </f:facet>
-                        <h:inputText value="#{P.value}" />
+                        <h:inputText value="#{P.dateDebut}">
+                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                        </h:inputText>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Date de fin d'application" />
                         </f:facet>
-                        <h:inputText value="#{P.value}" />
+                        <h:inputText value="#{P.dateFin}">
+                                     <f:convertDateTime pattern="dd/mm/yyyy"/>
+                        </h:inputText>
                     </h:column>
                 </h:dataTable>
                 <br/>
                 <h:commandButton value="Add" action="#{tarifsBean.addNewPenaRow}" />
-                <h:commandButton value="Save" action="#{tarifsBean.saveNewGrille}" />
                 <h:commandButton value="#{I18N['application.button.return']}" action="tableTarifs" immediate="true"/>
+                <h:commandButton value="Supprime" action="#{tarifsBean.delPenaRow}" />
+                <h:commandButton value="Save" action="#{tarifsBean.newTarif}" />
             </h:form>
         </c:if>
     </ui:define>

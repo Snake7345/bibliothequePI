@@ -1,6 +1,7 @@
 package services;
 
 import entities.Jours;
+import entities.Penalites;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -26,6 +27,24 @@ public class SvcJours extends Service<Jours> implements Serializable {
 		}
 
 		return jours;
+	}
+
+	public Jours addJours(int j) {
+		if (findByNbrJ(j).size() == 1) {
+			return findByNbrJ(j).get(0);
+		} else {
+			Jours jours = new Jours();
+			jours.setNbrJour(j);
+			save(jours);
+			return jours;
+		}
+	}
+
+	public List<Jours> findByNbrJ(int nbrJ) {
+		Map<String, Integer> param = new HashMap<>();
+		param.put("nbrJour", nbrJ);
+
+		return finder.findByNamedQuery("Jours.findByNbrJ", param);
 	}
 
 
