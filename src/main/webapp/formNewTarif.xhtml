@@ -23,7 +23,7 @@
                 <!-- Faut date début-->
                 <h:outputText value="Date de début de la grille tarifaire" />
                 <h:inputText value="#{tarifsBean.dateDebut}">
-                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                 </h:inputText>
                 <h:outputText value="nom de la grille tarifaire" />
                 <h:inputText value="#{tarifsBean.denominationTarif}" />
