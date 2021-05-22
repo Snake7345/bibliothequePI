@@ -32,6 +32,16 @@ public class SvcTarifsJours extends Service<TarifsJours> implements Serializable
 		return tarifsJours;
 	}
 
+	public List<TarifsJours> findByNbrJours(Tarifs t, Jours j) {
+		Map<String, String> param = new HashMap<>();
+		Date date = new Date();
+		param.put("dateDebut", date.toString());
+		param.put("nbrJour", String.valueOf(j.getNbrJour()));
+		param.put("denominationTarif", t.getDenomination());
+		param.put("dateFin", date.toString());
+		return finder.findByNamedQuery("TarifsJours.findByNbrJours", param);
+	}
+
 	public TarifsJours createTarifsJours(Tarifs t, Jours j, Double p, Date db, Date df)
 	{
 		log.debug("truc a la con numeroshlag");

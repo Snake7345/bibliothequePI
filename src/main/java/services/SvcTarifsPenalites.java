@@ -39,6 +39,16 @@ public class SvcTarifsPenalites extends Service<TarifsPenalites> implements Seri
 	public List<TarifsPenalites> findAllTarifsPenalites() {
 		return finder.findByNamedQuery("TarifsPenalites.findAll", null);
 	}
+	public List<TarifsPenalites> findByPena(Tarifs t, Penalites p, Date d) {
+		Map<String, String> param = new HashMap<>();
+		param.put("dateDebut", d.toString());
+		param.put("denominationPena", p.getDenomination());
+		param.put("denominationTarif", t.getDenomination());
+		param.put("dateFin", d.toString());
+		return finder.findByNamedQuery("TarifsPenalites.findByPenalites", param);
+	}
+
+
 
 	public TarifsPenalites createTarifsPenalites(Tarifs t, Penalites pe, Double pr, Date db, Date df)
 	{

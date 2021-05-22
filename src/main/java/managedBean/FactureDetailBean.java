@@ -1,9 +1,12 @@
 package managedBean;
 
+import entities.Bibliotheques;
+import entities.ExemplairesLivres;
+import entities.Factures;
 import entities.FacturesDetail;
 import org.apache.log4j.Logger;
-import services.SvcFacture;
 import services.SvcFactureDetail;
+import services.SvcTarifs;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -22,6 +25,16 @@ public class FactureDetailBean implements Serializable {
     private FacturesDetail facturesDetail;
 
     private static final Logger log = Logger.getLogger(FactureDetailBean.class);
+
+    public FacturesDetail newRent(ExemplairesLivres el, Factures fa, Bibliotheques bi)
+    {
+        SvcTarifs serviceT = new SvcTarifs();
+        facturesDetail = new FacturesDetail();
+        facturesDetail.setExemplairesLivre(el);
+        facturesDetail.setFacture(fa);
+
+
+    }
 
     public void save()
     {

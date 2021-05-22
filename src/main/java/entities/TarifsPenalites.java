@@ -2,12 +2,17 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tarifs_penalites", schema = "bibliotheque")
+@NamedQueries
+        ({
+                @NamedQuery(name = "TarifsPenalites.findAll", query = "SELECT tp FROM TarifsPenalites tp"),
+                // Trouver la date début la plus proche qui est déja passé, un join a pena car j'ai ma dénomination dedans
+                @NamedQuery(name = "TarifsPenalites.findByPenalites", query = "SELECT tp FROM TarifsPenalites tp WHERE tp.dateDebut<=:dateDebut AND tp.dateFin>=:dateFin AND tp.penalite IN (SELECT p FROM Penalites p where p.denomination=:denominationPena)  AND tp.tarif IN (SELECT t FROM Tarifs t where t.denomination=:denominationTarif) ORDER BY tp.dateDebut DESC"),
+        })
 public class TarifsPenalites implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
