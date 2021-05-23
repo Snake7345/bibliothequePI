@@ -1,10 +1,12 @@
 package managedBean;
 
+import entities.ExemplairesLivres;
 import entities.Factures;
 import entities.FacturesDetail;
 import entities.TarifsPenalites;
 import org.apache.log4j.Logger;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+import services.SvcExemplairesLivres;
 import services.SvcFacture;
 import services.SvcFactureDetail;
 
@@ -29,7 +31,7 @@ public class FactureBean implements Serializable {
 
     private Factures factures;
     private static final Logger log = Logger.getLogger(FactureBean.class);
-
+    private String CB;
 
 
     public void save()
@@ -53,11 +55,14 @@ public class FactureBean implements Serializable {
 
     }
 
-    /*
+
     public Factures newFact(FacturesDetail factDet)
     {
         //TODO finaliser la méthode
         SvcFacture service =new SvcFacture();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        ExemplairesLivres el = serviceEL.findOneByCodeBarre(CB).get(0);
+        serviceEL.close();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Factures fact = new Factures();
         double prixHTVA = 0;
@@ -86,7 +91,7 @@ public class FactureBean implements Serializable {
         log.debug("taille liste: "+listFacture.size());
         return fact;
     }
-    */
+
 
     /*Méthode permettant de créer un numéro de facture avec FB(FactureBiblio) suivi de l'année, le mois et un nombre a 4 chiffres*/
     public String createNumFact()

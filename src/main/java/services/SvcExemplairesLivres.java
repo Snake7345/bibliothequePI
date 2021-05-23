@@ -30,6 +30,13 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 		return finder.findByNamedQuery("ExemplairesLivres.findLastExemplaire",null);
 	}
 
+	public List<ExemplairesLivres> findOneByCodeBarre(String CB)
+	{
+		Map<String, String> param = new HashMap<>();
+		param.put("codeBarre", CB);
+		return finder.findByNamedQuery("ExemplairesLivres.findOneCB",param);
+	}
+
 	@Override
 	public ExemplairesLivres save(ExemplairesLivres exemplairesLivres) {
 		if (exemplairesLivres.getIdExemplairesLivres() == 0) {
