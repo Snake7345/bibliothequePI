@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.*;
 import enumeration.FactureEtatEnum;
+import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import services.*;
@@ -12,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
+import javax.transaction.Transaction;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -27,72 +29,78 @@ public class FactureBean implements Serializable {
 
     private Factures factures;
     private static final Logger log = Logger.getLogger(FactureBean.class);
-    private List<String> listCB;
+    private List<locationCustom> listLC;
     private String numMembre;
     private Bibliotheques Bibli;
 
-
-    public void save()
-    {
-        SvcFacture service = new SvcFacture();
-        EntityTransaction transaction = service.getTransaction();
-        transaction.begin();
-        try {
-            service.save(factures);
-            transaction.commit();
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifEd", new FacesMessage("Modification réussie"));
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
-            }
-            service.close();
-        }
-
-    }
-
-
-    public Factures newFact(List<FacturesDetail> factDet)
+    public String newFact()
     {
         //TODO finaliser la méthode
+
+        //initialisation des servicees requis
         SvcFacture service =new SvcFacture();
         SvcFactureDetail serviceFD = new SvcFactureDetail();
-        SvcBibliotheques serviceB = new SvcBibliotheques();
-        SvcTarifs serviceT = new SvcTarifs();
-        serviceFD.setEm(service.getEm());
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
+        SvcTarifs serviceT = new SvcTarifs();
+        SvcJours serviceJ = new SvcJours();
 
+        //rassemblement des entity managers pour la transaction
+        serviceFD.setEm(service.getEm());
+
+        //initialisation des object et variables
+        double prixTVAC = 0;
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Date date = new Date();
         Factures fact = new Factures();
         Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
-        double prixTVAC = 0;
+        Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
 
+        //fermeture des services utilisé lors de l'initialisation
+        serviceU.close();
+        serviceT.close();
+
+        //initialisation de la transaction
+        EntityTransaction transaction = service.getTransaction();
         try {
-
+            //création de la facture
             fact.setDateDebut(timestamp);
-            for (String CB: listCB){
-                ExemplairesLivres el = serviceEL.findOneByCodeBarre(CB).get(0);
-                FacturesDetail Factdet = serviceFD.newRent(el,fact,T,)
-            }
-            serviceEL.close();
             String numFact = createNumFact();
             fact.setNumeroFacture(numFact);
             String path = "Factures\\" + numFact + ".pdf";
             fact.setLienPdf(path);
             fact.setEtat(FactureEtatEnum.ENCOURS);
-            fact.setUtilisateurs(serviceU.getByNumMembre(numMembre).get(0));
-            for(FacturesDetail FD: factDet){
-                prixTVAC= prixTVAC + FD.getPrix();
+            fact.setUtilisateurs(u);
+            // parcour de la liste des location a inscrire dans la facture
+            for (locationCustom lc: listLC){
+                //création des détails de la facture
+                ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
+                Jours j = serviceJ.findByNbrJ(lc.getNbrJours()).get(0);
+                FacturesDetail Factdet = serviceFD.newRent(el,fact,T,j,timestamp);
+                serviceFD.save(Factdet);
+                prixTVAC = prixTVAC + Factdet.getPrix();
             }
-        }
-        catch(NullPointerException npe){
+            // fermeture des services utilisé pour la créations de détails
+            serviceEL.close();
+            serviceJ.close();
 
+            fact.setPrixTvac(prixTVAC);
+            // sauvegarde de la facture et commit de transaction
+            service.save(fact);
+            transaction.commit();
+            return "TableFactures";
         }
-        return fact;
+        finally {
+            //bloc pour gérer les erreurs lors de la transactions
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+                return "";
+            }
+            //fermeture finale de service
+            service.close();
+        }
     }
 
 
@@ -150,20 +158,28 @@ public class FactureBean implements Serializable {
 
     //-------------------------------Getter & Setter--------------------------------------------
 
-    public Factures getFacture() {
+    public Factures getFactures() {
         return factures;
     }
 
-    public void setFacture(Factures factures) {
+    public void setFactures(Factures factures) {
         this.factures = factures;
     }
 
-    public String getCB() {
-        return CB;
+    public List<locationCustom> getListLC() {
+        return listLC;
     }
 
-    public void setCB(String CB) {
-        this.CB = CB;
+    public void setListLC(List<locationCustom> listLC) {
+        this.listLC = listLC;
+    }
+
+    public Bibliotheques getBibli() {
+        return Bibli;
+    }
+
+    public void setBibli(Bibliotheques bibli) {
+        Bibli = bibli;
     }
 
     public String getNumMembre() {
