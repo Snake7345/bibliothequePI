@@ -4,6 +4,7 @@ import entities.ExemplairesLivres;
 import entities.Factures;
 import entities.FacturesDetail;
 import entities.TarifsPenalites;
+import enumeration.FactureEtatEnum;
 import org.apache.log4j.Logger;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import services.SvcExemplairesLivres;
@@ -56,7 +57,7 @@ public class FactureBean implements Serializable {
     }
 
 
-    public Factures newFact(FacturesDetail factDet)
+    public Factures newFact(List<FacturesDetail> factDet)
     {
         //TODO finaliser la méthode
         SvcFacture service =new SvcFacture();
@@ -65,30 +66,24 @@ public class FactureBean implements Serializable {
         serviceEL.close();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Factures fact = new Factures();
-        double prixHTVA = 0;
         double prixTVAC = 0;
 
         try {
 
             fact.setDateDebut(timestamp);
 
-            fact.setPrixHT(prixHTVATotal);
-
             String numFact = createNumFact();
             fact.setNumeroFacture(numFact);
             String path = "Factures\\" + numFact + ".pdf";
             fact.setLienPdf(path);
-            service.create(fact);
-
-            Facture Fact = em.createNamedQuery("Facture.findLastId", Facture.class)
-                    .setMaxResults(1)
-                    .getSingleResult();
+            fact.setEtat(FactureEtatEnum.ENCOURS);
+            for(FacturesDetail FD: factDet){
+                prixTVAC= prixTVAC + FD.getPrix();
+            }
         }
         catch(NullPointerException npe){
 
         }
-        init();
-        log.debug("taille liste: "+listFacture.size());
         return fact;
     }
 

@@ -19,7 +19,11 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 		super();
 	}
 
-
+	public ExemplairesLivres loueExemplaire(ExemplairesLivres exemliv){
+		System.out.println("Je loue l'exemplaire livre :" + exemliv.isLoue());
+		exemliv.setLoue(!exemliv.isLoue());
+		return exemliv;
+	}
 
 	public List<ExemplairesLivres> findAllExemplairesLivres()
 	{

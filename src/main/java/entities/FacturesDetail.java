@@ -55,7 +55,7 @@ public class FacturesDetail implements Serializable {
     }
 
     @Basic
-    @Column(name = "EtatRendu", nullable = false, length = 500)
+    @Column(name = "EtatRendu", nullable = true, length = 500)
     public String getEtatRendu() {
         return etatRendu;
     }
