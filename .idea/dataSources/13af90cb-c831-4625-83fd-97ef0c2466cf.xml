@@ -1647,61 +1647,65 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="415" parent="259" name="fk_Utilisateurs_Roles1_idx">
+    <column id="415" parent="259" name="NumMembre">
+      <Position>10</Position>
+      <DataType>varchar(10)|0s</DataType>
+    </column>
+    <index id="416" parent="259" name="fk_Utilisateurs_Roles1_idx">
       <ColNames>RolesIdRoles</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="416" parent="259" name="PRIMARY">
+    <key id="417" parent="259" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>IdUtilisateurs</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="417" parent="259" name="fk_Utilisateurs_Roles1">
+    <foreign-key id="418" parent="259" name="fk_Utilisateurs_Roles1">
       <ColNames>RolesIdRoles</ColNames>
       <RefTableName>roles</RefTableName>
       <RefColNames>IdRoles</RefColNames>
     </foreign-key>
-    <column id="418" parent="260" name="UtilisateursIdUtilisateurs">
+    <column id="419" parent="260" name="UtilisateursIdUtilisateurs">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="419" parent="260" name="AdressesIdAdresses">
+    <column id="420" parent="260" name="AdressesIdAdresses">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="420" parent="260" name="IdUtilisateursAdresses">
+    <column id="421" parent="260" name="IdUtilisateursAdresses">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="421" parent="260" name="Actif">
+    <column id="422" parent="260" name="Actif">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <index id="422" parent="260" name="fk_Utilisateurs_has_Adresses_Utilisateurs1_idx">
+    <index id="423" parent="260" name="fk_Utilisateurs_has_Adresses_Utilisateurs1_idx">
       <ColNames>UtilisateursIdUtilisateurs</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="423" parent="260" name="fk_Utilisateurs_has_Adresses_Adresses1_idx">
+    <index id="424" parent="260" name="fk_Utilisateurs_has_Adresses_Adresses1_idx">
       <ColNames>AdressesIdAdresses</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="424" parent="260" name="PRIMARY">
+    <key id="425" parent="260" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>IdUtilisateursAdresses</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="425" parent="260" name="fk_Utilisateurs_has_Adresses_Utilisateurs1">
+    <foreign-key id="426" parent="260" name="fk_Utilisateurs_has_Adresses_Utilisateurs1">
       <ColNames>UtilisateursIdUtilisateurs</ColNames>
       <RefTableName>utilisateurs</RefTableName>
       <RefColNames>IdUtilisateurs</RefColNames>
     </foreign-key>
-    <foreign-key id="426" parent="260" name="fk_Utilisateurs_has_Adresses_Adresses1">
+    <foreign-key id="427" parent="260" name="fk_Utilisateurs_has_Adresses_Adresses1">
       <ColNames>AdressesIdAdresses</ColNames>
       <RefTableName>adresses</RefTableName>
       <RefColNames>IdAdresses</RefColNames>

@@ -49,18 +49,6 @@
                     </h:inputText>
                     <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 
-                    <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
-                    <h:inputText id="utilLogin"
-                                 value="#{utilisateursBean.utilisateur.login}"
-                                 required="true">
-                    </h:inputText>
-
-                    <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
-                    <h:inputText id="utilisateurMdp"
-                                 value="#{utilisateursBean.utilisateur.mdp}"
-                                 required="true">
-                    </h:inputText>
-
                     <h:outputText value = "#{I18N['role.label.Denomination']}"/>
                     <h:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                      converter="roleConverter">
@@ -83,7 +71,7 @@
 
                 </h:panelGrid>
 
-                <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}"/>
+                <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtilCli}"/>
                 <h:commandButton value="#{I18N['application.button.return']}" action="tableUtilisateurs" immediate="true"/>
             </h:form>
         </c:if>

@@ -15,6 +15,7 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Tarifs.findAll", query = "SELECT t FROM Tarifs t"),
+                @NamedQuery(name = "Tarifs.findByBiblio", query = "SELECT t FROM Tarifs t WHERE t.bibliotheques.nom=:bibliotheque AND t.dateDebut<=:date ORDER BY t.dateDebut DESC"),
         })
 public class Tarifs implements Serializable {
     private static final long serialVersionUID = 1L;

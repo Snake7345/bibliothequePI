@@ -1,5 +1,6 @@
 package services;
 
+import entities.Livres;
 import entities.Roles;
 import org.apache.log4j.Logger;
 
@@ -41,6 +42,13 @@ public class SvcRoles extends Service<Roles> implements Serializable {
 	//Méthode qui permet via une requete de retourner la liste entière des roles inactifs
 	public List<Roles> findAllRolesInactiv() {
 		return finder.findByNamedQuery("Roles.findInactiv", null);
+	}
+
+	public List<Roles> findRole(String denomination) {
+		Map<String, String> param = new HashMap<>();
+		param.put("denomination", denomination);
+
+		return finder.findByNamedQuery("Roles.findRole", param);
 	}
 
 	public Roles deleteRole(Roles rol){

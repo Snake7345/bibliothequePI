@@ -2,6 +2,8 @@ package managedBean;
 
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
+import services.SvcExemplairesLivres;
+import services.SvcRoles;
 import services.SvcUtilisateurs;
 
 import javax.annotation.PostConstruct;
@@ -24,6 +26,7 @@ public class UtilisateursBean implements Serializable {
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
     private List<Utilisateurs> listUtil = new ArrayList<Utilisateurs>();
     private List<Utilisateurs> searchResults;
+    private String numMembre;
 
     public UtilisateursBean() {
         super();
@@ -33,6 +36,13 @@ public class UtilisateursBean implements Serializable {
     public void init() {
         listUtil = getReadAll();
         utilisateur = new Utilisateurs();
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        if (service.findlastMembre().size()==0){
+            numMembre = "0";
+        }
+        else {
+            numMembre=service.findlastMembre().get(0).getNumMembre();
+        }
     }
 
 
@@ -66,6 +76,29 @@ public class UtilisateursBean implements Serializable {
         save();
         return "/tableUtilisateurs.xhtml?faces-redirect=true";
 
+    }
+
+    public String newUtilCli() {
+        SvcRoles serviceR = new SvcRoles();
+        utilisateur.setNom(utilisateur.getNom().substring(0,0).toUpperCase() + utilisateur.getNom().substring(1));
+        utilisateur.setPrenom(utilisateur.getPrenom().substring(0,0).toUpperCase() + utilisateur.getPrenom().substring(1));
+        utilisateur.setRoles(serviceR.findRole("Client").get(0));
+        utilisateur.setNumMembre(createNumMembre());
+        save();
+        return "/tableUtilisateurs.xhtml?faces-redirect=true";
+
+    }
+
+    public String createNumMembre()
+    {
+        if (numMembre=="0"){
+            numMembre="100000001";
+            return numMembre;
+        }
+        else{
+            numMembre=String.valueOf(Integer.parseInt(numMembre)+1);
+            return numMembre;
+        }
     }
 
     public String activdesactivUtil() {
@@ -187,5 +220,12 @@ public class UtilisateursBean implements Serializable {
         this.listUtil = listUtil;
     }
 
+    public String getNumMembre() {
+        return numMembre;
+    }
+
+    public void setNumMembre(String numMembre) {
+        this.numMembre = numMembre;
+    }
 }
 

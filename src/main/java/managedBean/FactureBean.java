@@ -1,15 +1,10 @@
 package managedBean;
 
-import entities.ExemplairesLivres;
-import entities.Factures;
-import entities.FacturesDetail;
-import entities.TarifsPenalites;
+import entities.*;
 import enumeration.FactureEtatEnum;
 import org.apache.log4j.Logger;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
-import services.SvcExemplairesLivres;
-import services.SvcFacture;
-import services.SvcFactureDetail;
+import services.*;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -32,7 +27,9 @@ public class FactureBean implements Serializable {
 
     private Factures factures;
     private static final Logger log = Logger.getLogger(FactureBean.class);
-    private String CB;
+    private List<String> listCB;
+    private String numMembre;
+    private Bibliotheques Bibli;
 
 
     public void save()
@@ -61,22 +58,33 @@ public class FactureBean implements Serializable {
     {
         //TODO finaliser la méthode
         SvcFacture service =new SvcFacture();
+        SvcFactureDetail serviceFD = new SvcFactureDetail();
+        SvcBibliotheques serviceB = new SvcBibliotheques();
+        SvcTarifs serviceT = new SvcTarifs();
+        serviceFD.setEm(service.getEm());
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
-        ExemplairesLivres el = serviceEL.findOneByCodeBarre(CB).get(0);
-        serviceEL.close();
+        SvcUtilisateurs serviceU = new SvcUtilisateurs();
+
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Date date = new Date();
         Factures fact = new Factures();
+        Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
         double prixTVAC = 0;
 
         try {
 
             fact.setDateDebut(timestamp);
-
+            for (String CB: listCB){
+                ExemplairesLivres el = serviceEL.findOneByCodeBarre(CB).get(0);
+                FacturesDetail Factdet = serviceFD.newRent(el,fact,T,)
+            }
+            serviceEL.close();
             String numFact = createNumFact();
             fact.setNumeroFacture(numFact);
             String path = "Factures\\" + numFact + ".pdf";
             fact.setLienPdf(path);
             fact.setEtat(FactureEtatEnum.ENCOURS);
+            fact.setUtilisateurs(serviceU.getByNumMembre(numMembre).get(0));
             for(FacturesDetail FD: factDet){
                 prixTVAC= prixTVAC + FD.getPrix();
             }
@@ -150,4 +158,19 @@ public class FactureBean implements Serializable {
         this.factures = factures;
     }
 
+    public String getCB() {
+        return CB;
+    }
+
+    public void setCB(String CB) {
+        this.CB = CB;
+    }
+
+    public String getNumMembre() {
+        return numMembre;
+    }
+
+    public void setNumMembre(String numMembre) {
+        this.numMembre = numMembre;
+    }
 }

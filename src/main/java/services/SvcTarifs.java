@@ -1,9 +1,12 @@
 package services;
 
+import entities.Bibliotheques;
+import entities.Livres;
 import entities.Tarifs;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +34,14 @@ public class SvcTarifs extends Service<Tarifs> implements Serializable {
 
 	public List<Tarifs> findAllTarifs() {
 		return finder.findByNamedQuery("Tarifs.findAll", null);
+	}
+
+	public List<Tarifs> getTarifByBiblio(Date d, String biblio) {
+		Map<String, String> param = new HashMap<>();
+		param.put("date", d.toString());
+		param.put("bibliotheque",biblio);
+
+		return finder.findByNamedQuery("Tarifs.findByBiblio", param);
 	}
 
 

@@ -1,6 +1,7 @@
 package services;
 
 
+import entities.ExemplairesLivres;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 
@@ -45,6 +46,11 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		return finder.findByNamedQuery("Utilisateurs.findInactiv", null);
 	}
 
+	public List<Utilisateurs> findlastMembre()
+	{
+		return finder.findByNamedQuery("Utilisateurs.findLastMembre",null);
+	}
+
 	public Utilisateurs deleteUtilisateur(Utilisateurs util){
 		System.out.println("Je delete l'utilisateur :" + util.getNom() + util.getPrenom());
 		util.setActif(false);
@@ -56,6 +62,13 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		param.put("nom", nom);
 
 		return finder.findByNamedQuery("Utilisateurs.searchName", param);
+	}
+
+	public List<Utilisateurs> getByNumMembre(String numMembre) {
+		Map<String, String> param = new HashMap<>();
+		param.put("numMembre", numMembre);
+
+		return finder.findByNamedQuery("Utilisateurs.searchMembre", param);
 	}
 
 	public List<Utilisateurs> authentify(String login, String mdp) {

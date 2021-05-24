@@ -91,7 +91,7 @@
                     </h:dataTable>
                 </h:panelGroup>
                 <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(12,loginBean.utilisateurAuth.roles.idRoles)}">
-                <h:commandButton value="#{I18N['application.button.new']}" action="formNewUtilisateur" />
+                <h:commandButton value="#{I18N['application.button.new']}" action="formNewUtilisateurCli" />
                 </c:if>
                 <h:commandButton value="#{I18N['application.button.find']}" action="formSearchUtilisateur"/>
                 <h:commandButton value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushBienv}"/>

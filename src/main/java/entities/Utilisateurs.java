@@ -18,6 +18,8 @@ import java.util.Objects;
                 @NamedQuery(name = "Utilisateurs.findInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE"),
                 @NamedQuery(name=  "Utilisateurs.authentify", query="SELECT u FROM Utilisateurs u where u.login=:login and u.mdp=:mdp and u.actif=TRUE"),
                 @NamedQuery(name="Utilisateurs.searchName", query="SELECT u FROM Utilisateurs u WHERE u.nom=:nom"),
+                @NamedQuery(name = "Utilisateurs.findLastMembre", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NOT NULL ORDER BY u.numMembre DESC"),
+                @NamedQuery(name = "Utilisateurs.searchMembre", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre=:numMembre"),
         })
 public class Utilisateurs implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -32,6 +34,7 @@ public class Utilisateurs implements Serializable {
     private String courriel;
     private String login;
     private String mdp;
+    private String numMembre;
     private boolean actif = true;
     @OneToMany(mappedBy = "utilisateurs")
     private Collection<Factures> factures;
@@ -46,6 +49,16 @@ public class Utilisateurs implements Serializable {
 
     public void setIdUtilisateurs(int idUtilisateurs) {
         this.idUtilisateurs = idUtilisateurs;
+    }
+
+    @Basic
+    @Column(name = "NumMembre", nullable = true, length = 10)
+    public String getNumMembre() {
+        return numMembre;
+    }
+
+    public void setNumMembre(String numMembre) {
+        this.numMembre = numMembre;
     }
 
     @Basic
