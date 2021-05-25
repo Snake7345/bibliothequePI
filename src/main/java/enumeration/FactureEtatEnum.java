@@ -2,9 +2,10 @@ package enumeration;
 
 public enum FactureEtatEnum
 {
-    encours("encours"),
+
     terminer("terminer"),
-    annule("annule");
+    annule("annule"),
+    en_cours("en_cours");
 
     private String label;
 

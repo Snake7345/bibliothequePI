@@ -25,7 +25,6 @@ public class Factures implements Serializable {
     private Timestamp dateDebut;
     private Double prixTvac;
     private String numeroFacture;
-    private FactureEtatEnum etat;
     @OneToMany(mappedBy = "factures")
     private Collection<FacturesDetail> facturesDetails;
     private String lienPdf;
@@ -83,7 +82,7 @@ public class Factures implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false,columnDefinition = "varchar(2) default 'FR'" ,name = "etat")
-
+    private FactureEtatEnum etat;
     public FactureEtatEnum getEtat() {
         return etat;
     }

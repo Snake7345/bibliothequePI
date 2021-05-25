@@ -86,7 +86,7 @@ public class FactureBean implements Serializable {
             fact.setNumeroFacture(numFact);
             String path = "Factures\\" + numFact + ".pdf";
             fact.setLienPdf(path);
-            fact.setEtat(FactureEtatEnum.encours);
+            fact.setEtat(FactureEtatEnum.en_cours);
             fact.setUtilisateurs(u);
             // parcour de la liste des location a inscrire dans la facture
             for (locationCustom lc: listLC){
@@ -105,11 +105,12 @@ public class FactureBean implements Serializable {
             service.save(fact);
             log.debug(fact.getEtat());
             transaction.commit();
-            MFB.creation(fact);
+            //MFB.creation(fact);
             return "TableFactures";
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
+        } //catch (IOException e) {
+           // e.printStackTrace();
+        //}
+        finally {
             //bloc pour gérer les erreurs lors de la transactions
             if (transaction.isActive()) {
                 transaction.rollback();
@@ -124,6 +125,7 @@ public class FactureBean implements Serializable {
             serviceU.close();
             serviceT.close();
         }
+        //return "TableFactures";
     }
 
 

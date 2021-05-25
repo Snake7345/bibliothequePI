@@ -30,6 +30,18 @@
                         <!-- row record -->
                         <h:outputLabel value ="#{fa.numeroFacture}"/>
                     </h:column>
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">#{I18N['factures.label.lien']}</f:facet>
+                        <!-- row record -->
+                        <h:outputLabel value ="#{fa.lienPdf}"/>
+                    </h:column>
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">#{I18N['factures.label.Etat']}</f:facet>
+                        <!-- row record -->
+                        <h:outputLabel value ="#{fa.etat}"/>
+                    </h:column>
                 </h:dataTable>
             </h:panelGroup>
             <h:commandButton value="#{I18N['application.button.new']}" action="formNewFact" />
