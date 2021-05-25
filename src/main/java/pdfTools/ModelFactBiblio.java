@@ -27,7 +27,7 @@ import entities.Voiture;
 
 @WebServlet("/ModelFactGarage")
 
-public class ModelFactGarage implements Serializable
+public class ModelFact implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = Logger.getLogger(ModelFactGarage.class);
