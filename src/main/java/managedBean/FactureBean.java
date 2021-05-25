@@ -4,7 +4,6 @@ import entities.*;
 import enumeration.FactureEtatEnum;
 import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import pdfTools.ModelFactBiblio;
 import services.*;
 
@@ -14,7 +13,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
-import javax.transaction.Transaction;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
