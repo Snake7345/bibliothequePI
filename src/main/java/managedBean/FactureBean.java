@@ -31,9 +31,23 @@ public class FactureBean implements Serializable {
 
     private Factures factures;
     private static final Logger log = Logger.getLogger(FactureBean.class);
-    private List<locationCustom> listLC;
+    private List<locationCustom> listLC = new ArrayList<>();;
     private String numMembre;
     private Bibliotheques Bibli;
+
+    public void init(){
+        listLC.add(new locationCustom());
+    }
+    public void addNewListRow() {
+        listLC.add(new locationCustom());
+    }
+
+    public void delListRow() {
+        if (listLC.size() >1)
+        {
+            listLC.remove(listLC.size()-1);
+        }
+    }
 
     public String newFact()
     {
