@@ -25,12 +25,12 @@
                                  requiredMessage="#{I18N['formulaire.message.required.titre']}">
                     </h:inputText>
                     <h:message for="nbrExemp" styleClass="errorMessage"/>
-                    <h:inputHidden value="#{exemplairesLivresBean.livre}" id="exliv"/>
+                    <h:inputHidden value="#{exemplairesLivresBean.livre}" id="liv"/>
 
 
                 </h:panelGrid>
 
-                <h:commandButton value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.addExemplaireLivre(nbrExemp)}"/>
+                <h:commandButton value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.addExemplaireLivre}"/>
                 <h:commandButton value="#{I18N['application.button.return']}" action="tableLivres" immediate="true"/>
             </h:form>
         </c:if>

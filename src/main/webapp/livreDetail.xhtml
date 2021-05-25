@@ -83,7 +83,10 @@
                     </h:column>
                 </h:dataTable>
             </h:panelGroup>
-            <h:commandButton value="#{I18N['application.button.new']}" action="formNewLivre" />
+            <h:commandButton value="#{I18N['application.button.new']}" action="formNewLivre">
+                <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
+            </h:commandButton>
+
             <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushBienv}"/>
         </h:form>
     </ui:define>
