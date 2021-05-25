@@ -82,7 +82,7 @@ public class Factures implements Serializable {
 
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "etat")
+    @Column(nullable = false,columnDefinition = "varchar(2) default 'FR'" ,name = "etat")
 
     public FactureEtatEnum getEtat() {
         return etat;

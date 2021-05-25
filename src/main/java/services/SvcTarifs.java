@@ -37,8 +37,8 @@ public class SvcTarifs extends Service<Tarifs> implements Serializable {
 	}
 
 	public List<Tarifs> getTarifByBiblio(Date d, String biblio) {
-		Map<String, String> param = new HashMap<>();
-		param.put("date", d.toString());
+		Map<String, Object> param = new HashMap<>();
+		param.put("date", d);
 		param.put("bibliotheque",biblio);
 
 		return finder.findByNamedQuery("Tarifs.findByBiblio", param);

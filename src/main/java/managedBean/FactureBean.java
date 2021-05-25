@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.*;
 import enumeration.FactureEtatEnum;
+import objectCustom.JourCustom;
 import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
@@ -29,9 +30,23 @@ public class FactureBean implements Serializable {
 
     private Factures factures;
     private static final Logger log = Logger.getLogger(FactureBean.class);
-    private List<locationCustom> listLC;
+    private List<locationCustom> listLC = new ArrayList<>();
     private String numMembre;
     private Bibliotheques Bibli;
+
+    public void init(){
+        listLC.add(new locationCustom());
+    }
+    public void addNewListRow() {
+        listLC.add(new locationCustom());
+    }
+
+    public void delListRow() {
+        if (listLC.size() >1)
+        {
+            listLC.remove(listLC.size()-1);
+        }
+    }
 
     public String newFact()
     {
@@ -53,15 +68,16 @@ public class FactureBean implements Serializable {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Date date = new Date();
         Factures fact = new Factures();
+        log.debug("bibli" + Bibli.getNom());
         Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
 
         //fermeture des services utilisé lors de l'initialisation
-        serviceU.close();
-        serviceT.close();
+
 
         //initialisation de la transaction
         EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
         try {
             //création de la facture
             fact.setDateDebut(timestamp);
@@ -69,7 +85,7 @@ public class FactureBean implements Serializable {
             fact.setNumeroFacture(numFact);
             String path = "Factures\\" + numFact + ".pdf";
             fact.setLienPdf(path);
-            fact.setEtat(FactureEtatEnum.ENCOURS);
+            fact.setEtat(FactureEtatEnum.encours);
             fact.setUtilisateurs(u);
             // parcour de la liste des location a inscrire dans la facture
             for (locationCustom lc: listLC){
@@ -80,13 +96,13 @@ public class FactureBean implements Serializable {
                 serviceFD.save(Factdet);
                 prixTVAC = prixTVAC + Factdet.getPrix();
             }
-            // fermeture des services utilisé pour la créations de détails
-            serviceEL.close();
-            serviceJ.close();
+
 
             fact.setPrixTvac(prixTVAC);
+
             // sauvegarde de la facture et commit de transaction
             service.save(fact);
+            log.debug(fact.getEtat());
             transaction.commit();
             return "TableFactures";
         }
@@ -99,7 +115,11 @@ public class FactureBean implements Serializable {
                 return "";
             }
             //fermeture finale de service
-            service.close();
+            service.close();// fermeture des services utilisé pour la créations de détails
+            serviceEL.close();
+            serviceJ.close();
+            serviceU.close();
+            serviceT.close();
         }
     }
 
@@ -120,27 +140,30 @@ public class FactureBean implements Serializable {
         try
         {
             fact = serviceF.findAllFactureDesc();
-            String text = fact.get(0).getNumeroFacture();
-            int anneelastFact = Integer.parseInt(text.substring(2, 6));
-            log.debug("année last fact = "+anneelastFact);
+            if (fact.size() != 0){
+                String text = fact.get(0).getNumeroFacture();
+                int anneelastFact = Integer.parseInt(text.substring(2, 6));
+                log.debug("année last fact = "+anneelastFact);
 
-            if(annee == anneelastFact)
-            {
-                int nb = Integer.parseInt(text.substring(text.length() - 5, text.length()));
-                numFact = "FB" + annee + String.format("%02d", mois) + String.format("%05d",nb+1);
+                if(annee == anneelastFact)
+                {
+                    int nb = Integer.parseInt(text.substring(text.length() - 5, text.length()));
+                    numFact = "FB" + annee + String.format("%02d", mois) + String.format("%05d",nb+1);
+                }
+                else
+                {
+                    numFact = "FB" + annee + String.format("%02d", mois) + "00001";
+                }
+                log.debug("numero facture = "+ numFact);
             }
-            else
-            {
+            else{
                 numFact = "FB" + annee + String.format("%02d", mois) + "00001";
             }
-            log.debug("numero facture = "+ numFact);
         }
         catch(NullPointerException npe) {
             log.debug("Problème: pas trouvé de facture");
         }
-        catch(NoResultException nre) {
-            numFact = "FB" + annee + String.format("%02d", mois) + "00001";
-        }
+
         return numFact;
     }
     /*

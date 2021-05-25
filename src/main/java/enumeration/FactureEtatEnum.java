@@ -1,12 +1,10 @@
 package enumeration;
 
-import java.io.BufferedReader;
-
 public enum FactureEtatEnum
 {
-    ENCOURS("en cours"),
-    TERMINER("terminer"),
-    ANNULE("annule");
+    encours("encours"),
+    terminer("terminer"),
+    annule("annule");
 
     private String label;
 

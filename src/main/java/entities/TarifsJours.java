@@ -12,7 +12,7 @@ import java.util.Objects;
         ({
                 @NamedQuery(name = "TarifsJours.findAll", query = "SELECT tj FROM TarifsJours tj"),
                 // Trouver la date début la plus proche qui est déja passé, un join a jour car j'ai mon nombre de jour dedans
-                @NamedQuery(name = "TarifsJours.findByNbrJours", query = "SELECT tj FROM TarifsJours tj WHERE tj.dateDebut<=:dateDebut AND tj.dateFin>=:dateFin AND tj.jours IN (SELECT j FROM Jours j where j.nbrJour=:nbrJour)  AND tj.tarif IN (SELECT t FROM Tarifs t where t.denomination=:denominationTarif) ORDER BY tj.dateDebut DESC"),
+                @NamedQuery(name = "TarifsJours.findByJours", query = "SELECT tj FROM TarifsJours tj WHERE tj.dateDebut<=:dateDebut AND tj.dateFin>=:dateFin AND tj.jours.nbrJour<=:jour AND tj.tarif=:tarif ORDER BY tj.dateDebut DESC"),
         })
 public class TarifsJours implements Serializable {
     private static final long serialVersionUID = 1L;

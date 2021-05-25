@@ -14,6 +14,7 @@
         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form>
                 <!-- faut champ bibliotheque -->
+                <h:outputText value="bibliotheque" />
                 <h:selectOneMenu value = "#{tarifsBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                  converter="biblioConverter">
                     <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
