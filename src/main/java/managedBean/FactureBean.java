@@ -5,7 +5,7 @@ import enumeration.FactureEtatEnum;
 import objectCustom.JourCustom;
 import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+import pdfTools.ModelFactBiblio;
 import services.*;
 
 import javax.enterprise.context.SessionScoped;
@@ -14,7 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
-import javax.transaction.Transaction;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class FactureBean implements Serializable {
     {
         //TODO finaliser la méthode
 
-        //initialisation des servicees requis
+        //initialisation des services requis
         SvcFacture service =new SvcFacture();
         SvcFactureDetail serviceFD = new SvcFactureDetail();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
@@ -69,6 +69,7 @@ public class FactureBean implements Serializable {
         Date date = new Date();
         Factures fact = new Factures();
         log.debug("bibli" + Bibli.getNom());
+        ModelFactBiblio MFB =new ModelFactBiblio();
         Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
 
@@ -104,9 +105,11 @@ public class FactureBean implements Serializable {
             service.save(fact);
             log.debug(fact.getEtat());
             transaction.commit();
+            MFB.creation(fact);
             return "TableFactures";
-        }
-        finally {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             //bloc pour gérer les erreurs lors de la transactions
             if (transaction.isActive()) {
                 transaction.rollback();
