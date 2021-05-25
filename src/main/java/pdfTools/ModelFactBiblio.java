@@ -110,15 +110,13 @@ public class ModelFactBiblio implements Serializable
 		contentStream.setNonStrokingColor(Color.BLACK);
 		contentStream.setLeading(14.5f);
 	    contentStream.newLineAtOffset(360, 600);
-	    String nomCli = nompreClient;
 	    contentStream.showText("Client :");
 	    contentStream.newLine();
-	    contentStream.showText(nomCli); 
+	    contentStream.showText(nompreClient);
 	    contentStream.newLine();
 	    contentStream.showText(adresse);  
 	    contentStream.newLine();
 	    contentStream.endText();
-
 	    
 
 		
@@ -149,7 +147,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.newLine();
 	    contentStream.newLine();
 
-	    for (int i=0; i<listAction.size(); i++) 
+	    for (int i=0; i<; i++)
 		{ 
 	    	contentStream.showText(listAction.get(i).getTypeAction().getDenomination());
 	    	contentStream.newLine();
