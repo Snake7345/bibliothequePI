@@ -5,6 +5,7 @@ import enumeration.FactureEtatEnum;
 import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+import pdfTools.ModelFactBiblio;
 import services.*;
 
 import javax.enterprise.context.SessionScoped;
@@ -14,6 +15,7 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.transaction.Transaction;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class FactureBean implements Serializable {
     {
         //TODO finaliser la méthode
 
-        //initialisation des servicees requis
+        //initialisation des services requis
         SvcFacture service =new SvcFacture();
         SvcFactureDetail serviceFD = new SvcFactureDetail();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
@@ -53,6 +55,7 @@ public class FactureBean implements Serializable {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Date date = new Date();
         Factures fact = new Factures();
+        ModelFactBiblio MFB =new ModelFactBiblio();
         Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
 
@@ -83,14 +86,15 @@ public class FactureBean implements Serializable {
             // fermeture des services utilisé pour la créations de détails
             serviceEL.close();
             serviceJ.close();
-
             fact.setPrixTvac(prixTVAC);
             // sauvegarde de la facture et commit de transaction
             service.save(fact);
             transaction.commit();
+            MFB.creation(fact);
             return "TableFactures";
-        }
-        finally {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             //bloc pour gérer les erreurs lors de la transactions
             if (transaction.isActive()) {
                 transaction.rollback();
