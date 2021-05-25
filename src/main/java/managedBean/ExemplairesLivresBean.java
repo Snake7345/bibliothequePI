@@ -45,7 +45,7 @@ public class ExemplairesLivresBean implements Serializable {
         service.close();
         serviceB.close();
     }
-    public String addExemplaireLivre(int nombreExemplaire){
+    public String addExemplaireLivre(){
         init();
         log.debug("rentree ajout exemplaire");
         SvcExemplairesLivres service = new SvcExemplairesLivres();
@@ -54,7 +54,7 @@ public class ExemplairesLivresBean implements Serializable {
         log.debug("debut transaction");
         try {
             log.debug("debut for");
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < nombreExemplaire; i++) {
 
                 log.debug("boucle "+i);
                 log.debug("set bibli");
