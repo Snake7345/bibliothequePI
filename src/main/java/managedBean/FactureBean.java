@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -102,11 +103,9 @@ public class FactureBean implements Serializable {
             service.save(fact);
             log.debug(fact.getEtat());
             transaction.commit();
-            //MFB.creation(fact);
+            MFB.creation(fact);
             return "TableFactures";
-        } //catch (IOException e) {
-           // e.printStackTrace();
-        //}
+        }
         finally {
             //bloc pour gérer les erreurs lors de la transactions
             if (transaction.isActive()) {
@@ -122,7 +121,6 @@ public class FactureBean implements Serializable {
             serviceU.close();
             serviceT.close();
         }
-        //return "TableFactures";
     }
 
 

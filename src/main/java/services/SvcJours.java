@@ -42,7 +42,7 @@ public class SvcJours extends Service<Jours> implements Serializable {
 	public List<Jours> findByNbrJ(int nbrJ) {
 		Map<String, Integer> param = new HashMap<>();
 		param.put("nbrJour", nbrJ);
-
+		log.debug("nbr jour demandé: "+nbrJ);
 		return finder.findByNamedQuery("Jours.findByNbrJ", param);
 	}
 

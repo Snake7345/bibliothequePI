@@ -32,11 +32,11 @@ public class ModelFactBiblio implements Serializable
 	private static final Logger log = Logger.getLogger(ModelFactBiblio.class);
 	
 	/*Creation de la facture en PDF*/
-	public void creation (Factures fact, List<locationCustom> listLC) throws IOException
-	{
+	public void creation (Factures fact)  {
+		try{
 		SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
-		String image = System.getProperty("user.dir")+"\\Webapp\\Images\\biblioLib.png";
-		
+		String image = System.getProperty("user.dir")+"\\webapp\\Images\\biblioLib.png";
+		log.debug(image);
 		Calendar cal = Calendar.getInstance();
 		//Date date = cal.getTime();
 		//variable � mettre dans la facture
@@ -238,7 +238,10 @@ public class ModelFactBiblio implements Serializable
 	    }
 	    doc.save(path + numfacture + ".pdf");
 	    //doc.save(System.getProperty("user.dir")+"\\WebContent\\Factures\\"+numfacture+".pdf");
-	    doc.close();
+	    doc.close();}
+		catch (IOException e){
+			log.debug(e.getMessage());
+		}
 	}
 	
 	
