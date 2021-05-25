@@ -1,6 +1,9 @@
 package pdfTools;
 
 import entities.Factures;
+import entities.FacturesDetail;
+import entities.UtilisateursAdresses;
+import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
@@ -15,8 +18,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Array;
 import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 @WebServlet("/ModelFactBiblio")
@@ -27,10 +34,9 @@ public class ModelFactBiblio implements Serializable
 	private static final Logger log = Logger.getLogger(ModelFactBiblio.class);
 	
 	/*Creation de la facture en PDF*/
-	/*
-	public void creation (Factures fact) throws IOException
+	public void creation (Factures fact, List<locationCustom> listLC) throws IOException
 	{
-		SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
 		String image = System.getProperty("user.dir")+"\\Webapp\\Images\\biblioLib.png";
 		
 		Calendar cal = Calendar.getInstance();
@@ -39,7 +45,14 @@ public class ModelFactBiblio implements Serializable
 		String numfacture = fact.getNumeroFacture();
 		String utilisateur = fact.getUtilisateurs().getNumMembre();
 		String nompreClient = fact.getUtilisateurs().getNom() + " " + fact.getUtilisateurs().getPrenom();
-		String adresse = fact.getUtilisateurs().getUtilisateursAdresses().;
+		String adresse="";
+		for(UtilisateursAdresses ua : fact.getUtilisateurs().getUtilisateursAdresses())
+		{
+			if(ua.isActif())
+			{
+				adresse = ua.getAdresse().getRue() + " " + ua.getAdresse().getNumero() + " " + ua.getAdresse().getBoite() + " " + ua.getAdresse().getLocalites().getCp() + " " + ua.getAdresse().getLocalites().getVille();
+			}
+		}
 		String laDateDuJour = sf.format(new java.util.Date());
 		
 		//calcule main d'oeuvre
@@ -59,7 +72,7 @@ public class ModelFactBiblio implements Serializable
 	    //Creating the PDDocumentInformation object 
 	    PDDocumentInformation pdd = doc.getDocumentInformation();    
 	    pdd.setAuthor("BiblioLib");										//Setting the author of the document
-	    pdd.setTitle("Facture n�"+numfacture); 							// Setting the title of the document
+	    pdd.setTitle("Facture n°"+numfacture); 							// Setting the title of the document
 	    pdd.setSubject("Facturation du client: " + utilisateur); 	//Setting the subject of the document
 	    pdd.setCreationDate(cal); 	    						//Setting the created date of the document 
 
@@ -67,7 +80,7 @@ public class ModelFactBiblio implements Serializable
 	     * Dimension:  mm = pt * 25.4 / 72  --> pt = mm*72/25.4
 	     * marge 2 cm = 7.06
 	     */
-	    /*
+
 	    //PDPage page = doc.getPage(0);
 	    PDImageXObject pdImage = PDImageXObject.createFromFile(image, doc);
 	    PDPageContentStream contentStream = new PDPageContentStream(doc, page);
@@ -125,7 +138,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.setFont(PDType1Font.TIMES_BOLD,12);
 	    contentStream.setLeading(14.5f);
 	    contentStream.newLineAtOffset(80, 600);	 
-	    String entetef1 = "Facture n� : " + numfacture + " cr��e le " + laDateDuJour;
+	    String entetef1 = "Facture n° : " + numfacture + " creee le " + laDateDuJour;
 	   
 	    contentStream.showText(entetef1);
 	    contentStream.newLine();
@@ -143,33 +156,23 @@ public class ModelFactBiblio implements Serializable
 	    //travaux effectu�s
 	    contentStream.beginText();
 	    contentStream.newLineAtOffset(80, 455);	
-	    contentStream.showText("Action(s) effectu�e(s) :");
+	    contentStream.showText("Exemplaire loué :");
 	    contentStream.newLine();
 	    contentStream.newLine();
-
-	    for (int i=0; i<; i++)
+		int i=0;
+	    for (FacturesDetail fd: fact.getFactureDetails())
 		{ 
-	    	contentStream.showText(listAction.get(i).getTypeAction().getDenomination());
+	    	contentStream.showText(fd.getExemplairesLivre().getLivres().getTitre() + " pour une durée de " + ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime()));
 	    	contentStream.newLine();
+	    	contentStream.showText(String.valueOf(fd.getPrix()));
+			contentStream.newLine();
 		}
-	    contentStream.showText("Main d'oeuvre : " + heure + " h, le prix �tant de " + prixMOHT + " /h");
-	    contentStream.newLine();
 	    contentStream.endText();
 	    
 	    contentStream.beginText();
 	    contentStream.newLineAtOffset(475, 455);	
 	    contentStream.showText("Prix");
 	    contentStream.newLine();
-	    contentStream.newLine();
-	    
-	    for (int i=0; i<listAction.size(); i++) 
-		{ 
-	    	String prix = String.format("%5.02f �", listAction.get(i).getTypeAction().getPrixHT());
-	    	contentStream.showText(prix);
-	    	contentStream.newLine();
-		}
-	    String prixMO = String.format("%5.02f �",prixMOHTTotal);
-	    contentStream.showText(prixMO);
 	    contentStream.endText();
 	    // dessiner le cadre
 	    
@@ -182,7 +185,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.setLeading(17.5f);
 	    contentStream.newLineAtOffset(363, 235);
 	    String total2 = "TVA";
-	    String total3 = "Total � payer";
+	    String total3 = "Total à payer";
 	    contentStream.showText(total2);
 	    contentStream.newLine();
 	    contentStream.showText(total3);
@@ -191,8 +194,8 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.beginText();
 	    contentStream.setLeading(17.5f);
 	    contentStream.newLineAtOffset(475, 235);
-	    String total5 = String.format("%5.02f �", TVA);
-	    String total6 = String.format("%5.02f �", PTVAC);
+	    String total5 = String.format("%5.02f €", TVA);
+	    String total6 = String.format("%5.02f €", PTVAC);
 	    contentStream.showText(total5);
 	    contentStream.newLine();
 	    contentStream.showText(total6);
@@ -207,10 +210,10 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
 	    contentStream.setLeading(7.25f);
 	    contentStream.newLineAtOffset(57, 90);	 
-	    String pdp1 = "Conditions g�n�rales";
-	    String pdp2 = "Toutes nos factures doivent �tre pay� au moment de la cr�ation de la facture.";
-	    String pdp4 = "Les r�clamations doivent �tre introduites par lettre recommand�e, sous peine de d�ch�ance, dans les 8 jours de la r�ception de la facture.";
-	    String pdp6 = "A d�faut, nos factures sont r�put�es conformes.";
+	    String pdp1 = "Conditions generales";
+	    String pdp2 = "Toutes nos factures doivent etre payé au moment de la création de la facture.";
+	    String pdp4 = "Les reclamations doivent etre introduites par lettre recommandee, sous peine de decheance, dans les 8 jours de la reception de la facture.";
+	    String pdp6 = "A defaut, nos factures sont reputees conformes.";
 	    
 
 	    contentStream.showText(pdp1);
@@ -233,12 +236,12 @@ public class ModelFactBiblio implements Serializable
 	    File file = new File(path);
 	    if(file.mkdir()) 
 	    {
-	    	log.debug("Le dossier a bien �t� cr��");
+	    	log.debug("Le dossier a bien été cree");
 	    }
 	    doc.save(path + numfacture + ".pdf");
 	    //doc.save(System.getProperty("user.dir")+"\\WebContent\\Factures\\"+numfacture+".pdf");
 	    doc.close();
-	}*/
+	}
 	
 	
 	//-------------------------------------------------------------------------------------------------------

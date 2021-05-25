@@ -2,7 +2,6 @@ package managedBean;
 
 import entities.*;
 import enumeration.FactureEtatEnum;
-import objectCustom.JourCustom;
 import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
 import pdfTools.ModelFactBiblio;
@@ -13,8 +12,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;

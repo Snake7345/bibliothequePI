@@ -39,6 +39,7 @@ public class SvcFactureDetail extends Service<FacturesDetail> implements Seriali
         FacturesDetail facturesDetail = new FacturesDetail();
         facturesDetail.setExemplairesLivre(el);
         facturesDetail.setFacture(fa);
+
         facturesDetail.setPrix(serviceTJ.findByJours(t,j).get(0).getPrix());
         facturesDetail.setDateFin(d);
         serviceTJ.close();
