@@ -1,6 +1,5 @@
 package entities;
 
-import javax.inject.Named;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;

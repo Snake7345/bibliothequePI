@@ -1,22 +1,22 @@
 package pdfTools;
 
-import java.io.IOException;
-
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+
+import java.io.IOException;
 
 public class Encadrement 
 {
 	
 	public static void creation(PDPageContentStream cs, int x, int y, int lg, int ht) throws IOException
 	{
-		// Création d'un encadrement
-		//ligne supérieure
+		// Crï¿½ation d'un encadrement
+		//ligne supï¿½rieure
 		cs.setLineWidth(1);
 		cs.moveTo(x, y);
 		cs.lineTo(x+lg, y);
 		cs.closeAndStroke();
 		
-		// ligne inférieure
+		// ligne infï¿½rieure
 		cs.setLineWidth(1);
 		cs.moveTo(x, y-ht);
 		cs.lineTo(x + lg, y-ht);

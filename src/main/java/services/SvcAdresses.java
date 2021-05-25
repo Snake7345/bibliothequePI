@@ -1,12 +1,12 @@
 package services;
 
+import entities.Adresses;
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import entities.Adresses;
-import org.apache.log4j.Logger;
 
 
 public class SvcAdresses extends Service<Adresses> implements Serializable {

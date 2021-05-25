@@ -1,8 +1,8 @@
 package services;
 
 import connexion.EMF;
-import connexion.EntityFinderImpl;
 import connexion.EntityFinder;
+import connexion.EntityFinderImpl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

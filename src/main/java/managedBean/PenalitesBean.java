@@ -2,7 +2,6 @@ package managedBean;
 
 import entities.Penalites;
 import org.apache.log4j.Logger;
-import services.SvcAdresses;
 import services.SvcPenalites;
 
 import javax.enterprise.context.SessionScoped;

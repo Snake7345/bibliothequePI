@@ -1,11 +1,9 @@
 package entities;
 
-import managedBean.TarifsBean;
 import org.apache.log4j.Logger;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;

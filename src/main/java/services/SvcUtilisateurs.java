@@ -1,7 +1,6 @@
 package services;
 
 
-import entities.ExemplairesLivres;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 

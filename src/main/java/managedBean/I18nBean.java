@@ -1,17 +1,16 @@
 package managedBean;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
+import org.apache.log4j.Logger;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.ViewHandler;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-
-import org.apache.log4j.Logger;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 @Named
 @SessionScoped

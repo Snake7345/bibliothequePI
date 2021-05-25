@@ -1,7 +1,6 @@
 package services;
 
 import entities.Jours;
-import entities.Penalites;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;

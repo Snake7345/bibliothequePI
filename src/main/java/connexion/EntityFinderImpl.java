@@ -1,18 +1,14 @@
 package connexion;
 
-import java.io.Serializable;
-import java.util.*;
-
-//import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TemporalType;
-import org.eclipse.persistence.config.CacheUsage;
+import org.apache.log4j.Logger;
 import org.eclipse.persistence.config.HintValues;
 import org.eclipse.persistence.config.QueryHints;
 
-
-import org.apache.log4j.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.*;
 
 //import com.og.connection.EMF;
 

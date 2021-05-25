@@ -1,11 +1,12 @@
 package services;
 
 
-import entities.*;
+import entities.Penalites;
+import entities.Tarifs;
+import entities.TarifsPenalites;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;

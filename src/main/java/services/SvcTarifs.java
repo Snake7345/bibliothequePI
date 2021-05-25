@@ -1,7 +1,5 @@
 package services;
 
-import entities.Bibliotheques;
-import entities.Livres;
 import entities.Tarifs;
 import org.apache.log4j.Logger;
 

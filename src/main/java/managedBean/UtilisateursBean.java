@@ -2,7 +2,6 @@ package managedBean;
 
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
-import services.SvcExemplairesLivres;
 import services.SvcRoles;
 import services.SvcUtilisateurs;
 

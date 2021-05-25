@@ -1,6 +1,9 @@
 package managedBean;
 
-import entities.*;
+import entities.Bibliotheques;
+import entities.Jours;
+import entities.Penalites;
+import entities.Tarifs;
 import objectCustom.JourCustom;
 import objectCustom.PenaCustom;
 import org.apache.log4j.Logger;
@@ -13,7 +16,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

@@ -1,11 +1,8 @@
 package managedBean;
 
-import entities.*;
+import entities.FacturesDetail;
 import org.apache.log4j.Logger;
 import services.SvcFactureDetail;
-import services.SvcTarifs;
-import services.SvcTarifsJours;
-import services.SvcTarifsPenalites;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -13,9 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Named

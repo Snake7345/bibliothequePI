@@ -1,7 +1,6 @@
 package services;
 
 import entities.Factures;
-import entities.Livres;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;

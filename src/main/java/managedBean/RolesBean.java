@@ -3,7 +3,6 @@ package managedBean;
 import entities.Roles;
 import org.apache.log4j.Logger;
 import services.SvcPermissionRoles;
-import services.SvcPermissions;
 import services.SvcRoles;
 
 import javax.annotation.PostConstruct;

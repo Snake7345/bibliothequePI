@@ -3,7 +3,6 @@ package services;
 import entities.Permissions;
 import entities.PermissionsRoles;
 import entities.Roles;
-import entities.Utilisateurs;
 
 import java.util.HashMap;
 import java.util.List;
