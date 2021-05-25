@@ -92,12 +92,17 @@ public class UtilisateursBean implements Serializable {
     public String createNumMembre()
     {
         if (numMembre=="0"){
-            numMembre="100000001";
+            numMembre="400000000";
             return numMembre;
         }
         else{
             numMembre=String.valueOf(Integer.parseInt(numMembre)+1);
-            return numMembre;
+            if (numMembre!="500000000"){
+                return numMembre;
+            }
+            else {
+                return "999999999";
+            }
         }
     }
 

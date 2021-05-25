@@ -91,12 +91,15 @@ public class ExemplairesLivresBean implements Serializable {
     }
     public String generateBarCode(){
 
-        if (LastBarCode=="0"){
+        if (LastBarCode.equals("0")){
             LastBarCode="100000001";
             return LastBarCode;
         }
         else{
             LastBarCode=String.valueOf(Integer.parseInt(LastBarCode)+1);
+            if (LastBarCode.equals("400000000")){
+                LastBarCode="500000000";
+            }
             return LastBarCode;
         }
     }
