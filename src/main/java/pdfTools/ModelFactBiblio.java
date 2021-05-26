@@ -30,12 +30,13 @@ public class ModelFactBiblio implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = Logger.getLogger(ModelFactBiblio.class);
-	
+
 	/*Creation de la facture en PDF*/
 	public void creation (Factures fact)  {
 		try{
 		SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
-		String image = System.getProperty("user.dir")+"\\webapp\\Images\\biblioLib.png";
+		log.debug("kekette2 : " + System.getenv("$USER_HOME$"));
+		String image = "C:\\Users\\theba\\Documents\\GitHub\\bibliothequePI\\src\\main\\webapp\\Images\\biblioLib.png";
 		log.debug(image);
 		Calendar cal = Calendar.getInstance();
 		//Date date = cal.getTime();
@@ -58,7 +59,7 @@ public class ModelFactBiblio implements Serializable
 		Double TVA = (fact.getPrixTvac()/1.21);
 		Double PTVAC = fact.getPrixTvac();
 
-		//String total4 = String.format("%5.02f �", TVA);
+		//String total4 = String.format("%5.02f €", TVA);
 		
 		//Creer le pdf
 		PDDocument doc = new PDDocument();
@@ -230,7 +231,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.close();
 	    //doc.save("C:/Users/Angel/workspace/GestImmo/WebContent/docPdf/facture"+numfact+".pdf");
 	    // LE GERER AUTREMENT
-	    String path = System.getProperty("user.dir")+"\\webapp\\Factures\\";
+	    String path = "C:\\Users\\theba\\Documents\\GitHub\\bibliothequePI\\src\\main\\webapp\\Factures";
 	    File file = new File(path);
 	    if(file.mkdir()) 
 	    {
