@@ -31,7 +31,7 @@ public class EmailValidator implements Validator{
 		matcher = pattern.matcher(value.toString());
 		if(!matcher.matches()){
 
-			FacesMessage msg = new FacesMessage("E-mail validation failed.","Invalid E-mail format.");
+			FacesMessage msg = new FacesMessage("Email validation invalide.","Email validation invalide.");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			throw new ValidatorException(msg);
 		}

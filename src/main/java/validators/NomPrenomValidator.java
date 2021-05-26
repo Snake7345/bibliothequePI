@@ -31,7 +31,7 @@ public class NomPrenomValidator implements Validator{
         matcher = pattern.matcher(value.toString());
         if(!matcher.matches()){
 
-            FacesMessage msg = new FacesMessage("Le nom de famille n'est pas valide, uniquelement lettre et caractère accentué.","Le nom de famille n'est pas valide, uniquelement lettre et caractère accentué.");
+            FacesMessage msg = new FacesMessage("Le nom/prenom n'est pas valide, uniquelement lettre et caractère accentué.","Le nom/prenom n'est pas valide, uniquelement lettre et caractère accentué.");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
