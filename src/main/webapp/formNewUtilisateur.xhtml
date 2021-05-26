@@ -70,7 +70,7 @@
                     </h:selectOneMenu>
 
                     <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
-                    <h:selectOneMenu value = "#{utilisateursBean.adresse}" id="utiladress" required="true" requiredMessage="#{I18N['formulaire.message.required.adresse']}"
+                    <h:selectOneMenu value = "#{utilisateursBean.utilisateur.utilisateursAdresses}" id="utiladress" required="true" requiredMessage="#{I18N['formulaire.message.required.adresse']}"
                                      converter="adressConverter">
                         <f:selectItems value = "#{adressesBean.readAll}" var="ad"
                                        itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
