@@ -26,6 +26,12 @@ import java.util.List;
 
 @WebServlet("/ModelFactBiblio")
 
+/*TODO :
+ *
+ * Verifier la facture car certaines données ne sont pas récupérés
+ *
+ * */
+
 public class ModelFactBiblio implements Serializable
 {
 	private static final long serialVersionUID = 1L;

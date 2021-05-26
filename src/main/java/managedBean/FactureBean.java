@@ -22,6 +22,12 @@ import java.util.List;
 
 @Named
 @SessionScoped
+/*TODO :
+ *
+ * -REFUSER LA CREATION DE LA FACTURE SI UN DES ELEMENTS DE LA FACTURE SONT MANQUANTS
+ * (adresse, tarifs, livres,...)
+ *
+ * */
 public class FactureBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
