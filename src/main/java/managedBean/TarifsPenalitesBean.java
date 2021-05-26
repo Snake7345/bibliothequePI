@@ -14,6 +14,13 @@ import java.util.List;
 
 @Named
 @SessionScoped
+
+/*TODO :
+ *
+ * -Verifier les dates au niveau des tarifs pénalités / tarifs jours car aucune ligne ou date ne doivent se chevaucher
+ * - Et si sa se passe, vérifier les dates pour pas qu'il y ait de chevauchement
+ *
+ * */
 public class TarifsPenalitesBean implements Serializable {
 
     // Déclaration des variables globales

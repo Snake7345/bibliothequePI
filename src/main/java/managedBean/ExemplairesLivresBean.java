@@ -19,6 +19,11 @@ import java.util.List;
 
 @Named
 @SessionScoped
+/*TODO :
+ *
+ * -Verifier si les exemplaires livres ne s'écrasse pas
+ *
+ * */
 public class ExemplairesLivresBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
