@@ -30,6 +30,7 @@
                 <h:inputText value="#{tarifsBean.denominationTarif}" />
                 <!-- faut le nom de la grille tarifaire-->
                 <!-- -->
+                <!--TODO doit être un entier ou un nombre décimal-->
                 <h:dataTable value="#{tarifsBean.grilleJour}" var="J">
                     <h:column>
                         <f:facet name="header">
@@ -37,14 +38,14 @@
                         </f:facet>
                         <h:outputText value="Prix location" />
                     </h:column>
-
+                    <!--TODO doit être un entier-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Nombre de jours" />
                         </f:facet>
                         <h:inputText value="#{J.nbrJours}" />
                     </h:column>
-
+                    <!--TODO doit être un entier ou un nombre décimal-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Prix" />
@@ -52,6 +53,7 @@
                         <h:inputText value="#{J.prix}" />
                     </h:column>
                     <!-- La date NE PEUT être avant celle de la grille (voir valeur au dessus)-->
+                    <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Date de mise en application" />
@@ -88,7 +90,7 @@
                         </f:facet>
                         <h:inputText value="#{P.name}" />
                     </h:column>
-
+                    <!--TODO doit être un entier ou un nombre décimal-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Prix" />
@@ -96,6 +98,7 @@
                         <h:inputText value="#{P.prix}" />
                     </h:column>
                     <!-- La date NE PEUT être avant celle de la grille (voir valeur au dessus)-->
+                    <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Date de mise en application" />
@@ -104,7 +107,7 @@
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
-
+                    <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Date de fin d'application" />

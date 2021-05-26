@@ -24,6 +24,7 @@
                                  value="#{utilisateursBean.utilisateur.nom}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.nom']}">
+                        <f:validator validatorId = "nomPrenomValidator"/>
                     </h:inputText>
                     <h:message for="utilisateurNom" styleClass="errorMessage"/>
 
@@ -32,6 +33,7 @@
                                  value="#{utilisateursBean.utilisateur.prenom}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.prenom']}">
+                        <f:validator validatorId = "nomPrenomValidator"/>
                     </h:inputText>
                     <h:message for="utilisateurPrenom" styleClass="errorMessage"/>
 
