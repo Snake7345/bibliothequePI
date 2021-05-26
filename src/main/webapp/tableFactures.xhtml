@@ -30,11 +30,14 @@
                         <!-- row record -->
                         <h:outputLabel value ="#{fa.numeroFacture}"/>
                     </h:column>
+                    <!--TODO : Foutre un lien vers le pdf-->
                     <h:column>
                         <!-- column header -->
                         <f:facet name="header">#{I18N['factures.label.lien']}</f:facet>
                         <!-- row record -->
-                        <h:outputLabel value ="#{fa.lienPdf}"/>
+                        <h:outputLink value="#{fa.lienPdf}">
+                            <h:graphicImage value="/Images/pdf.png"/>
+                        </h:outputLink>
                     </h:column>
                     <h:column>
                         <!-- column header -->

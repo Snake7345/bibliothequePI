@@ -39,8 +39,9 @@ public class ModelFactBiblio implements Serializable
 	public void creation (Factures fact)  {
 		try{
 		SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
-		log.debug("kekette2 : " + System.getenv("$USER_HOME$"));
-		String image = "C:\\Users\\theba\\Documents\\GitHub\\bibliothequePI\\src\\main\\webapp\\Images\\biblioLib.png";
+		String userdir = System.getProperty("user.dir");
+		userdir = userdir.substring(0,userdir.length()-24);
+		String image = userdir + "src\\main\\webapp\\Images\\biblioLib.png";
 		log.debug(image);
 		Calendar cal = Calendar.getInstance();
 		//Date date = cal.getTime();
@@ -75,7 +76,7 @@ public class ModelFactBiblio implements Serializable
 	    //Creating the PDDocumentInformation object 
 	    PDDocumentInformation pdd = doc.getDocumentInformation();    
 	    pdd.setAuthor("BiblioLib");										//Setting the author of the document
-	    pdd.setTitle("Facture n°"+numfacture); 							// Setting the title of the document
+	    pdd.setTitle("Facture"+numfacture); 							// Setting the title of the document
 	    pdd.setSubject("Facturation du client: " + utilisateur); 	//Setting the subject of the document
 	    pdd.setCreationDate(cal); 	    						//Setting the created date of the document 
 
@@ -119,7 +120,7 @@ public class ModelFactBiblio implements Serializable
 	    
 	    Encadrement.creation(contentStream, 350,615,200,80);
 	    
-	  //Cr�ation de l'�tiquette du client
+	  //Cr�ation de l'etiquette du client
 	    PDFont font = PDType1Font.TIMES_ROMAN;
 	    contentStream.beginText();
 		contentStream.setFont(font, 14);
@@ -145,7 +146,7 @@ public class ModelFactBiblio implements Serializable
 	   
 	    contentStream.showText(entetef1);
 	    contentStream.newLine();
-	    contentStream.setFont(PDType1Font.TIMES_ROMAN,10);
+	    contentStream.setFont(PDType1Font.COURIER_BOLD_OBLIQUE,10);
 	    contentStream.endText();
 	    
 		//ligne verticale
@@ -159,16 +160,17 @@ public class ModelFactBiblio implements Serializable
 	    //travaux effectu�s
 	    contentStream.beginText();
 	    contentStream.newLineAtOffset(80, 455);	
-	    contentStream.showText("Exemplaire loué :");
+	    contentStream.showText("Exemplaire loue :");
 	    contentStream.newLine();
 	    contentStream.newLine();
-		int i=0;
+		log.debug(fact.getFactureDetails().size());
 	    for (FacturesDetail fd: fact.getFactureDetails())
 		{ 
 	    	contentStream.showText(fd.getExemplairesLivre().getLivres().getTitre() + " pour une durée de " + ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime()));
 	    	contentStream.newLine();
 	    	contentStream.showText(String.valueOf(fd.getPrix()));
 			contentStream.newLine();
+			log.debug((fd.getExemplairesLivre().getLivres().getTitre() + " pour une durée de " + ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())));
 		}
 	    contentStream.endText();
 	    
@@ -188,7 +190,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.setLeading(17.5f);
 	    contentStream.newLineAtOffset(363, 235);
 	    String total2 = "TVA";
-	    String total3 = "Total à payer";
+	    String total3 = "Total a payer";
 	    contentStream.showText(total2);
 	    contentStream.newLine();
 	    contentStream.showText(total3);
@@ -197,8 +199,8 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.beginText();
 	    contentStream.setLeading(17.5f);
 	    contentStream.newLineAtOffset(475, 235);
-	    String total5 = String.format("%5.02f €", TVA);
-	    String total6 = String.format("%5.02f €", PTVAC);
+	    String total5 = String.format("%5.02f Euros", TVA);
+	    String total6 = String.format("%5.02f Euros", PTVAC);
 	    contentStream.showText(total5);
 	    contentStream.newLine();
 	    contentStream.showText(total6);
@@ -214,7 +216,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.setLeading(7.25f);
 	    contentStream.newLineAtOffset(57, 90);	 
 	    String pdp1 = "Conditions generales";
-	    String pdp2 = "Toutes nos factures doivent etre payé au moment de la création de la facture.";
+	    String pdp2 = "Toutes nos factures doivent etre paye au moment de la creation de la facture.";
 	    String pdp4 = "Les reclamations doivent etre introduites par lettre recommandee, sous peine de decheance, dans les 8 jours de la reception de la facture.";
 	    String pdp6 = "A defaut, nos factures sont reputees conformes.";
 	    
@@ -228,6 +230,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.showText(pdp4);
 	    contentStream.newLine();
 	    contentStream.showText(pdp6);
+	    contentStream.endText();
 	    
 	    //contentStream.addRect(57, 34, 500, 2);
 	    //contentStream.fill();
@@ -235,7 +238,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.close();
 	    //doc.save("C:/Users/Angel/workspace/GestImmo/WebContent/docPdf/facture"+numfact+".pdf");
 	    // LE GERER AUTREMENT
-	    String path = "C:\\Users\\theba\\Documents\\GitHub\\bibliothequePI\\src\\main\\webapp\\Factures";
+	    String path = userdir + "\\src\\main\\webapp\\Factures\\";
 	    File file = new File(path);
 	    if(file.mkdir()) 
 	    {

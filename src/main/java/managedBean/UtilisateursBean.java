@@ -21,7 +21,7 @@ import java.util.List;
 /*TODO :
 *
 * -Verifier si un utilisateur n'existe pas déjà dans la base de données
-* -Vu qu'on a deux formulaires pour les utilisateurs, il faut "supprimer de la liste" le rôle client pour par exemple le formulaire de création d'utilisateur
+* -Vu qu'on a deux formulaires pour les utilisateurs, il faut "supprimer de la liste" le rôle client pour par exemple qu'il ne soit pas disponible pour le formulaire de création d'utilisateur
 *
 *
 * */
