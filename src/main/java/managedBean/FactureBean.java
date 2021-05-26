@@ -26,6 +26,7 @@ import java.util.List;
  *
  * -REFUSER LA CREATION DE LA FACTURE SI UN DES ELEMENTS DE LA FACTURE SONT MANQUANTS
  * (adresse, tarifs, livres,...)
+ * - Il faut que la facture accepte les autres jours qui ne sont pas mis en DB
  *
  * */
 public class FactureBean implements Serializable {

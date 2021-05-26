@@ -3,7 +3,6 @@ package pdfTools;
 import entities.Factures;
 import entities.FacturesDetail;
 import entities.UtilisateursAdresses;
-import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
@@ -21,7 +20,6 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
-import java.util.List;
 
 
 @WebServlet("/ModelFactBiblio")
