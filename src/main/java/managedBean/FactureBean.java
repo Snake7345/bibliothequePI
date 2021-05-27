@@ -69,6 +69,7 @@ public class FactureBean implements Serializable {
 
         //rassemblement des entity managers pour la transaction
         serviceFD.setEm(service.getEm());
+        serviceEL.setEm(service.getEm());
 
         //initialisation des object et variables
         double prixTVAC = 0;
@@ -79,7 +80,6 @@ public class FactureBean implements Serializable {
         Date date = new Date();
 
         Factures fact = new Factures();
-        log.debug("bibli" + Bibli.getNom());
         ModelFactBiblio MFB =new ModelFactBiblio();
         Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
@@ -100,36 +100,24 @@ public class FactureBean implements Serializable {
             fact.setEtat(FactureEtatEnum.en_cours);
             fact.setUtilisateurs(u);
             // parcour de la liste des location a inscrire dans la facture
-            log.debug("debut for listlc");
             for (locationCustom lc: listLC){
                 //création des détails de la facture
                 ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
-                log.debug("livre "+el.getLivres().getTitre());
+                serviceEL.loueExemplaire(el);
                 Jours j = serviceJ.findByNbrJ(lc.getNbrJours()).get(0);
                 Timestamp timestampretour = new Timestamp(rounded+((long) j.getNbrJour() *24*3600*1000));
-                log.debug("jours "+j.getNbrJour());
                 FacturesDetail Factdet = serviceFD.newRent(el,fact,T,j, timestampretour);
                 serviceFD.save(Factdet);
+                serviceEL.save(el);
                 prixTVAC = prixTVAC + Factdet.getPrix();
             }
-            log.debug("fin du for listlc");
 
             fact.setPrixTvac(prixTVAC);
-            log.debug("prix calcule "+prixTVAC);
 
             // sauvegarde de la facture et commit de transaction
             service.save(fact);
-            log.debug("test1");
-            log.debug(fact.getEtat());
-
             transaction.commit();
-            log.debug("test 2");
-            log.debug(fact.getFactureDetails().size());
-            log.debug("test 3");
-            log.debug(fact.getIdFactures());
-            log.debug("test 4");
             service.refreshEntity(fact);
-            log.debug(fact.getFactureDetails().size());
             MFB.creation(fact);
             return "TableFactures";
         }
@@ -141,9 +129,8 @@ public class FactureBean implements Serializable {
                 fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
                 return "";
             }
-            //fermeture finale de service
-            service.close();// fermeture des services utilisé pour la créations de détails
-            serviceEL.close();
+            //fermeture des service
+            service.close();
             serviceJ.close();
             serviceU.close();
             serviceT.close();
