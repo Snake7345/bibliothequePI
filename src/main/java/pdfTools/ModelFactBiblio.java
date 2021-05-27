@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -42,6 +43,7 @@ public class ModelFactBiblio implements Serializable
 		String userdir = System.getProperty("user.dir");
 		userdir = userdir.substring(0,userdir.length()-24);
 		String image = userdir + "src\\main\\webapp\\Images\\biblioLib.png";
+		ArrayList<String> price = new ArrayList<>();
 		log.debug(image);
 		Calendar cal = Calendar.getInstance();
 		//Date date = cal.getTime();
@@ -170,7 +172,7 @@ public class ModelFactBiblio implements Serializable
 			log.debug("date fin "+fd.getDateFin());
 	    	contentStream.showText(fd.getExemplairesLivre().getLivres().getTitre() + " pour une duree de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
 	    	contentStream.newLine();
-	    	contentStream.showText(String.valueOf(fd.getPrix()));
+	    	price.add(String.valueOf(fd.getPrix()));
 			contentStream.newLine();
 			log.debug(fd.getExemplairesLivre().getLivres().getTitre() + " pour une duree de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
 		}
@@ -179,8 +181,14 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.beginText();
 	    contentStream.newLineAtOffset(475, 455);	
 	    contentStream.showText("Prix");
-	    contentStream.newLine();
-	    contentStream.endText();
+		contentStream.newLine();
+		contentStream.newLine();
+		for (String s : price) {
+			contentStream.showText(s);
+			contentStream.newLine();
+			contentStream.newLine();
+		}
+		contentStream.endText();
 	    // dessiner le cadre
 	    
 	    //decompte
