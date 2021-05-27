@@ -15,6 +15,7 @@ import javax.persistence.EntityTransaction;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -75,11 +76,14 @@ public class FactureBean implements Serializable {
         double prixTVAC = 0;
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Date date = new Date();
+
         Factures fact = new Factures();
         log.debug("bibli" + Bibli.getNom());
         ModelFactBiblio MFB =new ModelFactBiblio();
         Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
+
+        Calendar cal = Calendar.getInstance();
 
         //fermeture des services utilisé lors de l'initialisation
 
@@ -97,22 +101,37 @@ public class FactureBean implements Serializable {
             fact.setEtat(FactureEtatEnum.en_cours);
             fact.setUtilisateurs(u);
             // parcour de la liste des location a inscrire dans la facture
+            log.debug("debut for listlc");
             for (locationCustom lc: listLC){
                 //création des détails de la facture
                 ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
+                log.debug("livre "+el.getLivres().getTitre());
                 Jours j = serviceJ.findByNbrJ(lc.getNbrJours()).get(0);
-                FacturesDetail Factdet = serviceFD.newRent(el,fact,T,j,timestamp);
+                cal.setTime(timestamp);// w ww.  j ava  2  s  .co m
+                cal.add(Calendar.DATE, j.getNbrJour());
+                log.debug("jours "+j.getNbrJour());
+                FacturesDetail Factdet = serviceFD.newRent(el,fact,T,j, new Timestamp(cal.getTime().getTime()));
                 serviceFD.save(Factdet);
                 prixTVAC = prixTVAC + Factdet.getPrix();
             }
-
+            log.debug("fin du for listlc");
 
             fact.setPrixTvac(prixTVAC);
+            log.debug("prix calcule "+prixTVAC);
 
             // sauvegarde de la facture et commit de transaction
             service.save(fact);
+            log.debug("test1");
             log.debug(fact.getEtat());
+
             transaction.commit();
+            log.debug("test 2");
+            log.debug(fact.getFactureDetails().size());
+            log.debug("test 3");
+            log.debug(fact.getIdFactures());
+            log.debug("test 4");
+            service.refreshEntity(fact);
+            log.debug(fact.getFactureDetails().size());
             MFB.creation(fact);
             return "TableFactures";
         }

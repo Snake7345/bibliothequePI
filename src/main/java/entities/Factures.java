@@ -25,9 +25,14 @@ public class Factures implements Serializable {
     private Timestamp dateDebut;
     private Double prixTvac;
     private String numeroFacture;
+    private String lienPdf;
+
     @OneToMany(mappedBy = "factures")
     private Collection<FacturesDetail> facturesDetails;
-    private String lienPdf;
+    
+    @ManyToOne
+    @JoinColumn(name = "UtilisateursIdUtilisateurs", referencedColumnName = "IdUtilisateurs", nullable = false)
+    private Utilisateurs utilisateurs;
 
     @Id
     @Column(name = "IdFactures", nullable = false)
@@ -117,9 +122,7 @@ public class Factures implements Serializable {
         return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, etat, utilisateurs, facturesDetails);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "UtilisateursIdUtilisateurs", referencedColumnName = "IdUtilisateurs", nullable = false)
-    private Utilisateurs utilisateurs;
+
     public Utilisateurs getUtilisateurs() {
         return utilisateurs;
     }

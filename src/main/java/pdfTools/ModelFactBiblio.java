@@ -165,12 +165,14 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.newLine();
 		log.debug(fact.getFactureDetails().size());
 	    for (FacturesDetail fd: fact.getFactureDetails())
-		{ 
-	    	contentStream.showText(fd.getExemplairesLivre().getLivres().getTitre() + " pour une durée de " + ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime()));
+		{
+			log.debug("date début "+fact.getDateDebut());
+			log.debug("date fin "+fd.getDateFin());
+	    	contentStream.showText(fd.getExemplairesLivre().getLivres().getTitre() + " pour une durée de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
 	    	contentStream.newLine();
 	    	contentStream.showText(String.valueOf(fd.getPrix()));
 			contentStream.newLine();
-			log.debug((fd.getExemplairesLivre().getLivres().getTitre() + " pour une durée de " + ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())));
+			log.debug(fd.getExemplairesLivre().getLivres().getTitre() + " pour une durée de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
 		}
 	    contentStream.endText();
 	    

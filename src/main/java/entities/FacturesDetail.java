@@ -22,6 +22,13 @@ public class FacturesDetail implements Serializable {
     private String etatRendu;
     private double prix;
 
+    @ManyToOne
+    @JoinColumn(name = "ExemplairesLivresIdExemplairesLivres", nullable = false)
+    private ExemplairesLivres exemplairesLivre;
+
+    @ManyToOne
+    @JoinColumn(name = "FacturesIdFactures",  nullable = false)
+    private Factures factures;
 
     @Id
     @Column(name = "idFactureDetail", nullable = false)
@@ -74,9 +81,6 @@ public class FacturesDetail implements Serializable {
         this.prix = prix;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "FacturesIdFactures",  nullable = false)
-    private Factures factures;
 
     public Factures getFacture() {
         return factures;
@@ -85,11 +89,6 @@ public class FacturesDetail implements Serializable {
     public void setFacture(Factures factures) {
         this.factures = factures;
     }
-
-
-    @ManyToOne
-    @JoinColumn(name = "ExemplairesLivresIdExemplairesLivres", nullable = false)
-    private ExemplairesLivres exemplairesLivre;
 
     public ExemplairesLivres getExemplairesLivre() {
         return exemplairesLivre;
