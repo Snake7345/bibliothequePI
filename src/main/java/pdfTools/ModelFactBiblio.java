@@ -45,7 +45,7 @@ public class ModelFactBiblio implements Serializable
 		log.debug(image);
 		Calendar cal = Calendar.getInstance();
 		//Date date = cal.getTime();
-		//variable � mettre dans la facture
+		//variable a mettre dans la facture
 		String numfacture = fact.getNumeroFacture();
 		String utilisateur = fact.getUtilisateurs().getNumMembre();
 		String nompreClient = fact.getUtilisateurs().getNom() + " " + fact.getUtilisateurs().getPrenom();
@@ -166,13 +166,13 @@ public class ModelFactBiblio implements Serializable
 		log.debug(fact.getFactureDetails().size());
 	    for (FacturesDetail fd: fact.getFactureDetails())
 		{
-			log.debug("date début "+fact.getDateDebut());
+			log.debug("date debut "+fact.getDateDebut());
 			log.debug("date fin "+fd.getDateFin());
-	    	contentStream.showText(fd.getExemplairesLivre().getLivres().getTitre() + " pour une durée de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
+	    	contentStream.showText(fd.getExemplairesLivre().getLivres().getTitre() + " pour une duree de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
 	    	contentStream.newLine();
 	    	contentStream.showText(String.valueOf(fd.getPrix()));
 			contentStream.newLine();
-			log.debug(fd.getExemplairesLivre().getLivres().getTitre() + " pour une durée de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
+			log.debug(fd.getExemplairesLivre().getLivres().getTitre() + " pour une duree de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
 		}
 	    contentStream.endText();
 	    
@@ -183,7 +183,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.endText();
 	    // dessiner le cadre
 	    
-	    //d�compte
+	    //decompte
 	    contentStream.setNonStrokingColor(Color.BLACK);
 	    contentStream.addRect(57, 260, 500, 2);
 	    contentStream.fill();
@@ -236,13 +236,10 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.newLine();
 	    contentStream.showText(pdp6);
 	    contentStream.endText();
-	    
-	    //contentStream.addRect(57, 34, 500, 2);
-	    //contentStream.fill();
+
 	    
 	    contentStream.close();
-	    //doc.save("C:/Users/Angel/workspace/GestImmo/WebContent/docPdf/facture"+numfact+".pdf");
-	    // LE GERER AUTREMENT
+
 	    String path = userdir + "\\src\\main\\webapp\\Factures\\";
 	    File file = new File(path);
 	    if(file.mkdir()) 
@@ -250,7 +247,7 @@ public class ModelFactBiblio implements Serializable
 	    	log.debug("Le dossier a bien été cree");
 	    }
 	    doc.save(path + numfacture + ".pdf");
-	    //doc.save(System.getProperty("user.dir")+"\\WebContent\\Factures\\"+numfacture+".pdf");
+
 	    doc.close();}
 		catch (IOException e){
 			log.debug(e.getMessage());
