@@ -74,7 +74,10 @@ public class FactureBean implements Serializable {
 
         //initialisation des object et variables
         double prixTVAC = 0;
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        long now =  System.currentTimeMillis();
+        long rounded = now - now % 60000;
+        Timestamp timestampdebut = new Timestamp(rounded);
+
         Date date = new Date();
 
         Factures fact = new Factures();
@@ -93,7 +96,7 @@ public class FactureBean implements Serializable {
         transaction.begin();
         try {
             //création de la facture
-            fact.setDateDebut(timestamp);
+            fact.setDateDebut(timestampdebut);
             String numFact = createNumFact();
             fact.setNumeroFacture(numFact);
             String path = "Factures\\" + numFact + ".pdf";
@@ -107,10 +110,9 @@ public class FactureBean implements Serializable {
                 ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
                 log.debug("livre "+el.getLivres().getTitre());
                 Jours j = serviceJ.findByNbrJ(lc.getNbrJours()).get(0);
-                cal.setTime(timestamp);// w ww.  j ava  2  s  .co m
-                cal.add(Calendar.DATE, j.getNbrJour());
+                Timestamp timestampretour = new Timestamp(rounded+(j.getNbrJour()*24*3600*1000));
                 log.debug("jours "+j.getNbrJour());
-                FacturesDetail Factdet = serviceFD.newRent(el,fact,T,j, new Timestamp(cal.getTime().getTime()));
+                FacturesDetail Factdet = serviceFD.newRent(el,fact,T,j, timestampretour);
                 serviceFD.save(Factdet);
                 prixTVAC = prixTVAC + Factdet.getPrix();
             }
