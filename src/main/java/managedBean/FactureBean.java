@@ -86,8 +86,6 @@ public class FactureBean implements Serializable {
         Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
 
-        Calendar cal = Calendar.getInstance();
-
         //fermeture des services utilisé lors de l'initialisation
 
 

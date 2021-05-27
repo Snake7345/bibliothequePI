@@ -39,10 +39,6 @@ public class SvcTarifsJours extends Service<TarifsJours> implements Serializable
 		param.put("jour", j.getNbrJour());
 		param.put("tarif", t);
 		param.put("dateFin", date);
-		log.debug("test find by jours : ");
-		log.debug(j.getNbrJour());
-		log.debug(t.getDenomination());
-		log.debug(date);
 		return finder.findByNamedQuery("TarifsJours.findByJours", param);
 	}
 
