@@ -29,6 +29,7 @@ import java.util.List;
  * - Il faut que la facture accepte les autres jours qui ne sont pas mis en DB
  * - Quand une facture est crée, il faut passer l'exemplaire livre a loué, et quand la facture est cloturé, il faut inspecter le livre et décrire son état et mettre son état
  * - la redirection quand la facture et crée, ne se fait pas Erreur a corriger : le tableau n'est pas non plus correctement initialisé
+ * - NE PAS OUBLIER la cloture de la facture
  *
  * */
 public class FactureBean implements Serializable {
