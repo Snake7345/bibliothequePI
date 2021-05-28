@@ -38,6 +38,10 @@ public class SvcRoles extends Service<Roles> implements Serializable {
 	public List<Roles> findAllRolesActiv() {
 		return finder.findByNamedQuery("Roles.findActiv", null);
 	}
+
+	public List<Roles> findAllRolesActivUtil() {
+		return finder.findByNamedQuery("Roles.findActivUtil", null);
+	}
 	//Méthode qui permet via une requete de retourner la liste entière des roles inactifs
 	public List<Roles> findAllRolesInactiv() {
 		return finder.findByNamedQuery("Roles.findInactiv", null);

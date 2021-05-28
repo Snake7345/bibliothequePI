@@ -21,7 +21,7 @@ import java.util.List;
 /*TODO :
 *
 * -Verifier si un utilisateur n'existe pas déjà dans la base de données
-* -Vu qu'on a deux formulaires pour les utilisateurs, il faut "supprimer de la liste" le rôle client pour par exemple qu'il ne soit pas disponible pour le formulaire de création d'utilisateur
+*
 *
 *
 * */
@@ -98,13 +98,13 @@ public class UtilisateursBean implements Serializable {
 
     public String createNumMembre()
     {
-        if (numMembre=="0"){
+        if (numMembre.equals("0")){
             numMembre="400000000";
             return numMembre;
         }
         else{
             numMembre=String.valueOf(Integer.parseInt(numMembre)+1);
-            if (numMembre!="500000000"){
+            if (!numMembre.equals("500000000")){
                 return numMembre;
             }
             else {

@@ -139,6 +139,16 @@ public class RolesBean implements Serializable {
         return listRole;
     }
 
+    public List<Roles> getReadActivUtil()
+    {
+        SvcRoles service = new SvcRoles();
+        List<Roles> listRole = new ArrayList<Roles>();
+        listRole = service.findAllRolesActivUtil();
+
+
+        return listRole;
+    }
+
     //-------------------------------Getter & Setter--------------------------------------------
 
     public Roles getRole() {

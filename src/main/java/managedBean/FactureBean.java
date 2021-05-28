@@ -32,6 +32,7 @@ import java.util.List;
  * - NE PAS OUBLIER la cloture de la facture
  * - le code barre doit être vérifier par validation (ou autre chose) : Mauvais code barre, code barre inexistant,... + l'exemplaire livre ne peut pas être déjà loué
  *
+ * - Si l'état de l'exemplaire livre est mauvais, alors retirer le livre de la location = Desactiver
  * */
 public class FactureBean implements Serializable {
     // Déclaration des variables globales
@@ -122,7 +123,7 @@ public class FactureBean implements Serializable {
             transaction.commit();
             service.refreshEntity(fact);
             MFB.creation(fact);
-            return "TableFactures";
+            return "TableFactures.xhtml?faces-redirect=true";
         }
         finally {
             //bloc pour gérer les erreurs lors de la transactions
