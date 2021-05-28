@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
+
+<!--TODO retravailler la page-->
+<!--Faire attention aux permissions-->
+
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['application.livre.title']}</ui:define>
+
+    <ui:define name="content">
+        <h:form prependId="false">
+            <h:panelGroup layout="block" id="content">
+
+                <h2 style="text-align:center">#{I18N['application.livre.title']}</h2>
+                <h:dataTable value="#{exemplairesLivresBean.readExemplaire}" var="liv" id="tableExemplairesLivres"
+                             Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                    <h:column>
+                        <f:facet name="header">#{I18N['exemplaireslivres.label.CodeBarre']}</f:facet>
+                        <ui:repeat value="#{liv.exemplairesLivres}" var="livexemL">
+                            <h:outputLabel value ="#{livexemL.codeBarre}"/>
+                        </ui:repeat>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{I18N['exemplaireslivres.label.Etat']}</f:facet>
+                        <ui:repeat value="#{liv.exemplairesLivres}" var="livexemL">
+                            <h:outputLabel value ="#{livexemL.etat}"/>
+                        </ui:repeat>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{I18N['exemplaireslivres.label.Loue']}</f:facet>
+                        <ui:repeat value="#{liv.exemplairesLivres}" var="livexemL">
+                            <h:outputLabel value ="#{livexemL.actif}"/>
+                        </ui:repeat>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{I18N['exemplaireslivres.label.Loue']}</f:facet>
+                        <ui:repeat value="#{liv.exemplairesLivres}" var="livexemL">
+                            <h:outputLabel value ="#{livexemL.loue}"/>
+                        </ui:repeat>
+                    </h:column>
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">#{I18N['commune.label.actif']}</f:facet>
+                        <!-- row record -->
+                        <h:outputLabel value ="#{livexemL.actif}"/>
+                    </h:column>
+                    <!--TODO : Examiner la méthode car pas bon-->
+                    <c:if test= "#{livexemL.etat ne 1}">
+                        <h:column>
+                            <h:commandButton  image="Images//inspections.png" action="formEtatQuestion">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
+                            </h:commandButton>
+                        </h:column>
+                    </c:if>
+                    <h:column>
+                        <h:commandButton  image="Images//edit.png" action="formEditLivre">		<!-- u minuscule -->
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
+                        </h:commandButton>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton image="Images//activdesactiv.png" action="#{livresBean.activdesactivLiv}">
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

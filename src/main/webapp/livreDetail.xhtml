@@ -39,30 +39,6 @@
                         <h:outputLabel value ="#{liv.isbn}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">#{I18N['exemplaireslivres.label.CodeBarre']}</f:facet>
-                        <ui:repeat value="#{liv.exemplairesLivres}" var="livexemL">
-                            <h:outputLabel value ="#{livexemL.codeBarre}"/>
-                        </ui:repeat>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">#{I18N['exemplaireslivres.label.Etat']}</f:facet>
-                        <ui:repeat value="#{liv.exemplairesLivres}" var="livexemL">
-                            <h:outputLabel value ="#{livexemL.etat}"/>
-                        </ui:repeat>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">#{I18N['exemplaireslivres.label.Loue']}</f:facet>
-                        <ui:repeat value="#{liv.exemplairesLivres}" var="livexemL">
-                            <h:outputLabel value ="#{livexemL.actif}"/>
-                        </ui:repeat>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">#{I18N['exemplaireslivres.label.Loue']}</f:facet>
-                        <ui:repeat value="#{liv.exemplairesLivres}" var="livexemL">
-                            <h:outputLabel value ="#{livexemL.loue}"/>
-                        </ui:repeat>
-                    </h:column>
-                    <h:column>
                         <!-- column header -->
                         <f:facet name="header">#{I18N['commune.label.actif']}</f:facet>
                         <!-- row record -->
@@ -86,14 +62,13 @@
                                 <h:outputLabel value ="#{livgen.genre.denomination}"/>
                         </ui:repeat>
                     </h:column>
-                    <!--TODO : Examiner la méthode car pas bon-->
-                    <c:if test= "#{livexemL.etat ne 1}">
                     <h:column>
-                        <h:commandButton  image="Images//inspections.png" action="formEtatQuestion">		<!-- u minuscule -->
+                        <h:commandButton  image="Images//exemplaire.png" action="tableExemplaireLivres">
+                            <!--TODO retravailler setproperty-->
+                            <!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </h:commandButton>
                     </h:column>
-                    </c:if>
                     <h:column>
                         <h:commandButton  image="Images//edit.png" action="formEditLivre">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
