@@ -21,7 +21,7 @@ import java.util.List;
 @SessionScoped
 /*TODO :
  *
- * -Verifier si les exemplaires livres ne s'écrasse pas
+ * -Verifier si les exemplaires livres ne s'écrase pas
  * - Si l'état du livre est mauvais, alors retirer le livre de la location = Desactiver
  * */
 public class ExemplairesLivresBean implements Serializable {
