@@ -21,9 +21,7 @@ import java.util.List;
 /*TODO :
 *
 * -Verifier si un utilisateur n'existe pas déjà dans la base de données
-*
-*
-*
+
 * */
 public class UtilisateursBean implements Serializable {
     // Déclaration des variables globales

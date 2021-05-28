@@ -20,6 +20,7 @@ import java.util.Objects;
                 @NamedQuery(name="Utilisateurs.searchName", query="SELECT u FROM Utilisateurs u WHERE u.nom=:nom"),
                 @NamedQuery(name = "Utilisateurs.findLastMembre", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NOT NULL ORDER BY u.numMembre DESC"),
                 @NamedQuery(name = "Utilisateurs.searchMembre", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre=:numMembre"),
+                @NamedQuery(name = "Utilisateurs.findByLogin", query = "SELECT u FROM Utilisateurs u WHERE u.login=:login"),
         })
 public class Utilisateurs implements Serializable {
     private static final long serialVersionUID = 1L;

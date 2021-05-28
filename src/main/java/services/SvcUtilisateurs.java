@@ -1,6 +1,7 @@
 package services;
 
 
+import entities.Roles;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 
@@ -68,6 +69,12 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		param.put("numMembre", numMembre);
 
 		return finder.findByNamedQuery("Utilisateurs.searchMembre", param);
+	}
+	public List<Utilisateurs> findByLogin(String login) {
+		Map<String, String> param = new HashMap<>();
+		param.put("login", login);
+
+		return finder.findByNamedQuery("Utilisateurs.findByLogin", param);
 	}
 
 	public List<Utilisateurs> authentify(String login, String mdp) {
