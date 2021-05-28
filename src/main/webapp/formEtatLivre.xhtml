@@ -16,14 +16,23 @@
                 <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <h:outputText value = "#{I18N['exemplaireslivres.label.Etat']}"/>
-                    <h:selectOneRadio id="exetat" value="#{exemplairesLivresBean.exemplairesLivre.etat}">
+                    <!--TODO : Corriger la value-->
+                    <h:selectOneRadio id="exetat" value="#{factureBean}">
                         <f:selectItems value="#{exemplairesLivresEnumBean.etatEnum}" />
                     </h:selectOneRadio>
 
                     <h:outputText value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
+                    <!--TODO : Corriger la value-->
                     <h:inputTextarea id="CommentaireEtat"
-                                 value="#{exemplairesLivresBean.exemplairesLivre.commentaireEtat}" cols="25" rows="5">
+                                 value="#{factureBean}" cols="25" rows="5">
                     </h:inputTextarea>
+
+                    <h:outputText value = "#{I18N['penalite.label.Nom']}"/>
+                    <!--TODO : Corriger la value-->
+                    <h:selectManyListbox value = "#{factureBean}">
+                        <!--TODO : Corriger la fonction dans le value-->
+                        <f:selectItems value = "#{tarifsPenalitesBean.readAll}" var="pena" itemLabel="#{pena.denomination}" itemValue="#{pena}"/>
+                    </h:selectManyListbox>
 
                 </h:panelGrid>
 
