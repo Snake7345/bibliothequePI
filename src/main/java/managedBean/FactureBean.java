@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import pdfTools.ModelFactBiblio;
 import services.*;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -30,7 +31,6 @@ import java.util.List;
  * - la redirection quand la facture et crée, ne se fait pas Erreur a corriger : le tableau n'est pas non plus correctement initialisé
  * - NE PAS OUBLIER la cloture de la facture
  * - le code barre doit être vérifier par validation (ou autre chose) : Mauvais code barre, code barre inexistant,... + l'exemplaire livre ne peut pas être déjà loué
- * - ListLc ne renvoit pas automatiquement une ligne dans le formulaire => Corriger cela
  *
  * */
 public class FactureBean implements Serializable {
@@ -43,8 +43,9 @@ public class FactureBean implements Serializable {
     private String numMembre;
     private Bibliotheques Bibli;
 
+    @PostConstruct
     public void init(){
-        listLC.add(new locationCustom());
+        addNewListRow();
     }
     public void addNewListRow() {
         listLC.add(new locationCustom());
