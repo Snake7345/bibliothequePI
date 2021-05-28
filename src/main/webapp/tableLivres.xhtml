@@ -33,6 +33,12 @@
                     </h:column>
                     <h:column>
                         <!-- column header -->
+                        <f:facet name="header">#{I18N['livre.label.Isbn']}</f:facet>
+                        <!-- row record -->
+                        <h:outputLabel value ="#{liv.isbn}"/>
+                    </h:column>
+                    <h:column>
+                        <!-- column header -->
                         <f:facet name="header">#{I18N['editeur.label.Nom']}</f:facet>
                         <!-- row record -->
                         <h:outputLabel value ="#{liv.editeurs.nom}"/>
@@ -54,7 +60,7 @@
                         </ui:repeat>
                     </h:column>
                     <h:column>
-                        <h:commandButton  image="Images//plus.png" action="tableLivreDetail">		<!-- u minuscule -->
+                        <h:commandButton  image="Images//plus.png" action="livreDetail">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </h:commandButton>
                     </h:column>
