@@ -53,19 +53,14 @@
                 </h:inputText>
                 <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 
-                <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
-                <h:inputText id="utilLogin"
-                             value="#{utilisateursBean.utilisateur.login}"
-                             required="false"
-                             minlength ="2">
-                </h:inputText>
-
+                <c:if test= "#{utilisateursBean.utilisateur.roles ne 'Client'}">
                 <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
                 <h:inputSecret id="utilisateurMdp"
                              value="#{utilisateursBean.utilisateur.mdp}"
                              required="false"
                              minlength ="3">
                 </h:inputSecret>
+                </c:if>
 
                 <h:outputText value = "#{I18N['role.label.Denomination']}"/>
                 <h:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"

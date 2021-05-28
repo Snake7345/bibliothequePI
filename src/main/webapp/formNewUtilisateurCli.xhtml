@@ -51,14 +51,6 @@
                     </h:inputText>
                     <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 
-                    <h:outputText value = "#{I18N['role.label.Denomination']}"/>
-                    <h:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
-                                     converter="roleConverter">
-                        <f:selectItems value = "#{rolesBean.readActiv}" var="ro"
-                                       itemLabel="#{ro.denomination}"
-                                       itemValue="#{ro}"/>
-                    </h:selectOneMenu>
-
                     <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
                     <h:selectOneMenu value = "#{utilisateursBean.utilisateur.utilisateursAdresses}" id="utiladress" required="true" requiredMessage="#{I18N['formulaire.message.required.adresse']}"
                                      converter="adressConverter">
