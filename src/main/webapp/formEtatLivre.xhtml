@@ -21,9 +21,9 @@
                     </h:selectOneRadio>
 
                     <h:outputText value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
-                    <h:inputText id="CommentaireEtat"
-                                 value="#{exemplairesLivresBean.exemplairesLivre.commentaireEtat}">
-                    </h:inputText>
+                    <h:inputTextarea id="CommentaireEtat"
+                                 value="#{exemplairesLivresBean.exemplairesLivre.commentaireEtat}" cols="25" rows="5">
+                    </h:inputTextarea>
 
                 </h:panelGrid>
 
