@@ -25,11 +25,6 @@ import java.util.Calendar;
 
 @WebServlet("/ModelFactBiblio")
 
-/*TODO :
- *
- * Verifier la facture car certaines données ne sont pas récupérés
- *
- * */
 
 public class ModelFactBiblio implements Serializable
 {

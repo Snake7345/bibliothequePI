@@ -7,7 +7,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name="livres")
-//TODO Regarder les requetes
 @NamedQueries
         ({
                 @NamedQuery(name = "Livres.findAll", query = "SELECT l FROM Livres l"),

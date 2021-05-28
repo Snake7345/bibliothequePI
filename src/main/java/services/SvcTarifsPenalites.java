@@ -12,8 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//Todo: Vérifier la méthode createTarifsPenalites il faut ajouter les dates
-
 public class SvcTarifsPenalites extends Service<TarifsPenalites> implements Serializable {
 	private static final Logger log = Logger.getLogger(SvcTarifsPenalites.class);
 	private static final long serialVersionUID = 1L;
