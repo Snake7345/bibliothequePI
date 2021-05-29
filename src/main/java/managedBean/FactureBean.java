@@ -141,6 +141,28 @@ public class FactureBean implements Serializable {
         }
     }
 
+    public String newFactPena()
+    {
+        SvcFacture service =new SvcFacture();
+        SvcFactureDetail serviceFD = new SvcFactureDetail();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        SvcUtilisateurs serviceU = new SvcUtilisateurs();
+        SvcTarifs serviceT = new SvcTarifs();
+        SvcJours serviceJ = new SvcJours();
+
+        serviceFD.setEm(service.getEm());
+        serviceEL.setEm(service.getEm());
+
+        long now =  System.currentTimeMillis();
+        long rounded = now - now % 60000;
+        Timestamp timestampdebut = new Timestamp(rounded);
+
+        Date date = new Date();
+
+
+    }
+
+
 
     /*Méthode permettant de créer un numéro de facture avec FB(FactureBiblio) suivi de l'année, le mois et un nombre a 4 chiffres*/
     public String createNumFact()
