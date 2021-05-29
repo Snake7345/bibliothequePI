@@ -7,6 +7,7 @@ import enumeration.ExemplairesLivresEtatEnum;
 import org.apache.log4j.Logger;
 import services.SvcBibliotheques;
 import services.SvcExemplairesLivres;
+import services.SvcLivres;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -109,7 +110,6 @@ public class ExemplairesLivresBean implements Serializable {
         }
     }
 
-    //méthode save probablement inutile dans ce bean puisque appel custom
     public void save()
     {
         SvcExemplairesLivres service = new SvcExemplairesLivres();
@@ -129,7 +129,25 @@ public class ExemplairesLivresBean implements Serializable {
             service.close();
         }
     }
+    public String activdesactivExLiv()
+    {
+        //TODO - vérifier si état livre permet la réactivation de l'exemplaire
+        log.debug("je débute la méthode activdésactive");
+        /*Si le livre est actif alors on le désactive; sinon on l'active*/
+        if(exemplairesLivre.isActif())
+        {
+            log.debug("je passe le if de désactive");
+            exemplairesLivre.setActif(false);
+        }
+        else
+        {
+            exemplairesLivre.setActif(true);
+        }
+        save();
 
+        log.debug("J'ai modifié l'exemplaire");
+        return "/tableLivres.xhtml?faces-redirect=true";
+        }
     /*
      * Méthode qui permet via le service de retourner la liste de tous les exemplaires livres
      */

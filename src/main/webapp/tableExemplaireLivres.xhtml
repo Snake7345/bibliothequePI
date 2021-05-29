@@ -52,7 +52,7 @@
                             </h:commandButton>
                         </h:column>
                     </c:if>
-                    <!--
+
                     <h:column>
                         <h:commandButton  image="Images//edit.png" action="formEditLivre">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{livexemL}" />
@@ -61,13 +61,15 @@
 
 
                     <h:column>
-                        <h:commandButton image="Images//activdesactiv.png" action="#{livresBean.activdesactivLiv}">
-                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                        <h:commandButton image="Images//activdesactiv.png" action="#{exemplairesLivresBean.activdesactivExLiv}">
+                            <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </h:commandButton>
                     </h:column>--><!-- u minuscule --><!-- u minuscule -->
                 </h:dataTable>
             </h:panelGroup>
-
+            <h:commandButton value="#{I18N['application.button.newExem']}" action="formNewExemLivre">
+                <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
+            </h:commandButton>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
         </h:form>
     </ui:define>

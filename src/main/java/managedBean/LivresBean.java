@@ -80,7 +80,7 @@ public class LivresBean implements Serializable {
             service.close();
         }
     }
-    //TODO modifier ou supprimer la fonction save puisque obsolete tel que.
+
     public void save()
     {
         SvcLivres service = new SvcLivres();
@@ -107,10 +107,7 @@ public class LivresBean implements Serializable {
         SvcLivres service = new SvcLivres();
         EntityTransaction transaction = service.getTransaction();
         log.debug("je débute la méthode activdésactive");
-        try
-        {
-            transaction.begin();
-            /*Si la voiture est active alors on la désactive*/
+        /*Si le livre est actif alors on le désactive; sinon on l'active*/
             if(livre.isActif())
             {
                 log.debug("je passe le if de désactive");
@@ -120,26 +117,9 @@ public class LivresBean implements Serializable {
             {
                 livre.setActif(true);
             }
-            service.save(livre);
-
-            transaction.commit();
+            save();
             log.debug("J'ai modifié le livre");
             return "/tableLivres.xhtml?faces-redirect=true";
-        }
-        finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur et je suis con");
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
-            }
-            else
-            {
-                log.debug("je suis censé avoir réussi");
-                init();
-            }
-            service.close();
-        }
     }
 
     public String searchLivre()
