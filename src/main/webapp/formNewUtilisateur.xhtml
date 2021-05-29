@@ -52,10 +52,12 @@
                     <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 
                     <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
-                    <h:inputText id="utilLogin"
+                    <h:inputText id="utilisateurLogin"
                                  value="#{utilisateursBean.utilisateur.login}"
                                  required="true">
+                        <f:validator validatorId = "utilisateurExistValidator"/>
                     </h:inputText>
+                    <h:message for="utilisateurLogin" styleClass="errorMessage"/>
 
                     <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
                     <h:inputSecret id="utilisateurMdp"
@@ -72,7 +74,8 @@
                     </h:selectOneMenu>
 
                     <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
-                    <h:selectOneMenu value = "#{utilisateursBean.utilisateur.utilisateursAdresses}" id="utiladress" required="true" requiredMessage="#{I18N['formulaire.message.required.adresse']}"
+                    <h:selectOneMenu value = "#{utilisateursBean.utilisateur.utilisateursAdresses}" id="utiladress" required="true"
+                                     requiredMessage="#{I18N['formulaire.message.required.adresse']}"
                                      converter="adressConverter">
                         <f:selectItems value = "#{adressesBean.readAll}" var="ad"
                                        itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
