@@ -20,7 +20,9 @@ public class AdressConverter implements Converter {
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
         if (s != null && s.trim().length() > 0) {
             int id = Integer.parseInt(s);
-
+            log.debug(service.getById(id).getNumero());
+            log.debug(service.getById(id).getRue());
+            log.debug(service.getById(id).getLocalites().getVille());
             return service.getById(id);
         } else
             return null;

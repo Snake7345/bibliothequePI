@@ -15,6 +15,12 @@ public class UtilisateursAdresses implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUtilisateursAdresses;
     private boolean actif = true;
+    @ManyToOne
+    @JoinColumn(name = "AdressesIdAdresses", nullable = false)
+    private Adresses adresse;
+    @ManyToOne
+    @JoinColumn(name = "UtilisateursIdUtilisateurs", nullable = false)
+    private Utilisateurs utilisateur;
 
     @Id
     @Column(name = "IdUtilisateursAdresses", nullable = false)
@@ -35,9 +41,6 @@ public class UtilisateursAdresses implements Serializable {
         this.actif = actif;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "UtilisateursIdUtilisateurs", nullable = false)
-    private Utilisateurs utilisateur;
     public Utilisateurs getUtilisateur() {
         return utilisateur;
     }
@@ -46,9 +49,6 @@ public class UtilisateursAdresses implements Serializable {
         this.utilisateur = utilisateur;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "AdressesIdAdresses", referencedColumnName = "IdAdresses", nullable = false)
-    private Adresses adresse;
     public Adresses getAdresse() {
         return adresse;
     }

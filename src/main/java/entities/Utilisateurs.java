@@ -41,6 +41,9 @@ public class Utilisateurs implements Serializable {
     private Collection<Factures> factures;
     @OneToMany(mappedBy = "utilisateur")
     private Collection<UtilisateursAdresses> utilisateursAdresses;
+    @ManyToOne
+    @JoinColumn(name = "RolesIdRoles")
+    private Roles roles;
 
     @Id
     @Column(name = "IdUtilisateurs", nullable = false)
@@ -132,9 +135,7 @@ public class Utilisateurs implements Serializable {
         this.actif = actif;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "RolesIdRoles")
-    private Roles roles;
+
     public Roles getRoles() {
         return roles;
     }

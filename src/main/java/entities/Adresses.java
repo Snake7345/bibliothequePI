@@ -24,6 +24,12 @@ public class Adresses implements Serializable {
     private String numero;
     @OneToMany(mappedBy = "adresse")
     private Collection<UtilisateursAdresses> utilisateursAdresses;
+    @ManyToOne
+    @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques")
+    private Bibliotheques bibliotheques;
+    @ManyToOne
+    @JoinColumn(name = "LocalitesIdLocalites", referencedColumnName = "IdLocalites", nullable = false)
+    private Localites localites;
 
     @Id
     @Column(name = "IdAdresses", nullable = false)
@@ -65,10 +71,6 @@ public class Adresses implements Serializable {
         this.numero = numero;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "LocalitesIdLocalites", referencedColumnName = "IdLocalites", nullable = false)
-    private Localites localites;
     public Localites getLocalites() {
         return localites;
     }
@@ -77,9 +79,6 @@ public class Adresses implements Serializable {
         this.localites = localitesByLocalitesIdLocalites;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "BibliothequesIdBibliotheques", referencedColumnName = "IdBibliotheques")
-    private Bibliotheques bibliotheques;
     public Bibliotheques getBibliotheques() {
         return bibliotheques;
     }
@@ -87,7 +86,6 @@ public class Adresses implements Serializable {
     public void setBibliotheques(Bibliotheques bibliothequesByBibliothequesIdBibliotheques) {
         this.bibliotheques = bibliothequesByBibliothequesIdBibliotheques;
     }
-
 
     public Collection<UtilisateursAdresses> getUtilisateursAdresses() {
         return utilisateursAdresses;
@@ -97,23 +95,16 @@ public class Adresses implements Serializable {
         this.utilisateursAdresses = utilisateursAdressesByIdAdresses;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Adresses adresses = (Adresses) o;
-        return idAdresses == adresses.idAdresses &&
-                Objects.equals(rue, adresses.rue) &&
-                Objects.equals(boite, adresses.boite) &&
-                Objects.equals(numero, adresses.numero) &&
-                Objects.equals(localites, adresses.localites) &&
-                Objects.equals(bibliotheques, adresses.bibliotheques) &&
-                Objects.equals(utilisateursAdresses, adresses.utilisateursAdresses);
+        return idAdresses == adresses.idAdresses && rue.equals(adresses.rue) && Objects.equals(boite, adresses.boite) && numero.equals(adresses.numero);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAdresses, rue, boite, numero, localites, bibliotheques, utilisateursAdresses);
+        return Objects.hash(idAdresses, rue, boite, numero);
     }
 }

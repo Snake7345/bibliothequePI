@@ -1,6 +1,8 @@
 package validators;
 
 
+import managedBean.UtilisateursBean;
+import org.apache.log4j.Logger;
 import services.SvcUtilisateurs;
 
 import javax.faces.application.FacesMessage;
@@ -13,6 +15,7 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator("utilisateurExistValidator")
 public class UtilisateurExistValidator implements Validator
 {
+    private static final Logger log = Logger.getLogger(UtilisateurExistValidator.class);
 
     public UtilisateurExistValidator()
     {
@@ -22,14 +25,16 @@ public class UtilisateurExistValidator implements Validator
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
         String login = (String) o;
-        FacesMessage msg = new FacesMessage("Le pseudo est deja utilise, veuillez en choisir un autre");
+
 
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
-
+        log.debug(login);
+        log.debug(serviceU.findByLogin(login).size());
         try {
-            if (!serviceU.findByLogin(login).isEmpty())
-                msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-                throw new ValidatorException(msg);
+
+            if (serviceU.findByLogin(login).size() != 0)
+
+                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Le pseudo est deja utilise, veuillez en choisir un autre",null));
 
         } finally {
             serviceU.close();

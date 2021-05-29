@@ -1,9 +1,12 @@
 package managedBean;
 
+import entities.Adresses;
 import entities.Utilisateurs;
+import entities.UtilisateursAdresses;
 import org.apache.log4j.Logger;
 import services.SvcRoles;
 import services.SvcUtilisateurs;
+import services.SvcUtilisateursAdresses;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -20,8 +23,9 @@ import java.util.List;
 
 /*TODO :
 *
-* -Verifier si un utilisateur n'existe pas déjà dans la base de données
-
+*
+* - Corriger le probleme de la première lettre du nom et prénom
+*
 * */
 public class UtilisateursBean implements Serializable {
     // Déclaration des variables globales
@@ -32,6 +36,8 @@ public class UtilisateursBean implements Serializable {
     private List<Utilisateurs> listUtil = new ArrayList<Utilisateurs>();
     private List<Utilisateurs> searchResults;
     private String numMembre;
+    private Adresses adresses;
+    private UtilisateursAdresses UA;
 
     public UtilisateursBean() {
         super();
@@ -41,6 +47,8 @@ public class UtilisateursBean implements Serializable {
     public void init() {
         listUtil = getReadAll();
         utilisateur = new Utilisateurs();
+        UA = new UtilisateursAdresses();
+        adresses = new Adresses();
         SvcUtilisateurs service = new SvcUtilisateurs();
         if (service.findlastMembre().size()==0){
             numMembre = "0";
@@ -74,22 +82,50 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
+    public void saveUA() {
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
+        serviceUA.setEm(service.getEm());
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            service.save(utilisateur);
+            serviceUA.save(UA);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+            }
+            else {
+                init();
+            }
+            service.close();
+        }
+
+    }
 
     public String newUtil() {
-        utilisateur.setNom(utilisateur.getNom().substring(0,0).toUpperCase() + utilisateur.getNom().substring(1));
-        utilisateur.setPrenom(utilisateur.getPrenom().substring(0,0).toUpperCase() + utilisateur.getPrenom().substring(1));
-        save();
+        SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
+        utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
+        utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
+        UA = serviceUA.createUtilisateursAdresses(utilisateur, adresses);
+        saveUA();
+
         return "/tableUtilisateurs.xhtml?faces-redirect=true";
 
     }
 
     public String newUtilCli() {
         SvcRoles serviceR = new SvcRoles();
-        utilisateur.setNom(utilisateur.getNom().substring(0,0).toUpperCase() + utilisateur.getNom().substring(1));
-        utilisateur.setPrenom(utilisateur.getPrenom().substring(0,0).toUpperCase() + utilisateur.getPrenom().substring(1));
+        utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
+        utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
         utilisateur.setRoles(serviceR.findRole("Client").get(0));
         utilisateur.setNumMembre(createNumMembre());
-        save();
+        saveUA();
         return "/tableUtilisateurs.xhtml?faces-redirect=true";
 
     }
@@ -236,6 +272,22 @@ public class UtilisateursBean implements Serializable {
 
     public void setNumMembre(String numMembre) {
         this.numMembre = numMembre;
+    }
+
+    public Adresses getAdresses() {
+        return adresses;
+    }
+
+    public void setAdresses(Adresses adresses) {
+        this.adresses = adresses;
+    }
+
+    public UtilisateursAdresses getUA() {
+        return UA;
+    }
+
+    public void setUA(UtilisateursAdresses UA) {
+        this.UA = UA;
     }
 }
 
