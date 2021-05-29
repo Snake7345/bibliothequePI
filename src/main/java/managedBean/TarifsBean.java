@@ -157,6 +157,11 @@ public class TarifsBean implements Serializable {
         return listTarifs;
     }
 
+    public String flushTarifs() {
+        init();
+        return "tableTarifs?faces-redirect=true";
+    }
+
     //-------------------------------Getter & Setter--------------------------------------------
 
     public Tarifs getTarif() {

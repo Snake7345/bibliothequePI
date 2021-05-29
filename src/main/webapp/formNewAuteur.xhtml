@@ -40,7 +40,7 @@
             </h:panelGrid>
 
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{auteursBean.newAuteur}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="tableAuteurs" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>
         </h:form>
         </c:if>
     </ui:define>

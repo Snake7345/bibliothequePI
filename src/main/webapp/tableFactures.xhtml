@@ -47,7 +47,7 @@
                 </h:dataTable>
             </h:panelGroup>
             <h:commandButton value="#{I18N['application.button.new']}" action="formNewFact" />
-            <h:commandButton value="#{I18N['application.button.return']}" action="bienvenue"/>
+            <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
         </h:form>
     </c:if>
     <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(39,loginBean.utilisateurAuth.roles.idRoles))}">

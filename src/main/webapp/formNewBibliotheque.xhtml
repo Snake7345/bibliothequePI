@@ -28,7 +28,7 @@
             </h:panelGrid>
 
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="tableBibliotheques" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
         </h:form>
         </c:if>
     </ui:define>

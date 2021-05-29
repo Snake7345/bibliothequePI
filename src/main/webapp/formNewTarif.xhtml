@@ -120,9 +120,9 @@
                 </h:dataTable>
                 <br/>
                 <h:commandButton value="Add" action="#{tarifsBean.addNewPenaRow}" />
-                <h:commandButton value="#{I18N['application.button.return']}" action="tableTarifs" immediate="true"/>
-                <h:commandButton value="Supprime" action="#{tarifsBean.delPenaRow}" />
-                <h:commandButton value="Save" action="#{tarifsBean.newTarif}" />
+                <h:commandButton value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
+                <h:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}" />
+                <h:commandButton value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
             </h:form>
         </c:if>
     </ui:define>

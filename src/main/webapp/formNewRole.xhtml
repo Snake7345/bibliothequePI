@@ -30,7 +30,7 @@
             </h:panelGrid>
 
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{rolesBean.newRoles}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="tableRoles" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
         </h:form>
         </c:if>
     </ui:define>

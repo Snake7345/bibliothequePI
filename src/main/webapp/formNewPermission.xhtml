@@ -31,7 +31,7 @@
             </h:panelGrid>
 
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{permissionsBean.newPermission}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="tablePermissions" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{permissionsBean.flushPerm}" immediate="true"/>
         </h:form>
         </c:if>
     </ui:define>

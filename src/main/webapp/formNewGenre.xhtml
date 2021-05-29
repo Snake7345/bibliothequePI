@@ -30,7 +30,7 @@
             </h:panelGrid>
 
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{genresBean.newGenres}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="tableGenres" immediate="true"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{genresBean.flushGen}" immediate="true"/>
         </h:form>
         </c:if>
     </ui:define>

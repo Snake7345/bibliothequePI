@@ -95,7 +95,7 @@
                 </h:panelGrid>
 
                 <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}"/>
-                <h:commandButton value="#{I18N['application.button.return']}" action="tableUtilisateurs" immediate="true"/>
+                <h:commandButton value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
             </h:form>
         </c:if>
     </ui:define>
