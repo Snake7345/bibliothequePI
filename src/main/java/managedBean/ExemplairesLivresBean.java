@@ -21,7 +21,7 @@ import java.util.List;
 @SessionScoped
 /*TODO :
  *
- * -Verifier si les exemplaires livres ne s'écrase pas
+ *
  *
  * */
 public class ExemplairesLivresBean implements Serializable {
@@ -92,7 +92,7 @@ public class ExemplairesLivresBean implements Serializable {
             service.close();
         }
 
-        return "";
+        return "/tableLivres.xhtml?faces-redirect=true";
     }
     public String generateBarCode(){
 
