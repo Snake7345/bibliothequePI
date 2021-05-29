@@ -159,7 +159,7 @@ public class FactureBean implements Serializable {
 
         Date date = new Date();
 
-
+        return "TableFactures.xhtml?faces-redirect=true";
     }
 
 

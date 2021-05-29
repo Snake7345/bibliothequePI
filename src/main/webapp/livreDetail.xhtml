@@ -64,9 +64,8 @@
                     </h:column>
                     <h:column>
                         <h:commandButton  image="Images//exemplaire.png" action="tableExemplaireLivres">
-                            <!--TODO retravailler setproperty-->
                             <!-- u minuscule -->
-                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
+                            <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" /> /><!-- u minuscule -->
                         </h:commandButton>
                     </h:column>
                     <h:column>

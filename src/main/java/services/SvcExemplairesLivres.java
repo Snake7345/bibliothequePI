@@ -1,6 +1,7 @@
 package services;
 
 import entities.ExemplairesLivres;
+import entities.Livres;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -25,9 +26,11 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 		return exemliv;
 	}
 
-	public List<ExemplairesLivres> findAllExemplairesLivres()
+	public List<ExemplairesLivres> findExemplairesLivresByLivre(Livres livres)
 	{
-		return finder.findByNamedQuery("ExemplairesLivres.findAll",null);
+		Map<String, Object> param = new HashMap<>();
+		param.put("livre", livres);
+		return finder.findByNamedQuery("ExemplairesLivres.findAllByLivre",param);
 	}
 	public List<ExemplairesLivres> findlastExemplairesLivres()
 	{

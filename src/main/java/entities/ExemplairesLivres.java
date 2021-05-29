@@ -12,7 +12,7 @@ import java.util.Objects;
 @Table(name = "exemplaires_livres", schema = "bibliotheque")
 @NamedQueries
         ({
-                @NamedQuery(name = "ExemplairesLivres.findAll", query = "SELECT el FROM ExemplairesLivres el"),
+                @NamedQuery(name = "ExemplairesLivres.findAllByLivre", query = "SELECT el FROM ExemplairesLivres el WHERE el.livres=:livre"),
                 @NamedQuery(name = "ExemplairesLivres.findOneCB", query = "SELECT el FROM ExemplairesLivres el WHERE el.codeBarre=:codeBarre"),
                 @NamedQuery(name = "ExemplairesLivres.findActiv", query = "SELECT el FROM ExemplairesLivres el WHERE el.actif=TRUE"),
                 @NamedQuery(name = "ExemplairesLivres.findInactiv", query = "SELECT el FROM ExemplairesLivres el WHERE el.actif=FALSE"),

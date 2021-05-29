@@ -137,7 +137,7 @@ public class ExemplairesLivresBean implements Serializable {
     {
         SvcExemplairesLivres service = new SvcExemplairesLivres();
         List<ExemplairesLivres> listExemplaires = new ArrayList<ExemplairesLivres>();
-        listExemplaires= service.findAllExemplairesLivres();
+        listExemplaires= service.findExemplairesLivresByLivre(livre);
 
         service.close();
         return listExemplaires;
