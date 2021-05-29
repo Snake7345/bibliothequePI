@@ -21,12 +21,7 @@ import java.util.List;
 @Named
 @SessionScoped
 
-/*TODO :
-*
-*
-* - Corriger le probleme de la première lettre du nom et prénom
-*
-* */
+
 public class UtilisateursBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
