@@ -1,4 +1,4 @@
-package validators;
+/*package validators;
 
 
 import services.SvcUtilisateurs;
@@ -13,15 +13,21 @@ import javax.validation.Validator;
 @FacesValidator("utilisateursExists")
 public class UtilisateursExists implements Validator
 {
+
+    public UtilisateursExists()
+    {
+
+    }
+
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        String username = (String) o;
+        String login = (String) o;
 
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
 
         try {
-            if (serviceU.findByLogin(username) != null)
-                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, message.translate(username + " est dÃ©jÃ  utilisÃ©"), null));
+            if (serviceU.findByLogin(login) != null)
+                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, message.translate(login + " est dÃ©jÃ  utilisÃ©"), null));
 
         } finally {
             serviceU.close();
@@ -30,3 +36,4 @@ public class UtilisateursExists implements Validator
 
 
 }
+*/
