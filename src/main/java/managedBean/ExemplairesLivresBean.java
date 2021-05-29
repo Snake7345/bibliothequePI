@@ -93,7 +93,7 @@ public class ExemplairesLivresBean implements Serializable {
             service.close();
         }
 
-        return "/tableLivres.xhtml?faces-redirect=true";
+        return "/tableExemplaireLivres.xhtml?faces-redirect=true";
     }
     public String generateBarCode(){
 

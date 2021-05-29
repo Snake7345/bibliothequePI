@@ -26,9 +26,13 @@
                 </h:inputText>
                 <h:message for="livreTitre" styleClass="errorMessage"/>
 
-                <h:selectManyListbox value = "#{livresBean.auteur}">
+                <h:outputText value = "#{I18N['livre.label.Auteur']}"/>
+                <h:selectManyListbox value = "#{livresBean.auteur}" id="livreauteur"
+                                     required="true"
+                                     requiredMessage="#{I18N['formulaire.message.required.auteur']}">
                     <f:selectItems value = "#{auteursBean.readActiv}" var="livaut" itemLabel="#{livaut.nom} #{livaut.prenom}" itemValue="#{livaut}"/>
                 </h:selectManyListbox>
+                <h:message for="livreauteur" styleClass="errorMessage"/>
 
                 <h:outputText value = "#{I18N['livre.label.Annee']}"/>
                 <h:inputText id="livreAnnee"

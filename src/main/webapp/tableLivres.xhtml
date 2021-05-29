@@ -46,22 +46,18 @@
                     <h:column>
                         <f:facet name="header">#{I18N['auteur.label.NomPrenom']}</f:facet>
                         <ui:repeat value="#{liv.livresAuteurs}" var="livauth">
-                            <li>
                                 <h:outputLabel value ="#{livauth.auteur.nom} - #{livauth.auteur.prenom}"/>
-                            </li>
                         </ui:repeat>
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{I18N['genre.label.Denomination']}</f:facet>
                         <ui:repeat value="#{liv.livresGenres}" var="livgen">
-                            <li>
                                 <h:outputLabel value ="#{livgen.genre.denomination}"/>
-                            </li>
                         </ui:repeat>
                     </h:column>
                     <h:column>
                         <h:commandButton  image="Images//plus.png" action="livreDetail">		<!-- u minuscule -->
-                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}"/><!-- u minuscule -->
                         </h:commandButton>
                     </h:column>
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(19,loginBean.utilisateurAuth.roles.idRoles)}">
