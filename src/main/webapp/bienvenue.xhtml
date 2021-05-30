@@ -109,6 +109,18 @@
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(35,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputText value="Gestion des auteurs" />
             </c:if>
+            <h:outputText/>
+            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(54,loginBean.utilisateurAuth.roles.idRoles)}">
+                <h:outputLink value="tableUtilisateursCli.xhtml">
+                    <h:graphicImage value="/Images/clients.jpg" width="100" height="100"/>
+                </h:outputLink>
+            </c:if>
+            <h:outputText/>
+            <h:outputText/>
+            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(54,loginBean.utilisateurAuth.roles.idRoles)}">
+                <h:outputText value="Gestion des Clients" />
+            </c:if>
+            <h:outputText/>
             <p/>
         </h:panelGrid>
         <br /><br />
