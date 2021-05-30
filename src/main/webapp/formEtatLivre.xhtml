@@ -11,8 +11,9 @@
         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(1,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form id="form" prependId="false">
                 <h:head>
-                    <title>#{I18N['adresse.form.nouveau.titre']}</title>
+                    <title>#{I18N['etatlivre.form.titre']}</title>
                 </h:head>
+                <h2 style="text-align:center">#{I18N['etatlivre.form.titre']}</h2>
                 <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <h:outputText value = "#{I18N['exemplaireslivres.label.Etat']}"/>

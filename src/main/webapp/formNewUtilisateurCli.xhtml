@@ -14,11 +14,10 @@
         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(51,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form id="form" prependId="false">
                 <h:head>
-                <title>#{I18N['utilisateur.form.nouveau.titre']}</title>
+                <title>#{I18N['utilisateurcli.form.nouveau.titre']}</title>
                 </h:head>
+                <h2 style="text-align:center">#{I18N['utilisateurcli.form.nouveau.titre']}</h2>
                 <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
-
-
                     <h:outputText value = "#{I18N['utilisateur.label.Nom']}"/>
                     <h:inputText id="utilisateurNom"
                                  value="#{utilisateursBean.utilisateur.nom}"
