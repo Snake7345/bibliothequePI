@@ -10,7 +10,7 @@
     <ui:define name="title">#{I18N['utilisateur.form.modif.titre']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(1,loginBean.utilisateurAuth.roles.idRoles)}">
+        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['utilisateur.form.modif.titre']}</title>
@@ -86,6 +86,9 @@
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}"/>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
         </h:form>
+        </c:if>
+        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles))}">
+            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

@@ -14,6 +14,7 @@
     <ui:define name="title">#{I18N['application.livre.title']}</ui:define>
 
     <ui:define name="content">
+        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(38,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form prependId="false">
             <h:panelGroup layout="block" id="content">
 
@@ -52,26 +53,35 @@
                             </h:commandButton>
                         </h:column>
                     </c:if>
-
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(17,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
                         <h:commandButton  image="Images//edit.png" action="formEditLivre">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{livexemL}" />
                         </h:commandButton>
                     </h:column>
-
-
+                    </c:if>
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
                         <h:commandButton image="Images//activdesactiv.png" action="#{exemplairesLivresBean.activdesactivExLiv}">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </h:commandButton>
-                    </h:column>--><!-- u minuscule --><!-- u minuscule -->
+                    </h:column>
+                    </c:if>
                 </h:dataTable>
             </h:panelGroup>
+            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(5,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.newExem']}" action="formNewExemLivre">
                 <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
             </h:commandButton>
+            </c:if>
+            <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushLiv}"/>
+            </c:if>
         </h:form>
+        </c:if>
+        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(38,loginBean.utilisateurAuth.roles.idRoles))}">
+            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+        </c:if>
     </ui:define>
 </ui:composition>
 </html>

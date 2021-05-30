@@ -24,7 +24,8 @@
                 <h:outputText value="numéro de membre?" />
                 <h:inputText value="#{factureBean.numMembre}" id="numMembre"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.numero']}"/>
+                             requiredMessage="#{I18N['formulaire.message.required.numero']}"
+                             minlength ="9" maxlength="9"/>
                 <h:message for="numMembre" styleClass="errorMessage"/>
 
 

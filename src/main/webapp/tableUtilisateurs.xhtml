@@ -94,9 +94,11 @@
                 <h:commandButton value="#{I18N['application.button.new']}" action="NewUtilCli" />
                 </c:if>
                 <h:commandButton value="#{I18N['application.button.find']}" action="formSearchUtilisateur"/>
-                <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
                 <h:commandButton value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadActiv}"/>
                 <h:commandButton value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadInactiv}"/>
+                <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
+                <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
+                </c:if>
             </h:form>
         </c:if>
         <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(47,loginBean.utilisateurAuth.roles.idRoles))}">

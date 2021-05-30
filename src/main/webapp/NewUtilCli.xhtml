@@ -9,24 +9,27 @@
 <!--TODO retravailler la page-->
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['utilisateur.form.nouveau.titre']}</ui:define>
-
     <ui:define name="content">
                 <h:head>
                     <title>#{I18N['utilisateur.form.nouveau.titre']}</title>
                 </h:head>
                 <h:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
-
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(12,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:outputLink value="formNewUtilisateur.xhtml">
                         <h:graphicImage value="/Images/personne.png" width="100" height="100"/>
                     </h:outputLink>
-
+                    </c:if>
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(51,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:outputLink value="formNewUtilisateurCli.xhtml">
                         <h:graphicImage value="/Images/clients.jpg" width="100" height="100"/>
                     </h:outputLink>
-
+                    </c:if>
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(12,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:outputText value="Creation d'un utilisateur" />
+                    </c:if>
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(51,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:outputText value="Creation d'un client" />
-
+                    </c:if>
                 </h:panelGrid>
     </ui:define>
 </ui:composition>

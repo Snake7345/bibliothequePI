@@ -81,9 +81,11 @@
             <h:commandButton value="#{I18N['application.button.new']}" action="formNewLivre" />
             </c:if>
             <h:commandButton value="#{I18N['application.button.find']}" action="formSearchLivre"/>
-            <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushBienv}"/>
             <h:commandButton value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}"/>
             <h:commandButton value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}"/>
+            <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
+            <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushBienv}"/>
+            </c:if>
         </h:form>
         </c:if>
         <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(42,loginBean.utilisateurAuth.roles.idRoles))}">

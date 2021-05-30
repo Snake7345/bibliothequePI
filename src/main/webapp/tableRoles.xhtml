@@ -49,7 +49,9 @@
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(11,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.new']}" action="formNewRole" />
             </c:if>
+            <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+            </c:if>
         </h:form>
     </c:if>
     <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(46,loginBean.utilisateurAuth.roles.idRoles))}">

@@ -46,8 +46,12 @@
                     </h:column>
                 </h:dataTable>
             </h:panelGroup>
+            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.new']}" action="formNewFact" />
+            </c:if>
+            <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+            </c:if>
         </h:form>
     </c:if>
     <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(39,loginBean.utilisateurAuth.roles.idRoles))}">
