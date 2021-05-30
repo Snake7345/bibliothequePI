@@ -5,10 +5,7 @@ import org.apache.log4j.Logger;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class SvcFactureDetail extends Service<FacturesDetail> implements Serializable
@@ -33,14 +30,39 @@ public class SvcFactureDetail extends Service<FacturesDetail> implements Seriali
         return facturesDetail;
     }
 
-    public FacturesDetail newRent(ExemplairesLivres el, Factures fa, Tarifs t, Jours j, Timestamp d)
+    public FacturesDetail newRent(ExemplairesLivres el, Factures fa, Tarifs t, int J, Timestamp d)
     {
+        double prix=0.0;
+        int nbrjours=0;
+        int index=0;
         SvcTarifsJours serviceTJ = new SvcTarifsJours();
+        SvcJours serviceJ = new SvcJours();
+        List<Jours> jours = serviceJ.findByNbrJ(J);
         FacturesDetail facturesDetail = new FacturesDetail();
         facturesDetail.setExemplairesLivre(el);
         facturesDetail.setFacture(fa);
-
-        facturesDetail.setPrix(serviceTJ.findByJours(t,j).get(0).getPrix());
+        List<TarifsJours> tj = new ArrayList<>();
+        for(Jours jours1 : jours)
+        {
+            tj.add(serviceTJ.findByJours(t,jours1).get(0));
+        }
+        boolean flag=false;
+        //try catch nécéssaire
+        try {
+            while (!flag) {
+                prix = prix + tj.get(index).getPrix();
+                nbrjours = nbrjours + tj.get(index).getJours().getNbrJour();
+                if (nbrjours > J) {
+                    prix = prix - tj.get(index).getPrix();
+                    nbrjours = nbrjours - tj.get(index).getJours().getNbrJour();
+                    index++;
+                } else if (nbrjours == J) {
+                    flag = true;
+                }
+            }
+        }
+        catch (IndexOutOfBoundsException ignored){}
+        facturesDetail.setPrix(prix);
         facturesDetail.setDateFin(d);
         serviceTJ.close();
         return facturesDetail;
