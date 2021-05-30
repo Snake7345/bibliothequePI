@@ -51,6 +51,7 @@ public class UtilisateursBean implements Serializable {
         else {
             numMembre=service.findlastMembre().get(0).getNumMembre();
         }
+        service.close();
     }
 
 

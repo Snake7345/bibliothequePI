@@ -78,6 +78,17 @@ public class SvcFactureDetail extends Service<FacturesDetail> implements Seriali
         serviceTP.close();
         return facturesDetail;
     }
+    public FacturesDetail newPenaretard(ExemplairesLivres el, Factures fa, Tarifs t, Penalites p,double nbjour, Date dp, Timestamp df)
+    {
+        SvcTarifsPenalites serviceTP = new SvcTarifsPenalites();
+        FacturesDetail facturesDetail = new FacturesDetail();
+        facturesDetail.setExemplairesLivre(el);
+        facturesDetail.setFacture(fa);
+        facturesDetail.setPrix(serviceTP.findByPena(t,p,dp).get(0).getPrix()*nbjour);
+        facturesDetail.setDateFin(df);
+        serviceTP.close();
+        return facturesDetail;
+    }
 
 
     public List<FacturesDetail> findAllFactureDetail()

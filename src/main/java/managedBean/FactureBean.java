@@ -47,7 +47,13 @@ public class FactureBean implements Serializable {
 
     @PostConstruct
     public void init(){
+        listLC = new ArrayList<>();
         addNewListRow();
+        factures= new Factures();
+        numMembre= "";
+        Bibli= new Bibliotheques();
+        CB= "";
+        tarifsPenalites= new ArrayList<>();
     }
     public void addNewListRow() {
         listLC.add(new locationCustom());
@@ -97,9 +103,8 @@ public class FactureBean implements Serializable {
         try {
             //création de la facture
             fact.setDateDebut(timestampdebut);
-            String numFact = createNumFact();
-            fact.setNumeroFacture(numFact);
-            String path = "Factures\\" + numFact + ".pdf";
+            fact.setNumeroFacture(createNumFact());
+            String path = "Factures\\" + fact.getNumeroFacture() + ".pdf";
             fact.setLienPdf(path);
             fact.setEtat(FactureEtatEnum.en_cours);
             fact.setUtilisateurs(u);
@@ -140,29 +145,158 @@ public class FactureBean implements Serializable {
         }
     }
 
-    public String newFactPena()
+    public void newFactPena(FacturesDetail facturesDetail)
     {
+
+        //TODO finaliser la méthode
+        //initialisation des services requis
 
         SvcFacture service =new SvcFacture();
         SvcFactureDetail serviceFD = new SvcFactureDetail();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
         SvcTarifs serviceT = new SvcTarifs();
-        SvcJours serviceJ = new SvcJours();
+        SvcPenalites serviceP = new SvcPenalites();
+        SvcTarifsPenalites serviceTP = new SvcTarifsPenalites();
+
+        //rassemblement des entity managers pour la transaction
 
         serviceFD.setEm(service.getEm());
         serviceEL.setEm(service.getEm());
 
+        //initialisation des object et variables
+        double prixTVAC = 0;
         long now =  System.currentTimeMillis();
         long rounded = now - now % 60000;
-        Timestamp timestampdebut = new Timestamp(rounded);
+        Timestamp timestampfacture = new Timestamp(rounded);
 
         Date date = new Date();
 
-        return "TableFactures.xhtml?faces-redirect=true";
+        Factures fact = new Factures();
+        FacturesDetail factdet= new FacturesDetail();
+        ModelFactBiblio MFB =new ModelFactBiblio();
+        Tarifs T = serviceT.getTarifByBiblio(Date.from(facturesDetail.getFacture().getDateDebut().toInstant()), Bibli.getNom()).get(0);
+        Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
+
+
+
+        //initialisation de la transaction
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            //création de la facture
+            fact.setDateDebut(timestampfacture);
+            fact.setNumeroFacture(createNumFact());
+            String path = "Factures\\" + fact.getNumeroFacture() + ".pdf";
+            fact.setLienPdf(path);
+            fact.setEtat(FactureEtatEnum.terminer);
+            fact.setUtilisateurs(u);
+
+            //création des facture détails
+            if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin())){
+                int nbjour = (int)((facturesDetail.getDateRetour().getTime() - facturesDetail.getDateFin().getTime())/(1000*60*60*24));
+                log.debug(nbjour);
+
+                if (serviceTP.findByPena(T,serviceP.findByName("Retard").get(0),Date.from(facturesDetail.getFacture().getDateDebut().toInstant())).size() >= 1){
+                    factdet= serviceFD.newPenaretard(facturesDetail.getExemplairesLivre() , fact , T , serviceP.findByName("Retard").get(0) , nbjour , Date.from(facturesDetail.getFacture().getDateDebut().toInstant()),timestampfacture);
+                    prixTVAC=prixTVAC+factdet.getPrix();
+                    serviceFD.save(factdet);
+                }
+
+            }
+            if (tarifsPenalites.size() >= 1){
+                for (TarifsPenalites tp: tarifsPenalites){
+                    factdet=serviceFD.newPena(facturesDetail.getExemplairesLivre(),fact,T, tp.getPenalite(), Date.from(facturesDetail.getFacture().getDateDebut().toInstant()),timestampfacture);
+                    prixTVAC=prixTVAC+factdet.getPrix();
+                    serviceFD.save(factdet);
+                }
+            }
+            fact.setPrixTvac(prixTVAC);
+            // sauvegarde de la facture et commit de transaction
+            service.save(fact);
+            transaction.commit();
+            //refresh pour récupérer les collections associées
+            service.refreshEntity(fact);
+            MFB.creation(fact);
+        }
+        finally {
+            //bloc pour gérer les erreurs lors de la transactions
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+            }
+            //fermeture des service
+            service.close();
+            serviceP.close();
+            serviceU.close();
+            serviceT.close();
+            serviceTP.close();
+        }
     }
 
 
+    public String retourLivre(){
+        FacturesDetail facturesDetail = new FacturesDetail();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        List<ExemplairesLivres> listEL= serviceEL.findOneByCodeBarre(CB);
+        serviceEL.close();
+        long now =  System.currentTimeMillis();
+        long rounded = now - now % 60000;
+        Timestamp timestampretour = new Timestamp(rounded);
+        boolean flag =false;
+
+        for (FacturesDetail fd : listEL.get(0).getFactureDetails()){
+            if (fd.getDateRetour() == null) {
+                facturesDetail = fd;
+                //todo check si livre loué 2 fois + action à prendre si oui
+                flag=true;
+            }
+        }
+        if (flag=true)
+        {
+            flag=false;
+            facturesDetail.setDateRetour(timestampretour);
+            //savefd();
+            if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin()) || tarifsPenalites.size()>=1) // ajouter  ou péna dégradation
+            {
+                newFactPena(facturesDetail);
+            }
+            for (FacturesDetail fd: facturesDetail.getFacture().getFactureDetails())
+            {
+                if (fd.getDateRetour() == null) {
+                    flag = true;
+                }
+            }
+            if (flag=false){
+                facturesDetail.getFacture().setEtat(FactureEtatEnum.terminer);
+            }
+            SvcFacture service = new SvcFacture();
+            SvcFactureDetail serviceFD = new SvcFactureDetail();
+            serviceFD.setEm(service.getEm());
+            EntityTransaction transaction = service.getTransaction();
+            transaction.begin();
+            try {
+                serviceFD.save(facturesDetail);
+                if (facturesDetail.getFacture().getEtat()==FactureEtatEnum.terminer){
+                    service.save(factures);
+                }
+                transaction.commit();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("ModifEd", new FacesMessage("retour confirmé"));
+            } finally {
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+                }
+                service.close();
+            }
+        }
+
+
+        return "Bienvenue";
+    }
 
     /*Méthode permettant de créer un numéro de facture avec FB(FactureBiblio) suivi de l'année, le mois et un nombre a 4 chiffres*/
     public String createNumFact()
@@ -250,5 +384,21 @@ public class FactureBean implements Serializable {
 
     public void setNumMembre(String numMembre) {
         this.numMembre = numMembre;
+    }
+
+    public String getCB() {
+        return CB;
+    }
+
+    public void setCB(String CB) {
+        this.CB = CB;
+    }
+
+    public List<TarifsPenalites> getTarifsPenalites() {
+        return tarifsPenalites;
+    }
+
+    public void setTarifsPenalites(List<TarifsPenalites> tarifsPenalites) {
+        this.tarifsPenalites = tarifsPenalites;
     }
 }

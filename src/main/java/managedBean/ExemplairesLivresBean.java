@@ -29,14 +29,18 @@ public class ExemplairesLivresBean implements Serializable {
     private Bibliotheques bibli;
     private Livres livre;
     private String LastBarCode;
+
+
     public void init()
     {
         exemplairesLivre = new ExemplairesLivres();
         SvcExemplairesLivres service = new SvcExemplairesLivres();
         SvcBibliotheques serviceB = new SvcBibliotheques();
-        bibli= serviceB.getById(1);
-        log.debug("retour serviceb " + serviceB.getById(1).getNom());
-        log.debug("bibli choisie " + bibli.getNom());
+        //puisque ce programme n'aura jamais qu'une seulle bibliotheque; on se permet de la prendre dirrectement depuis la db
+        if (serviceB.findAllBibliotheques().size()==1)
+        {
+            bibli= serviceB.getById(1);
+        }
         if (service.findlastExemplairesLivres().size()==0){
             LastBarCode = "0";
         }
@@ -48,28 +52,16 @@ public class ExemplairesLivresBean implements Serializable {
     }
     public String addExemplaireLivre(){
         init();
-        log.debug("rentree ajout exemplaire");
         SvcExemplairesLivres service = new SvcExemplairesLivres();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
-        log.debug("debut transaction");
         try {
-            log.debug("debut for");
             for (int i = 0; i < nombreExemplaire; i++) {
 
-                log.debug("boucle "+i);
-                log.debug("set bibli");
-
-                log.debug("bibli choisie ? " + bibli.getNom());
-                log.debug(bibli.getIdBibliotheques());
                 exemplairesLivre.setBibliotheques(bibli);
-                log.debug("set etat");
                 exemplairesLivre.setEtat(ExemplairesLivresEtatEnum.Bon);
-                log.debug("set livre");
                 exemplairesLivre.setLivres(livre);
-                log.debug("set code");
                 exemplairesLivre.setCodeBarre(generateBarCode());
-                log.debug("save exemplaire");
                 service.save(exemplairesLivre);
                 exemplairesLivre = new ExemplairesLivres();
             }
@@ -127,11 +119,9 @@ public class ExemplairesLivresBean implements Serializable {
     public String activdesactivExLiv()
     {
         //TODO - vérifier si état livre permet la réactivation de l'exemplaire
-        log.debug("je débute la méthode activdésactive");
         /*Si le livre est actif alors on le désactive; sinon on l'active*/
         if(exemplairesLivre.isActif())
         {
-            log.debug("je passe le if de désactive");
             exemplairesLivre.setActif(false);
         }
         else
@@ -139,8 +129,6 @@ public class ExemplairesLivresBean implements Serializable {
             exemplairesLivre.setActif(true);
         }
         save();
-
-        log.debug("J'ai modifié l'exemplaire");
         return "/tableLivres.xhtml?faces-redirect=true";
         }
     /*
@@ -151,7 +139,6 @@ public class ExemplairesLivresBean implements Serializable {
         SvcExemplairesLivres service = new SvcExemplairesLivres();
         List<ExemplairesLivres> listExemplaires = new ArrayList<ExemplairesLivres>();
         listExemplaires= service.findExemplairesLivresByLivre(livre);
-
         service.close();
         return listExemplaires;
     }
