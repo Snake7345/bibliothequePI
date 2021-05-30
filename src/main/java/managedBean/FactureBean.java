@@ -4,6 +4,7 @@ import entities.*;
 import enumeration.FactureEtatEnum;
 import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import pdfTools.ModelFactBiblio;
 import services.*;
 
@@ -88,7 +89,6 @@ public class FactureBean implements Serializable {
         Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
 
-        //fermeture des services utilisé lors de l'initialisation
 
 
         //initialisation de la transaction
@@ -108,9 +108,8 @@ public class FactureBean implements Serializable {
                 //création des détails de la facture
                 ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
                 serviceEL.loueExemplaire(el);
-                Jours j = serviceJ.findByNbrJ(lc.getNbrJours()).get(0);
-                Timestamp timestampretour = new Timestamp(rounded+((long) j.getNbrJour() *24*3600*1000));
-                FacturesDetail Factdet = serviceFD.newRent(el,fact,T,j, timestampretour);
+                Timestamp timestampretour = new Timestamp(rounded+(lc.getNbrJours() *24*3600*1000));
+                FacturesDetail Factdet = serviceFD.newRent(el,fact,T,lc.getNbrJours(), timestampretour);
                 serviceFD.save(Factdet);
                 serviceEL.save(el);
                 prixTVAC = prixTVAC + Factdet.getPrix();
@@ -143,6 +142,7 @@ public class FactureBean implements Serializable {
 
     public String newFactPena()
     {
+
         SvcFacture service =new SvcFacture();
         SvcFactureDetail serviceFD = new SvcFactureDetail();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
@@ -174,7 +174,6 @@ public class FactureBean implements Serializable {
         int mois = cal.get(Calendar.MONTH) +1;
         SvcFacture serviceF = new SvcFacture();
         List<Factures> fact;
-
 
         //tester si l'année en cours = année de la dernière facture
         try

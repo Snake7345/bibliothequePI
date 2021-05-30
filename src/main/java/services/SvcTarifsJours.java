@@ -28,7 +28,6 @@ public class SvcTarifsJours extends Service<TarifsJours> implements Serializable
 		} else {
 			tarifsJours = em.merge(tarifsJours);
 		}
-
 		return tarifsJours;
 	}
 
@@ -44,7 +43,6 @@ public class SvcTarifsJours extends Service<TarifsJours> implements Serializable
 
 	public TarifsJours createTarifsJours(Tarifs t, Jours j, Double p, Date db, Date df)
 	{
-		log.debug("truc a la con numeroshlag");
 		TarifsJours tj = new TarifsJours();
 		tj.setJours(j);
 		tj.setTarif(t);
