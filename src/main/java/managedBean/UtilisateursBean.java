@@ -29,6 +29,7 @@ public class UtilisateursBean implements Serializable {
     private Utilisateurs utilisateur;
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
     private List<Utilisateurs> listUtil = new ArrayList<Utilisateurs>();
+    private List<Utilisateurs> listCli = new ArrayList<Utilisateurs>();
     private List<Utilisateurs> searchResults;
     private String numMembre;
     private Adresses adresses;
@@ -40,7 +41,8 @@ public class UtilisateursBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        listUtil = getReadAll();
+        listUtil = getReadAllUtil();
+        listCli = getReadAllCli();
         utilisateur = new Utilisateurs();
         UA = new UtilisateursAdresses();
         adresses = new Adresses();
@@ -204,7 +206,7 @@ public class UtilisateursBean implements Serializable {
      * Méthode qui permet via le service de retourner la liste de tous les utilisateurs actifs
      */
 
-    public List<Utilisateurs> getReadActiv()
+    public List<Utilisateurs> getReadUtilActiv()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();
         listUtil = service.findAllUtilisateursActiv();
@@ -215,7 +217,7 @@ public class UtilisateursBean implements Serializable {
     /*
      * Méthode qui permet via le service de retourner la liste de tous les utilisateurs inactifs
      */
-    public List<Utilisateurs> getReadInactiv()
+    public List<Utilisateurs> getReadUtilInactiv()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();
         listUtil = service.findAllUtilisateursInactiv();
@@ -223,16 +225,41 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listUtil;
     }
+    public List<Utilisateurs> getReadCliInactiv()
+    {
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        listCli = service.findAllUtilisateursCliInactiv();
+
+        service.close();
+        return listCli;
+    }
+    public List<Utilisateurs> getReadCliActiv()
+    {
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        listCli = service.findAllUtilisateursCliActiv();
+
+        service.close();
+        return listCli;
+    }
+
     /*
      * Méthode qui permet via le service de retourner la liste de tous les utilisateurs
      */
-    public List<Utilisateurs> getReadAll()
+    public List<Utilisateurs> getReadAllUtil()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();
-        listUtil = service.findAllUtilisateurs();
+        listUtil = service.findAllUtilisateursUtil();
 
         service.close();
         return listUtil;
+    }
+    public List<Utilisateurs> getReadAllCli()
+    {
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        listCli = service.findAllUtilisateursCli();
+
+        service.close();
+        return listCli;
     }
 
 
@@ -284,6 +311,14 @@ public class UtilisateursBean implements Serializable {
 
     public void setUA(UtilisateursAdresses UA) {
         this.UA = UA;
+    }
+
+    public List<Utilisateurs> getListCli() {
+        return listCli;
+    }
+
+    public void setListCli(List<Utilisateurs> listCli) {
+        this.listCli = listCli;
     }
 }
 

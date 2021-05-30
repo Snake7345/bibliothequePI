@@ -15,6 +15,7 @@
             <h:head>
                 <title>#{I18N['permission.form.nouveau.titre']}</title>
             </h:head>
+            <h2 style="text-align:center">#{I18N['permission.form.nouveau.titre']}</h2>
             <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
@@ -33,6 +34,9 @@
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{permissionsBean.newPermission}"/>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{permissionsBean.flushPerm}" immediate="true"/>
         </h:form>
+        </c:if>
+        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(10,loginBean.utilisateurAuth.roles.idRoles))}">
+            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

@@ -37,6 +37,14 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 	public List<Utilisateurs> findAllUtilisateurs() {
 		return finder.findByNamedQuery("Utilisateurs.findAll", null);
 	}
+
+	public List<Utilisateurs> findAllUtilisateursUtil() {
+		return finder.findByNamedQuery("Utilisateurs.findAllUtil", null);
+	}
+	public List<Utilisateurs> findAllUtilisateursCli() {
+		return finder.findByNamedQuery("Utilisateurs.findAllCli", null);
+	}
+
 	//Méthode qui permet via une requete de retourner la liste entière des utiisateurs actifs
 	public List<Utilisateurs> findAllUtilisateursActiv() {
 		return finder.findByNamedQuery("Utilisateurs.findActiv", null);
@@ -44,6 +52,14 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 	//Méthode qui permet via une requete de retourner la liste entière des utilisateurs inactifs
 	public List<Utilisateurs> findAllUtilisateursInactiv() {
 		return finder.findByNamedQuery("Utilisateurs.findInactiv", null);
+	}
+
+	public List<Utilisateurs> findAllUtilisateursCliActiv() {
+		return finder.findByNamedQuery("Utilisateurs.findCliActiv", null);
+	}
+
+	public List<Utilisateurs> findAllUtilisateursCliInactiv() {
+		return finder.findByNamedQuery("Utilisateurs.findCliInactiv", null);
 	}
 
 	public List<Utilisateurs> findlastMembre()

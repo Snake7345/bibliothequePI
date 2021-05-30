@@ -14,13 +14,17 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Utilisateurs.findAll", query = "SELECT u FROM Utilisateurs u"),
-                @NamedQuery(name = "Utilisateurs.findActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE"),
-                @NamedQuery(name = "Utilisateurs.findInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE"),
+                @NamedQuery(name = "Utilisateurs.findAllUtil", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NULL"),
+                @NamedQuery(name = "Utilisateurs.findActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE AND u.numMembre IS NULL"),
+                @NamedQuery(name = "Utilisateurs.findInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE AND u.numMembre IS NULL"),
                 @NamedQuery(name=  "Utilisateurs.authentify", query="SELECT u FROM Utilisateurs u where u.login=:login and u.mdp=:mdp and u.actif=TRUE"),
                 @NamedQuery(name="Utilisateurs.searchName", query="SELECT u FROM Utilisateurs u WHERE u.nom=:nom"),
                 @NamedQuery(name = "Utilisateurs.findLastMembre", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NOT NULL ORDER BY u.numMembre DESC"),
                 @NamedQuery(name = "Utilisateurs.searchMembre", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre=:numMembre"),
                 @NamedQuery(name = "Utilisateurs.findByLogin", query = "SELECT u FROM Utilisateurs u WHERE u.login=:login"),
+                @NamedQuery(name = "Utilisateurs.findAllCli", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NOT NULL"),
+                @NamedQuery(name = "Utilisateurs.findCliActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE AND u.numMembre IS NOT NULL"),
+                @NamedQuery(name = "Utilisateurs.findCliInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE AND u.numMembre IS NOT NULL"),
         })
 public class Utilisateurs implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -148,24 +152,13 @@ public class Utilisateurs implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Utilisateurs that = (Utilisateurs) o;
-        return idUtilisateurs == that.idUtilisateurs &&
-                actif == that.actif &&
-                roles == that.roles &&
-                Objects.equals(nom, that.nom) &&
-                Objects.equals(prenom, that.prenom) &&
-                Objects.equals(sexe, that.sexe) &&
-                Objects.equals(courriel, that.courriel) &&
-                Objects.equals(login, that.login) &&
-                Objects.equals(mdp, that.mdp) &&
-                Objects.equals(factures, that.factures) &&
-                Objects.equals(utilisateursAdresses, that.utilisateursAdresses);
+        return idUtilisateurs == that.idUtilisateurs && actif == that.actif && nom.equals(that.nom) && prenom.equals(that.prenom) && sexe == that.sexe && courriel.equals(that.courriel) && Objects.equals(login, that.login) && Objects.equals(mdp, that.mdp) && Objects.equals(numMembre, that.numMembre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, actif, roles, factures, utilisateursAdresses);
+        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, numMembre, actif);
     }
-
 
     public Collection<Factures> getFactures() {
         return factures;

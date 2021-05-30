@@ -61,10 +61,10 @@
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputText value="Gestion des adresses" />
             </c:if>
-            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(50,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputLink value="tableLocations.xhtml">
-                <h:graphicImage value="/Images/location.jpg" width="100" height="100"/>
-            </h:outputLink>
+            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(54,loginBean.utilisateurAuth.roles.idRoles)}">
+                <h:outputLink value="tableUtilisateursCli.xhtml">
+                    <h:graphicImage value="/Images/clients.jpg" width="100" height="100"/>
+                </h:outputLink>
             </c:if>
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(42,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableLivres.xhtml">
@@ -76,8 +76,8 @@
                 <h:graphicImage value="/Images/facture.jpg" width="100" height="100"/>
             </h:outputLink>
             </c:if>
-            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(50,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des Locations" />
+            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(54,loginBean.utilisateurAuth.roles.idRoles)}">
+                <h:outputText value="Gestion des Clients" />
             </c:if>
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(42,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputText value="Gestion des livres" />
@@ -109,6 +109,8 @@
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(35,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputText value="Gestion des auteurs" />
             </c:if>
+
+
             <p/>
         </h:panelGrid>
         <br /><br />

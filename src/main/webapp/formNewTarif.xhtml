@@ -13,8 +13,12 @@
     <ui:define name="content">
         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form>
+                <h:head>
+                    <title>#{I18N['tarif.form.nouveau.titre']}</title>
+                </h:head>
+                <h2 style="text-align:center">#{I18N['tarif.form.nouveau.titre']}</h2>
                 <!-- faut champ bibliotheque -->
-                <h:outputText value="bibliotheque" />
+                <h:outputText value="#{I18N['bibliotheque.label.Nom']}" />
                 <h:selectOneMenu value = "#{tarifsBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                  converter="biblioConverter">
                     <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
@@ -23,11 +27,11 @@
                 </h:selectOneMenu>
                 <!-- Faut date début-->
                 <!--TODO doit être une date-->
-                <h:outputText value="Date de début de la grille tarifaire" />
+                <h:outputText value="#{I18N['tarif.label.dateDebutgrille']}" />
                 <h:inputText value="#{tarifsBean.dateDebut}">
                     <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                 </h:inputText>
-                <h:outputText value="nom de la grille tarifaire" />
+                <h:outputText value="#{I18N['tarif.label.nom']}" />
                 <h:inputText value="#{tarifsBean.denominationTarif}" />
                 <!-- faut le nom de la grille tarifaire-->
                 <!-- -->
@@ -35,21 +39,21 @@
                 <h:dataTable value="#{tarifsBean.grilleJour}" var="J">
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Prix location" />
+                            <h:outputText value="#{I18N['tarif.label.prix']}" />
                         </f:facet>
-                        <h:outputText value="Prix location" />
+                        <h:outputText value="#{I18N['tarif.label.prix']}" />
                     </h:column>
                     <!--TODO doit être un entier-->
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Nombre de jours" />
+                            <h:outputText value="#{I18N['tarifjour.label.jour']}" />
                         </f:facet>
                         <h:inputText value="#{J.nbrJours}" />
                     </h:column>
                     <!--TODO doit être un entier ou un nombre décimal-->
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Prix" />
+                            <h:outputText value="#{I18N['tarifjour.label.Prix']}" />
                         </f:facet>
                         <h:inputText value="#{J.prix}" />
                     </h:column>
@@ -57,7 +61,7 @@
                     <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Date de mise en application" />
+                            <h:outputText value="#{I18N['tarif.label.DateDebut']}" />
                         </f:facet>
                         <h:inputText value="#{J.dateDebut}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
@@ -66,7 +70,7 @@
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Date de fin d'application" />
+                            <h:outputText value="#{I18N['tarif.label.DateFin']}" />
                         </f:facet>
                         <h:inputText value="#{J.dateFin}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
@@ -80,21 +84,21 @@
                 <h:dataTable value="#{tarifsBean.grillePena}" var="P">
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Penalite" />
+                            <h:outputText value="#{I18N['penalite.label.Grille']}" />
                         </f:facet>
-                        <h:outputText value="Penalite made in jeje" />
+                        <h:outputText value="#{I18N['penalite.label.Grille']}" />
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Nom de la pénalité" />
+                            <h:outputText value="#{I18N['tarifpenalite.label.Nom']}"  />
                         </f:facet>
                         <h:inputText value="#{P.name}" />
                     </h:column>
                     <!--TODO doit être un entier ou un nombre décimal-->
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Prix" />
+                            <h:outputText value="#{I18N['tarifjour.label.Prix']}" />
                         </f:facet>
                         <h:inputText value="#{P.prix}" />
                     </h:column>
@@ -102,7 +106,7 @@
                     <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Date de mise en application" />
+                            <h:outputText value="#{I18N['tarif.label.DateDebut']}" />
                         </f:facet>
                         <h:inputText value="#{P.dateDebut}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
@@ -111,7 +115,7 @@
                     <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Date de fin d'application" />
+                            <h:outputText value="#{I18N['tarif.label.DateFin']}" />
                         </f:facet>
                         <h:inputText value="#{P.dateFin}">
                                      <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
@@ -124,6 +128,9 @@
                 <h:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}" />
                 <h:commandButton value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
             </h:form>
+        </c:if>
+        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles))}">
+            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

@@ -12,8 +12,9 @@
         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(8,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form id="form" prependId="false">
                 <h:head>
-                    <title>#{I18N['livre.form.nouveau.titre']}</title>
+                    <title>#{I18N['exempl.form.nouveau.titre']}</title>
                 </h:head>
+                <h2 style="text-align:center">#{I18N['exempl.form.nouveau.titre']}</h2>
                 <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <!--TODO Verifier que c'est un entier positif-->
@@ -21,7 +22,7 @@
                     <h:inputText id="nbrExemp"
                                  value="#{exemplairesLivresBean.nombreExemplaire}"
                                  required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.titre']}">
+                                 requiredMessage="#{I18N['formulaire.message.required.nombreexempl']}">
                     </h:inputText>
                     <h:message for="nbrExemp" styleClass="errorMessage"/>
 
@@ -31,6 +32,9 @@
                 <h:commandButton value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.addExemplaireLivre}"/>
                 <h:commandButton value="#{I18N['application.button.return']}" action="tableLivres" immediate="true"/>
             </h:form>
+        </c:if>
+        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(8,loginBean.utilisateurAuth.roles.idRoles))}">
+            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

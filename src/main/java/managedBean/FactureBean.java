@@ -27,11 +27,10 @@ import java.util.List;
  *
  * -REFUSER LA CREATION DE LA FACTURE SI UN DES ELEMENTS DE LA FACTURE SONT MANQUANTS
  * (adresse, tarifs, livres,...)
- * - Il faut que la facture accepte les autres jours qui ne sont pas mis en DB
  * - Quand une facture est crée, il faut passer l'exemplaire livre a loué, et quand la facture est cloturé, il faut inspecter le livre et décrire son état et mettre son état
  * - la redirection quand la facture et crée
  * - NE PAS OUBLIER la cloture de la facture
- * - le code barre doit être vérifier par validation (ou autre chose) : Mauvais code barre, code barre inexistant,... + l'exemplaire livre ne peut pas être déjà loué
+ * - le code barre doit être vérifier par validation (ou autre chose) : Mauvais code barre, code barre inexistant,utilisateurcli inactif,... + l'exemplaire livre ne peut pas être déjà loué
  *
  * - Si l'état de l'exemplaire livre est mauvais, alors retirer le livre de la location = Desactiver
  * */

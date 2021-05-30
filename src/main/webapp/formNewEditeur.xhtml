@@ -14,6 +14,7 @@
             <h:head>
                 <title>#{I18N['editeur.form.nouveau.titre']}</title>
             </h:head>
+            <h2 style="text-align:center">#{I18N['editeur.form.nouveau.titre']}</h2>
             <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
@@ -21,7 +22,7 @@
                 <h:inputText id="editeurNom"
                              value="#{editeursBean.editeur.nom}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.nom']}"
+                             requiredMessage="#{I18N['formulaire.message.required.editeur']}"
                              minlength ="2">
                 </h:inputText>
                 <h:message for="editeurNom" styleClass="errorMessage"/>
@@ -32,6 +33,9 @@
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{editeursBean.newEditeur}"/>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{editeursBean.flushEd}" immediate="true"/>
         </h:form>
+        </c:if>
+        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(4,loginBean.utilisateurAuth.roles.idRoles))}">
+            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>
