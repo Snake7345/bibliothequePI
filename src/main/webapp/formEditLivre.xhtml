@@ -41,10 +41,11 @@
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.annee']}"
                              minlength = "4" maxlength="4">
+                    <f:validateRegex pattern="^\d{4}$"/>
                 </h:inputText>
                 <h:message for="livreAnnee" styleClass="errorMessage"/>
 
-
+                <!--TODO Verifier l'isbn pour la validité + probleme de mise en page-->
                 <h:outputText value = "#{I18N['livre.label.Isbn']}"/>
                 <h:inputText id="livreISBN"
                              value="#{livresBean.livre.isbn}"

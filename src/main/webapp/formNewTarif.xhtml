@@ -19,7 +19,7 @@
                 <h2 style="text-align:center">#{I18N['tarif.form.nouveau.titre']}</h2>
                 <!-- faut champ bibliotheque -->
                 <h:outputText value="#{I18N['bibliotheque.label.Nom']}" />
-                <h:selectOneMenu value = "#{tarifsBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                <h:selectOneMenu value = "#{tarifsBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
                                  converter="biblioConverter">
                     <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
                                    itemLabel="#{bi.nom}"
@@ -61,7 +61,7 @@
                     <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarif.label.DateDebut']}" />
+                            <h:outputText value="#{I18N['tarifjour.label.DateDebut']}" />
                         </f:facet>
                         <h:inputText value="#{J.dateDebut}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
@@ -70,7 +70,7 @@
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarif.label.DateFin']}" />
+                            <h:outputText value="#{I18N['tarifjour.label.DateFin']}" />
                         </f:facet>
                         <h:inputText value="#{J.dateFin}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
@@ -98,7 +98,7 @@
                     <!--TODO doit être un entier ou un nombre décimal-->
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarifjour.label.Prix']}" />
+                            <h:outputText value="#{I18N['tarifpenalite.label.Prix']}" />
                         </f:facet>
                         <h:inputText value="#{P.prix}" />
                     </h:column>
@@ -106,7 +106,7 @@
                     <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarif.label.DateDebut']}" />
+                            <h:outputText value="#{I18N['tarifpenalite.label.DateDebut']}" />
                         </f:facet>
                         <h:inputText value="#{P.dateDebut}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
@@ -115,7 +115,7 @@
                     <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarif.label.DateFin']}" />
+                            <h:outputText value="#{I18N['tarifpenalite.label.DateFin']}" />
                         </f:facet>
                         <h:inputText value="#{P.dateFin}">
                                      <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>

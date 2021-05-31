@@ -66,7 +66,8 @@
                     <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
                     <h:inputSecret id="utilisateurMdp"
                                  value="#{utilisateursBean.utilisateur.mdp}"
-                                 required="true">
+                                 required="true"
+                                 minlength="4">
                     </h:inputSecret>
                     <h:message for="utilisateurMdp" styleClass="errorMessage"/>
 

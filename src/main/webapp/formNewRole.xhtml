@@ -22,11 +22,11 @@
                 <h:inputText id="roleDenomination"
                              value="#{rolesBean.role.denomination}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.nom']}">
+                             requiredMessage="#{I18N['formulaire.message.required.denomination']}"
+                             minlength="3">
+
                 </h:inputText>
                 <h:message for="roleDenomination" styleClass="errorMessage"/>
-
-
 
             </h:panelGrid>
 

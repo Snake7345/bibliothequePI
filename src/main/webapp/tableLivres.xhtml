@@ -26,24 +26,6 @@
                         <h:outputLabel value ="#{liv.titre}"/>
                     </h:column>
                     <h:column>
-                        <!-- column header -->
-                        <f:facet name="header">#{I18N['livre.label.Annee']}</f:facet>
-                        <!-- row record -->
-                        <h:outputLabel value ="#{liv.annee}"/>
-                    </h:column>
-                    <h:column>
-                        <!-- column header -->
-                        <f:facet name="header">#{I18N['livre.label.Isbn']}</f:facet>
-                        <!-- row record -->
-                        <h:outputLabel value ="#{liv.isbn}"/>
-                    </h:column>
-                    <h:column>
-                        <!-- column header -->
-                        <f:facet name="header">#{I18N['editeur.label.Nom']}</f:facet>
-                        <!-- row record -->
-                        <h:outputLabel value ="#{liv.editeurs.nom}"/>
-                    </h:column>
-                    <h:column>
                         <f:facet name="header">#{I18N['auteur.label.NomPrenom']}</f:facet>
                         <ui:repeat value="#{liv.livresAuteurs}" var="livauth">
                                 <h:outputLabel value ="#{livauth.auteur.nom} - #{livauth.auteur.prenom}"/>
