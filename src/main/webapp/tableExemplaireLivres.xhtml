@@ -56,7 +56,7 @@
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(17,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
                         <h:commandButton  image="Images//edit.png" action="formEditLivre">
-                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{livexemL}" />
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{livexemL.livres}" />
                         </h:commandButton>
                     </h:column>
                     </c:if>
@@ -74,6 +74,8 @@
                 <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
             </h:commandButton>
             </c:if>
+            <!--TODO mettre les permissions et le label adéquat sur le bouton-->
+            <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="formEtatQuestion"/>
             <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushLiv}"/>
             </c:if>
