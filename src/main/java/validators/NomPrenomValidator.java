@@ -14,14 +14,14 @@ import java.util.regex.Pattern;
 
 public class NomPrenomValidator implements Validator{
 
-    private static final String EMAIL_PATTERN = "^[a-zA-Zéèàùûêâôëç]{1}[a-zA-Zéèàùûêâôëç \\'-]*[a-zA-Zéèàùûêâôëç]$";
+    private static final String NOMPRE = "^[a-zA-Zéèàùûêâôëç]{1}[a-zA-Zéèàùûêâôëç \\'-]*[a-zA-Zéèàùûêâôëç]$";
 
     private Pattern pattern;
     private Matcher matcher;
 
     public NomPrenomValidator()
     {
-        pattern = Pattern.compile(EMAIL_PATTERN);
+        pattern = Pattern.compile(NOMPRE);
     }
 
     @Override

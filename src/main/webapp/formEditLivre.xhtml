@@ -52,6 +52,7 @@
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.isbn']}"
                              minlength = "10" maxlength="17">
+                    <f:validator validatorId = "isbnValidator"/>
                 </h:inputText>
                 <h:message for="livreISBN" styleClass="errorMessage"/>
 
