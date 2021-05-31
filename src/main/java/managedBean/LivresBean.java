@@ -206,6 +206,33 @@ public class LivresBean implements Serializable {
         return listLiv;
     }
 
+    public List<Livres> getReadByAuteurs()
+    {
+        SvcLivres service = new SvcLivres();
+        listLiv = service.getByAuteurs();
+
+        service.close();
+        return listLiv;
+    }
+
+    public List<Livres> getReadByEditeurs()
+    {
+        SvcLivres service = new SvcLivres();
+        listLiv = service.getByEditeurs()
+
+        service.close();
+        return listLiv;
+    }
+
+    public List<Livres> getReadByGenres()
+    {
+        SvcLivres service = new SvcLivres();
+        listLiv = service.getByGenres();
+
+        service.close();
+        return listLiv;
+    }
+
     public String flushBienv()
     {
         init();
