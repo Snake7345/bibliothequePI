@@ -43,7 +43,8 @@ public class FactureBean implements Serializable {
     private List<locationCustom> listLC = new ArrayList<>();
     private String numMembre;
     private Bibliotheques Bibli;
-
+    private String CB;
+    private List<TarifsPenalites> tarifsPenalites;
     @PostConstruct
     public void init(){
         listLC = new ArrayList<>();
