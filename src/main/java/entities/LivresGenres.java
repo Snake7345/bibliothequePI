@@ -8,6 +8,7 @@ import java.io.Serializable;
 @NamedQueries
         ({
                 @NamedQuery(name = "LivresGenres.findAll", query = "SELECT lg FROM LivresGenres lg"),
+
         })
 public class LivresGenres implements Serializable {
     private static final long serialVersionUID = 1L;

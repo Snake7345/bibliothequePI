@@ -51,6 +51,11 @@
                             </h:commandButton>
                         </h:column>
                         </c:if>
+                        <h:column>
+                            <h:commandButton  image="Images//livres.jpg" action="#{livresBean.readByAuteurs}">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{livresBean.aut}" value="#{aut}" /><!-- u minuscule -->
+                            </h:commandButton>
+                        </h:column>
                         <!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
                         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(24,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>

@@ -37,6 +37,11 @@
                             </h:commandButton>
                         </h:column>
                         </c:if>
+                        <h:column>
+                            <h:commandButton  image="Images//livres.jpg" action="#{livresBean.readByGenres}">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{livresBean.gen}" value="#{gen}" /><!-- u minuscule -->
+                            </h:commandButton>
+                        </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(7,loginBean.utilisateurAuth.roles.idRoles)}">

@@ -38,6 +38,11 @@
                             </h:commandButton>
                         </h:column>
                         </c:if>
+                        <h:column>
+                            <h:commandButton  image="Images//livres.jpg" action="#{livresBean.readByEditeurs}">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{livresBean.edit}" value="#{ed}" /><!-- u minuscule -->
+                            </h:commandButton>
+                        </h:column>
                     </h:dataTable>
                 </h:panelGroup>
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(4,loginBean.utilisateurAuth.roles.idRoles)}">

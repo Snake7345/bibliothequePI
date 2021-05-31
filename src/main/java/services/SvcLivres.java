@@ -51,7 +51,7 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 		Map<String, Auteurs> param = new HashMap<>();
 		param.put("auteur", auteur);
 
-		return finder.findByNamedQuery("Livres.findByAuteur", param);
+		return finder.findByNamedQuery("Livres.findLivreByAuteurs", param);
 	}
 
 	public List<Livres> getByEditeurs(Editeurs editeur) {
@@ -64,7 +64,7 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 		Map<String, Genres> param = new HashMap<>();
 		param.put("genre", genre);
 
-		return finder.findByNamedQuery("Livres.findByGenres", param);
+		return finder.findByNamedQuery("Livres.findLivreByGenres", param);
 	}
 
 	public Livres deleteLivres(Livres liv){

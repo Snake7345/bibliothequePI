@@ -16,9 +16,9 @@ import java.util.Objects;
                 @NamedQuery(name = "Livres.findInactiv", query = "SELECT l FROM Livres l WHERE l.actif=FALSE"),
                 @NamedQuery(name = "Livres.findOneByIsbn", query="SELECT l FROM Livres l WHERE l.isbn=:isbn"),
                 @NamedQuery(name = "Livres.findAllByTitre", query="SELECT l FROM Livres l WHERE l.titre=:titre ORDER BY l.titre ASC"),//A verifier
-                @NamedQuery(name = "Livres.findByAuteurs", query = "SELECT l FROM Livres l WHERE l.livresAuteurs=:auteur"), // Join a verifier
+                @NamedQuery(name = "Livres.findLivreByAuteurs", query = "SELECT la.livre FROM LivresAuteurs la WHERE la.auteur=:auteur"),
                 @NamedQuery(name = "Livres.findByEditeurs", query = "SELECT l FROM Livres l WHERE l.editeurs=:editeur"),
-                @NamedQuery(name = "Livres.findByGenres", query = "SELECT l FROM Livres l WHERE l.livresGenres=:genre"),
+                @NamedQuery(name = "Livres.findLivreByGenres", query = "SELECT lg.livre FROM LivresGenres lg WHERE lg.genre=:genre"),
                 @NamedQuery(name="Livres.searchLivre", query="SELECT l FROM Livres l WHERE l.titre=:titre"),
 
         })

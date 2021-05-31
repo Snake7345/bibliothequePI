@@ -29,6 +29,10 @@ public class LivresBean implements Serializable {
     private LivresGenres livresGenre;
     private List<Genres> genre;
 
+    private Auteurs aut;
+    private Editeurs edit;
+    private Genres gen;
+
     private List<Livres> listLiv = new ArrayList<Livres>();
 
     private List<Livres> searchResults;
@@ -206,31 +210,31 @@ public class LivresBean implements Serializable {
         return listLiv;
     }
 
-    public List<Livres> getReadByAuteurs()
+    public String readByAuteurs()
     {
         SvcLivres service = new SvcLivres();
-        listLiv = service.getByAuteurs();
+        listLiv = service.getByAuteurs(aut);
 
         service.close();
-        return listLiv;
+        return "tableLivres?faces-redirect=true";
     }
 
-    public List<Livres> getReadByEditeurs()
+    public String readByEditeurs()
     {
         SvcLivres service = new SvcLivres();
-        listLiv = service.getByEditeurs()
+        listLiv = service.getByEditeurs(edit);
 
         service.close();
-        return listLiv;
+        return "tableLivres?faces-redirect=true";
     }
 
-    public List<Livres> getReadByGenres()
+    public String readByGenres()
     {
         SvcLivres service = new SvcLivres();
-        listLiv = service.getByGenres();
+        listLiv = service.getByGenres(gen);
 
         service.close();
-        return listLiv;
+        return "tableLivres?faces-redirect=true";
     }
 
     public String flushBienv()
@@ -295,5 +299,29 @@ public class LivresBean implements Serializable {
 
     public void setListLiv(List<Livres> listLiv) {
         this.listLiv = listLiv;
+    }
+
+    public Auteurs getAut() {
+        return aut;
+    }
+
+    public void setAut(Auteurs aut) {
+        this.aut = aut;
+    }
+
+    public Editeurs getEdit() {
+        return edit;
+    }
+
+    public void setEdit(Editeurs edit) {
+        this.edit = edit;
+    }
+
+    public Genres getGen() {
+        return gen;
+    }
+
+    public void setGen(Genres gen) {
+        this.gen = gen;
     }
 }

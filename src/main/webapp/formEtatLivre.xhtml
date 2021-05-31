@@ -25,14 +25,14 @@
                     <h:outputText value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
                     <!--TODO : Corriger la value-->
                     <h:inputTextarea id="CommentaireEtat"
-                                 value="#{factureBean}" cols="25" rows="5">
+                                 value="#{factureBean.}" cols="25" rows="5">
                     </h:inputTextarea>
 
                     <h:outputText value = "#{I18N['penalite.label.Nom']}"/>
                     <!--TODO : Corriger la value-->
-                    <h:selectManyListbox value = "#{factureBean}">
+                    <h:selectManyListbox value = "#{factureBean.tarifsPenalites}">
                         <!--TODO : Corriger la fonction dans le value-->
-                        <f:selectItems value = "#{tarifsPenalitesBean.readAll}" var="pena" itemLabel="#{pena.denomination}" itemValue="#{pena}"/>
+                        <f:selectItems value = "#{factureBean.tarifsPenalites}" var="pena" itemLabel="#{pena.penalite.denomination}" itemValue="#{pena}"/>
                     </h:selectManyListbox>
 
                 </h:panelGrid>

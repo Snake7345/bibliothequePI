@@ -14,12 +14,26 @@
         <h:head>
             <title>Est ce que le livre est endommagé ou pas ? [A MODIFIER dans le message properties]</title>
         </h:head>
+        <h:form>
         <!--TODO Ajouter le code barre du livre concerné-->
-            <h:commandButton value="#{I18N['commune.label.oui']}" action="formEtatLivre"/>
+        <h:outputText value = "#{I18N['exemplaireslivres.label.CodeBarre']}"/>
+        <h:inputText id="exemplLivresCB"
+                     value="#{factureBean.CB}"
+                     required="true"
+                     requiredMessage="#{I18N['formulaire.message.required.CB']}"
+                     minlength ="2">
+        </h:inputText>
+        <h:message for="exemplLivresCB" styleClass="errorMessage"/>
+            <!--TODO MODIFIER LE SELECTONERADIO-->
+            <h:selectOneRadio value = "#{factureBean}">
+                <f:selectItem itemValue = "1" itemLabel = "#{I18N['commune.label.oui']}" />
+                <f:selectItem itemValue = "0" itemLabel = "#{I18N['commune.label.non']}"/>
+            </h:selectOneRadio>
         <!--TODO VERIFIER LA METHODE-->
-            <h:commandButton value="#{I18N['commune.label.non']}" action="#{utilisateursBean.flushBienv}"/>
+            <!--TODO VERIFIER LA METHODE-->
+            <h:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean}"/>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
-
+        </h:form>
     </ui:define>
 </ui:composition>
 
