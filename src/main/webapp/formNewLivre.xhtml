@@ -55,14 +55,13 @@
                 </h:inputText>
                 <h:message for="livreAnnee" styleClass="errorMessage"/>
 
-                <!--TODO Verifier l'isbn pour la validité + probleme de mise en page-->
                 <h:outputText value = "#{I18N['livre.label.Isbn']}"/>
                 <h:inputText id="livreISBN"
                              value="#{livresBean.livre.isbn}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.isbn']}"
                              minlength = "10" maxlength="17"
-                             validator="isbnValidator"><!---->
+                             validator="isbnValidator">
                 </h:inputText>
                 <h:message for="livreISBN" styleClass="errorMessage"/>
 

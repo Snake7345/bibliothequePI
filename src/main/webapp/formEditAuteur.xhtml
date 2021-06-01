@@ -22,8 +22,8 @@
                              value="#{auteursBean.auteur.nom}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.nom']}"
-                             minlength ="2">
-                    <f:validator validatorId = "nomPrenomValidator"/>
+                             minlength ="2"
+                             validator = "nomPrenomValidator">
                 </h:inputText>
                 <h:message for="auteurNom" styleClass="errorMessage"/>
 
@@ -32,8 +32,8 @@
                              value="#{auteursBean.auteur.prenom}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.prenom']}"
-                             minlength ="2">
-                    <f:validator validatorId = "nomPrenomValidator"/>
+                             minlength ="2"
+                             validator ="nomPrenomValidator">
                 </h:inputText>
                 <h:message for="auteurPrenom" styleClass="errorMessage"/>
 

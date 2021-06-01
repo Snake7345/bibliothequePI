@@ -24,8 +24,8 @@
                     <h:inputText id="utilisateurNom"
                                  value="#{utilisateursBean.utilisateur.nom}"
                                  required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.nom']}">
-                        <f:validator validatorId = "nomPrenomValidator"/>
+                                 requiredMessage="#{I18N['formulaire.message.required.nom']}"
+                                 validator = "nomPrenomValidator">
                     </h:inputText>
                     <h:message for="utilisateurNom" styleClass="errorMessage"/>
 
@@ -33,8 +33,8 @@
                     <h:inputText id="utilisateurPrenom"
                                  value="#{utilisateursBean.utilisateur.prenom}"
                                  required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.prenom']}">
-                        <f:validator validatorId = "nomPrenomValidator"/>
+                                 requiredMessage="#{I18N['formulaire.message.required.prenom']}"
+                                 validator = "nomPrenomValidator">
                     </h:inputText>
                     <h:message for="utilisateurPrenom" styleClass="errorMessage"/>
 
@@ -50,16 +50,16 @@
                     <h:inputText id="utilisateurCourriel"
                                  value="#{utilisateursBean.utilisateur.courriel}"
                                  required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.courriel']}">
-                                 <f:validator validatorId = "emailValidator"/>
+                                 requiredMessage="#{I18N['formulaire.message.required.courriel']}"
+                                 validator = "emailValidator">
                     </h:inputText>
                     <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 
                     <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
                     <h:inputText id="utilisateurLogin"
                                  value="#{utilisateursBean.utilisateur.login}"
-                                 required="true">
-                        <f:validator validatorId = "utilisateurExistValidator"/>
+                                 required="true"
+                                 validator = "utilisateurExistValidator">
                     </h:inputText>
                     <h:message for="utilisateurLogin" styleClass="errorMessage"/>
 
