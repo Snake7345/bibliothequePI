@@ -1,10 +1,7 @@
 package services;
 
 
-import entities.Auteurs;
-import entities.Editeurs;
-import entities.Genres;
-import entities.Livres;
+import entities.*;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -65,6 +62,13 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 		param.put("genre", genre);
 
 		return finder.findByNamedQuery("Livres.findLivreByGenres", param);
+	}
+
+	public List<Livres> findByIsbn(String isbn) {
+		Map<String, String> param = new HashMap<>();
+		param.put("isbn", isbn);
+
+		return finder.findByNamedQuery("Utilisateurs.findByIsbn", param);
 	}
 
 	public Livres deleteLivres(Livres liv){

@@ -395,6 +395,8 @@ public class FactureBean implements Serializable {
         else
         {
             //todo add facemessage pour signaler que le livre n'est pas loué
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("Erreur", new FacesMessage("le livre n'est pas loué"));
         }
         // todo réfléchir au retour
         return "tableFactures.xhtml?faces-redirect=true";

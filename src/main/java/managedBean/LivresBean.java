@@ -53,11 +53,13 @@ public class LivresBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         serviceLA.setEm(service.getEm());
         serviceLG.setEm(service.getEm());
+
         //Todo mettre/faire une verification de l'objet Livre, ainsi que des auteurs et du genre
         log.debug("J'vais essayer d'sauver le livre");
 
         transaction.begin();
         try {
+            //ISBN.replace("-","");
             livre = service.save(livre);
             for (Auteurs auteurs : auteur) {
                 serviceLA.save(serviceLA.createLivresAuteurs(livre, auteurs));
@@ -65,6 +67,7 @@ public class LivresBean implements Serializable {
             for (Genres genres : genre) {
                 serviceLG.save(serviceLG.createLivresGenres(livre, genres));
             }
+
             transaction.commit();
             log.debug("J'ai sauvé le livre");
             return "/tableLivres.xhtml?faces-redirect=true";
@@ -93,6 +96,7 @@ public class LivresBean implements Serializable {
         transaction.begin();
         try {
             service.save(livre);
+            //
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
