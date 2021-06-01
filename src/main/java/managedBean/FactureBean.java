@@ -1,27 +1,34 @@
 package managedBean;
 
+import com.sun.mail.util.MailSSLSocketFactory;
 import entities.*;
 import enumeration.ExemplairesLivresEtatEnum;
 import enumeration.FactureEtatEnum;
 import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import pdfTools.ModelFactBiblio;
 import pdfTools.ModelFactBiblioPena;
 import services.*;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.mail.*;
+
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
+import java.security.GeneralSecurityException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Named
 @SessionScoped
@@ -67,6 +74,49 @@ public class FactureBean implements Serializable {
         if (listLC.size() >1)
         {
             listLC.remove(listLC.size()-1);
+        }
+    }
+
+    public static void sendMessage( String filename)  {
+        //Création de la session
+        String mail = "bibliolibatc@gmail.com";
+        String password = "porte7345";
+
+
+        String userdir = System.getProperty("user.dir");
+        userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\Factures\\" + filename;
+
+
+        Properties properties = new Properties();
+
+
+        Session session = Session.getInstance(properties);
+        MimeMessage message = new MimeMessage(session);
+        try {
+
+            BodyPart messageBodyPart = new MimeBodyPart();
+            Multipart multipart = new MimeMultipart();
+            messageBodyPart.setText("mail de test facture");
+            multipart.addBodyPart(messageBodyPart);
+            messageBodyPart = new MimeBodyPart();
+            DataSource source = new FileDataSource(userdir);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(filename);
+            multipart.addBodyPart(messageBodyPart);
+            message.setContent(multipart);
+            message.setSubject("facture");
+            message.setFrom(new InternetAddress(mail));
+            message.addRecipients(Message.RecipientType.TO, "jeromegillain@gmail.com");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Transport transport = session.getTransport("smtps");
+            transport.connect ("smtp.gmail.com", 465, mail, password);
+            transport.sendMessage(message,new Address[] { new InternetAddress("jeromegillain@gmail.com")});
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
     }
 
@@ -136,6 +186,7 @@ public class FactureBean implements Serializable {
                 transaction.commit();
                 service.refreshEntity(fact);
                 MFB.creation(fact);
+                sendMessage(fact.getNumeroFacture()+".pdf");
                 return "TableFactures.xhtml?faces-redirect=true";
             } finally {
                 //bloc pour gérer les erreurs lors de la transactions
@@ -159,7 +210,7 @@ public class FactureBean implements Serializable {
 
     }
 
-    public void newFactPena(FacturesDetail facturesDetail)
+   public void newFactPena(FacturesDetail facturesDetail)
     {
 
         //TODO finaliser la méthode
@@ -239,6 +290,7 @@ public class FactureBean implements Serializable {
             //refresh pour récupérer les collections associées
             service.refreshEntity(fact);
             MFB.creation(fact,tarifsPenalites,factdetretard);
+            sendMessage(fact.getNumeroFacture()+".pdf");
         }
         finally {
             //bloc pour gérer les erreurs lors de la transactions
