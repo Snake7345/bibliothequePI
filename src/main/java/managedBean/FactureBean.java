@@ -1,11 +1,13 @@
 package managedBean;
 
 import entities.*;
+import enumeration.ExemplairesLivresEtatEnum;
 import enumeration.FactureEtatEnum;
 import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import pdfTools.ModelFactBiblio;
+import pdfTools.ModelFactBiblioPena;
 import services.*;
 
 import javax.annotation.PostConstruct;
@@ -56,9 +58,6 @@ public class FactureBean implements Serializable {
         factures= new Factures();
         numMembre= "";
         CB= "";
-
-
-
     }
     public void addNewListRow() {
         listLC.add(new locationCustom());
@@ -189,7 +188,8 @@ public class FactureBean implements Serializable {
 
         Factures fact = new Factures();
         FacturesDetail factdet= new FacturesDetail();
-        ModelFactBiblio MFB =new ModelFactBiblio();
+        FacturesDetail factdetretard= null;
+        ModelFactBiblioPena MFB =new ModelFactBiblioPena();
         Tarifs T = serviceT.getTarifByBiblio(Date.from(facturesDetail.getFacture().getDateDebut().toInstant()), Bibli.getNom()).get(0);
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
 
@@ -208,31 +208,37 @@ public class FactureBean implements Serializable {
             fact.setUtilisateurs(u);
 
             //création des facture détails
-            if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin())){
-                int nbjour = (int)((facturesDetail.getDateRetour().getTime() - facturesDetail.getDateFin().getTime())/(1000*60*60*24));
-                log.debug(nbjour);
-
-                if (serviceTP.findByPena(T,serviceP.findByName("Retard").get(0),Date.from(facturesDetail.getFacture().getDateDebut().toInstant())).size() >= 1){
-                    factdet= serviceFD.newPenaretard(facturesDetail.getExemplairesLivre() , fact , T , serviceP.findByName("Retard").get(0) , nbjour , Date.from(facturesDetail.getFacture().getDateDebut().toInstant()),timestampfacture);
-                    prixTVAC=prixTVAC+factdet.getPrix();
-                    serviceFD.save(factdet);
-                }
-
-            }
             if (tarifsPenalites.size() >= 1){
-                for (TarifsPenalites tp: tarifsPenalites){
+                for (TarifsPenalites tp: tarifsPenalites)
+                {
                     factdet=serviceFD.newPena(facturesDetail.getExemplairesLivre(),fact,T, tp.getPenalite(), Date.from(facturesDetail.getFacture().getDateDebut().toInstant()),timestampfacture);
                     prixTVAC=prixTVAC+factdet.getPrix();
                     serviceFD.save(factdet);
                 }
             }
+            log.debug(facturesDetail.getDateRetour());
+            log.debug(facturesDetail.getDateFin());
+            log.debug(facturesDetail.getDateRetour().after(facturesDetail.getDateFin()));
+
+            if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin())){
+                int nbjour = (int)((facturesDetail.getDateRetour().getTime() - facturesDetail.getDateFin().getTime())/(1000*60*60*24));
+                log.debug(nbjour);
+
+                if (serviceTP.findByPena(T,serviceP.findByName("Retard").get(0),Date.from(facturesDetail.getFacture().getDateDebut().toInstant())).size() >= 1){
+                    factdetretard= serviceFD.newPenaretard(facturesDetail.getExemplairesLivre() , fact , T , serviceP.findByName("Retard").get(0) , nbjour , Date.from(facturesDetail.getFacture().getDateDebut().toInstant()),timestampfacture);
+                    prixTVAC=prixTVAC+factdetretard.getPrix();
+                    serviceFD.save(factdetretard);
+                }
+
+            }
+
             fact.setPrixTvac(prixTVAC);
             // sauvegarde de la facture et commit de transaction
             service.save(fact);
             transaction.commit();
             //refresh pour récupérer les collections associées
             service.refreshEntity(fact);
-            MFB.creation(fact);
+            MFB.creation(fact,tarifsPenalites,factdetretard);
         }
         finally {
             //bloc pour gérer les erreurs lors de la transactions
@@ -251,9 +257,10 @@ public class FactureBean implements Serializable {
     }
 
     public String redirectChoix(){
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        exemplairesLivres = serviceEL.findOneByCodeBarre(CB).get(0);
+
         if (choixetat){
-            SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
-            exemplairesLivres = serviceEL.findOneByCodeBarre(CB).get(0);
             Date date = new Date();
             SvcTarifs serviceT = new SvcTarifs();
             tarifsPenalites= (List<TarifsPenalites>) serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0).getTarifsPenalites();
@@ -268,15 +275,14 @@ public class FactureBean implements Serializable {
     public String retourLivre(){
         FacturesDetail facturesDetail = new FacturesDetail();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
-        List<ExemplairesLivres> listEL= serviceEL.findOneByCodeBarre(CB);
         Factures fact = new Factures();
         long now =  System.currentTimeMillis();
         long rounded = now - now % 60000;
         Timestamp timestampretour = new Timestamp(rounded);
         boolean flag =false;
-        if (listEL.get(0).isLoue())
+        if (exemplairesLivres.isLoue())
         {
-            for (FacturesDetail fd : listEL.get(0).getFactureDetails()){
+            for (FacturesDetail fd : exemplairesLivres.getFactureDetails()){
                 if (fd.getDateRetour() == null) {
                     facturesDetail = fd;
                     numMembre=fd.getFacture().getUtilisateurs().getNumMembre();
@@ -288,8 +294,9 @@ public class FactureBean implements Serializable {
                 flag=false;
                 facturesDetail.setDateRetour(timestampretour);
                 //savefd();
-                if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin()) || tarifsPenalites.size()>=1) // ajouter  ou péna dégradation
+                if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin()) || tarifsPenalites.size()>=1)
                 {
+
                     newFactPena(facturesDetail);
                 }
                 for (FacturesDetail fd: facturesDetail.getFacture().getFactureDetails())
@@ -310,9 +317,12 @@ public class FactureBean implements Serializable {
                 EntityTransaction transaction = service.getTransaction();
                 transaction.begin();
                 try {
-                    ExemplairesLivres el =listEL.get(0);
-                    el.setLoue(false);
-                    serviceEL.save(el);
+                    exemplairesLivres.setLoue(false);
+                    if (exemplairesLivres.getEtat()==ExemplairesLivresEtatEnum.Mauvais)
+                    {
+                        exemplairesLivres.setActif(false);
+                    }
+                    serviceEL.save(exemplairesLivres);
                     serviceFD.save(facturesDetail);
                     if (fact.getEtat()==FactureEtatEnum.terminer){
                         service.save(fact);

@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 @WebServlet("/ModelFactBiblioPena")
@@ -33,7 +34,7 @@ public class ModelFactBiblioPena implements Serializable
 	private static final Logger log = Logger.getLogger(ModelFactBiblioPena.class);
 
 	/*Creation de la facture en PDF*/
-	public void creation (Factures fact, ArrayList<TarifsPenalites> tp, FacturesDetail retard)  {
+	public void creation (Factures fact, List<TarifsPenalites> tp, FacturesDetail retard)  {
 		try{
 		SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
 		String userdir = System.getProperty("user.dir");
