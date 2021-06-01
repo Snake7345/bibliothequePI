@@ -54,17 +54,24 @@
                         </h:column>
                     </c:if>
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(17,loginBean.utilisateurAuth.roles.idRoles)}">
+
                     <h:column>
+                        <c:if test= "#{livexemL.actif eq 0 or livexemL.etat ='Mauvais'}">
                         <h:commandButton  image="Images//edit.png" action="formEditLivre">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{livexemL.livres}" />
                         </h:commandButton>
+                        </c:if>
                     </h:column>
+
                     </c:if>
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles)}">
+
                     <h:column>
+                        <c:if test= "#{livexemL.actif eq 0 or livexemL.etat ='Mauvais'}">
                         <h:commandButton image="Images//activdesactiv.png" action="#{exemplairesLivresBean.activdesactivExLiv}">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </h:commandButton>
+                        </c:if>
                     </h:column>
                     </c:if>
                 </h:dataTable>
