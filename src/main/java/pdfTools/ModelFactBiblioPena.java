@@ -2,6 +2,7 @@ package pdfTools;
 
 import entities.Factures;
 import entities.FacturesDetail;
+import entities.TarifsPenalites;
 import entities.UtilisateursAdresses;
 import org.apache.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -32,7 +33,7 @@ public class ModelFactBiblioPena implements Serializable
 	private static final Logger log = Logger.getLogger(ModelFactBiblioPena.class);
 
 	/*Creation de la facture en PDF*/
-	public void creation (Factures fact)  {
+	public void creation (Factures fact, ArrayList<TarifsPenalites> tp, FacturesDetail retard)  {
 		try{
 		SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
 		String userdir = System.getProperty("user.dir");
@@ -47,6 +48,7 @@ public class ModelFactBiblioPena implements Serializable
 		String utilisateur = fact.getUtilisateurs().getNumMembre();
 		String nompreClient = fact.getUtilisateurs().getNom() + " " + fact.getUtilisateurs().getPrenom();
 		String adresse="";
+		/*Mettre une variable pour le code barre du livre*/
 		for(UtilisateursAdresses ua : fact.getUtilisateurs().getUtilisateursAdresses())
 		{
 			if(ua.isActif())
@@ -139,7 +141,7 @@ public class ModelFactBiblioPena implements Serializable
 	    contentStream.setFont(PDType1Font.TIMES_BOLD,12);
 	    contentStream.setLeading(14.5f);
 	    contentStream.newLineAtOffset(80, 600);	 
-	    String entetef1 = "Facture n° : " + numfacture + " creee le " + laDateDuJour;
+	    String entetef1 = "Facture de penalite num : " + numfacture + " creee le " + laDateDuJour;
 	   
 	    contentStream.showText(entetef1);
 	    contentStream.newLine();
@@ -154,22 +156,25 @@ public class ModelFactBiblioPena implements Serializable
 		
 	    //cadre
 	    
-	    //travaux effectu�s
+	    //travaux effectues
 	    contentStream.beginText();
 	    contentStream.newLineAtOffset(80, 455);	
-	    contentStream.showText("Exemplaire loue :");
+	    contentStream.showText("Penalites : ");
 	    contentStream.newLine();
 	    contentStream.newLine();
 		log.debug(fact.getFactureDetails().size());
-	    for (FacturesDetail fd: fact.getFactureDetails())
+	    for (TarifsPenalites TP: tp)
 		{
-			log.debug("date debut "+fact.getDateDebut());
-			log.debug("date fin "+fd.getDateFin());
-	    	contentStream.showText(fd.getExemplairesLivre().getLivres().getTitre() + " pour une duree de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
+	    	contentStream.showText(TP.getPenalite().getDenomination());
 	    	contentStream.newLine();
-	    	price.add(String.valueOf(fd.getPrix()));
+	    	if(!TP.getPenalite().getDenomination().equals("Retard"))
+			{
+				price.add(String.valueOf(TP.getPrix()));
+			}
+	    	else if(retard != null){
+				price.add(String.valueOf(retard.getPrix()));
+			}
 			contentStream.newLine();
-			log.debug(fd.getExemplairesLivre().getLivres().getTitre() + " pour une duree de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
 		}
 	    contentStream.endText();
 	    
