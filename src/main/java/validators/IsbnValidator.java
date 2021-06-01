@@ -1,7 +1,7 @@
 package validators;
 
 import org.apache.log4j.Logger;
-
+import services.SvcLivres;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -29,6 +29,7 @@ public class IsbnValidator implements Validator {
     {
         final Logger log = Logger.getLogger(IsbnValidator.class);
         String ISBN = String.valueOf(value);
+        SvcLivres serviceL = new SvcLivres();
         //log.debug("test1 "+ ISBN.length());
         log.debug(pattern.pattern());
         matcher = pattern.matcher(value.toString());
@@ -40,17 +41,19 @@ public class IsbnValidator implements Validator {
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
-        else if((ISBN.length() != 10) && (ISBN.length() != 13) && (ISBN.length() != 17))
+        else if((ISBN.length() != 10) && (ISBN.length() != 13) &&(ISBN.length() != 17))
         {
             FacesMessage msg = new FacesMessage("Pour encoder l'isbn vous devez mettre 10,13 ou 17 caracteres");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
-        /*
-        TODO :
-         Rajouter un else if en ce qui concerne la vérification de l'isbn car il doit être unique (appel du service Livres
-         Compter le nombre de chiffres correct
-         */
+        else if(serviceL.findByIsbn(ISBN).size() != 0)
+        {
+            FacesMessage msg = new FacesMessage("Cette ISBN existe déjà en DB");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
+        }
+        serviceL.close();
 
 
     }
