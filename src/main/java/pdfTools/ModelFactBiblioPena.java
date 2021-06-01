@@ -141,9 +141,12 @@ public class ModelFactBiblioPena implements Serializable
 	    contentStream.setFont(PDType1Font.TIMES_BOLD,12);
 	    contentStream.setLeading(14.5f);
 	    contentStream.newLineAtOffset(80, 600);	 
-	    String entetef1 = "Facture de penalite num : " + numfacture + " creee le " + laDateDuJour;
+	    String entetef1 = "Facture de penalite num : " + numfacture;
+	    String entetef2 = " creee le " + laDateDuJour;
 	   
 	    contentStream.showText(entetef1);
+	    contentStream.newLine();
+	    contentStream.showText(entetef2);
 	    contentStream.newLine();
 	    contentStream.setFont(PDType1Font.COURIER_BOLD_OBLIQUE,10);
 	    contentStream.endText();
@@ -159,7 +162,7 @@ public class ModelFactBiblioPena implements Serializable
 	    //travaux effectues
 	    contentStream.beginText();
 	    contentStream.newLineAtOffset(80, 455);	
-	    contentStream.showText("Penalites : ");
+	    contentStream.showText("Penalites concernant l'exemplaire de : " + fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getLivres().getTitre() + "sous le code barre" + fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getCodeBarre());
 	    contentStream.newLine();
 	    contentStream.newLine();
 		log.debug(fact.getFactureDetails().size());
