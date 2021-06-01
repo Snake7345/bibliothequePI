@@ -162,8 +162,9 @@ public class ModelFactBiblioPena implements Serializable
 	    //travaux effectues
 	    contentStream.beginText();
 	    contentStream.newLineAtOffset(80, 455);	
-	    contentStream.showText("Penalites concernant l'exemplaire de : " + fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getLivres().getTitre() + "sous le code barre" + fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getCodeBarre());
+	    contentStream.showText("Penalites concernant l'exemplaire de : ");
 	    contentStream.newLine();
+	    contentStream.showText(fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getLivres().getTitre() + "sous le code barre" + fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getCodeBarre());;
 	    contentStream.newLine();
 		log.debug(fact.getFactureDetails().size());
 	    for (TarifsPenalites TP: tp)
