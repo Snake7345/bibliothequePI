@@ -25,7 +25,7 @@
                     <h:inputText id="utilisateurLogin" 	value="#{loginBean.utilisateurAuth.login}"
                                  required="true"
                                  requiredMessage="#{I18N['utilisateur.login.validation']}">
-                        <f:validateLength maximum = "80" />
+                        <f:validateLength minimum ="4" maximum = "80" />
                     </h:inputText>
                     <h:message for="utilisateurLogin" styleClass="errorMessage"/>
                     <h:outputText value="#{I18N['utilisateur.label.Mdp']}"/>

@@ -33,6 +33,8 @@ import java.util.List;
  * - le code barre doit être vérifier par validation (ou autre chose) : Mauvais code barre, code barre inexistant,utilisateurcli inactif,... + l'exemplaire livre ne peut pas être déjà loué
  *
  * - Si l'état de l'exemplaire livre est mauvais, alors retirer le livre de la location = Desactiver
+ *
+ * - NE PAS OUBLIER D'ENVOYEZ LE MAIL APRES CREATION DE LA FACTURE
  * */
 public class FactureBean implements Serializable {
     // Déclaration des variables globales

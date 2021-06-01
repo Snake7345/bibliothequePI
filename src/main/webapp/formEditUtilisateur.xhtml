@@ -57,12 +57,26 @@
                 <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 
                 <c:if test= "#{utilisateursBean.utilisateur.roles ne 'Client'}">
+                    <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
+                    <h:inputText id="utilisateurLogin"
+                                 validatorMessage="La valeur doit être compris entre 4 et 80 caracteres"
+                                 value="#{utilisateursBean.utilisateur.login}"
+                                 required="true"
+                                 validator = "utilisateurExistValidator"
+                                 maxlength="80">
+                        <f:validateLength minimum="4" maximum="80"/>
+                    </h:inputText>
+                    <h:message for="utilisateurLogin" styleClass="errorMessage"/>
+                </c:if>
+
+                <c:if test= "#{utilisateursBean.utilisateur.roles ne 'Client'}">
                 <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
                 <h:inputSecret id="utilisateurMdp"
                              value="#{utilisateursBean.utilisateur.mdp}"
                              required="false">
                 </h:inputSecret>
                 </c:if>
+
 
                 <h:outputText value = "#{I18N['role.label.Denomination']}"/>
                 <h:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"

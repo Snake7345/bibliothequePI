@@ -46,6 +46,12 @@ public class IsbnValidator implements Validator {
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
+        /*
+        TODO :
+         Rajouter un else if en ce qui concerne la vérification de l'isbn car il doit être unique (appel du service Livres
+         Compter le nombre de chiffres correct
+         */
+
 
     }
 }

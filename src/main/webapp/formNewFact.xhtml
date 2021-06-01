@@ -27,9 +27,11 @@
 
                 <h:outputText value="numéro de membre?" />
                 <h:inputText value="#{factureBean.numMembre}" id="numMembre"
+                             validatorMessage="La valeur doit être d'exactement 9 caracteres"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.numero']}"
                              maxlength="9"/>
+                <f:validateLength minimum="9" maximum="9"/>
                 <h:message for="numMembre" styleClass="errorMessage"/>
 
 

@@ -19,19 +19,25 @@
 
                 <h:outputText value = "#{I18N['auteur.label.Nom']}"/>
                 <h:inputText id="auteurNom"
+                             validatorMessage="La valeur doit être entre 2 et 100 caracteres"
                              value="#{auteursBean.auteur.nom}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.nom']}"
+                             maxlength="100"
                              validator = "nomPrenomValidator">
+                    <f:validateLength minimum="2" maximum="100"/>
                 </h:inputText>
                 <h:message for="auteurNom" styleClass="errorMessage"/>
 
                 <h:outputText value = "#{I18N['auteur.label.Prenom']}"/>
                 <h:inputText id="auteurPrenom"
+                             validatorMessage="La valeur doit être entre 2 et 100 caracteres"
                              value="#{auteursBean.auteur.prenom}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.prenom']}"
-                             validator ="nomPrenomValidator">
+                             validator = "nomPrenomValidator"
+                             maxlength="100">
+                    <f:validateLength minimum="2" maximum="100"/>
                 </h:inputText>
                 <h:message for="auteurPrenom" styleClass="errorMessage"/>
 
