@@ -18,14 +18,14 @@
 
                     <h:outputText value = "#{I18N['exemplaireslivres.label.Etat']}"/>
                     <!--TODO : Corriger la value-->
-                    <h:selectOneRadio id="exetat" value="#{factureBean}">
+                    <h:selectOneRadio id="exetat" value="#{factureBean.exemplairesLivres.etat}">
                         <f:selectItems value="#{exemplairesLivresEnumBean.etatEnum}" />
                     </h:selectOneRadio>
 
                     <h:outputText value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
                     <!--TODO : Corriger la value-->
                     <h:inputTextarea id="CommentaireEtat"
-                                 value="#{factureBean.}" cols="25" rows="5">
+                                 value="#{factureBean.exemplairesLivres.commentaireEtat}" cols="25" rows="5">
                     </h:inputTextarea>
 
                     <h:outputText value = "#{I18N['penalite.label.Nom']}"/>
@@ -37,8 +37,8 @@
 
                 </h:panelGrid>
 
-                <h:commandButton value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}"/>
-                <h:commandButton value="#{I18N['application.button.return']}" action="#{adressesBean.flushAdd}" immediate="true"/>
+                <h:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.retourLivre}"/>
+                <h:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.f}" immediate="true"/>
             </h:form>
         </c:if>
     </ui:define>

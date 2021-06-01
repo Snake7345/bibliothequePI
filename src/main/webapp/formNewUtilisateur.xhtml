@@ -22,7 +22,7 @@
 
                     <h:outputText value = "#{I18N['utilisateur.label.Nom']}"/>
                     <h:inputText id="utilisateurNom"
-                                 validatorMessage="La valeur doit être compris entre 1 et 100 caracteres"
+                                 validatorMessage="La valeur doit être comprise entre 1 et 100 caracteres"
                                  value="#{utilisateursBean.utilisateur.nom}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.nom']}"
@@ -34,7 +34,7 @@
 
                     <h:outputText value = "#{I18N['utilisateur.label.Prenom']}"/>
                     <h:inputText id="utilisateurPrenom"
-                                 validatorMessage="La valeur doit être compris entre 1 et 100 caracteres"
+                                 validatorMessage="La valeur doit être comprise entre 1 et 100 caracteres"
                                  value="#{utilisateursBean.utilisateur.prenom}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.prenom']}"
@@ -54,7 +54,7 @@
 
                     <h:outputText value = "#{I18N['utilisateur.label.Courriel']}"/>
                     <h:inputText id="utilisateurCourriel"
-                                 validatorMessage="La valeur doit être compris entre 3 et 100 caracteres"
+                                 validatorMessage="La valeur doit être comprise entre 3 et 100 caracteres"
                                  value="#{utilisateursBean.utilisateur.courriel}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.courriel']}"
@@ -66,7 +66,7 @@
 
                     <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
                     <h:inputText id="utilisateurLogin"
-                                 validatorMessage="La valeur doit être compris entre 4 et 80 caracteres"
+                                 validatorMessage="La valeur doit être comprise entre 4 et 80 caracteres"
                                  value="#{utilisateursBean.utilisateur.login}"
                                  required="true"
                                  validator = "utilisateurExistValidator"
@@ -77,7 +77,7 @@
 
                     <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
                     <h:inputSecret id="utilisateurMdp"
-                                   validatorMessage="La valeur doit être compris entre 8 et 40 caracteres"
+                                   validatorMessage="La valeur doit être comprise entre 8 et 40 caracteres"
                                    value="#{utilisateursBean.utilisateur.mdp}"
                                    required="true"
                                    maxlength="40">

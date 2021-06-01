@@ -15,21 +15,30 @@
             <title>Est ce que le livre est endommagé ou pas ? [A MODIFIER dans le message properties]</title>
         </h:head>
         <h:form>
-        <!--TODO Ajouter le code barre du livre concerné-->
-        <h:outputText value = "#{I18N['exemplaireslivres.label.CodeBarre']}"/>
-        <h:inputText id="exemplLivresCB"
-                     value="#{factureBean.CB}"
-                     required="true"
-                     requiredMessage="#{I18N['formulaire.message.required.CB']}"
-                     minlength ="4">
-        </h:inputText>
-        <h:message for="exemplLivresCB" styleClass="errorMessage"/>
+            <h:outputText value="bibliotheque"/>
+            <h:selectOneMenu value = "#{factureBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.biblio']}"
+                             converter="biblioConverter">
+                <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
+                               itemLabel="#{bi.nom}"
+                               itemValue="#{bi}"/>
+            </h:selectOneMenu>
+            <h:message for="bibli" styleClass="errorMessage"/>
+
+            <!--TODO Ajouter le code barre du livre concerné-->
+            <h:outputText value = "#{I18N['exemplaireslivres.label.CodeBarre']}"/>
+            <h:inputText id="exemplLivresCB"
+                         value="#{factureBean.CB}"
+                         required="true"
+                         requiredMessage="#{I18N['formulaire.message.required.CB']}"
+                         minlength ="4">
+            </h:inputText>
+            <h:message for="exemplLivresCB" styleClass="errorMessage"/>
             <!--TODO MODIFIER LE SELECTONERADIO-->
             <h:selectOneRadio value = "#{factureBean.choixetat}" required="true">
                 <f:selectItem itemValue = "#{true}" itemLabel = "#{I18N['commune.label.oui']}" />
                 <f:selectItem itemValue = "#{false}" itemLabel = "#{I18N['commune.label.non']}"/>
             </h:selectOneRadio>
-        <!--TODO créer la méthode dans bean-->
+            <!--TODO créer la méthode dans bean-->
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.redirectChoix}"/>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
         </h:form>

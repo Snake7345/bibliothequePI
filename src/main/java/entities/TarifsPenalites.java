@@ -11,7 +11,7 @@ import java.util.Objects;
         ({
                 @NamedQuery(name = "TarifsPenalites.findAll", query = "SELECT tp FROM TarifsPenalites tp"),
                 // Trouver la date début la plus proche qui est déja passé, un join a pena car j'ai ma dénomination dedans
-                @NamedQuery(name = "TarifsPenalites.findByPenalites", query = "SELECT tp FROM TarifsPenalites tp WHERE tp.dateDebut<=:dateDebut AND tp.dateFin>=:dateFin AND tp.penalite IN (SELECT p FROM Penalites p where p.denomination=:denominationPena)  AND tp.tarif IN (SELECT t FROM Tarifs t where t.denomination=:denominationTarif) ORDER BY tp.dateDebut DESC"),
+                @NamedQuery(name = "TarifsPenalites.findByPenalites", query = "SELECT tp FROM TarifsPenalites tp WHERE tp.dateDebut<=:dateDebut AND tp.dateFin>=:dateFin AND tp.penalite=:penalite AND tp.tarif=:tarif ORDER BY tp.dateDebut DESC"),
         })
 public class TarifsPenalites implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -43,20 +43,21 @@ public class FactureBean implements Serializable {
     private Factures factures;
     private static final Logger log = Logger.getLogger(FactureBean.class);
     private List<locationCustom> listLC = new ArrayList<>();
-    private String numMembre;
-    private Bibliotheques Bibli;
-    private String CB;
     private List<TarifsPenalites> tarifsPenalites;
+    private String numMembre;
+    private String CB;
     private boolean choixetat;
+    private Bibliotheques Bibli;
+    private ExemplairesLivres exemplairesLivres;
     @PostConstruct
     public void init(){
         listLC = new ArrayList<>();
         addNewListRow();
         factures= new Factures();
         numMembre= "";
-        Bibli= new Bibliotheques();
         CB= "";
-        tarifsPenalites= new ArrayList<>();
+
+
 
     }
     public void addNewListRow() {
@@ -251,6 +252,11 @@ public class FactureBean implements Serializable {
 
     public String redirectChoix(){
         if (choixetat){
+            SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+            exemplairesLivres = serviceEL.findOneByCodeBarre(CB).get(0);
+            Date date = new Date();
+            SvcTarifs serviceT = new SvcTarifs();
+            tarifsPenalites= (List<TarifsPenalites>) serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0).getTarifsPenalites();
             return "formEtatLivre.xhtml?faces-redirect=true";
         }
         else {
@@ -273,6 +279,7 @@ public class FactureBean implements Serializable {
             for (FacturesDetail fd : listEL.get(0).getFactureDetails()){
                 if (fd.getDateRetour() == null) {
                     facturesDetail = fd;
+                    numMembre=fd.getFacture().getUtilisateurs().getNumMembre();
                     flag=true;
                 }
             }
@@ -289,6 +296,7 @@ public class FactureBean implements Serializable {
                 {
                     if (fd.getDateRetour() == null) {
                         flag = true;
+                        break;
                     }
                 }
                 if (!flag){
@@ -440,5 +448,13 @@ public class FactureBean implements Serializable {
 
     public void setChoixetat(boolean choixetat) {
         this.choixetat = choixetat;
+    }
+
+    public ExemplairesLivres getExemplairesLivres() {
+        return exemplairesLivres;
+    }
+
+    public void setExemplairesLivres(ExemplairesLivres exemplairesLivres) {
+        this.exemplairesLivres = exemplairesLivres;
     }
 }
