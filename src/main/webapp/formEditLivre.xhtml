@@ -22,8 +22,7 @@
                 <h:inputText id="livreTitre"
                              value="#{livresBean.livre.titre}"
                              required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.titre']}"
-                             minlength ="2">
+                             requiredMessage="#{I18N['formulaire.message.required.titre']}">
                 </h:inputText>
                 <h:message for="livreTitre" styleClass="errorMessage"/>
 
@@ -39,9 +38,12 @@
                 <h:inputText id="livreAnnee"
                              value="#{livresBean.livre.annee}"
                              required="true"
+                             validatorMessage="la valeur ne peut être négative et doit comprendre 4 chiffre"
+                             converterMessage="il ne peut y avoir que des chiffres"
                              requiredMessage="#{I18N['formulaire.message.required.annee']}"
-                             minlength = "4" maxlength="4">
-                    <f:validateRegex pattern="^\d{4}$"/>
+                             maxlength="4">
+                    <f:validateLongRange minimum="0"/>
+                    <f:validateLength minimum="4" maximum="4"/>
                 </h:inputText>
                 <h:message for="livreAnnee" styleClass="errorMessage"/>
 
@@ -51,7 +53,7 @@
                              value="#{livresBean.livre.isbn}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.isbn']}"
-                             minlength = "10" maxlength="17"
+                             maxlength="17"
                              validator ="isbnValidator">
                 </h:inputText>
                 <h:message for="livreISBN" styleClass="errorMessage"/>
