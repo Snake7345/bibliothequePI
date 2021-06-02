@@ -64,7 +64,7 @@ public class EditeursBean implements Serializable {
     public String flushEd()
     {
         init();
-        return "tableEditeurs?faces-redirect=true";
+        return "/tableEditeurs?faces-redirect=true";
     }
 
     /*

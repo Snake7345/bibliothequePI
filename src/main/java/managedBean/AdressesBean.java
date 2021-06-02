@@ -64,7 +64,7 @@ public class AdressesBean implements Serializable {
     public String flushAdd()
     {
         init();
-        return "tableAdresses?faces-redirect=true";
+        return "/tableAdresses?faces-redirect=true";
     }
 
 

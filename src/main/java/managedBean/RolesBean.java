@@ -98,7 +98,7 @@ public class RolesBean implements Serializable {
     public String flushRol()
     {
         init();
-        return "tableRoles?faces-redirect=true";
+        return "/tableRoles?faces-redirect=true";
     }
 
     /*

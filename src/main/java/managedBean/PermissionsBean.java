@@ -68,7 +68,7 @@ public class PermissionsBean implements Serializable {
     public String flushPerm()
     {
         init();
-        return "tablePermissions?faces-redirect=true";
+        return "/tablePermissions?faces-redirect=true";
     }
 
     /*

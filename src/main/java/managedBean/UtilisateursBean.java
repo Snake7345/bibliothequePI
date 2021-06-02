@@ -185,7 +185,7 @@ public class UtilisateursBean implements Serializable {
         //{
 
         //}
-        return "formSearchUtilisateur?faces-redirect=true";
+        return "/formSearchUtilisateur?faces-redirect=true";
     }
 
     public String flushUtil() {
@@ -193,14 +193,14 @@ public class UtilisateursBean implements Serializable {
         if (searchResults != null) {
             searchResults.clear();
         }
-        return "tableUtilisateurs?faces-redirect=true";
+        return "/tableUtilisateurs?faces-redirect=true";
     }
 
     public String flushBienv()
     {
         //ToDO a optimiser
         init();
-        return "bienvenue?faces-redirect=true";
+        return "/bienvenue?faces-redirect=true";
     }
     /*
      * Méthode qui permet via le service de retourner la liste de tous les utilisateurs actifs

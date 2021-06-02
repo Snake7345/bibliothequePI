@@ -62,7 +62,7 @@ public class GenresBean implements Serializable {
     public String flushGen()
     {
         init();
-        return "tableGenres?faces-redirect=true";
+        return "/tableGenres?faces-redirect=true";
     }
 
     /*

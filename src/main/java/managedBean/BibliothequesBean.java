@@ -66,7 +66,7 @@ public class BibliothequesBean implements Serializable {
     public String flushBiblio()
     {
         init();
-        return "tableBibliotheques?faces-redirect=true";
+        return "/tableBibliotheques?faces-redirect=true";
     }
     /*
      * Méthode qui permet via le service de retourner

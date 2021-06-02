@@ -142,7 +142,7 @@ public class AuteursBean implements Serializable {
         {
             searchResults.clear();
         }
-        return "tableAuteurs?faces-redirect=true";
+        return "/tableAuteurs?faces-redirect=true";
     }
 
     public String searchAuteur()
@@ -169,7 +169,7 @@ public class AuteursBean implements Serializable {
         //{
 
         //}
-        return "formSearchAuteur?faces-redirect=true";
+        return "/formSearchAuteur?faces-redirect=true";
     }
 
     //public void edit()
@@ -197,7 +197,7 @@ public class AuteursBean implements Serializable {
     public String flushBienv()
     {
         init();
-        return "bienvenue?faces-redirect=true";
+        return "/bienvenue?faces-redirect=true";
     }
     /*
      * Méthode qui permet via le service de retourner
