@@ -22,12 +22,12 @@
 
                 <h:outputText value = "#{I18N['livre.label.Titre']}"/>
                 <h:inputText id="livreTitre"
-                             validatorMessage="La valeur doit être entre 2 et 100 caracteres"
+                             validatorMessage="La valeur doit être entre 1 et 100 caracteres"
                              value="#{livresBean.livre.titre}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.titre']}"
                              maxlength="100">
-                    <f:validateLength minimum="2" maximum="100"/>
+                    <f:validateLength minimum="1" maximum="100"/>
                 </h:inputText>
                 <h:message for="livreTitre" styleClass="errorMessage"/>
 
@@ -46,7 +46,7 @@
                     <f:selectItems value = "#{genresBean.readAll}" var="livgen" itemLabel="#{livgen.denomination}" itemValue="#{livgen}"/>
                 </h:selectManyListbox>
                 <h:message for="livreGenre" styleClass="errorMessage"/>
-
+<!--Enlever le 0 qui est mis comme valeur de base-->
                 <h:outputText value = "#{I18N['livre.label.Annee']}"/>
                 <h:inputText id="livreAnnee"
                              value="#{livresBean.livre.annee}"
@@ -64,7 +64,6 @@
                 <h:inputText id="livreISBN"
                              value="#{livresBean.livre.isbn}"
                              required="true"
-                             validatorMessage="la valeur est comprises entre 10 et 17 caracteres"
                              requiredMessage="#{I18N['formulaire.message.required.isbn']}"
                              maxlength="17"
                              validator="isbnValidator">

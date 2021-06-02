@@ -41,12 +41,14 @@ public class IsbnValidator implements Validator {
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
+
         else if((ISBN.length() != 10) && (ISBN.length() != 13) &&(ISBN.length() != 17))
         {
             FacesMessage msg = new FacesMessage("Pour encoder l'isbn vous devez mettre 10,13 ou 17 caracteres");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
+        /*TODO : Compter le nombre de chiffre sans les tirets doit être = a 10 ou 13 */
         else if(serviceL.findByIsbn(ISBN).size() != 0)
         {
             FacesMessage msg = new FacesMessage("Cette ISBN existe déjà en DB");
