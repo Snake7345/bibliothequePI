@@ -69,7 +69,7 @@ public class FactureBean implements Serializable {
         }
     }
 
-    public static void sendMessage( String filename, String mailDest)  {
+    public static void sendMessage( String filename, String mailDest, String Texte, String Titre)  {
         //CrÃ©ation de la session
         String mail = "bibliolibatc@gmail.com";
         String password = "porte7345";
@@ -88,7 +88,7 @@ public class FactureBean implements Serializable {
 
             BodyPart messageBodyPart = new MimeBodyPart();
             Multipart multipart = new MimeMultipart();
-            messageBodyPart.setText("mail de test facture");
+            messageBodyPart.setText(Texte);
             multipart.addBodyPart(messageBodyPart);
             messageBodyPart = new MimeBodyPart();
             DataSource source = new FileDataSource(userdir);
@@ -96,7 +96,7 @@ public class FactureBean implements Serializable {
             messageBodyPart.setFileName(filename);
             multipart.addBodyPart(messageBodyPart);
             message.setContent(multipart);
-            message.setSubject("facture");
+            message.setSubject(Titre);
             message.setFrom(new InternetAddress(mail));
             message.addRecipients(Message.RecipientType.TO, mailDest);
         } catch (MessagingException e) {
@@ -186,7 +186,7 @@ public class FactureBean implements Serializable {
                 transaction.commit();
                 service.refreshEntity(fact);
                 MFB.creation(fact);
-                sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel());
+                sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant votre location en piece jointe","Facture de location");
                 return "/TableFactures.xhtml?faces-redirect=true";
             } finally {
                 //bloc pour gÃ©rer les erreurs lors de la transactions
@@ -290,7 +290,7 @@ public class FactureBean implements Serializable {
             //refresh pour rÃ©cupÃ©rer les collections associÃ©es
             service.refreshEntity(fact);
             MFB.creation(fact,tarifsPenalites,factdetretard);
-            sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel());
+            sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant les pénalités suite a votre location en piece jointe","Facture de pénalité");
         }
         finally {
             //bloc pour gÃ©rer les erreurs lors de la transactions
