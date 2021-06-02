@@ -60,7 +60,7 @@
                 </h:inputText>
                 <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 <!--Ne fonctionne pas-->
-                <c:if test= "#{utilisateursBean.utilisateur.roles ne 'Client'}">
+                <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
                     <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
                     <h:inputText id="utilisateurLogin"
                                  validatorMessage="La valeur doit être compris entre 4 et 80 caracteres"
@@ -73,7 +73,7 @@
                     <h:message for="utilisateurLogin" styleClass="errorMessage"/>
                 </c:if>
 
-                <c:if test= "#{utilisateursBean.utilisateur.roles ne 'Client'}">
+                <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
                 <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
                 <h:inputSecret id="utilisateurMdp"
                              value="#{utilisateursBean.utilisateur.mdp}"
