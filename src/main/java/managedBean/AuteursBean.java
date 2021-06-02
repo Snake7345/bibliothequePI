@@ -15,6 +15,12 @@ import java.util.List;
 
 @Named
 @SessionScoped
+/*
+* TODO :
+* - Quand un auteur est désactivé, alors les livres et les exemplaires livres sont désactivé,
+* - Quand un auteur est réactivé, alors les livres sont réactivés uniquement.
+* - Formulaire Confirmation de la manip
+* */
 public class AuteursBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;

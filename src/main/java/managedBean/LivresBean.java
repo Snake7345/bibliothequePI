@@ -18,6 +18,12 @@ import java.util.List;
 
 @Named
 @SessionScoped
+/*
+* TODO :
+*  - Quand un livre est désactivé, les exemplaires livres sont désactivés.
+*  - Quand un livre est réactivé, seul le livre est réactivé.
+*  - Formulaire confirmation
+* */
 public class LivresBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
