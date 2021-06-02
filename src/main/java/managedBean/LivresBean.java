@@ -47,6 +47,9 @@ public class LivresBean implements Serializable {
     {
         listLiv = getReadAll();
         livre = new Livres();
+        aut = new Auteurs();
+        edit = new Editeurs();
+        gen = new Genres();
     }
 
     public String newLivre()
@@ -89,6 +92,8 @@ public class LivresBean implements Serializable {
                 init();
             }
 
+            auteur.clear();
+            genre.clear();
             service.close();
         }
     }
@@ -111,6 +116,12 @@ public class LivresBean implements Serializable {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
             }
+            else
+            {
+                init();
+            }
+            auteur.clear();
+            genre.clear();
             service.close();
         }
 
