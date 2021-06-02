@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.*;
 import org.apache.log4j.Logger;
+import services.SvcExemplairesLivres;
 import services.SvcLivres;
 import services.SvcLivresAuteurs;
 import services.SvcLivresGenres;
@@ -20,8 +21,6 @@ import java.util.List;
 @SessionScoped
 /*
 * TODO :
-*  - Quand un livre est désactivé, les exemplaires livres sont désactivés.
-*  - Quand un livre est réactivé, seul le livre est réactivé.
 *  - Formulaire confirmation
 * */
 public class LivresBean implements Serializable {
@@ -120,19 +119,40 @@ public class LivresBean implements Serializable {
     public String activdesactivLiv()
     {
         SvcLivres service = new SvcLivres();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        serviceEL.setEm(service.getEm());
         EntityTransaction transaction = service.getTransaction();
         log.debug("je débute la méthode activdésactive");
-        /*Si le livre est actif alors on le désactive; sinon on l'active*/
+
+        transaction.begin();
+        try {
+            /*Si le livre est actif alors on le désactive; sinon on l'active*/
             if(livre.isActif())
             {
-                log.debug("je passe le if de désactive");
                 livre.setActif(false);
+                for (ExemplairesLivres el:livre.getExemplairesLivres()) {
+                    el.setActif(false);
+
+                }
             }
             else
             {
                 livre.setActif(true);
             }
-            save();
+            livre.setIsbn(livre.getIsbn().replace("-", ""));
+            service.save(livre);
+
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+            }
+            service.close();
+        }
             log.debug("J'ai modifié le livre");
             return "/tableLivres.xhtml?faces-redirect=true";
     }
@@ -141,8 +161,6 @@ public class LivresBean implements Serializable {
     {
 
         SvcLivres service = new SvcLivres();
-        //try
-        //{
 
         log.debug("list livres " + service.getByTitre(livre.getTitre()).size());
         if(service.getByTitre(livre.getTitre()).isEmpty())
@@ -155,12 +173,6 @@ public class LivresBean implements Serializable {
         {
             searchResults = service.getByTitre(livre.getTitre());
         }
-
-        //}
-        //catch
-        //{
-
-        //}
         return "formSearchLivre?faces-redirect=true";
     }
 

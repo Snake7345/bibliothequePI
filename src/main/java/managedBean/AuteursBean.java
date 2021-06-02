@@ -1,8 +1,14 @@
 package managedBean;
 
 import entities.Auteurs;
+import entities.ExemplairesLivres;
+import entities.Livres;
+import entities.LivresAuteurs;
+import enumeration.ExemplairesLivresEtatEnum;
 import org.apache.log4j.Logger;
 import services.SvcAuteurs;
+import services.SvcExemplairesLivres;
+import services.SvcLivres;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -17,9 +23,7 @@ import java.util.List;
 @SessionScoped
 /*
 * TODO :
-* - Quand un auteur est désactivé, alors les livres et les exemplaires livres sont désactivé,
-* - Quand un auteur est réactivé, alors les livres sont réactivés uniquement.
-* - Formulaire Confirmation de la manip
+*  - Formulaire Confirmation de la manip
 * */
 public class AuteursBean implements Serializable {
     // Déclaration des variables globales
@@ -38,7 +42,6 @@ public class AuteursBean implements Serializable {
 
     public String newAuteur()
     {
-        //Todo mettre/faire une verification de l'objet auteur,
         save();
         return "/tableAuteurs.xhtml?faces-redirect=true";
     }
@@ -72,18 +75,62 @@ public class AuteursBean implements Serializable {
     public String activdesactivAut()
     {
         SvcAuteurs service = new SvcAuteurs();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        SvcLivres serviceL = new SvcLivres();
+        serviceL.setEm(service.getEm());
+        serviceEL.setEm(service.getEm());
         EntityTransaction transaction = service.getTransaction();
+
         log.debug("je débute la méthode activdésactive");
 
-        if(auteur.isActif())
+        transaction.begin();
+        try {
+            if(auteur.isActif())
             {
-            auteur.setActif(false);
+
+                if (auteur.getLivresAuteur().size()>=1){
+                    for (LivresAuteurs LA: auteur.getLivresAuteur()){
+                        Livres livres = LA.getLivre();
+                        if (livres.getExemplairesLivres().size()>=1){
+                            for (ExemplairesLivres EL:livres.getExemplairesLivres()) {
+                                EL.setActif(false);
+                                serviceEL.save(EL);
+
+                            }
+                        }
+                        livres.setActif(false);
+                        serviceL.save(livres);
+                    }
+                }
+                auteur.setActif(false);
             }
-        else
+            else
             {
-            auteur.setActif(true);
+                if (auteur.getLivresAuteur().size()>=1){
+                    for (LivresAuteurs LA: auteur.getLivresAuteur()){
+                        Livres livres = LA.getLivre();
+                        livres.setActif(true);
+                        serviceL.save(livres);
+                    }
+                }
+                auteur.setActif(true);
             }
-        save();
+            service.save(auteur);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+            }
+            else
+            {
+                init();
+            }
+            service.close();
+        }
         return "/tableAuteurs.xhtml?faces-redirect=true";
 
     }
