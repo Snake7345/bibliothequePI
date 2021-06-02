@@ -17,12 +17,12 @@
 
                 <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
                 <h:inputText id="adresseRue"
-                             validatorMessage="La rue doit avoir entre 3 et 255 caracteres"
+                             validatorMessage="La rue doit avoir entre 2 et 100 caractere"
                              value="#{adressesBean.adresse.rue}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.rue']}"
-                             maxlength="255">
-                <f:validateLength minimum="3" maximum="255"/>
+                             maxlength="100">
+                <f:validateLength minimum="2" maximum="100"/>
                 </h:inputText>
                 <h:message for="adresseRue" styleClass="errorMessage"/>
 
@@ -30,7 +30,7 @@
                 <h:inputText id="adresseBoite"
                              required="false"
                              value="#{adressesBean.adresse.boite}"
-                             maxlength="255">
+                             maxlength="10">
                 </h:inputText>
                 <h:message for="adresseBoite" styleClass="errorMessage"/>
 
