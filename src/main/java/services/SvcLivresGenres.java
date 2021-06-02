@@ -3,7 +3,12 @@ package services;
 
 import entities.Genres;
 import entities.Livres;
+import entities.LivresAuteurs;
 import entities.LivresGenres;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SvcLivresGenres extends Service<LivresGenres>
 
@@ -32,5 +37,11 @@ public class SvcLivresGenres extends Service<LivresGenres>
         lg.setGenre(g);
 
         return lg;
+    }
+    public List<LivresGenres> GetByLivre(Livres livres) {
+        Map<String, Livres> param = new HashMap<>();
+        param.put("livre", livres);
+
+        return finder.findByNamedQuery("LivresGenres.findBylivre", param);
     }
 }

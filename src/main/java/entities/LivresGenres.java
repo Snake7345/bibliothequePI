@@ -8,6 +8,7 @@ import java.io.Serializable;
 @NamedQueries
         ({
                 @NamedQuery(name = "LivresGenres.findAll", query = "SELECT lg FROM LivresGenres lg"),
+                @NamedQuery(name = "LivresGenres.findBylivre", query = "SELECT lg FROM LivresGenres lg where lg.livre=:livre"),
 
         })
 public class LivresGenres implements Serializable {

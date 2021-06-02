@@ -28,18 +28,14 @@ public class LivresBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Livres livre;
     private static final Logger log = Logger.getLogger(LivresBean.class);
-
-    private LivresAuteurs livresAuteur;
-    private List<Auteurs> auteur;
     private LivresGenres livresGenre;
+    private LivresAuteurs livresAuteur;
     private List<Genres> genre;
-
+    private List<Auteurs> auteur;
     private Auteurs aut;
     private Editeurs edit;
     private Genres gen;
-
     private List<Livres> listLiv = new ArrayList<Livres>();
-
     private List<Livres> searchResults;
 
     @PostConstruct
@@ -61,7 +57,6 @@ public class LivresBean implements Serializable {
         serviceLA.setEm(service.getEm());
         serviceLG.setEm(service.getEm());
 
-        //Todo mettre/faire une verification de l'objet Livre, ainsi que des auteurs et du genre
         log.debug("J'vais essayer d'sauver le livre");
 
         transaction.begin();
@@ -127,6 +122,18 @@ public class LivresBean implements Serializable {
 
     }
 
+    public String redirectModif(){
+        SvcLivresGenres serviceLG = new SvcLivresGenres();
+        SvcLivresAuteurs serviceLA = new SvcLivresAuteurs();
+        for(LivresAuteurs LA : serviceLA.GetByLivre(livre)){
+            auteur.add(LA.getAuteur());
+        }
+        for(LivresGenres LG : serviceLG.GetByLivre(livre)){
+            genre.add(LG.getGenre());
+        }
+        return "/tableLivres.xhtml?faces-redirect=true";
+    };
+
     public String activdesactivLiv()
     {
         SvcLivres service = new SvcLivres();
@@ -184,7 +191,7 @@ public class LivresBean implements Serializable {
         {
             searchResults = service.getByTitre(livre.getTitre());
         }
-        return "formSearchLivre?faces-redirect=true";
+        return "/formSearchLivre.xhtml?faces-redirect=true";
     }
 
     public String flushLiv()
@@ -194,7 +201,7 @@ public class LivresBean implements Serializable {
         {
             searchResults.clear();
         }
-        return "tableLivres?faces-redirect=true";
+        return "/tableLivres.xhtml?faces-redirect=true";
     }
 
 
@@ -250,7 +257,7 @@ public class LivresBean implements Serializable {
         listLiv = service.getByAuteurs(aut);
 
         service.close();
-        return "tableLivres?faces-redirect=true";
+        return "/tableLivres.xhtml?faces-redirect=true";
     }
 
     public String readByEditeurs()
@@ -259,7 +266,7 @@ public class LivresBean implements Serializable {
         listLiv = service.getByEditeurs(edit);
 
         service.close();
-        return "tableLivres?faces-redirect=true";
+        return "/tableLivres.xhtml?faces-redirect=true";
     }
 
     public String readByGenres()
@@ -268,13 +275,13 @@ public class LivresBean implements Serializable {
         listLiv = service.getByGenres(gen);
 
         service.close();
-        return "tableLivres?faces-redirect=true";
+        return "/tableLivres.xhtml?faces-redirect=true";
     }
 
     public String flushBienv()
     {
         init();
-        return "bienvenue?faces-redirect=true";
+        return "/bienvenue.xhtml?faces-redirect=true";
     }
 
     //-------------------------------Getter & Setter--------------------------------------------
