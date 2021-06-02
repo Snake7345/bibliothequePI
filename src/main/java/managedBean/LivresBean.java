@@ -59,7 +59,7 @@ public class LivresBean implements Serializable {
 
         transaction.begin();
         try {
-            //ISBN.replace("-","");
+            livre.setIsbn(livre.getIsbn().replace("-", ""));
             livre = service.save(livre);
             for (Auteurs auteurs : auteur) {
                 serviceLA.save(serviceLA.createLivresAuteurs(livre, auteurs));
