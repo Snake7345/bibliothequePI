@@ -95,6 +95,7 @@ public class LivresBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
+            livre.setIsbn(livre.getIsbn().replace("-", ""));
             service.save(livre);
             //
             transaction.commit();
