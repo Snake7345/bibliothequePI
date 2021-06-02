@@ -31,11 +31,7 @@ import java.util.*;
 @Named
 @SessionScoped
 /*TODO :
- *
- * -REFUSER LA CREATION DE LA FACTURE SI UN DES ELEMENTS DE LA FACTURE SONT MANQUANTS
- * (adresse, tarifs, livres,...)
  * - la redirection quand la facture et crÃ©e
- *
  * */
 public class FactureBean implements Serializable {
     // DÃ©claration des variables globales
@@ -187,7 +183,7 @@ public class FactureBean implements Serializable {
                 service.refreshEntity(fact);
                 MFB.creation(fact);
                 sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant votre location en piece jointe","Facture de location");
-                return "/TableFactures.xhtml?faces-redirect=true";
+                return "/tableFactures.xhtml?faces-redirect=true";
             } finally {
                 //bloc pour gÃ©rer les erreurs lors de la transactions
                 if (transaction.isActive()) {
@@ -206,7 +202,7 @@ public class FactureBean implements Serializable {
         else {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("Erreur", new FacesMessage("une erreur est survenue, soit Le livre est déjà loué ou une information est manquante (tarif, biblotheque)"));
-            return "formNewFact.xhtml?faces-redirect=true";
+            return "/formNewFact.xhtml?faces-redirect=true";
         }
     }
 
@@ -316,7 +312,7 @@ public class FactureBean implements Serializable {
             Date date = new Date();
             SvcTarifs serviceT = new SvcTarifs();
             tarifsPenalites= (List<TarifsPenalites>) serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0).getTarifsPenalites();
-            return "formEtatLivre.xhtml?faces-redirect=true";
+            return "/formEtatLivre.xhtml?faces-redirect=true";
         }
         else {
             return retourLivre();
@@ -399,7 +395,7 @@ public class FactureBean implements Serializable {
             fc.addMessage("Erreur", new FacesMessage("le livre n'est pas louÃ©"));
         }
         // todo rÃ©flÃ©chir au retour
-        return "tableFactures.xhtml?faces-redirect=true";
+        return "/tableFactures.xhtml?faces-redirect=true";
     }
 
     /*MÃ©thode permettant de crÃ©er un numÃ©ro de facture avec FB(FactureBiblio) suivi de l'annÃ©e, le mois et un nombre a 4 chiffres*/
