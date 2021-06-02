@@ -30,11 +30,15 @@ public class IsbnValidator implements Validator {
         final Logger log = Logger.getLogger(IsbnValidator.class);
         String ISBN = String.valueOf(value);
         SvcLivres serviceL = new SvcLivres();
-        //log.debug("test1 "+ ISBN.length());
-        log.debug(pattern.pattern());
         matcher = pattern.matcher(value.toString());
-        log.debug("value = " + value.toString());
-        log.debug(matcher.matches());
+
+        int count = 0;
+        for (int i = 0; i < ISBN.length(); i++) {
+            if (Character.isDigit(ISBN.charAt(i))){
+                count++;
+            }
+        }
+
         if (!matcher.matches())
         {
             FacesMessage msg = new FacesMessage("La donnee ne doit contenir que des tirets (-) et des chiffres (de 0 à 9)");
@@ -52,6 +56,11 @@ public class IsbnValidator implements Validator {
         else if(serviceL.findByIsbn(ISBN).size() != 0)
         {
             FacesMessage msg = new FacesMessage("Cette ISBN existe déjà en DB");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
+        }
+        else if (count!=10 && count!=13){
+            FacesMessage msg = new FacesMessage("Pour encoder l'isbn vous devez mettre 10 ou 13 Chiffres");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
