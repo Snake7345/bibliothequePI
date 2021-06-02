@@ -5,23 +5,28 @@ import enumeration.ExemplairesLivresEtatEnum;
 import enumeration.FactureEtatEnum;
 import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import pdfTools.ModelFactBiblio;
 import pdfTools.ModelFactBiblioPena;
 import services.*;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.mail.*;
+
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Named
 @SessionScoped
@@ -29,13 +34,11 @@ import java.util.List;
  *
  * -REFUSER LA CREATION DE LA FACTURE SI UN DES ELEMENTS DE LA FACTURE SONT MANQUANTS
  * (adresse, tarifs, livres,...)
- * - la redirection quand la facture et crée
- *
- * - Si l'état de l'exemplaire livre est mauvais, alors retirer le livre de la location = Desactiver
+ * - la redirection quand la facture et crÃ©e
  *
  * */
 public class FactureBean implements Serializable {
-    // Déclaration des variables globales
+    // DÃ©claration des variables globales
     private static final long serialVersionUID = 1L;
 
     private Factures factures;
@@ -66,9 +69,52 @@ public class FactureBean implements Serializable {
         }
     }
 
+    public static void sendMessage( String filename)  {
+        //CrÃ©ation de la session
+        String mail = "bibliolibatc@gmail.com";
+        String password = "porte7345";
+
+
+        String userdir = System.getProperty("user.dir");
+        userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\Factures\\" + filename;
+
+
+        Properties properties = new Properties();
+
+
+        Session session = Session.getInstance(properties);
+        MimeMessage message = new MimeMessage(session);
+        try {
+
+            BodyPart messageBodyPart = new MimeBodyPart();
+            Multipart multipart = new MimeMultipart();
+            messageBodyPart.setText("mail de test facture");
+            multipart.addBodyPart(messageBodyPart);
+            messageBodyPart = new MimeBodyPart();
+            DataSource source = new FileDataSource(userdir);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(filename);
+            multipart.addBodyPart(messageBodyPart);
+            message.setContent(multipart);
+            message.setSubject("facture");
+            message.setFrom(new InternetAddress(mail));
+            message.addRecipients(Message.RecipientType.TO, "jeromegillain@gmail.com");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Transport transport = session.getTransport("smtps");
+            transport.connect ("smtp.gmail.com", 465, mail, password);
+            transport.sendMessage(message,new Address[] { new InternetAddress("jeromegillain@gmail.com")});
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
     public String newFact()
     {
-        //TODO finaliser la méthode
+        //TODO finaliser la mÃ©thode
 
         //initialisation des services requis
         SvcFacture service =new SvcFacture();
@@ -93,7 +139,7 @@ public class FactureBean implements Serializable {
         Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
         boolean flag = false;
-        //vérif si livre non loué
+        //vÃ©rif si livre non louÃ©
         for (locationCustom lc: listLC) {
             if (serviceEL.findOneByCodeBarre(lc.getCB()).get(0).isLoue()){
                 flag=true;
@@ -106,7 +152,7 @@ public class FactureBean implements Serializable {
             EntityTransaction transaction = service.getTransaction();
             transaction.begin();
             try {
-                //création de la facture
+                //crÃ©ation de la facture
                 fact.setDateDebut(timestampdebut);
                 fact.setNumeroFacture(createNumFact());
                 String path = "Factures\\" + fact.getNumeroFacture() + ".pdf";
@@ -115,7 +161,7 @@ public class FactureBean implements Serializable {
                 fact.setUtilisateurs(u);
                 // parcour de la liste des location a inscrire dans la facture
                 for (locationCustom lc : listLC) {
-                    //création des détails de la facture
+                    //crÃ©ation des dÃ©tails de la facture
                     ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
                     serviceEL.loueExemplaire(el);
                     Timestamp timestampretour = new Timestamp(rounded + (lc.getNbrJours() * 24 * 3600 * 1000));
@@ -132,9 +178,10 @@ public class FactureBean implements Serializable {
                 transaction.commit();
                 service.refreshEntity(fact);
                 MFB.creation(fact);
+                sendMessage(fact.getNumeroFacture()+".pdf");
                 return "TableFactures.xhtml?faces-redirect=true";
             } finally {
-                //bloc pour gérer les erreurs lors de la transactions
+                //bloc pour gÃ©rer les erreurs lors de la transactions
                 if (transaction.isActive()) {
                     transaction.rollback();
                     FacesContext fc = FacesContext.getCurrentInstance();
@@ -149,9 +196,9 @@ public class FactureBean implements Serializable {
             }
         }
         else {
-            //todo facemessage pour signaler que l'on ne peut louer un livre déjà loué
+            //todo facemessage pour signaler que l'on ne peut louer un livre dÃ©jÃ  louÃ©
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("Erreur", new FacesMessage("Erreur le livre a déjà été loué"));
+            fc.addMessage("Erreur", new FacesMessage("Le livre est déjà loué"));
             return "formNewFact.xhtml?faces-redirect=true";
         }
 
@@ -160,7 +207,7 @@ public class FactureBean implements Serializable {
     public void newFactPena(FacturesDetail facturesDetail)
     {
 
-        //TODO finaliser la méthode
+        //TODO finaliser la mÃ©thode
         //initialisation des services requis
 
         SvcFacture service =new SvcFacture();
@@ -197,7 +244,7 @@ public class FactureBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            //création de la facture
+            //crÃ©ation de la facture
             fact.setDateDebut(timestampfacture);
             fact.setNumeroFacture(createNumFact());
             String path = "Factures\\" + fact.getNumeroFacture() + ".pdf";
@@ -205,7 +252,7 @@ public class FactureBean implements Serializable {
             fact.setEtat(FactureEtatEnum.terminer);
             fact.setUtilisateurs(u);
 
-            //création des facture détails
+            //crÃ©ation des facture dÃ©tails
             if (tarifsPenalites.size() >= 1){
                 for (TarifsPenalites tp: tarifsPenalites)
                 {
@@ -234,12 +281,13 @@ public class FactureBean implements Serializable {
             // sauvegarde de la facture et commit de transaction
             service.save(fact);
             transaction.commit();
-            //refresh pour récupérer les collections associées
+            //refresh pour rÃ©cupÃ©rer les collections associÃ©es
             service.refreshEntity(fact);
             MFB.creation(fact,tarifsPenalites,factdetretard);
+            sendMessage(fact.getNumeroFacture()+".pdf");
         }
         finally {
-            //bloc pour gérer les erreurs lors de la transactions
+            //bloc pour gÃ©rer les erreurs lors de la transactions
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
@@ -327,7 +375,7 @@ public class FactureBean implements Serializable {
                     }
                     transaction.commit();
                     FacesContext fc = FacesContext.getCurrentInstance();
-                    fc.addMessage("ModifEd", new FacesMessage("retour confirmé"));
+                    fc.addMessage("ModifEd", new FacesMessage("retour confirmÃ©"));
                 } finally {
                     if (transaction.isActive()) {
                         transaction.rollback();
@@ -340,15 +388,15 @@ public class FactureBean implements Serializable {
         }
         else
         {
-            //todo add facemessage pour signaler que le livre n'est pas loué
+            //todo add facemessage pour signaler que le livre n'est pas louÃ©
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("Erreur", new FacesMessage("le livre n'est pas loué"));
+            fc.addMessage("Erreur", new FacesMessage("le livre n'est pas louÃ©"));
         }
-        // todo réfléchir au retour
+        // todo rÃ©flÃ©chir au retour
         return "tableFactures.xhtml?faces-redirect=true";
     }
 
-    /*Méthode permettant de créer un numéro de facture avec FB(FactureBiblio) suivi de l'année, le mois et un nombre a 4 chiffres*/
+    /*MÃ©thode permettant de crÃ©er un numÃ©ro de facture avec FB(FactureBiblio) suivi de l'annÃ©e, le mois et un nombre a 4 chiffres*/
     public String createNumFact()
     {
 
@@ -359,14 +407,14 @@ public class FactureBean implements Serializable {
         SvcFacture serviceF = new SvcFacture();
         List<Factures> fact;
 
-        //tester si l'année en cours = année de la dernière facture
+        //tester si l'annÃ©e en cours = annÃ©e de la derniÃ¨re facture
         try
         {
             fact = serviceF.findAllFactureDesc();
             if (fact.size() != 0){
                 String text = fact.get(0).getNumeroFacture();
                 int anneelastFact = Integer.parseInt(text.substring(2, 6));
-                log.debug("année last fact = "+anneelastFact);
+                log.debug("annÃ©e last fact = "+anneelastFact);
 
                 if(annee == anneelastFact)
                 {
@@ -384,13 +432,13 @@ public class FactureBean implements Serializable {
             }
         }
         catch(NullPointerException npe) {
-            log.debug("Problème: pas trouvé de facture");
+            log.debug("ProblÃ¨me: pas trouvÃ© de facture");
         }
 
         return numFact;
     }
     /*
-     * Méthode qui permet via le service de retourner la liste de toutes les factures
+     * MÃ©thode qui permet via le service de retourner la liste de toutes les factures
      */
     public List<Factures> getReadAll()
     {
