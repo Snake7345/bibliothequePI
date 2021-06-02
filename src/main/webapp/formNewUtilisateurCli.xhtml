@@ -18,6 +18,7 @@
                 </h:head>
                 <h2 style="text-align:center">#{I18N['utilisateurcli.form.nouveau.titre']}</h2>
                 <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+
                     <h:outputText value = "#{I18N['utilisateur.label.Nom']}"/>
                     <h:inputText id="utilisateurNom"
                                  value="#{utilisateursBean.utilisateur.nom}"
@@ -32,7 +33,6 @@
 
                     <h:outputText value = "#{I18N['utilisateur.label.Prenom']}"/>
                     <h:inputText id="utilisateurPrenom"
-                                 validatorMessage="La valeur doit être compris entre 1 et 100 caracteres"
                                  value="#{utilisateursBean.utilisateur.prenom}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.prenom']}"
@@ -52,7 +52,6 @@
 
                     <h:outputText value = "#{I18N['utilisateur.label.Courriel']}"/>
                     <h:inputText id="utilisateurCourriel"
-                                 validatorMessage="La valeur du champs doit être compris entre 3 et 100 caracteres"
                                  value="#{utilisateursBean.utilisateur.courriel}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.courriel']}"
@@ -63,7 +62,8 @@
                     <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
 
                     <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
-                    <h:selectOneMenu value = "#{utilisateursBean.utilisateur.utilisateursAdresses}" id="utiladress" required="true" requiredMessage="#{I18N['formulaire.message.required.adresse']}"
+                    <h:selectOneMenu value = "#{utilisateursBean.utilisateur.utilisateursAdresses}" id="utiladress" required="true"
+                                     requiredMessage="#{I18N['formulaire.message.required.adresse']}"
                                      converter="adressConverter">
                         <f:selectItems value = "#{adressesBean.readAll}" var="ad"
                                        itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
