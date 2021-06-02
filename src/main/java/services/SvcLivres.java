@@ -68,7 +68,7 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 		Map<String, String> param = new HashMap<>();
 		param.put("isbn", isbn);
 
-		return finder.findByNamedQuery("Utilisateurs.findByIsbn", param);
+		return finder.findByNamedQuery("Livres.findByIsbn", param);
 	}
 
 	public Livres deleteLivres(Livres liv){
