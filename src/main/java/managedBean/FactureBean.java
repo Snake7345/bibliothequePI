@@ -136,9 +136,17 @@ public class FactureBean implements Serializable {
         Date date = new Date();
         Factures fact = new Factures();
         ModelFactBiblio MFB =new ModelFactBiblio();
-        Tarifs T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
+        Tarifs T= new Tarifs();
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
         boolean flag = false;
+        if(Bibli==null){
+            flag=true;
+        }
+        else if (serviceT.getTarifByBiblio(date, Bibli.getNom()).size()==0){
+            flag=true;
+        }else {
+            T = serviceT.getTarifByBiblio(date, Bibli.getNom()).get(0);
+        }
         //vÃ©rif si livre non louÃ©
         for (locationCustom lc: listLC) {
             if (serviceEL.findOneByCodeBarre(lc.getCB()).get(0).isLoue()){
@@ -179,7 +187,7 @@ public class FactureBean implements Serializable {
                 service.refreshEntity(fact);
                 MFB.creation(fact);
                 sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel());
-                return "TableFactures.xhtml?faces-redirect=true";
+                return "/TableFactures.xhtml?faces-redirect=true";
             } finally {
                 //bloc pour gÃ©rer les erreurs lors de la transactions
                 if (transaction.isActive()) {
@@ -196,12 +204,10 @@ public class FactureBean implements Serializable {
             }
         }
         else {
-            //todo facemessage pour signaler que l'on ne peut louer un livre dÃ©jÃ  louÃ©
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("Erreur", new FacesMessage("Le livre est déjà loué"));
+            fc.addMessage("Erreur", new FacesMessage("une erreur est survenue, soit Le livre est déjà loué ou une information est manquante (tarif, biblotheque)"));
             return "formNewFact.xhtml?faces-redirect=true";
         }
-
     }
 
     public void newFactPena(FacturesDetail facturesDetail)
