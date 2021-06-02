@@ -24,8 +24,9 @@
                              value="#{utilisateursBean.utilisateur.nom}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.nom']}"
-                             minlength ="2"
-                             validator = "nomPrenomValidator">
+                             validator = "nomPrenomValidator"
+                             maxlength ="100">
+                    <f:validateLength minimum="1" maximum="100"/>
                 </h:inputText>
                 <h:message for="utilisateurNom" styleClass="errorMessage"/>
 
@@ -34,8 +35,9 @@
                              value="#{utilisateursBean.utilisateur.prenom}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.prenom']}"
-                             minlength ="2"
-                             validator= "nomPrenomValidator">
+                             validator= "nomPrenomValidator"
+                             maxlength ="100"
+                             >
                 </h:inputText>
                 <h:message for="utilisateurPrenom" styleClass="errorMessage"/>
 
@@ -52,10 +54,12 @@
                              value="#{utilisateursBean.utilisateur.courriel}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.courriel']}"
-                             validator = "emailValidator">
+                             validator = "emailValidator"
+                             maxlength="100">
+                    <f:validateLength minimum="3" maximum="100"/>
                 </h:inputText>
                 <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
-
+<!--Ne fonctionne pas-->
                 <c:if test= "#{utilisateursBean.utilisateur.roles ne 'Client'}">
                     <h:outputText value = "#{I18N['utilisateur.label.Login']}"/>
                     <h:inputText id="utilisateurLogin"

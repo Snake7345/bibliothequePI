@@ -31,8 +31,11 @@ public class UtilisateurExistValidator implements Validator
         log.debug(login);
         log.debug(serviceU.findByLogin(login).size());
         try {
-
-            if (serviceU.findByLogin(login).size() != 0)
+            if(login.length() < 4)
+            {
+                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Le login doit avoir au moins 4 caracteres",null));
+            }
+            else if (serviceU.findByLogin(login).size() != 0)
 
                 throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Le pseudo est deja utilise, veuillez en choisir un autre",null));
 

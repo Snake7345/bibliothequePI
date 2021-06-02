@@ -43,9 +43,12 @@
                     <h:message for="utilisateurPrenom" styleClass="errorMessage"/>
 
                     <h:outputText value = "#{I18N['utilisateur.label.Sexe']}"/>
-                    <h:selectOneRadio id="sexe" value="#{utilisateursBean.utilisateur.sexe}">
+                    <h:selectOneRadio id="sexe" value="#{utilisateursBean.utilisateur.sexe}"
+                                      required="true"
+                                      requiredMessage="#{I18N['formulaire.message.required.sexe']}">
                         <f:selectItems value="#{utilisateursEnumBean.sexeEnum}" />
                     </h:selectOneRadio>
+                    <h:message for="sexe" styleClass="errorMessage"/>
 
                     <h:outputText value = "#{I18N['utilisateur.label.Courriel']}"/>
                     <h:inputText id="utilisateurCourriel"
