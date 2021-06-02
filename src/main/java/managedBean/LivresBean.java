@@ -96,7 +96,7 @@ public class LivresBean implements Serializable {
         try {
             livre.setIsbn(livre.getIsbn().replace("-", ""));
             service.save(livre);
-            //
+
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));

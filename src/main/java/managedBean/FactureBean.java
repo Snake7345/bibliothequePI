@@ -69,7 +69,7 @@ public class FactureBean implements Serializable {
         }
     }
 
-    public static void sendMessage( String filename)  {
+    public static void sendMessage( String filename, String mailDest)  {
         //CrÃ©ation de la session
         String mail = "bibliolibatc@gmail.com";
         String password = "porte7345";
@@ -98,7 +98,7 @@ public class FactureBean implements Serializable {
             message.setContent(multipart);
             message.setSubject("facture");
             message.setFrom(new InternetAddress(mail));
-            message.addRecipients(Message.RecipientType.TO, "jeromegillain@gmail.com");
+            message.addRecipients(Message.RecipientType.TO, mailDest);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -106,7 +106,7 @@ public class FactureBean implements Serializable {
         try {
             Transport transport = session.getTransport("smtps");
             transport.connect ("smtp.gmail.com", 465, mail, password);
-            transport.sendMessage(message,new Address[] { new InternetAddress("jeromegillain@gmail.com")});
+            transport.sendMessage(message,new Address[] { new InternetAddress(mailDest)});
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -178,7 +178,7 @@ public class FactureBean implements Serializable {
                 transaction.commit();
                 service.refreshEntity(fact);
                 MFB.creation(fact);
-                sendMessage(fact.getNumeroFacture()+".pdf");
+                sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel());
                 return "TableFactures.xhtml?faces-redirect=true";
             } finally {
                 //bloc pour gÃ©rer les erreurs lors de la transactions
@@ -284,7 +284,7 @@ public class FactureBean implements Serializable {
             //refresh pour rÃ©cupÃ©rer les collections associÃ©es
             service.refreshEntity(fact);
             MFB.creation(fact,tarifsPenalites,factdetretard);
-            sendMessage(fact.getNumeroFacture()+".pdf");
+            sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel());
         }
         finally {
             //bloc pour gÃ©rer les erreurs lors de la transactions
