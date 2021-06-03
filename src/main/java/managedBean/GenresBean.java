@@ -1,7 +1,9 @@
 package managedBean;
 
+import entities.Editeurs;
 import entities.Genres;
 import org.apache.log4j.Logger;
+import services.SvcEditeurs;
 import services.SvcGenres;
 
 import javax.annotation.PostConstruct;
@@ -31,7 +33,15 @@ public class GenresBean implements Serializable {
 
     public String  newGenres()
     {
-        save();
+        if(verifGenreExist(genre))
+        {
+            save();
+        }
+        else{
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La donnée est déjà existante en DB",null));
+        }
         init();
         return "/tableGenres?faces-redirect=true";
     }
@@ -46,15 +56,30 @@ public class GenresBean implements Serializable {
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'opération a réussie",null));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"l'operation n'est pas reussie",null));
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"l'opération n'est pas reussie",null));
             }
             service.close();
+        }
+
+    }
+
+    public boolean verifGenreExist(Genres gen)
+    {
+        SvcGenres serviceG = new SvcGenres();
+        if(serviceG.findOneGenre(gen).size() > 0)
+        {
+            serviceG.close();
+            return false;
+        }
+        else {
+            serviceG.close();
+            return true;
         }
 
     }

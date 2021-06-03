@@ -31,8 +31,17 @@ public class AdressesBean implements Serializable {
 
     public String newAdress()
     {
-        save();
+        if(verifAdresseExist(adresse))
+        {
+            save();
+        }
+        else{
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La donnée est déjà existante en DB",null));
+        }
         return "/tableAdresses.xhtml?faces-redirect=true";
+
     }
     public void save()
     {
@@ -58,6 +67,21 @@ public class AdressesBean implements Serializable {
             }
             service.close();
         }
+    }
+
+    public boolean verifAdresseExist(Adresses ad)
+    {
+        SvcAdresses serviceA = new SvcAdresses();
+        if(serviceA.findOneAdresse(ad).size() > 0)
+        {
+            serviceA.close();
+            return false;
+        }
+        else {
+            serviceA.close();
+            return true;
+        }
+
     }
     /*
      * Méthode qui permet de vider les variables et de revenir sur le table des Adresses .

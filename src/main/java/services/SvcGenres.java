@@ -1,5 +1,6 @@
 package services;
 
+import entities.Auteurs;
 import entities.Genres;
 import org.apache.log4j.Logger;
 
@@ -28,6 +29,13 @@ public class SvcGenres extends Service<Genres> implements Serializable {
 		}
 
 		return genres;
+	}
+
+	public List<Genres> findOneGenre(Genres gen)
+	{
+		Map<String, Object> param = new HashMap<>();
+		param.put("denomination", gen.getDenomination());
+		return finder.findByNamedQuery("genres.findOne",param);
 	}
 
 	//Méthode qui permet via une requete de retourner la liste entière des genres

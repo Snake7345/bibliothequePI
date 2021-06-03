@@ -1,7 +1,9 @@
 package managedBean;
 
+import entities.Auteurs;
 import entities.Editeurs;
 import org.apache.log4j.Logger;
+import services.SvcAuteurs;
 import services.SvcEditeurs;
 
 import javax.annotation.PostConstruct;
@@ -30,9 +32,32 @@ public class EditeursBean implements Serializable {
 
     public String newEditeur()
     {
-        save();
+        if(verifEditeurExist(editeur))
+        {
+            save();
+        }
+        else{
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La donnée est déjà existante en DB",null));
+        }
         return "/tableEditeurs.xhtml?faces-redirect=true";
 
+
+    }
+
+    public boolean verifEditeurExist(Editeurs ed)
+    {
+        SvcEditeurs serviceE = new SvcEditeurs();
+        if(serviceE.findOneEditeur(ed).size() > 0)
+        {
+            serviceE.close();
+            return false;
+        }
+        else {
+            serviceE.close();
+            return true;
+        }
 
     }
 

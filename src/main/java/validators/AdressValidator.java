@@ -1,5 +1,7 @@
 package validators;
 
+import entities.Adresses;
+import services.SvcAdresses;
 import services.SvcExemplairesLivres;
 
 import javax.faces.application.FacesMessage;
@@ -14,17 +16,15 @@ public class AdressValidator implements Validator
 {
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        String CB = (String) o;
 
-        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        SvcAdresses serviceA = new SvcAdresses();
 
-        if (serviceEL.findOneByCodeBarre(CB).size() == 0)
+        if (serviceA.findOneAdresse((Adresses) o).size() == 0)
         {
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Le code barre n'existe pas",null));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"L'adresse existe déjà",null));
         }
-        /*TODO : Le code barre doit être actif*/
 
-        serviceEL.close();
+        serviceA.close();
     }
 
 }

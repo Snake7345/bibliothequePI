@@ -10,7 +10,7 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Genres.findAll", query = "SELECT g FROM Genres g"),
-                @NamedQuery(name = "Genres.findOne", query ="SELECT g FROM Genres g WHERE g.denomination=:id"),
+                @NamedQuery(name = "Genres.findOne", query ="SELECT g FROM Genres g WHERE g.denomination=:denomination"),
                 @NamedQuery(name = "Genres.findAllTri", query = "SELECT g FROM Genres g ORDER BY g.denomination ASC"),
         })
 public class Genres implements Serializable {

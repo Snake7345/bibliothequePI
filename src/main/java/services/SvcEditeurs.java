@@ -1,5 +1,6 @@
 package services;
 
+import entities.Auteurs;
 import entities.Editeurs;
 import org.apache.log4j.Logger;
 
@@ -30,6 +31,13 @@ public class SvcEditeurs extends Service<Editeurs> implements Serializable
 		}
 
 		return editeurs;
+	}
+
+	public List<Editeurs> findOneEditeur(Editeurs ed)
+	{
+		Map<String, Object> param = new HashMap<>();
+		param.put("nom", ed.getNom());
+		return finder.findByNamedQuery("Editeurs.findOne",param);
 	}
 
 

@@ -27,6 +27,16 @@ public class SvcAdresses extends Service<Adresses> implements Serializable {
 		return finder.findByNamedQuery("Adresses.findAll",null);
 	}
 
+	public List<Adresses> findOneAdresse(Adresses ad)
+	{
+		Map<String, Object> param = new HashMap<>();
+		param.put("boite", ad.getBoite());
+		param.put("localite", ad.getLocalites());
+		param.put("numero", ad.getNumero());
+		param.put("rue", ad.getRue());
+		return finder.findByNamedQuery("Adresses.findOne",param);
+	}
+
 	// Méthode qui permet de sauver une adresse et de la mettre en DB
 	@Override
 	public Adresses save(Adresses adresses) {

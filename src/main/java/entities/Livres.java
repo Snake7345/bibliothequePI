@@ -10,7 +10,7 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Livres.findAll", query = "SELECT l FROM Livres l"),
-                @NamedQuery(name = "Livres.findOne", query ="SELECT l FROM Livres l WHERE l.titre=:id"),
+                @NamedQuery(name = "Livres.findOne", query ="SELECT l FROM Livres l WHERE l.titre=:titre AND l.annee=:annee AND l.isbn=:isbn AND l.livresAuteurs=:livreAuteurs AND l.livresGenres=:livresGenres AND l.editeurs=:editeurs"),
                 @NamedQuery(name = "Livres.findAllTri", query="SELECT l FROM Livres l ORDER BY l.titre ASC"),
                 @NamedQuery(name = "Livres.findActiv", query = "SELECT l FROM Livres l WHERE l.actif=TRUE"),
                 @NamedQuery(name = "Livres.findInactiv", query = "SELECT l FROM Livres l WHERE l.actif=FALSE"),

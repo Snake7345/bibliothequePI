@@ -51,6 +51,18 @@ public class SvcLivres extends Service<Livres> implements Serializable {
 		return finder.findByNamedQuery("Livres.findLivreByAuteurs", param);
 	}
 
+	public List<Livres> findOneLivre(Livres liv)
+	{
+		Map<String, Object> param = new HashMap<>();
+		param.put("titre", liv.getTitre());
+		param.put("annee", liv.getAnnee());
+		param.put("isbn", liv.getIsbn());
+		param.put("livresAuteurs", liv.getLivresAuteurs());
+		param.put("livresGenres", liv.getLivresGenres());
+		param.put("editeurs", liv.getEditeurs());
+		return finder.findByNamedQuery("Livres.findOne",param);
+	}
+
 	public List<Livres> getByEditeurs(Editeurs editeur) {
 		Map<String, Editeurs> param = new HashMap<>();
 		param.put("editeur", editeur);

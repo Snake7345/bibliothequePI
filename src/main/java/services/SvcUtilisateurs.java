@@ -1,6 +1,7 @@
 package services;
 
 
+import entities.Auteurs;
 import entities.Roles;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
@@ -31,6 +32,19 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		}
 
 		return utilisateurs;
+	}
+
+	public List<Utilisateurs> findOneUtilisateur(Utilisateurs util)
+	{
+		Map<String, Object> param = new HashMap<>();
+		param.put("nom", util.getNom());
+		param.put("prenom", util.getPrenom());
+		param.put("sexe", util.getSexe());
+		param.put("courriel", util.getCourriel());
+		param.put("login", util.getLogin());
+		param.put("mdp", util.getMdp());
+		param.put("numMembre", util.getNumMembre());
+		return finder.findByNamedQuery("utilisateurs.findOne",param);
 	}
 
 	//Méthode qui permet via une requete de retourner la liste entière des utilisateurs

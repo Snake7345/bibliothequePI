@@ -1,9 +1,11 @@
 package managedBean;
 
 import entities.Adresses;
+import entities.Genres;
 import entities.Utilisateurs;
 import entities.UtilisateursAdresses;
 import org.apache.log4j.Logger;
+import services.SvcGenres;
 import services.SvcRoles;
 import services.SvcUtilisateurs;
 import services.SvcUtilisateursAdresses;
@@ -145,6 +147,32 @@ public class UtilisateursBean implements Serializable {
                 return "999999999";
             }
         }
+    }
+
+    public boolean verifUtilisateurExist(Utilisateurs util)
+    {
+        SvcUtilisateurs serviceU = new SvcUtilisateurs();
+        boolean flag= false;
+                
+        for (UtilisateursAdresses ua:util.getUtilisateursAdresses())
+        {
+            if (ua.getAdresse().equals(adresses)  && ua.isActif()){
+                flag=true;
+            }    
+        }
+        
+        
+        if(serviceU.findOneUtilisateur(util).size() > 0 && flag)
+        {
+            serviceU.close();
+            return false;
+        }
+        else {
+            serviceU.close();
+            return true;
+        }
+        
+
     }
 
     public String activdesactivUtil() {

@@ -10,7 +10,7 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Adresses.findAll", query = "SELECT a FROM Adresses a"),
-                @NamedQuery(name = "Adresses.findOne", query = "SELECT a FROM Adresses a")
+                @NamedQuery(name = "Adresses.findOne", query = "SELECT a FROM Adresses a WHERE a.boite=:boite AND a.numero=:numero AND a.localites=:localite AND a.rue=:rue"),
 
 
         })

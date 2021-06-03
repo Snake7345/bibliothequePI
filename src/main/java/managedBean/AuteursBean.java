@@ -1,11 +1,9 @@
 package managedBean;
 
-import entities.Auteurs;
-import entities.ExemplairesLivres;
-import entities.Livres;
-import entities.LivresAuteurs;
+import entities.*;
 import enumeration.ExemplairesLivresEtatEnum;
 import org.apache.log4j.Logger;
+import services.SvcAdresses;
 import services.SvcAuteurs;
 import services.SvcExemplairesLivres;
 import services.SvcLivres;
@@ -39,7 +37,16 @@ public class AuteursBean implements Serializable {
 
     public String newAuteur()
     {
-        save();
+
+        if(verifAuteurExist(auteur))
+        {
+            save();
+        }
+        else{
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La donnée est déjà existante en DB",null));
+        }
         return "/tableAuteurs.xhtml?faces-redirect=true";
     }
 
@@ -182,6 +189,22 @@ public class AuteursBean implements Serializable {
      * Méthode qui permet via le service de retourner
      * la liste de tous les auteurs
      */
+
+    public boolean verifAuteurExist(Auteurs aut)
+    {
+        SvcAuteurs serviceA = new SvcAuteurs();
+        if(serviceA.findOneAuteur(aut).size() > 0)
+        {
+            serviceA.close();
+            return false;
+        }
+        else {
+            serviceA.close();
+            return true;
+        }
+
+    }
+
     public List<Auteurs> getReadAll()
     {
         SvcAuteurs service = new SvcAuteurs();
