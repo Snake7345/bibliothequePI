@@ -11,9 +11,11 @@
     <ui:define name="title">#{I18N['auteur.form.confirm']}</ui:define>
 
     <ui:define name="content">
+        <h:form>
         <h2 style="text-align:center">#{I18N['auteur.form.questionconfirm']}</h2>
             <h:commandButton value="#{I18N['commune.label.oui']}" action="#{auteursBean.activdesactivAut}"/>
             <h:commandButton value="#{I18N['commune.label.non']}" action="#{auteursBean.flushAut}" immediate="true"/>
+    </h:form>
     </ui:define>
 </ui:composition>
 
