@@ -15,7 +15,7 @@ import java.util.Objects;
         ({
                 @NamedQuery(name = "Utilisateurs.findAll", query = "SELECT u FROM Utilisateurs u"),
                 @NamedQuery(name = "Utilisateurs.findOne", query = "SELECT u FROM Utilisateurs u WHERE u.nom=:nom AND u.prenom=:prenom AND u.sexe=:sexe AND " +
-                        "u.courriel=:courriel AND u.login=:login AND u.mdp=:mdp AND u.roles=:role"),
+                                                                    "u.courriel=:courriel AND u.login=:login AND u.mdp=:mdp AND u.roles=:role and u.utilisateursAdresses=:utilisateursAdresses"),
                 @NamedQuery(name = "Utilisateurs.findAllUtil", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NULL"),
                 @NamedQuery(name = "Utilisateurs.findActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE AND u.numMembre IS NULL"),
                 @NamedQuery(name = "Utilisateurs.findInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE AND u.numMembre IS NULL"),

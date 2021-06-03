@@ -1,9 +1,6 @@
 package managedBean;
 
-import entities.Bibliotheques;
-import entities.Jours;
-import entities.Penalites;
-import entities.Tarifs;
+import entities.*;
 import objectCustom.JourCustom;
 import objectCustom.PenaCustom;
 import org.apache.log4j.Logger;
@@ -41,6 +38,8 @@ public class TarifsBean implements Serializable {
     public void init()
     {
         tarif=new Tarifs();
+        grilleJour.clear();
+        grillePena.clear();
         grillePena.add(new PenaCustom());
         grilleJour.add(new JourCustom());
     }
@@ -66,6 +65,24 @@ public class TarifsBean implements Serializable {
             service.close();
         }
     }
+    public String redirectEdit(){
+        grillePena.clear();
+        grilleJour.clear();
+        if (tarif.getTarifsPenalites().size()!=0){
+            for (TarifsPenalites TP: tarif.getTarifsPenalites()) {
+                grillePena.add(new PenaCustom(TP.getPenalite().getDenomination(), TP.getPrix(), TP.getDateDebut(),TP.getDateFin()));
+            }
+        }
+        for (TarifsJours TJ:tarif.getTarifsJours()){
+            grilleJour.add(new JourCustom(TJ.getJours().getNbrJour(), TJ.getPrix(),TJ.getDateDebut(),TJ.getDateFin()));
+        }
+        return "/formEditTarif.xhtml?faces-redirect=true";
+    }
+    public boolean checkModif(){
+        long dn = new Date().getTime();
+        return tarif.getDateDebut().getTime() > dn;
+    }
+
    public String newTarif()
     {
 

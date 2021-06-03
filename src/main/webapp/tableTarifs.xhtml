@@ -45,6 +45,14 @@
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:outputLabel>
                     </h:column>
+                    <!--TODO changer permitions car copie colle-->
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <h:column>
+                            <h:commandButton  image="Images//edit.png" action="#{tarifsBean.redirectEdit}" rendered="#{tarifsBean.checkModif}">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{tarifsBean.tarif}" value="#{tar}" /><!-- u minuscule -->
+                            </h:commandButton>
+                        </h:column>
+                    </c:if>
                 </h:dataTable>
             </h:panelGroup>
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles)}">

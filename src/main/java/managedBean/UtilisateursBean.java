@@ -1,14 +1,8 @@
 package managedBean;
 
-import entities.Adresses;
-import entities.Genres;
-import entities.Utilisateurs;
-import entities.UtilisateursAdresses;
+import entities.*;
 import org.apache.log4j.Logger;
-import services.SvcGenres;
-import services.SvcRoles;
-import services.SvcUtilisateurs;
-import services.SvcUtilisateursAdresses;
+import services.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -30,8 +24,8 @@ public class UtilisateursBean implements Serializable {
 
     private Utilisateurs utilisateur;
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
-    private List<Utilisateurs> listUtil = new ArrayList<Utilisateurs>();
-    private List<Utilisateurs> listCli = new ArrayList<Utilisateurs>();
+    private List<Utilisateurs> listUtil = new ArrayList<>();
+    private List<Utilisateurs> listCli = new ArrayList<>();
     private List<Utilisateurs> searchResults;
     private String numMembre;
     private Adresses adresses;
@@ -58,9 +52,16 @@ public class UtilisateursBean implements Serializable {
         service.close();
     }
 
+    public String redirectModifUtil(){
+        for (UtilisateursAdresses ua: utilisateur.getUtilisateursAdresses()) {
+            if(ua.isActif()){
+                adresses=ua.getAdresse();
+            }
+        }
+        return "/formEditUtilisateur.xhtml?faces-redirect=true";
+    }
 
-
-    public void save() {
+    public void saveActif() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
@@ -82,7 +83,8 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
-    public void saveUA() {
+
+    public void saveUtilisateur() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
         serviceUA.setEm(service.getEm());
@@ -90,6 +92,14 @@ public class UtilisateursBean implements Serializable {
         transaction.begin();
         try {
             service.save(utilisateur);
+            for (UtilisateursAdresses utiladress: utilisateur.getUtilisateursAdresses())
+            {
+                 if(!utiladress.equals(UA) && utiladress.isActif())
+                 {
+                    utiladress.setActif(false);
+                    serviceUA.save(utiladress);
+                 }
+            }
             serviceUA.save(UA);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -111,14 +121,56 @@ public class UtilisateursBean implements Serializable {
     }
 
     public String newUtil() {
+        boolean flag = false;
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
         utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
         utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
+
+        //todo à vérifier que ça fonctionne...
+        for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()){
+            if (ua.getAdresse().equals(adresses)){
+                flag=true;
+                UA=ua;
+                break;
+            }
+        }
+        if (!flag){
         UA = serviceUA.createUtilisateursAdresses(utilisateur, adresses);
-        saveUA();
+        }
+        if(verifUtilExist(utilisateur)) {
+            saveUtilisateur();
+        }else {
+            init();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur existe déjà tel quel en DB; opération échouée",null));
+        }
 
         return "/tableUtilisateurs.xhtml?faces-redirect=true";
 
+    }
+
+    public boolean verifUtilExist(Utilisateurs util)
+    {
+        SvcUtilisateurs serviceU = new SvcUtilisateurs();
+        boolean flag= false;
+
+        for (UtilisateursAdresses ua:util.getUtilisateursAdresses())
+        {
+            if (ua.getAdresse().equals(adresses) && ua.isActif()) {
+                flag = true;
+                break;
+            }
+        }
+        if(serviceU.findOneUtilisateur(util).size() > 0 && flag)
+        {
+            serviceU.close();
+            return false;
+        }
+        else {
+            serviceU.close();
+            return true;
+        }
     }
 
     public String newUtilCli() {
@@ -127,9 +179,15 @@ public class UtilisateursBean implements Serializable {
         utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
         utilisateur.setRoles(serviceR.findRole("Client").get(0));
         utilisateur.setNumMembre(createNumMembre());
-        saveUA();
+        if(utilisateur.getNumMembre().equals("999999999")){
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le nombre de client maximal a été atteint; opération échouée",null));
+        }
+        else {
+            saveUtilisateur();
+        }
         return "/tableUtilisateurs.xhtml?faces-redirect=true";
-
     }
 
     public String createNumMembre()
@@ -149,58 +207,30 @@ public class UtilisateursBean implements Serializable {
         }
     }
 
-    public boolean verifUtilisateurExist(Utilisateurs util)
-    {
-        SvcUtilisateurs serviceU = new SvcUtilisateurs();
-        boolean flag= false;
-                
-        for (UtilisateursAdresses ua:util.getUtilisateursAdresses())
-        {
-            if (ua.getAdresse().equals(adresses)  && ua.isActif()){
-                flag=true;
-            }    
-        }
-        
-        
-        if(serviceU.findOneUtilisateur(util).size() > 0 && flag)
-        {
-            serviceU.close();
-            return false;
-        }
-        else {
-            serviceU.close();
-            return true;
-        }
-        
 
-    }
 
     public String activdesactivUtil() {
         if (utilisateur.isActif()) {
             log.debug("je passe le if de désactive");
             utilisateur.setActif(false);
-            save();
-            return "/tableUtilisateurs.xhtml?faces-redirect=true";
+            saveActif();
         } else {
             if ((!utilisateur.isActif()) && (!utilisateur.getRoles().isActif())) {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur ne peut pas être réactivé tant que le rôle est désactivé",null));
 
-                return "/tableUtilisateurs.xhtml?faces-redirect=true";
             } else {
                 utilisateur.setActif(true);
-                save();
-                return "/tableUtilisateurs.xhtml?faces-redirect=true";
+                saveActif();
             }
         }
+        return "/tableUtilisateurs.xhtml?faces-redirect=true";
     }
 
     public String searchUtilisateur() {
 
         SvcUtilisateurs service = new SvcUtilisateurs();
-        //try
-        //{
 
         log.debug("list auteur " + service.getByName(utilisateur.getNom()).size());
         if (service.getByName(utilisateur.getNom()).isEmpty()) {
@@ -211,11 +241,6 @@ public class UtilisateursBean implements Serializable {
             searchResults = service.getByName(utilisateur.getNom());
         }
 
-        //}
-        //catch
-        //{
-
-        //}
         return "/formSearchUtilisateur?faces-redirect=true";
     }
 

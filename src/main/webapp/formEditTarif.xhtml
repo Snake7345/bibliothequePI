@@ -18,16 +18,9 @@
                 </h:head>
                 <h2 style="text-align:center">#{I18N['tarif.form.nouveau.titre']}</h2>
                 <h:outputText value="#{I18N['bibliotheque.label.Nom']}" />
-                <h:selectOneMenu value = "#{tarifsBean.tarif.bibliotheques}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
-                                 converter="biblioConverter">
-                    <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
-                                   itemLabel="#{bi.nom}"
-                                   itemValue="#{bi}"/>
-                </h:selectOneMenu>
+                <h:outputText value="#{tarifsBean.tarif.bibliotheques.nom}" />
                 <h:outputText value="#{I18N['tarif.label.dateDebutgrille']}" />
-                <h:inputText value="#{tarifsBean.tarif.dateDebut}" required="true">
-                    <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                </h:inputText>
+                <h:outputText value="#{tarifsBean.tarif.dateDebut}" />
                 <h:outputText value="#{I18N['tarif.label.nom']}" />
                 <h:inputText value="#{tarifsBean.tarif.denomination}" />
 
@@ -43,19 +36,19 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.jour']}" />
                         </f:facet>
-                        <h:inputText value="#{J.nbrJours}" required="true"/>
+                        <h:inputText value="#{J.nbrJours}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.Prix']}" />
                         </f:facet>
-                        <h:inputText value="#{J.prix}" required="true"/>
+                        <h:inputText value="#{J.prix}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.DateDebut']}" />
                         </f:facet>
-                        <h:inputText value="#{J.dateDebut}" required="true">
+                        <h:inputText value="#{J.dateDebut}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
@@ -64,14 +57,14 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.DateFin']}" />
                         </f:facet>
-                        <h:inputText value="#{J.dateFin}" required="true">
+                        <h:inputText value="#{J.dateFin}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
                 </h:dataTable>
 
-                <h:commandButton value="Add" action="#{tarifsBean.addNewJourRow}" immediate="true"/>
-                <h:commandButton value="Del" action="#{tarifsBean.delJourRow}" immediate="true"/>
+                <h:commandButton value="Add" action="#{tarifsBean.addNewJourRow}" />
+                <h:commandButton value="Del" action="#{tarifsBean.delJourRow}" />
 
                 <h:dataTable value="#{tarifsBean.grillePena}" var="P">
                     <h:column>
@@ -85,19 +78,19 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.Nom']}"  />
                         </f:facet>
-                        <h:inputText value="#{P.name}" required="true"/>
+                        <h:inputText value="#{P.name}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.Prix']}" />
                         </f:facet>
-                        <h:inputText value="#{P.prix}" required="true"/>
+                        <h:inputText value="#{P.prix}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.DateDebut']}" />
                         </f:facet>
-                        <h:inputText value="#{P.dateDebut}" required="true">
+                        <h:inputText value="#{P.dateDebut}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
@@ -105,15 +98,15 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.DateFin']}" />
                         </f:facet>
-                        <h:inputText value="#{P.dateFin}" required="true">
+                        <h:inputText value="#{P.dateFin}">
                                      <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
                 </h:dataTable>
                 <br/>
-                <h:commandButton value="Add" action="#{tarifsBean.addNewPenaRow}" immediate="true"/>
+                <h:commandButton value="Add" action="#{tarifsBean.addNewPenaRow}" />
                 <h:commandButton value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
-                <h:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}" immediate="true"/>
+                <h:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}" />
                 <h:commandButton value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
             </h:form>
         </c:if>

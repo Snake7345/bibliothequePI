@@ -73,7 +73,7 @@ public class RolesBean implements Serializable {
             {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"les roles Administrateur, manager, Employe et Client, ne peuvent être désactivés",null));
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"ce role ne peut être désactivé",null));
             }
             else
             {
