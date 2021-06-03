@@ -66,12 +66,12 @@ public class UtilisateursBean implements Serializable {
             service.save(utilisateur);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+            fc.addMessage("messageGenre", new FacesMessage("Modification réussie"));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+                fc.addMessage("messageGenre", new FacesMessage("le rollback a pris le relais"));
             }
             else {
                 init();
@@ -91,12 +91,14 @@ public class UtilisateursBean implements Serializable {
             serviceUA.save(UA);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'a pas reussie",null));
             }
             else {
                 init();
@@ -154,7 +156,8 @@ public class UtilisateursBean implements Serializable {
         } else {
             if ((!utilisateur.isActif()) && (!utilisateur.getRoles().isActif())) {
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreurId", new FacesMessage("L'utilisateur ne peut pas être réactivé tant que le rôle est désactivé"));
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur ne peut pas être réactivé tant que le rôle est désactivé",null));
 
                 return "/tableUtilisateurs.xhtml?faces-redirect=true";
             } else {

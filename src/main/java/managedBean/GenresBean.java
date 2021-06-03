@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +29,11 @@ public class GenresBean implements Serializable {
         genre = new Genres();
     }
 
-    public String newGenres()
+    public String  newGenres()
     {
-
         save();
         init();
-        return "/tableGenres.xhtml?faces-redirect=true";
+        return "/tableGenres?faces-redirect=true";
     }
 
     public void save()
@@ -45,12 +45,14 @@ public class GenresBean implements Serializable {
             service.save(genre);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"l'operation n'est pas reussie",null));
             }
             service.close();
         }

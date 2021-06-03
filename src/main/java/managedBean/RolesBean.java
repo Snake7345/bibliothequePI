@@ -83,12 +83,14 @@ public class RolesBean implements Serializable {
             service.save(role);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'a pas reussie",null));
             }
             service.close();
         }

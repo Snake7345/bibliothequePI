@@ -30,12 +30,14 @@ public class JoursBean implements Serializable {
             service.save(jour);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifEd", new FacesMessage("Modification réussie"));
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation a reussie",null));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Erreur fatale",null));
             }
             service.close();
         }

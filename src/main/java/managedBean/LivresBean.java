@@ -78,7 +78,8 @@ public class LivresBean implements Serializable {
                 transaction.rollback();
                 log.debug("J'ai fait une erreur dans livre et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("erreur", new FacesMessage("le rollback a pris le relais"));
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'est pas reussie",null));
             }
             else
             {
@@ -104,12 +105,14 @@ public class LivresBean implements Serializable {
 
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
             }
             else
             {

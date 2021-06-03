@@ -10,6 +10,7 @@
     <ui:define name="title">#{I18N['permission.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
+        <h:messages styleClass="errorBlock" globalOnly="true" />
         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(10,loginBean.utilisateurAuth.roles.idRoles)}">
 
         <h:form id="form" prependId="false">

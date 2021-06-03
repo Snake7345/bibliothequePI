@@ -17,6 +17,7 @@
         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(38,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form prependId="false">
             <h:panelGroup layout="block" id="content">
+                <h:messages styleClass="errorBlock" globalOnly="true" />
                 <h2 style="text-align:center">#{I18N['application.exempl.title']}</h2>
                 <h:dataTable value="#{exemplairesLivresBean.readAll}" var="livexemL" id="tableExemplairesLivres"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">

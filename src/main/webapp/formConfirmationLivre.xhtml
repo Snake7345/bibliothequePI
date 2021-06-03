@@ -11,6 +11,7 @@
     <ui:define name="title">#{I18N['livre.form.confirm']}</ui:define>
 
     <ui:define name="content">
+        <h:messages styleClass="errorBlock" globalOnly="true" />
         <h:form>
         <h2 style="text-align:center">#{I18N['livre.form.questionconfirm']}</h2>
         <h:commandButton value="#{I18N['commune.label.oui']}" action="#{livresBean.activdesactivLiv}"/>

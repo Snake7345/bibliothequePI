@@ -187,7 +187,8 @@ public class FactureBean implements Serializable {
                 if (transaction.isActive()) {
                     transaction.rollback();
                     FacesContext fc = FacesContext.getCurrentInstance();
-                    fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation n'a pas reussie",null));
                     return "";
                 }
                 //fermeture des service
@@ -199,7 +200,8 @@ public class FactureBean implements Serializable {
         }
         else {
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("Erreur", new FacesMessage("une erreur est survenue, soit Le livre est déjà loué ou une information est manquante (tarif, biblotheque)"));
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"une erreur est survenue, soit Le livre est déjà loué ou une information est manquante (tarif, biblotheque)",null));
             return "/formNewFact.xhtml?faces-redirect=true";
         }
     }
@@ -291,7 +293,8 @@ public class FactureBean implements Serializable {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Erreur fatale",null));
             }
             //fermeture des service
             service.close();
@@ -375,12 +378,13 @@ public class FactureBean implements Serializable {
                     }
                     transaction.commit();
                     FacesContext fc = FacesContext.getCurrentInstance();
-                    fc.addMessage("ModifEd", new FacesMessage("retour confirmÃ©"));
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"retour ok",null));
                 } finally {
                     if (transaction.isActive()) {
                         transaction.rollback();
                         FacesContext fc = FacesContext.getCurrentInstance();
-                        fc.addMessage("Erreur", new FacesMessage("une erreur est survenue"));
+                        fc.addMessage("Erreur", new FacesMessage("l'operation n'est pas reussie"));
                     }
                     service.close();
                 }
@@ -390,7 +394,8 @@ public class FactureBean implements Serializable {
         {
             //todo add facemessage pour signaler que le livre n'est pas louÃ©
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("Erreur", new FacesMessage("le livre n'est pas louÃ©"));
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le livre n'est pas loue",null));
         }
         // todo rÃ©flÃ©chir au retour
         return "/tableFactures.xhtml?faces-redirect=true";
