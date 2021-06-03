@@ -46,32 +46,28 @@
                         <h:outputLabel value ="#{livexemL.actif}"/>
                     </h:column>
                     <!--TODO : Examiner la méthode car pas bon-->
-                    <c:if test= "#{livexemL.loue eq 1}">
+
                         <h:column>
-                            <h:commandButton  image="Images//inspections.png" action="formEtatQuestion">		<!-- u minuscule -->
+                            <h:commandButton rendered="#{livexemL.loue}" image="Images//inspections.png" action="formEtatQuestion">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{livexemL}" /><!-- u minuscule -->
                             </h:commandButton>
                         </h:column>
-                    </c:if>
+
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(17,loginBean.utilisateurAuth.roles.idRoles)}">
 
                     <h:column>
-                        <c:if test= "#{livexemL.actif eq 1 or livexemL.etat ne 'Mauvais'}">
-                        <h:commandButton  image="Images//edit.png" action="formEditExemplaireLivres">
+                        <h:commandButton rendered="#{livexemL.etat ne 'Mauvais'}" image="Images//edit.png" action="formEditExemplaireLivres">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{livexemL.livres}" />
                         </h:commandButton>
-                        </c:if>
                     </h:column>
 
                     </c:if>
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles)}">
 
                     <h:column>
-                        <c:if test= "#{livexemL.actif eq 0 or livexemL.etat eq 'Mauvais'}">
-                        <h:commandButton image="Images//activdesactiv.png" action="#{exemplairesLivresBean.activdesactivExLiv}">
+                        <h:commandButton rendered="#{livexemL.actif}" image="Images//activdesactiv.png" action="formConfirmationExemplaireLivre">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </h:commandButton>
-                        </c:if>
                     </h:column>
                     </c:if>
                 </h:dataTable>
@@ -82,7 +78,7 @@
             </h:commandButton>
             </c:if>
             <!--TODO mettre les permissions et le label adéquat sur le bouton-->
-            <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="formEtatQuestion"/>
+
             <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushLiv}"/>
             </c:if>

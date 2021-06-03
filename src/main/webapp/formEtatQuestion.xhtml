@@ -12,8 +12,9 @@
 
     <ui:define name="content">
         <h:head>
-            <title>Est ce que le livre est endommagé ou pas ? [A MODIFIER dans le message properties]</title>
+            <title>#{I18N['livre.form.question']}</title>
         </h:head>
+        <h2 style="text-align:center">#{I18N['livre.form.question']}</h2>
         <h:form>
             <h:outputText value="bibliotheque"/>
             <h:selectOneMenu value = "#{factureBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.biblio']}"
@@ -31,7 +32,7 @@
                          required="true"
                          requiredMessage="#{I18N['formulaire.message.required.CB']}"
                          maxlength="9"
-                         validator="CodeBarreValidator">
+                         validator="codeBarreValidator">
                 <f:validateLength minimum="9" maximum="9"/>
             </h:inputText>
             <h:message for="exemplLivresCB" styleClass="errorMessage"/>
@@ -42,7 +43,7 @@
             </h:selectOneRadio>
             <!--TODO créer la méthode dans bean-->
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.redirectChoix}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
         </h:form>
     </ui:define>
 </ui:composition>

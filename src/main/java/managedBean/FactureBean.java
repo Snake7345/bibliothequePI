@@ -452,6 +452,12 @@ public class FactureBean implements Serializable {
         return listFact;
     }
 
+    public String flushFact()
+    {
+        init();
+        return "/tableFactures.xhtml?faces-redirect=true";
+    }
+
     //-------------------------------Getter & Setter--------------------------------------------
 
     public Factures getFactures() {
