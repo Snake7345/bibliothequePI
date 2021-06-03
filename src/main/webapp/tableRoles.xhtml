@@ -39,7 +39,7 @@
                     <!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(32,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
-                        <h:commandButton image="Images//activdesactiv.png" action="#{rolesBean.activdesactivRol}">
+                        <h:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}" image="Images//activdesactiv.png" action="#{rolesBean.activdesactivRol}">
                             <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                         </h:commandButton>
                     </h:column>
