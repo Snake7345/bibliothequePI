@@ -30,7 +30,7 @@ public class EditeursBean implements Serializable {
         editeur = new Editeurs();
     }
 
-    public String newEditeur()
+    public String saveEditeur()
     {
         if(verifEditeurExist(editeur))
         {
@@ -40,7 +40,8 @@ public class EditeursBean implements Serializable {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La donnée est déjà existante en DB",null));
-        }
+            }
+        init();
         return "/tableEditeurs.xhtml?faces-redirect=true";
 
 

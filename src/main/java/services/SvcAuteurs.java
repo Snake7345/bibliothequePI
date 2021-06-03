@@ -56,7 +56,7 @@ public class SvcAuteurs extends Service<Auteurs> implements Serializable
 		Map<String, Object> param = new HashMap<>();
 		param.put("nom", aut.getNom());
 		param.put("prenom", aut.getPrenom());
-		return finder.findByNamedQuery("auteurs.findOne",param);
+		return finder.findByNamedQuery("Auteurs.findOne",param);
 	}
 
 	public List<Auteurs> getByName(String nom) {

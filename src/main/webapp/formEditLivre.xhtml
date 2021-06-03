@@ -59,18 +59,6 @@
                 </h:inputText>
                 <h:message for="livreAnnee" styleClass="errorMessage"/>
 
-                <!--TODO Verifier l'isbn pour la validité + probleme de mise en page-->
-                <h:outputText value = "#{I18N['livre.label.Isbn']}"/>
-                <h:inputText id="livreISBN"
-                             value="#{livresBean.livre.isbn}"
-                             required="true"
-                             requiredMessage="#{I18N['formulaire.message.required.isbn']}"
-                             maxlength="17"
-                             validator="isbnValidator">
-                    <f:validateLength minimum="10" maximum="17"/>
-                </h:inputText>
-                <h:message for="livreISBN" styleClass="errorMessage"/>
-
                 <h:outputText value = "#{I18N['editeur.label.Nom']}"/>
                 <h:selectOneMenu value = "#{livresBean.livre.editeurs}" id="livreEdit" converter="editeurConverter">
                     <f:selectItems value = "#{editeursBean.readAll}" var="lived" itemLabel="#{lived.nom}" itemValue="#{lived}"/>

@@ -31,7 +31,7 @@ public class GenresBean implements Serializable {
         genre = new Genres();
     }
 
-    public String  newGenres()
+    public String saveGenres()
     {
         if(verifGenreExist(genre))
         {

@@ -39,6 +39,7 @@ public class AdressesBean implements Serializable {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La donnée est déjà existante en DB",null));
+            init();
         }
         return "/tableAdresses.xhtml?faces-redirect=true";
 

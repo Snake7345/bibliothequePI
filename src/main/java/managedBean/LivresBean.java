@@ -125,6 +125,7 @@ public class LivresBean implements Serializable {
 
     }
 
+
     public String redirectModif(){
         SvcLivresGenres serviceLG = new SvcLivresGenres();
         SvcLivresAuteurs serviceLA = new SvcLivresAuteurs();

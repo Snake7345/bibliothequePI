@@ -38,7 +38,7 @@ public class PermissionsBean implements Serializable {
 
         try {
 
-            service.save(permission);
+            service.addPermission(permission.getDenomination());
 
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();

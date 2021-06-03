@@ -6,6 +6,7 @@ import services.SvcBibliotheques;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.New;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -30,8 +31,31 @@ public class BibliothequesBean implements Serializable {
 
     public String newBiblio()
     {
-        save();
+        if(checkbibli())
+        {
+            save();
+        }
+        else
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"une seule bibliotheque autorisé",null));
+        }
         return "/tableBibliotheques.xhtml?faces-redirect=true";
+    }
+
+    public boolean checkbibli(){
+        SvcBibliotheques serviceB = new SvcBibliotheques();
+        if(serviceB.findAllBibliotheques().size()==0)
+        {
+            serviceB.close();
+            return true;
+        }
+        else
+        {
+            serviceB.close();
+            return false;
+        }
     }
 
     public void save()

@@ -36,9 +36,6 @@ public class TarifsBean implements Serializable {
 
     private List<PenaCustom> grillePena = new ArrayList<>();
     private List<JourCustom> grilleJour = new ArrayList<>();
-    private Bibliotheques bibli;
-    private String denominationTarif;
-    private Date dateDebut;
 
     @PostConstruct
     public void init()
@@ -71,55 +68,105 @@ public class TarifsBean implements Serializable {
     }
    public String newTarif()
     {
+
+        //si tarif demom exist ou que dans jourcustom il ny as pas le 1 jour => erreur;
+        boolean flagJ=false;
+        boolean flagD1=false;
+        boolean flagD2=false;
         SvcTarifs service = new SvcTarifs();
-        SvcTarifsJours serviceTJ = new SvcTarifsJours();
-        SvcTarifsPenalites serviceTP = new SvcTarifsPenalites();
-        SvcJours serviceJ = new SvcJours();
-        SvcPenalites serviceP = new SvcPenalites();
-        EntityTransaction transaction = service.getTransaction();
-        serviceTJ.setEm(service.getEm());
-        serviceTP.setEm(service.getEm());
-        serviceJ.setEm(service.getEm());
-        serviceP.setEm(service.getEm());
-
-        Penalites penalites;
-        Jours jours;
-        //Todo mettre/faire une verification de l'objet Livre, ainsi que des auteurs et du genre
-        log.debug("J'vais essayer d'sauver le tarif");
-
-        transaction.begin();
-        try {
-            tarif.setBibliotheques(bibli);
-            tarif.setDenomination(denominationTarif);
-            tarif.setDateDebut(dateDebut);
-            tarif = service.save(tarif);
-            for (PenaCustom p: grillePena) {
-                penalites= serviceP.addPena(p.getName());
-                serviceTP.save(serviceTP.createTarifsPenalites( tarif, penalites,p.getPrix(), p.getDateDebut(),p.getDateFin()));
+        for (JourCustom j: grilleJour){
+            if (j.getNbrJours() == 1) {
+                flagJ = true;
             }
-            for (JourCustom j: grilleJour) {
-                jours= serviceJ.addJours(j.getNbrJours());
-                serviceTJ.save(serviceTJ.createTarifsJours( tarif, jours,j.getPrix(), j.getDateDebut(),j.getDateFin()));
+            if (j.getDateDebut().getTime()<tarif.getDateDebut().getTime()){
+                flagD1 = true;
             }
-            transaction.commit();
-            log.debug("J'ai sauvé le tarif");
-            return "/tableTarifs.xhtml?faces-redirect=true";
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.debug("J'ai fait une erreur dans tarif et je suis con");
+            if (j.getDateFin().getTime()<tarif.getDateDebut().getTime()){
+                flagD2 = true;
+            }
+        }
+        for (PenaCustom p:grillePena) {
+            if (p.getDateDebut().getTime()<tarif.getDateDebut().getTime()){
+                flagD1 = true;
+            }
+            if (p.getDateFin().getTime()<p.getDateDebut().getTime()){
+                flagD2 = true;
+            }
+        }
+
+        if (flagJ && !flagD1 && !flagD2 && service.findOneTarif(tarif).size()==0) {
+
+            SvcTarifsJours serviceTJ = new SvcTarifsJours();
+            SvcTarifsPenalites serviceTP = new SvcTarifsPenalites();
+            SvcJours serviceJ = new SvcJours();
+            SvcPenalites serviceP = new SvcPenalites();
+            EntityTransaction transaction = service.getTransaction();
+            serviceTJ.setEm(service.getEm());
+            serviceTP.setEm(service.getEm());
+            serviceJ.setEm(service.getEm());
+            serviceP.setEm(service.getEm());
+
+            Penalites penalites;
+            Jours jours;
+            //Todo mettre/faire une verification de l'objet Livre, ainsi que des auteurs et du genre
+            log.debug("J'vais essayer d'sauver le tarif");
+
+            transaction.begin();
+            try {
+                tarif = service.save(tarif);
+                for (PenaCustom p : grillePena) {
+                    penalites = serviceP.addPena(p.getName());
+                    serviceTP.save(serviceTP.createTarifsPenalites(tarif, penalites, p.getPrix(), p.getDateDebut(), p.getDateFin()));
+                }
+                for (JourCustom j : grilleJour) {
+                    jours = serviceJ.addJours(j.getNbrJours());
+                    serviceTJ.save(serviceTJ.createTarifsJours(tarif, jours, j.getPrix(), j.getDateDebut(), j.getDateFin()));
+                }
+                transaction.commit();
+                log.debug("J'ai sauvé le tarif");
+                return "/tableTarifs.xhtml?faces-redirect=true";
+            } finally {
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation n'a reussie", null));
+                } else {
+
+                    log.debug("je suis censé avoir réussi");
+                    init();
+                }
+
+                service.close();
+            }
+        }
+        else {
+            service.close();
+            if(!flagJ){
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'a reussie",null));
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "la valeur tarifaire pour 1 jours est requise, veuillez l'ajouter", null));
+                return "";
             }
-            else
-            {
-
-                log.debug("je suis censé avoir réussi");
-                init();
+            else if (flagD1){
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "les dates encodées dans les tableaux ne peuvent être antérieure à la date de début du tarif, veuillez corriger", null));
+                return "";
+            }
+            else if (flagD2){
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "les dates de fin encodées dans les tableaux ne peuvent être antérieure à leur date de début correspondante, veuillez corriger", null));
+                return "";
+            }
+            else {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "ce nom de tarif existe déjà; veuillez en choisir un autre", null));
+                return "";
             }
 
-            service.close();
         }
     }
 
@@ -189,29 +236,5 @@ public class TarifsBean implements Serializable {
 
     public void setGrilleJour(List<JourCustom> grilleJour) {
         this.grilleJour = grilleJour;
-    }
-
-    public Bibliotheques getBibli() {
-        return bibli;
-    }
-
-    public void setBibli(Bibliotheques bibli) {
-        this.bibli = bibli;
-    }
-
-    public String getDenominationTarif() {
-        return denominationTarif;
-    }
-
-    public void setDenominationTarif(String denominationTarif) {
-        this.denominationTarif = denominationTarif;
-    }
-
-    public Date getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
     }
 }

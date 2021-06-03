@@ -32,7 +32,6 @@ public class SvcPenalites extends Service<Penalites> implements Serializable {
 	public Penalites addPena(String d)
 	{
 
-		findByName(d);
 		if(findByName(d).size() == 1)
 		{
 			return findByName(d).get(0);

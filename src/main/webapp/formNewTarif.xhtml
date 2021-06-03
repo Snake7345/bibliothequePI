@@ -5,8 +5,7 @@
       xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html">
-<!--TODO retravailler la page surtout faire le calendrier en jsf-->
-<!--TODO Mettre a jour les champs, mettre a jour les messages et mettre a jour les validatormessages-->
+<!--TODO Mettre les required-->
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['tarif.form.nouveau.titre']}</ui:define>
 
@@ -18,25 +17,20 @@
                     <title>#{I18N['tarif.form.nouveau.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['tarif.form.nouveau.titre']}</h2>
-                <!-- faut champ bibliotheque -->
                 <h:outputText value="#{I18N['bibliotheque.label.Nom']}" />
-                <h:selectOneMenu value = "#{tarifsBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
+                <h:selectOneMenu value = "#{tarifsBean.tarif.bibliotheques}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
                                  converter="biblioConverter">
                     <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
                                    itemLabel="#{bi.nom}"
                                    itemValue="#{bi}"/>
                 </h:selectOneMenu>
-                <!-- Faut date début-->
-                <!--TODO doit être une date-->
                 <h:outputText value="#{I18N['tarif.label.dateDebutgrille']}" />
-                <h:inputText value="#{tarifsBean.dateDebut}">
+                <h:inputText value="#{tarifsBean.tarif.dateDebut}">
                     <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                 </h:inputText>
                 <h:outputText value="#{I18N['tarif.label.nom']}" />
-                <h:inputText value="#{tarifsBean.denominationTarif}" />
-                <!-- faut le nom de la grille tarifaire-->
-                <!-- -->
-                <!--TODO doit être un entier ou un nombre décimal-->
+                <h:inputText value="#{tarifsBean.tarif.denomination}" />
+
                 <h:dataTable value="#{tarifsBean.grilleJour}" var="J">
                     <h:column>
                         <f:facet name="header">
@@ -44,22 +38,19 @@
                         </f:facet>
                         <h:outputText value="#{I18N['tarif.label.prix']}" />
                     </h:column>
-                    <!--TODO doit être un entier-->
+
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.jour']}" />
                         </f:facet>
                         <h:inputText value="#{J.nbrJours}" />
                     </h:column>
-                    <!--TODO doit être un entier ou un nombre décimal-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.Prix']}" />
                         </f:facet>
                         <h:inputText value="#{J.prix}" />
                     </h:column>
-                    <!-- La date NE PEUT être avant celle de la grille (voir valeur au dessus)-->
-                    <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.DateDebut']}" />
@@ -96,15 +87,12 @@
                         </f:facet>
                         <h:inputText value="#{P.name}" />
                     </h:column>
-                    <!--TODO doit être un entier ou un nombre décimal-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.Prix']}" />
                         </f:facet>
                         <h:inputText value="#{P.prix}" />
                     </h:column>
-                    <!-- La date NE PEUT être avant celle de la grille (voir valeur au dessus)-->
-                    <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.DateDebut']}" />
@@ -113,7 +101,6 @@
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
-                    <!--TODO doit être une date-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.DateFin']}" />

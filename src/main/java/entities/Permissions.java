@@ -10,6 +10,7 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Permissions.findAllTri", query = "SELECT p FROM Permissions p ORDER BY p.denomination ASC"),
+                @NamedQuery(name = "Permissions.findOne", query ="SELECT p FROM Permissions p WHERE p.denomination=:denomination")
 
         })
 public class Permissions implements Serializable {

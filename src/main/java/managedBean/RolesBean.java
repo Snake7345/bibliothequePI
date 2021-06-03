@@ -1,7 +1,9 @@
 package managedBean;
 
+import entities.Auteurs;
 import entities.Roles;
 import org.apache.log4j.Logger;
+import services.SvcAuteurs;
 import services.SvcPermissionRoles;
 import services.SvcRoles;
 
@@ -33,8 +35,34 @@ public class RolesBean implements Serializable {
     public String newRoles()
     {
         //Todo mettre/faire une verification de l'objet role
-        save();
+        if(verifRoleExist(role))
+        {
+            save();
+        }
+        else
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La donnée est déjà existante en DB",null));
+        }
+        init();
+
         return "/tableRoles.xhtml?faces-redirect=true";
+    }
+
+    public boolean verifRoleExist(Roles rol)
+    {
+        SvcRoles serviceR = new SvcRoles();
+        if(serviceR.findRole(rol.getDenomination()).size() > 0)
+        {
+            serviceR.close();
+            return false;
+        }
+        else {
+            serviceR.close();
+            return true;
+        }
+
     }
 
     public String activdesactivRol()
