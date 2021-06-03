@@ -118,7 +118,6 @@ public class ExemplairesLivresBean implements Serializable {
     }
     public String activdesactivExLiv()
     {
-        //TODO - vérifier si état livre permet la réactivation de l'exemplaire
         /*Si le livre est actif alors on le désactive; sinon on l'active*/
         if(exemplairesLivre.isActif())
         {

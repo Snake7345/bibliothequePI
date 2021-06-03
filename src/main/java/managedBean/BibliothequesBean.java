@@ -30,7 +30,6 @@ public class BibliothequesBean implements Serializable {
 
     public String newBiblio()
     {
-        //Todo mettre/faire une verification de l'objet bibliotheque,
         save();
         return "/tableBibliotheques.xhtml?faces-redirect=true";
     }

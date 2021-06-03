@@ -30,7 +30,6 @@ public class EditeursBean implements Serializable {
 
     public String newEditeur()
     {
-        //Todo mettre/faire une verification de l'objet editeur,
         save();
         return "/tableEditeurs.xhtml?faces-redirect=true";
 

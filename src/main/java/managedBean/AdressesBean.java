@@ -31,7 +31,6 @@ public class AdressesBean implements Serializable {
 
     public String newAdress()
     {
-        //Todo mettre/faire une verification de l'objet adresse,
         save();
         return "/tableAdresses.xhtml?faces-redirect=true";
     }

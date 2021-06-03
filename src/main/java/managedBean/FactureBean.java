@@ -30,9 +30,7 @@ import java.util.*;
 
 @Named
 @SessionScoped
-/*TODO :
- * - la redirection quand la facture et crÃ©e
- * */
+
 public class FactureBean implements Serializable {
     // DÃ©claration des variables globales
     private static final long serialVersionUID = 1L;

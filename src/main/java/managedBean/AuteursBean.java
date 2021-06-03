@@ -21,10 +21,7 @@ import java.util.List;
 
 @Named
 @SessionScoped
-/*
-* TODO :
-*  - Formulaire Confirmation de la manip
-* */
+
 public class AuteursBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
