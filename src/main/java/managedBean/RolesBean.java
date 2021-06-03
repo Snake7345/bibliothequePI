@@ -41,10 +41,19 @@ public class RolesBean implements Serializable {
     {
         if(role.isActif())
         {
-            log.debug("je passe le if de désactive");
-            role.setActif(false);
-        }
+            if(role.getDenomination().equals("Client") || role.getDenomination().equals("Employe") || role.getDenomination().equals("Manager") || role.getDenomination().equals("Administrateur"))
+            {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"les roles Administrateur, manager, Employe et Client, ne peuvent être désactivés",null));
+            }
+            else
+            {
+                log.debug("je passe le if de désactive");
+                role.setActif(false);
+            }
 
+        }
         else
         {
             role.setActif(true);
