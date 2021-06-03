@@ -9,7 +9,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-@FacesValidator("codeBarreValidator")
+@FacesValidator("livreValidator")
 public class LivreValidator implements Validator
 {
     @Override

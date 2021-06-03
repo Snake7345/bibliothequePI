@@ -10,7 +10,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-@FacesValidator("codeBarreValidator")
+@FacesValidator("tarifValidator")
 public class TarifValidator implements Validator
 {
     @Override

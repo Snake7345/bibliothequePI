@@ -15,7 +15,6 @@
     <ui:define name="content">
         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form prependId="false">
-
                 <h:panelGroup layout="block" id="content">
                     <h:messages styleClass="errorBlock" role="alert"/>
                     <h2 style="text-align:center">#{I18N['application.adresse.title']}</h2>
