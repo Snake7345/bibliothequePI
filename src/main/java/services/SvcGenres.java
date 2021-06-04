@@ -35,7 +35,7 @@ public class SvcGenres extends Service<Genres> implements Serializable {
 	{
 		Map<String, Object> param = new HashMap<>();
 		param.put("denomination", gen.getDenomination());
-		return finder.findByNamedQuery("genres.findOne",param);
+		return finder.findByNamedQuery("Genres.findOne",param);
 	}
 
 	//Méthode qui permet via une requete de retourner la liste entière des genres
