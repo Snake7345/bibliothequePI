@@ -12,7 +12,7 @@ import javax.faces.validator.ValidatorException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@FacesValidator("IsbnValidator")
+@FacesValidator("isbnValidator")
 public class IsbnValidator implements Validator {
 
     private static final String isbnReg = "^[\\d-]+$";
