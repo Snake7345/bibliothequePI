@@ -44,7 +44,7 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		param.put("login", util.getLogin());
 		param.put("mdp", util.getMdp());
 		param.put("numMembre", util.getNumMembre());
-		return finder.findByNamedQuery("utilisateurs.findOne",param);
+		return finder.findByNamedQuery("Utilisateurs.findOne",param);
 	}
 
 	//Méthode qui permet via une requete de retourner la liste entière des utilisateurs
