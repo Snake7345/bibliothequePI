@@ -43,19 +43,21 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.jour']}" />
                         </f:facet>
-                        <h:inputText value="#{J.nbrJours}" required="true"/>
+                        <h:inputText value="#{J.nbrJours}" required="true"
+                                     requiredMessage="#{I18N['formulaire.message.required.nbrJ']}"
+                        maxlength="5"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.Prix']}" />
                         </f:facet>
-                        <h:inputText value="#{J.prix}" required="true"/>
+                        <h:inputText value="#{J.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.DateDebut']}" />
                         </f:facet>
-                        <h:inputText value="#{J.dateDebut}" required="true">
+                        <h:inputText value="#{J.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
@@ -64,7 +66,7 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.DateFin']}" />
                         </f:facet>
-                        <h:inputText value="#{J.dateFin}" required="true">
+                        <h:inputText value="#{J.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
@@ -85,19 +87,19 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.Nom']}"  />
                         </f:facet>
-                        <h:inputText value="#{P.name}" required="true"/>
+                        <h:inputText value="#{P.name}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.Prix']}" />
                         </f:facet>
-                        <h:inputText value="#{P.prix}" required="true"/>
+                        <h:inputText value="#{P.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}"/>/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.DateDebut']}" />
                         </f:facet>
-                        <h:inputText value="#{P.dateDebut}" required="true">
+                        <h:inputText value="#{P.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>
@@ -105,7 +107,7 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.DateFin']}" />
                         </f:facet>
-                        <h:inputText value="#{P.dateFin}" required="true">
+                        <h:inputText value="#{P.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
                                      <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </h:inputText>
                     </h:column>

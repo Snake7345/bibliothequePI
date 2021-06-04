@@ -46,6 +46,12 @@
                     </h:column>
                     <h:column>
                         <!-- column header -->
+                        <f:facet name="header">#{I18N['livre.label.Annee']}</f:facet>
+                        <!-- row record -->
+                        <h:outputLabel value ="#{liv.annee}"/>
+                    </h:column>
+                    <h:column>
+                        <!-- column header -->
                         <f:facet name="header">#{I18N['editeur.label.Nom']}</f:facet>
                         <!-- row record -->
                         <h:outputLabel value ="#{liv.editeurs.nom}"/>
