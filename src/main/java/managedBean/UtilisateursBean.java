@@ -174,12 +174,29 @@ public class UtilisateursBean implements Serializable {
     }
 
     public String newUtilCli() {
+        boolean flag = false;
+        SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
         SvcRoles serviceR = new SvcRoles();
         utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
         utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
         utilisateur.setRoles(serviceR.findRole("Client").get(0));
         utilisateur.setNumMembre(createNumMembre());
-        if(utilisateur.getNumMembre().equals("999999999")){
+        for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()){
+            if (ua.getAdresse().equals(adresses)){
+                flag=true;
+                UA=ua;
+                break;
+            }
+        }
+        if (!flag){
+            UA = serviceUA.createUtilisateursAdresses(utilisateur, adresses);
+        }
+        if(!verifUtilExist(utilisateur)) {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le client existe déjà tel quel en DB; opération échouée",null));
+        }
+        else if(utilisateur.getNumMembre().equals("999999999")){
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le nombre de client maximal a été atteint; opération échouée",null));

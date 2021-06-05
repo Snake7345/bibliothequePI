@@ -33,22 +33,6 @@ public class SvcPermissions extends Service<Permissions> implements Serializable
 		return permissions;
 	}
 
-	public Permissions addPermission(String d)
-	{
-
-		if(findOnePermission(d).size() == 1)
-		{
-			return findOnePermission(d).get(0);
-		}
-		else
-		{
-			Permissions perm = new Permissions();
-			perm.setDenomination(d);
-			save(perm);
-			return perm;
-		}
-	}
-
 	public List<Permissions> findOnePermission(String perm)
 	{
 		Map<String, Object> param = new HashMap<>();

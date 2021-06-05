@@ -81,11 +81,7 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		return finder.findByNamedQuery("Utilisateurs.findLastMembre",null);
 	}
 
-	public Utilisateurs deleteUtilisateur(Utilisateurs util){
-		System.out.println("Je delete l'utilisateur :" + util.getNom() + util.getPrenom());
-		util.setActif(false);
-		return util;
-	}
+
 
 	public List<Utilisateurs> getByName(String nom) {
 		Map<String, String> param = new HashMap<>();

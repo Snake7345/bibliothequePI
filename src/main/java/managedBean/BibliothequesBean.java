@@ -31,7 +31,7 @@ public class BibliothequesBean implements Serializable {
 
     public String newBiblio()
     {
-        if(checkbibli())
+        if(getCheckbibli())
         {
             save();
         }
@@ -44,7 +44,7 @@ public class BibliothequesBean implements Serializable {
         return "/tableBibliotheques.xhtml?faces-redirect=true";
     }
 
-    public boolean checkbibli(){
+    public boolean getCheckbibli(){
         SvcBibliotheques serviceB = new SvcBibliotheques();
         if(serviceB.findAllBibliotheques().size()==0)
         {

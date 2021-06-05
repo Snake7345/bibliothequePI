@@ -40,6 +40,8 @@ public class AuteursBean implements Serializable {
 
         if(verifAuteurExist(auteur))
         {
+            auteur.setNom(auteur.getNom().substring(0,1).toUpperCase() + auteur.getNom().substring(1));
+            auteur.setPrenom(auteur.getPrenom().substring(0,1).toUpperCase() + auteur.getPrenom().substring(1));
             save();
         }
         else{

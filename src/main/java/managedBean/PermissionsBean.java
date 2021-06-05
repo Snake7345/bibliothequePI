@@ -35,38 +35,46 @@ public class PermissionsBean implements Serializable {
         //Todo mettre/faire une verification de l'objet utilisateur,
         log.debug("J'vais essayer d'sauver la permission");
         transaction.begin();
+        if (checkPermExist()) {
+            try {
 
-        try {
+                service.save(permission);
 
-            service.addPermission(permission.getDenomination());
-
-            transaction.commit();
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
-            log.debug("J'ai sauvé le permission");
-            return "/tablePermissions.xhtml?faces-redirect=true";
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
+                transaction.commit();
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'a pas reussie",null));
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
+                log.debug("J'ai sauvé le permission");
+                return "/tablePermissions.xhtml?faces-redirect=true";
+            } finally {
+                if (transaction.isActive()) {
+                    transaction.rollback();
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation n'a pas reussie", null));
 
-                return "";
-            }
-            else
-            {
-                log.debug("je suis censé avoir réussi");
-                init();
-            }
+                    return "";
+                } else {
+                    log.debug("je suis censé avoir réussi");
+                    init();
+                }
 
-            service.close();
+                service.close();
+            }
+        }
+        else {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cette permission existe déjà en base de donnée", null));
+            return "/tablePermissions.xhtml?faces-redirect=true";
         }
 
     }
 
-
+public boolean checkPermExist(){
+        SvcPermissions serviceP = new SvcPermissions();
+        return (serviceP.findOnePermission(permission.getDenomination()).size() == 0);
+}
 
     public String flushPerm()
     {
