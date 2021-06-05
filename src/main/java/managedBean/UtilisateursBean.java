@@ -92,14 +92,15 @@ public class UtilisateursBean implements Serializable {
         transaction.begin();
         try {
             service.save(utilisateur);
-            for (UtilisateursAdresses utiladress: utilisateur.getUtilisateursAdresses())
-            {
-                 if(!utiladress.equals(UA) && utiladress.isActif())
-                 {
-                    utiladress.setActif(false);
-                    serviceUA.save(utiladress);
-                 }
+            if(utilisateur.getIdUtilisateurs()!=0) {
+                for (UtilisateursAdresses utiladress : utilisateur.getUtilisateursAdresses()) {
+                    if (!utiladress.equals(UA) && utiladress.isActif()) {
+                        utiladress.setActif(false);
+                        serviceUA.save(utiladress);
+                    }
+                }
             }
+
             serviceUA.save(UA);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -127,11 +128,13 @@ public class UtilisateursBean implements Serializable {
         utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
 
         //todo à vérifier que ça fonctionne...
-        for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()){
-            if (ua.getAdresse().equals(adresses)){
-                flag=true;
-                UA=ua;
-                break;
+        if (utilisateur.getIdUtilisateurs()!=0) {
+            for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()) {
+                if (ua.getAdresse().equals(adresses)) {
+                    flag = true;
+                    UA = ua;
+                    break;
+                }
             }
         }
         if (!flag){
@@ -154,22 +157,29 @@ public class UtilisateursBean implements Serializable {
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
         boolean flag= false;
-
-        for (UtilisateursAdresses ua:util.getUtilisateursAdresses())
-        {
-            if (ua.getAdresse().equals(adresses) && ua.isActif()) {
-                flag = true;
-                break;
+        if (util.getIdUtilisateurs()!=0) {
+            for (UtilisateursAdresses ua : util.getUtilisateursAdresses()) {
+                if (ua.getAdresse().equals(adresses) && ua.isActif()) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (serviceU.findOneUtilisateur(util).size() > 0 && flag) {
+                serviceU.close();
+                return false;
+            } else {
+                serviceU.close();
+                return true;
             }
         }
-        if(serviceU.findOneUtilisateur(util).size() > 0 && flag)
-        {
-            serviceU.close();
-            return false;
-        }
         else {
-            serviceU.close();
-            return true;
+            if (serviceU.findOneUtilisateur(util).size() > 0) {
+                serviceU.close();
+                return false;
+            } else {
+                serviceU.close();
+                return true;
+            }
         }
     }
 

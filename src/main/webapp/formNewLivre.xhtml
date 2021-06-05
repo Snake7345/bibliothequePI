@@ -47,7 +47,7 @@
                     <f:selectItems value = "#{genresBean.readAll}" var="livgen" itemLabel="#{livgen.denomination}" itemValue="#{livgen}"/>
                 </h:selectManyListbox>
                 <h:message for="livreGenre" styleClass="errorMessage"/>
-<!--Enlever le 0 qui est mis comme valeur de base-->
+
                 <h:outputText value = "#{I18N['livre.label.Annee']}"/>
                 <h:inputText id="livreAnnee"
                              value="#{livresBean.livre.annee}"

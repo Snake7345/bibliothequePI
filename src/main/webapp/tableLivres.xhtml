@@ -44,7 +44,7 @@
                     </h:column>
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(19,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
-                        <h:commandButton  image="Images//edit.png" action="formEditLivre">		<!-- u minuscule -->
+                        <h:commandButton  image="Images//edit.png" action="#{livresBean.redirectModif}">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </h:commandButton>
                     </h:column>

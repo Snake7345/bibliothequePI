@@ -135,7 +135,7 @@ public class LivresBean implements Serializable {
         for(LivresGenres LG : serviceLG.GetByLivre(livre)){
             genre.add(LG.getGenre());
         }
-        return "/tableLivres.xhtml?faces-redirect=true";
+        return "/formEditLivre.xhtml?faces-redirect=true";
     };
 
     public String activdesactivLiv()
