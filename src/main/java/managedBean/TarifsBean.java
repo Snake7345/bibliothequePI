@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -162,11 +163,11 @@ public class TarifsBean implements Serializable {
                 tarif = service.save(tarif);
                 for (PenaCustom p : grillePena) {
                     penalites = serviceP.addPena(p.getName());
-                    serviceTP.save(serviceTP.createTarifsPenalites(tarif, penalites, p.getPrix(), p.getDateDebut(), p.getDateFin()));
+                    serviceTP.save(serviceTP.createTarifsPenalites(tarif, penalites, ((int)((p.getPrix()*100)+0.5)/100.0), p.getDateDebut(), p.getDateFin()));
                 }
                 for (JourCustom j : grilleJour) {
                     jours = serviceJ.addJours(j.getNbrJours());
-                    serviceTJ.save(serviceTJ.createTarifsJours(tarif, jours, j.getPrix(), j.getDateDebut(), j.getDateFin()));
+                    serviceTJ.save(serviceTJ.createTarifsJours(tarif, jours, ((int)((j.getPrix()*100)+0.5)/100.0), j.getDateDebut(), j.getDateFin()));
                 }
                 transaction.commit();
                 log.debug("J'ai sauvé le tarif");

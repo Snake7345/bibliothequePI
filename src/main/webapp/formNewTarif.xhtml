@@ -59,7 +59,6 @@
                         </f:facet>
                         <h:inputText value="#{J.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}"
                                      maxlength="11">
-                            <f:convertNumber maxFractionDigits="2"/>
                             <f:validateDoubleRange minimum="0.0"/>
                         </h:inputText>
                     </h:column>
@@ -104,7 +103,6 @@
                             <h:outputText value="#{I18N['tarifpenalite.label.Prix']}" />
                         </f:facet>
                         <h:inputText value="#{P.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}" validatorMessage="Nombre positif requis pour le prix pénalité">
-                            <f:convertNumber maxFractionDigits="2"/>
                             <f:validateDoubleRange minimum="0.0"/>
                         </h:inputText>
                     </h:column>

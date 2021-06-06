@@ -308,7 +308,7 @@ public class FactureBean implements Serializable {
     public String redirectChoix(){
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         exemplairesLivres = serviceEL.findOneByCodeBarre(CB).get(0);
-
+        tarifsPenalites= new ArrayList<>();
         if (choixetat){
             Date date = new Date();
             SvcTarifs serviceT = new SvcTarifs();
