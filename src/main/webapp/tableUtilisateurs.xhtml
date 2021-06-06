@@ -56,13 +56,12 @@
                                     <h:outputLabel value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
                             </ui:repeat>
                         </h:column>
-                        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)}">
-                        <h:column>
-                            <h:commandButton  image="Images//edit.png" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
+                       <h:column>
+                            <!--TODO : Verifier que le rendered fonctionne bien-->
+                            <h:commandButton rendered="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)} or loginBean.utilisateurAuth eq ut" image="Images//edit.png" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                             </h:commandButton>
                         </h:column>
-                        </c:if>
                         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(28,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton image="Images//activdesactiv.png" action="#{utilisateursBean.activdesactivUtil}">

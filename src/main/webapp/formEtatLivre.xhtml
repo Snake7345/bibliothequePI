@@ -39,7 +39,7 @@
                 </h:panelGrid>
 
                 <h:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.retourLivre}"/>
-                <h:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.f}" immediate="true"/>
+                <h:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
             </h:form>
         </c:if>
         <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles))}">

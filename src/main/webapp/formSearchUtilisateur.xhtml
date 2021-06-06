@@ -27,12 +27,6 @@
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <h:column>
                         <!-- column header -->
-                        <f:facet name="header">#{I18N['utilisateur.label.Id']}</f:facet>
-                        <!-- row record -->
-                        <h:outputLabel value ="#{util.idUtilisateurs}"/>
-                    </h:column>
-                    <h:column>
-                        <!-- column header -->
                         <f:facet name="header">#{I18N['utilisateur.label.Nom']}</f:facet>
                         <!-- row record -->
                         <h:outputLabel value ="#{util.nom}"/>
@@ -49,6 +43,40 @@
                         <!-- row record -->
                         <h:outputLabel value ="#{util.actif}"/>
                     </h:column>
+                    <h:column>
+                        <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
+                        <f:facet name="header">#{I18N['utilisateur.label.Courriel']}</f:facet>
+                        <!-- row record -->
+                        <h:outputLabel value ="#{util.courriel}"> </h:outputLabel>
+                    </h:column>
+                    <h:column>
+                        <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
+                        <f:facet name="header">#{I18N['utilisateur.label.NumMembre']}</f:facet>
+                        <!-- row record -->
+                        <h:outputLabel value ="#{util.numMembre}"> </h:outputLabel>
+                    </h:column>
+                    <h:column>
+                        <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
+                        <f:facet name="header">#{I18N['adresse.label.complete']}</f:facet>
+                        <!-- row record -->
+                        <ui:repeat value="#{util.utilisateursAdresses}" var="utad">
+                            <h:outputLabel value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
+                        </ui:repeat>
+                    </h:column>
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(52,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <h:column>
+                            <h:commandButton  image="Images//edit.png" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" /><!-- u minuscule -->
+                            </h:commandButton>
+                        </h:column>
+                    </c:if>
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(53,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <h:column>
+                            <h:commandButton image="Images//activdesactiv.png" action="#{utilisateursBean.activdesactivUtil}">
+                                <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" />
+                            </h:commandButton>
+                        </h:column>
+                    </c:if>
                 </h:dataTable>
             </h:panelGroup>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
