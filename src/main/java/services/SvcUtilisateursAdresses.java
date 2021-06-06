@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SvcUtilisateursAdresses extends Service<UtilisateursAdresses> implements Serializable
@@ -29,8 +30,6 @@ public class SvcUtilisateursAdresses extends Service<UtilisateursAdresses> imple
 
             return utilisateursAdresses;
         }
-
-
 
         public UtilisateursAdresses createUtilisateursAdresses(Utilisateurs u, Adresses a)
         {

@@ -60,17 +60,20 @@
                     <f:validateLength minimum="3" maximum="100"/>
                 </h:inputText>
                 <h:message for="utilisateurCourriel" styleClass="errorMessage"/>
-<!--Ne fonctionne pas-->
 
                 <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
                 <h:outputText value = "#{I18N['utilisateur.label.Mdp']}"/>
                 <h:inputSecret id="utilisateurMdp"
                              value="#{utilisateursBean.utilisateur.mdp}"
-                             required="false">
+                             redisplay ="true"
+                             requiredMessage="#{I18N['formulaire.message.required.mdp']}"
+                             required="true">
                 </h:inputSecret>
+                    <h:message for="utilisateurMdp" styleClass="errorMessage"/>
                 </c:if>
 
 
+                <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
                 <h:outputText value = "#{I18N['role.label.Denomination']}"/>
                 <h:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                  converter="roleConverter">
@@ -78,6 +81,8 @@
                                    itemLabel="#{ro.denomination}"
                                    itemValue="#{ro}"/>
                 </h:selectOneMenu>
+                    <h:message for="roles" styleClass="errorMessage"/>
+                </c:if>
 
                 <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
                 <h:selectOneMenu value = "#{utilisateursBean.adresses}" id="utiladress" required="true"
@@ -87,6 +92,7 @@
                                    itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
                                    itemValue="#{ad}"/>
                 </h:selectOneMenu>
+                <h:message for="utiladress" styleClass="errorMessage"/>
 
 
                 <!-- A rajouter l'adresse-->
@@ -94,7 +100,13 @@
             </h:panelGrid>
 
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}"/>
+
+            <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
             <h:commandButton value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
+            </c:if>
+            <c:if test= "#{utilisateursBean.utilisateur.roles.denomination eq 'Client'}">
+            <h:commandButton value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
+            </c:if>
         </h:form>
         </c:if>
         <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles))}">

@@ -126,17 +126,6 @@ public class LivresBean implements Serializable {
     }
 
 
-    public String redirectModif(){
-        SvcLivresGenres serviceLG = new SvcLivresGenres();
-        SvcLivresAuteurs serviceLA = new SvcLivresAuteurs();
-        for(LivresAuteurs LA : serviceLA.GetByLivre(livre)){
-            auteur.add(LA.getAuteur());
-        }
-        for(LivresGenres LG : serviceLG.GetByLivre(livre)){
-            genre.add(LG.getGenre());
-        }
-        return "/formEditLivre.xhtml?faces-redirect=true";
-    };
 
     public String activdesactivLiv()
     {
@@ -145,7 +134,9 @@ public class LivresBean implements Serializable {
         serviceEL.setEm(service.getEm());
         EntityTransaction transaction = service.getTransaction();
         log.debug("je débute la méthode activdésactive");
-
+        log.debug(livre.getTitre());
+        log.debug(livre.getExemplairesLivres().size());
+        log.debug(livre.isActif());
         transaction.begin();
         try {
             /*Si le livre est actif alors on le désactive; sinon on l'active*/
@@ -154,24 +145,25 @@ public class LivresBean implements Serializable {
                 livre.setActif(false);
                 for (ExemplairesLivres el:livre.getExemplairesLivres()) {
                     el.setActif(false);
-
+                    serviceEL.save(el);
                 }
             }
             else
             {
                 livre.setActif(true);
             }
-            livre.setIsbn(livre.getIsbn().replace("-", ""));
             service.save(livre);
 
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("ModifRe", new FacesMessage("Modification réussie"));
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("Erreur", new FacesMessage("le rollback a pris le relais"));
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation a échoué",null));
             }
             service.close();
         }

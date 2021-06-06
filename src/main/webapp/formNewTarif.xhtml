@@ -10,13 +10,14 @@
     <ui:define name="title">#{I18N['tarif.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-        <h:messages styleClass="errorBlock" globalOnly="true" />
+        <h:messages styleClass="errorBlock"/>
         <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form>
                 <h:head>
                     <title>#{I18N['tarif.form.nouveau.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['tarif.form.nouveau.titre']}</h2>
+
                 <h:outputText value="#{I18N['bibliotheque.label.Nom']}" />
                 <h:selectOneMenu value = "#{tarifsBean.tarif.bibliotheques}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
                                  converter="biblioConverter">
@@ -25,11 +26,14 @@
                                    itemValue="#{bi}"/>
                 </h:selectOneMenu>
                 <h:outputText value="#{I18N['tarif.label.dateDebutgrille']}" />
-                <h:inputText value="#{tarifsBean.tarif.dateDebut}" required="true">
+                <h:inputText id="dateDebutGrille" value="#{tarifsBean.tarif.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                     <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                 </h:inputText>
+
+
                 <h:outputText value="#{I18N['tarif.label.nom']}" />
-                <h:inputText value="#{tarifsBean.tarif.denomination}" />
+                <h:inputText id="nomGrille" value="#{tarifsBean.tarif.denomination}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}"/>
+
 
                 <h:dataTable value="#{tarifsBean.grilleJour}" var="J">
                     <h:column>
@@ -43,15 +47,21 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.jour']}" />
                         </f:facet>
-                        <h:inputText value="#{J.nbrJours}" required="true"
+                        <h:inputText id ="jour" value="#{J.nbrJours}" required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.nbrJ']}"
-                        maxlength="5"/>
+                        maxlength="6" validatorMessage="Nombre entier requis" converterMessage="Seuls les chiffres sont autorisés">
+                            <f:validateLongRange minimum="0"/>
+                        </h:inputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifjour.label.Prix']}" />
                         </f:facet>
-                        <h:inputText value="#{J.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}"/>
+                        <h:inputText value="#{J.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}"
+                                     maxlength="11">
+                            <f:convertNumber maxFractionDigits="2"/>
+                            <f:validateDoubleRange minimum="0.0"/>
+                        </h:inputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -72,8 +82,8 @@
                     </h:column>
                 </h:dataTable>
 
-                <h:commandButton value="Add" action="#{tarifsBean.addNewJourRow}" immediate="true"/>
-                <h:commandButton value="Del" action="#{tarifsBean.delJourRow}" immediate="true"/>
+                <h:commandButton value="Add" action="#{tarifsBean.addNewJourRow}"/>
+                <h:commandButton value="Del" action="#{tarifsBean.delJourRow}"/>
 
                 <h:dataTable value="#{tarifsBean.grillePena}" var="P">
                     <h:column>
@@ -93,7 +103,10 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.Prix']}" />
                         </f:facet>
-                        <h:inputText value="#{P.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}"/>/>
+                        <h:inputText value="#{P.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}" validatorMessage="Nombre positif requis pour le prix pénalité">
+                            <f:convertNumber maxFractionDigits="2"/>
+                            <f:validateDoubleRange minimum="0.0"/>
+                        </h:inputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -113,9 +126,9 @@
                     </h:column>
                 </h:dataTable>
                 <br/>
-                <h:commandButton value="Add" action="#{tarifsBean.addNewPenaRow}" immediate="true"/>
+                <h:commandButton value="Add" action="#{tarifsBean.addNewPenaRow}"/>
                 <h:commandButton value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
-                <h:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}" immediate="true"/>
+                <h:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}"/>
                 <h:commandButton value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
             </h:form>
         </c:if>

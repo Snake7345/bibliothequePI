@@ -49,6 +49,26 @@
 				<!-- row record -->
 				<h:outputLabel value ="#{aut.actif}"/>
 			</h:column>
+			<c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(14,loginBean.utilisateurAuth.roles.idRoles)}">
+				<h:column>
+					<h:commandButton  image="Images//edit.png" action="formEditAuteur">		<!-- u minuscule -->
+						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" /><!-- u minuscule -->
+					</h:commandButton>
+				</h:column>
+			</c:if>
+			<h:column>
+				<h:commandButton  image="Images//livremini.jpg" action="#{livresBean.readByAuteurs}">		<!-- u minuscule -->
+					<f:setPropertyActionListener target="#{livresBean.aut}" value="#{aut}" /><!-- u minuscule -->
+				</h:commandButton>
+			</h:column>
+			<!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
+			<c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(24,loginBean.utilisateurAuth.roles.idRoles)}">
+				<h:column>
+					<h:commandButton image="Images//activdesactiv.png" action="formConfirmationAuteur">
+						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
+					</h:commandButton>
+				</h:column>
+			</c:if>
 		</h:dataTable>
 		</h:panelGroup>
 				<h:commandButton value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>

@@ -31,13 +31,6 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{per.denomination}"/>
                         </h:column>
-                        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(21,loginBean.utilisateurAuth.roles.idRoles)}">
-                        <h:column>
-                            <h:commandButton  image="Images//edit.png" action="formEditPermission">		<!-- u minuscule -->
-                                <f:setPropertyActionListener target="#{permissionsBean.permission}" value="#{per}" /><!-- u minuscule -->
-                            </h:commandButton>
-                        </h:column>
-                        </c:if>
                     </h:dataTable>
                 </h:panelGroup>
             <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(10,loginBean.utilisateurAuth.roles.idRoles)}">

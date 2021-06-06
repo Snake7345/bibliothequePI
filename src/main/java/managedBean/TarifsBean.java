@@ -66,21 +66,27 @@ public class TarifsBean implements Serializable {
         }
     }
     public String redirectEdit(){
-        grillePena.clear();
-        grilleJour.clear();
-        if (tarif.getTarifsPenalites().size()!=0){
-            for (TarifsPenalites TP: tarif.getTarifsPenalites()) {
-                grillePena.add(new PenaCustom(TP.getPenalite().getDenomination(), TP.getPrix(), TP.getDateDebut(),TP.getDateFin()));
-            }
-        }
-        for (TarifsJours TJ:tarif.getTarifsJours()){
-            grilleJour.add(new JourCustom(TJ.getJours().getNbrJour(), TJ.getPrix(),TJ.getDateDebut(),TJ.getDateFin()));
-        }
-        return "/formEditTarif.xhtml?faces-redirect=true";
-    }
-    public boolean checkModif(){
         long dn = new Date().getTime();
-        return tarif.getDateDebut().getTime() > dn;
+        if(tarif.getDateDebut().getTime() > dn){
+            grillePena.clear();
+            grilleJour.clear();
+            if (tarif.getTarifsPenalites().size()!=0){
+                for (TarifsPenalites TP: tarif.getTarifsPenalites()) {
+                    grillePena.add(new PenaCustom(TP.getPenalite().getDenomination(), TP.getPrix(), TP.getDateDebut(),TP.getDateFin()));
+                }
+            }
+            for (TarifsJours TJ:tarif.getTarifsJours()){
+                grilleJour.add(new JourCustom(TJ.getJours().getNbrJour(), TJ.getPrix(),TJ.getDateDebut(),TJ.getDateFin()));
+            }
+            return "/formEditTarif.xhtml?faces-redirect=true";
+        }
+        else {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"ce tarif ne peut être modifié",null));
+            return "/tableTarifs.xhtml?faces-redirect=true";
+        }
+
     }
 
    public String newTarif()

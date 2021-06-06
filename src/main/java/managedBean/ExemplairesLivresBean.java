@@ -36,11 +36,6 @@ public class ExemplairesLivresBean implements Serializable {
         exemplairesLivre = new ExemplairesLivres();
         SvcExemplairesLivres service = new SvcExemplairesLivres();
         SvcBibliotheques serviceB = new SvcBibliotheques();
-        //puisque ce programme n'aura jamais qu'une seulle bibliotheque; on se permet de la prendre dirrectement depuis la db
-        if (serviceB.findAllBibliotheques().size()==1)
-        {
-            bibli= serviceB.getById(1);
-        }
         if (service.findlastExemplairesLivres().size()==0){
             LastBarCode = "0";
         }
@@ -82,6 +77,16 @@ public class ExemplairesLivresBean implements Serializable {
             service.close();
         }
 
+        return "/tableExemplaireLivres.xhtml?faces-redirect=true";
+    }
+
+    public String editExemplaireLivre()
+    {
+        if (exemplairesLivre.getEtat()==ExemplairesLivresEtatEnum.Mauvais)
+        {
+            exemplairesLivre.setActif(false);
+        }
+        save();
         return "/tableExemplaireLivres.xhtml?faces-redirect=true";
     }
     public String generateBarCode(){
@@ -127,10 +132,7 @@ public class ExemplairesLivresBean implements Serializable {
         {
             exemplairesLivre.setActif(false);
         }
-        else
-        {
-            exemplairesLivre.setActif(true);
-        }
+
         save();
         return "/tableLivres.xhtml?faces-redirect=true";
         }
@@ -170,5 +172,13 @@ public class ExemplairesLivresBean implements Serializable {
 
     public void setLivre(Livres livre) {
         this.livre = livre;
+    }
+
+    public Bibliotheques getBibli() {
+        return bibli;
+    }
+
+    public void setBibli(Bibliotheques bibli) {
+        this.bibli = bibli;
     }
 }

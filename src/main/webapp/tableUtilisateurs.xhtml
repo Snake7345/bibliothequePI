@@ -20,12 +20,6 @@
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <h:column>
                             <!-- column header -->
-                            <f:facet name="header">#{I18N['utilisateur.label.Id']}</f:facet>
-                            <!-- row record -->
-                            <h:outputLabel value ="#{ut.idUtilisateurs}"/>
-                        </h:column>
-                        <h:column>
-                            <!-- column header -->
                             <f:facet name="header">#{I18N['utilisateur.label.Nom']}</f:facet>
                             <!-- row record -->
                             <h:outputLabel value ="#{ut.nom}"/>
@@ -47,18 +41,6 @@
                             <f:facet name="header">#{I18N['utilisateur.label.Courriel']}</f:facet>
                             <!-- row record -->
                             <h:outputLabel value ="#{ut.courriel}"> </h:outputLabel>
-                        </h:column>
-                        <h:column>
-                            <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
-                            <f:facet name="header">#{I18N['utilisateur.label.Login']}</f:facet>
-                            <!-- row record -->
-                            <h:outputLabel value ="#{ut.login}"> </h:outputLabel>
-                        </h:column>
-                        <h:column>
-                            <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
-                            <f:facet name="header">#{I18N['utilisateur.label.Mdp']}</f:facet>
-                            <!-- row record -->
-                            <h:outputLabel value ="#{ut.mdp}"> </h:outputLabel>
                         </h:column>
                         <h:column>
                             <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->

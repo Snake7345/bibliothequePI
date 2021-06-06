@@ -56,8 +56,8 @@
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(17,loginBean.utilisateurAuth.roles.idRoles)}">
 
                     <h:column>
-                        <h:commandButton rendered="#{livexemL.etat ne 'Mauvais'}" image="Images//edit.png" action="formEditExemplaireLivres">
-                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{livexemL.livres}" />
+                        <h:commandButton rendered="#{livexemL.actif ne false}" image="Images//edit.png" action="formEditExemplaireLivre">
+                            <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </h:commandButton>
                     </h:column>
 

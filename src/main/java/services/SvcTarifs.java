@@ -35,7 +35,7 @@ public class SvcTarifs extends Service<Tarifs> implements Serializable {
 	{
 		Map<String, Object> param = new HashMap<>();
 		param.put("denomination", tar.getDenomination());
-		return finder.findByNamedQuery("tarifs.findOne",param);
+		return finder.findByNamedQuery("Tarifs.findOne",param);
 	}
 
 

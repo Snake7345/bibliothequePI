@@ -28,13 +28,13 @@
                     <h:column>
                         <f:facet name="header">#{I18N['auteur.label.NomPrenom']}</f:facet>
                         <ui:repeat value="#{liv.livresAuteurs}" var="livauth">
-                                <h:outputLabel value ="#{livauth.auteur.nom} - #{livauth.auteur.prenom}"/>
+                                <h:outputLabel value ="#{livauth.auteur.nom} #{livauth.auteur.prenom} "/>
                         </ui:repeat>
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{I18N['genre.label.Denomination']}</f:facet>
                         <ui:repeat value="#{liv.livresGenres}" var="livgen">
-                                <h:outputLabel value ="#{livgen.genre.denomination}"/>
+                                <h:outputLabel value ="#{livgen.genre.denomination} "/>
                         </ui:repeat>
                     </h:column>
                     <h:column>
@@ -44,7 +44,7 @@
                     </h:column>
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(19,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
-                        <h:commandButton  image="Images//edit.png" action="#{livresBean.redirectModif}">		<!-- u minuscule -->
+                        <h:commandButton  image="Images//edit.png" action="formEditLivre">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </h:commandButton>
                     </h:column>
@@ -52,7 +52,10 @@
                     <!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(26,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
-                        <h:commandButton image="Images//activdesactiv.png" action="formConfirmationLivre">
+                        <h:commandButton rendered="#{liv.actif}" image="Images//activdesactiv.png" action="formConfirmationLivre">
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                        </h:commandButton>
+                        <h:commandButton rendered="#{!liv.actif}" image="Images//activdesactiv.png" action="#{livresBean.activdesactivLiv}">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </h:commandButton>
                     </h:column>

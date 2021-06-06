@@ -113,9 +113,7 @@ public class UtilisateursBean implements Serializable {
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'a pas reussie",null));
             }
-            else {
-                init();
-            }
+
             service.close();
         }
 
@@ -138,19 +136,27 @@ public class UtilisateursBean implements Serializable {
             }
         }
         if (!flag){
-        UA = serviceUA.createUtilisateursAdresses(utilisateur, adresses);
+            UA = serviceUA.createUtilisateursAdresses(utilisateur, adresses);
         }
         if(verifUtilExist(utilisateur)) {
             saveUtilisateur();
         }else {
-            init();
+
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur existe déjà tel quel en DB; opération échouée",null));
         }
+        if(utilisateur.getRoles().getDenomination().equals("Client"))
+        {
+            init();
+            return "/tableUtilisateursCli.xhtml?faces-redirect=true";
+        }
 
-        return "/tableUtilisateurs.xhtml?faces-redirect=true";
-
+        else
+        {
+            init();
+            return "/tableUtilisateurs.xhtml?faces-redirect=true";
+        }
     }
 
     public boolean verifUtilExist(Utilisateurs util)
@@ -160,24 +166,29 @@ public class UtilisateursBean implements Serializable {
         if (util.getIdUtilisateurs()!=0) {
             for (UtilisateursAdresses ua : util.getUtilisateursAdresses()) {
                 if (ua.getAdresse().equals(adresses) && ua.isActif()) {
+                    log.debug('1');
                     flag = true;
                     break;
                 }
             }
             if (serviceU.findOneUtilisateur(util).size() > 0 && flag) {
                 serviceU.close();
+                log.debug('2');
                 return false;
             } else {
                 serviceU.close();
+                log.debug('3');
                 return true;
             }
         }
         else {
             if (serviceU.findOneUtilisateur(util).size() > 0) {
                 serviceU.close();
+                log.debug('4');
                 return false;
             } else {
                 serviceU.close();
+                log.debug('5');
                 return true;
             }
         }
@@ -191,11 +202,13 @@ public class UtilisateursBean implements Serializable {
         utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
         utilisateur.setRoles(serviceR.findRole("Client").get(0));
         utilisateur.setNumMembre(createNumMembre());
-        for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()){
-            if (ua.getAdresse().equals(adresses)){
-                flag=true;
-                UA=ua;
-                break;
+        if (utilisateur.getIdUtilisateurs()!=0) {
+            for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()) {
+                if (ua.getAdresse().equals(adresses)) {
+                    flag = true;
+                    UA = ua;
+                    break;
+                }
             }
         }
         if (!flag){
@@ -214,7 +227,8 @@ public class UtilisateursBean implements Serializable {
         else {
             saveUtilisateur();
         }
-        return "/tableUtilisateurs.xhtml?faces-redirect=true";
+        init();
+        return "/tableUtilisateursCli.xhtml?faces-redirect=true";
     }
 
     public String createNumMembre()
@@ -277,6 +291,14 @@ public class UtilisateursBean implements Serializable {
             searchResults.clear();
         }
         return "/tableUtilisateurs?faces-redirect=true";
+    }
+
+    public String flushUtilCli() {
+        init();
+        if (searchResults != null) {
+            searchResults.clear();
+        }
+        return "/tableUtilisateursCli?faces-redirect=true";
     }
 
     public String flushBienv()

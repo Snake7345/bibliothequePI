@@ -37,12 +37,12 @@
 
                 <h:outputText value = "#{I18N['adresse.label.Numero']}"/>
                 <h:inputText id="adresseNumero"
-                             validatorMessage="Le numero est de minimum 1 caracteres et de maximum 6 caracteres"
+                             validatorMessage="Le numero est de minimum 1 caracteres et de maximum 5 caracteres"
                              value="#{adressesBean.adresse.numero}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.numero']}"
-                             maxlength="6">
-                    <f:validateLength minimum="1" maximum="6"/>
+                             maxlength="5">
+                    <f:validateLength minimum="1" maximum="5"/>
                 </h:inputText>
                 <h:message for="adresseNumero" styleClass="errorMessage"/>
 
