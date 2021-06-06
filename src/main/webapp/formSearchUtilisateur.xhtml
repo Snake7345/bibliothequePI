@@ -63,14 +63,14 @@
                             <h:outputLabel value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
                         </ui:repeat>
                     </h:column>
-                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(52,loginBean.utilisateurAuth.roles.idRoles)}">
+                    <c:if test= "#{rolesBean.checkPermission(52,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" /><!-- u minuscule -->
                             </h:commandButton>
                         </h:column>
                     </c:if>
-                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(53,loginBean.utilisateurAuth.roles.idRoles)}">
+                    <c:if test= "#{rolesBean.checkPermission(53,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton image="Images//activdesactiv.png" action="#{utilisateursBean.activdesactivUtil}">
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" />

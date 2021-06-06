@@ -13,7 +13,7 @@
     <ui:define name="title">#{I18N['application.auteur.title']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(35,loginBean.utilisateurAuth.roles.idRoles)}">
+        <c:if test= "#{rolesBean.checkPermission(35,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form prependId="false">
                 <h:panelGroup layout="block" id="content">
                     <h:messages styleClass="errorBlock" globalOnly="true" />
@@ -38,7 +38,7 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{aut.actif}"/>
                         </h:column>
-                        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(14,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <c:if test= "#{rolesBean.checkPermission(14,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="formEditAuteur">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" /><!-- u minuscule -->
@@ -51,7 +51,7 @@
                             </h:commandButton>
                         </h:column>
                         <!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
-                        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(24,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <c:if test= "#{rolesBean.checkPermission(24,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton image="Images//activdesactiv.png" action="formConfirmationAuteur">
                                 <f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
@@ -60,7 +60,7 @@
                         </c:if>
                     </h:dataTable>
                 </h:panelGroup>
-                <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(2,loginBean.utilisateurAuth.roles.idRoles)}">
+                <c:if test= "#{rolesBean.checkPermission(2,loginBean.utilisateurAuth.roles.idRoles)}">
                 <h:commandButton value="#{I18N['application.button.new']}" action="formNewAuteur" />
                 </c:if>
                 <h:commandButton value="#{I18N['application.button.find']}" action="formSearchAuteur"/>
@@ -71,7 +71,7 @@
                 </c:if>
             </h:form>
         </c:if>
-        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(35,loginBean.utilisateurAuth.roles.idRoles))}">
+        <c:if test="#{!(rolesBean.checkPermission(35,loginBean.utilisateurAuth.roles.idRoles))}">
             <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>

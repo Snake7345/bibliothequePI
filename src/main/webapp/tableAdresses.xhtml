@@ -13,7 +13,7 @@
     <ui:define name="title">#{I18N['application.adresse.title']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles)}">
+        <c:if test= "#{rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form prependId="false">
                 <h:panelGroup layout="block" id="content">
                     <h:messages styleClass="errorBlock" globalOnly="true" />
@@ -50,7 +50,7 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{ad.localites.ville}"> </h:outputLabel>
                         </h:column>
-                        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(13,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <c:if test= "#{rolesBean.checkPermission(13,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="formEditAdress">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{adressesBean.adresse}" value="#{ad}" /><!-- u minuscule -->
@@ -59,7 +59,7 @@
                         </c:if>
                     </h:dataTable>
                 </h:panelGroup>
-                <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(1,loginBean.utilisateurAuth.roles.idRoles)}">
+                <c:if test= "#{rolesBean.checkPermission(1,loginBean.utilisateurAuth.roles.idRoles)}">
                 <h:commandButton value="#{I18N['application.button.new']}" action="formNewAdress" />
                 </c:if>
                 <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
@@ -67,7 +67,7 @@
                 </c:if>
             </h:form>
         </c:if>
-        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles))}">
+        <c:if test="#{!(rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles))}">
             <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>

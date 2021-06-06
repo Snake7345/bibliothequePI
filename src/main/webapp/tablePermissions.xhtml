@@ -12,7 +12,7 @@
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['application.permission.title']}</ui:define>
     <ui:define name="content">
-        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(45,loginBean.utilisateurAuth.roles.idRoles)}">
+        <c:if test= "#{rolesBean.checkPermission(45,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form prependId="false">
                 <h:panelGroup layout="block" id="content">
                     <h:messages styleClass="errorBlock" globalOnly="true" />
@@ -27,7 +27,7 @@
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
-            <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(10,loginBean.utilisateurAuth.roles.idRoles)}">
+            <c:if test= "#{rolesBean.checkPermission(10,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.new']}" action="formNewPermission" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
@@ -35,7 +35,7 @@
             </c:if>
             </h:form>
         </c:if>
-        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(45,loginBean.utilisateurAuth.roles.idRoles))}">
+        <c:if test="#{!(rolesBean.checkPermission(45,loginBean.utilisateurAuth.roles.idRoles))}">
             <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>

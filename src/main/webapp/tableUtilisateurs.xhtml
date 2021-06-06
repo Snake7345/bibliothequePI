@@ -11,7 +11,7 @@
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['application.utilisateur.title']}</ui:define>
     <ui:define name="content">
-        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(47,loginBean.utilisateurAuth.roles.idRoles)}">
+        <c:if test= "#{rolesBean.checkPermission(47,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form prependId="false">
                 <h:panelGroup layout="block" id="content">
                     <h:messages styleClass="errorBlock" globalOnly="true" />
@@ -58,11 +58,11 @@
                         </h:column>
                        <h:column>
                             <!--TODO : Verifier que le rendered fonctionne bien-->
-                            <h:commandButton rendered="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)} or loginBean.utilisateurAuth eq ut" image="Images//edit.png" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
+                            <h:commandButton rendered="#{rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)} or loginBean.utilisateurAuth eq ut" image="Images//edit.png" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                             </h:commandButton>
                         </h:column>
-                        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(28,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <c:if test= "#{rolesBean.checkPermission(28,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton image="Images//activdesactiv.png" action="#{utilisateursBean.activdesactivUtil}">
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
@@ -71,7 +71,7 @@
                         </c:if>
                     </h:dataTable>
                 </h:panelGroup>
-                <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(12,loginBean.utilisateurAuth.roles.idRoles)}">
+                <c:if test= "#{rolesBean.checkPermission(12,loginBean.utilisateurAuth.roles.idRoles)}">
                 <h:commandButton value="#{I18N['application.button.new']}" action="formNewUtilisateur" />
                 </c:if>
                 <h:commandButton value="#{I18N['application.button.find']}" action="formSearchUtilisateur"/>
@@ -82,7 +82,7 @@
                 </c:if>
             </h:form>
         </c:if>
-        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(47,loginBean.utilisateurAuth.roles.idRoles))}">
+        <c:if test="#{!(rolesBean.checkPermission(47,loginBean.utilisateurAuth.roles.idRoles))}">
             <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>

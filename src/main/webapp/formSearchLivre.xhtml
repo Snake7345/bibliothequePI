@@ -54,14 +54,14 @@
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}"/><!-- u minuscule -->
                         </h:commandButton>
                     </h:column>
-                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(19,loginBean.utilisateurAuth.roles.idRoles)}">
+                    <c:if test= "#{rolesBean.checkPermission(19,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="formEditLivre">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                             </h:commandButton>
                         </h:column>
                     </c:if>
-                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(26,loginBean.utilisateurAuth.roles.idRoles)}">
+                    <c:if test= "#{rolesBean.checkPermission(26,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton rendered="#{liv.actif}" image="Images//activdesactiv.png" action="formConfirmationLivre">
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
