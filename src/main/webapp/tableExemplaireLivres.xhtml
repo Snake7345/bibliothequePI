@@ -48,19 +48,17 @@
                     <!--TODO : Examiner la méthode car pas bon-->
 
                         <h:column>
-                            <h:commandButton rendered="#{livexemL.loue}" image="Images//inspections.png" action="formEtatQuestion">		<!-- u minuscule -->
+                            <h:commandButton rendered="#{livexemL.loue}" image="Images//inspectionsmini.jpg" action="formEtatQuestion">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{livexemL}" /><!-- u minuscule -->
                             </h:commandButton>
                         </h:column>
 
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(17,loginBean.utilisateurAuth.roles.idRoles)}">
-
                     <h:column>
                         <h:commandButton rendered="#{livexemL.actif ne false}" image="Images//edit.png" action="formEditExemplaireLivre">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </h:commandButton>
                     </h:column>
-
                     </c:if>
                     <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles)}">
 

@@ -49,6 +49,28 @@
                         <!-- row record -->
                         <h:outputLabel value ="#{liv.actif}"/>
                     </h:column>
+                    <h:column>
+                        <h:commandButton  image="Images//plus.png" action="livreDetail">		<!-- u minuscule -->
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}"/><!-- u minuscule -->
+                        </h:commandButton>
+                    </h:column>
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(19,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <h:column>
+                            <h:commandButton  image="Images//edit.png" action="formEditLivre">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
+                            </h:commandButton>
+                        </h:column>
+                    </c:if>
+                    <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(26,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <h:column>
+                            <h:commandButton rendered="#{liv.actif}" image="Images//activdesactiv.png" action="formConfirmationLivre">
+                                <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                            </h:commandButton>
+                            <h:commandButton rendered="#{!liv.actif}" image="Images//activdesactiv.png" action="#{livresBean.activdesactivLiv}">
+                                <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                            </h:commandButton>
+                        </h:column>
+                    </c:if>
                 </h:dataTable>
             </h:panelGroup>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}" immediate="true"/>

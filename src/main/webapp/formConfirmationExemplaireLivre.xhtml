@@ -12,12 +12,17 @@
 
     <ui:define name="content">
         <h:messages styleClass="errorBlock" globalOnly="true" />
+        <c:if test= "#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form>
         <h2 style="text-align:center">#{I18N['exempl.form.questionconfirm']}</h2>
         <h:commandButton value="#{I18N['commune.label.oui']}" action="#{exemplairesLivresBean.activdesactivExLiv}"/>
         <!--TODO : le button du non ne fonctionne pas-->
         <h:commandButton value="#{I18N['commune.label.non']}" action="tableExemplaireLivres" immediate="true"/>
         </h:form>
+        </c:if>
+        <c:if test="#{!(loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles))}">
+            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+        </c:if>
     </ui:define>
 </ui:composition>
 
