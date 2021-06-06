@@ -51,7 +51,11 @@ public class ModelFactBiblio implements Serializable
 		{
 			if(ua.isActif())
 			{
-				adresse = ua.getAdresse().getRue() + " " + ua.getAdresse().getNumero() + " " + ua.getAdresse().getBoite() + " " + ua.getAdresse().getLocalites().getCp() + " " + ua.getAdresse().getLocalites().getVille();
+				adresse = ua.getAdresse().getRue() + " " + ua.getAdresse().getNumero() + " ";
+				if(ua.getAdresse().getBoite() !=null) {
+					adresse= adresse+ ua.getAdresse().getBoite() + " ";
+				}
+				adresse= adresse + ua.getAdresse().getLocalites().getCp() + " " + ua.getAdresse().getLocalites().getVille();
 			}
 		}
 		String laDateDuJour = sf.format(new java.util.Date());
