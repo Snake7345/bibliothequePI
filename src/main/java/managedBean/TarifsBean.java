@@ -89,14 +89,22 @@ public class TarifsBean implements Serializable {
 
     }
 
-   public String newTarif()
+    public String newTarif()
     {
 
         //si tarif demom exist ou que dans jourcustom il ny as pas le 1 jour => erreur;
         boolean flagJ=false;
         boolean flagD1=false;
         boolean flagD2=false;
+        boolean flagV1;
         SvcTarifs service = new SvcTarifs();
+
+        if(tarif.getIdTarifs()!=0){
+            flagV1= (service.getById(tarif.getIdTarifs()).getDenomination().equals(tarif.getDenomination())|| service.findOneTarif(tarif).size()==0);}
+        else {
+            flagV1=service.findOneTarif(tarif).size()==0;
+        }
+
         for (JourCustom j: grilleJour){
             if (j.getNbrJours() == 1) {
                 flagJ = true;
@@ -117,7 +125,7 @@ public class TarifsBean implements Serializable {
             }
         }
 
-        if (flagJ && !flagD1 && !flagD2 && service.findOneTarif(tarif).size()==0) {
+        if (flagJ && !flagD1 && !flagD2 && flagV1) {
 
             SvcTarifsJours serviceTJ = new SvcTarifsJours();
             SvcTarifsPenalites serviceTP = new SvcTarifsPenalites();
@@ -131,7 +139,6 @@ public class TarifsBean implements Serializable {
 
             Penalites penalites;
             Jours jours;
-            //Todo mettre/faire une verification de l'objet Livre, ainsi que des auteurs et du genre
             log.debug("J'vais essayer d'sauver le tarif");
 
             transaction.begin();
@@ -164,6 +171,7 @@ public class TarifsBean implements Serializable {
             }
         }
         else {
+
             service.close();
             if(!flagJ){
                 FacesContext fc = FacesContext.getCurrentInstance();
