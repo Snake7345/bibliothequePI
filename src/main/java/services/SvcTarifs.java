@@ -31,11 +31,17 @@ public class SvcTarifs extends Service<Tarifs> implements Serializable {
 	}
 
 
-	public List<Tarifs> findOneTarif(Tarifs tar)
+	public List<Tarifs> findOneTarifByDenom(Tarifs tar)
 	{
 		Map<String, Object> param = new HashMap<>();
 		param.put("denomination", tar.getDenomination());
-		return finder.findByNamedQuery("Tarifs.findOne",param);
+		return finder.findByNamedQuery("Tarifs.findOneByDenom",param);
+	}
+	public List<Tarifs> findOneTarifByDateDebut(Tarifs tar)
+	{
+		Map<String, Object> param = new HashMap<>();
+		param.put("date", tar.getDateDebut());
+		return finder.findByNamedQuery("Tarifs.findOneByDateDebut",param);
 	}
 
 

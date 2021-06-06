@@ -38,6 +38,8 @@
             </h:inputText>
             <h:message for="exemplLivresCB" styleClass="errorMessage"/>
             <!--TODO MODIFIER LE SELECTONERADIO-->
+            <br/>
+            <h:outputText value="#{I18N['livre.form.question']}"/>
             <h:selectOneRadio value = "#{factureBean.choixetat}" required="true">
                 <f:selectItem itemValue = "#{true}" itemLabel = "#{I18N['commune.label.oui']}" />
                 <f:selectItem itemValue = "#{false}" itemLabel = "#{I18N['commune.label.non']}"/>

@@ -96,13 +96,14 @@ public class TarifsBean implements Serializable {
         boolean flagJ=false;
         boolean flagD1=false;
         boolean flagD2=false;
+        boolean flagD3;
         boolean flagV1;
         SvcTarifs service = new SvcTarifs();
 
         if(tarif.getIdTarifs()!=0){
-            flagV1= (service.getById(tarif.getIdTarifs()).getDenomination().equals(tarif.getDenomination())|| service.findOneTarif(tarif).size()==0);}
+            flagV1= (service.getById(tarif.getIdTarifs()).getDenomination().equals(tarif.getDenomination())|| service.findOneTarifByDenom(tarif).size()==0);}
         else {
-            flagV1=service.findOneTarif(tarif).size()==0;
+            flagV1=service.findOneTarifByDenom(tarif).size()==0;
         }
 
         for (JourCustom j: grilleJour){
@@ -124,8 +125,13 @@ public class TarifsBean implements Serializable {
                 flagD2 = true;
             }
         }
+        if(tarif.getIdTarifs()!=0){
+            flagD3=false;
+        }
+        else {flagD3=service.findOneTarifByDateDebut(tarif).size()!=0;}
 
-        if (flagJ && !flagD1 && !flagD2 && flagV1) {
+
+        if (flagJ && !flagD1 && !flagD2 && flagV1 && !flagD3) {
 
             SvcTarifsJours serviceTJ = new SvcTarifsJours();
             SvcTarifsPenalites serviceTP = new SvcTarifsPenalites();
@@ -143,6 +149,16 @@ public class TarifsBean implements Serializable {
 
             transaction.begin();
             try {
+                if(tarif.getIdTarifs()!=0){
+                    for (TarifsJours tarifsJours:tarif.getTarifsJours())
+                    {
+                        serviceTJ.delete(tarifsJours.getIdTarifsJours());
+                    }
+                    for (TarifsPenalites tp:tarif.getTarifsPenalites())
+                    {
+                        serviceTP.delete(tp.getIdTarifsPenalites());
+                    }
+                }
                 tarif = service.save(tarif);
                 for (PenaCustom p : grillePena) {
                     penalites = serviceP.addPena(p.getName());
@@ -160,13 +176,10 @@ public class TarifsBean implements Serializable {
                     transaction.rollback();
                     FacesContext fc = FacesContext.getCurrentInstance();
                     fc.getExternalContext().getFlash().setKeepMessages(true);
-                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation n'a reussie", null));
-                } else {
-
-                    log.debug("je suis censé avoir réussi");
-                    init();
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation n'a pas reussie", null));
                 }
 
+                init();
                 service.close();
             }
         }
@@ -189,6 +202,12 @@ public class TarifsBean implements Serializable {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "les dates de fin encodées dans les tableaux ne peuvent être antérieure à leur date de début correspondante, veuillez corriger", null));
+                return "";
+            }
+            else if (flagD3){
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "la dates de debut du tarif doit être unique, veuillez corriger", null));
                 return "";
             }
             else {

@@ -13,7 +13,8 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Tarifs.findAll", query = "SELECT t FROM Tarifs t"),
-                @NamedQuery(name = "Tarifs.findOne", query ="SELECT t FROM Tarifs t WHERE t.denomination=:denomination"),
+                @NamedQuery(name = "Tarifs.findOneByDenom", query ="SELECT t FROM Tarifs t WHERE t.denomination=:denomination"),
+                @NamedQuery(name = "Tarifs.findOneByDateDebut", query ="SELECT t FROM Tarifs t WHERE t.dateDebut=:date"),
                 @NamedQuery(name = "Tarifs.findByBiblio", query = "SELECT t FROM Tarifs t WHERE t.bibliotheques.nom=:bibliotheque AND t.dateDebut<=:date ORDER BY t.dateDebut DESC"),
         })
 public class Tarifs implements Serializable {

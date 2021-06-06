@@ -28,11 +28,10 @@
 
                 <h:outputText value="numéro de membre?" />
                 <h:inputText value="#{factureBean.numMembre}" id="numMembre"
-                             validatorMessage="La valeur doit être d'exactement 9 caracteres"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.numero']}"
-                             maxlength="9">
-                <f:validateLength minimum="9" maximum="9"/>
+                             maxlength="9"
+                validator="codeBarreCliValidator">
                 </h:inputText>
                 <h:message for="numMembre" styleClass="errorMessage"/>
 
@@ -42,15 +41,32 @@
                         <f:facet name="header">
                             <h:outputText value="code barre" />
                         </f:facet>
-                        <h:inputText value="#{LC.CB}" />
+                        <h:inputText value="#{LC.CB}"
+                                     id="CB"
+                                     required="true"
+                                     requiredMessage="#{I18N['formulaire.message.required.CB']}"
+                                     validator="codeBarreLivreValidator"/>
                     </h:column>
+
                     <!--TODO doit être un entier positif-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Nombre de jours" />
                         </f:facet>
-                        <h:inputText value="#{LC.nbrJours}" />
+                        <h:inputText value="#{LC.nbrJours}"
+                                     id="nbrj"
+                                     validatorMessage="Le nombre de jours minimum doit être de 1"
+                                     converterMessage="Le nombre doit etre un entier positif"
+                                     required="true"
+                                     requiredMessage="#{I18N['formulaire.message.required.nbrJ']}">
+                            <f:validateLongRange minimum="1"/>
+                        </h:inputText>
                     </h:column>
+                    <h:column>
+                        <h:message for="CB" styleClass="errorMessage"/> <h:outputText value=" " />
+                        <h:message for="nbrj" styleClass="errorMessage"/>
+                    </h:column>
+
 
                 </h:dataTable>
 

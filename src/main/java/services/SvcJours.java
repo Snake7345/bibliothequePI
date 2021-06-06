@@ -29,7 +29,7 @@ public class SvcJours extends Service<Jours> implements Serializable {
 	}
 
 	public Jours addJours(int j) {
-		if (findByNbrJ(j).size() == 1) {
+		if (findByNbrJ(j).size() != 0) {
 			return findByNbrJ(j).get(0);
 		} else {
 			Jours jours = new Jours();
