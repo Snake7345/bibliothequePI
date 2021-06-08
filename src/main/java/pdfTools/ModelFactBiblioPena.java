@@ -206,13 +206,7 @@ public class ModelFactBiblioPena implements Serializable
 	    contentStream.beginText();
 	    contentStream.setLeading(17.5f);
 	    contentStream.newLineAtOffset(363, 235);
-	    String total2 = "Prix HTVA";
-	    String total3 = "TVA";
 	    String total4 = "Total a payer";
-	    contentStream.showText(total2);
-	    contentStream.newLine();
-	    contentStream.showText(total3);
-	    contentStream.newLine();
 	    contentStream.showText(total4);
 	    contentStream.newLine();
 	    contentStream.endText();

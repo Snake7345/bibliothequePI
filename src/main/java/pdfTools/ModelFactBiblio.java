@@ -61,8 +61,6 @@ public class ModelFactBiblio implements Serializable
 		String laDateDuJour = sf.format(new java.util.Date());
 		
 		//calcule main d'oeuvre
-		Double PHTVA = (fact.getPrixTvac()/1.06);
-		Double TVA = fact.getPrixTvac() - (fact.getPrixTvac()/1.06);
 		Double PTVAC = fact.getPrixTvac();
 
 		//String total4 = String.format("%5.02f €", TVA);
@@ -198,13 +196,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.beginText();
 	    contentStream.setLeading(17.5f);
 	    contentStream.newLineAtOffset(363, 235);
-	    String total2 = "Prix HTVA";
-	    String total3 = "TVA";
 	    String total4 = "Total a payer";
-	    contentStream.showText(total2);
-	    contentStream.newLine();
-	    contentStream.showText(total3);
-	    contentStream.newLine();
 	    contentStream.showText(total4);
 	    contentStream.newLine();
 	    contentStream.endText();
@@ -212,13 +204,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.beginText();
 	    contentStream.setLeading(17.5f);
 	    contentStream.newLineAtOffset(475, 235);
-	    String total5 = String.format("%5.02f Euros", PHTVA);
-	    String total6 = String.format("%5.02f Euros", TVA);
 	    String total7 = String.format("%5.02f Euros", PTVAC);
-	    contentStream.showText(total5);
-	    contentStream.newLine();
-	    contentStream.showText(total6);
-	    contentStream.newLine();
 	    contentStream.showText(total7);
 	    contentStream.endText();
 
