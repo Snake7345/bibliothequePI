@@ -26,7 +26,8 @@
                     <h:outputText value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
                     <!--TODO : Corriger la value-->
                     <h:inputTextarea id="CommentaireEtat"
-                                 value="#{factureBean.exemplairesLivres.commentaireEtat}" cols="25" rows="5">
+                                 value="#{factureBean.exemplairesLivres.commentaireEtat}" cols="25" rows="5"
+                                     maxlength="500">
                     </h:inputTextarea>
 
                     <h:outputText value = "#{I18N['penalite.label.Nom']}"/>

@@ -32,7 +32,7 @@
 
 
                 <h:outputText value="#{I18N['tarif.label.nom']}" />
-                <h:inputText id="nomGrille" value="#{tarifsBean.tarif.denomination}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}"/>
+                <h:inputText id="nomGrille" value="#{tarifsBean.tarif.denomination}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}" maxlength="255"/>
 
 
                 <h:dataTable value="#{tarifsBean.grilleJour}" var="J">
@@ -96,7 +96,7 @@
                         <f:facet name="header">
                             <h:outputText value="#{I18N['tarifpenalite.label.Nom']}"  />
                         </f:facet>
-                        <h:inputText value="#{P.name}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}"/>
+                        <h:inputText value="#{P.name}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}" maxlength="150"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
