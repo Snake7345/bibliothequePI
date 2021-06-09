@@ -262,7 +262,14 @@ public class UtilisateursBean implements Serializable {
                 saveActif();
             }
         }
-        return "/tableUtilisateurs.xhtml?faces-redirect=true";
+        if (utilisateur.getRoles().getDenomination().equals("Client"))
+        {
+            return "/tableUtilisateursCli.xhtml?faces-redirect=true";
+        }
+        else
+        {
+            return "/tableUtilisateurs.xhtml?faces-redirect=true";
+        }
     }
 
     public String searchUtilisateur() {

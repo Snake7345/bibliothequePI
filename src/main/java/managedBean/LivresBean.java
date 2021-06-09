@@ -267,7 +267,11 @@ public class LivresBean implements Serializable {
         service.close();
         return "/tableLivres.xhtml?faces-redirect=true";
     }
-
+    public String getRefreshtable()
+    {
+        init();
+        return "tableLivres.xhtml";
+    }
     public String flushBienv()
     {
         init();
