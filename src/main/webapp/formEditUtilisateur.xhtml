@@ -73,13 +73,20 @@
                 </c:if>
 
 
-                <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
+                <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client' or utilisateursBean.utilisateur.roles.denomination ne 'Administrateur'}">
                 <h:outputText value = "#{I18N['role.label.Denomination']}"/>
                 <h:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                  converter="roleConverter">
-                    <f:selectItems value = "#{rolesBean.readActiv}" var="ro"
-                                   itemLabel="#{ro.denomination}"
-                                   itemValue="#{ro}"/>
+                    <c:if test="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'}">
+                        <f:selectItems value = "#{rolesBean.readActivUtil}" var="ro"
+                                       itemLabel="#{ro.denomination}"
+                                       itemValue="#{ro}"/>
+                    </c:if>
+                    <c:if test="#{loginBean.utilisateurAuth.roles.denomination ne 'Administrateur'}">
+                        <f:selectItems value = "#{rolesBean.readActiv}" var="ro"
+                                       itemLabel="#{ro.denomination}"
+                                       itemValue="#{ro}"/>
+                    </c:if>
                 </h:selectOneMenu>
                     <h:message for="roles" styleClass="errorMessage"/>
                 </c:if>
