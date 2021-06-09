@@ -1,9 +1,7 @@
 package managedBean;
 
-import entities.Auteurs;
 import entities.Roles;
 import org.apache.log4j.Logger;
-import services.SvcAuteurs;
 import services.SvcPermissionRoles;
 import services.SvcRoles;
 

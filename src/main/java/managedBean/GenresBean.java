@@ -1,9 +1,7 @@
 package managedBean;
 
-import entities.Editeurs;
 import entities.Genres;
 import org.apache.log4j.Logger;
-import services.SvcEditeurs;
 import services.SvcGenres;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +10,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

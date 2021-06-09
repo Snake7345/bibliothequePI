@@ -1,9 +1,10 @@
 package managedBean;
 
-import entities.*;
-import enumeration.ExemplairesLivresEtatEnum;
+import entities.Auteurs;
+import entities.ExemplairesLivres;
+import entities.Livres;
+import entities.LivresAuteurs;
 import org.apache.log4j.Logger;
-import services.SvcAdresses;
 import services.SvcAuteurs;
 import services.SvcExemplairesLivres;
 import services.SvcLivres;

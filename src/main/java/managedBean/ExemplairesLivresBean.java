@@ -7,7 +7,6 @@ import enumeration.ExemplairesLivresEtatEnum;
 import org.apache.log4j.Logger;
 import services.SvcBibliotheques;
 import services.SvcExemplairesLivres;
-import services.SvcLivres;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
