@@ -17,6 +17,10 @@
             </h:outputLink>
             </c:if>
 
+            <c:if test= "#{!(rolesBean.checkPermission(45,loginBean.utilisateurAuth.roles.idRoles))}">
+            <br/>
+            </c:if>
+
             <c:if test= "#{rolesBean.checkPermission(41,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableTarifs.xhtml">
                 <h:graphicImage value="/Images/tarifs.png" width="100" height="100"/>
