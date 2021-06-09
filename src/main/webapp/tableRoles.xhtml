@@ -24,12 +24,6 @@
                         <!-- row record -->
                         <h:outputLabel value ="#{rol.denomination}"/>
                     </h:column>
-                    <h:column>
-                        <!-- column header -->
-                        <f:facet name="header">#{I18N['commune.label.actif']}</f:facet>
-                        <!-- row record -->
-                        <h:outputLabel value ="#{rol.actif}"/>
-                    </h:column>
                     <!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
                     <c:if test= "#{rolesBean.checkPermission(32,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>

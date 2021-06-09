@@ -11,27 +11,31 @@
     <ui:define name="header">
         <div id="header">
             <h:panelGrid class="table-entete" columns="2">
-                <h:graphicImage value="/Images/logo.jpg" width="550" height="150"/>
+                <h:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
             </h:panelGrid>
         </div>
     </ui:define>
 
     <ui:define name="content">
         <div id="content">
-            <h:messages styleClass="errorBlock" role="alert"/>
+            <h:messages styleClass="errorBlock" globalOnly="true"/>
             <h:form prependId="false">
                 <h:panelGrid columns="3" style="margin: 0 auto">
                     <h:outputText value="#{I18N['utilisateur.label.Login']}"/>
                     <h:inputText id="utilisateurLogin" 	value="#{loginBean.utilisateurAuth.login}"
                                  required="true"
-                                 requiredMessage="#{I18N['utilisateur.login.validation']}">
+                                 validatorMessage="La longueur ne peut être inférieur à 4 caracteres"
+                                 requiredMessage="#{I18N['utilisateur.login.validation']}"
+                                 maxlength="80">
                         <f:validateLength minimum ="4" maximum = "80" />
                     </h:inputText>
                     <h:message for="utilisateurLogin" styleClass="errorMessage"/>
                     <h:outputText value="#{I18N['utilisateur.label.Mdp']}"/>
                     <h:inputSecret id="password"  value="#{loginBean.utilisateurAuth.mdp}"
+                                   validatorMessage="La longueur ne peut être inférieur à 8 caracteres"
                                    required="true"
-                                   requiredMessage="#{I18N['utilisateur.password.validation']}">
+                                   requiredMessage="#{I18N['utilisateur.password.validation']}"
+                                   maxlength="40">
                         <f:validateLength minimum = "8" maximum = "40" />
                     </h:inputSecret>
                     <h:message for="password" styleClass="errorMessage"/>
