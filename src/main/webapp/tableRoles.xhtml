@@ -27,9 +27,18 @@
                     <!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
                     <c:if test= "#{rolesBean.checkPermission(32,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
-                        <h:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}" image="Images//activdesactiv.png" action="#{rolesBean.activdesactivRol}">
+                        <c:if test= "#{rolesBean.checkPermission(32,loginBean.utilisateurAuth.roles.idRoles) and rol.actif eq true}">
+                        <h:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}"
+                                         image="Images//activ.png" action="#{rolesBean.activdesactivRol}">
                             <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                         </h:commandButton>
+                        </c:if>
+                        <c:if test= "#{rolesBean.checkPermission(32,loginBean.utilisateurAuth.roles.idRoles) and rol.actif ne true}">
+                            <h:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}"
+                                             image="Images//desactiv.png" action="#{rolesBean.activdesactivRol}">
+                                <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
+                            </h:commandButton>
+                        </c:if>
                     </h:column>
                     </c:if>
                 </h:dataTable>

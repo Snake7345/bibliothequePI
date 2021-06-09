@@ -64,9 +64,18 @@
                         </h:column>
                         <c:if test= "#{rolesBean.checkPermission(28,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
-                            <h:commandButton rendered="#{(rolesBean.checkPermission(28,loginBean.utilisateurAuth.roles.idRoles) and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')}" image="Images//activdesactiv.png" action="#{utilisateursBean.activdesactivUtil}">
+                            <c:if test= "#{rolesBean.checkPermission(28,loginBean.utilisateurAuth.roles.idRoles) and ut.actif eq true}">
+                            <h:commandButton rendered="#{(rolesBean.checkPermission(28,loginBean.utilisateurAuth.roles.idRoles) and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')}"
+                                             image="Images//activ.png" action="#{utilisateursBean.activdesactivUtil}">
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                             </h:commandButton>
+                            </c:if>
+                            <c:if test= "#{rolesBean.checkPermission(28,loginBean.utilisateurAuth.roles.idRoles) and ut.actif ne true}">
+                                <h:commandButton rendered="#{(rolesBean.checkPermission(28,loginBean.utilisateurAuth.roles.idRoles) and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')}"
+                                                 image="Images//desactiv.png" action="#{utilisateursBean.activdesactivUtil}">
+                                    <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
+                                </h:commandButton>
+                            </c:if>
                         </h:column>
                         </c:if>
                     </h:dataTable>

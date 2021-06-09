@@ -63,9 +63,11 @@
                     <c:if test= "#{rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles)}">
 
                     <h:column>
-                        <h:commandButton rendered="#{livexemL.actif}" image="Images//activdesactiv.png" action="formConfirmationExemplaireLivre">
+                        <c:if test= "#{rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles) and livexemL.actif eq true}">
+                        <h:commandButton rendered="#{livexemL.actif}" image="Images//activ.png" action="formConfirmationExemplaireLivre">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </h:commandButton>
+                        </c:if>
                     </h:column>
                     </c:if>
                 </h:dataTable>
