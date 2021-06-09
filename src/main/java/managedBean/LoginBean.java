@@ -36,7 +36,7 @@ public class LoginBean implements Serializable {
     public String auth()
     {
         log.debug("---------------------------------debut--------------------------");
-        FacesMessage m = new FacesMessage("Login ou mot de passe incorrect");
+        FacesMessage m = new FacesMessage("Login ou/et mot de passe incorrect");
         SvcUtilisateurs service= new SvcUtilisateurs();
         RolesBean RB = new RolesBean();
 
