@@ -79,7 +79,7 @@
 
                 <h:commandButton value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtilCli}"/>
                 <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-                <h:commandButton value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
+                <h:commandButton value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
                 </c:if>
             </h:form>
         </c:if>
