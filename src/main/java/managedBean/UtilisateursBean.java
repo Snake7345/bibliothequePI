@@ -166,29 +166,24 @@ public class UtilisateursBean implements Serializable {
         if (util.getIdUtilisateurs()!=0) {
             for (UtilisateursAdresses ua : util.getUtilisateursAdresses()) {
                 if (ua.getAdresse().equals(adresses) && ua.isActif()) {
-                    log.debug('1');
                     flag = true;
                     break;
                 }
             }
             if (serviceU.findOneUtilisateur(util).size() > 0 && flag) {
                 serviceU.close();
-                log.debug('2');
                 return false;
             } else {
                 serviceU.close();
-                log.debug('3');
                 return true;
             }
         }
         else {
             if (serviceU.findOneUtilisateur(util).size() > 0) {
                 serviceU.close();
-                log.debug('4');
                 return false;
             } else {
                 serviceU.close();
-                log.debug('5');
                 return true;
             }
         }
@@ -252,7 +247,6 @@ public class UtilisateursBean implements Serializable {
 
     public String activdesactivUtil() {
         if (utilisateur.isActif()) {
-            log.debug("je passe le if de désactive");
             utilisateur.setActif(false);
             saveActif();
         } else {
@@ -273,7 +267,6 @@ public class UtilisateursBean implements Serializable {
 
         SvcUtilisateurs service = new SvcUtilisateurs();
 
-        log.debug("list auteur " + service.getByName(utilisateur.getNom()).size());
         if (service.getByName(utilisateur.getNom()).isEmpty()) {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("utilRech", new FacesMessage("l'utilisateur n'a pas été trouvé"));

@@ -39,7 +39,6 @@ public class ModelFactBiblio implements Serializable
 		userdir = userdir.substring(0,userdir.length()-24);
 		String image = userdir + "src\\main\\webapp\\Images\\biblioLib.png";
 		ArrayList<String> price = new ArrayList<>();
-		log.debug(image);
 		Calendar cal = Calendar.getInstance();
 		//Date date = cal.getTime();
 		//variable a mettre dans la facture
@@ -162,17 +161,13 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.showText("Exemplaire loue :");
 	    contentStream.newLine();
 	    contentStream.newLine();
-		log.debug(fact.getFactureDetails().size());
 	    for (FacturesDetail fd: fact.getFactureDetails())
 		{
-			log.debug("date debut "+fact.getDateDebut());
-			log.debug("date fin "+fd.getDateFin());
 	    	contentStream.showText(fd.getExemplairesLivre().getLivres().getTitre() + " pour une duree de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
 	    	contentStream.newLine();
 	    	price.add(String.valueOf(fd.getPrix()));
 			contentStream.newLine();
-			log.debug(fd.getExemplairesLivre().getLivres().getTitre() + " pour une duree de " + (ChronoUnit.DAYS.between(fact.getDateDebut().toLocalDateTime(), fd.getDateFin().toLocalDateTime())) + " jour");
-		}
+			}
 	    contentStream.endText();
 	    
 	    contentStream.beginText();

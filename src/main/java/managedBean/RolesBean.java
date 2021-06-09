@@ -75,7 +75,6 @@ public class RolesBean implements Serializable {
             }
             else
             {
-                log.debug("je passe le if de désactive");
                 role.setActif(false);
             }
 
@@ -95,10 +94,8 @@ public class RolesBean implements Serializable {
         SvcPermissionRoles service = new SvcPermissionRoles();
         try
         {
-            log.debug("je passe dans le check permission" + service.findPermissionsAndRoles(permission, role));
             if(!service.findPermissionsAndRoles(permission,role).isEmpty())
             {
-                log.debug("mon flag est true");
                 flag = true;
             }
         }

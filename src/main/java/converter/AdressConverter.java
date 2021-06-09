@@ -20,9 +20,6 @@ public class AdressConverter implements Converter {
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
         if (s != null && s.trim().length() > 0) {
             int id = Integer.parseInt(s);
-            log.debug(service.getById(id).getNumero());
-            log.debug(service.getById(id).getRue());
-            log.debug(service.getById(id).getLocalites().getVille());
             return service.getById(id);
         } else
             return null;
@@ -32,7 +29,6 @@ public class AdressConverter implements Converter {
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
         if (o != null) {
-            log.debug("test vallues " + o.toString());
             return String.valueOf(((Adresses) o).getIdAdresses());
         }
         else

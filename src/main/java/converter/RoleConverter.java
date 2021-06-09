@@ -31,7 +31,6 @@ public class RoleConverter implements Converter {
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
         if (o != null) {
-            log.debug("test vallues " + o.toString());
             return String.valueOf(((Roles) o).getIdRoles());
         }
         else

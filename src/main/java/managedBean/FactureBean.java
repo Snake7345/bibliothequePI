@@ -263,13 +263,9 @@ public class FactureBean implements Serializable {
                     serviceFD.save(factdet);
                 }
             }
-            log.debug(facturesDetail.getDateRetour());
-            log.debug(facturesDetail.getDateFin());
-            log.debug(facturesDetail.getDateRetour().after(facturesDetail.getDateFin()));
 
             if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin())){
                 int nbjour = (int)((facturesDetail.getDateRetour().getTime() - facturesDetail.getDateFin().getTime())/(1000*60*60*24));
-                log.debug(nbjour);
 
                 if (serviceTP.findByPena(T,serviceP.findByName("Retard").get(0),Date.from(facturesDetail.getFacture().getDateDebut().toInstant())).size() >= 1){
                     factdetretard= serviceFD.newPenaretard(facturesDetail.getExemplairesLivre() , fact , T , serviceP.findByName("Retard").get(0) , nbjour , Date.from(facturesDetail.getFacture().getDateDebut().toInstant()),timestampfacture);
@@ -419,7 +415,6 @@ public class FactureBean implements Serializable {
             if (fact.size() != 0){
                 String text = fact.get(0).getNumeroFacture();
                 int anneelastFact = Integer.parseInt(text.substring(2, 6));
-                log.debug("annÃ©e last fact = "+anneelastFact);
 
                 if(annee == anneelastFact)
                 {
@@ -430,14 +425,12 @@ public class FactureBean implements Serializable {
                 {
                     numFact = "FB" + annee + String.format("%02d", mois) + "00001";
                 }
-                log.debug("numero facture = "+ numFact);
             }
             else{
                 numFact = "FB" + annee + String.format("%02d", mois) + "00001";
             }
         }
         catch(NullPointerException npe) {
-            log.debug("ProblÃ¨me: pas trouvÃ© de facture");
         }
 
         return numFact;

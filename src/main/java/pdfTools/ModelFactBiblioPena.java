@@ -41,7 +41,6 @@ public class ModelFactBiblioPena implements Serializable
 		userdir = userdir.substring(0,userdir.length()-24);
 		String image = userdir + "src\\main\\webapp\\Images\\biblioLib.png";
 		ArrayList<String> price = new ArrayList<>();
-		log.debug(image);
 		Calendar cal = Calendar.getInstance();
 		//Date date = cal.getTime();
 		//variable a mettre dans la facture
@@ -169,7 +168,6 @@ public class ModelFactBiblioPena implements Serializable
 	    contentStream.newLine();
 	    contentStream.showText(fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getLivres().getTitre() + "sous le code barre" + fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getCodeBarre());;
 	    contentStream.newLine();
-		log.debug(fact.getFactureDetails().size());
 	    for (TarifsPenalites TP: tp)
 		{
 	    	contentStream.showText(TP.getPenalite().getDenomination());

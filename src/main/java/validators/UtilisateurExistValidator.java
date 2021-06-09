@@ -28,8 +28,6 @@ public class UtilisateurExistValidator implements Validator
 
 
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
-        log.debug(login);
-        log.debug(serviceU.findByLogin(login).size());
         try {
             if(login.length() < 4)
             {

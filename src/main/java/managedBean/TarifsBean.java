@@ -145,7 +145,6 @@ public class TarifsBean implements Serializable {
 
             Penalites penalites;
             Jours jours;
-            log.debug("J'vais essayer d'sauver le tarif");
 
             transaction.begin();
             try {
@@ -169,7 +168,6 @@ public class TarifsBean implements Serializable {
                     serviceTJ.save(serviceTJ.createTarifsJours(tarif, jours, ((int)((j.getPrix()*100)+0.5)/100.0), j.getDateDebut(), j.getDateFin()));
                 }
                 transaction.commit();
-                log.debug("J'ai sauvé le tarif");
                 return "/tableTarifs.xhtml?faces-redirect=true";
             } finally {
                 if (transaction.isActive()) {

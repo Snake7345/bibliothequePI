@@ -30,7 +30,6 @@ public class EditeurConverter implements Converter {
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
         if (o != null) {
-            log.debug("test vallues " + o.toString());
             return String.valueOf(((Editeurs) o).getIdEditeurs());
         }
         else

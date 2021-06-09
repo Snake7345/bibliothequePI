@@ -91,8 +91,6 @@ public class AuteursBean implements Serializable {
         serviceEL.setEm(service.getEm());
         EntityTransaction transaction = service.getTransaction();
 
-        log.debug("je débute la méthode activdésactive");
-
         transaction.begin();
         try {
             if(auteur.isActif())
@@ -164,7 +162,6 @@ public class AuteursBean implements Serializable {
         //try
         //{
 
-            log.debug("list auteur " + service.getByName(auteur.getNom()).size());
             if(service.getByName(auteur.getNom()).isEmpty())
             {
                 FacesContext fc = FacesContext.getCurrentInstance();

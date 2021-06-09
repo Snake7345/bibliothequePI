@@ -31,7 +31,6 @@ public class LocaliteConverter implements Converter {
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
         if (o != null) {
-            log.debug("test vallues " + o.toString());
             return String.valueOf(((Localites) o).getIdLocalites());
         }
         else

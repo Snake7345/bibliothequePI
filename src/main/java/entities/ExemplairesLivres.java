@@ -121,8 +121,6 @@ public class ExemplairesLivres implements Serializable {
     }
 
     public void setBibliotheques(Bibliotheques bibliotheques1) {
-        log.debug("test");
-        log.debug(bibliotheques1.getNom());
         this.bibliotheques = bibliotheques1;
     }
 

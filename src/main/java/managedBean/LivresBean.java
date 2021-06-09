@@ -57,7 +57,6 @@ public class LivresBean implements Serializable {
         serviceLA.setEm(service.getEm());
         serviceLG.setEm(service.getEm());
 
-        log.debug("J'vais essayer d'sauver le livre");
 
         transaction.begin();
         try {
@@ -71,12 +70,10 @@ public class LivresBean implements Serializable {
             }
 
             transaction.commit();
-            log.debug("J'ai sauvé le livre");
             return "/tableLivres.xhtml?faces-redirect=true";
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
-                log.debug("J'ai fait une erreur dans livre et je suis con");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'est pas reussie",null));
@@ -84,7 +81,6 @@ public class LivresBean implements Serializable {
             else
             {
 
-                log.debug("je suis censé avoir réussi");
                 init();
             }
 
@@ -133,10 +129,6 @@ public class LivresBean implements Serializable {
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         serviceEL.setEm(service.getEm());
         EntityTransaction transaction = service.getTransaction();
-        log.debug("je débute la méthode activdésactive");
-        log.debug(livre.getTitre());
-        log.debug(livre.getExemplairesLivres().size());
-        log.debug(livre.isActif());
         transaction.begin();
         try {
             /*Si le livre est actif alors on le désactive; sinon on l'active*/
@@ -167,7 +159,6 @@ public class LivresBean implements Serializable {
             }
             service.close();
         }
-            log.debug("J'ai modifié le livre");
             return "/tableLivres.xhtml?faces-redirect=true";
     }
 
@@ -176,7 +167,6 @@ public class LivresBean implements Serializable {
 
         SvcLivres service = new SvcLivres();
 
-        log.debug("list livres " + service.getByTitre(livre.getTitre()).size());
         if(service.getByTitre(livre.getTitre()).isEmpty())
         {
             FacesContext fc = FacesContext.getCurrentInstance();

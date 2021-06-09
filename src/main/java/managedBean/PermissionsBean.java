@@ -33,7 +33,6 @@ public class PermissionsBean implements Serializable {
         SvcPermissions service = new SvcPermissions();
         EntityTransaction transaction = service.getTransaction();
         //Todo mettre/faire une verification de l'objet utilisateur,
-        log.debug("J'vais essayer d'sauver la permission");
         transaction.begin();
         if (checkPermExist()) {
             try {
@@ -44,7 +43,6 @@ public class PermissionsBean implements Serializable {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
-                log.debug("J'ai sauvé le permission");
                 return "/tablePermissions.xhtml?faces-redirect=true";
             } finally {
                 if (transaction.isActive()) {
@@ -55,7 +53,6 @@ public class PermissionsBean implements Serializable {
 
                     return "";
                 } else {
-                    log.debug("je suis censé avoir réussi");
                     init();
                 }
 
