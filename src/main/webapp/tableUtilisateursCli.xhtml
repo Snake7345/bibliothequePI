@@ -69,20 +69,14 @@
                                 </h:commandButton>
                             </h:column>
                         </c:if>
-
                             <h:column>
-                                <c:if test= "#{rolesBean.checkPermission(53,loginBean.utilisateurAuth.roles.idRoles) and ut.actif eq true}" >
-                                <h:commandButton image="Images//activ.png" action="#{utilisateursBean.activdesactivUtil}">
+                                <h:commandButton image="Images//activ.png" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                 </h:commandButton>
-                                </c:if>
-                                <c:if test= "#{rolesBean.checkPermission(53,loginBean.utilisateurAuth.roles.idRoles) and ut.actif ne true}" >
-                                    <h:commandButton image="Images//desactiv.png" action="#{utilisateursBean.activdesactivUtil}">
+                                    <h:commandButton image="Images//desactiv.png" rendered="#{!ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </h:commandButton>
-                                </c:if>
                             </h:column>
-
                     </h:dataTable>
                 </h:panelGroup>
                 <c:if test= "#{rolesBean.checkPermission(51,loginBean.utilisateurAuth.roles.idRoles)}">
