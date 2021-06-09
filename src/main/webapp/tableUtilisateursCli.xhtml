@@ -59,7 +59,9 @@
                             <f:facet name="header">#{I18N['adresse.label.complete']}</f:facet>
                             <!-- row record -->
                             <ui:repeat value="#{ut.utilisateursAdresses}" var="utad">
-                                <h:outputLabel value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
+
+                                <h:outputLabel rendered="#{utad.actif}" value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
+
                             </ui:repeat>
                         </h:column>
                         <c:if test= "#{rolesBean.checkPermission(52,loginBean.utilisateurAuth.roles.idRoles)}">
@@ -82,6 +84,7 @@
                 <c:if test= "#{rolesBean.checkPermission(51,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:commandButton value="#{I18N['application.button.new']}" action="formNewUtilisateurCli" />
                 </c:if>
+                <h:commandButton value="#{I18N['application.button.find']}" action="formSearchUtilisateur"/>
                 <h:commandButton value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}"/>
                 <h:commandButton value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}"/>
                 <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">

@@ -148,6 +148,8 @@ public class TarifsBean implements Serializable {
 
             transaction.begin();
             try {
+
+                tarif = service.save(tarif);
                 if(tarif.getIdTarifs()!=0){
                     for (TarifsJours tarifsJours:tarif.getTarifsJours())
                     {
@@ -158,13 +160,16 @@ public class TarifsBean implements Serializable {
                         serviceTP.delete(tp.getIdTarifsPenalites());
                     }
                 }
-                tarif = service.save(tarif);
                 for (PenaCustom p : grillePena) {
                     penalites = serviceP.addPena(p.getName());
                     serviceTP.save(serviceTP.createTarifsPenalites(tarif, penalites, ((int)((p.getPrix()*100)+0.5)/100.0), p.getDateDebut(), p.getDateFin()));
                 }
                 for (JourCustom j : grilleJour) {
+
+
                     jours = serviceJ.addJours(j.getNbrJours());
+                    log.debug("test1 "+j.getNbrJours());
+                    log.debug("test2 "+jours.getNbrJour());
                     serviceTJ.save(serviceTJ.createTarifsJours(tarif, jours, ((int)((j.getPrix()*100)+0.5)/100.0), j.getDateDebut(), j.getDateFin()));
                 }
                 transaction.commit();

@@ -31,14 +31,22 @@ public class BibliothequesBean implements Serializable {
     public String newBiblio()
     {
         SvcBibliotheques serviceB = new SvcBibliotheques();
-        boolean flag = serviceB.getById(bibliotheque.getIdBibliotheques()).equals(bibliotheque);
-        if(getCheckbibli() || !flag)
+        boolean flag = getCheckbibli();
+        boolean flagbib =false;
+        if (!flag)
+        {
+            flagbib = serviceB.getById(bibliotheque.getIdBibliotheques()).equals(bibliotheque);
+        }
+        if(getCheckbibli() || !flagbib)
         {
             save();
         }
-        else if (flag){FacesContext fc = FacesContext.getCurrentInstance();
+        else if (flagbib)
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le nom de la bibliotheque n'a pas été changé",null));}
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le nom de la bibliotheque n'a pas été changé",null));
+        }
         else
         {
             FacesContext fc = FacesContext.getCurrentInstance();

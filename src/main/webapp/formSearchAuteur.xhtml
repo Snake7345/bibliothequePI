@@ -64,7 +64,10 @@
 			<!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
 			<c:if test= "#{rolesBean.checkPermission(24,loginBean.utilisateurAuth.roles.idRoles)}">
 				<h:column>
-					<h:commandButton image="Images//activdesactiv.png" action="formConfirmationAuteur">
+					<h:commandButton image="Images//activ.png" rendered="#{aut.actif}" action="formConfirmationAuteur">
+						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
+					</h:commandButton>
+					<h:commandButton image="Images//desactiv.png" rendered="#{!aut.actif}" action="#{auteursBean.activdesactivAut}">
 						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
 					</h:commandButton>
 				</h:column>

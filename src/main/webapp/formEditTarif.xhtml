@@ -20,16 +20,18 @@
                 <h:outputText value="#{I18N['bibliotheque.label.Nom']}" />
                 <h:outputText value="#{tarifsBean.tarif.bibliotheques.nom}" />
                 <h:outputText value="#{I18N['tarif.label.dateDebutgrille']}" />
-                <h:outputText value="#{tarifsBean.tarif.dateDebut}" />
+                <h:outputText value="#{tarifsBean.tarif.dateDebut}" >
+                    <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
+                </h:outputText>
                 <h:outputText value="#{I18N['tarif.label.nom']}" />
                 <h:inputText value="#{tarifsBean.tarif.denomination}" />
 
                 <h:dataTable value="#{tarifsBean.grilleJour}" var="J">
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarif.label.prix']}" />
+                            <h:outputText value="#{I18N['tarif.label.detail']}" />
                         </f:facet>
-                        <h:outputText value="#{I18N['tarif.label.prix']}" />
+                        <h:outputText value="#{I18N['tarif.label.detail']}" />
                     </h:column>
 
                     <h:column>

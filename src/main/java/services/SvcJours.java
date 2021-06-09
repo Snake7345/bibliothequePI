@@ -29,8 +29,8 @@ public class SvcJours extends Service<Jours> implements Serializable {
 	}
 
 	public Jours addJours(int j) {
-		if (findByNbrJ(j).size() != 0) {
-			return findByNbrJ(j).get(0);
+		if (findByNbrJExact(j).size() != 0) {
+			return findByNbrJExact(j).get(0);
 		} else {
 			Jours jours = new Jours();
 			jours.setNbrJour(j);
@@ -39,6 +39,11 @@ public class SvcJours extends Service<Jours> implements Serializable {
 		}
 	}
 
+	public List<Jours> findByNbrJExact(int nbrJ) {
+		Map<String, Integer> param = new HashMap<>();
+		param.put("nbrJour", nbrJ);
+		return finder.findByNamedQuery("Jours.findByNbrJExact", param);
+	}
 	public List<Jours> findByNbrJ(int nbrJ) {
 		Map<String, Integer> param = new HashMap<>();
 		param.put("nbrJour", nbrJ);

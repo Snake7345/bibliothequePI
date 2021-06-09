@@ -139,6 +139,7 @@ public class UtilisateursBean implements Serializable {
             UA = serviceUA.createUtilisateursAdresses(utilisateur, adresses);
         }
         if(verifUtilExist(utilisateur)) {
+            UA.setActif(true);
             saveUtilisateur();
         }else {
 
@@ -220,6 +221,7 @@ public class UtilisateursBean implements Serializable {
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le nombre de client maximal a été atteint; opération échouée",null));
         }
         else {
+            UA.setActif(true);
             saveUtilisateur();
         }
         init();

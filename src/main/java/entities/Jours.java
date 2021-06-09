@@ -11,6 +11,7 @@ import java.util.Objects;
         ({
                 @NamedQuery(name = "Jours.findAll", query = "SELECT j FROM Jours j"),
                 @NamedQuery(name = "Jours.findByNbrJ", query = "SELECT j FROM Jours j WHERE j.nbrJour<=:nbrJour ORDER BY j.nbrJour DESC"),
+                @NamedQuery(name = "Jours.findByNbrJExact", query = "SELECT j FROM Jours j WHERE j.nbrJour=:nbrJour"),
         })
 public class Jours implements Serializable {
     private static final long serialVersionUID = 1L;
