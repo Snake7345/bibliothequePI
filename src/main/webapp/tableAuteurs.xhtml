@@ -32,12 +32,6 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{aut.prenom}"/>
                         </h:column>
-                        <h:column>
-                            <!-- column header -->
-                            <f:facet name="header">#{I18N['commune.label.actif']}</f:facet>
-                            <!-- row record -->
-                            <h:outputLabel value ="#{aut.actif}"/>
-                        </h:column>
                         <c:if test= "#{rolesBean.checkPermission(14,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="formEditAuteur">		<!-- u minuscule -->
