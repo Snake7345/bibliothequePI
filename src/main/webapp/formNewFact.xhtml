@@ -5,7 +5,6 @@
       xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html">
-<!--TODO retravailler la page-->
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['livre.form.nouveau.titre']}</ui:define>
 
@@ -48,7 +47,6 @@
                                      validator="codeBarreLivreValidator"/>
                     </h:column>
 
-                    <!--TODO doit être un entier positif-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Nombre de jours" />

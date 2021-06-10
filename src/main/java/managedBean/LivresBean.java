@@ -19,10 +19,7 @@ import java.util.List;
 
 @Named
 @SessionScoped
-/*
-* TODO :
-*  - Formulaire confirmation
-* */
+
 public class LivresBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;

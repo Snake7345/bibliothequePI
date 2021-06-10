@@ -32,7 +32,6 @@ public class RolesBean implements Serializable {
 
     public String newRoles()
     {
-        //Todo mettre/faire une verification de l'objet role
         if(verifRoleExist(role))
         {
             save();
@@ -87,7 +86,6 @@ public class RolesBean implements Serializable {
         return "/tableRoles.xhtml?faces-redirect=true";
     }
 
-    //TODO a optimiser
     public boolean checkPermission(int permission, int role)
     {
         boolean flag = false;

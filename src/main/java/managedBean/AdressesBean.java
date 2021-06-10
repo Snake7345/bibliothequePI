@@ -28,7 +28,8 @@ public class AdressesBean implements Serializable {
         adresse = new Adresses();
     }
 
-
+    // Méthode qui permet l'appel de save() qui créée une nouvelle adresse et envoi un message si jamais
+    // l'adresse se trouve déjà en base de donnée et nous renvoi sur la table des auteurs
     public String newAdress()
     {
         if(verifAdresseExist(adresse))
@@ -44,6 +45,8 @@ public class AdressesBean implements Serializable {
         return "/tableAdresses.xhtml?faces-redirect=true";
 
     }
+
+    // Méthode qui permet la sauvegarde d'une adresse en base de donnée
     public void save()
     {
         SvcAdresses service = new SvcAdresses();
@@ -70,6 +73,7 @@ public class AdressesBean implements Serializable {
         }
     }
 
+    // Méthode qui vérifie qu'une adresse déjà ou pas dans la base de donnée
     public boolean verifAdresseExist(Adresses ad)
     {
         SvcAdresses serviceA = new SvcAdresses();

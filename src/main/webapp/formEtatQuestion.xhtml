@@ -6,7 +6,6 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-<!--TODO retravailler la page-->
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['utilisateur.form.nouveau.titre']}</ui:define>
 
@@ -27,7 +26,6 @@
             </h:selectOneMenu>
             <h:message for="bibli" styleClass="errorMessage"/>
 
-            <!--TODO Ajouter le code barre du livre concerné-->
             <h:outputText value = "#{I18N['exemplaireslivres.label.CodeBarre']}"/>
             <h:inputText id="exemplLivresCB"
                          value="#{factureBean.CB}"
@@ -38,14 +36,12 @@
                 <f:validateLength minimum="9" maximum="9"/>
             </h:inputText>
             <h:message for="exemplLivresCB" styleClass="errorMessage"/>
-            <!--TODO MODIFIER LE SELECTONERADIO-->
             <br/>
             <h:outputText value="#{I18N['livre.form.question']}"/>
             <h:selectOneRadio value = "#{factureBean.choixetat}" required="true">
                 <f:selectItem itemValue = "#{true}" itemLabel = "#{I18N['commune.label.oui']}" />
                 <f:selectItem itemValue = "#{false}" itemLabel = "#{I18N['commune.label.non']}"/>
             </h:selectOneRadio>
-            <!--TODO créer la méthode dans bean-->
             <h:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.redirectChoix}"/>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
         </h:form>

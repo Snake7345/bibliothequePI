@@ -5,7 +5,6 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-<!--TODO retravailler la page-->
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['exempl.form.confirm']}</ui:define>
 
@@ -15,7 +14,6 @@
         <h:form>
         <h2 style="text-align:center">#{I18N['exempl.form.questionconfirm']}</h2>
         <h:commandButton value="#{I18N['commune.label.oui']}" action="#{exemplairesLivresBean.activdesactivExLiv}"/>
-        <!--TODO : le button du non ne fonctionne pas-->
         <h:commandButton value="#{I18N['commune.label.non']}" action="tableExemplaireLivres" immediate="true"/>
         </h:form>
         </c:if>

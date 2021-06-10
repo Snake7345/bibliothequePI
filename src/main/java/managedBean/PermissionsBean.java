@@ -32,7 +32,6 @@ public class PermissionsBean implements Serializable {
     {
         SvcPermissions service = new SvcPermissions();
         EntityTransaction transaction = service.getTransaction();
-        //Todo mettre/faire une verification de l'objet utilisateur,
         transaction.begin();
         if (checkPermExist()) {
             try {

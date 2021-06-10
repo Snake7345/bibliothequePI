@@ -6,7 +6,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:c="http://java.sun.com/jsp/jstl/core"
 >
-<!-- TODO : Rajouté les boutons pour la recherche-->
 <ui:composition template="Template/template.xhtml">
 	<ui:define name="title">#{I18N['application.auteurs.titleSearch']}</ui:define>
 
@@ -55,7 +54,6 @@
 					<f:setPropertyActionListener target="#{livresBean.aut}" value="#{aut}" /><!-- u minuscule -->
 				</h:commandButton>
 			</h:column>
-			<!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
 			<c:if test= "#{rolesBean.checkPermission(24,loginBean.utilisateurAuth.roles.idRoles)}">
 				<h:column>
 					<h:commandButton image="Images//activ.png" rendered="#{aut.actif}" action="formConfirmationAuteur">

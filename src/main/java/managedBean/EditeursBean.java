@@ -28,6 +28,8 @@ public class EditeursBean implements Serializable {
         editeur = new Editeurs();
     }
 
+    // Méthode qui fait appel a la méthode save() qui permet la création en DB de l'éditeur et renvoi un message si jamais l'éditeur existe déjà en DB
+    // la méthode nous renverra sur la table des éditeurs
     public String saveEditeur()
     {
         if(verifEditeurExist(editeur))

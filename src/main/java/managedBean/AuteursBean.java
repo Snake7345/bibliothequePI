@@ -29,6 +29,7 @@ public class AuteursBean implements Serializable {
     private List<Auteurs> searchResults;
     private List<Auteurs> listAut;
 
+
     @PostConstruct
     public void init()
     {
@@ -36,6 +37,8 @@ public class AuteursBean implements Serializable {
         auteur = new Auteurs();
     }
 
+    // Méthode qui permet l'appel de save() qui créée un nouvel auteur et envoi un message si jamais l'auteur se trouve déjà en base de donnée
+    // La méthode met également une majuscule pour la première lettre du nom et du prénom de l'auteur et nous renvoi sur la table des auteurs
     public String newAuteur()
     {
 
@@ -54,7 +57,7 @@ public class AuteursBean implements Serializable {
         return "/tableAuteurs.xhtml?faces-redirect=true";
     }
 
-
+    // Méthode qui permet la sauvegarde de l'auteur dans la base de donnée
     public void save()
     {
         SvcAuteurs service = new SvcAuteurs();
@@ -81,7 +84,7 @@ public class AuteursBean implements Serializable {
         }
     }
 
-    /*Méthode qui permet d'activer et de désactiver un auteur*/
+    /*Méthode qui permet de désactiver un auteur ainsi que ces livres et exemplaires livres, d'activer un auteur et nous renvoi sur la table des auteurs*/
     public String activdesactivAut()
     {
         SvcAuteurs service = new SvcAuteurs();
@@ -145,6 +148,7 @@ public class AuteursBean implements Serializable {
 
     }
 
+    //Méthode qui permet de vider les variables et de revenir sur le table des Auteurs
     public String flushAut()
     {
         init();
@@ -155,6 +159,7 @@ public class AuteursBean implements Serializable {
         return "/tableAuteurs?faces-redirect=true";
     }
 
+    // Méthode qui permet en fonction de la donnée de l'utilisateur de rechercher un nom parmi les auteurs et nous renvoi sur le formulaire de recherche des auteurs
     public String searchAuteur()
     {
 
@@ -187,8 +192,7 @@ public class AuteursBean implements Serializable {
     //}
 
     /*
-     * Méthode qui permet via le service de retourner
-     * la liste de tous les auteurs
+     * Méthode qui permet de vérifier si un auteur existe ou non en DB
      */
 
     public boolean verifAuteurExist(Auteurs aut)
@@ -206,6 +210,7 @@ public class AuteursBean implements Serializable {
 
     }
 
+    // Méthode qui retourne la liste de tous les auteurs présent en DB
     public List<Auteurs> getReadAll()
     {
         SvcAuteurs service = new SvcAuteurs();

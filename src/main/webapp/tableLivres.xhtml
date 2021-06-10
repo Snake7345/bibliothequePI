@@ -6,9 +6,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<!--TODO mettre le minimum d'info sur le livre-->
-<!--Faire attention aux permissions-->
-
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['application.livre.title']}</ui:define>
     <ui:define name="content">
@@ -49,7 +46,6 @@
                         </h:commandButton>
                     </h:column>
                     </c:if>
-                    <!--TODO retravailler la condition car doit convenir a l'activation et désactivation-->
                     <c:if test= "#{rolesBean.checkPermission(26,loginBean.utilisateurAuth.roles.idRoles)}">
                     <h:column>
                         <h:commandButton rendered="#{liv.actif}" image="Images//activ.png" action="formConfirmationLivre">

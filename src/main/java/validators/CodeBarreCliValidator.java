@@ -32,7 +32,6 @@ public class CodeBarreCliValidator implements Validator
         }
         else if(!L.get(0).isActif()){throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"L'utilisateur n'est pas actif",null));}
 
-        /*TODO : Le code barre doit être actif*/
         serviceU.close();
     }
 

@@ -23,7 +23,6 @@ public class BibliothequeValidator implements Validator
         {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Le code barre n'existe pas",null));
         }
-        /*TODO : Le code barre doit être actif*/
 
         serviceEL.close();
     }

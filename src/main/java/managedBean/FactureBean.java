@@ -108,7 +108,6 @@ public class FactureBean implements Serializable {
 
     public String newFact()
     {
-        //TODO finaliser la mÃ©thode
 
         //initialisation des services requis
         SvcFacture service =new SvcFacture();
@@ -209,7 +208,7 @@ public class FactureBean implements Serializable {
     public void newFactPena(FacturesDetail facturesDetail)
     {
 
-        //TODO finaliser la mÃ©thode
+
         //initialisation des services requis
 
         SvcFacture service =new SvcFacture();
@@ -388,12 +387,10 @@ public class FactureBean implements Serializable {
         }
         else
         {
-            //todo add facemessage pour signaler que le livre n'est pas louÃ©
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le livre n'est pas loue",null));
         }
-        // todo rÃ©flÃ©chir au retour
         return "/tableFactures.xhtml?faces-redirect=true";
     }
 

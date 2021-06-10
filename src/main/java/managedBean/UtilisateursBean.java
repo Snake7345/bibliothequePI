@@ -123,7 +123,6 @@ public class UtilisateursBean implements Serializable {
         utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
         utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
 
-        //todo à vérifier que ça fonctionne...
         if (utilisateur.getIdUtilisateurs()!=0) {
             for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()) {
                 if (ua.getAdresse().equals(adresses)) {
@@ -226,6 +225,7 @@ public class UtilisateursBean implements Serializable {
         return "/tableUtilisateursCli.xhtml?faces-redirect=true";
     }
 
+    //Méthode qui va créer un nouveau membre en commencant par le nombre 400000000
     public String createNumMembre()
     {
         if (numMembre.equals("0")){
@@ -244,7 +244,8 @@ public class UtilisateursBean implements Serializable {
     }
 
 
-
+    /*Méthode qui permet de désactiver un utilisateur et de le réactiver en verifiant si son rôle est actif ou pas.
+    * Si on desactiver/active un client il nous renverra sur la table des clients sinon il nous renverra sur la table des utilisateurs*/
     public String activdesactivUtil() {
         if (utilisateur.isActif()) {
             utilisateur.setActif(false);
@@ -271,7 +272,7 @@ public class UtilisateursBean implements Serializable {
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
         }
     }
-
+    // Méthode qui permet en fonction de la donnée de l'utilisateur de rechercher un nom parmi les utilisateurs(Client) et nous renvoi sur le formulaire de recherche des utilisateurs(Client)
     public String searchUtilisateur() {
 
         SvcUtilisateurs service = new SvcUtilisateurs();
@@ -286,7 +287,7 @@ public class UtilisateursBean implements Serializable {
 
         return "/formSearchUtilisateur?faces-redirect=true";
     }
-
+    //Méthode qui permet de vider les variables et de revenir sur le table des utilisateurs
     public String flushUtil() {
         init();
         if (searchResults != null) {
@@ -294,7 +295,7 @@ public class UtilisateursBean implements Serializable {
         }
         return "/tableUtilisateurs?faces-redirect=true";
     }
-
+    //Méthode qui permet de vider les variables et de revenir sur le table des utilisateurs(Client)
     public String flushUtilCli() {
         init();
         if (searchResults != null) {
@@ -302,10 +303,9 @@ public class UtilisateursBean implements Serializable {
         }
         return "/tableUtilisateursCli?faces-redirect=true";
     }
-
+    //Méthode qui permet de vider les variables et de revenir sur la page de bienvenue
     public String flushBienv()
     {
-        //ToDO a optimiser
         init();
         return "/bienvenue?faces-redirect=true";
     }
@@ -332,6 +332,9 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listUtil;
     }
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les utilisateurs(Client) inactifs
+     */
     public List<Utilisateurs> getReadCliInactiv()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();
@@ -340,6 +343,10 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listCli;
     }
+
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les utilisateurs(Client) actifs
+     */
     public List<Utilisateurs> getReadCliActiv()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();
@@ -360,6 +367,9 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listUtil;
     }
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les utilisateurs(Client)
+     */
     public List<Utilisateurs> getReadAllCli()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();

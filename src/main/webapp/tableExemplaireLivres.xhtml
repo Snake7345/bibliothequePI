@@ -4,11 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
->
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<!--TODO retravailler la page-->
-<!--Faire attention aux permissions-->
 
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['application.livre.title']}</ui:define>
@@ -45,7 +42,6 @@
                         <!-- row record -->
                         <h:outputLabel value ="#{livexemL.actif}"/>
                     </h:column>
-                    <!--TODO : Examiner la méthode car pas bon-->
                     <c:if test= "#{rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton rendered="#{livexemL.loue}" image="Images//inspectionsmini.jpg" action="formEtatQuestion">		<!-- u minuscule -->
@@ -77,7 +73,6 @@
                 <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
             </h:commandButton>
             </c:if>
-            <!--TODO mettre les permissions et le label adéquat sur le bouton-->
 
             <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushLiv}"/>
