@@ -76,9 +76,7 @@ public class UtilisateursBean implements Serializable {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.addMessage("messageGenre", new FacesMessage("le rollback a pris le relais"));
             }
-            else {
-                init();
-            }
+
             service.close();
         }
 
@@ -264,10 +262,12 @@ public class UtilisateursBean implements Serializable {
         }
         if (utilisateur.getRoles().getDenomination().equals("Client"))
         {
+            init();
             return "/tableUtilisateursCli.xhtml?faces-redirect=true";
         }
         else
         {
+            init();
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
         }
     }

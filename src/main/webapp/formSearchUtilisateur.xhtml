@@ -70,16 +70,14 @@
                             </h:commandButton>
                         </h:column>
                     </c:if>
-                    <c:if test= "#{rolesBean.checkPermission(53,loginBean.utilisateurAuth.roles.idRoles)}">
-                        <h:column>
-                            <h:commandButton image="Images//activ.png" rendered="#{util.actif}" action="#{utilisateursBean.activdesactivUtil}">
-                                <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" />
-                            </h:commandButton>
-                            <h:commandButton image="Images//desactiv.png" rendered="#{!util.actif}" action="#{utilisateursBean.activdesactivUtil}">
-                                <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" />
-                            </h:commandButton>
-                        </h:column>
-                    </c:if>
+                    <h:column>
+                        <h:commandButton image="Images//activ.png" rendered="#{util.actif}" action="#{utilisateursBean.activdesactivUtil}">
+                            <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" />
+                        </h:commandButton>
+                        <h:commandButton image="Images//desactiv.png" rendered="#{!util.actif}" action="#{utilisateursBean.activdesactivUtil}">
+                            <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" />
+                        </h:commandButton>
+                    </h:column>
                 </h:dataTable>
             </h:panelGroup>
             <h:commandButton value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>

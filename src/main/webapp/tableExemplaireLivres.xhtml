@@ -73,7 +73,7 @@
                 </h:dataTable>
             </h:panelGroup>
             <c:if test= "#{rolesBean.checkPermission(5,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:commandButton value="#{I18N['application.button.newExem']}" action="formNewExemLivre">
+            <h:commandButton value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre">
                 <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
             </h:commandButton>
             </c:if>

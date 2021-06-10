@@ -11,7 +11,7 @@
 
     <ui:define name="content">
         <h:messages styleClass="errorBlock" globalOnly="true" />
-        <c:if test= "#{rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)}">
+        <c:if test= "#{(rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles) or loginBean.utilisateurAuth eq utilisateursBean.utilisateur)}">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['utilisateur.form.modif.titre']}</title>
@@ -73,8 +73,8 @@
                 </c:if>
 
                 <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client' and utilisateursBean.utilisateur.roles.denomination ne 'Administrateur'}">
-                <h:outputText value = "#{I18N['role.label.Denomination']}"/>
-                <h:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                <h:outputText value = "#{I18N['role.label.Denomination']}" rendered="#{rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)}"/>
+                <h:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" rendered="#{rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)}" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                  converter="roleConverter">
                     <c:if test="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'}">
                         <f:selectItems value = "#{rolesBean.readActivUtil}" var="ro"
@@ -87,7 +87,7 @@
                                        itemValue="#{ro}"/>
                     </c:if>
                 </h:selectOneMenu>
-                    <h:message for="roles" styleClass="errorMessage"/>
+                    <h:message for="roles" styleClass="errorMessage" rendered="#{rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)}"/>
                 </c:if>
                 <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
                 <h:selectOneMenu value = "#{utilisateursBean.adresses}" id="utiladress" required="true"
@@ -114,7 +114,7 @@
             </c:if>
         </h:form>
         </c:if>
-        <c:if test="#{!(rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles))}">
+        <c:if test="#{!(rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles) or loginBean.utilisateurAuth eq utilisateursBean.utilisateur)}">
             <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
