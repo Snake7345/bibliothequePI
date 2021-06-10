@@ -18,15 +18,17 @@
                 <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <h:outputText value = "#{I18N['exemplaireslivres.label.Etat']}"/>
-                    <h:selectOneRadio id="exetat" value="#{factureBean.exemplairesLivres.etat}">
-                        <f:selectItems value="#{exemplairesLivresEnumBean.etatEnum}" />
+                    <h:selectOneRadio id="exetat" value="#{factureBean.exemplairesLivres.etat}" required="true">
+                        <f:selectItems value="#{exemplairesLivresEnumBean.etatEnum}"/>
                     </h:selectOneRadio>
 
                     <h:outputText value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
                     <h:inputTextarea id="CommentaireEtat"
                                  value="#{factureBean.exemplairesLivres.commentaireEtat}" cols="25" rows="5"
-                                     maxlength="500">
+                                     maxlength="500"
+                                     required="true" requiredMessage="#{I18N['formulaire.message.required.exemplairelivreetat']}">
                     </h:inputTextarea>
+                    <h:message for="CommentaireEtat" styleClass="errorMessage"/>
 
                     <h:outputText value = "#{I18N['penalite.label.Nom']}"/>
                     <h:selectManyListbox value = "#{factureBean.tarifsPenalites}">
