@@ -79,6 +79,7 @@ public class TarifsBean implements Serializable {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"ce tarif ne peut être modifié",null));
+            init();
             return "/tableTarifs.xhtml?faces-redirect=true";
         }
 
