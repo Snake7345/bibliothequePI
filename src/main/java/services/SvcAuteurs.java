@@ -51,6 +51,7 @@ public class SvcAuteurs extends Service<Auteurs> implements Serializable
 		return auteurs;
 	}
 
+	//Méthode qui permet via une requete de retourner une liste avec un auteur
 	public List<Auteurs> findOneAuteur(Auteurs aut)
 	{
 		Map<String, Object> param = new HashMap<>();
@@ -59,18 +60,12 @@ public class SvcAuteurs extends Service<Auteurs> implements Serializable
 		return finder.findByNamedQuery("Auteurs.findOne",param);
 	}
 
+	//Méthode qui permet via une requete de retourner une liste avec un nom d'auteur
 	public List<Auteurs> getByName(String nom) {
 		Map<String, String> param = new HashMap<>();
 		param.put("nom", nom);
 
 		return finder.findByNamedQuery("Auteurs.searchName", param);
-	}
-
-
-	public Auteurs deleteAuteur(Auteurs aut){
-		System.out.println("Je delete l'auteur :" + aut.getNom());
-		aut.setActif(false);
-		return aut;
 	}
 
 

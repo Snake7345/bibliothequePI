@@ -27,6 +27,7 @@ public class SvcAdresses extends Service<Adresses> implements Serializable {
 		return finder.findByNamedQuery("Adresses.findAll",null);
 	}
 
+	//Méthode qui permet via une requete de retourner une liste avec une adresse
 	public List<Adresses> findOneAdresse(Adresses ad)
 	{
 		Map<String, Object> param = new HashMap<>();

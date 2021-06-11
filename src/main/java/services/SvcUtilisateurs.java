@@ -33,6 +33,7 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		return utilisateurs;
 	}
 
+	//Méthode qui permet via une requete de retourner une liste avec un utilisateur
 	public List<Utilisateurs> findOneUtilisateur(Utilisateurs util)
 	{
 		Map<String, Object> param = new HashMap<>();
@@ -40,20 +41,15 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		param.put("prenom", util.getPrenom());
 		param.put("sexe", util.getSexe());
 		param.put("courriel", util.getCourriel());
-		//param.put("login", util.getLogin());
-		//param.put("mdp", util.getMdp());
 		param.put("role", util.getRoles());
 		return finder.findByNamedQuery("Utilisateurs.findOne",param);
 	}
 
 	//Méthode qui permet via une requete de retourner la liste entière des utilisateurs
-	public List<Utilisateurs> findAllUtilisateurs() {
-		return finder.findByNamedQuery("Utilisateurs.findAll", null);
-	}
-
 	public List<Utilisateurs> findAllUtilisateursUtil() {
 		return finder.findByNamedQuery("Utilisateurs.findAllUtil", null);
 	}
+	//Méthode qui permet via une requete de retourner la liste entière des utilisateurs (client)
 	public List<Utilisateurs> findAllUtilisateursCli() {
 		return finder.findByNamedQuery("Utilisateurs.findAllCli", null);
 	}
@@ -66,11 +62,11 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 	public List<Utilisateurs> findAllUtilisateursInactiv() {
 		return finder.findByNamedQuery("Utilisateurs.findInactiv", null);
 	}
-
+	//Méthode qui permet via une requete de retourner la liste entière des utilisateurs (client) actifs
 	public List<Utilisateurs> findAllUtilisateursCliActiv() {
 		return finder.findByNamedQuery("Utilisateurs.findCliActiv", null);
 	}
-
+	//Méthode qui permet via une requete de retourner la liste entière des utilisateurs (client) inactif
 	public List<Utilisateurs> findAllUtilisateursCliInactiv() {
 		return finder.findByNamedQuery("Utilisateurs.findCliInactiv", null);
 	}
@@ -109,7 +105,6 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 
 		return finder.findByNamedQuery("Utilisateurs.authentify", param);
 	}
-
 
 
 }

@@ -33,6 +33,7 @@ public class SvcEditeurs extends Service<Editeurs> implements Serializable
 		return editeurs;
 	}
 
+	//Méthode qui permet via une requete de retourner une liste avec un editeur
 	public List<Editeurs> findOneEditeur(Editeurs ed)
 	{
 		Map<String, Object> param = new HashMap<>();
