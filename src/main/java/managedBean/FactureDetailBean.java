@@ -23,7 +23,7 @@ public class FactureDetailBean implements Serializable {
     private static final Logger log = Logger.getLogger(FactureDetailBean.class);
 
 
-
+    // Méthode permettant de mettre en base de données toutes les informations concernant l'entité facture detail
     public void save()
     {
         SvcFactureDetail service = new SvcFactureDetail();
@@ -46,7 +46,7 @@ public class FactureDetailBean implements Serializable {
         }
 
     }
-
+    // Méthode qui retourne la liste de toutes les facturedetails.
     public List<FacturesDetail> getReadAll()
     {
         SvcFactureDetail service = new SvcFactureDetail();

@@ -50,6 +50,9 @@ public class PenalitesBean implements Serializable {
             service.close();
         }
     }
+    /*
+     * Méthode qui permet via le service de retourner la liste de toutes les pénalités
+     */
     public List<Penalites> getReadAll()
     {
         SvcPenalites service = new SvcPenalites();

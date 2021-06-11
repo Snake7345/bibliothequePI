@@ -33,7 +33,7 @@ public class BibliothequesBean implements Serializable {
         bibliotheque = new Bibliotheques();
     }
 
-    // Méthode qui va appel la méthode save() pour créer/modifier une bibliotheque en DB et qui envoi un message si jamais le nom de la biblio a pas été changé ou si l'utilisateur
+    // Méthode qui va appellé la méthode save() pour créer/modifier une bibliotheque en DB et qui envoi un message si jamais le nom de la biblio a pas été changé ou si l'utilisateur
     // veut créer une nouvelle bibliothèque (limité à 1 pour ce projet) et nous renvoi sur la table des bibliothèques
     public String newBiblio()
     {

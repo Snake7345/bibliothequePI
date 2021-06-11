@@ -28,6 +28,7 @@ public class PermissionsBean implements Serializable {
         permission = new Permissions();
     }
 
+
     public String newPermission()
     {
         SvcPermissions service = new SvcPermissions();
@@ -67,6 +68,7 @@ public class PermissionsBean implements Serializable {
 
     }
 
+    // Méthode qui vérifie si une permission est déjà existante dans la base de donnée ou non
 public boolean checkPermExist(){
         SvcPermissions serviceP = new SvcPermissions();
         return (serviceP.findOnePermission(permission.getDenomination()).size() == 0);

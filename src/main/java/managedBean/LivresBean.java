@@ -269,6 +269,10 @@ public class LivresBean implements Serializable {
         init();
         return "tableLivres.xhtml";
     }
+
+    /*
+     * Méthode qui permet de vider les variables et retourne sur la page de bienvenue
+     * */
     public String flushBienv()
     {
         init();

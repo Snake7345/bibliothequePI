@@ -107,6 +107,7 @@ public class FactureBean implements Serializable {
         }
     }
 
+    // Méthode qui permet de créer une facture
     public String newFact()
     {
 
@@ -206,6 +207,7 @@ public class FactureBean implements Serializable {
         }
     }
 
+    // Méthode qui permet de créer une facture pénalité
     public void newFactPena(FacturesDetail facturesDetail)
     {
 
@@ -246,7 +248,7 @@ public class FactureBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            //crÃ©ation de la facture
+            //création de la facture
             fact.setDateDebut(timestampfacture);
             fact.setNumeroFacture(createNumFact());
             String path = "Factures\\" + fact.getNumeroFacture() + ".pdf";
@@ -254,7 +256,7 @@ public class FactureBean implements Serializable {
             fact.setEtat(FactureEtatEnum.terminer);
             fact.setUtilisateurs(u);
 
-            //crÃ©ation des facture dÃ©tails
+            //création des facture dÃ©tails
             if (tarifsPenalites.size() >= 1){
                 for (TarifsPenalites tp: tarifsPenalites)
                 {
@@ -279,13 +281,13 @@ public class FactureBean implements Serializable {
             // sauvegarde de la facture et commit de transaction
             service.save(fact);
             transaction.commit();
-            //refresh pour rÃ©cupÃ©rer les collections associÃ©es
+            //refresh pour récupérer les collections associÃ©es
             service.refreshEntity(fact);
             MFB.creation(fact,tarifsPenalites,factdetretard);
             sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant les pénalités suite a votre location en piece jointe","Facture de pénalité");
         }
         finally {
-            //bloc pour gÃ©rer les erreurs lors de la transactions
+            //bloc pour gérer les erreurs lors de la transactions
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
@@ -444,7 +446,9 @@ public class FactureBean implements Serializable {
         service.close();
         return listFact;
     }
-
+    /*
+     * Méthode qui permet de vider les variables et retourne sur la table des factures
+     * */
     public String flushFact()
     {
         init();
