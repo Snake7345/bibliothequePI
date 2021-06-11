@@ -71,6 +71,7 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		return finder.findByNamedQuery("Utilisateurs.findCliInactiv", null);
 	}
 
+	//Méthode qui permet via une requete de retourner une avec le dernier numero d'utilisateur (client)
 	public List<Utilisateurs> findlastMembre()
 	{
 		return finder.findByNamedQuery("Utilisateurs.findLastMembre",null);

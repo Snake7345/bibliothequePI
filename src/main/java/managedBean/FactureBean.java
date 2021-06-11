@@ -180,7 +180,7 @@ public class FactureBean implements Serializable {
                 service.save(fact);
                 transaction.commit();
                 service.refreshEntity(fact);
-                MFB.creation(fact);
+                MFB.creation(fact,Bibli);
                 sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant votre location en piece jointe","Facture de location");
                 return "/tableFactures.xhtml?faces-redirect=true";
             } finally {
@@ -283,7 +283,7 @@ public class FactureBean implements Serializable {
             transaction.commit();
             //refresh pour récupérer les collections associÃ©es
             service.refreshEntity(fact);
-            MFB.creation(fact,tarifsPenalites,factdetretard);
+            MFB.creation(fact,tarifsPenalites,factdetretard,Bibli);
             sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant les pénalités suite a votre location en piece jointe","Facture de pénalité");
         }
         finally {

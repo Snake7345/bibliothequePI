@@ -1,8 +1,6 @@
 package pdfTools;
 
-import entities.Factures;
-import entities.FacturesDetail;
-import entities.UtilisateursAdresses;
+import entities.*;
 import org.apache.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
@@ -32,7 +30,7 @@ public class ModelFactBiblio implements Serializable
 	private static final Logger log = Logger.getLogger(ModelFactBiblio.class);
 
 	/*Creation de la facture en PDF*/
-	public void creation (Factures fact)  {
+	public void creation (Factures fact, Bibliotheques bib)  {
 		try{
 		SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
 		String userdir = System.getProperty("user.dir");
@@ -46,6 +44,8 @@ public class ModelFactBiblio implements Serializable
 		String utilisateur = fact.getUtilisateurs().getNumMembre();
 		String nompreClient = fact.getUtilisateurs().getNom() + " " + fact.getUtilisateurs().getPrenom();
 		String adresse="";
+		String adresse2="";
+		/*Mettre une variable pour le code barre du livre*/
 		for(UtilisateursAdresses ua : fact.getUtilisateurs().getUtilisateursAdresses())
 		{
 			if(ua.isActif())
@@ -54,7 +54,7 @@ public class ModelFactBiblio implements Serializable
 				if(ua.getAdresse().getBoite() !=null) {
 					adresse= adresse+ ua.getAdresse().getBoite() + " ";
 				}
-				adresse= adresse + ua.getAdresse().getLocalites().getCp() + " " + ua.getAdresse().getLocalites().getVille();
+				adresse2= ua.getAdresse().getLocalites().getCp() + " " + ua.getAdresse().getLocalites().getVille();
 			}
 		}
 		String laDateDuJour = sf.format(new java.util.Date());
@@ -93,14 +93,24 @@ public class ModelFactBiblio implements Serializable
 	    
 	    contentStream.beginText(); 	   														//Begin the Content stream 
 	    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 24);	//Setting the font to the Content stream  
-	    contentStream.setNonStrokingColor(Color.GRAY);
+	    contentStream.setNonStrokingColor(Color.BLACK);
 	    contentStream.setLeading(24.5f);
 	    
 	    //Creation de l'entete de la page
 	    contentStream.newLineAtOffset(198, 725);	    							//Setting the position for the line (l x h)
-	    String entete1 = "BiblioLib";
-	    String entete2 = "Rue du Fort, 29 - 6000  CHARLEROI";
-	    String entete3 = "TVA: BE0448.150.750 - Tel: 071 35 44 71 - Email: info@bibliolib.be";
+	    //String entete1 = "BiblioLib";
+		String entete1="";
+		String entete2 = "";
+		String entete3 = "TVA: BE0448.150.750 - Tel: 071 35 44 71";
+
+		for (Adresses adress: bib.getAdresses()) {
+			entete1 = bib.getNom();
+			entete2 = adress.getRue() + " " + adress.getNumero() + " " + adress.getLocalites().getCp() + " " + adress.getLocalites().getVille();
+
+			break;
+		}
+
+
 	    contentStream.showText(entete1);      	    								//Adding text in the form of string 
 	    contentStream.newLine();
 	    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
@@ -109,12 +119,6 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.newLine();
 	    contentStream.showText(entete3);
 	    contentStream.endText();
-	    
-	    // ligne d'entete
-	    contentStream.setLineWidth(2);
-		contentStream.moveTo(35, 670);
-		contentStream.lineTo(550, 670);
-		contentStream.closeAndStroke();
 	    
 	    Encadrement.creation(contentStream, 350,615,200,80);
 	    
@@ -129,7 +133,9 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.newLine();
 	    contentStream.showText(nompreClient);
 	    contentStream.newLine();
-	    contentStream.showText(adresse);  
+	    contentStream.showText(adresse);
+	    contentStream.newLine();
+	    contentStream.showText(adresse2);
 	    contentStream.newLine();
 	    contentStream.endText();
 	    
