@@ -16,7 +16,7 @@
                 <title>#{I18N['bibliotheque.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['bibliotheque.form.nouveau.titre']}</h2>
-            <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <h:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                 <h:outputText value = "#{I18N['bibliotheque.label.Nom']}"/>
                 <h:inputText id="bibliothequeNom"
@@ -28,6 +28,16 @@
                     <f:validateLength minimum="2" maximum="100"/>
                 </h:inputText>
                 <h:message for="bibliothequeNom" styleClass="errorMessage"/>
+<!--TODO : Modifier la requete au niveau des adresses, les adresses qui sont déjà a un utilisateur ne doivent pas être listées-->
+                <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
+                <h:selectOneMenu value = "#{bibliothequesBean.adresses}" id="biblioadress" required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.adresse']}"
+                                 converter="adressConverter">
+                    <f:selectItems value = "#{adressesBean.readAll}" var="ad"
+                                   itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
+                                   itemValue="#{ad}"/>
+                </h:selectOneMenu>
+                <h:message for="biblioadress" styleClass="errorMessage"/>
 
 
             </h:panelGrid>

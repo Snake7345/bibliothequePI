@@ -22,6 +22,14 @@
                             <!-- row record -->
                             <h:outputLabel value ="#{bi.nom}"/>
                         </h:column>
+                        <h:column>
+                            <!-- column header -->
+                            <f:facet name="header">#{I18N['adresse.label.complete']}</f:facet>
+                            <!-- row record -->
+                            <ui:repeat value="#{bi.adresses}" var="biad">
+                                <h:outputLabel value ="#{biad.rue}, #{biad.numero} #{biad.boite} #{biad.localites.cp} #{biad.localites.ville}"/>
+                            </ui:repeat>
+                        </h:column>
                         <c:if test= "#{rolesBean.checkPermission(15,loginBean.utilisateurAuth.roles.idRoles)}">
                         <h:column>
                             <h:commandButton  image="Images//edit.png" action="formEditBibliotheque">		<!-- u minuscule -->

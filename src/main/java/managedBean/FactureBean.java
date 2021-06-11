@@ -337,7 +337,6 @@ public class FactureBean implements Serializable {
             {
                 flag=false;
                 facturesDetail.setDateRetour(timestampretour);
-                //savefd();
                 if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin()) || tarifsPenalites.size()>=1)
                 {
 
