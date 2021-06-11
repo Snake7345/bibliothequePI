@@ -47,6 +47,7 @@ public class EditeursBean implements Serializable {
 
     }
 
+    // Méthode qui vérifie si un éditeur existe déjà en base de donnée
     public boolean verifEditeurExist(Editeurs ed)
     {
         SvcEditeurs serviceE = new SvcEditeurs();
@@ -62,6 +63,7 @@ public class EditeursBean implements Serializable {
 
     }
 
+    // Méthode qui sauvegarde l'éditeur en base de donnée
     public void save()
     {
         SvcEditeurs service = new SvcEditeurs();

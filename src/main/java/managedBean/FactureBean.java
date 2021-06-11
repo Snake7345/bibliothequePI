@@ -32,7 +32,7 @@ import java.util.*;
 @SessionScoped
 
 public class FactureBean implements Serializable {
-    // DÃ©claration des variables globales
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
 
     private Factures factures;
@@ -44,6 +44,7 @@ public class FactureBean implements Serializable {
     private boolean choixetat;
     private Bibliotheques Bibli;
     private ExemplairesLivres exemplairesLivres;
+
     @PostConstruct
     public void init(){
         listLC = new ArrayList<>();
@@ -62,9 +63,9 @@ public class FactureBean implements Serializable {
             listLC.remove(listLC.size()-1);
         }
     }
-
+    // Méthode qui permet l'envoi d'un mail via le mail de la bibliotheque avec la facture
     public static void sendMessage( String filename, String mailDest, String Texte, String Titre)  {
-        //CrÃ©ation de la session
+        //Création de la session
         String mail = "bibliolibatc@gmail.com";
         String password = "porte7345";
 
@@ -315,7 +316,7 @@ public class FactureBean implements Serializable {
         }
     }
 
-
+    // Méthode qui permet
     public String retourLivre(){
         FacturesDetail facturesDetail = new FacturesDetail();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
@@ -393,7 +394,7 @@ public class FactureBean implements Serializable {
         return "/tableFactures.xhtml?faces-redirect=true";
     }
 
-    /*MÃ©thode permettant de crÃ©er un numÃ©ro de facture avec FB(FactureBiblio) suivi de l'annÃ©e, le mois et un nombre a 4 chiffres*/
+    /*Méthode permettant de créer un numéro de facture avec FB(FactureBiblio) suivi de l'année, le mois et un nombre a 4 chiffres*/
     public String createNumFact()
     {
 
@@ -404,7 +405,7 @@ public class FactureBean implements Serializable {
         SvcFacture serviceF = new SvcFacture();
         List<Factures> fact;
 
-        //tester si l'annÃ©e en cours = annÃ©e de la derniÃ¨re facture
+        //tester si l'année en cours = année de la derniÃ¨re facture
         try
         {
             fact = serviceF.findAllFactureDesc();
@@ -432,7 +433,7 @@ public class FactureBean implements Serializable {
         return numFact;
     }
     /*
-     * MÃ©thode qui permet via le service de retourner la liste de toutes les factures
+     * Méthode qui permet via le service de retourner la liste de toutes les factures
      */
     public List<Factures> getReadAll()
     {

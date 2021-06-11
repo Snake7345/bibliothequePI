@@ -44,6 +44,8 @@ public class ExemplairesLivresBean implements Serializable {
         service.close();
         serviceB.close();
     }
+
+    // Méthode qui permet d'ajouter autant d'exemplaire livre que demande l'utilisateur
     public String addExemplaireLivre(){
         init();
         SvcExemplairesLivres service = new SvcExemplairesLivres();
@@ -79,6 +81,7 @@ public class ExemplairesLivresBean implements Serializable {
         return "/tableExemplaireLivres.xhtml?faces-redirect=true";
     }
 
+    // Méthode qui désactive le livre, si jamais son état est "mauvais" et renvoi vers tableExemplaireLivres
     public String editExemplaireLivre()
     {
         if (exemplairesLivre.getEtat()==ExemplairesLivresEtatEnum.Mauvais)
@@ -88,6 +91,8 @@ public class ExemplairesLivresBean implements Serializable {
         save();
         return "/tableExemplaireLivres.xhtml?faces-redirect=true";
     }
+
+    // Méthode qui permet de générer un code barre pour l'exemplaire livre
     public String generateBarCode(){
 
         if (LastBarCode.equals("0")){
@@ -103,6 +108,7 @@ public class ExemplairesLivresBean implements Serializable {
         }
     }
 
+    // Méthode qui permet de sauvegarder un exemplaire livre en DB
     public void save()
     {
         SvcExemplairesLivres service = new SvcExemplairesLivres();
@@ -124,9 +130,11 @@ public class ExemplairesLivresBean implements Serializable {
             service.close();
         }
     }
+
+    // Méthode qui permet la désactivation de l'exemplaire livre et renvoi vers la table des livres
     public String activdesactivExLiv()
     {
-        /*Si le livre est actif alors on le désactive; sinon on l'active*/
+        /*Si l'exemplaire est actif alors on le désactive;*/
         if(exemplairesLivre.isActif())
         {
             exemplairesLivre.setActif(false);

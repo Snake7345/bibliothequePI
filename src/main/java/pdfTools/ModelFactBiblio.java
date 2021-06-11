@@ -96,7 +96,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.setNonStrokingColor(Color.GRAY);
 	    contentStream.setLeading(24.5f);
 	    
-	    //Cr�ation de l'entete de la page
+	    //Creation de l'entete de la page
 	    contentStream.newLineAtOffset(198, 725);	    							//Setting the position for the line (l x h)
 	    String entete1 = "BiblioLib";
 	    String entete2 = "Rue du Fort, 29 - 6000  CHARLEROI";
@@ -110,7 +110,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.showText(entete3);
 	    contentStream.endText();
 	    
-	    // ligne d'ent�te
+	    // ligne d'entete
 	    contentStream.setLineWidth(2);
 		contentStream.moveTo(35, 670);
 		contentStream.lineTo(550, 670);
@@ -118,7 +118,7 @@ public class ModelFactBiblio implements Serializable
 	    
 	    Encadrement.creation(contentStream, 350,615,200,80);
 	    
-	  //Cr�ation de l'etiquette du client
+	  //Creation de l'etiquette du client
 	    PDFont font = PDType1Font.TIMES_ROMAN;
 	    contentStream.beginText();
 		contentStream.setFont(font, 14);
@@ -155,7 +155,7 @@ public class ModelFactBiblio implements Serializable
 		
 	    //cadre
 	    
-	    //travaux effectu�s
+	    //travaux effectues
 	    contentStream.beginText();
 	    contentStream.newLineAtOffset(80, 455);	
 	    contentStream.showText("Exemplaire loue :");

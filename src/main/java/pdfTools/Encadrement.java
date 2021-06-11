@@ -9,14 +9,14 @@ public class Encadrement
 	
 	public static void creation(PDPageContentStream cs, int x, int y, int lg, int ht) throws IOException
 	{
-		// Cr�ation d'un encadrement
-		//ligne sup�rieure
+		// Création d'un encadrement
+		//ligne supérieure
 		cs.setLineWidth(1);
 		cs.moveTo(x, y);
 		cs.lineTo(x+lg, y);
 		cs.closeAndStroke();
 		
-		// ligne inf�rieure
+		// ligne inférieure
 		cs.setLineWidth(1);
 		cs.moveTo(x, y-ht);
 		cs.lineTo(x + lg, y-ht);
