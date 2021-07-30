@@ -41,7 +41,7 @@
                                    maxlength="40">
                         <f:validateLength minimum = "8" maximum = "40" />
                     </p:password>
-                    <p:commandButton value ="#{I18N['application.button.login']}" action="#{loginBean.auth}" update="growl" ajax="false"/>
+                    <p:commandButton icon="pi pi-sign-in" value ="#{I18N['application.button.login']}" action="#{loginBean.auth}" update="growl" ajax="false"/>
                 </p:panelGrid>
 
             </h:form>
