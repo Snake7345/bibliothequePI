@@ -26,9 +26,12 @@
                                    itemValue="#{bi}"/>
                 </p:selectOneMenu>
                 <p:outputLabel value="#{I18N['tarif.label.dateDebutgrille']}" />
-                <p:inputText id="dateDebutGrille" value="#{tarifsBean.tarif.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
+                <p:calendar value="#{tarifsBean.tarif.dateDebut}" showOn="button" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                     <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                </p:inputText>
+                </p:calendar>
+                <!--<p:inputText id="dateDebutGrille" value="#{tarifsBean.tarif.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
+                    <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
+                </p:inputText>-->
 
 
                 <p:outputLabel value="#{I18N['tarif.label.nom']}" />
@@ -66,18 +69,24 @@
                         <f:facet name="header">
                             <p:outputLabel value="#{I18N['tarifjour.label.DateDebut']}" />
                         </f:facet>
-                        <p:inputText value="#{J.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
+                        <p:calendar value="#{J.dateDebut}" showOn="button" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                        </p:inputText>
+                        </p:calendar>
+                        <!--<p:inputText value="#{J.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
+                            <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
+                        </p:inputText>-->
                     </p:column>
 
                     <p:column>
                         <f:facet name="header">
                             <p:outputLabel value="#{I18N['tarifjour.label.DateFin']}" />
                         </f:facet>
-                        <p:inputText value="#{J.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
+                        <p:calendar value="#{J.dateFin}" showOn="button" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                        </p:inputText>
+                        </p:calendar>
+                        <!--<p:inputText value="#{J.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
+                            <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
+                        </p:inputText>-->
                     </p:column>
                 </p:dataTable>
 
@@ -110,17 +119,23 @@
                         <f:facet name="header">
                             <p:outputLabel value="#{I18N['tarifpenalite.label.DateDebut']}" />
                         </f:facet>
-                        <p:inputText value="#{P.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
+                        <p:calendar value="#{P.dateDebut}" showOn="button" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                        </p:inputText>
+                        </p:calendar>
+                        <!--<p:inputText value="#{P.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
+                            <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
+                        </p:inputText>-->
                     </p:column>
                     <p:column>
                         <f:facet name="header">
                             <p:outputLabel value="#{I18N['tarifpenalite.label.DateFin']}" />
                         </f:facet>
-                        <p:inputText value="#{P.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
+                        <p:calendar value="#{P.dateFin}" showOn="button" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
+                            <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
+                        </p:calendar>
+                        <!--<p:inputText value="#{P.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
                                      <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                        </p:inputText>
+                        </p:inputText>-->
                     </p:column>
 
                 </p:dataTable>
