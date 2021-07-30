@@ -10,7 +10,7 @@
     <ui:define name="title">#{I18N['tarif.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-        <h:messages styleClass="errorBlock"/>
+        <p:growl id="growl" showDetail="true" sticky="true" />
         <c:if test= "#{rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form>
                 <h:head>
@@ -18,124 +18,124 @@
                 </h:head>
                 <h2 style="text-align:center">#{I18N['tarif.form.nouveau.titre']}</h2>
 
-                <h:outputText value="#{I18N['bibliotheque.label.Nom']}" />
-                <h:selectOneMenu value = "#{tarifsBean.tarif.bibliotheques}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
+                <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}" />
+                <p:selectOneMenu value = "#{tarifsBean.tarif.bibliotheques}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
                                  converter="biblioConverter">
                     <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
                                    itemLabel="#{bi.nom}"
                                    itemValue="#{bi}"/>
-                </h:selectOneMenu>
-                <h:outputText value="#{I18N['tarif.label.dateDebutgrille']}" />
-                <h:inputText id="dateDebutGrille" value="#{tarifsBean.tarif.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
+                </p:selectOneMenu>
+                <p:outputLabel value="#{I18N['tarif.label.dateDebutgrille']}" />
+                <p:inputText id="dateDebutGrille" value="#{tarifsBean.tarif.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                     <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                </h:inputText>
+                </p:inputText>
 
 
-                <h:outputText value="#{I18N['tarif.label.nom']}" />
-                <h:inputText id="nomGrille" value="#{tarifsBean.tarif.denomination}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}" maxlength="255"/>
+                <p:outputLabel value="#{I18N['tarif.label.nom']}" />
+                <p:inputText id="nomGrille" value="#{tarifsBean.tarif.denomination}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}" maxlength="255"/>
 
 
-                <h:dataTable value="#{tarifsBean.grilleJour}" var="J">
-                    <h:column>
+                <p:dataTable value="#{tarifsBean.grilleJour}" var="J">
+                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarif.label.detail']}" />
+                            <p:outputLabel value="#{I18N['tarif.label.detail']}" />
                         </f:facet>
-                        <h:outputText value="#{I18N['tarif.label.detail']}" />
-                    </h:column>
+                        <p:outputLabel value="#{I18N['tarif.label.detail']}" />
+                    </p:column>
 
-                    <h:column>
+                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarifjour.label.jour']}" />
+                            <p:outputLabel value="#{I18N['tarifjour.label.jour']}" />
                         </f:facet>
-                        <h:inputText id ="jour" value="#{J.nbrJours}" required="true"
+                        <p:inputText id ="jour" value="#{J.nbrJours}" required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.nbrJ']}"
                         maxlength="6" validatorMessage="Nombre entier requis" converterMessage="Seuls les chiffres entier positif sont autorisés">
                             <f:validateLongRange minimum="0"/>
-                        </h:inputText>
-                    </h:column>
-                    <h:column>
+                        </p:inputText>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarifjour.label.Prix']}" />
+                            <p:outputLabel value="#{I18N['tarifjour.label.Prix']}" />
                         </f:facet>
-                        <h:inputText value="#{J.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}"
+                        <p:inputText value="#{J.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}"
                                      maxlength="11">
                             <f:validateDoubleRange minimum="0.0"/>
-                        </h:inputText>
-                    </h:column>
-                    <h:column>
+                        </p:inputText>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarifjour.label.DateDebut']}" />
+                            <p:outputLabel value="#{I18N['tarifjour.label.DateDebut']}" />
                         </f:facet>
-                        <h:inputText value="#{J.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
+                        <p:inputText value="#{J.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                        </h:inputText>
-                    </h:column>
+                        </p:inputText>
+                    </p:column>
 
-                    <h:column>
+                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarifjour.label.DateFin']}" />
+                            <p:outputLabel value="#{I18N['tarifjour.label.DateFin']}" />
                         </f:facet>
-                        <h:inputText value="#{J.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
+                        <p:inputText value="#{J.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                        </h:inputText>
-                    </h:column>
-                </h:dataTable>
+                        </p:inputText>
+                    </p:column>
+                </p:dataTable>
 
-                <h:commandButton value="#{I18N['tarifjour.label.add']}" action="#{tarifsBean.addNewJourRow}"/>
-                <h:commandButton value="#{I18N['tarifjour.label.del']}" action="#{tarifsBean.delJourRow}"/>
+                <p:commandButton value="#{I18N['tarifjour.label.add']}" action="#{tarifsBean.addNewJourRow}"/>
+                <p:commandButton value="#{I18N['tarifjour.label.del']}" action="#{tarifsBean.delJourRow}"/>
 
-                <h:dataTable value="#{tarifsBean.grillePena}" var="P">
-                    <h:column>
+                <p:dataTable value="#{tarifsBean.grillePena}" var="P">
+                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['penalite.label.Grille']}" />
+                            <p:outputLabel value="#{I18N['penalite.label.Grille']}" />
                         </f:facet>
-                        <h:outputText value="#{I18N['penalite.label.Grille']}" />
-                    </h:column>
+                        <p:outputLabel value="#{I18N['penalite.label.Grille']}" />
+                    </p:column>
 
-                    <h:column>
+                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarifpenalite.label.Nom']}"  />
+                            <p:outputLabel value="#{I18N['tarifpenalite.label.Nom']}"  />
                         </f:facet>
-                        <h:inputText value="#{P.name}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}" maxlength="150"/>
-                    </h:column>
-                    <h:column>
+                        <p:inputText value="#{P.name}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}" maxlength="150"/>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarifpenalite.label.Prix']}" />
+                            <p:outputLabel value="#{I18N['tarifpenalite.label.Prix']}" />
                         </f:facet>
-                        <h:inputText value="#{P.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}" validatorMessage="Nombre positif requis pour le prix pénalité">
+                        <p:inputText value="#{P.prix}" required="true" requiredMessage="#{I18N['formulaire.message.required.prix']}" validatorMessage="Nombre positif requis pour le prix pénalité">
                             <f:validateDoubleRange minimum="0.0"/>
-                        </h:inputText>
-                    </h:column>
-                    <h:column>
+                        </p:inputText>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarifpenalite.label.DateDebut']}" />
+                            <p:outputLabel value="#{I18N['tarifpenalite.label.DateDebut']}" />
                         </f:facet>
-                        <h:inputText value="#{P.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
+                        <p:inputText value="#{P.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                        </h:inputText>
-                    </h:column>
-                    <h:column>
+                        </p:inputText>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{I18N['tarifpenalite.label.DateFin']}" />
+                            <p:outputLabel value="#{I18N['tarifpenalite.label.DateFin']}" />
                         </f:facet>
-                        <h:inputText value="#{P.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
+                        <p:inputText value="#{P.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
                                      <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                        </h:inputText>
-                    </h:column>
+                        </p:inputText>
+                    </p:column>
 
-                </h:dataTable>
+                </p:dataTable>
                 <br/>
-                <h:outputText value="#{I18N['tarifpenalite.explication.retard']}" />
+                <p:outputLabel value="#{I18N['tarifpenalite.explication.retard']}" />
                 <br/>
                 <br/>
-                <h:commandButton value="Add" action="#{tarifsBean.addNewPenaRow}"/>
-                <h:commandButton value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
-                <h:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}"/>
-                <h:commandButton value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
+                <p:commandButton value="Add" action="#{tarifsBean.addNewPenaRow}"/>
+                <p:commandButton value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
+                <p:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}"/>
+                <p:commandButton value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
             </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles))}">
-            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

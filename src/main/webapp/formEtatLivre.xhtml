@@ -9,41 +9,42 @@
     <ui:define name="title">#{I18N['adresse.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-        <h:messages styleClass="errorBlock" globalOnly="true" />
+        <p:growl id="growl" showDetail="true" sticky="true" />
         <c:if test= "#{rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form id="form" prependId="false">
                 <h:head>
                     <title>#{I18N['etatlivre.form.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['etatlivre.form.titre']}</h2>
-                <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                    <h:outputText value = "#{I18N['exemplaireslivres.label.Etat']}"/>
-                    <h:selectOneRadio id="exetat" value="#{factureBean.exemplairesLivres.etat}" required="true">
+                    <p:outputLabel value = "#{I18N['exemplaireslivres.label.Etat']}"/>
+                    <p:selectOneRadio id="exetat" value="#{factureBean.exemplairesLivres.etat}" required="true">
                         <f:selectItems value="#{exemplairesLivresEnumBean.etatEnum}"/>
-                    </h:selectOneRadio>
+                    </p:selectOneRadio>
 
-                    <h:outputText value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
-                    <h:inputTextarea id="CommentaireEtat"
+                    <p:outputLabel value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
+                    <p:inputTextarea id="CommentaireEtat"
                                  value="#{factureBean.exemplairesLivres.commentaireEtat}" cols="25" rows="5"
                                      maxlength="500"
                                      required="true" requiredMessage="#{I18N['formulaire.message.required.exemplairelivreetat']}">
-                    </h:inputTextarea>
+                    </p:inputTextarea>
                     <h:message for="CommentaireEtat" styleClass="errorMessage"/>
 
-                    <h:outputText value = "#{I18N['penalite.label.Nom']}"/>
+                    <p:outputLabel value = "#{I18N['penalite.label.Nom']}"/>
+                    <!--TODO : regarder l'équivalent du selectManyListBox en primefaces-->
                     <h:selectManyListbox value = "#{factureBean.tarifsPenalites}">
                         <f:selectItems value = "#{factureBean.tarifsPenalites}" var="pena" itemLabel="#{pena.penalite.denomination}" itemValue="#{pena}"/>
                     </h:selectManyListbox>
 
-                </h:panelGrid>
+                </p:panelGrid>
 
-                <h:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.retourLivre}"/>
-                <h:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
+                <p:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.retourLivre}"/>
+                <p:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
             </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles))}">
-            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

@@ -11,44 +11,44 @@
     <ui:define name="title">#{I18N['utilisateur.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-        <h:messages styleClass="errorBlock" globalOnly="true" />
+        <p:growl id="growl" showDetail="true" sticky="true" />
         <h:head>
             <title>#{I18N['livre.form.question']}</title>
         </h:head>
         <h2 style="text-align:center">#{I18N['livre.form.question']}</h2>
         <c:if test= "#{rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form>
-            <h:outputText value="bibliotheque"/>
-            <h:selectOneMenu value = "#{factureBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.biblio']}"
+            <p:outputLabel value="bibliotheque"/>
+            <p:selectOneMenu value = "#{factureBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.biblio']}"
                              converter="biblioConverter">
                 <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
                                itemLabel="#{bi.nom}"
                                itemValue="#{bi}"/>
-            </h:selectOneMenu>
+            </p:selectOneMenu>
             <h:message for="bibli" styleClass="errorMessage"/>
 
-            <h:outputText value = "#{I18N['exemplaireslivres.label.CodeBarre']}"/>
-            <h:inputText id="exemplLivresCB"
+            <p:outputLabel value = "#{I18N['exemplaireslivres.label.CodeBarre']}"/>
+            <p:inputText id="exemplLivresCB"
                          value="#{factureBean.CB}"
                          required="true"
                          requiredMessage="#{I18N['formulaire.message.required.CB']}"
                          maxlength="9"
                          validator="codeBarreValidator">
                 <f:validateLength minimum="9" maximum="9"/>
-            </h:inputText>
+            </p:inputText>
             <h:message for="exemplLivresCB" styleClass="errorMessage"/>
             <br/>
-            <h:outputText value="#{I18N['livre.form.question']}"/>
-            <h:selectOneRadio value = "#{factureBean.choixetat}" required="true">
+            <p:outputLabel value="#{I18N['livre.form.question']}"/>
+            <p:selectOneRadio value = "#{factureBean.choixetat}" required="true">
                 <f:selectItem itemValue = "#{true}" itemLabel = "#{I18N['commune.label.oui']}" />
                 <f:selectItem itemValue = "#{false}" itemLabel = "#{I18N['commune.label.non']}"/>
-            </h:selectOneRadio>
-            <h:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.redirectChoix}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
+            </p:selectOneRadio>
+            <p:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.redirectChoix}"/>
+            <p:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
         </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles))}">
-            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

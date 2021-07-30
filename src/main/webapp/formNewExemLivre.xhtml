@@ -11,26 +11,26 @@
     <ui:define name="title">#{I18N['livre.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-        <h:messages styleClass="errorBlock" globalOnly="true" />
+        <p:growl id="growl" showDetail="true" sticky="true" />
         <c:if test= "#{rolesBean.checkPermission(5,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form id="form" prependId="false">
                 <h:head>
                     <title>#{I18N['exempl.form.nouveau.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['exempl.form.nouveau.titre']}</h2>
-                <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                    <h:outputText value="#{I18N['bibliotheque.label.Nom']}" />
-                    <h:selectOneMenu value = "#{exemplairesLivresBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
+                    <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}" />
+                    <p:selectOneMenu value = "#{exemplairesLivresBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
                                      converter="biblioConverter">
                         <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
                                        itemLabel="#{bi.nom}"
                                        itemValue="#{bi}"/>
-                    </h:selectOneMenu>
-                    <h:message for="bibli" styleClass="errorMessage"/>
+                    </p:selectOneMenu>
+                    <!--<h:message for="bibli" styleClass="errorMessage"/>-->
 
-                    <h:outputText value = "#{I18N['application.question.exemplaire']}"/>
-                    <h:inputText id="nbrExemp"
+                    <p:outputLabel value = "#{I18N['application.question.exemplaire']}"/>
+                    <p:inputText id="nbrExemp"
                                  validatorMessage="La valeur va de 0 a 9999"
                                  value="#{exemplairesLivresBean.nombreExemplaire}"
                                  required="true"
@@ -38,18 +38,18 @@
                                  maxlength="4">
                         <f:validateLongRange minimum="0"/>
                         <f:validateLength minimum="0" maximum="4"/>
-                    </h:inputText>
-                    <h:message for="nbrExemp" styleClass="errorMessage"/>
+                    </p:inputText>
+                    <!--<h:message for="nbrExemp" styleClass="errorMessage"/>-->
 
 
-                </h:panelGrid>
+                </p:panelGrid>
 
-                <h:commandButton value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.addExemplaireLivre}"/>
-                <h:commandButton value="#{I18N['application.button.return']}" action="tableLivres" immediate="true"/>
+                <p:commandButton value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.addExemplaireLivre}"/>
+                <p:commandButton value="#{I18N['application.button.return']}" action="tableLivres" immediate="true"/>
             </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(5,loginBean.utilisateurAuth.roles.idRoles))}">
-            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

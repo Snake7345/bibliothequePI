@@ -10,38 +10,38 @@
     <ui:define name="title">#{I18N['genre.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-        <h:messages styleClass="errorBlock" globalOnly="true" />
+        <p:growl id="growl" showDetail="true" sticky="true" />
         <c:if test= "#{rolesBean.checkPermission(7,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form id="form" prependId="false">
-            <h:messages styleClass="errorBlock" globalOnly="true" />
+            <!--<h:messages styleClass="errorBlock" globalOnly="true" />-->
 
             <h:head>
                 <title>#{I18N['genre.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['genre.form.nouveau.titre']}</h2>
-            <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
-                <h:outputText value = "#{I18N['genre.label.Denomination']}"/>
-                <h:inputText id="genreDeno"
+                <p:outputLabel value = "#{I18N['genre.label.Denomination']}"/>
+                <p:inputText id="genreDeno"
                              validatorMessage="La valeur doit être entre 2 et 100 caracteres"
                              value="#{genresBean.genre.denomination}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.denomination']}"
                              maxlength="100">
                     <f:validateLength minimum="2" maximum="100"/>
-                </h:inputText>
-                <h:message for="genreDeno" styleClass="errorMessage"/>
+                </p:inputText>
+                <!--<h:message for="genreDeno" styleClass="errorMessage"/>-->
 
 
-            </h:panelGrid>
+            </p:panelGrid>
 
-            <h:commandButton value="#{I18N['application.button.validate']}" action="#{genresBean.saveGenres}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="#{genresBean.flushGen}" immediate="true"/>
+            <p:commandButton value="#{I18N['application.button.validate']}" action="#{genresBean.saveGenres}"/>
+            <p:commandButton value="#{I18N['application.button.return']}" action="#{genresBean.flushGen}" immediate="true"/>
         </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(7,loginBean.utilisateurAuth.roles.idRoles))}">
-            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

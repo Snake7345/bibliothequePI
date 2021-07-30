@@ -19,9 +19,10 @@
                 <h2 style="text-align:center">#{I18N['application.livre.titleSearch']}</h2>
 
                 <p:outputLabel value ="#{I18N['application.livre.titleSearch']}"/>
-                <p:inputText id="livRech"
-                             value="#{livresBean.livre.titre}">
-                </p:inputText>
+                <span class="ui-input-icon-left">
+                <i class="pi pi-search" />
+                    <p:inputText id="livRech" value="#{livresBean.livre.titre}" placeholder="Search" />
+                </span>
                 <p:commandButton value="#{I18N['application.button.find']}" action="#{livresBean.searchLivre}"/>
                 <!--<h:message for="livRech" styleClass="errorMessage"/>-->
 
@@ -68,9 +69,9 @@
                             <p:commandButton rendered="#{liv.actif}" image="Images//activdesactiv.png" action="formConfirmationLivre">
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                             </p:commandButton>
-                            <h:commandButton rendered="#{!liv.actif}" image="Images//activdesactiv.png" action="#{livresBean.activdesactivLiv}">
+                            <p:commandButton rendered="#{!liv.actif}" image="Images//activdesactiv.png" action="#{livresBean.activdesactivLiv}">
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
-                            </h:commandButton>
+                            </p:commandButton>
                         </p:column>
                     </c:if>
                 </p:dataTable>

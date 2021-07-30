@@ -90,7 +90,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/jar/primefaces-10.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/jar Primefaces/primefaces-10.0.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

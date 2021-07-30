@@ -39,10 +39,10 @@
                     </p:dataTable>
                 </p:panel>
             <c:if test= "#{rolesBean.checkPermission(4,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:commandButton value="#{I18N['application.button.new']}" action="formNewEditeur" />
+            <p:commandButton value="#{I18N['application.button.new']}" action="formNewEditeur" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-                <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+                <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </c:if>
             </h:form>
     </c:if>

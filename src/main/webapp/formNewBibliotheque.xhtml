@@ -10,45 +10,45 @@
     <ui:define name="title">#{I18N['bibliotheque.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-        <h:messages styleClass="errorBlock" globalOnly="true" />
+        <p:growl id="growl" showDetail="true" sticky="true" />
         <c:if test= "#{rolesBean.checkPermission(3,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['bibliotheque.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['bibliotheque.form.nouveau.titre']}</h2>
-            <h:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                <h:outputText value = "#{I18N['bibliotheque.label.Nom']}"/>
-                <h:inputText id="bibliothequeNom"
+                <p:outputLabel value = "#{I18N['bibliotheque.label.Nom']}"/>
+                <p:inputText id="bibliothequeNom"
                              validatorMessage="La valeur doit être entre 2 et 100 caracteres"
                              value="#{bibliothequesBean.bibliotheque.nom}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.nom']}"
                              maxlength="100">
                     <f:validateLength minimum="2" maximum="100"/>
-                </h:inputText>
-                <h:message for="bibliothequeNom" styleClass="errorMessage"/>
+                </p:inputText>
+                <!--<h:message for="bibliothequeNom" styleClass="errorMessage"/>-->
 <!--TODO : Modifier la requete au niveau des adresses, les adresses qui sont déjà a un utilisateur ne doivent pas être listées-->
-                <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
-                <h:selectOneMenu value = "#{bibliothequesBean.adresses}" id="biblioadress" required="true"
+                <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
+                <p:selectOneMenu value = "#{bibliothequesBean.adresses}" id="biblioadress" required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.adresse']}"
                                  converter="adressConverter">
                     <f:selectItems value = "#{adressesBean.readAll}" var="ad"
                                    itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
                                    itemValue="#{ad}"/>
-                </h:selectOneMenu>
-                <h:message for="biblioadress" styleClass="errorMessage"/>
+                </p:selectOneMenu>
+                <!--<h:message for="biblioadress" styleClass="errorMessage"/>-->
 
 
-            </h:panelGrid>
+            </p:panelGrid>
 
-            <h:commandButton value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
+            <p:commandButton value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}"/>
+            <p:commandButton value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
         </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(3,loginBean.utilisateurAuth.roles.idRoles))}">
-            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

@@ -8,60 +8,60 @@
     <ui:define name="title">#{I18N['adresse.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-        <h:messages styleClass="errorBlock" globalOnly="true" />
+        <p:growl id="growl" showDetail="true" sticky="true" />
         <c:if test= "#{rolesBean.checkPermission(1,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['adresse.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['adresse.form.nouveau.titre']}</h2>
-            <h:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                <h:outputText value = "#{I18N['adresse.label.Rue']}"/>
-                <h:inputText id="adresseRue"
+                <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
+                <p:inputText id="adresseRue"
                              validatorMessage="La rue doit avoir entre 2 et 100 caractere"
                              value="#{adressesBean.adresse.rue}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.rue']}"
                              maxlength="100">
                 <f:validateLength minimum="2" maximum="100"/>
-                </h:inputText>
-                <h:message for="adresseRue" styleClass="errorMessage"/>
+                </p:inputText>
+                <!--<h:message for="adresseRue" styleClass="errorMessage"/>-->
 
-                <h:outputText value = "#{I18N['adresse.label.Boite']}"/>
-                <h:inputText id="adresseBoite"
+                <p:outputLabel value = "#{I18N['adresse.label.Boite']}"/>
+                <p:inputText id="adresseBoite"
                              required="false"
                              value="#{adressesBean.adresse.boite}"
                              maxlength="4">
-                </h:inputText>
-                <h:message for="adresseBoite" styleClass="errorMessage"/>
+                </p:inputText>
+                <!--<h:message for="adresseBoite" styleClass="errorMessage"/>-->
 
-                <h:outputText value = "#{I18N['adresse.label.Numero']}"/>
-                <h:inputText id="adresseNumero"
+                <p:outputLabel value = "#{I18N['adresse.label.Numero']}"/>
+                <p:inputText id="adresseNumero"
                              validatorMessage="Le numero est de minimum 1 caracteres et de maximum 6 caracteres"
                              value="#{adressesBean.adresse.numero}"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.numero']}"
                              maxlength="6">
                     <f:validateLength minimum="1" maximum="6"/>
-                </h:inputText>
-                <h:message for="adresseNumero" styleClass="errorMessage"/>
+                </p:inputText>
+                <!--<h:message for="adresseNumero" styleClass="errorMessage"/>-->
 
-                <h:outputText value = "#{I18N['localite.label.Cp']}"/>
-                <h:selectOneMenu value = "#{adressesBean.adresse.localites}" id="adressLoca"
+                <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
+                <p:selectOneMenu value = "#{adressesBean.adresse.localites}" id="adressLoca"
                 converter="localiteConverter">
                     <f:selectItems value = "#{localitesBean.readAll}" var="loca"
                                    itemLabel="#{loca.cp} - #{loca.ville}" itemValue="#{loca}"/>
-                </h:selectOneMenu>
+                </p:selectOneMenu>
 
-            </h:panelGrid>
+            </p:panelGrid>
 
-            <h:commandButton value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}"/>
-            <h:commandButton value="#{I18N['application.button.return']}" action="#{adressesBean.flushAdd}" immediate="true"/>
+            <p:commandButton value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}"/>
+            <p:commandButton value="#{I18N['application.button.return']}" action="#{adressesBean.flushAdd}" immediate="true"/>
         </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(1,loginBean.utilisateurAuth.roles.idRoles))}">
-            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>
