@@ -12,87 +12,87 @@
     <ui:define name="content">
         <c:if test= "#{rolesBean.checkPermission(54,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:form prependId="false">
-                <h:panelGroup layout="block" id="content">
-                    <h:messages styleClass="errorBlock" globalOnly="true" />
+                <p:panel layout="block" id="content">
+                    <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.utilisateurCli.title']}</h2>
-                    <h:dataTable value="#{utilisateursBean.listCli}" var="ut" id="tableUtilisateurs"
+                    <p:dataTable value="#{utilisateursBean.listCli}" var="ut" id="tableUtilisateurs"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-                        <h:column>
+                        <p:column>
                             <!-- column header -->
                             <f:facet name="header">#{I18N['utilisateur.label.Id']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.idUtilisateurs}"/>
-                        </h:column>
-                        <h:column>
+                            <p:outputLabel value ="#{ut.idUtilisateurs}"/>
+                        </p:column>
+                        <p:column>
                             <!-- column header -->
                             <f:facet name="header">#{I18N['utilisateur.label.Nom']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.nom}"/>
-                        </h:column>
-                        <h:column>
+                            <p:outputLabel value ="#{ut.nom}"/>
+                        </p:column>
+                        <p:column>
                             <!-- column header -->
                             <f:facet name="header">#{I18N['utilisateur.label.Prenom']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.prenom}"/>
-                        </h:column>
-                        <h:column>
+                            <p:outputLabel value ="#{ut.prenom}"/>
+                        </p:column>
+                        <p:column>
                             <!-- column header -->
                             <f:facet name="header">#{I18N['utilisateur.label.Sexe']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.sexe}"/>
-                        </h:column>
-                        <h:column>
+                            <p:outputLabel value ="#{ut.sexe}"/>
+                        </p:column>
+                        <p:column>
                             <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['utilisateur.label.Courriel']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.courriel}"> </h:outputLabel>
-                        </h:column>
-                        <h:column>
+                            <p:outputLabel value ="#{ut.courriel}"/>
+                        </p:column>
+                        <p:column>
                             <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['utilisateur.label.NumMembre']}</f:facet>
                             <!-- row record -->
-                            <h:outputLabel value ="#{ut.numMembre}"> </h:outputLabel>
-                        </h:column>
-                        <h:column>
+                            <p:outputLabel value ="#{ut.numMembre}"/>
+                        </p:column>
+                        <p:column>
                             <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['adresse.label.complete']}</f:facet>
                             <!-- row record -->
                             <ui:repeat value="#{ut.utilisateursAdresses}" var="utad">
 
-                                <h:outputLabel rendered="#{utad.actif}" value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
+                                <p:outputLabel rendered="#{utad.actif}" value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
 
                             </ui:repeat>
-                        </h:column>
+                        </p:column>
                         <c:if test= "#{rolesBean.checkPermission(52,loginBean.utilisateurAuth.roles.idRoles)}">
-                            <h:column>
-                                <h:commandButton  image="Images//edit.png" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
+                            <p:column>
+                                <p:commandButton  image="Images//edit.png" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
-                                </h:commandButton>
-                            </h:column>
+                                </p:commandButton>
+                            </p:column>
                         </c:if>
-                            <h:column>
-                                <h:commandButton image="Images//activ.png" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
+                            <p:column>
+                                <p:commandButton image="Images//activ.png" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
-                                </h:commandButton>
-                                    <h:commandButton image="Images//desactiv.png" rendered="#{!ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
+                                </p:commandButton>
+                                    <p:commandButton image="Images//desactiv.png" rendered="#{!ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
-                                    </h:commandButton>
-                            </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
+                                    </p:commandButton>
+                            </p:column>
+                    </p:dataTable>
+                </p:panel>
                 <c:if test= "#{rolesBean.checkPermission(51,loginBean.utilisateurAuth.roles.idRoles)}">
-                    <h:commandButton value="#{I18N['application.button.new']}" action="formNewUtilisateurCli" />
+                    <p:commandButton value="#{I18N['application.button.new']}" action="formNewUtilisateurCli" />
                 </c:if>
-                <h:commandButton value="#{I18N['application.button.find']}" action="formSearchUtilisateur"/>
-                <h:commandButton value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}"/>
-                <h:commandButton value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}"/>
+                <p:commandButton value="#{I18N['application.button.find']}" action="formSearchUtilisateur"/>
+                <p:commandButton value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}"/>
+                <p:commandButton value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}"/>
                 <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-                    <h:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
+                    <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
                 </c:if>
             </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(54,loginBean.utilisateurAuth.roles.idRoles))}">
-            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 </ui:composition>

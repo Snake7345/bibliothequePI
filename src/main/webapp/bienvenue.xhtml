@@ -11,10 +11,10 @@
     <ui:define name="content">
         <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
         <br/><br/>
-        <h:panelGrid class="table" columns="3">
+        <p:panelGrid class="table" columns="3">
             <c:if test= "#{rolesBean.checkPermission(45,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tablePermissions.xhtml">
-                <h:graphicImage value="/Images/permissions.gif" width="100" height="100"/>
+                <p:graphicImage value="/Images/permissions.gif" width="100" height="100"/>
             </h:outputLink>
             </c:if>
 
@@ -24,28 +24,28 @@
 
             <c:if test= "#{rolesBean.checkPermission(41,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableTarifs.xhtml">
-                <h:graphicImage value="/Images/tarifs.png" width="100" height="100"/>
+                <p:graphicImage value="/Images/tarifs.png" width="100" height="100"/>
             </h:outputLink>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(46,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableRoles.xhtml">
-                <h:graphicImage value="/Images/roles.png" width="100" height="100"/>
+                <p:graphicImage value="/Images/roles.png" width="100" height="100"/>
             </h:outputLink>
             </c:if>
             <c:if test= "#{!(rolesBean.checkPermission(46,loginBean.utilisateurAuth.roles.idRoles))}">
                 <br/>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(45,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des permissions" />
+            <p:outputLabel value="Gestion des permissions" />
             </c:if>
             <c:if test= "#{!(rolesBean.checkPermission(45,loginBean.utilisateurAuth.roles.idRoles))}">
                 <br/>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(41,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des tarifs" />
+            <p:outputLabel value="Gestion des tarifs" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(46,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des roles" />
+            <p:outputLabel value="Gestion des roles" />
             </c:if>
             <c:if test= "#{!(rolesBean.checkPermission(46,loginBean.utilisateurAuth.roles.idRoles))}">
                 <br/>
@@ -53,84 +53,81 @@
 
             <c:if test= "#{rolesBean.checkPermission(47,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableUtilisateurs.xhtml">
-                <h:graphicImage value="/Images/personne.png" width="100" height="100"/>
+                <p:graphicImage value="/Images/personne.png" width="100" height="100"/>
             </h:outputLink>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(36,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableBibliotheques.xhtml">
-                <h:graphicImage value="/Images/biblio.jpg" width="100" height="100"/>
+                <p:graphicImage value="/Images/biblio.jpg" width="100" height="100"/>
             </h:outputLink>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableAdresses.xhtml">
-                <h:graphicImage value="/Images/adresse.jpg" width="100" height="100"/>
+                <p:graphicImage value="/Images/adresse.jpg" width="100" height="100"/>
             </h:outputLink>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(47,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des utilisateurs" />
+            <p:outputLabel value="Gestion des utilisateurs" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(36,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des bibliotheques" />
+            <p:outputLabel value="Gestion des bibliotheques" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des adresses" />
+            <p:outputLabel value="Gestion des adresses" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(54,loginBean.utilisateurAuth.roles.idRoles)}">
                 <h:outputLink value="tableUtilisateursCli.xhtml">
-                    <h:graphicImage value="/Images/clients.jpg" width="100" height="100"/>
+                    <p:graphicImage value="/Images/clients.jpg" width="100" height="100"/>
                 </h:outputLink>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(42,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="#{livresBean.refreshtable}">
-                <h:graphicImage value="/Images/livres.jpg" width="100" height="100"/>
+                <p:graphicImage value="/Images/livres.jpg" width="100" height="100"/>
             </h:outputLink>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(39,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableFactures.xhtml">
-                <h:graphicImage value="/Images/facture.jpg" width="100" height="100"/>
+                <p:graphicImage value="/Images/facture.jpg" width="100" height="100"/>
             </h:outputLink>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(54,loginBean.utilisateurAuth.roles.idRoles)}">
-                <h:outputText value="Gestion des Clients" />
+                <p:outputLabel value="Gestion des Clients" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(42,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des livres" />
+            <p:outputLabel value="Gestion des livres" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(39,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Table Factures" />
+            <p:outputLabel value="Table Factures" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(40,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableGenres.xhtml">
-                <h:graphicImage value="/Images/genre.png" width="100" height="100"/>
+                <p:graphicImage value="/Images/genre.png" width="100" height="100"/>
             </h:outputLink>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(37,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableEditeurs.xhtml">
-                <h:graphicImage value="/Images/editeurs.jpg" width="100" height="100"/>
+                <p:graphicImage value="/Images/editeurs.jpg" width="100" height="100"/>
             </h:outputLink>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(35,loginBean.utilisateurAuth.roles.idRoles)}">
             <h:outputLink value="tableAuteurs.xhtml">
-                <h:graphicImage value="/Images/auteurs.jpg" width="100" height="100"/>
+                <p:graphicImage value="/Images/auteurs.jpg" width="100" height="100"/>
             </h:outputLink>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(40,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des genres" />
+            <p:outputLabel value="Gestion des genres" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(37,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des editeurs" />
+            <p:outputLabel value="Gestion des editeurs" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(35,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="Gestion des auteurs" />
+            <p:outputLabel value="Gestion des auteurs" />
             </c:if>
-
-
-            <p/>
-        </h:panelGrid>
+        </p:panelGrid>
         <br /><br />
         </c:if>
         <c:if test="#{!rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-            <h:outputText value="#{I18N['application.page.accessrefuse']}"/>
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>
 

@@ -4,6 +4,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
 >
 	
 <h:head>
@@ -12,7 +13,7 @@
 		rel="stylesheet" type="text/css" />
 </h:head>
 <h:body>
-	<div id="container">
+	<p:panel id="container">
 		<!-- définit l'entete de page -->
 				<ui:insert name="header">
 					<ui:include src="header.xhtml" />
@@ -30,6 +31,6 @@
 		</ui:insert>
 		
 
-	</div>
+	</p:panel>
 </h:body>
 </html>

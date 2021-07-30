@@ -3,18 +3,19 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
 
 <ui:composition>
 	<div id="header">
 	<ui:insert name="header">
-		<h:panelGrid columns="1">
-			<h:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
+		<p:panelGrid columns="1">
+			<p:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
 			<h:form>
-				<h:commandButton value="#{I18N['application.button.deconnexion']}" action="#{loginBean.deconnexion}"
+				<p:commandButton value="#{I18N['application.button.deconnexion']}" action="#{loginBean.deconnexion}"
 								 class="lienMenu"/>
 			</h:form>
-		</h:panelGrid>
+		</p:panelGrid>
 	</ui:insert>
 	</div>
 </ui:composition>
