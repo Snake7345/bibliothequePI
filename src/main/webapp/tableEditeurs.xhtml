@@ -26,23 +26,23 @@
                         </p:column>
                         <c:if test= "#{rolesBean.checkPermission(16,loginBean.utilisateurAuth.roles.idRoles)}">
                         <p:column>
-                            <p:commandButton  image="Images//edit.png" action="formEditEditeur">		<!-- u minuscule -->
+                            <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditEditeur">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{editeursBean.editeur}" value="#{ed}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
                         </c:if>
                         <p:column>
-                            <p:commandButton  image="Images//livremini.jpg" action="#{livresBean.readByEditeurs}">		<!-- u minuscule -->
+                            <p:commandButton image="Images//livremini.jpg" action="#{livresBean.readByEditeurs}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.edit}" value="#{ed}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
                     </p:dataTable>
                 </p:panel>
             <c:if test= "#{rolesBean.checkPermission(4,loginBean.utilisateurAuth.roles.idRoles)}">
-            <p:commandButton value="#{I18N['application.button.new']}" action="formNewEditeur" />
+            <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewEditeur" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-                <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+                <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </c:if>
             </h:form>
     </c:if>

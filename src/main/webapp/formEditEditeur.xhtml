@@ -33,8 +33,8 @@
 
             </p:panelGrid>
 
-            <p:commandButton value="#{I18N['application.button.validate']}" action="#{editeursBean.saveEditeur}"/>
-            <p:commandButton value="#{I18N['application.button.return']}" action="#{editeursBean.flushEd}" immediate="true"/>
+            <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{editeursBean.saveEditeur}"/>
+            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{editeursBean.flushEd}" immediate="true"/>
         </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(16,loginBean.utilisateurAuth.roles.idRoles))}">

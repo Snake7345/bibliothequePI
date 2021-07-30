@@ -25,7 +25,7 @@
                         </p:column>
                         <c:if test= "#{rolesBean.checkPermission(18,loginBean.utilisateurAuth.roles.idRoles)}">
                         <p:column>
-                            <p:commandButton  image="Images//edit.png" action="formEditGenre">		<!-- u minuscule -->
+                            <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditGenre">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{genresBean.genre}" value="#{gen}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
@@ -38,10 +38,10 @@
                     </p:dataTable>
                 </p:panel>
                 <c:if test= "#{rolesBean.checkPermission(7,loginBean.utilisateurAuth.roles.idRoles)}">
-                    <p:commandButton value="#{I18N['application.button.new']}" action="formNewGenre" />
+                    <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewGenre" />
                 </c:if>
                 <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-                    <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+                    <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
                 </c:if>
             </h:form>
         </c:if>

@@ -82,7 +82,7 @@
                     </p:column>
                 </p:dataTable>
             </p:panel>
-            <p:commandButton value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
+            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
         </h:form>
         </c:if>
         <c:if test= "#{!rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">

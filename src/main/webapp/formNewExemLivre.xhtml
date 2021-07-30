@@ -44,8 +44,8 @@
 
                 </p:panelGrid>
 
-                <p:commandButton value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.addExemplaireLivre}"/>
-                <p:commandButton value="#{I18N['application.button.return']}" action="tableLivres" immediate="true"/>
+                <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.addExemplaireLivre}"/>
+                <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="tableLivres" immediate="true"/>
             </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(5,loginBean.utilisateurAuth.roles.idRoles))}">

@@ -52,7 +52,7 @@
                     </c:if>
                     <c:if test= "#{rolesBean.checkPermission(17,loginBean.utilisateurAuth.roles.idRoles)}">
                     <p:column>
-                        <p:commandButton rendered="#{livexemL.actif ne false}" image="Images//edit.png" action="formEditExemplaireLivre">
+                        <p:commandButton rendered="#{livexemL.actif ne false}" icon="pi pi-pencil" value="Modifier" action="formEditExemplaireLivre">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </p:commandButton>
                     </p:column>
@@ -61,7 +61,7 @@
 
                     <p:column>
                         <c:if test= "#{rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles) and livexemL.actif eq true}">
-                        <p:commandButton rendered="#{livexemL.actif}" image="Images//activ.png" action="formConfirmationExemplaireLivre">
+                        <p:commandButton rendered="#{livexemL.actif}" icon="pi pi-power-off" value ="Désactiver" action="formConfirmationExemplaireLivre">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </p:commandButton>
                         </c:if>
@@ -70,13 +70,13 @@
                 </p:dataTable>
             </p:panel>
             <c:if test= "#{rolesBean.checkPermission(5,loginBean.utilisateurAuth.roles.idRoles)}">
-            <p:commandButton value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre">
+            <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre">
                 <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
             </p:commandButton>
             </c:if>
 
             <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-            <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushLiv}"/>
+            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushLiv}"/>
             </c:if>
         </h:form>
         </c:if>

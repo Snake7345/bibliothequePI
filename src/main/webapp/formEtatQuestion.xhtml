@@ -43,8 +43,8 @@
                 <f:selectItem itemValue = "#{true}" itemLabel = "#{I18N['commune.label.oui']}" />
                 <f:selectItem itemValue = "#{false}" itemLabel = "#{I18N['commune.label.non']}"/>
             </p:selectOneRadio>
-            <p:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.redirectChoix}"/>
-            <p:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
+            <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.redirectChoix}"/>
+            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
         </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles))}">

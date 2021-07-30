@@ -33,14 +33,14 @@
 
                     <p:outputLabel value = "#{I18N['penalite.label.Nom']}"/>
                     <!--TODO : regarder l'équivalent du selectManyListBox en primefaces-->
-                    <h:selectManyListbox value = "#{factureBean.tarifsPenalites}">
+                    <p:selectManyMenu value = "#{factureBean.tarifsPenalites}">
                         <f:selectItems value = "#{factureBean.tarifsPenalites}" var="pena" itemLabel="#{pena.penalite.denomination}" itemValue="#{pena}"/>
-                    </h:selectManyListbox>
+                    </p:selectManyMenu>
 
                 </p:panelGrid>
 
-                <p:commandButton value="#{I18N['application.button.validate']}" action="#{factureBean.retourLivre}"/>
-                <p:commandButton value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
+                <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.retourLivre}"/>
+                <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
             </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles))}">

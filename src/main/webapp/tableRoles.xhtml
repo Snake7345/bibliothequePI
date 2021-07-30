@@ -27,13 +27,13 @@
                     <p:column>
                         <c:if test= "#{rolesBean.checkPermission(32,loginBean.utilisateurAuth.roles.idRoles) and rol.actif eq true}">
                         <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}"
-                                         image="Images//activ.png" action="#{rolesBean.activdesactivRol}">
+                                         icon="pi pi-power-off" value ="Desactiver" action="#{rolesBean.activdesactivRol}">
                             <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                         </p:commandButton>
                         </c:if>
                         <c:if test= "#{rolesBean.checkPermission(32,loginBean.utilisateurAuth.roles.idRoles) and rol.actif ne true}">
                             <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}"
-                                             image="Images//desactiv.png" action="#{rolesBean.activdesactivRol}">
+                                             icon="pi pi-check" value ="Activer" action="#{rolesBean.activdesactivRol}">
                                 <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                             </p:commandButton>
                         </c:if>
@@ -42,10 +42,10 @@
                 </p:dataTable>
             </p:panel>
             <c:if test= "#{rolesBean.checkPermission(11,loginBean.utilisateurAuth.roles.idRoles)}">
-            <p:commandButton value="#{I18N['application.button.new']}" action="formNewRole" />
+            <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewRole" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-            <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </c:if>
         </h:form>
     </c:if>

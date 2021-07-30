@@ -14,7 +14,7 @@
         <c:if test= "#{rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles)}">
         <h:form>
         <h2 style="text-align:center">#{I18N['exempl.form.questionconfirm']}</h2>
-        <p:commandButton value="#{I18N['commune.label.oui']}" action="#{exemplairesLivresBean.activdesactivExLiv}"/>
+        <p:commandButton icon="pi pi-check-circle" value="#{I18N['commune.label.oui']}" action="#{exemplairesLivresBean.activdesactivExLiv}"/>
         <p:commandButton value="#{I18N['commune.label.non']}" action="tableExemplaireLivres" immediate="true"/>
         </h:form>
         </c:if>

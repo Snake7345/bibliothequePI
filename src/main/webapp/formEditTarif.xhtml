@@ -119,9 +119,9 @@
                 </p:dataTable>
                 <br/>
                 <p:commandButton value="#{I18N['tarifpenalite.label.add']}" action="#{tarifsBean.addNewPenaRow}" />
-                <p:commandButton value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
+                <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
                 <p:commandButton value="#{I18N['tarifpenalite.label.del']}" action="#{tarifsBean.delPenaRow}" />
-                <p:commandButton value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
+                <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
             </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(20,loginBean.utilisateurAuth.roles.idRoles))}">

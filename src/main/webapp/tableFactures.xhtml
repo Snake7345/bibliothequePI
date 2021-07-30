@@ -43,7 +43,7 @@
                 <p:commandButton value="#{I18N['application.button.returnlivre']}" action="formEtatQuestion"/>
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-            <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </c:if>
         </h:form>
     </c:if>

@@ -65,29 +65,29 @@
                         </p:column>
                         <c:if test= "#{rolesBean.checkPermission(52,loginBean.utilisateurAuth.roles.idRoles)}">
                             <p:column>
-                                <p:commandButton  image="Images//edit.png" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
+                                <p:commandButton  icon="pi pi-pencil" value="Modifier" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                                 </p:commandButton>
                             </p:column>
                         </c:if>
                             <p:column>
-                                <p:commandButton image="Images//activ.png" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
+                                <p:commandButton icon="pi pi-power-off" value ="Desactiver" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                 </p:commandButton>
-                                    <p:commandButton image="Images//desactiv.png" rendered="#{!ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
+                                    <p:commandButton icon="pi pi-check" value ="Activer" rendered="#{!ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>
                             </p:column>
                     </p:dataTable>
                 </p:panel>
                 <c:if test= "#{rolesBean.checkPermission(51,loginBean.utilisateurAuth.roles.idRoles)}">
-                    <p:commandButton value="#{I18N['application.button.new']}" action="formNewUtilisateurCli" />
+                    <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewUtilisateurCli" />
                 </c:if>
-                <p:commandButton value="#{I18N['application.button.find']}" action="formSearchUtilisateur"/>
-                <p:commandButton value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}"/>
-                <p:commandButton value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}"/>
+                <p:commandButton icon="pi pi-search" value="#{I18N['application.button.find']}" action="formSearchUtilisateur"/>
+                <p:commandButton icon="pi pi-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}"/>
+                <p:commandButton icon="pi pi-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}"/>
                 <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-                    <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
+                    <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
                 </c:if>
             </h:form>
         </c:if>

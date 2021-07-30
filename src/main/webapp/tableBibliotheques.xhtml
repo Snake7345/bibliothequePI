@@ -33,7 +33,7 @@
                         </p:column>
                         <c:if test= "#{rolesBean.checkPermission(15,loginBean.utilisateurAuth.roles.idRoles)}">
                         <p:column>
-                            <p:commandButton  image="Images//edit.png" action="formEditBibliotheque">		<!-- u minuscule -->
+                            <p:commandButton icon="pi pi-pencil" value="Modifier" action="formEditBibliotheque">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
@@ -41,10 +41,10 @@
                     </p:dataTable>
                 </p:panel>
             <c:if test= "#{rolesBean.checkPermission(3,loginBean.utilisateurAuth.roles.idRoles)}">
-            <p:commandButton rendered="#{bibliothequesBean.checkbibli}" value="#{I18N['application.button.new']}" action="formNewBibliotheque" />
+            <p:commandButton icon="pi pi-plus" rendered="#{bibliothequesBean.checkbibli}" value="#{I18N['application.button.new']}" action="formNewBibliotheque" />
             </c:if>
             <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
-                <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+                <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </c:if>
             </h:form>
     </c:if>

@@ -128,10 +128,10 @@
                 <p:outputLabel value="#{I18N['tarifpenalite.explication.retard']}" />
                 <br/>
                 <br/>
-                <p:commandButton value="Add" action="#{tarifsBean.addNewPenaRow}"/>
-                <p:commandButton value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
+                <p:commandButton icon="pi pi-check-circle" value="Add" action="#{tarifsBean.addNewPenaRow}"/>
+                <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
                 <p:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}"/>
-                <p:commandButton value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
+                <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
             </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles))}">
