@@ -1,19 +1,18 @@
 package security;
 
-
-import org.apache.log4j.Logger;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.PasswordMatcher;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 
 import javax.faces.application.FacesMessage;
-
+import javax.faces.context.FacesContext;
 
 public class SecurityManager {
-    private static final Logger log = Logger.getLogger(SecurityManager.class);
-    private static final Message message = Message.getMessage(App.BUNDLE_MESSAGE);
+    private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(SecurityManager.class);
 
     /**
      * Process to login boolean.
@@ -25,27 +24,31 @@ public class SecurityManager {
      * @return the boolean
      */
     public static boolean processToLogin(String username, String password, boolean rememberMe) {
+
+
+
+        log.debug("1");
         Subject subject = SecurityUtils.getSubject();
-
+        log.debug("2");
+        log.debug("user : " +username);
+        log.debug("password : " +password);
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
-
+        log.debug("3");
         try {
             subject.login(token);
-
+            log.debug("4");
             return true;
 
-        } catch (UnknownAccountException ex) {
+        } catch (UnknownAccountException| IncorrectCredentialsException ex) {
             log.error(ex.getMessage(), ex);
-            message.display(FacesMessage.SEVERITY_ERROR, "msg.wrongCredentials", "msg.wrongCredentials.detail");
-        } catch (IncorrectCredentialsException ex) {
-            log.error(ex.getMessage(), ex);
-            message.display(FacesMessage.SEVERITY_ERROR, "msg.wrongCredentials", "msg.wrongCredentials.detail");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Identifiants incorrects" ,
+                    "Vous avez probablement introduit un mauvais username, mot de passe ou les deux"));
         } catch (LockedAccountException ex) {
             log.error(ex.getMessage(), ex);
-            message.display(FacesMessage.SEVERITY_ERROR, "Error", "Contact admin");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "Contact admin"));
         } catch (ExcessiveAttemptsException ex) {
             log.error(ex.getMessage(), ex);
-            message.display(FacesMessage.SEVERITY_ERROR, "Unknown error", "Contact administrator");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unknown error", "Contact administrator"));
         } finally {
             token.clear();
         }

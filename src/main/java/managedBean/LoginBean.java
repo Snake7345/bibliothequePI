@@ -2,6 +2,8 @@ package managedBean;
 
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import services.SvcUtilisateurs;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -12,6 +14,7 @@ import javax.persistence.PersistenceUnit;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import security.SecurityManager;
 
 
 @Named
@@ -32,7 +35,7 @@ public class LoginBean implements Serializable {
      * on vérifie que l'utilisateur existe dans la base de données, mais également qu'il a la permission de se connecter
      *
      * */
-    public String auth()
+    public void auth()
     {
         log.debug("---------------------------------debut--------------------------");
         FacesMessage m = new FacesMessage("Login ou/et mot de passe incorrect");
@@ -41,32 +44,32 @@ public class LoginBean implements Serializable {
 
         try {
             log.debug(utilisateurAuth.getLogin() + " + " + utilisateurAuth.getMdp());
+            log.debug("1");
             List<Utilisateurs> results = service.authentify(utilisateurAuth.getLogin(),utilisateurAuth.getMdp());
+            log.debug("2");
+            if (SecurityManager.processToLogin(utilisateurAuth.getLogin(), utilisateurAuth.getMdp(), false)){
+                log.debug("OKAY");
+                utilisateurAuth = results.get(0);
+                SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
+                SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
 
-            if (results.isEmpty()) {
-                FacesContext.getCurrentInstance().addMessage(null, m);
-                return "login";
+                FacesContext.getCurrentInstance().getExternalContext().redirect("bienvenue.xhtml");
 
             }
-            else if(!RB.checkPermission(48,results.get(0).getRoles().getIdRoles())){
+
+            //TODO : Faire comprendre a Shiro qu'il doit intégrer cette permission
+            /*else if(!RB.checkPermission(48,results.get(0).getRoles().getIdRoles())){
                 m = new FacesMessage("Connexion refuse: utilisateur non autorise");
                 FacesContext.getCurrentInstance().addMessage(null, m);
-                return "login";
-            }
-            else {
-                utilisateurAuth = results.get(0);
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
-                return "bienvenue";
-            }
 
+            }*/
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        catch(NoResultException nre)
-        {
-            FacesMessage errorMessage = new FacesMessage("Login ou mot de passe incorrect");
-            errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
-            return "login";
-        }
 
     }
 
