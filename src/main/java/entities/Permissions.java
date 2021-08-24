@@ -9,8 +9,9 @@ import java.util.Objects;
 @Table(name = "permissions")
 @NamedQueries
         ({
-                @NamedQuery(name = "Permissions.findAllTri", query = "SELECT p FROM Permissions p ORDER BY p.denomination ASC"),
-                @NamedQuery(name = "Permissions.findOne", query ="SELECT p FROM Permissions p WHERE p.denomination=:denomination")
+                //TODO : Faire attention aux permissions car elles doivent être adaptées
+                @NamedQuery(name = "Permissions.findAllTri", query = "SELECT p FROM Permissions p ORDER BY p.type ASC"),
+                @NamedQuery(name = "Permissions.findOne", query ="SELECT p FROM Permissions p WHERE p.type=:type AND p.action=:action")
 
         })
 public class Permissions implements Serializable {
@@ -18,7 +19,8 @@ public class Permissions implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPermissions;
-    private String denomination;
+    private String type;
+    private String action;
     @OneToMany(mappedBy = "permissions")
     private Collection<PermissionsRoles> permissionsRoles;
 
@@ -33,13 +35,23 @@ public class Permissions implements Serializable {
     }
 
     @Basic
-    @Column(name = "Denomination", nullable = false, length = 150)
-    public String getDenomination() {
-        return denomination;
+    @Column(name = "Type", nullable = false, length = 100)
+    public String getType() {
+        return type;
     }
 
-    public void setDenomination(String denomination) {
-        this.denomination = denomination;
+    public void setType(String Type) {
+        this.type = Type;
+    }
+
+    @Basic
+    @Column(name = "Action", nullable = false, length = 150)
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String Action) {
+        this.action = Action;
     }
 
     @Override
@@ -47,15 +59,13 @@ public class Permissions implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Permissions that = (Permissions) o;
-        return idPermissions == that.idPermissions &&
-                Objects.equals(denomination, that.denomination);
+        return idPermissions == that.idPermissions && type.equals(that.type) && action.equals(that.action);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idPermissions, denomination);
+        return Objects.hash(idPermissions, type, action);
     }
-
 
     public Collection<PermissionsRoles> getPermissionsRoles() {
         return permissionsRoles;

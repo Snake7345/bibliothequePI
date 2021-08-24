@@ -31,7 +31,7 @@ public class PermissionsBean implements Serializable {
 
     public String newPermission()
     {
-        SvcPermissions service = new SvcPermissions();
+        /*SvcPermissions service = new SvcPermissions();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         if (checkPermExist()) {
@@ -65,14 +65,15 @@ public class PermissionsBean implements Serializable {
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cette permission existe déjà en base de donnée", null));
             return "/tablePermissions.xhtml?faces-redirect=true";
         }
-
+*/
+        return "";
     }
 
     // Méthode qui vérifie si une permission est déjà existante dans la base de donnée ou non
-public boolean checkPermExist(){
+    /*public boolean checkPermExist(){
         SvcPermissions serviceP = new SvcPermissions();
         return (serviceP.findOnePermission(permission.getDenomination()).size() == 0);
-}
+}*/
 
     public String flushPerm()
     {

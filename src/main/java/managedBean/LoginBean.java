@@ -1,20 +1,20 @@
 package managedBean;
 
+import entities.PermissionsRoles;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.session.Session;
+import security.SecurityManager;
 import services.SvcUtilisateurs;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceUnit;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-import security.SecurityManager;
 
 
 @Named
@@ -48,12 +48,15 @@ public class LoginBean implements Serializable {
             List<Utilisateurs> results = service.authentify(utilisateurAuth.getLogin(),utilisateurAuth.getMdp());
             log.debug("2");
             if (SecurityManager.processToLogin(utilisateurAuth.getLogin(), utilisateurAuth.getMdp(), false)){
+
                 log.debug("OKAY");
+                log.debug("TEST PERMISSION");
+                log.debug(SecurityUtils.getSubject().isPermitted("Roles:Lire"));
+                log.debug("FIN TESTT");
                 utilisateurAuth = results.get(0);
                 SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
                 SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
-
                 FacesContext.getCurrentInstance().getExternalContext().redirect("bienvenue.xhtml");
 
             }
