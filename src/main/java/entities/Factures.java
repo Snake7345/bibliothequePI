@@ -31,8 +31,11 @@ public class Factures implements Serializable {
     private Collection<FacturesDetail> facturesDetails;
     
     @ManyToOne
-    @JoinColumn(name = "UtilisateursIdUtilisateurs", referencedColumnName = "IdUtilisateurs", nullable = false)
+    @JoinColumn(name = "UtilisateursIdUtilisateurs", nullable = false)
     private Utilisateurs utilisateurs;
+    @ManyToOne
+    @JoinColumn(name = "Bibliotheques_IdBibliotheques", nullable = false)
+    private Bibliotheques bibliotheques;
 
     @Id
     @Column(name = "IdFactures", nullable = false)
@@ -103,25 +106,28 @@ public class Factures implements Serializable {
     public void setFactureDetails(Collection<FacturesDetail> facturesDetails1) {
         this.facturesDetails = facturesDetails1;
     }
+
+
+    public Bibliotheques getBibliotheques() {
+        return bibliotheques;
+    }
+
+    public void setBibliotheques(Bibliotheques bibliotheques) {
+        this.bibliotheques = bibliotheques;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Factures factures = (Factures) o;
-        return idFactures == factures.idFactures &&
-                Objects.equals(dateDebut, factures.dateDebut) &&
-                Objects.equals(prixTvac, factures.prixTvac) &&
-                Objects.equals(numeroFacture, factures.numeroFacture) &&
-                etat == factures.etat &&
-                Objects.equals(utilisateurs, factures.utilisateurs) &&
-                Objects.equals(facturesDetails, factures.facturesDetails);
+        return idFactures == factures.idFactures && dateDebut.equals(factures.dateDebut) && Objects.equals(prixTvac, factures.prixTvac) && Objects.equals(numeroFacture, factures.numeroFacture) && lienPdf.equals(factures.lienPdf) && facturesDetails.equals(factures.facturesDetails) && utilisateurs.equals(factures.utilisateurs) && bibliotheques.equals(factures.bibliotheques) && etat == factures.etat;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, etat, utilisateurs, facturesDetails);
+        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, lienPdf, facturesDetails, utilisateurs, bibliotheques, etat);
     }
-
 
     public Utilisateurs getUtilisateurs() {
         return utilisateurs;

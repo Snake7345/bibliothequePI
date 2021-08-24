@@ -79,7 +79,7 @@ public class Tarifs implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "BibliothequesIdBibliotheques", nullable = false)
+    @JoinColumn(name = "Bibliotheques_IdBibliotheques", nullable = false)
     private Bibliotheques bibliotheques;
 
     public Bibliotheques getBibliotheques() {

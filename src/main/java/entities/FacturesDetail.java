@@ -23,7 +23,7 @@ public class FacturesDetail implements Serializable {
     private double prix;
 
     @ManyToOne
-    @JoinColumn(name = "ExemplairesLivresIdExemplairesLivres", nullable = false)
+    @JoinColumn(name = "ExemplairesLivresIdEL", nullable = false)
     private ExemplairesLivres exemplairesLivre;
 
     @ManyToOne
