@@ -10,35 +10,34 @@ import java.io.Serializable;
                 @NamedQuery(name = "UtilisateursAdresses.findAll", query = "SELECT u FROM UtilisateursAdresses u"),
         })
 public class UtilisateursBibliotheques implements Serializable {
-    /*private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUtilisateursAdresses;
-    private boolean actif = true;
+    private int idUtilisateursBibliotheques;
     @ManyToOne
-    @JoinColumn(name = "AdressesIdAdresses", nullable = false)
-    private Adresses adresse;
+    @JoinColumn(name = "BibliothequesIdBibliotheques", nullable = false)
+    private Bibliotheques bibliotheque;
     @ManyToOne
     @JoinColumn(name = "UtilisateursIdUtilisateurs", nullable = false)
     private Utilisateurs utilisateur;
 
     @Id
-    @Column(name = "IdUtilisateursAdresses", nullable = false)
-    public int getIdUtilisateursAdresses() {
-        return idUtilisateursAdresses;
+    @Column(name = "IdUtilisateursBibliotheques", nullable = false)
+
+    public int getIdUtilisateursBibliotheques() {
+        return idUtilisateursBibliotheques;
     }
 
-    public void setIdUtilisateursAdresses(int idUtilisateursAdresses) {
-        this.idUtilisateursAdresses = idUtilisateursAdresses;
-    }
-    @Basic
-    @Column(name = "Actif", nullable = false)
-    public boolean isActif() {
-        return actif;
+    public void setIdUtilisateursBibliotheques(int idUtilisateursBibliotheques) {
+        this.idUtilisateursBibliotheques = idUtilisateursBibliotheques;
     }
 
-    public void setActif(boolean actif) {
-        this.actif = actif;
+    public Bibliotheques getBibliotheque() {
+        return bibliotheque;
+    }
+
+    public void setBibliotheque(Bibliotheques bibliotheque) {
+        this.bibliotheque = bibliotheque;
     }
 
     public Utilisateurs getUtilisateur() {
@@ -49,12 +48,5 @@ public class UtilisateursBibliotheques implements Serializable {
         this.utilisateur = utilisateur;
     }
 
-    public Adresses getAdresse() {
-        return adresse;
-    }
 
-    public void setAdresse(Adresses adresse) {
-        this.adresse = adresse;
-    }
-*/
 }
