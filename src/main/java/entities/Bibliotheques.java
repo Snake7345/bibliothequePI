@@ -26,6 +26,9 @@ public class Bibliotheques implements Serializable {
     private Collection<Tarifs> tarifs;
     @OneToMany(mappedBy = "bibliotheques")
     private Collection<Factures> factures;
+    @OneToMany(mappedBy = "bibliotheques")
+    private Collection<UtilisateursBibliotheques> utilisateurs;
+
 
     @Id
     @Column(name = "IdBibliotheques", nullable = false)
@@ -56,17 +59,25 @@ public class Bibliotheques implements Serializable {
     }
 
 
+    public Collection<UtilisateursBibliotheques> getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(Collection<UtilisateursBibliotheques> utilisateurs) {
+        this.utilisateurs = utilisateurs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bibliotheques that = (Bibliotheques) o;
-        return idBibliotheques == that.idBibliotheques && nom.equals(that.nom) && adresses.equals(that.adresses) && Objects.equals(exemplairesLivres, that.exemplairesLivres) && Objects.equals(tarifs, that.tarifs) && Objects.equals(factures, that.factures);
+        return idBibliotheques == that.idBibliotheques && nom.equals(that.nom) && adresses.equals(that.adresses) && Objects.equals(exemplairesLivres, that.exemplairesLivres) && Objects.equals(tarifs, that.tarifs) && Objects.equals(factures, that.factures) && Objects.equals(utilisateurs, that.utilisateurs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idBibliotheques, nom, adresses, exemplairesLivres, tarifs, factures);
+        return Objects.hash(idBibliotheques, nom, adresses, exemplairesLivres, tarifs, factures,utilisateurs);
     }
 
     public Collection<Adresses> getAdresses() {

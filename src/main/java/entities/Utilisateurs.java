@@ -47,6 +47,8 @@ public class Utilisateurs implements Serializable {
     private Collection<Factures> factures;
     @OneToMany(mappedBy = "utilisateur")
     private Collection<UtilisateursAdresses> utilisateursAdresses;
+    @OneToMany(mappedBy = "utilisateur")
+    private Collection<UtilisateursBibliotheques> utilisateursBibliotheques;
     @ManyToOne
     @JoinColumn(name = "RolesIdRoles")
     private Roles roles;
@@ -149,17 +151,25 @@ public class Utilisateurs implements Serializable {
         this.roles = roles;
     }
 
+    public Collection<UtilisateursBibliotheques> getUtilisateursBibliotheques() {
+        return utilisateursBibliotheques;
+    }
+
+    public void setUtilisateursBibliotheques(Collection<UtilisateursBibliotheques> utilisateursBibliotheques) {
+        this.utilisateursBibliotheques = utilisateursBibliotheques;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Utilisateurs that = (Utilisateurs) o;
-        return idUtilisateurs == that.idUtilisateurs && actif == that.actif && nom.equals(that.nom) && prenom.equals(that.prenom) && sexe == that.sexe && courriel.equals(that.courriel) && Objects.equals(login, that.login) && Objects.equals(mdp, that.mdp) && Objects.equals(numMembre, that.numMembre);
+        return idUtilisateurs == that.idUtilisateurs && actif == that.actif && nom.equals(that.nom) && prenom.equals(that.prenom) && sexe == that.sexe && courriel.equals(that.courriel) && Objects.equals(login, that.login) && Objects.equals(mdp, that.mdp) && Objects.equals(numMembre, that.numMembre) && Objects.equals(factures, that.factures) && Objects.equals(utilisateursAdresses, that.utilisateursAdresses) && Objects.equals(utilisateursBibliotheques, that.utilisateursBibliotheques) && roles.equals(that.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, numMembre, actif);
+        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, numMembre, actif, factures, utilisateursAdresses, utilisateursBibliotheques, roles);
     }
 
     public Collection<Factures> getFactures() {
