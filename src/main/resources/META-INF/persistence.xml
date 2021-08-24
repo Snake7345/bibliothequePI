@@ -28,6 +28,7 @@
         <class>entities.TarifsPenalites</class>
         <class>entities.Utilisateurs</class>
         <class>entities.UtilisateursAdresses</class>
+        <class>entities.UtilisateursBibliotheques</class>
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/bibliotheque?autoReconnect=true"/>
             <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

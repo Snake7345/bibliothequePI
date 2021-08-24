@@ -16,7 +16,7 @@ public class UtilisateursBibliotheques implements Serializable {
     private int idUtilisateursBibliotheques;
     @ManyToOne
     @JoinColumn(name = "BibliothequesIdBibliotheques", nullable = false)
-    private Bibliotheques bibliotheque;
+    private Bibliotheques bibliotheques;
     @ManyToOne
     @JoinColumn(name = "UtilisateursIdUtilisateurs", nullable = false)
     private Utilisateurs utilisateur;
@@ -33,11 +33,11 @@ public class UtilisateursBibliotheques implements Serializable {
     }
 
     public Bibliotheques getBibliotheque() {
-        return bibliotheque;
+        return bibliotheques;
     }
 
     public void setBibliotheque(Bibliotheques bibliotheque) {
-        this.bibliotheque = bibliotheque;
+        this.bibliotheques = bibliotheque;
     }
 
     public Utilisateurs getUtilisateur() {
