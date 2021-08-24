@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Table(name = "utilisateurs_bibliotheques", schema = "bibliotheque")
 @NamedQueries
         ({
-                @NamedQuery(name = "UtilisateursAdresses.findAll", query = "SELECT u FROM UtilisateursAdresses u"),
+                @NamedQuery(name = "UtilisateursBibliotheques.findAll", query = "SELECT u FROM UtilisateursBibliotheques u"),
         })
 public class UtilisateursBibliotheques implements Serializable {
     private static final long serialVersionUID = 1L;
