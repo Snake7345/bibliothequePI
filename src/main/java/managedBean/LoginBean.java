@@ -52,6 +52,7 @@ public class LoginBean implements Serializable {
                 log.debug("OKAY");
                 log.debug("TEST PERMISSION");
                 log.debug(SecurityUtils.getSubject().isPermitted("Roles:Lire"));
+                log.debug(SecurityUtils.getSubject().getSession().getAttribute(utilisateurAuth.getLogin()));
                 log.debug("FIN TESTT");
                 utilisateurAuth = results.get(0);
                 SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
