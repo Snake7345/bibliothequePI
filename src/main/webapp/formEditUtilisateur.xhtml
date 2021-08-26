@@ -13,7 +13,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <c:if test= "#{(rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles) or loginBean.utilisateurAuth eq utilisateursBean.utilisateur)}">
+        <c:if test= "#{(rolesBean.checkPermission('Utilisateurs:Modification') or loginBean.utilisateurAuth eq utilisateursBean.utilisateur)}">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['utilisateur.form.modif.titre']}</title>
@@ -75,19 +75,19 @@
                 </c:if>
 
                 <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client' and utilisateursBean.utilisateur.roles.denomination ne 'Administrateur'}">
-                <p:outputLabel value = "#{I18N['role.label.Denomination']}" rendered="#{rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)}"/>
-                <p:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" rendered="#{rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)}" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                <p:outputLabel value = "#{I18N['role.label.Denomination']}" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}"/>
+                <p:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                  converter="roleConverter">
-                    <c:if test="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'}">
+                    <shiro:hasRole name="1">
                         <f:selectItems value = "#{rolesBean.readActivUtil}" var="ro"
                                        itemLabel="#{ro.denomination}"
                                        itemValue="#{ro}"/>
-                    </c:if>
-                    <c:if test="#{loginBean.utilisateurAuth.roles.denomination ne 'Administrateur'}">
+                    </shiro:hasRole>
+                    <shiro:lacksRole name="1">
                         <f:selectItems value = "#{rolesBean.readActiv}" var="ro"
                                        itemLabel="#{ro.denomination}"
                                        itemValue="#{ro}"/>
-                    </c:if>
+                    </shiro:lacksRole>
                 </p:selectOneMenu>
                     <!--<h:message for="roles" styleClass="errorMessage" rendered="#{rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles)}"/>-->
                 </c:if>
@@ -116,7 +116,7 @@
             </c:if>
         </h:form>
         </c:if>
-        <c:if test="#{!(rolesBean.checkPermission(23,loginBean.utilisateurAuth.roles.idRoles) or loginBean.utilisateurAuth eq utilisateursBean.utilisateur)}">
+        <c:if test="#{!(rolesBean.checkPermission('Utilisateurs:Modification') or loginBean.utilisateurAuth eq utilisateursBean.utilisateur)}">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
     </ui:define>

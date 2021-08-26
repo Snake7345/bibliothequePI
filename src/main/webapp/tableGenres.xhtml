@@ -30,7 +30,7 @@
                                 <f:setPropertyActionListener target="#{genresBean.genre}" value="#{gen}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                        </shiro:hasPermission>>
+                        </shiro:hasPermission>
                         <p:column>
                             <p:commandButton  icon="pi pi-book" value="livres par genres" action="#{livresBean.readByGenres}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.gen}" value="#{gen}" /><!-- u minuscule -->
@@ -40,15 +40,15 @@
                 </p:panel>
                 <shiro:hasPermission name="Genres:Creer">
                     <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewGenre" />
-                </shiro:hasPermission>>
+                </shiro:hasPermission>
                 <shiro:hasPermission name="Autre:Connexion">
                     <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
                 </shiro:hasPermission>
             </h:form>
-        </shiro:hasPermission>>
+        </shiro:hasPermission>
         <shiro:lacksPermission name="Genres:Lire">
         <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>>
+        </shiro:lacksPermission>
     </ui:define>
 </ui:composition>
 </html>

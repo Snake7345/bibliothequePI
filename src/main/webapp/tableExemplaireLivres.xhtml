@@ -50,40 +50,40 @@
                                 <f:setPropertyActionListener target="#{factureBean.CB}" value="#{livexemL.codeBarre}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                    </shiro:hasPermission>>
+                    </shiro:hasPermission>
                     <shiro:hasPermission name="Exemplaires:Modification">
                     <p:column>
                         <p:commandButton rendered="#{livexemL.actif ne false}" icon="pi pi-pencil" value="Modifier" action="formEditExemplaireLivre">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </p:commandButton>
                     </p:column>
-                    </shiro:hasPermission>>
+                    </shiro:hasPermission>
+                    <!--TODO : Verifier la permission shiro ci-dessous ainsi que l'application du if, il ne doit pas y avoir d'interaction entre les deux-->
                     <shiro:hasPermission name="Exemplaires:ActivDesactiv">
-
                     <p:column>
-                        <c:if test= "#{rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles) and livexemL.actif eq true}">
+                        <c:if test= "{livexemL.actif eq true}">
                         <p:commandButton rendered="#{livexemL.actif}" icon="pi pi-power-off" value ="Désactiver" action="formConfirmationExemplaireLivre">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </p:commandButton>
                         </c:if>
                     </p:column>
-                    </shiro:hasPermission>>
+                    </shiro:hasPermission>
                 </p:dataTable>
             </p:panel>
             <shiro:hasPermission name="Exemplaires:Creer">
             <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre">
                 <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
             </p:commandButton>
-            </shiro:hasPermission>>
+            </shiro:hasPermission>
 
             <shiro:hasPermission name="Autre:Connexion">
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushLiv}"/>
-            </shiro:hasPermission>>
+            </shiro:hasPermission>
         </h:form>
-        </shiro:hasPermission>>
+        </shiro:hasPermission>
         <shiro:lacksPermission name="Exemplaires:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>>
+        </shiro:lacksPermission>
     </ui:define>
 </ui:composition>
 </html>

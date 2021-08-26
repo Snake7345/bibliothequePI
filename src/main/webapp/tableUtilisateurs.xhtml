@@ -82,7 +82,7 @@
                 <p:commandButton icon="pi pi-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadUtilInactiv}"/>
                 <shiro:hasPermission name="Autre:Connexion">
                 <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
-                </shiro:hasPermission>>
+                </shiro:hasPermission>
             </h:form>
         </shiro:hasPermission>>
         <shiro:lacksPermission name="Utilisateurs:Lire">

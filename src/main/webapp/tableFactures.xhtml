@@ -43,15 +43,15 @@
             <shiro:hasPermission name="Factures:Creer">
             <p:commandButton value="#{I18N['application.button.new']}" action="formNewFact" />
                 <p:commandButton value="#{I18N['application.button.returnlivre']}" action="formEtatQuestion"/>
-            </shiro:hasPermission>>
+            </shiro:hasPermission>
             <shiro:hasPermission name="Autre:Connexion">
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </shiro:hasPermission>
         </h:form>
-        </shiro:hasPermission>>
+        </shiro:hasPermission>
         <shiro:lacksPermission name="Factures:Lire">
         <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>>
+        </shiro:lacksPermission>
     </ui:define>
 </ui:composition>
 </html>
