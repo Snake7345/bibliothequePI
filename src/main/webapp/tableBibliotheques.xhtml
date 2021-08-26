@@ -43,9 +43,9 @@
             <c:if test= "#{rolesBean.checkPermission(3,loginBean.utilisateurAuth.roles.idRoles)}">
             <p:commandButton icon="pi pi-plus" rendered="#{bibliothequesBean.checkbibli}" value="#{I18N['application.button.new']}" action="formNewBibliotheque" />
             </c:if>
-            <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
+            <shiro:hasPermission name="Autre:Connexion">
                 <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
-            </c:if>
+            </shiro:hasPermission>>
             </h:form>
     </c:if>
     <c:if test="#{!(rolesBean.checkPermission(36,loginBean.utilisateurAuth.roles.idRoles))}">

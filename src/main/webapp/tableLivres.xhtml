@@ -65,9 +65,9 @@
             <p:commandButton icon="pi pi-search" value="#{I18N['application.button.find']}" action="formSearchLivre"/>
             <p:commandButton icon="pi pi-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}"/>
             <p:commandButton icon="pi pi-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}"/>
-            <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
+            <shiro:hasPermission name="Autre:Connexion">
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushBienv}"/>
-            </c:if>
+            </shiro:hasPermission>>
         </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(42,loginBean.utilisateurAuth.roles.idRoles))}">

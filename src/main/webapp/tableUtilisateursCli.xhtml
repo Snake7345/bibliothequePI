@@ -64,13 +64,13 @@
 
                             </ui:repeat>
                         </p:column>
-                        <c:if test= "#{rolesBean.checkPermission(52,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <shiro:hasPermission name="Client:Modification">
                             <p:column>
                                 <p:commandButton  icon="pi pi-pencil" value="Modifier" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                                 </p:commandButton>
                             </p:column>
-                        </c:if>
+                        </shiro:hasPermission>
                             <p:column>
                                 <p:commandButton icon="pi pi-power-off" value ="Desactiver" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
@@ -81,15 +81,15 @@
                             </p:column>
                     </p:dataTable>
                 </p:panel>
-                <c:if test= "#{rolesBean.checkPermission(51,loginBean.utilisateurAuth.roles.idRoles)}">
+                <shiro:hasPermission name="Client:Creer">
                     <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewUtilisateurCli" />
-                </c:if>
+                </shiro:hasPermission>
                 <p:commandButton icon="pi pi-search" value="#{I18N['application.button.find']}" action="formSearchUtilisateur"/>
                 <p:commandButton icon="pi pi-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}"/>
                 <p:commandButton icon="pi pi-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}"/>
-                <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
+                <shiro:hasPermission name="Autre:Connexion">
                     <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
-                </c:if>
+                </shiro:hasPermission>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Client:Lire">

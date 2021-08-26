@@ -120,9 +120,9 @@
 
                 </p:panelGrid>
                 <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}"/>
-                <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
+                <shiro:hasPermission name="Autre:Connexion">
                 <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
-                </c:if>
+                </shiro:hasPermission>
             </h:form>
         </c:if>
         <c:if test="#{!(rolesBean.checkPermission(12,loginBean.utilisateurAuth.roles.idRoles))}">
