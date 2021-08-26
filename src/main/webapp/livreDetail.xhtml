@@ -89,9 +89,9 @@
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
         </h:form>
         </shiro:hasPermission>>
-        <c:if test="#{!(rolesBean.checkPermission(42,loginBean.utilisateurAuth.roles.idRoles))}">
+        <shiro:lacksPermission name="Livres:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </c:if>
+        </shiro:lacksPermission>>
     </ui:define>
 </ui:composition>
 </html>

@@ -38,9 +38,9 @@
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{editeursBean.flushEd}" immediate="true"/>
         </h:form>
         </shiro:hasPermission>>
-        <c:if test="#{!(rolesBean.checkPermission(16,loginBean.utilisateurAuth.roles.idRoles))}">
+        <shiro:lacksPermission name="Editeurs:Modification">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </c:if>
+        </shiro:lacksPermission>>
     </ui:define>
 </ui:composition>
 

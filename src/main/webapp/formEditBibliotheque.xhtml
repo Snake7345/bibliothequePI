@@ -39,9 +39,9 @@
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
         </h:form>
         </shiro:hasPermission>>
-        <c:if test="#{!(rolesBean.checkPermission(15,loginBean.utilisateurAuth.roles.idRoles))}">
+        <shiro:lacksPermission name="Bibliotheques:Modification">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </c:if>
+        </shiro:lacksPermission>>
     </ui:define>
 </ui:composition>
 

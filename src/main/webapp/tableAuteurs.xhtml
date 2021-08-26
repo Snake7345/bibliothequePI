@@ -12,7 +12,7 @@
     <ui:define name="title">#{I18N['application.auteur.title']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{rolesBean.checkPermission(35,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Auteurs:Lire">
             <h:form prependId="false">
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
@@ -31,20 +31,20 @@
                             <!-- row record -->
                             <p:outputLabel value ="#{aut.prenom}"/>
                         </p:column>
-                        <c:if test= "#{rolesBean.checkPermission(14,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <shiro:hasPermission name="Auteurs:Modification">
                         <p:column>
                             <p:commandButton icon="pi pi-pencil" value="Modifier" action="formEditAuteur">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                        </c:if>
+                        </shiro:hasPermission>>
                         <p:column>
                             <p:commandButton  icon="pi pi-book" value="livres par auteur" action="#{livresBean.readByAuteurs}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.aut}" value="#{aut}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
 
-                        <c:if test= "#{rolesBean.checkPermission(24,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <shiro:hasPermission name="Auteurs:ActivDesactiv">
                         <p:column>
                             <p:commandButton icon="pi pi-power-off" value ="Désactiver" rendered="#{aut.actif}" action="formConfirmationAuteur">
                                 <f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
@@ -53,12 +53,12 @@
                                 <f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
                             </p:commandButton>
                         </p:column>
-                        </c:if>
+                        </shiro:hasPermission>>
                     </p:dataTable>
                 </p:panel>
-                <c:if test= "#{rolesBean.checkPermission(2,loginBean.utilisateurAuth.roles.idRoles)}">
+                <shiro:hasPermission name="Auteurs:Creer">
                 <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewAuteur" />
-                </c:if>
+                </shiro:hasPermission>
                 <p:commandButton icon="pi pi-search" value="#{I18N['application.button.find']}" action="formSearchAuteur"/>
                 <p:commandButton icon="pi pi-search-plus" value="#{I18N['application.button.autActiv']}" action="#{auteursBean.getReadActiv}"/>
                 <p:commandButton icon="pi pi-search-minus" value="#{I18N['application.button.autInactiv']}" action="#{auteursBean.getReadInactiv}"/>
@@ -66,7 +66,7 @@
                 <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="#{auteursBean.flushBienv}"/>
                 </shiro:hasPermission>>
             </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Auteurs:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

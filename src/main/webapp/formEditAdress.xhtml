@@ -61,9 +61,9 @@
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{adressesBean.flushAdd}" immediate="true"/>
         </h:form>
         </shiro:hasPermission>>
-        <c:if test="#{!(rolesBean.checkPermission(13,loginBean.utilisateurAuth.roles.idRoles))}">
+        <shiro:lacksPermission name="Adresses:Modification">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </c:if>
+        </shiro:lacksPermission>>
     </ui:define>
 </ui:composition>
 

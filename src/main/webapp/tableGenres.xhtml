@@ -24,13 +24,13 @@
                             <!-- row record -->
                             <p:outputLabel value ="#{gen.denomination}"/>
                         </p:column>
-                        <c:if test= "#{rolesBean.checkPermission(18,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <shiro:hasPermission name="Genres:Modification">
                         <p:column>
                             <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditGenre">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{genresBean.genre}" value="#{gen}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                        </c:if>
+                        </shiro:hasPermission>>
                         <p:column>
                             <p:commandButton  icon="pi pi-book" value="livres par genres" action="#{livresBean.readByGenres}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.gen}" value="#{gen}" /><!-- u minuscule -->
@@ -38,9 +38,9 @@
                         </p:column>
                     </p:dataTable>
                 </p:panel>
-                <c:if test= "#{rolesBean.checkPermission(7,loginBean.utilisateurAuth.roles.idRoles)}">
+                <shiro:hasPermission name="Genres:Creer">
                     <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewGenre" />
-                </c:if>
+                </shiro:hasPermission>>
                 <shiro:hasPermission name="Autre:Connexion">
                     <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
                 </shiro:hasPermission>
