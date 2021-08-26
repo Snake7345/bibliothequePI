@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.Roles;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import services.SvcPermissionRoles;
 import services.SvcRoles;
 
@@ -86,22 +87,21 @@ public class RolesBean implements Serializable {
         return "/tableRoles.xhtml?faces-redirect=true";
     }
 
-    public boolean checkPermission(int permission, int role)
+    public boolean checkPermission(String permission)
     {
-        boolean flag = false;
-        SvcPermissionRoles service = new SvcPermissionRoles();
         try
         {
-            if(!service.findPermissionsAndRoles(permission,role).isEmpty())
-            {
-                flag = true;
-            }
+            log.debug("test permissions de checkPermission ");
+            log.debug(SecurityUtils.getSubject().isPermitted(permission));
+            return SecurityUtils.getSubject().isPermitted(permission);
+
         }
-        catch(NoResultException nre)
+        catch(Error nre)
         {
-            log.debug("pas de résultat trouvé");
+            log.debug("une erreur est survenue...");
         }
-        return flag;
+        return false;
+
     }
 
     public void save()

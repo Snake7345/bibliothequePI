@@ -34,6 +34,7 @@ public class LoginBean implements Serializable {
      * Méthode qui permet l'authentification de l'utilisateur,
      * on vérifie que l'utilisateur existe dans la base de données, mais également qu'il a la permission de se connecter
      *
+     *
      * */
     public void auth()
     {

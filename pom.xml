@@ -17,6 +17,8 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-faces -->
+
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
@@ -145,7 +147,6 @@
         </dependency>
 
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
