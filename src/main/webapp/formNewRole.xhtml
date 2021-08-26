@@ -5,6 +5,7 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['role.form.nouveau.titre']}</ui:define>
@@ -36,9 +37,9 @@
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
         </h:form>
         </c:if>
-        <c:if test="#{!(rolesBean.checkPermission(11,loginBean.utilisateurAuth.roles.idRoles))}">
+        <shiro:lacksPermission name="Roles:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </c:if>
+        </shiro:lacksPermission>>
     </ui:define>
 </ui:composition>
 

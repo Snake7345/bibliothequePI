@@ -4,6 +4,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
@@ -47,9 +48,9 @@
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
         </h:form>
         </c:if>
-        <c:if test="#{!(rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles))}">
+        <shiro:lacksPermission name="Factures:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </c:if>
+        </shiro:lacksPermission>>
     </ui:define>
 </ui:composition>
 
