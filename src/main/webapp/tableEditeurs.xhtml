@@ -12,7 +12,7 @@
     <ui:define name="title">#{I18N['application.editeur.title']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{rolesBean.checkPermission(37,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Editeurs:Lire">
         <h:form prependId="false">
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
@@ -25,13 +25,13 @@
                             <!-- row record -->
                             <p:outputLabel value ="#{ed.nom}"/>
                         </p:column>
-                        <c:if test= "#{rolesBean.checkPermission(16,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <shiro:hasPermission name="Editeurs:Modification">
                         <p:column>
                             <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditEditeur">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{editeursBean.editeur}" value="#{ed}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                        </c:if>
+                        </shiro:hasPermission>>
                         <p:column>
                             <p:commandButton icon="pi pi-book" value="livres par éditeur" action="#{livresBean.readByEditeurs}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.edit}" value="#{ed}" /><!-- u minuscule -->
@@ -39,14 +39,14 @@
                         </p:column>
                     </p:dataTable>
                 </p:panel>
-            <c:if test= "#{rolesBean.checkPermission(4,loginBean.utilisateurAuth.roles.idRoles)}">
+            <shiro:hasPermission name="Editeurs:Creer">
             <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewEditeur" />
-            </c:if>
+            </shiro:hasPermission>>
             <shiro:hasPermission name="Autre:Connexion">
                 <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </shiro:hasPermission>>
             </h:form>
-    </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Editeurs:Lire">
         <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

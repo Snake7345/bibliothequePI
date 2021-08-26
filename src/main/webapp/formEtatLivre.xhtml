@@ -11,7 +11,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <c:if test= "#{rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Factures:Creer">
             <h:form id="form" prependId="false">
                 <h:head>
                     <title>#{I18N['etatlivre.form.titre']}</title>
@@ -43,7 +43,7 @@
                 <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.retourLivre}"/>
                 <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
             </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Factures:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

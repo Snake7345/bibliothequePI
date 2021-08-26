@@ -12,7 +12,7 @@
     <ui:define name="title">#{I18N['application.adresse.title']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{rolesBean.checkPermission(34,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Adresses:Lire">
             <h:form prependId="false">
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
@@ -49,23 +49,23 @@
                             <!-- row record -->
                             <p:outputLabel value ="#{ad.localites.ville}"/>
                         </p:column>
-                        <c:if test= "#{rolesBean.checkPermission(13,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <shiro:hasPermission name="Adresses:Modification">
                         <p:column>
                             <p:commandButton icon="pi pi-pencil" value="Modifier" action="formEditAdress">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{adressesBean.adresse}" value="#{ad}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                        </c:if>
+                        </shiro:hasPermission>>
                     </p:dataTable>
                 </p:panel>
-                <c:if test= "#{rolesBean.checkPermission(1,loginBean.utilisateurAuth.roles.idRoles)}">
+                <shiro:hasPermission name="Adresses:Creer">
                 <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewAdress" />
-                </c:if>
+                </shiro:hasPermission>>
                 <shiro:hasPermission name="Autre:Connexion">
                 <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
                 </shiro:hasPermission>>
             </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Adresses:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>

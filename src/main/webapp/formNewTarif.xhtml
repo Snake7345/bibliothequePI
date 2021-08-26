@@ -12,7 +12,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <c:if test= "#{rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Tarifs:Creer">
             <h:form>
                 <h:head>
                     <title>#{I18N['tarif.form.nouveau.titre']}</title>
@@ -149,7 +149,7 @@
                 <p:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}"/>
                 <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
             </h:form>
-        </c:if>
+        </shiro:hasPermission>
         <shiro:lacksPermission name="Tarifs:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

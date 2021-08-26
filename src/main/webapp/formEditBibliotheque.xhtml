@@ -13,7 +13,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <c:if test= "#{rolesBean.checkPermission(15,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Bibliotheques:Modification">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['bibliotheque.modif.nouveau.titre']}</title>
@@ -38,7 +38,7 @@
             <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}"/>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
         </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <c:if test="#{!(rolesBean.checkPermission(15,loginBean.utilisateurAuth.roles.idRoles))}">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>

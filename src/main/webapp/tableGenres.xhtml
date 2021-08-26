@@ -11,7 +11,7 @@
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['application.genre.title']}</ui:define>
     <ui:define name="content">
-        <c:if test= "#{rolesBean.checkPermission(40,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Genres:Lire">
             <h:form prependId="false">
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
@@ -45,7 +45,7 @@
                     <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
                 </shiro:hasPermission>
             </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Genres:Lire">
         <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

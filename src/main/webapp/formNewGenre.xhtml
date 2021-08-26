@@ -12,7 +12,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <c:if test= "#{rolesBean.checkPermission(7,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Genres:Creer">
         <h:form id="form" prependId="false">
             <!--<h:messages styleClass="errorBlock" globalOnly="true" />-->
 
@@ -40,7 +40,7 @@
             <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{genresBean.saveGenres}"/>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{genresBean.flushGen}" immediate="true"/>
         </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Genres:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

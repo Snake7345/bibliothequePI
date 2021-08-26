@@ -13,7 +13,7 @@
     <ui:define name="title">#{I18N['application.livre.title']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{rolesBean.checkPermission(38,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Exemplaires:Lire">
         <h:form prependId="false">
             <p:panel layout="block" id="content">
                 <p:growl id="growl" showDetail="true" sticky="true" />
@@ -44,21 +44,21 @@
                         <!-- row record -->
                         <p:outputLabel value ="#{livexemL.actif}"/>
                     </p:column>
-                    <c:if test= "#{rolesBean.checkPermission(6,loginBean.utilisateurAuth.roles.idRoles)}">
+                    <shiro:hasPermission name="Factures:Creer">
                         <p:column>
                             <p:commandButton rendered="#{livexemL.loue}" image="Images//inspectionsmini.jpg" action="formEtatQuestion">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{factureBean.CB}" value="#{livexemL.codeBarre}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                    </c:if>
-                    <c:if test= "#{rolesBean.checkPermission(17,loginBean.utilisateurAuth.roles.idRoles)}">
+                    </shiro:hasPermission>>
+                    <shiro:hasPermission name="Exemplaires:Modification">
                     <p:column>
                         <p:commandButton rendered="#{livexemL.actif ne false}" icon="pi pi-pencil" value="Modifier" action="formEditExemplaireLivre">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </p:commandButton>
                     </p:column>
-                    </c:if>
-                    <c:if test= "#{rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles)}">
+                    </shiro:hasPermission>>
+                    <shiro:hasPermission name="Exemplaires:ActivDesactiv">
 
                     <p:column>
                         <c:if test= "#{rolesBean.checkPermission(30,loginBean.utilisateurAuth.roles.idRoles) and livexemL.actif eq true}">
@@ -67,20 +67,20 @@
                         </p:commandButton>
                         </c:if>
                     </p:column>
-                    </c:if>
+                    </shiro:hasPermission>>
                 </p:dataTable>
             </p:panel>
-            <c:if test= "#{rolesBean.checkPermission(5,loginBean.utilisateurAuth.roles.idRoles)}">
+            <shiro:hasPermission name="Exemplaires:Creer">
             <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre">
                 <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
             </p:commandButton>
-            </c:if>
+            </shiro:hasPermission>>
 
             <shiro:hasPermission name="Autre:Connexion">
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushLiv}"/>
             </shiro:hasPermission>>
         </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Exemplaires:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

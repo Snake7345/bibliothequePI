@@ -12,7 +12,7 @@
     <ui:define name="title">#{I18N['application.utilisateur.titleSearch']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Autre:Connexion">
         <h:form prependId="false">
             <p:growl id="growl" showDetail="true" sticky="true" />
             <p:panel layout="block" id="content">
@@ -66,13 +66,13 @@
                             <p:outputLabel value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
                         </ui:repeat>
                     </p:column>
-                    <c:if test= "#{rolesBean.checkPermission(52,loginBean.utilisateurAuth.roles.idRoles)}">
+                    <shiro:hasPermission name="Client:Modification">
                         <p:column>
                             <p:commandButton  image="Images//edit.png" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                    </c:if>
+                    </shiro:hasPermission>
                     <p:column>
                         <p:commandButton image="Images//activ.png" rendered="#{util.actif}" action="#{utilisateursBean.activdesactivUtil}">
                             <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" />
@@ -85,7 +85,7 @@
             </p:panel>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
         </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Autre:Connexion">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

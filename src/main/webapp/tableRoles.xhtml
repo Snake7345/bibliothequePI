@@ -24,7 +24,7 @@
                         <!-- row record -->
                         <p:outputLabel value ="#{rol.denomination}"/>
                     </p:column>
-                    <c:if test= "#{rolesBean.checkPermission(32,loginBean.utilisateurAuth.roles.idRoles)}">
+                    <shiro:hasPermission name="Roles:ActivDesactiv">
                     <p:column>
                         <c:if test= "#{rolesBean.checkPermission(32,loginBean.utilisateurAuth.roles.idRoles) and rol.actif eq true}">
                         <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}"
@@ -39,12 +39,12 @@
                             </p:commandButton>
                         </c:if>
                     </p:column>
-                    </c:if>
+                    </shiro:hasPermission>>
                 </p:dataTable>
             </p:panel>
-            <c:if test= "#{rolesBean.checkPermission(11,loginBean.utilisateurAuth.roles.idRoles)}">
+            <shiro:hasPermission name="Roles:Creer">
             <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewRole" />
-            </c:if>
+            </shiro:hasPermission>>
             <shiro:hasPermission name="Autre:Connexion">
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </shiro:hasPermission>>

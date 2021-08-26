@@ -12,7 +12,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <c:if test= "#{rolesBean.checkPermission(2,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Auteurs:Creer">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['auteur.form.nouveau.titre']}</title>
@@ -48,7 +48,7 @@
             <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{auteursBean.newAuteur}"/>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>
         </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Auteurs:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

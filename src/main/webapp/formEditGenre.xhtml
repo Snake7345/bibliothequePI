@@ -12,7 +12,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <c:if test= "#{rolesBean.checkPermission(18,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Genres:Modification">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['genre.form.modif.titre']}</title>
@@ -37,7 +37,7 @@
             <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{genresBean.saveGenres}"/>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{genresBean.flushGen}" immediate="true"/>
         </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <c:if test="#{!(rolesBean.checkPermission(18,loginBean.utilisateurAuth.roles.idRoles))}">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>

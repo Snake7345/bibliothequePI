@@ -11,7 +11,7 @@
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['application.bibliotheque.title']}</ui:define>
     <ui:define name="content">
-        <c:if test= "#{rolesBean.checkPermission(36,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Bibliotheques:Lire">
         <h:form prependId="false">
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
@@ -32,23 +32,23 @@
                                 <p:outputLabel value ="#{biad.rue}, #{biad.numero} #{biad.boite} #{biad.localites.cp} #{biad.localites.ville}"/>
                             </ui:repeat>
                         </p:column>
-                        <c:if test= "#{rolesBean.checkPermission(15,loginBean.utilisateurAuth.roles.idRoles)}">
+                        <shiro:hasPermission name="Bibliotheques:Modification">
                         <p:column>
                             <p:commandButton icon="pi pi-pencil" value="Modifier" action="formEditBibliotheque">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                        </c:if>
+                        </shiro:hasPermission>>
                     </p:dataTable>
                 </p:panel>
-            <c:if test= "#{rolesBean.checkPermission(3,loginBean.utilisateurAuth.roles.idRoles)}">
+            <shiro:hasPermission name="Bibliotheques:Creer">
             <p:commandButton icon="pi pi-plus" rendered="#{bibliothequesBean.checkbibli}" value="#{I18N['application.button.new']}" action="formNewBibliotheque" />
-            </c:if>
+            </shiro:hasPermission>>
             <shiro:hasPermission name="Autre:Connexion">
                 <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </shiro:hasPermission>>
             </h:form>
-    </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Bibliotheques:Lire">
         <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

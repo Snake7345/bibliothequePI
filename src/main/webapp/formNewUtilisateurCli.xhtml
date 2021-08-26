@@ -13,7 +13,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <c:if test= "#{rolesBean.checkPermission(51,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Client:Creer">
             <h:form id="form" prependId="false">
                 <h:head>
                 <title>#{I18N['utilisateurcli.form.nouveau.titre']}</title>
@@ -83,7 +83,7 @@
                 <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
                 </shiro:hasPermission>>
             </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Client:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>>

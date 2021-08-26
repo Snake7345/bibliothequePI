@@ -12,7 +12,7 @@
     <ui:define name="title">#{I18N['application.tarifs.title']}</ui:define>
 
     <ui:define name="content">
-        <c:if test= "#{rolesBean.checkPermission(41,loginBean.utilisateurAuth.roles.idRoles)}">
+        <shiro:hasPermission name="Tarifs:Lire">
         <h:form prependId="false">
             <p:panel layout="block" id="content">
                 <p:growl id="growl" showDetail="true" sticky="true" />
@@ -39,23 +39,23 @@
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </p:outputLabel>
                     </p:column>
-                    <c:if test= "#{rolesBean.checkPermission(20,loginBean.utilisateurAuth.roles.idRoles)}">
+                    <shiro:hasPermission name="Tarifs:Modification">
                         <p:column>
                             <p:commandButton icon="pi pi-pencil" value="Modifier" action="#{tarifsBean.redirectEdit}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{tarifsBean.tarif}" value="#{tar}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                    </c:if>
+                    </shiro:hasPermission>>
                 </p:dataTable>
             </p:panel>
-            <c:if test= "#{rolesBean.checkPermission(9,loginBean.utilisateurAuth.roles.idRoles)}">
+            <shiro:hasPermission name="Tarifs:Creer">
             <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewTarif" />
-            </c:if>
+            </shiro:hasPermission>>
             <shiro:hasPermission name="Autre:Connexion">
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </shiro:hasPermission>>
         </h:form>
-        </c:if>
+        </shiro:hasPermission>>
         <shiro:lacksPermission name="Tarifs:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>

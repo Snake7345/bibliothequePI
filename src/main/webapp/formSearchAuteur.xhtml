@@ -11,7 +11,7 @@
 	<ui:define name="title">#{I18N['application.auteurs.titleSearch']}</ui:define>
 
 	<ui:define name="content">
-		<c:if test= "#{rolesBean.checkPermission(48,loginBean.utilisateurAuth.roles.idRoles)}">
+		<shiro:hasPermission name="Autre:Connexion">
 	<h:form prependId="false">
 	<p:panel layout="block" id="content">
 		<h2 style="text-align:center">#{I18N['application.auteurs.titleSearch']}</h2>
@@ -44,19 +44,19 @@
 				<!-- row record -->
 				<h:outputLabel value ="#{aut.actif}"/>
 			</p:column>
-			<c:if test= "#{rolesBean.checkPermission(14,loginBean.utilisateurAuth.roles.idRoles)}">
+			<shiro:hasPermission name="Auteurs:Modification">
 				<p:column>
 					<p:commandButton  image="Images//edit.png" action="formEditAuteur">		<!-- u minuscule -->
 						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" /><!-- u minuscule -->
 					</p:commandButton>
 				</p:column>
-			</c:if>
+			</shiro:hasPermission>>
 			<p:column>
 				<p:commandButton  image="Images//livremini.jpg" action="#{livresBean.readByAuteurs}">		<!-- u minuscule -->
 					<f:setPropertyActionListener target="#{livresBean.aut}" value="#{aut}" /><!-- u minuscule -->
 				</p:commandButton>
 			</p:column>
-			<c:if test= "#{rolesBean.checkPermission(24,loginBean.utilisateurAuth.roles.idRoles)}">
+			<shiro:hasPermission name="Auteurs:ActivDesactiv">
 				<p:column>
 					<p:commandButton image="Images//activ.png" rendered="#{aut.actif}" action="formConfirmationAuteur">
 						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
@@ -65,12 +65,12 @@
 						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
 					</p:commandButton>
 				</p:column>
-			</c:if>
+			</shiro:hasPermission>>
 		</p:dataTable>
 		</p:panel>
 				<p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>
 		</h:form>
-		</c:if>
+		</shiro:hasPermission>>
 		<shiro:lacksPermission name="Autre:Connexion">
 			<p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
 		</shiro:lacksPermission>>
