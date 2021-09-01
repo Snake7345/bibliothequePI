@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
+import security.SecurityManager;
 
 
 // AND u.login=:login AND u.mdp=:mdp
@@ -129,7 +130,8 @@ public class Utilisateurs implements Serializable {
     }
 
     public void setMdp(String mdp) {
-        this.mdp = mdp;
+
+        this.mdp = SecurityManager.encryptPassword(mdp);
     }
 
 
@@ -164,12 +166,12 @@ public class Utilisateurs implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Utilisateurs that = (Utilisateurs) o;
-        return idUtilisateurs == that.idUtilisateurs && actif == that.actif && nom.equals(that.nom) && prenom.equals(that.prenom) && sexe == that.sexe && courriel.equals(that.courriel) && Objects.equals(login, that.login) && Objects.equals(mdp, that.mdp) && Objects.equals(numMembre, that.numMembre) && Objects.equals(factures, that.factures) && Objects.equals(utilisateursAdresses, that.utilisateursAdresses) && Objects.equals(utilisateursBibliotheques, that.utilisateursBibliotheques) && roles.equals(that.roles);
+        return idUtilisateurs == that.idUtilisateurs && actif == that.actif && nom.equals(that.nom) && prenom.equals(that.prenom) && sexe == that.sexe && courriel.equals(that.courriel) && Objects.equals(login, that.login) && Objects.equals(mdp, that.mdp) && Objects.equals(numMembre, that.numMembre) &&  roles.equals(that.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, numMembre, actif, factures, utilisateursAdresses, utilisateursBibliotheques, roles);
+        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, numMembre, actif, roles);
     }
 
     public Collection<Factures> getFactures() {

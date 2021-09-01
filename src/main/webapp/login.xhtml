@@ -25,7 +25,7 @@
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <p:panelGrid columns="2" style="margin: 0 auto">
                     <p:outputLabel for="utilisateurLogin" value="#{I18N['utilisateur.label.Login']}"/>
-                    <p:inputText id="utilisateurLogin" 	value="#{loginBean.utilisateurAuth.login}"
+                    <p:inputText id="utilisateurLogin" 	value="#{loginBean.login}"
                                  required="true"
                                  validatorMessage="La longueur ne peut être inférieur à 4 caracteres"
                                  requiredMessage="#{I18N['utilisateur.login.validation']}"
@@ -33,7 +33,7 @@
                         <f:validateLength minimum ="4" maximum = "80" />
                     </p:inputText>
                     <p:outputLabel value="#{I18N['utilisateur.label.Mdp']}"/>
-                    <p:password id="password" value="#{loginBean.utilisateurAuth.mdp}"
+                    <p:password id="password" value="#{loginBean.mdp}"
                                    toggleMask="true"
                                    redisplay="true"
                                    required="true"

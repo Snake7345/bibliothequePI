@@ -1,6 +1,5 @@
 package managedBean;
 
-import entities.PermissionsRoles;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -25,6 +24,9 @@ public class LoginBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(LoginBean.class);
     @PersistenceUnit  (unitName = "bibliotheque")
+    private String login;
+    private String mdp;
+
 
 
     Utilisateurs utilisateurAuth = new Utilisateurs();
@@ -38,24 +40,22 @@ public class LoginBean implements Serializable {
      * */
     public void auth()
     {
+
         log.debug("---------------------------------debut--------------------------");
         FacesMessage m = new FacesMessage("Login ou/et mot de passe incorrect");
         SvcUtilisateurs service= new SvcUtilisateurs();
         RolesBean RB = new RolesBean();
 
         try {
-            log.debug(utilisateurAuth.getLogin() + " + " + utilisateurAuth.getMdp());
+            log.debug(login + " + " + mdp);
             log.debug("1");
-            List<Utilisateurs> results = service.authentify(utilisateurAuth.getLogin(),utilisateurAuth.getMdp());
+            List<Utilisateurs> results = service.authentify(login,mdp);
             log.debug("2");
-            if (SecurityManager.processToLogin(utilisateurAuth.getLogin(), utilisateurAuth.getMdp(), false)){
+            if (SecurityManager.processToLogin(login, mdp, false)){
 
                 log.debug("OKAY");
-                log.debug("TEST PERMISSION");
-                log.debug(SecurityUtils.getSubject().isPermitted("Roles:Lire"));
-                log.debug(SecurityUtils.getSubject().getSession().getAttribute(utilisateurAuth.getLogin()));
-                log.debug("FIN TESTT");
                 utilisateurAuth = results.get(0);
+                log.debug(utilisateurAuth.getIdUtilisateurs());
                 SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
                 SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
@@ -98,4 +98,19 @@ public class LoginBean implements Serializable {
         this.utilisateurAuth = utilisateurAuth;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
 }

@@ -2,6 +2,8 @@ package managedBean;
 
 import entities.*;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.credential.PasswordMatcher;
 import services.*;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +15,7 @@ import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+import security.SecurityManager;
 @Named
 @SessionScoped
 
@@ -116,13 +118,24 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
+    /*TODO : Scinder la fonction : Les clients d'un coté et les utilisateurs de l'autre
+    *
+    *       C'EST UN MINIMUM
+    * */
 
     public String newUtil() {
         boolean flag = false;
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
         utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
         utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
+        /*
 
+        log.debug((SecurityManager.encryptPassword(utilisateur.getMdp())));
+
+        PasswordMatcher matcher = new PasswordMatcher();
+        log.debug(matcher.getPasswordService().passwordsMatch(utilisateur.getMdp(),SecurityManager.encryptPassword(utilisateur.getMdp())));
+
+        */
         if (utilisateur.getIdUtilisateurs()!=0) {
             for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()) {
                 if (ua.getAdresse().equals(adresses)) {
@@ -156,6 +169,8 @@ public class UtilisateursBean implements Serializable {
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
         }
     }
+
+    /*TODO : Faire une méthode concernant la modification du mot de passe et uniquement de celui-ci via un pop-up*/
 
     public boolean verifUtilExist(Utilisateurs util)
     {
