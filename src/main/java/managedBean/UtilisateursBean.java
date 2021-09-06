@@ -4,6 +4,8 @@ import entities.*;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.credential.PasswordMatcher;
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.SelectEvent;
 import services.*;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +16,10 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import security.SecurityManager;
 @Named
 @SessionScoped
@@ -32,6 +37,11 @@ public class UtilisateursBean implements Serializable {
     private String numMembre;
     private Adresses adresses;
     private UtilisateursAdresses UA;
+
+    private String mdpNouveau;
+
+
+    private String mdpNouveau2;
 
     public UtilisateursBean() {
         super();
@@ -122,6 +132,64 @@ public class UtilisateursBean implements Serializable {
     *
     *       C'EST UN MINIMUM
     * */
+
+    public String modifMdp()
+    {
+        SvcUtilisateurs serviceU = new SvcUtilisateurs();
+        EntityTransaction transaction = serviceU.getTransaction();
+        log.debug("utilisateur objet : " + utilisateur);
+        log.debug("utilisateur findbyLogin : " + serviceU.findByLogin(utilisateur.getLogin()).get(0).getMdp());
+        log.debug("utilisateur getmdp : " + utilisateur.getMdp());
+
+        try
+        {
+            if(!mdpNouveau.equals(mdpNouveau2))
+            {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le nouveau mot de passe et la confirmation ne correspondent pas", null));
+            }
+            else
+            {
+                if (utilisateur.getMdp().equals(serviceU.findByLogin(utilisateur.getLogin()).get(0).getMdp())) {
+                    if (SecurityManager.PasswordMatch(mdpNouveau, utilisateur.getMdp())) {
+                        FacesContext fc = FacesContext.getCurrentInstance();
+                        fc.getExternalContext().getFlash().setKeepMessages(true);
+                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "le mot de passe est le même que précédemment", null));
+                    } else {
+
+                        transaction.begin();
+                        utilisateur.setMdp(mdpNouveau);
+                        serviceU.save(utilisateur);
+                        transaction.commit();
+                        FacesContext fc = FacesContext.getCurrentInstance();
+                        fc.getExternalContext().getFlash().setKeepMessages(true);
+                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
+
+                    }
+
+                }
+            }
+        }
+        catch (NullPointerException npe)
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Une erreur est survenue(erreur 101), veuillez contacter le support technique", null));
+        }
+        finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation n'a pas reussie", null));
+            }
+            serviceU.close();
+        }
+
+        init();
+        return "/tableUtilisateurs.xhtml?faces-redirect=true";
+    }
 
     public String newUtil() {
         boolean flag = false;
@@ -257,6 +325,8 @@ public class UtilisateursBean implements Serializable {
             }
         }
     }
+
+
 
 
     /*Méthode qui permet de désactiver un utilisateur et de le réactiver en verifiant si son rôle est actif ou pas.
@@ -451,6 +521,22 @@ public class UtilisateursBean implements Serializable {
 
     public void setListCli(List<Utilisateurs> listCli) {
         this.listCli = listCli;
+    }
+
+    public String getMdpNouveau() {
+        return mdpNouveau;
+    }
+
+    public void setMdpNouveau(String mdpNouveau) {
+        this.mdpNouveau = mdpNouveau;
+    }
+
+    public String getMdpNouveau2() {
+        return mdpNouveau2;
+    }
+
+    public void setMdpNouveau2(String mdpNouveau2) {
+        this.mdpNouveau2 = mdpNouveau2;
     }
 }
 

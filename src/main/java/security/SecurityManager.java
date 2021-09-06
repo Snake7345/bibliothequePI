@@ -141,4 +141,12 @@ public class SecurityManager {
 
         return matcher.getPasswordService().encryptPassword(password);
     }
+
+    public static Boolean PasswordMatch(Object NewPassword, String OldPassword)
+    {
+        PasswordMatcher matcher = new PasswordMatcher();
+
+        return matcher.getPasswordService().passwordsMatch(NewPassword, OldPassword);
+
+    }
 }

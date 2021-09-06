@@ -4,7 +4,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:shiro="http://shiro.apache.org/tags"
       xmlns:p="http://primefaces.org/ui">
 
@@ -65,6 +64,14 @@
                             </p:commandButton>
 
                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Modif.MDP" type="button">
+                                <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
+                                <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
+                            </p:commandButton>
+
+
+                        </p:column>
                        <shiro:hasPermission name="Utilisateurs:ActivDesactiv">
                            <p:column>
                                <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif eq true}"
@@ -92,6 +99,28 @@
         <shiro:lacksPermission name="Utilisateurs:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
+        <!--TODO : evitez la faille de sécurité pour si l'utilisateur ferme la fenetre avec la croix-->
+        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+
+            <h:form id="formModifMdp" prependId = "false">
+                <p:panelGrid columns="2" StyleClass="formConfig">
+                    <h:outputText value="Veuillez changer votre mot de passe" />
+                    <p:password id="mdp" value="#{utilisateursBean.mdpNouveau}" update="msg" maxlength="40">
+                        <f:validateLength minimum="8" maximum="40"/>
+                    </p:password>
+                    <h:outputText value="Confirmer le nouveau mot de passe" />
+                    <p:password id="confmdp" value="#{utilisateursBean.mdpNouveau2}" update="msg" maxlength="40">
+                        <f:validateLength minimum="8" maximum="40"/>
+                    </p:password>
+                </p:panelGrid>
+                <p:commandButton value="Modifier" action="#{utilisateursBean.modifMdp}"
+                                 onclick="PF('popup').hide();">
+                </p:commandButton>
+
+                <p:commandButton value="Annuler" action="#{utilisateursBean.init}" onclick="PF('popup').hide();" />
+            </h:form>
+        </p:dialog>
     </ui:define>
 </ui:composition>
+
 </html>
