@@ -109,7 +109,8 @@
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
                     <h:outputText value="Confirmer le nouveau mot de passe" />
-                    <p:password id="confmdp" value="#{utilisateursBean.mdpNouveau2}" update="msg" maxlength="40">
+                    <p:password id="confmdp" value="#{utilisateursBean.mdpNouveau2}" update="msg" maxlength="40"
+                    validator="checkMdpValidator">
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
                 </p:panelGrid>

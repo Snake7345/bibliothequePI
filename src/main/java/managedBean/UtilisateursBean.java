@@ -1,12 +1,13 @@
 package managedBean;
 
-import entities.*;
+import entities.Adresses;
+import entities.Utilisateurs;
+import entities.UtilisateursAdresses;
 import org.apache.log4j.Logger;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.credential.PasswordMatcher;
-import org.primefaces.PrimeFaces;
-import org.primefaces.event.SelectEvent;
-import services.*;
+import security.SecurityManager;
+import services.SvcRoles;
+import services.SvcUtilisateurs;
+import services.SvcUtilisateursAdresses;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -16,11 +17,8 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import security.SecurityManager;
 @Named
 @SessionScoped
 

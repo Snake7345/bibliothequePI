@@ -63,6 +63,7 @@ public class FactureBean implements Serializable {
             listLC.remove(listLC.size()-1);
         }
     }
+    /*TODO : Penser a mettre les fonctions d'envoi de mail dans une même classe*/
     // Méthode qui permet l'envoi d'un mail via le mail de la bibliotheque avec la facture
     public static void sendMessage( String filename, String mailDest, String Texte, String Titre)  {
         //Création de la session

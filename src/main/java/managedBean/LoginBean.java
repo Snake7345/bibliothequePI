@@ -49,7 +49,7 @@ public class LoginBean implements Serializable {
         try {
             log.debug(login + " + " + mdp);
             log.debug("1");
-            List<Utilisateurs> results = service.authentify(login,mdp);
+            List<Utilisateurs> results = service.findByLogin(login);
             log.debug("2");
             if (SecurityManager.processToLogin(login, mdp, false)){
 
