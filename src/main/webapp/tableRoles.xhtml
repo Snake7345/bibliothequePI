@@ -49,10 +49,10 @@
             </p:panel>
             <shiro:hasPermission name="Roles:Creer">
             <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewRole" />
-            </shiro:hasPermission>>
+            </shiro:hasPermission>
             <shiro:hasPermission name="Autre:Connexion">
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
-            </shiro:hasPermission>>
+            </shiro:hasPermission>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Roles:Lire">

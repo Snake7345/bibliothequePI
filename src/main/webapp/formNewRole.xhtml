@@ -18,7 +18,7 @@
                 <title>#{I18N['role.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['role.form.nouveau.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                 <p:outputLabel value = "#{I18N['role.label.Denomination']}"/>
                 <p:inputText id="roleDenomination"
@@ -29,18 +29,30 @@
                              maxlength="100">
                     <f:validateLength minimum="2" maximum="100"/>
                 </p:inputText>
+                <p:outputLabel value = "#{I18N['Permissions.label.Action']}"/>
+                <p:selectOneMenu value = "#{permissionsBean.type}" id="type">
+                    <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
+                                   itemLabel="#{ty}"
+                                   itemValue="#{ty}"/>
+                    <p:ajax event="change" listener="#{permissionsBean.getPermissionsAction(ty)}" update="action"/>
+                </p:selectOneMenu>
+                <p:outputLabel value = "#{I18N['Permissions.label.Action']}"/>
+                <p:selectOneMenu value = "#{permissionsBean.action}" id="action">
+                    <!--<f:selectItems value = "#{permissionsBean.getPermissionsAction(ty)}" var="ac"
+                                   itemLabel="#{ac}"
+                                   itemValue="#{ac}"/>-->
+                </p:selectOneMenu>
                 <!--<h:message for="roleDenomination" styleClass="errorMessage"/>-->
-
 
             </p:panelGrid>
 
             <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.newRoles}"/>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
         </h:form>
-        </shiro:hasPermission>>
+        </shiro:hasPermission>
         <shiro:lacksPermission name="Roles:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>>
+        </shiro:lacksPermission>
     </ui:define>
 </ui:composition>
 

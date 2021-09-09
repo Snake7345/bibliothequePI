@@ -1,9 +1,11 @@
 package managedBean;
 
+import entities.Permissions;
 import entities.Roles;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import services.SvcPermissionRoles;
+import services.SvcPermissions;
 import services.SvcRoles;
 
 import javax.annotation.PostConstruct;
@@ -30,6 +32,8 @@ public class RolesBean implements Serializable {
     {
         role = new Roles();
     }
+
+
 
     public String newRoles()
     {
@@ -190,4 +194,5 @@ public class RolesBean implements Serializable {
     public void setRole(Roles role) {
         this.role = role;
     }
+
 }

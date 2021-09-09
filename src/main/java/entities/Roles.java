@@ -15,6 +15,7 @@ import java.util.Objects;
                 @NamedQuery(name = "Roles.findRole", query="SELECT r FROM Roles r WHERE r.denomination=:denomination"),
                 @NamedQuery(name = "Roles.findActivUtil", query="SELECT r FROM Roles r WHERE r.actif=TRUE AND r.denomination <>'Client' "),
 
+
         })
 public class Roles implements Serializable {
     private static final long serialVersionUID = 1L;

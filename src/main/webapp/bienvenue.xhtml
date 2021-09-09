@@ -13,7 +13,7 @@
 <ui:composition template="/Template/template.xhtml">
     <ui:define name="title">#{I18N['application.welcomepage.titre']}</ui:define>
     <ui:define name="content">
-        <shiro:hasPermission name="Autre:Connexion">
+        <shiro:authenticated>
             <br/><br/>
             <p:panelGrid class="table" columns="3">
                 <!-- LIGNE 1 -->
@@ -144,10 +144,10 @@
 
             </p:panelGrid>
             <br /><br />
-        </shiro:hasPermission>
-        <shiro:lacksPermission name="Autre:Connexion">
+        </shiro:authenticated>
+        <shiro:notAuthenticated>
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>
+        </shiro:notAuthenticated>
     </ui:define>
 
 </ui:composition>
