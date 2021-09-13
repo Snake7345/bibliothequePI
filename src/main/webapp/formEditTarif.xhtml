@@ -114,7 +114,7 @@
                         <p:calendar value="#{P.dateDebut}" showOn="button" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </p:calendar>
-                        <!--<p:inputText value="#{P.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
+                        <!--<p:inputText value="#{P.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </p:inputText>-->
                     </p:column>
@@ -125,7 +125,7 @@
                         <p:calendar value="#{P.dateFin}" showOn="button" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </p:calendar>
-                        <!--<p:inputText value="#{P.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">>
+                        <!--<p:inputText value="#{P.dateFin}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </p:inputText>-->
                     </p:column>
@@ -139,7 +139,7 @@
         </shiro:hasPermission>
         <shiro:lacksPermission name="Tarifs:Modification">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>>
+        </shiro:lacksPermission>
     </ui:define>
 </ui:composition>
 

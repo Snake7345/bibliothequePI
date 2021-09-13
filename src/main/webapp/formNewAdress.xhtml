@@ -60,10 +60,10 @@
             <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}"/>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{adressesBean.flushAdd}" immediate="true"/>
         </h:form>
-        </shiro:hasPermission>>
+        </shiro:hasPermission>
         <shiro:lacksPermission name="Adresses:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>>
+        </shiro:lacksPermission>
     </ui:define>
 </ui:composition>
 

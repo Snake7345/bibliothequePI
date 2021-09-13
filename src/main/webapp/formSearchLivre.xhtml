@@ -64,7 +64,7 @@
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                    </shiro:hasPermission>>
+                    </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:ActivDesactiv">
                         <p:column>
                             <p:commandButton rendered="#{liv.actif}" image="Images//activdesactiv.png" action="formConfirmationLivre">
@@ -74,15 +74,15 @@
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                             </p:commandButton>
                         </p:column>
-                    </shiro:hasPermission>>
+                    </shiro:hasPermission>
                 </p:dataTable>
             </p:panel>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}" immediate="true"/>
         </h:form>
-        </shiro:hasPermission>>
+        </shiro:hasPermission>
         <shiro:lacksPermission name="Autre:Connexion">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>>
+        </shiro:lacksPermission>
     </ui:define>
 </ui:composition>
 </html>

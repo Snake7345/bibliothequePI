@@ -55,17 +55,17 @@
                                 <f:setPropertyActionListener target="#{adressesBean.adresse}" value="#{ad}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
-                        </shiro:hasPermission>>
+                        </shiro:hasPermission>
                     </p:dataTable>
                 </p:panel>
                 <shiro:hasPermission name="Adresses:Creer">
                 <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewAdress" />
-                </shiro:hasPermission>>
+                </shiro:hasPermission>
                 <shiro:hasPermission name="Autre:Connexion">
                 <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
-                </shiro:hasPermission>>
+                </shiro:hasPermission>
             </h:form>
-        </shiro:hasPermission>>
+        </shiro:hasPermission>
         <shiro:lacksPermission name="Adresses:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>

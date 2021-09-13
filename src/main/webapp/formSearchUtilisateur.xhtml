@@ -85,10 +85,10 @@
             </p:panel>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
         </h:form>
-        </shiro:hasPermission>>
+        </shiro:hasPermission>
         <shiro:lacksPermission name="Autre:Connexion">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>>
+        </shiro:lacksPermission>
     </ui:define>
 </ui:composition>
 </html>

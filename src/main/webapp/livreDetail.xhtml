@@ -69,29 +69,29 @@
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" /> <!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
-                    </shiro:hasPermission>>
+                    </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:Modification">
                     <p:column>
                         <p:commandButton icon="pi pi-pencil" value="Modifier" action="formEditLivre">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
-                    </shiro:hasPermission>>
+                    </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:ActivDesactiv">
                     <p:column>
                         <p:commandButton image="Images//activ.png" action="#{livresBean.activdesactivLiv}">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>
                     </p:column>
-                    </shiro:hasPermission>>
+                    </shiro:hasPermission>
                 </p:dataTable>
             </p:panel>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
         </h:form>
-        </shiro:hasPermission>>
+        </shiro:hasPermission>
         <shiro:lacksPermission name="Livres:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>>
+        </shiro:lacksPermission>
     </ui:define>
 </ui:composition>
 </html>
