@@ -22,7 +22,13 @@
                             <!-- column header -->
                             <f:facet name="header">#{I18N['permission.label.Denomination']}</f:facet>
                             <!-- row record -->
-                            <p:outputLabel value ="#{per.denomination}"/>
+                            <p:outputLabel value ="#{per.type}"/>
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">#{I18N['permission.label.Denomination']}</f:facet>
+                            <!-- row record -->
+                            <p:outputLabel value ="#{per.action}"/>
                         </p:column>
                     </p:dataTable>
                 </p:panel>
