@@ -34,18 +34,17 @@
                     <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
                                    itemLabel="#{ty}"
                                    itemValue="#{ty}"/>
-                    <p:ajax event="change" listener="#{permissionsBean.getPermissionsAction(ty)}" update="action"/>
+                    <p:ajax event="change" listener="#{permissionsBean.getpermissionsAction}" update="action"/>
                 </p:selectOneMenu>
                 <p:outputLabel value = "#{I18N['Permissions.label.Action']}"/>
                 <p:selectOneMenu value = "#{permissionsBean.action}" id="action">
-                    <!--<f:selectItems value = "#{permissionsBean.getPermissionsAction(ty)}" var="ac"
+                    <f:selectItems value = "#{permissionsBean.listAction}" var="ac"
                                    itemLabel="#{ac}"
-                                   itemValue="#{ac}"/>-->
+                                   itemValue="#{ac}"/>
                 </p:selectOneMenu>
-                <!--<h:message for="roleDenomination" styleClass="errorMessage"/>-->
             </p:panelGrid>
 
-            <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.newRoles}"/>
+            <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.newRoles}" ajax="false"/>
             <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
         </h:form>
         </shiro:hasPermission>

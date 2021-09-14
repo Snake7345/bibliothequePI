@@ -1,6 +1,7 @@
 package managedBean;
 
 import entities.Permissions;
+import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import services.SvcPermissions;
 
@@ -24,10 +25,14 @@ public class PermissionsBean implements Serializable {
 
     private String type;
     private String action;
+    private final List<Permissions> listPer = getReadAll();
+
+    private List<String> listAction = new ArrayList<>();
 
     @PostConstruct
     public void init()
     {
+        listAction = getpermissionsAction();
         type="";
         action="";
         permission = new Permissions();
@@ -103,7 +108,6 @@ Méthode désactivée pour raison de stabilité
     public List<String> getPermissionsType()
     {
         List<String> listType = new ArrayList<>();
-        List<Permissions> listPer= getReadAll();
         for(Permissions p : listPer)
         {
             if(!listType.contains(p.getType()))
@@ -114,17 +118,11 @@ Méthode désactivée pour raison de stabilité
         log.debug("listType : " + listType.size());
         return listType;
     }
-    public List<String> getPermissionsAction(Object ty)
+    public List<String> getpermissionsAction()
     {
-        List<String> listAction = new ArrayList<>();
-        List<Permissions> listPer= getReadAll();
         for(Permissions p : listPer)
         {
-            if(p.getType().equals(ty.toString()))
-            {
-
-                listAction.add(p.getAction());
-            }
+            listAction.add(p.getAction());
         }
         log.debug("type : " + type);
         log.debug("listAction : " + listAction.size());
@@ -156,5 +154,17 @@ Méthode désactivée pour raison de stabilité
 
     public void setAction(String action) {
         this.action = action;
+    }
+
+    public List<Permissions> getListPer() {
+        return listPer;
+    }
+
+    public List<String> getListAction() {
+        return listAction;
+    }
+
+    public void setListAction(List<String> listAction) {
+        this.listAction = listAction;
     }
 }

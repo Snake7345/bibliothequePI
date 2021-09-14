@@ -2,462 +2,104 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="demo:war exploded" />
+      <artifact name="bibliothequePI:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ac531ba-1fde-409c-a868-9f57b3592fc2" name="Changes" comment="v1.0.42 Le menu déroulant est désormais disponible, un thème de primefaces a été ajouté, plusieurs corrections mineurs MAIS LA BASE DE DONNEES n'est toujours pas accessible.">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ed791394-5a96-466a-9536-fc53cd716ae4/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ed791394-5a96-466a-9536-fc53cd716ae4/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ed791394-5a96-466a-9536-fc53cd716ae4/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/afterdark_1_0_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/cupertino_1_0_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/excite_bike_1_0_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/bundle/messages.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/connexion/EMF.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/connexion/EntityFinder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/connexion/EntityFinderImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/converter/AdressConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/converter/DateConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/converter/EditeurConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/converter/LocaliteConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/converter/RoleConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/converter/TimeStampConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Adresses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Editeurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/ExemplairesLivres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Factures.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/FacturesDetail.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Genres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Jours.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Livres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/LivresAuteurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/LivresGenres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Localites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Pays.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Penalites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Permissions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/PermissionsRoles.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Roles.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Tarifs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/TarifsJours.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/TarifsPenalites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/Utilisateurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/UtilisateursAdresses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/entities/UtilisateursBibliotheques.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/enumeration/ExemplairesLivresEtatEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/enumeration/FactureEtatEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/enumeration/UtilisateurSexeEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/AdressesBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/EditeursBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/ExemplairesLivresBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/ExemplairesLivresEnumBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/FactureBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/FactureDetailBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/FactureEnumBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/GenresBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/I18nBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/JoursBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/LivresBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/LocalitesBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/LoginBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/PaysBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/PenalitesBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/PermissionsBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/ReinitialisationBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/RolesBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/TarifsBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/TarifsJoursBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/TarifsPenalitesBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/UtilisateursBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/managedBean/UtilisateursEnumBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/objectCustom/JourCustom.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/objectCustom/PenaCustom.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/objectCustom/locationCustom.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pdfTools/Encadrement.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblio.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblioPena.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/security/SecurityManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/IService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/Service.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcAdresses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcAuteurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcBibliotheques.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcEditeurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcExemplairesLivres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcFacture.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcFactureDetail.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcGenres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcJours.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcLivres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcLivresAuteurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcLivresGenres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcLocalites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcPays.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcPenalites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcPermissionRoles.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcPermissions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcRoles.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcTarifs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcTarifsJours.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcTarifsPenalites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcUtilisateurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/services/SvcUtilisateursAdresses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/validators/DateValidator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/validators/EmailValidator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/validators/IsbnValidator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/validators/NomPrenomValidator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/validators/UtilisateurExistValidator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/Croix.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/activ.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/adresse.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/desactiv.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/edit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/editeurs.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/erreur-404.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/exemplaire.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/facturation.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/facture.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/genre.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/inspections.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/inspectionsmini.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/livremini.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/livres.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/location.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/pdf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/permissions.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/personne.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/plus.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/roles.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/sensinterdit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/tarifs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/META-INF/context.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/footer.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/header.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/template.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/META-INF/persistence.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/connexion/EMF.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/connexion/EntityFinder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/connexion/EntityFinderImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/AdressConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/DateConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/EditeurConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/LocaliteConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/RoleConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/TimeStampConverter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Adresses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Editeurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/ExemplairesLivres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Factures.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/FacturesDetail.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Genres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Jours.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Livres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/LivresAuteurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/LivresGenres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Localites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Pays.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Penalites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Permissions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/PermissionsRoles.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Roles.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Tarifs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/TarifsJours.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/TarifsPenalites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Utilisateurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/UtilisateursAdresses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/UtilisateursBibliotheques.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/enumeration/ExemplairesLivresEtatEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/enumeration/FactureEtatEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/enumeration/UtilisateurSexeEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/log4j.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/AdressesBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/EditeursBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ExemplairesLivresBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ExemplairesLivresEnumBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureDetailBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureEnumBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/GenresBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/I18nBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/JoursBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/LivresBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/LocalitesBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/LoginBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/PaysBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/PenalitesBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/PermissionsBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ReinitialisationBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/RolesBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/TarifsBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/TarifsJoursBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/TarifsPenalitesBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/UtilisateursBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/UtilisateursEnumBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/objectCustom/JourCustom.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/objectCustom/PenaCustom.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/objectCustom/locationCustom.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/Encadrement.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblio.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblioPena.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/security/SecurityManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/IService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/Service.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcAdresses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcAuteurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcBibliotheques.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcEditeurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcExemplairesLivres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcFacture.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcFactureDetail.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcGenres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcJours.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcLivres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcLivresAuteurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcLivresGenres.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcLocalites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcPays.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcPenalites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcPermissionRoles.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcPermissions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcRoles.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcTarifs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcTarifsJours.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcTarifsPenalites.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcUtilisateurs.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcUtilisateursAdresses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/DateValidator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/EmailValidator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/IsbnValidator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/NomPrenomValidator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/UtilisateurExistValidator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/faces-config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/activation-1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/afterdark-1.0.10.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/apiguardian-api-1.1.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/cupertino-1.0.10.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/eclipselink-2.7.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/eclipselink-2.7.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/eclipselink-2.7.7.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/eclipselink-3.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/encoder-1.2.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/excite-bike-1.0.10.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/fontbox-2.0.19.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/fontbox-2.0.24.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.annotation-api-2.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.el-api-4.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.enterprise.cdi-api-2.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.enterprise.cdi-api-3.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.faces-2.3.14.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.faces-3.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.inject-api-1.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.inject-api-2.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.interceptor-api-2.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.persistence-2.2.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.el-api-3.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.faces-api-2.3-pfd.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.inject-1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.interceptor-api-1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.json-1.0.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.mail-1.6.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.persistence-2.2.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.persistence-api-2.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.servlet-api-4.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.transaction-api-1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-annotations-api_1.3_spec-2.0.1.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-classfilewriter-1.2.4.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-classfilewriter-1.2.5.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-el-api_3.0_spec-2.0.0.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-interceptors-api_1.2_spec-2.0.0.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-logging-3.2.1.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-logging-3.4.2.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/junit-jupiter-api-5.7.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/junit-jupiter-engine-5.7.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/junit-platform-commons-1.7.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/junit-platform-engine-1.7.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/log4j-1.2.17.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-8.0.24.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-8.0.25.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/opentest4j-1.2.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-2.0.19.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-2.0.24.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-debugger-2.0.19.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-debugger-2.0.24.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-tools-2.0.19.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-tools-2.0.24.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/primefaces-10.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/protobuf-java-3.11.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-cache-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-config-core-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-config-ogdl-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-core-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-crypto-cipher-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-crypto-core-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-crypto-hash-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-event-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-faces-2.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-lang-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-servlet-plugin-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-web-1.7.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.21.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.32.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/slf4j-log4j12-1.7.32.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/validation-api-2.0.1.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-api-3.1.SP2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-api-4.0.SP1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-core-impl-3.1.4.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-core-impl-4.0.2.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-environment-common-3.1.4.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-environment-common-4.0.2.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-jsf-3.1.4.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-jsf-4.0.2.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-probe-core-3.1.4.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-probe-core-4.0.2.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-se-core-3.1.4.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-se-core-4.0.2.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-servlet-core-3.1.4.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-servlet-core-4.0.2.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-spi-3.1.SP2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-spi-4.0.SP1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-web-3.1.4.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-web-4.0.2.Final.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/shiro.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/css/stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/envoiInfo.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formConfirmationAuteur.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formConfirmationExemplaireLivre.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formConfirmationLivre.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditAdress.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditAuteur.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditBibliotheque.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditEditeur.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditExemplaireLivre.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditGenre.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditLivre.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditTarif.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditUtilisateur.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEtatLivre.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEtatQuestion.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewAdress.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewAuteur.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewBibliotheque.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewEditeur.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewExemLivre.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewFact.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewGenre.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewLivre.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewPermission.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewRole.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewTarif.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewUtilisateur.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewUtilisateurCli.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formReinitialisation.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchAuteur.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchLivre.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchUtilisateur.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/livreDetail.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/login.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAdresses.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAuteurs.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableBibliotheques.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableEditeurs.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableExemplaireLivres.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableFactures.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableGenres.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableLivres.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tablePermissions.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableRoles.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableTarifs.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateurs.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateursCli.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/JpaSupport-project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/JpaSupport.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/bibliothequePI_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/bibliothequePI_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/JpaSupport-project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/JpaSupport.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/bibliothequePI_war.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/bibliothequePI_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_javax_mail_1_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_enterprise_jakarta_enterprise_cdi_api_2_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_inject_jakarta_inject_api_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_el_javax_el_api_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_enterprise_cdi_api_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_faces_javax_faces_api_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_interceptor_javax_interceptor_api_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_javax_persistence_api_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_transaction_javax_transaction_api_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_2_0_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_pdfbox_fontbox_2_0_19.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_pdfbox_pdfbox_2_0_19.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_pdfbox_pdfbox_debugger_2_0_19.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_pdfbox_pdfbox_tools_2_0_19.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_cache_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_config_core_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_config_ogdl_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_core_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_crypto_cipher_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_crypto_core_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_crypto_hash_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_event_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_lang_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_servlet_plugin_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_web_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_commonj_sdo_2_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_eclipselink_2_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_jakarta_persistence_2_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jakarta_faces_2_3_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_classfilewriter_jboss_classfilewriter_1_2_4_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_2_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_annotation_jboss_annotations_api_1_3_spec_2_0_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_el_jboss_el_api_3_0_spec_2_0_0_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_interceptor_jboss_interceptors_api_1_2_spec_2_0_0_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_environment_weld_environment_common_3_1_4_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_module_weld_jsf_3_1_4_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_module_weld_web_3_1_4_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_probe_weld_probe_core_3_1_4_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_se_weld_se_core_3_1_4_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_servlet_weld_servlet_core_3_1_4_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_weld_api_3_1_SP2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_weld_core_impl_3_1_4_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_weld_spi_3_1_SP2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_owasp_encoder_encoder_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_primefaces_primefaces_10_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_32.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/shiro_faces_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/13af90cb-c831-4625-83fd-97ef0c2466cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ed791394-5a96-466a-9536-fc53cd716ae4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/13af90cb-c831-4625-83fd-97ef0c2466cf/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ed791394-5a96-466a-9536-fc53cd716ae4/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ed791394-5a96-466a-9536-fc53cd716ae4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ed791394-5a96-466a-9536-fc53cd716ae4/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ed791394-5a96-466a-9536-fc53cd716ae4/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ed791394-5a96-466a-9536-fc53cd716ae4/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ed791394-5a96-466a-9536-fc53cd716ae4/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_11_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_javax_mail_1_6_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_enterprise_jakarta_enterprise_cdi_api_2_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_inject_jakarta_inject_api_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_el_javax_el_api_3_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_enterprise_cdi_api_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_faces_javax_faces_api_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_interceptor_javax_interceptor_api_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_javax_persistence_api_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_transaction_javax_transaction_api_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_2_0_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_24.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_pdfbox_fontbox_2_0_19.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_pdfbox_pdfbox_2_0_19.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_pdfbox_pdfbox_debugger_2_0_19.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_pdfbox_pdfbox_tools_2_0_19.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_cache_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_config_core_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_config_ogdl_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_core_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_crypto_cipher_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_crypto_core_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_crypto_hash_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_event_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_lang_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_servlet_plugin_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_web_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_commonj_sdo_2_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_eclipselink_2_7_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_jakarta_persistence_2_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jakarta_faces_2_3_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_classfilewriter_jboss_classfilewriter_1_2_4_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_2_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_annotation_jboss_annotations_api_1_3_spec_2_0_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_el_jboss_el_api_3_0_spec_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_interceptor_jboss_interceptors_api_1_2_spec_2_0_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_environment_weld_environment_common_3_1_4_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_module_weld_jsf_3_1_4_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_module_weld_web_3_1_4_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_probe_weld_probe_core_3_1_4_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_se_weld_se_core_3_1_4_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_servlet_weld_servlet_core_3_1_4_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_weld_api_3_1_SP2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_weld_core_impl_3_1_4_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_weld_weld_spi_3_1_SP2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_6_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_6_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_6_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_6_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_owasp_encoder_encoder_1_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_primefaces_primefaces_10_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_21.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_32.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/shiro_faces_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/afterdark_1_0_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/cupertino_1_0_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/excite_bike_1_0_10.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaJDK231/bin/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/JavaJDK231/bin/desktop.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaJDK231/bin/jmc.ini" beforeDir="false" afterPath="$PROJECT_DIR$/JavaJDK231/bin/jmc.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaJDK231/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/JavaJDK231/desktop.ini" afterDir="false" />
@@ -1240,17 +882,129 @@
       <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.38/webapps/manager/status.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.38/webapps/manager/status.xsd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.38/webapps/manager/xform.xsl" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.38/webapps/manager/xform.xsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.38/work/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.38/work/desktop.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bibliothequePI.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bibliothequePI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bibliothequePI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewGenre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewGenre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/META-INF/context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/META-INF/context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/footer.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/footer.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/header.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/template.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/template.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/faces-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/afterdark-1.0.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/apiguardian-api-1.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/cdi-api-2.0-PFD2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/cupertino-1.0.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/eclipselink-2.7.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/eclipselink-2.7.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/eclipselink-3.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/excite-bike-1.0.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/fontbox-2.0.24.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.annotation-api-2.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.el-api-4.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.enterprise.cdi-api-3.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.faces-3.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.inject-api-2.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.interceptor-api-2.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.el-api-3.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.faces-api-2.3-pfd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.inject-1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.interceptor-api-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.json-1.0.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.persistence-2.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.persistence-api-2.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.servlet-api-4.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.transaction-api-1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-classfilewriter-1.2.5.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-logging-3.4.2.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/junit-jupiter-api-5.7.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/junit-jupiter-engine-5.7.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/junit-platform-commons-1.7.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/junit-platform-engine-1.7.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-8.0.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/opentest4j-1.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-2.0.24.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-debugger-2.0.24.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-tools-2.0.24.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-faces-2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.32.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/validation-api-2.0.1.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-api-4.0.SP1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-core-impl-4.0.2.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-environment-common-4.0.2.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-jsf-4.0.2.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-probe-core-4.0.2.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-se-core-4.0.2.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-servlet-core-4.0.2.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-spi-4.0.SP1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-web-4.0.2.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/shiro.ini" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/shiro.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/bienvenue.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/bienvenue.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/css/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/envoiInfo.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/envoiInfo.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formConfirmationAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formConfirmationAuteur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formConfirmationExemplaireLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formConfirmationExemplaireLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formConfirmationLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formConfirmationLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditAdress.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditAdress.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditAuteur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditBibliotheque.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditBibliotheque.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditEditeur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditEditeur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditExemplaireLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditExemplaireLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditGenre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditGenre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditTarif.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditUtilisateur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEtatLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEtatLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEtatQuestion.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEtatQuestion.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewAdress.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewAdress.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewAuteur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewBibliotheque.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewBibliotheque.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewEditeur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewEditeur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewExemLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewExemLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewFact.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewFact.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewGenre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewGenre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewPermission.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewPermission.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewRole.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewTarif.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewUtilisateur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewUtilisateurCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewUtilisateurCli.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formReinitialisation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formReinitialisation.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchAuteur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchUtilisateur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/livreDetail.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/livreDetail.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/login.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAdresses.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAdresses.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAuteurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAuteurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableBibliotheques.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableEditeurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableEditeurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableExemplaireLivres.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableFactures.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableFactures.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableGenres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableGenres.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableLivres.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tablePermissions.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tablePermissions.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableRoles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableRoles.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableTarifs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableTarifs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateursCli.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="directory" />
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -1274,30 +1028,22 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Users\theba\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\202.7660.26\plugins\maven\lib\maven3" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="1y7mYaRFR8kkjsJkTpx2QcKZcOL" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1y8lv6RuqNb8Ov1tTky0SnuUw4Z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Lib jar/cupertino-1.0.10.jar" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.50210613" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Lib jar/excite-bike-1.0.10.jar" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.50313586" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -1306,17 +1052,18 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 9.0.38" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.38" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.38" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.38" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/bibliothequePI_war_exploded/" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="demo:war exploded">
+        <artifact name="bibliothequePI:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/demo_war_exploded" />
+            <option name="CONTEXT_PATH" value="/bibliothequePI_war_exploded" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="4c9ddda2-dbf4-457e-b299-07883b12344e" />
+        <option name="BASE_DIRECTORY_NAME" value="30e815c3-2c0f-48fd-aac0-269709587d51" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -1324,7 +1071,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="1780" />
+        <option name="DEBUG_PORT" value="25051" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -1389,7 +1136,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="demo:war exploded" />
+          <artifact name="bibliothequePI:war exploded" />
         </option>
       </method>
     </configuration>
@@ -1397,33 +1144,14 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7ac531ba-1fde-409c-a868-9f57b3592fc2" name="Changes" comment="" />
-      <created>1631611052265</created>
+      <changelist id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="" />
+      <created>1631641327535</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1631611052265</updated>
-      <workItem from="1631611056691" duration="8000" />
-      <workItem from="1631611069752" duration="156000" />
-      <workItem from="1631611260909" duration="1546000" />
-      <workItem from="1631612825456" duration="3201000" />
-      <workItem from="1631616081500" duration="356000" />
-      <workItem from="1631616453200" duration="10000" />
-      <workItem from="1631616501797" duration="1798000" />
-      <workItem from="1631618331014" duration="25000" />
-      <workItem from="1631618418260" duration="2745000" />
-      <workItem from="1631621231152" duration="1162000" />
-      <workItem from="1631622421359" duration="4457000" />
-      <workItem from="1631626945447" duration="508000" />
-      <workItem from="1631627494399" duration="339000" />
+      <updated>1631641327535</updated>
+      <workItem from="1631641332197" duration="148000" />
+      <workItem from="1631641532323" duration="81000" />
     </task>
-    <task id="LOCAL-00001" summary="v1.0.42 Le menu déroulant est désormais disponible, un thème de primefaces a été ajouté, plusieurs corrections mineurs MAIS LA BASE DE DONNEES n'est toujours pas accessible.">
-      <created>1631627805869</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1631627805869</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1440,12 +1168,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$/Sauvegarde" />
-    </ignored-roots>
-    <MESSAGE value="v1.0.42 Le menu déroulant est désormais disponible, un thème de primefaces a été ajouté, plusieurs corrections mineurs MAIS LA BASE DE DONNEES n'est toujours pas accessible." />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.0.42 Le menu déroulant est désormais disponible, un thème de primefaces a été ajouté, plusieurs corrections mineurs MAIS LA BASE DE DONNEES n'est toujours pas accessible." />
   </component>
 </project>
