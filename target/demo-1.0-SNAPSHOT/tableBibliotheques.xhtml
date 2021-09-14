@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['application.bibliotheque.title']}</ui:define>
+    <ui:define name="content">
+        <shiro:hasPermission name="Bibliotheques:Lire">
+        <h:form prependId="false">
+                <p:panel layout="block" id="content">
+                    <p:growl id="growl" showDetail="true" sticky="true" />
+                    <h2 style="text-align:center">#{I18N['application.bibliotheque.title']}</h2>
+                    <p:dataTable value="#{bibliothequesBean.readAll}" var="bi" id="tableClient"
+                                 Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">#{I18N['bibliotheque.label.Nom']}</f:facet>
+                            <!-- row record -->
+                            <p:outputLabel value ="#{bi.nom}"/>
+                        </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">#{I18N['adresse.label.complete']}</f:facet>
+                            <!-- row record -->
+                            <ui:repeat value="#{bi.adresses}" var="biad">
+                                <p:outputLabel value ="#{biad.rue}, #{biad.numero} #{biad.boite} #{biad.localites.cp} #{biad.localites.ville}"/>
+                            </ui:repeat>
+                        </p:column>
+                        <shiro:hasPermission name="Bibliotheques:Modification">
+                        <p:column>
+                            <p:commandButton icon="pi pi-pencil" value="Modifier" action="formEditBibliotheque">		<!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" /><!-- u minuscule -->
+                            </p:commandButton>
+                        </p:column>
+                        </shiro:hasPermission>
+                    </p:dataTable>
+                </p:panel>
+            <shiro:hasPermission name="Bibliotheques:Creer">
+            <p:commandButton icon="pi pi-plus" rendered="#{bibliothequesBean.checkbibli}" value="#{I18N['application.button.new']}" action="formNewBibliotheque" />
+            </shiro:hasPermission>
+            <shiro:hasPermission name="Autre:Connexion">
+                <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+            </shiro:hasPermission>
+            </h:form>
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Bibliotheques:Lire">
+        <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+        </shiro:lacksPermission>
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['application.utilisateur.title']}</ui:define>
+    <ui:define name="content">
+        <shiro:hasPermission name="Roles:Lire">
+        <h:form prependId="false">
+            <p:panel layout="block" id="content">
+                <p:growl id="growl" showDetail="true" sticky="true" />
+                <h2 style="text-align:center">#{I18N['application.roles.title']}</h2>
+                <p:dataTable value="#{rolesBean.readAll}" var="rol" id="tableRoles"
+                             Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                    <p:column>
+                        <!-- column header -->
+                        <f:facet name="header">#{I18N['commune.label.denomination']}</f:facet>
+                        <!-- row record -->
+                        <p:outputLabel value ="#{rol.denomination}"/>
+                    </p:column>
+                    <shiro:hasPermission name="Roles:ActivDesactiv">
+                    <p:column>
+                        <!--TODO : Verifier que le shiro bien le dessus sur le c:if et qu'ils sont bien compatibles-->
+                        <shiro:hasPermission name="Roles:ActivDesactiv">
+                        <c:if test= "#{rol.actif eq true}">
+                        <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}"
+                                         icon="pi pi-power-off" value ="Desactiver" action="#{rolesBean.activdesactivRol}">
+                            <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
+                        </p:commandButton>
+                        </c:if>
+                        </shiro:hasPermission>
+                        <shiro:hasPermission name="Roles:ActivDesactiv">
+                        <c:if test= "#{rol.actif ne true}">
+                            <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}"
+                                             icon="pi pi-check" value ="Activer" action="#{rolesBean.activdesactivRol}">
+                                <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
+                            </p:commandButton>
+                        </c:if>
+                        </shiro:hasPermission>
+                    </p:column>
+                    </shiro:hasPermission>
+                </p:dataTable>
+            </p:panel>
+            <shiro:hasPermission name="Roles:Creer">
+            <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewRole" />
+            </shiro:hasPermission>
+            <shiro:hasPermission name="Autre:Connexion">
+            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+            </shiro:hasPermission>
+        </h:form>
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Roles:Lire">
+        <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+        </shiro:lacksPermission>
+    </ui:define>
+</ui:composition>
+</html>
