@@ -15,14 +15,13 @@
 			<p:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
 			<h:form>
 				<p:commandButton icon="pi pi-sign-out" value="#{I18N['application.button.deconnexion']}" action="#{loginBean.deconnexion}"
-								 class="lienMenu"/>
+								 id="lienMenu"/>
 			</h:form>
 
 		</p:panelGrid>
 		<shiro:authenticated>
-			<p:panelGrid columns="5">
 				<h:form>
-					<p:menubar>
+					<p:menubar id="menubar">
 						<shiro:hasPermission name="Permissions:Lire">
 							<p:submenu label="Gestion des permissions" icon="pi pi-fw pi-file">
 								<shiro:hasPermission name="Permissions:Lire">
@@ -136,7 +135,6 @@
 						</shiro:hasPermission>
 					</p:menubar>
 				</h:form>
-			</p:panelGrid>
 		</shiro:authenticated>
 	</ui:insert>
 	</div>
