@@ -16,7 +16,7 @@
             <p:panel layout="block" id="content">
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <h2 style="text-align:center">#{I18N['application.livre.title']}</h2>
-                <p:dataTable value="#{livresBean.listLiv}" var="liv" id="tableLivres"
+                <p:dataTable value="#{livresBean.listLiv}" emptyMessage="Aucun enregistrement trouvé" var="liv" id="tableLivres"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <p:column>
                         <!-- column header -->
@@ -61,13 +61,13 @@
                 </p:dataTable>
             </p:panel>
             <shiro:hasPermission name="Livres:Creer">
-            <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewLivre" />
+            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewLivre" />
             </shiro:hasPermission>
-            <p:commandButton icon="pi pi-search" value="#{I18N['application.button.find']}" action="formSearchLivre"/>
-            <p:commandButton icon="pi pi-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}"/>
-            <p:commandButton icon="pi pi-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}"/>
+            <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchLivre"/>
+            <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}"/>
+            <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}"/>
             <shiro:hasPermission name="Autre:Connexion">
-            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushBienv}"/>
+            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushBienv}"/>
             </shiro:hasPermission>
         </h:form>
         </shiro:hasPermission>

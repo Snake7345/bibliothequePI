@@ -1,6 +1,7 @@
 package services;
 
 import entities.Bibliotheques;
+import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -38,6 +39,10 @@ public class SvcBibliotheques extends Service<Bibliotheques> implements Serializ
 		}
 
 		return bibliotheques;
+	}
+
+	public List<Bibliotheques> findAllBiblioActiv() {
+		return finder.findByNamedQuery("Bibliotheques.findAllActiv", null);
 	}
 
 }

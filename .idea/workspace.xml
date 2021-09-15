@@ -9,7 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.0.45 ajout de quelques logos pour le menu de base">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.0.46 ajout de logos pour le menu">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/formSelectBiblio.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/bibliothequePI_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/bibliothequePI_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/13af90cb-c831-4625-83fd-97ef0c2466cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/13af90cb-c831-4625-83fd-97ef0c2466cf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaJDK231/bin/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/JavaJDK231/bin/desktop.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaJDK231/bin/jmc.ini" beforeDir="false" afterPath="$PROJECT_DIR$/JavaJDK231/bin/jmc.ini" afterDir="false" />
@@ -793,8 +797,36 @@
       <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.38/webapps/manager/status.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.38/webapps/manager/status.xsd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.38/webapps/manager/xform.xsl" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.38/webapps/manager/xform.xsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.38/work/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.38/work/desktop.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Bibliotheques.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Bibliotheques.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcBibliotheques.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcBibliotheques.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bundle/messages.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entities/Bibliotheques.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entities/Bibliotheques.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/BibliothequesBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/BibliothequesBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcBibliotheques.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/services/SvcBibliotheques.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/header.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Bibliotheques.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Bibliotheques.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/BibliothequesBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/BibliothequesBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcBibliotheques.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcBibliotheques.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/css/stylesheet.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -812,11 +844,15 @@
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
+        <entry key="JPA Inspector" value="true" />
+        <entry key="JPA Palette" value="true" />
         <entry key="JPA Structure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
       <map>
+        <entry key="JPA Inspector" value="false" />
+        <entry key="JPA Palette" value="false" />
         <entry key="JPA Structure" value="false" />
       </map>
     </option>
@@ -839,15 +875,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Lib jar/excite-bike-1.0.10.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/log4j.properties" />
     <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.50313586" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\theba\Documents\GitHub\bibliothequePI\src\main\webapp" />
       <recent name="C:\Users\theba\Documents\GitHub\bibliothequePI\Lib jar" />
     </key>
   </component>
@@ -951,7 +988,13 @@
       <updated>1631641327535</updated>
       <workItem from="1631641332197" duration="148000" />
       <workItem from="1631641532323" duration="289000" />
-      <workItem from="1631696882794" duration="13264000" />
+      <workItem from="1631696882794" duration="13371000" />
+      <workItem from="1631723820749" duration="3534000" />
+      <workItem from="1631729023894" duration="1745000" />
+      <workItem from="1631736338209" duration="119000" />
+      <workItem from="1631736481349" duration="17000" />
+      <workItem from="1631736540013" duration="107000" />
+      <workItem from="1631736661722" duration="1552000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -974,7 +1017,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631711483430</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="v1.0.46 ajout de logos pour le menu">
+      <created>1631712298207</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1631712298207</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -996,6 +1046,7 @@
     <MESSAGE value="v1.0.43 Mise a jour en tout genre" />
     <MESSAGE value="v1.0.44 Correction au niveau graphique, plus de bordure visibles, corrections de leger bugs au niveau des tableaux" />
     <MESSAGE value="v1.0.45 ajout de quelques logos pour le menu de base" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.0.45 ajout de quelques logos pour le menu de base" />
+    <MESSAGE value="v1.0.46 ajout de logos pour le menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.0.46 ajout de logos pour le menu" />
   </component>
 </project>

@@ -10,6 +10,7 @@ import java.util.Objects;
 @NamedQueries
         ({
                 @NamedQuery(name = "Bibliotheques.findAll", query = "SELECT b FROM Bibliotheques b"),
+                @NamedQuery(name = "Bibliotheques.findAllActiv", query = "SELECT b FROM Bibliotheques b WHERE b.actif=TRUE"),
 
         })
 public class Bibliotheques implements Serializable {
@@ -18,6 +19,7 @@ public class Bibliotheques implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idBibliotheques;
     private String nom;
+    private boolean actif = true;
     @OneToMany(mappedBy = "bibliotheques")
     private Collection<Adresses> adresses;
     @OneToMany(mappedBy = "bibliotheques")
@@ -38,6 +40,16 @@ public class Bibliotheques implements Serializable {
 
     public void setIdBibliotheques(int idBibliotheques) {
         this.idBibliotheques = idBibliotheques;
+    }
+
+    @Basic
+    @Column(name = "Actif", nullable = false)
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
     }
 
     @Basic
@@ -72,12 +84,12 @@ public class Bibliotheques implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bibliotheques that = (Bibliotheques) o;
-        return idBibliotheques == that.idBibliotheques && nom.equals(that.nom) && adresses.equals(that.adresses) && Objects.equals(exemplairesLivres, that.exemplairesLivres) && Objects.equals(tarifs, that.tarifs) && Objects.equals(factures, that.factures) && Objects.equals(utilisateurs, that.utilisateurs);
+        return idBibliotheques == that.idBibliotheques && actif == that.actif && nom.equals(that.nom) && adresses.equals(that.adresses) && Objects.equals(exemplairesLivres, that.exemplairesLivres) && Objects.equals(tarifs, that.tarifs) && Objects.equals(factures, that.factures) && Objects.equals(utilisateurs, that.utilisateurs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idBibliotheques, nom, adresses, exemplairesLivres, tarifs, factures,utilisateurs);
+        return Objects.hash(idBibliotheques, actif, nom, adresses, exemplairesLivres, tarifs, factures,utilisateurs);
     }
 
     public Collection<Adresses> getAdresses() {
@@ -120,5 +132,6 @@ public class Bibliotheques implements Serializable {
         this.adresses = biblio.adresses;
         this.exemplairesLivres = biblio.exemplairesLivres;
         this.tarifs = biblio.tarifs;
+        this.actif = biblio.actif;
     }
 }

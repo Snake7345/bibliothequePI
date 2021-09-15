@@ -16,7 +16,7 @@
             <p:panel layout="block" id="content">
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <h2 style="text-align:center">#{I18N['application.fact.title']}</h2>
-                <p:dataTable value="#{factureBean.readAll}" var="fa" id="tableFactures"
+                <p:dataTable value="#{factureBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="fa" id="tableFactures"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <p:column>
                         <!-- column header -->
@@ -41,11 +41,11 @@
                 </p:dataTable>
             </p:panel>
             <shiro:hasPermission name="Factures:Creer">
-            <p:commandButton value="#{I18N['application.button.new']}" action="formNewFact" />
-                <p:commandButton value="#{I18N['application.button.returnlivre']}" action="formEtatQuestion"/>
+            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewFact" />
+                <p:commandButton icon="fa fa-fw fa-book" value="#{I18N['application.button.returnlivre']}" action="formEtatQuestion"/>
             </shiro:hasPermission>
             <shiro:hasPermission name="Autre:Connexion">
-            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
             </shiro:hasPermission>
         </h:form>
         </shiro:hasPermission>

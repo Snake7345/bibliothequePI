@@ -13,6 +13,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="bibliothequePI" />
+          <element id="file-copy" path="$PROJECT_DIR$/log4j.properties" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.primefaces:primefaces:10.0.0" />
