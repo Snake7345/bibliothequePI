@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.0.43 Mise a jour en tout genre">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.0.44 Correction au niveau graphique, plus de bordure visibles, corrections de leger bugs au niveau des tableaux">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaJDK231/bin/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/JavaJDK231/bin/desktop.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaJDK231/bin/jmc.ini" beforeDir="false" afterPath="$PROJECT_DIR$/JavaJDK231/bin/jmc.ini" afterDir="false" />
@@ -794,10 +794,11 @@
       <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.38/webapps/manager/xform.xsl" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.38/webapps/manager/xform.xsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apache-tomcat-9.0.38/work/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/apache-tomcat-9.0.38/work/desktop.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/bienvenue.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bienvenue.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditBibliotheque.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditBibliotheque.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/header.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/bienvenue.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/bienvenue.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/css/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditBibliotheque.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditBibliotheque.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/login.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -954,7 +955,7 @@
       <updated>1631641327535</updated>
       <workItem from="1631641332197" duration="148000" />
       <workItem from="1631641532323" duration="289000" />
-      <workItem from="1631696882794" duration="11060000" />
+      <workItem from="1631696882794" duration="12400000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -963,7 +964,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631641720041</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="v1.0.44 Correction au niveau graphique, plus de bordure visibles, corrections de leger bugs au niveau des tableaux">
+      <created>1631710109625</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1631710109625</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -983,6 +991,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v1.0.43 Mise a jour en tout genre" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.0.43 Mise a jour en tout genre" />
+    <MESSAGE value="v1.0.44 Correction au niveau graphique, plus de bordure visibles, corrections de leger bugs au niveau des tableaux" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.0.44 Correction au niveau graphique, plus de bordure visibles, corrections de leger bugs au niveau des tableaux" />
   </component>
 </project>
