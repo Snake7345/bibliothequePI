@@ -17,6 +17,7 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class BibliothequesBean implements Serializable {
     private Bibliotheques bibliotheque;
     private String nomBiblio;
 
+
     private Adresses adresses;
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
 
@@ -37,7 +39,9 @@ public class BibliothequesBean implements Serializable {
     @PostConstruct
     public void init()
     {
+
         bibliotheque = new Bibliotheques();
+        listBiblioActiv = getReadBiblioActiv();
     }
 
     // Méthode qui va appellé la méthode save() pour créer/modifier une bibliotheque en DB et qui envoi un message si jamais le nom de la biblio a pas été changé ou si l'utilisateur
@@ -157,6 +161,24 @@ public class BibliothequesBean implements Serializable {
         return listBiblioActiv;
     }
 
+    public void beforePageLoad() throws IOException {
+        String userdir = System.getProperty("user.dir");
+        userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\";
+        File f = new File(userdir + "bibliotheque.txt");
+        log.debug("entree debut programme");
+        if(!f.isFile())
+        {
+            log.debug("Fichier biblio non trouve");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("formSelectBiblio.xhtml");
+        }
+        else
+        {
+            log.debug("Fichier biblio trouve");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+        }
+    }
+
+
     public String createFichier()
     {
         String userdir = System.getProperty("user.dir");
@@ -165,19 +187,21 @@ public class BibliothequesBean implements Serializable {
 
             // Recevoir le fichier
             File f = new File(userdir + "bibliotheque.txt");
-            FileWriter fw = new FileWriter(userdir + "bibliotheque.txt");
+
             // Créer un nouveau fichier
             // Vérifier s'il n'existe pas
             if (f.createNewFile()) {
+                FileWriter fw = new FileWriter(userdir + "bibliotheque.txt");
                 fw.write(nomBiblio);
                 System.out.println("File created");
+                fw.close();
             }
             else {
                 System.out.println("File already exists");
             }
         }
         catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return "/login?faces-redirect=true";
 

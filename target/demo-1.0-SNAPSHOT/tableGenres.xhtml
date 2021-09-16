@@ -16,7 +16,7 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.genre.title']}</h2>
-                    <p:dataTable value="#{genresBean.readAll}" var="gen" id="tableGenres"
+                    <p:dataTable value="#{genresBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="gen" id="tableGenres"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column>
                             <!-- column header -->
@@ -39,10 +39,10 @@
                     </p:dataTable>
                 </p:panel>
                 <shiro:hasPermission name="Genres:Creer">
-                    <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewGenre" />
+                    <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewGenre" />
                 </shiro:hasPermission>
                 <shiro:hasPermission name="Autre:Connexion">
-                    <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+                    <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
                 </shiro:hasPermission>
             </h:form>
         </shiro:hasPermission>

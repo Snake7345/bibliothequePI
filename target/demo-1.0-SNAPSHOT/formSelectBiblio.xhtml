@@ -22,13 +22,13 @@
             <h:form prependId="false">
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <p:panelGrid columns="2" style="margin: 0 auto">
-                    <p:outputLabel for="biblioSelect" value="#{I18N['bibliotheque.label.Nom']}"/>
+                    <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}"/>
                     <p:selectOneMenu value = "#{bibliothequesBean.nomBiblio}" id="nombib">
                         <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
-                                       itemLabel="#{biblio}"
-                                       itemValue="#{biblio}"/>
+                                       itemLabel="#{biblio.nom}"
+                                       itemValue="#{biblio.idBibliotheques}"/>
                     </p:selectOneMenu>
-                    <p:commandButton icon="pi pi-sign-in" value ="#{I18N['application.button.pagelogin']}" action="#{bibliothequesBean.createFichier}" update="growl" ajax="false"/>
+                    <p:commandButton icon="fa fa-fw fa-sign-in" value ="#{I18N['application.button.pagelogin']}" action="#{bibliothequesBean.createFichier}" update="growl" ajax="false"/>
                 </p:panelGrid>
 
             </h:form>
