@@ -78,9 +78,9 @@
 
                 </p:panelGrid>
 
-                <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtilCli}"/>
+                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtilCli}"/>
                 <shiro:hasPermission name="Autre:Connexion">
-                <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
+                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
                 </shiro:hasPermission>
             </h:form>
         </shiro:hasPermission>

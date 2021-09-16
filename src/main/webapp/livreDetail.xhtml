@@ -72,7 +72,7 @@
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:Modification">
                     <p:column>
-                        <p:commandButton icon="pi pi-pencil" value="Modifier" action="formEditLivre">		<!-- u minuscule -->
+                        <p:commandButton icon="fa fa-fw fa-pencil" value="Modifier" action="formEditLivre">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
@@ -86,7 +86,7 @@
                     </shiro:hasPermission>
                 </p:dataTable>
             </p:panel>
-            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
+            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Livres:Lire">
