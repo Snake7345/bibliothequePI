@@ -4,6 +4,11 @@ import entities.Adresses;
 import entities.Bibliotheques;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.mgt.DefaultSecurityManager;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.DefaultSessionManager;
+import security.SecurityManager;
 import services.SvcAdresses;
 import services.SvcBibliotheques;
 import services.SvcUtilisateurs;
@@ -20,6 +25,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Named
@@ -28,6 +34,7 @@ public class BibliothequesBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Bibliotheques bibliotheque;
+    private String biblio;
     private String nomBiblio;
 
 
@@ -128,6 +135,42 @@ public class BibliothequesBean implements Serializable {
         }
     }
 
+    public String flushAccueil()
+    {
+        init();
+        return "/bienvenue?faces-redirect=true";
+    }
+
+    public void reinitialisation()
+    {
+        String userdir = System.getProperty("user.dir");
+        userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\";
+
+        try{
+
+            File f = new File(userdir + "bibliotheque.txt");
+
+            if(f.delete())
+            {
+                log.debug(f.getName() + " est supprimé.");
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Reinitialisation du programme",null));
+
+                SecurityManager.processToLogout();
+                beforePageLoad();
+            }
+            else
+            {
+                log.debug("Opération de suppression echouée");
+                /*TODO : ajouter une erreur 404 serait une bonne idée*/
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     /*
      * Méthode qui permet de vider les variables et de revenir sur le table Bibliothèques .
      *
@@ -159,6 +202,13 @@ public class BibliothequesBean implements Serializable {
 
         serviceB.close();
         return listBiblioActiv;
+    }
+
+    public List<Bibliotheques> getReadBiblioId()
+    {
+
+        SvcBibliotheques serviceB = new SvcBibliotheques();
+        listBiblioActiv = serviceB.findAllBiblioActiv();
     }
 
     public void beforePageLoad() throws IOException {
@@ -193,11 +243,11 @@ public class BibliothequesBean implements Serializable {
             if (f.createNewFile()) {
                 FileWriter fw = new FileWriter(userdir + "bibliotheque.txt");
                 fw.write(nomBiblio);
-                System.out.println("File created");
+                log.debug("File created");
                 fw.close();
             }
             else {
-                System.out.println("File already exists");
+                log.debug("File already exists");
             }
         }
         catch (Exception e) {
@@ -206,6 +256,7 @@ public class BibliothequesBean implements Serializable {
         return "/login?faces-redirect=true";
 
     }
+
     //-------------------------------Getter & Setter--------------------------------------------
 
     public Bibliotheques getBibliotheque() {
@@ -239,5 +290,13 @@ public class BibliothequesBean implements Serializable {
 
     public void setListBiblioActiv(List<Bibliotheques> listBiblioActiv) {
         this.listBiblioActiv = listBiblioActiv;
+    }
+
+    public String getBiblio() {
+        return biblio;
+    }
+
+    public void setBiblio(String biblio) {
+        this.biblio = biblio;
     }
 }

@@ -11,6 +11,7 @@ import java.util.Objects;
         ({
                 @NamedQuery(name = "Bibliotheques.findAll", query = "SELECT b FROM Bibliotheques b"),
                 @NamedQuery(name = "Bibliotheques.findAllActiv", query = "SELECT b FROM Bibliotheques b WHERE b.actif=TRUE"),
+                @NamedQuery(name = "Bibliotheques.findById", query = "SELECT b FROM Bibliotheques b WHERE b.idBibliotheques=:idBibliotheques"),
 
         })
 public class Bibliotheques implements Serializable {

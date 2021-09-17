@@ -40,8 +40,8 @@
                 </p:selectOneMenu>
             </p:panelGrid>
 
-            <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}"/>
-            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
+            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}"/>
+            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Bibliotheques:Creer">

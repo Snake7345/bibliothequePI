@@ -56,7 +56,7 @@ public class SvcRoles extends Service<Roles> implements Serializable {
 	}
 
 	public Roles deleteRole(Roles rol){
-		System.out.println("Je delete le role :" + rol.getDenomination());
+		log.debug("Je delete le role :" + rol.getDenomination());
 		rol.setActif(false);
 		return rol;
 	}

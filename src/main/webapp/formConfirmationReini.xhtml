@@ -8,20 +8,20 @@
       xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="Template/template.xhtml">
-    <ui:define name="title">#{I18N['livre.form.confirm']}</ui:define>
+    <ui:define name="title">#{I18N['auteur.form.confirm']}</ui:define>
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <shiro:hasPermission name="Livres:ActivDesactiv">
+        <shiro:hasRole name="1">
         <h:form>
-        <h2 style="text-align:center">#{I18N['livre.form.questionconfirm']}</h2>
-        <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['commune.label.oui']}" action="#{livresBean.activdesactivLiv}"/>
-        <p:commandButton value="#{I18N['commune.label.non']}" action="#{livresBean.flushLiv}" immediate="true"/>
-        </h:form>
-        </shiro:hasPermission>
-        <shiro:lacksPermission name="Livres:ActivDesactiv">
+        <h2 style="text-align:center">#{I18N['auteur.form.questionconfirm']}</h2>
+            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['commune.label.oui']}" action="#{bibliothequesBean.reinitialisation}"/>
+            <p:commandButton value="#{I18N['commune.label.non']}" action="#{bibliothequesBean.flushAccueil}" immediate="true"/>
+    </h:form>
+        </shiro:hasRole>
+        <shiro:lacksRole name="1">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>
+        </shiro:lacksRole>
     </ui:define>
 </ui:composition>
 

@@ -108,6 +108,9 @@
 										<p:menuitem value="Auteur" action="formNewAuteur" icon="fa fa-fw fa-pencil"/>
 									</shiro:hasPermission>
 								</p:submenu>
+								<shiro:hasRole name="1">
+								<p:menuitem value="Reinitialisation de la bibliotheque" icon="fa fa-fw fa-refresh" action="formConfirmationReini.xhtml"/>
+								</shiro:hasRole>
 							</p:submenu>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="Adresses:Lire">

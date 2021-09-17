@@ -75,8 +75,8 @@
 
 
 
-                <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.newFact}"/>
-                <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="tableFactures" immediate="true"/>
+                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.newFact}"/>
+                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="tableFactures" immediate="true"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Factures:Creer">

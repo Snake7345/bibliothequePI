@@ -21,7 +21,7 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 	}
 
 	public ExemplairesLivres loueExemplaire(ExemplairesLivres exemliv){
-		System.out.println("Je loue l'exemplaire livre :" + exemliv.isLoue());
+		log.debug("Je loue l'exemplaire livre :" + exemliv.isLoue());
 		exemliv.setLoue(!exemliv.isLoue());
 		return exemliv;
 	}
@@ -56,7 +56,7 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 	}
 
 	public ExemplairesLivres desactivExemplaireLivre(ExemplairesLivres exemliv){
-		System.out.println("Je desactive l'exemplaire livre :" + exemliv.getCodeBarre());
+		log.debug("Je desactive l'exemplaire livre :" + exemliv.getCodeBarre());
 		exemliv.setActif(false);
 		return exemliv;
 	}
