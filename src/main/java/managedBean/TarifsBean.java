@@ -28,6 +28,7 @@ public class TarifsBean implements Serializable {
 
     private List<PenaCustom> grillePena = new ArrayList<>();
     private List<JourCustom> grilleJour = new ArrayList<>();
+    private BibliothequesBean bibliothequesBean;
 
     @PostConstruct
     public void init()
@@ -144,7 +145,7 @@ public class TarifsBean implements Serializable {
 
             transaction.begin();
             try {
-
+                tarif.setBibliotheques(bibliothequesBean.getListBibactuel().get(0));
                 tarif = service.save(tarif);
                 if(tarif.getIdTarifs()!=0){
                     for (TarifsJours tarifsJours:tarif.getTarifsJours())
@@ -170,6 +171,7 @@ public class TarifsBean implements Serializable {
                 }
                 transaction.commit();
                 return "/tableTarifs.xhtml?faces-redirect=true";
+
             } finally {
                 if (transaction.isActive()) {
                     transaction.rollback();
@@ -285,5 +287,13 @@ public class TarifsBean implements Serializable {
 
     public void setGrilleJour(List<JourCustom> grilleJour) {
         this.grilleJour = grilleJour;
+    }
+
+    public BibliothequesBean getBibliothequesBean() {
+        return bibliothequesBean;
+    }
+
+    public void setBibliothequesBean(BibliothequesBean bibliothequesBean) {
+        this.bibliothequesBean = bibliothequesBean;
     }
 }

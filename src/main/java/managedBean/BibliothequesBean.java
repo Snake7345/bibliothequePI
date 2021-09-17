@@ -20,10 +20,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -34,14 +31,14 @@ public class BibliothequesBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Bibliotheques bibliotheque;
-    private String biblio;
     private String nomBiblio;
 
-
+    private final String idBiblio = recupIdBiblio();
     private Adresses adresses;
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
-
     private List<Bibliotheques> listBiblioActiv = new ArrayList<>();
+    private final List<Bibliotheques> listBibactuel = getFindBiblio();
+
 
     @PostConstruct
     public void init()
@@ -49,6 +46,38 @@ public class BibliothequesBean implements Serializable {
 
         bibliotheque = new Bibliotheques();
         listBiblioActiv = getReadBiblioActiv();
+    }
+
+    public String recupIdBiblio()
+    {
+        String userdir = System.getProperty("user.dir");
+        userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\";
+        String result = "";
+        try
+        {
+            // Le fichier d'entrée
+            File file = new File(userdir + "bibliotheque.txt");
+            // Créer l'objet File Reader
+            FileReader fr = new FileReader(file);
+            // Créer l'objet BufferedReader
+            BufferedReader br = new BufferedReader(fr);
+            StringBuffer sb = new StringBuffer();
+            String line;
+            while((line = br.readLine()) != null)
+            {
+                // ajoute la ligne au buffer
+                sb.append(line);
+            }
+            fr.close();
+            System.out.println("Contenu du fichier: ");
+            System.out.println(sb.toString());
+            result = sb.toString();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     // Méthode qui va appellé la méthode save() pour créer/modifier une bibliotheque en DB et qui envoi un message si jamais le nom de la biblio a pas été changé ou si l'utilisateur
@@ -204,13 +233,6 @@ public class BibliothequesBean implements Serializable {
         return listBiblioActiv;
     }
 
-    public List<Bibliotheques> getReadBiblioId()
-    {
-
-        SvcBibliotheques serviceB = new SvcBibliotheques();
-        listBiblioActiv = serviceB.findAllBiblioActiv();
-    }
-
     public void beforePageLoad() throws IOException {
         String userdir = System.getProperty("user.dir");
         userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\";
@@ -257,6 +279,16 @@ public class BibliothequesBean implements Serializable {
 
     }
 
+    public List<Bibliotheques> getFindBiblio()
+    {
+        SvcBibliotheques service = new SvcBibliotheques();
+        List<Bibliotheques> listBib = new ArrayList<Bibliotheques>();
+        listBib= service.findById(idBiblio);
+
+        service.close();
+        return listBib;
+    }
+
     //-------------------------------Getter & Setter--------------------------------------------
 
     public Bibliotheques getBibliotheque() {
@@ -275,7 +307,6 @@ public class BibliothequesBean implements Serializable {
         this.adresses = adresses;
     }
 
-
     public String getNomBiblio() {
         return nomBiblio;
     }
@@ -292,11 +323,11 @@ public class BibliothequesBean implements Serializable {
         this.listBiblioActiv = listBiblioActiv;
     }
 
-    public String getBiblio() {
-        return biblio;
+    public String getIdBiblio() {
+        return idBiblio;
     }
 
-    public void setBiblio(String biblio) {
-        this.biblio = biblio;
+    public List<Bibliotheques> getListBibactuel() {
+        return listBibactuel;
     }
 }

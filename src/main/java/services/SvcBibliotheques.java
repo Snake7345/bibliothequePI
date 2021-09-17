@@ -44,7 +44,6 @@ public class SvcBibliotheques extends Service<Bibliotheques> implements Serializ
 	public List<Bibliotheques> findById(String idBibliotheques) {
 		Map<String, String> param = new HashMap<>();
 		param.put("idBibliotheques", idBibliotheques);
-
 		return finder.findByNamedQuery("Bibliotheques.findById", param);
 	}
 

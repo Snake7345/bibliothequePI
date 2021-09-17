@@ -28,7 +28,7 @@ public class ExemplairesLivresBean implements Serializable {
     private Bibliotheques bibli;
     private Livres livre;
     private String LastBarCode;
-
+    private BibliothequesBean bibliothequesBean;
 
     public void init()
     {
@@ -54,7 +54,7 @@ public class ExemplairesLivresBean implements Serializable {
         try {
             for (int i = 0; i < nombreExemplaire; i++) {
 
-                exemplairesLivre.setBibliotheques(bibli);
+                exemplairesLivre.setBibliotheques(bibliothequesBean.getListBibactuel().get(0));
                 exemplairesLivre.setEtat(ExemplairesLivresEtatEnum.Bon);
                 exemplairesLivre.setLivres(livre);
                 exemplairesLivre.setCodeBarre(generateBarCode());
@@ -187,5 +187,13 @@ public class ExemplairesLivresBean implements Serializable {
 
     public void setBibli(Bibliotheques bibli) {
         this.bibli = bibli;
+    }
+
+    public BibliothequesBean getBibliothequesBean() {
+        return bibliothequesBean;
+    }
+
+    public void setBibliothequesBean(BibliothequesBean bibliothequesBean) {
+        this.bibliothequesBean = bibliothequesBean;
     }
 }
