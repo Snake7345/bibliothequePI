@@ -2,7 +2,6 @@
 #header {
 	width: 100%;
 	padding: 2px;
-	text-align: center;
 	font-size:20px;
 	color: black;
 }
@@ -21,14 +20,30 @@ body {
 	background-color:#77bbff;
 }
 
+#newrecform
+{
+	border-color:white;
+}
+
 /*footer*/
 
 #footer
 {
-	background-color: #b8bab9;
+	background-color: #77bbff;
 	padding: 10px;
 	text-align: center;
 	color: black;
+	position: fixed;
+	left:0;
+	bottom:0;
+}
+#footer tr {
+	background-color: #77bbff;
+}
+#footer td {
+	background-color: #77bbff;
+	border-color: #77bbff;
+	width:700px;
 }
 
 
@@ -38,7 +53,15 @@ body {
 	width: 100%;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	background-color:#77bbff;
 }
+#content_content
+{
+	background-color: #77bbff;
+}
+
+
+
 #content_login, #content_form {
 	width: 100%;
 	padding-left: 600px;
@@ -118,6 +141,30 @@ body {
 	text-align:center;
 	border:0px;
 }
+.ui-panelgrid tr
+{
+	border-color:#8db1e2!important;
+	background-color:#8db1e2!important ;
+
+}
+.ui-panelgrid td
+{
+	border-color:#8db1e2!important;
+	background-color:#8db1e2!important ;
+}
+.image
+{
+	background-color:white!important ;
+}
+tbody
+{
+
+}
+body .ui-clock
+{
+	border:none;
+	background:none;
+}
 
 .table-header{
 	text-align:center;
@@ -171,9 +218,10 @@ body {
 }
 /*--------------------Menu Entete---------------------------------*/
 #menu{
-	text-align:center;
+	text-align:left;
 	width: 100%;
 }
+
 ul {
 	padding:0;
 	margin:0;
@@ -191,7 +239,6 @@ ul li {
 	font-size: 20px;
 	display: inline;
 	width: auto;
-	background-color: dodgerblue;
 	color: black;
 	text-decoration: none;
 	text-align: center;
@@ -216,3 +263,4 @@ ul li:hover {
 {
 	border-style:none;
 }
+

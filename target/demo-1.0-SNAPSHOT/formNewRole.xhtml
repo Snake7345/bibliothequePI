@@ -29,7 +29,7 @@
                              maxlength="100">
                     <f:validateLength minimum="2" maximum="100"/>
                 </p:inputText>
-                <p:outputLabel value = "#{I18N['Permissions.label.Action']}"/>
+                <p:outputLabel value = "#{I18N['Permissions.label.Type']}"/>
                 <p:selectOneMenu value = "#{permissionsBean.type}" id="type">
                     <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
                                    itemLabel="#{ty}"

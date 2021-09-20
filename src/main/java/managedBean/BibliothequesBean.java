@@ -33,7 +33,7 @@ public class BibliothequesBean implements Serializable {
     private Bibliotheques bibliotheque;
     private String nomBiblio;
 
-    private final String idBiblio = recupIdBiblio();
+    private final int idBiblio = recupIdBiblio();
     private Adresses adresses;
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
     private List<Bibliotheques> listBiblioActiv = new ArrayList<>();
@@ -48,11 +48,12 @@ public class BibliothequesBean implements Serializable {
         listBiblioActiv = getReadBiblioActiv();
     }
 
-    public String recupIdBiblio()
+    public int recupIdBiblio()
     {
         String userdir = System.getProperty("user.dir");
         userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\";
         String result = "";
+        int result2;
         try
         {
             // Le fichier d'entrée
@@ -77,7 +78,9 @@ public class BibliothequesBean implements Serializable {
         {
             e.printStackTrace();
         }
-        return result;
+        result2 = Integer.parseInt(result);
+        log.debug("La valeur de la bibliotheque est de : " + result2);
+        return result2;
     }
 
     // Méthode qui va appellé la méthode save() pour créer/modifier une bibliotheque en DB et qui envoi un message si jamais le nom de la biblio a pas été changé ou si l'utilisateur
@@ -323,7 +326,7 @@ public class BibliothequesBean implements Serializable {
         this.listBiblioActiv = listBiblioActiv;
     }
 
-    public String getIdBiblio() {
+    public int getIdBiblio() {
         return idBiblio;
     }
 

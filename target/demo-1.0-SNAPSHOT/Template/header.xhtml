@@ -5,23 +5,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f = "http://java.sun.com/jsf/core"
 	  xmlns:shiro="http://shiro.apache.org/tags">
 
 <ui:composition>
 	<div id="header">
 	<ui:insert name="header">
 
-		<p:panelGrid columns="1">
+		<p:panel id="header2" class="table-entete">
+			<!--Pourquoi le p:graphicimage ne fonctionne pas-->
 			<p:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
-			<h:form>
-				<p:commandButton icon="fa fa fw fa-sign-out" value="#{I18N['application.button.deconnexion']}" action="#{loginBean.deconnexion}"
-								 id="lienMenu"/>
-			</h:form>
-
-		</p:panelGrid>
+		</p:panel>
 		<shiro:authenticated>
 				<h:form>
-					<p:menubar id="menubar">
+					<p:menubar>
 						<shiro:hasPermission name="Permissions:Lire">
 							<p:submenu label="Gestion des permissions" icon="fa fa-fw fa-exclamation">
 								<shiro:hasPermission name="Permissions:Lire">
@@ -136,6 +133,9 @@
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>
+						<f:facet name="options">
+							<p:button value="#{I18N['application.button.deconnexion']}" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{loginBean.deconnexion}"/>
+						</f:facet>
 					</p:menubar>
 				</h:form>
 		</shiro:authenticated>
