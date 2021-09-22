@@ -2,17 +2,11 @@ package managedBean;
 
 import entities.Adresses;
 import entities.Bibliotheques;
-import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.mgt.DefaultSecurityManager;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.session.mgt.DefaultSessionManager;
 import security.SecurityManager;
 import services.SvcAdresses;
 import services.SvcBibliotheques;
-import services.SvcUtilisateurs;
-import services.SvcUtilisateursAdresses;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -22,7 +16,6 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Named
@@ -33,25 +26,42 @@ public class BibliothequesBean implements Serializable {
     private Bibliotheques bibliotheque;
     private String nomBiblio;
 
-    private final int idBiblio = recupIdBiblio();
+    private int idBiblio;
     private Adresses adresses;
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
     private List<Bibliotheques> listBiblioActiv = new ArrayList<>();
-    private final List<Bibliotheques> listBibactuel = getFindBiblio();
+    private List<Bibliotheques> listBibactuel;
+    private String userdir;
+
+
 
 
     @PostConstruct
     public void init()
     {
-
+        userdir = System.getProperty("user.dir");
+        userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\";
+        File f = new File(userdir + "bibliotheque.txt");
+        if(f.isFile())
+        {
+            idBiblio = recupIdBiblio();
+        }
         bibliotheque = new Bibliotheques();
         listBiblioActiv = getReadBiblioActiv();
+        listBibactuel = getFindBiblio();
+        log.debug("valeur test");
+        log.debug(idBiblio);
+        log.debug(listBibactuel.size());
+        if(listBibactuel.size() > 0) {
+            log.debug("test");
+            SecurityUtils.getSubject().getSession().setAttribute("biblio", listBibactuel.get(0));
+        }
+
     }
 
     public int recupIdBiblio()
     {
-        String userdir = System.getProperty("user.dir");
-        userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\";
+
         String result = "";
         int result2;
         try
@@ -87,35 +97,12 @@ public class BibliothequesBean implements Serializable {
     // veut créer une nouvelle bibliothèque (limité à 1 pour ce projet) et nous renvoi sur la table des bibliothèques
     public String newBiblio()
     {
-        SvcBibliotheques serviceB = new SvcBibliotheques();
-        boolean flag = getCheckbibli();
-        boolean flagbib =false;
-        if (!flag)
-        {
-            flagbib = serviceB.getById(bibliotheque.getIdBibliotheques()).equals(bibliotheque);
-        }
-        if(getCheckbibli() || !flagbib)
-        {
-            save();
-        }
-        else if (flagbib)
-        {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le nom de la bibliotheque n'a pas été changé",null));
-        }
-        else
-        {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"une seule bibliotheque autorisé",null));
-        }
-        serviceB.close();
+        save();
         return "/tableBibliotheques.xhtml?faces-redirect=true";
     }
 
     // méthode qui verifie si il n'y a pas de bibliothèque déjà créée en DB
-    public boolean getCheckbibli(){
+    /*public boolean getCheckbibli(){
         SvcBibliotheques serviceB = new SvcBibliotheques();
         if(serviceB.findAllBibliotheques().size()==0)
         {
@@ -127,7 +114,7 @@ public class BibliothequesBean implements Serializable {
             serviceB.close();
             return false;
         }
-    }
+    }*/
     // Méthode qui permet la sauvegarde de la bibliothèque dans la base de donnée
     public void save()
     {
@@ -175,8 +162,8 @@ public class BibliothequesBean implements Serializable {
 
     public void reinitialisation()
     {
-        String userdir = System.getProperty("user.dir");
-        userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\";
+
+
 
         try{
 
@@ -237,8 +224,8 @@ public class BibliothequesBean implements Serializable {
     }
 
     public void beforePageLoad() throws IOException {
-        String userdir = System.getProperty("user.dir");
-        userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\";
+
+
         File f = new File(userdir + "bibliotheque.txt");
         log.debug("entree debut programme");
         if(!f.isFile())
@@ -256,8 +243,7 @@ public class BibliothequesBean implements Serializable {
 
     public String createFichier()
     {
-        String userdir = System.getProperty("user.dir");
-        userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\";
+
         try {
 
             // Recevoir le fichier
@@ -285,9 +271,7 @@ public class BibliothequesBean implements Serializable {
     public List<Bibliotheques> getFindBiblio()
     {
         SvcBibliotheques service = new SvcBibliotheques();
-        List<Bibliotheques> listBib = new ArrayList<Bibliotheques>();
-        listBib= service.findById(idBiblio);
-
+        List<Bibliotheques> listBib = service.findById(idBiblio);
         service.close();
         return listBib;
     }
@@ -332,5 +316,21 @@ public class BibliothequesBean implements Serializable {
 
     public List<Bibliotheques> getListBibactuel() {
         return listBibactuel;
+    }
+
+    public void setIdBiblio(int idBiblio) {
+        this.idBiblio = idBiblio;
+    }
+
+    public void setListBibactuel(List<Bibliotheques> listBibactuel) {
+        this.listBibactuel = listBibactuel;
+    }
+
+    public String getUserdir() {
+        return userdir;
+    }
+
+    public void setUserdir(String userdir) {
+        this.userdir = userdir;
     }
 }

@@ -131,10 +131,10 @@
                     </p:column>
                 </p:dataTable>
                 <br/>
-                <p:commandButton value="#{I18N['tarifpenalite.label.add']}" action="#{tarifsBean.addNewPenaRow}" />
+                <p:commandButton value="#{I18N['tarifpenalite.label.add']}" action="#{tarifsBean.addNewPenaRow}" ajax="false"/>
                 <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
                 <p:commandButton value="#{I18N['tarifpenalite.label.del']}" action="#{tarifsBean.delPenaRow}" />
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
+                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" ajax="false"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Tarifs:Modification">

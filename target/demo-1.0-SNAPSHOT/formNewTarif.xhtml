@@ -19,13 +19,6 @@
                 </h:head>
                 <h2 style="text-align:center">#{I18N['tarif.form.nouveau.titre']}</h2>
 
-                <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}" />
-                <p:selectOneMenu value = "#{tarifsBean.tarif.bibliotheques}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
-                                 converter="biblioConverter">
-                    <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
-                                   itemLabel="#{bi.nom}"
-                                   itemValue="#{bi}"/>
-                </p:selectOneMenu>
                 <p:outputLabel value="#{I18N['tarif.label.dateDebutgrille']}" />
                 <p:calendar value="#{tarifsBean.tarif.dateDebut}" showOn="button" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                     <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
@@ -91,8 +84,8 @@
                     </p:column>
                 </p:dataTable>
 
-                <p:commandButton value="#{I18N['tarifjour.label.add']}" action="#{tarifsBean.addNewJourRow}"/>
-                <p:commandButton value="#{I18N['tarifjour.label.del']}" action="#{tarifsBean.delJourRow}"/>
+                <p:commandButton value="#{I18N['tarifjour.label.add']}" action="#{tarifsBean.addNewJourRow}" ajax="false"/>
+                <p:commandButton value="#{I18N['tarifjour.label.del']}" action="#{tarifsBean.delJourRow}" ajax="false"/>
 
                 <p:dataTable value="#{tarifsBean.grillePena}" var="P">
                     <p:column>
@@ -144,10 +137,10 @@
                 <p:outputLabel value="#{I18N['tarifpenalite.explication.retard']}" />
                 <br/>
                 <br/>
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="Add" action="#{tarifsBean.addNewPenaRow}"/>
+                <p:commandButton icon="fa fa-fw fa-check-circle" value="Add" action="#{tarifsBean.addNewPenaRow}" ajax="false"/>
                 <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
-                <p:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}"/>
-                <p:commandButton icon="fa fa-fw fa-check-square" value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" />
+                <p:commandButton value="#{I18N['application.button.supprime']}" action="#{tarifsBean.delPenaRow}" ajax="false"/>
+                <p:commandButton icon="fa fa-fw fa-check-square" value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" ajax="false" />
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Tarifs:Creer">

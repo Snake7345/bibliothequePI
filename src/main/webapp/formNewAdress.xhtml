@@ -58,7 +58,7 @@
 
             </p:panelGrid>
 
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}"/>
+            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}" ajax="false"/>
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{adressesBean.flushAdd}" immediate="true"/>
         </h:form>
         </shiro:hasPermission>

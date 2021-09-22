@@ -18,14 +18,6 @@
                     <title>#{I18N['fact.form.nouveau.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['fact.form.nouveau.titre']}</h2>
-                <p:outputLabel value="bibliotheque"/>
-                <p:selectOneMenu value = "#{factureBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.biblio']}"
-                                 converter="biblioConverter">
-                    <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
-                                   itemLabel="#{bi.nom}"
-                                   itemValue="#{bi}"/>
-                </p:selectOneMenu>
-                <!--<h:message for="bibli" styleClass="errorMessage"/>-->
 
                 <p:outputLabel value="numéro de membre?" />
                 <p:inputText value="#{factureBean.numMembre}" id="numMembre"
@@ -36,7 +28,7 @@
                 </p:inputText>
                 <!--<h:message for="numMembre" styleClass="errorMessage"/>-->
 
-
+<!--TODO : les numéros de membres correspondant pas a des personnes ne passent pas-->
                 <p:dataTable value="#{factureBean.listLC}" var="LC">
                     <p:column>
                         <f:facet name="header">
@@ -70,13 +62,13 @@
 
                 </p:dataTable>
 
-                <p:commandButton value="Add" action="#{factureBean.addNewListRow}" />
-                <p:commandButton value="Del" action="#{factureBean.delListRow}" />
+                <p:commandButton value="Add" action="#{factureBean.addNewListRow}"  ajax="false"/>
+                <p:commandButton value="Del" action="#{factureBean.delListRow}"  ajax="false"/>
 
 
 
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.newFact}"/>
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="tableFactures" immediate="true"/>
+                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.newFact}" ajax="false"/>
+                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="tableFactures" immediate="true" ajax="false"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Factures:Creer">

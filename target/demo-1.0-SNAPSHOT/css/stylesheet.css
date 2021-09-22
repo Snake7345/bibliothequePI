@@ -53,7 +53,7 @@ body {
 	width: 100%;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background-color:#77bbff;
+	background-color:#ffffff;
 }
 #content_content
 {
@@ -256,11 +256,16 @@ ul li:hover {
 .ui-widget-content
 {
 	border:none;
-	background:#eeeeee;
+	background:#ffffff;
 }
 
 .ui-panelgrid .ui-panelgrid-cell
 {
 	border-style:none;
+}
+
+body .ui-panel .ui-panel-content
+{
+	border: none;
 }
 

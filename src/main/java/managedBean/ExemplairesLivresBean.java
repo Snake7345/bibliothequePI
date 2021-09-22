@@ -5,6 +5,7 @@ import entities.ExemplairesLivres;
 import entities.Livres;
 import enumeration.ExemplairesLivresEtatEnum;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import services.SvcBibliotheques;
 import services.SvcExemplairesLivres;
 
@@ -28,7 +29,7 @@ public class ExemplairesLivresBean implements Serializable {
     private Bibliotheques bibli;
     private Livres livre;
     private String LastBarCode;
-    private BibliothequesBean bibliothequesBean;
+    private final Bibliotheques bib = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
     public void init()
     {
@@ -54,7 +55,7 @@ public class ExemplairesLivresBean implements Serializable {
         try {
             for (int i = 0; i < nombreExemplaire; i++) {
 
-                exemplairesLivre.setBibliotheques(bibliothequesBean.getListBibactuel().get(0));
+                exemplairesLivre.setBibliotheques(bib);
                 exemplairesLivre.setEtat(ExemplairesLivresEtatEnum.Bon);
                 exemplairesLivre.setLivres(livre);
                 exemplairesLivre.setCodeBarre(generateBarCode());
@@ -189,11 +190,7 @@ public class ExemplairesLivresBean implements Serializable {
         this.bibli = bibli;
     }
 
-    public BibliothequesBean getBibliothequesBean() {
-        return bibliothequesBean;
-    }
-
-    public void setBibliothequesBean(BibliothequesBean bibliothequesBean) {
-        this.bibliothequesBean = bibliothequesBean;
+    public Bibliotheques getBib() {
+        return bib;
     }
 }

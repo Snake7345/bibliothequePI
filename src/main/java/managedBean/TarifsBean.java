@@ -4,6 +4,7 @@ import entities.*;
 import objectCustom.JourCustom;
 import objectCustom.PenaCustom;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import services.*;
 
 import javax.annotation.PostConstruct;
@@ -28,7 +29,7 @@ public class TarifsBean implements Serializable {
 
     private List<PenaCustom> grillePena = new ArrayList<>();
     private List<JourCustom> grilleJour = new ArrayList<>();
-    private BibliothequesBean bibliothequesBean;
+    private final Bibliotheques bib = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
     @PostConstruct
     public void init()
@@ -38,6 +39,7 @@ public class TarifsBean implements Serializable {
         grillePena.clear();
         grillePena.add(new PenaCustom());
         grilleJour.add(new JourCustom());
+
     }
 
     public void save()
@@ -145,7 +147,7 @@ public class TarifsBean implements Serializable {
 
             transaction.begin();
             try {
-                tarif.setBibliotheques(bibliothequesBean.getListBibactuel().get(0));
+                tarif.setBibliotheques(bib);
                 tarif = service.save(tarif);
                 if(tarif.getIdTarifs()!=0){
                     for (TarifsJours tarifsJours:tarif.getTarifsJours())
@@ -289,11 +291,7 @@ public class TarifsBean implements Serializable {
         this.grilleJour = grilleJour;
     }
 
-    public BibliothequesBean getBibliothequesBean() {
-        return bibliothequesBean;
-    }
-
-    public void setBibliothequesBean(BibliothequesBean bibliothequesBean) {
-        this.bibliothequesBean = bibliothequesBean;
+    public Bibliotheques getBib() {
+        return bib;
     }
 }
