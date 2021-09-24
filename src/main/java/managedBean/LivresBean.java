@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.*;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import services.SvcExemplairesLivres;
 import services.SvcLivres;
 import services.SvcLivresAuteurs;
@@ -34,6 +35,8 @@ public class LivresBean implements Serializable {
     private Genres gen;
     private List<Livres> listLiv = new ArrayList<Livres>();
     private List<Livres> searchResults;
+    private final Bibliotheques bibliactuel = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+
 
     @PostConstruct
     public void init()
@@ -277,6 +280,62 @@ public class LivresBean implements Serializable {
     {
         init();
         return "/bienvenue.xhtml?faces-redirect=true";
+    }
+
+    public String verifDispo(Livres liv)
+    {
+        log.debug("je passe dans la méthode : verifDispo" );
+        log.debug(bibliactuel.getNom());
+        log.debug(liv.getTitre());
+
+        boolean flag1=false;
+        boolean flag2=false;
+        boolean flag3=false;
+        if(liv.getExemplairesLivres().size() >0)
+        {
+            for (ExemplairesLivres el : liv.getExemplairesLivres())
+            {
+                log.debug("je passe dans le for :");
+                log.debug(el.isLoue());
+                log.debug(el.isActif());
+                log.debug(el.getBibliotheques().getNom());
+                if (!el.isLoue() && (el.getBibliotheques().getIdBibliotheques() ==bibliactuel.getIdBibliotheques()) && el.isActif())
+                {
+                    // Le livre est disponible
+                    log.debug("flag1 pris");
+                    flag1 = true;
+                }
+                else if (!el.isLoue() && el.isActif())
+                {
+                    // le livre est disponible mais pas dans la bibliothèque actuelle.
+                    log.debug("flag2 pris");
+                    flag2 = true;
+                }
+                else if (el.isLoue())
+                {
+                    // Le livre est loué
+                    log.debug("flag3 pris");
+                    flag3 = true;
+                }
+            }
+        }
+        if(flag1)
+        {
+
+            return "Images/vert2.png";
+        }
+        else if(flag2)
+        {
+            return "Images/orange2.png";
+        }
+        else if(flag3)
+        {
+            return "Images/rouge2.png";
+        }
+        else
+        {
+            return "Images/noir2.png";
+        }
     }
 
     //-------------------------------Getter & Setter--------------------------------------------

@@ -74,6 +74,13 @@
                     <!--<h:message for="utilisateurMdp" styleClass="errorMessage"/>-->
                 </c:if>
 
+                <p:selectCheckboxMenu value = "#{utilisateursBean.tabbibli}" id="menu" style="width: 15rem"
+                                      filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" scrollHeight="250">
+                    <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
+                                   itemLabel="#{biblio.nom}"
+                                   itemValue="#{biblio}"/>
+                </p:selectCheckboxMenu>
+
                 <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client' and utilisateursBean.utilisateur.roles.denomination ne 'Administrateur'}">
                 <p:outputLabel value = "#{I18N['role.label.Denomination']}" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}"/>
                 <p:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}" requiredMessage="#{I18N['formulaire.message.required.role']}"
@@ -106,7 +113,7 @@
 
             </p:panelGrid>
 
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}"/>
+            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.modifUtil}" ajax="false"/>
 
             <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>

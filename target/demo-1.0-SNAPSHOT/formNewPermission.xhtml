@@ -35,7 +35,7 @@
 
             </p:panelGrid>
 
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{permissionsBean.newPermission}"/>
+            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{permissionsBean.newPermission}" ajax="false"/>
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{permissionsBean.flushPerm}" immediate="true"/>
         </h:form>
         </shiro:hasPermission>

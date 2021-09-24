@@ -121,12 +121,12 @@ public class Factures implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Factures factures = (Factures) o;
-        return idFactures == factures.idFactures && dateDebut.equals(factures.dateDebut) && Objects.equals(prixTvac, factures.prixTvac) && Objects.equals(numeroFacture, factures.numeroFacture) && lienPdf.equals(factures.lienPdf) && facturesDetails.equals(factures.facturesDetails) && utilisateurs.equals(factures.utilisateurs) && bibliotheques.equals(factures.bibliotheques) && etat == factures.etat;
+        return idFactures == factures.idFactures && dateDebut.equals(factures.dateDebut) && Objects.equals(prixTvac, factures.prixTvac) && Objects.equals(numeroFacture, factures.numeroFacture) && lienPdf.equals(factures.lienPdf) && facturesDetails.equals(factures.facturesDetails) && utilisateurs.equals(factures.utilisateurs) && etat == factures.etat;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, lienPdf, facturesDetails, utilisateurs, bibliotheques, etat);
+        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, lienPdf, facturesDetails, utilisateurs, etat);
     }
 
     public Utilisateurs getUtilisateurs() {

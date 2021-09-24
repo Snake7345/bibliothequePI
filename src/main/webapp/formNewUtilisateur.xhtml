@@ -13,7 +13,7 @@
     <ui:define name="title">#{I18N['utilisateur.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-        <p:growl id="growl" showDetail="true" sticky="true" />
+        <p:growl id="growl" showDetail="true" sticky="true"/>
         <shiro:hasPermission name="Utilisateurs:Creer">
             <h:form id="form" prependId="false">
                 <h:head>
@@ -101,7 +101,13 @@
                                            itemLabel="#{ro.denomination}"
                                            itemValue="#{ro}"/>
                         </shiro:lacksRole>
+                    </p:selectOneMenu>
 
+                    <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}"/>
+                    <p:selectOneMenu value = "#{utilisateursBean.tabbibli}" id="bib" converter="biblioConverter">
+                        <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
+                                       itemLabel="#{biblio.nom}"
+                                       itemValue="#{biblio}"/>
                     </p:selectOneMenu>
                     <!--<h:message for="roles" styleClass="errorMessage"/>-->
 
@@ -122,7 +128,7 @@
                 </p:panelGrid>
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}" ajax="false"/>
                 <shiro:hasPermission name="Autre:Connexion">
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
+                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true" ajax="false"/>
                 </shiro:hasPermission>
             </h:form>
         </shiro:hasPermission>

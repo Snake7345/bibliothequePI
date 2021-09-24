@@ -42,7 +42,7 @@
                     </p:dataTable>
                 </p:panel>
             <shiro:hasPermission name="Bibliotheques:Creer">
-            <p:commandButton icon="fa fa-fw fa-plus" rendered="#{bibliothequesBean.checkbibli}" value="#{I18N['application.button.new']}" action="formNewBibliotheque" />
+            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewBibliotheque" />
             </shiro:hasPermission>
             <shiro:hasPermission name="Autre:Connexion">
                 <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>

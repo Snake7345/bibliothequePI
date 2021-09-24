@@ -116,6 +116,7 @@ public class ExemplairesLivresBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
+            exemplairesLivre.setBibliotheques(bibli);
             service.save(exemplairesLivre);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();

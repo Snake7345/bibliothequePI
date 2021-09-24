@@ -64,7 +64,7 @@
                     </p:column>
                     <shiro:hasPermission name="Exemplaires:Creer">
                     <p:column>
-                        <p:commandButton  image="Images//exemplaire.png" action="tableExemplaireLivres">
+                        <p:commandButton  icon="fa fa-fw fa-plus" value="Ajouter exemplaires" action="tableExemplaireLivres">
                             <!-- u minuscule -->
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" /> <!-- u minuscule -->
                         </p:commandButton>
@@ -79,7 +79,7 @@
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:ActivDesactiv">
                     <p:column>
-                        <p:commandButton image="Images//activ.png" action="#{livresBean.activdesactivLiv}">
+                        <p:commandButton icon="pi pi-power-off" value="Désactiver exemplaire" action="#{livresBean.activdesactivLiv}">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>
                     </p:column>

@@ -1,13 +1,13 @@
 package managedBean;
 
-import entities.Adresses;
-import entities.Utilisateurs;
-import entities.UtilisateursAdresses;
+import entities.*;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import security.SecurityManager;
 import services.SvcRoles;
 import services.SvcUtilisateurs;
 import services.SvcUtilisateursAdresses;
+import services.SvcUtilisateursBibliotheques;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -30,11 +30,17 @@ public class UtilisateursBean implements Serializable {
     private Utilisateurs utilisateur;
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
     private List<Utilisateurs> listUtil = new ArrayList<>();
+    private List<Utilisateurs> listUtilBib = new ArrayList<>();
     private List<Utilisateurs> listCli = new ArrayList<>();
     private List<Utilisateurs> searchResults;
     private String numMembre;
     private Adresses adresses;
     private UtilisateursAdresses UA;
+    private final Bibliotheques bibliactuel = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private Bibliotheques bibli;
+    private UtilisateursBibliotheques UB;
+    private List<Bibliotheques> tabbibli = new ArrayList<>();
+    private List<UtilisateursBibliotheques> listUB = new ArrayList<>();
 
     private String mdpNouveau;
 
@@ -48,9 +54,13 @@ public class UtilisateursBean implements Serializable {
     @PostConstruct
     public void init() {
         listUtil = getReadAllUtil();
+        listUtilBib = getReadAllUtilBib();
         listCli = getReadAllCli();
+        bibli = new Bibliotheques();
         utilisateur = new Utilisateurs();
+        listUB = new ArrayList<>();
         UA = new UtilisateursAdresses();
+        UB = new UtilisateursBibliotheques();
         adresses = new Adresses();
         SvcUtilisateurs service = new SvcUtilisateurs();
         if (service.findlastMembre().size()==0){
@@ -95,6 +105,54 @@ public class UtilisateursBean implements Serializable {
     public void saveUtilisateur() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
+        SvcUtilisateursBibliotheques serviceUB = new SvcUtilisateursBibliotheques();
+        serviceUA.setEm(service.getEm());
+        serviceUB.setEm(service.getEm());
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            service.save(utilisateur);
+            if(utilisateur.getIdUtilisateurs()!=0) {
+                for (UtilisateursAdresses utiladress : utilisateur.getUtilisateursAdresses()) {
+                    if (!utiladress.equals(UA) && utiladress.isActif()) {
+                        utiladress.setActif(false);
+                        serviceUA.save(utiladress);
+                    }
+                }
+
+            }
+            if(listUB.size() > 0)
+            {
+                for(UtilisateursBibliotheques ub : listUB)
+                {
+                    serviceUB.save(ub);
+                }
+            }
+            else
+            {
+                serviceUB.save(UB);
+            }
+            serviceUA.save(UA);
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'a pas reussie",null));
+            }
+
+            service.close();
+        }
+
+    }
+
+    public void saveUtilisateurCli() {
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
         serviceUA.setEm(service.getEm());
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
@@ -126,10 +184,6 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
-    /*TODO : Scinder la fonction : Les clients d'un coté et les utilisateurs de l'autre
-    *
-    *       C'EST UN MINIMUM
-    * */
 
     public String modifMdp()
     {
@@ -192,6 +246,7 @@ public class UtilisateursBean implements Serializable {
     public String newUtil() {
         boolean flag = false;
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
+        SvcUtilisateursBibliotheques serviceUB = new SvcUtilisateursBibliotheques();
         utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
         utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
         /*
@@ -216,6 +271,7 @@ public class UtilisateursBean implements Serializable {
         }
         if(verifUtilExist(utilisateur)) {
             UA.setActif(true);
+            UB = serviceUB.createUtilisateursBibliotheques(utilisateur,bibli);
             saveUtilisateur();
         }else {
 
@@ -236,29 +292,81 @@ public class UtilisateursBean implements Serializable {
         }
     }
 
-    /*TODO : Faire une méthode concernant la modification du mot de passe et uniquement de celui-ci via un pop-up*/
+    public String modifUtil() {
+        boolean flag = false;
+        SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
+        SvcUtilisateursBibliotheques serviceUB = new SvcUtilisateursBibliotheques();
+        utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
+        utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
+        /*
+
+        log.debug((SecurityManager.encryptPassword(utilisateur.getMdp())));
+
+        PasswordMatcher matcher = new PasswordMatcher();
+        log.debug(matcher.getPasswordService().passwordsMatch(utilisateur.getMdp(),SecurityManager.encryptPassword(utilisateur.getMdp())));
+
+        */
+        if (utilisateur.getIdUtilisateurs()!=0) {
+            for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()) {
+                if (ua.getAdresse().equals(adresses)) {
+                    flag = true;
+                    UA = ua;
+                    break;
+                }
+            }
+        }
+        if (!flag){
+            UA = serviceUA.createUtilisateursAdresses(utilisateur, adresses);
+        }
+        if(verifUtilExist(utilisateur))
+        {
+            UA.setActif(true);
+            for (Bibliotheques ub : tabbibli)
+            {
+                listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur,ub));
+            }
+
+            saveUtilisateur();
+        }else {
+
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur existe déjà tel quel en DB; opération échouée",null));
+        }
+
+            init();
+            return "/tableUtilisateurs.xhtml?faces-redirect=true";
+    }
+
+    /*TODO : Essayer de corriger la faille concernant le changement de mail : Si je met le mail de quelqu'un d'autre mais que je mets pas le même rôle ça passe MAIS CA NE DEVRAIT PAS*/
 
     public boolean verifUtilExist(Utilisateurs util)
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
-        boolean flag= false;
-        if (util.getIdUtilisateurs()!=0) {
-            for (UtilisateursAdresses ua : util.getUtilisateursAdresses()) {
-                if (ua.getAdresse().equals(adresses) && ua.isActif()) {
-                    flag = true;
-                    break;
+
+        List<Utilisateurs> listUtil = serviceU.findOneUtilisateur(util);
+        if (util.getIdUtilisateurs()!=0)
+        {
+
+            if (listUtil.size() > 0 ) {
+                if(listUtil.get(0).getIdUtilisateurs() == util.getIdUtilisateurs()){
+                    serviceU.close();
+                    return true;
+                }
+                else
+                {
+                    serviceU.close();
+                    return false;
                 }
             }
-            if (serviceU.findOneUtilisateur(util).size() > 0 && flag) {
-                serviceU.close();
-                return false;
-            } else {
+            else {
                 serviceU.close();
                 return true;
             }
         }
-        else {
-            if (serviceU.findOneUtilisateur(util).size() > 0) {
+        else
+        {
+            if (listUtil.size() > 0) {
                 serviceU.close();
                 return false;
             } else {
@@ -300,7 +408,7 @@ public class UtilisateursBean implements Serializable {
         }
         else {
             UA.setActif(true);
-            saveUtilisateur();
+            saveUtilisateurCli();
         }
         init();
         return "/tableUtilisateursCli.xhtml?faces-redirect=true";
@@ -450,6 +558,15 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listUtil;
     }
+
+    public List<Utilisateurs> getReadAllUtilBib()
+    {
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        listUtilBib = service.findAllUtilisateursUtilBib(bibliactuel);
+
+        service.close();
+        return listUtilBib;
+    }
     /*
      * Méthode qui permet via le service de retourner la liste de tous les utilisateurs(Client)
      */
@@ -461,6 +578,7 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listCli;
     }
+
 
 
 //-------------------------------Getter & Setter--------------------------------------------
@@ -536,5 +654,51 @@ public class UtilisateursBean implements Serializable {
     public void setMdpNouveau2(String mdpNouveau2) {
         this.mdpNouveau2 = mdpNouveau2;
     }
+
+    public List<Utilisateurs> getListUtilBib() {
+        return listUtilBib;
+    }
+
+    public void setListUtilBib(List<Utilisateurs> listUtilBib) {
+        this.listUtilBib = listUtilBib;
+    }
+
+    public Bibliotheques getBibliactuel() {
+        return bibliactuel;
+    }
+
+    public Bibliotheques getBibli() {
+        return bibli;
+    }
+
+    public void setBibli(Bibliotheques bibli) {
+        this.bibli = bibli;
+    }
+
+    public UtilisateursBibliotheques getUB() {
+        return UB;
+    }
+
+    public void setUB(UtilisateursBibliotheques UB) {
+        this.UB = UB;
+    }
+
+    public List<Bibliotheques> getTabbibli() {
+        return tabbibli;
+    }
+
+    public void setTabbibli(List<Bibliotheques> tabbibli) {
+        this.tabbibli = tabbibli;
+    }
+
+    public List<UtilisateursBibliotheques> getListUB() {
+        return listUB;
+    }
+
+    public void setListUB(List<UtilisateursBibliotheques> listUB) {
+        this.listUB = listUB;
+    }
+
+
 }
 

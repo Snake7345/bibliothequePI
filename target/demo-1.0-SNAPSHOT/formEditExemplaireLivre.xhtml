@@ -35,7 +35,7 @@
 
 
             </p:panelGrid>
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.editExemplaireLivre}"/>
+            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.editExemplaireLivre}" ajax="false"/>
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}" immediate="true"/>
         </h:form>
         </shiro:hasPermission>
