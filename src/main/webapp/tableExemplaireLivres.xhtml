@@ -44,6 +44,12 @@
                         <!-- row record -->
                         <p:outputLabel value ="#{livexemL.actif}"/>
                     </p:column>
+                    <p:column>
+                        <!-- column header -->
+                        <f:facet name="header">bibliotheque</f:facet>
+                        <!-- row record -->
+                        <p:outputLabel value ="#{livexemL.bibliotheques.nom}"/>
+                    </p:column>
                     <shiro:hasPermission name="Factures:Creer">
                         <p:column>
                             <p:commandButton rendered="#{livexemL.loue}" image="Images//inspectionsmini.jpg" action="formEtatQuestion">		<!-- u minuscule -->

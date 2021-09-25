@@ -1,16 +1,12 @@
 package managedBean;
 
 import entities.Permissions;
-import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import services.SvcPermissions;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +19,7 @@ public class PermissionsBean implements Serializable {
     private Permissions permission;
     private static final Logger log = Logger.getLogger(PermissionsBean.class);
 
-    private String type;
+    private String type = "Adresses";
     private String action;
     private final List<Permissions> listPer = getReadAll();
 
@@ -32,60 +28,9 @@ public class PermissionsBean implements Serializable {
     @PostConstruct
     public void init()
     {
-        listAction = getpermissionsAction();
-        type="";
-        action="";
+        listAction = getPermissionsAction();
         permission = new Permissions();
     }
-
-/*
-Méthode désactivée pour raison de stabilité
-
-    public String newPermission()
-    {
-        /*SvcPermissions service = new SvcPermissions();
-        EntityTransaction transaction = service.getTransaction();
-        transaction.begin();
-        if (checkPermExist()) {
-            try {
-
-                service.save(permission);
-
-                transaction.commit();
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
-                return "/tablePermissions.xhtml?faces-redirect=true";
-            } finally {
-                if (transaction.isActive()) {
-                    transaction.rollback();
-                    FacesContext fc = FacesContext.getCurrentInstance();
-                    fc.getExternalContext().getFlash().setKeepMessages(true);
-                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation n'a pas reussie", null));
-
-                    return "";
-                } else {
-                    init();
-                }
-
-                service.close();
-            }
-        }
-        else {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cette permission existe déjà en base de donnée", null));
-            return "/tablePermissions.xhtml?faces-redirect=true";
-        }
-
-        return "";
-    }
-
-    // Méthode qui vérifie si une permission est déjà existante dans la base de donnée ou non
-    public boolean checkPermExist(){
-        SvcPermissions serviceP = new SvcPermissions();
-        return (serviceP.findOnePermission(permission.getDenomination()).size() == 0);
-}*/
 
     public String flushPerm()
     {
@@ -118,11 +63,17 @@ Méthode désactivée pour raison de stabilité
         log.debug("listType : " + listType.size());
         return listType;
     }
-    public List<String> getpermissionsAction()
+    public List<String> getPermissionsAction()
     {
+
+        if (listAction.size()>0){
+            listAction.clear();
+        }
         for(Permissions p : listPer)
         {
-            listAction.add(p.getAction());
+            if (p.getType().equals(type)) {
+                listAction.add(p.getAction());
+            }
         }
         log.debug("type : " + type);
         log.debug("listAction : " + listAction.size());
@@ -145,6 +96,7 @@ Méthode désactivée pour raison de stabilité
     }
 
     public void setType(String type) {
+        log.debug("test type" + type);
         this.type = type;
     }
 
@@ -153,6 +105,7 @@ Méthode désactivée pour raison de stabilité
     }
 
     public void setAction(String action) {
+        log.debug("test action" + action);
         this.action = action;
     }
 
