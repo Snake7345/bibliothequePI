@@ -82,11 +82,11 @@
                     </p:dataTable>
                 </p:panel>
                 <shiro:hasPermission name="Client:Creer">
-                    <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewUtilisateurCli?faces-redirect=true" />
+                    <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewUtilisateurCli?faces-redirect=true" ajax="false"/>
                 </shiro:hasPermission>
-                <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchUtilisateur?faces-redirect=true"/>
-                <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}"/>
-                <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}"/>
+                <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchUtilisateur?faces-redirect=true" ajax="false"/>
+                <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}" ajax="false"/>
+                <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}" ajax="false"/>
                 <shiro:hasPermission name="Autre:Connexion">
                     <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
                 </shiro:hasPermission>

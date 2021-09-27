@@ -25,7 +25,7 @@
 									<p:menuitem value="Table des permissions" icon="fa fa-fw fa-table" action="tablePermissions?faces-redirect=true" />
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Permissions:Creer">
-									<p:menuitem value="Nouvelle permission" icon="fa fa-fw fa-plus" action="formNewPermission?faces-redirect=true"/>
+									<p:menuitem value="Nouvelle permission" icon="fa fa-fw fa-plus" action="formNewPermission?faces-redirect=true" ajax="false"/>
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>

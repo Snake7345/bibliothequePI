@@ -82,7 +82,7 @@
                 </p:dataTable>
             </p:panel>
             <shiro:hasPermission name="Exemplaires:Creer">
-            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre?faces-redirect=true">
+            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre?faces-redirect=true" ajax="false">
                 <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
             </p:commandButton>
             </shiro:hasPermission>

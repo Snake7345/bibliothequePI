@@ -73,9 +73,9 @@
             <shiro:hasPermission name="Livres:Creer">
             <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewLivre?faces-redirect=true" />
             </shiro:hasPermission>
-            <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchLivre?faces-redirect=true"/>
-            <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}"/>
-            <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}"/>
+            <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchLivre?faces-redirect=true" ajax="false"/>
+            <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}" ajax="false"/>
+            <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}" ajax="false"/>
             <shiro:hasPermission name="Autre:Connexion">
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushBienv}"/>
             </shiro:hasPermission>
