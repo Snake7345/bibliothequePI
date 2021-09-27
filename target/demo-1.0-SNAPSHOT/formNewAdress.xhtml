@@ -55,6 +55,9 @@
                     <f:selectItems value = "#{localitesBean.readAll}" var="loca"
                                    itemLabel="#{loca.cp} : #{loca.ville}" itemValue="#{loca}"/>
                     <p:column>
+                     <p:graphicImage value="/Images/belgium.png" style="width: 30px; height: 20px"/>
+                    </p:column>
+                    <p:column>
                         <h:outputText value="#{c.cp}"/>
                     </p:column>
                     <p:column>
