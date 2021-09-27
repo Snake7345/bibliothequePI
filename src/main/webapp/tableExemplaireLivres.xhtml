@@ -68,7 +68,7 @@
                     <shiro:hasPermission name="Exemplaires:ActivDesactiv">
                     <p:column>
                         <p:commandButton rendered="#{livexemL.actif and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="pi pi-power-off" value ="Désactiver" action="#{exemplairesLivresBean.activdesactivExLiv}">
-                            <p:confirm type="popup" header="Confirmation" message="#{I18N['auteur.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
+                            <p:confirm type="popup" header="Confirmation" message="#{I18N['exempl.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                             <p:confirmPopup global="true">
                                 <p:commandButton value="Non" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>

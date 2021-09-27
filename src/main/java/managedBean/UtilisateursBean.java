@@ -62,6 +62,7 @@ public class UtilisateursBean implements Serializable {
         UA = new UtilisateursAdresses();
         UB = new UtilisateursBibliotheques();
         adresses = new Adresses();
+        tabbibli = new ArrayList<>();
         SvcUtilisateurs service = new SvcUtilisateurs();
         if (service.findlastMembre().size()==0){
             numMembre = "0";
@@ -73,11 +74,23 @@ public class UtilisateursBean implements Serializable {
     }
 
     public String redirectModifUtil(){
+        log.debug("je rentre dans redirect");
+        log.debug(utilisateur.getNom()+" "+utilisateur.getPrenom());
         for (UtilisateursAdresses ua: utilisateur.getUtilisateursAdresses()) {
+            log.debug("test vallue : " + ua.getAdresse().getIdAdresses());
+            log.debug(ua.isActif());
             if(ua.isActif()){
                 adresses=ua.getAdresse();
             }
         }
+        log.debug("taille UB : "+utilisateur.getUtilisateursBibliotheques());
+        for (UtilisateursBibliotheques ub : utilisateur.getUtilisateursBibliotheques())
+        {
+            log.debug(ub.getBibliotheque().getNom());
+            tabbibli.add(ub.getBibliotheque());
+        }
+        log.debug("adresse choisie");
+        log.debug(adresses.getIdAdresses());
         return "/formEditUtilisateur.xhtml?faces-redirect=true";
     }
 

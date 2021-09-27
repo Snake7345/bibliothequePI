@@ -74,7 +74,7 @@
                     <!--<h:message for="utilisateurMdp" styleClass="errorMessage"/>-->
                 </c:if>
 
-                <p:selectCheckboxMenu value = "#{utilisateursBean.tabbibli}" id="menu" style="width: 15rem"
+                <p:selectCheckboxMenu rendered="#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}" value = "#{utilisateursBean.tabbibli}" id="menu" style="width: 15rem"
                                       filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" scrollHeight="250">
                     <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
                                    itemLabel="#{biblio.nom}"
