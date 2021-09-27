@@ -49,16 +49,17 @@
                 </p:selectCheckboxMenu>
 
                 <p:outputLabel value = "#{I18N['livre.label.Annee']}"/>
-                <p:inputText id="livreAnnee"
+                <p:spinner id="livreAnnee"
                              value="#{livresBean.livre.annee}"
                              required="true"
                              validatorMessage="la valeur ne peut être négative et doit comprendre 4 chiffre"
                              converterMessage="il ne peut y avoir que des chiffres"
                              requiredMessage="#{I18N['formulaire.message.required.annee']}"
-                             maxlength="4">
+                             maxlength="4"
+                             stepFactor="10">
                     <f:validateLongRange minimum="0"/>
                     <f:validateLength minimum="4" maximum="4"/>
-                </p:inputText>
+                </p:spinner>
 
                 <p:outputLabel value = "#{I18N['livre.label.Isbn']}"/>
                 <p:inputText id="livreISBN"
@@ -71,9 +72,12 @@
                 </p:inputText>
 
                 <p:outputLabel value = "#{I18N['editeur.label.Nom']}"/>
-                <p:selectOneMenu value = "#{livresBean.livre.editeurs}" id="livreEdit" converter="editeurConverter">
+                <p:selectOneListbox  value = "#{livresBean.livre.editeurs}" id="livreEdit" converter="editeurConverter" var="c" filter="true" filterMatchMode="contains">
                     <f:selectItems value = "#{editeursBean.readAll}" var="lived" itemLabel="#{lived.nom}" itemValue="#{lived}"/>
-                </p:selectOneMenu>
+                    <p:column>
+                        <h:outputText value="#{c.nom}"/>
+                    </p:column>
+                </p:selectOneListbox>
 
 
             </p:panelGrid>

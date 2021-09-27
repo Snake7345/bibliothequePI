@@ -34,16 +34,17 @@
                 <!--<p:message for="livreTitre" styleClass="errorMessage"/>-->
 
                 <p:outputLabel value = "#{I18N['livre.label.Annee']}"/>
-                <p:inputText id="livreAnnee"
+                <p:spinner id="livreAnnee"
                              value="#{livresBean.livre.annee}"
                              required="true"
                              validatorMessage="la valeur ne peut être négative et doit comprendre 4 chiffre"
                              converterMessage="il ne peut y avoir que des chiffres"
                              requiredMessage="#{I18N['formulaire.message.required.annee']}"
-                             maxlength="4">
+                             maxlength="4"
+                             stepFactor="10">
                     <f:validateLongRange minimum="0"/>
                     <f:validateLength minimum="4" maximum="4"/>
-                </p:inputText>
+                </p:spinner>
                 <!--<h:message for="livreAnnee" styleClass="errorMessage"/>-->
 
 

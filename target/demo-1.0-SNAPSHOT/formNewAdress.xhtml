@@ -51,7 +51,7 @@
 
                 <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
                 <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"
-                converter="localiteConverter" var="c" filter="true" filterMatchMode="contains">>
+                converter="localiteConverter" var="c" filter="true" filterMatchMode="contains">
                     <f:selectItems value = "#{localitesBean.readAll}" var="loca"
                                    itemLabel="#{loca.cp} : #{loca.ville}" itemValue="#{loca}"/>
                     <p:column>

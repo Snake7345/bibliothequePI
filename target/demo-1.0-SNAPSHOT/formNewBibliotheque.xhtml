@@ -31,13 +31,17 @@
                 </p:inputText>
 <!--TODO : Modifier la requete au niveau des adresses, les adresses qui sont déjà a un utilisateur ne doivent pas être listées-->
                 <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
-                <p:selectOneMenu value = "#{bibliothequesBean.adresses}" id="biblioadress" required="true"
+                <p:selectOneListbox value = "#{bibliothequesBean.adresses}" id="biblioadress" required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.adresse']}"
-                                 converter="adressConverter">
+                                 converter="adressConverter" var="c" filter="true" filterMatchMode="contains">
                     <f:selectItems value = "#{adressesBean.readAll}" var="ad"
                                    itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
                                    itemValue="#{ad}"/>
-                </p:selectOneMenu>
+                    <p:column>
+                        <h:outputText value="#{c.rue} #{c.numero} #{c.boite} #{c.localites.cp} #{c.localites.ville}" />
+                    </p:column>
+
+                </p:selectOneListbox>
             </p:panelGrid>
 
             <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}" ajax="false"/>
