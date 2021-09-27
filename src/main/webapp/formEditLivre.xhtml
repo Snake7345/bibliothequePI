@@ -41,7 +41,8 @@
                              converterMessage="il ne peut y avoir que des chiffres"
                              requiredMessage="#{I18N['formulaire.message.required.annee']}"
                              maxlength="4"
-                             stepFactor="10">
+                             stepFactor="10"
+                             min="1800">
                     <f:validateLongRange minimum="0"/>
                     <f:validateLength minimum="4" maximum="4"/>
                 </p:spinner>

@@ -59,7 +59,7 @@
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Exemplaires:Modification">
                     <p:column>
-                        <p:commandButton rendered="#{livexemL.actif ne false}" icon="pi pi-pencil" value="Modifier" action="formEditExemplaireLivre?faces-redirect=true">
+                        <p:commandButton rendered="#{livexemL.actif ne false and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="pi pi-pencil" value="Modifier" action="formEditExemplaireLivre?faces-redirect=true">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </p:commandButton>
                     </p:column>
@@ -67,8 +67,7 @@
                     <!--TODO : Verifier la permission shiro ci-dessous ainsi que l'application du if, il ne doit pas y avoir d'interaction entre les deux-->
                     <shiro:hasPermission name="Exemplaires:ActivDesactiv">
                     <p:column>
-                        <c:if test= "{livexemL.actif eq true}">
-                        <p:commandButton rendered="#{livexemL.actif}" icon="pi pi-power-off" value ="Désactiver" action="#{exemplairesLivresBean.activdesactivExLiv}">
+                        <p:commandButton rendered="#{livexemL.actif and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="pi pi-power-off" value ="Désactiver" action="#{exemplairesLivresBean.activdesactivExLiv}">
                             <p:confirm type="popup" header="Confirmation" message="#{I18N['auteur.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                             <p:confirmPopup global="true">
@@ -76,7 +75,6 @@
                                 <p:commandButton value="Yes" type="button" styleClass="ui-confirm-popup-yes" />
                             </p:confirmPopup>
                         </p:commandButton>
-                        </c:if>
                     </p:column>
                     </shiro:hasPermission>
                 </p:dataTable>

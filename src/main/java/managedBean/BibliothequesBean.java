@@ -29,7 +29,6 @@ public class BibliothequesBean implements Serializable {
 
     private int idBiblio;
 
-    private String nomBib;
     private Adresses adresses;
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
     private List<Bibliotheques> listBiblioActiv = new ArrayList<>();
@@ -340,14 +339,5 @@ public class BibliothequesBean implements Serializable {
 
     public void setUserdir(String userdir) {
         this.userdir = userdir;
-    }
-
-
-    public String getNomBib() {
-        return nomBib;
-    }
-
-    public void setNomBib(String nomBib) {
-        this.nomBib = nomBib;
     }
 }
