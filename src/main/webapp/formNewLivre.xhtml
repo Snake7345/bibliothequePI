@@ -19,7 +19,7 @@
             </h:head>
             <h2 style="text-align:center">#{I18N['livre.form.nouveau.titre']}</h2>
 
-            <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
                 <p:outputLabel value = "#{I18N['livre.label.Titre']}"/>
@@ -31,24 +31,22 @@
                              maxlength="100">
                     <f:validateLength minimum="1" maximum="100"/>
                 </p:inputText>
-                <!--<h:message for="livreTitre" styleClass="errorMessage"/>-->
 
                 <p:outputLabel value = "#{I18N['livre.label.Auteur']}"/>
-                <!--TODO : Trouver un équivalent au h:selectManyListbox-->
-                <p:selectManyMenu value = "#{livresBean.auteur}" id="livreauteur"
+                <p:selectCheckboxMenu value = "#{livresBean.auteur}" id="livreauteur"
                                      required="true"
-                                     requiredMessage="#{I18N['formulaire.message.required.auteur']}">
+                                     requiredMessage="#{I18N['formulaire.message.required.auteur']}" multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
                     <f:selectItems value = "#{auteursBean.readActiv}" var="livaut" itemLabel="#{livaut.nom} #{livaut.prenom}" itemValue="#{livaut}"/>
-                </p:selectManyMenu>
-                <!--<h:message for="livreauteur" styleClass="errorMessage"/>-->
+                    <p:ajax event="itemUnselect" listener="#{auteursBean.onItemUnselect}"/>
+                </p:selectCheckboxMenu>
 
                 <p:outputLabel value = "#{I18N['livre.label.Genre']}"/>
-                <p:selectManyMenu value = "#{livresBean.genre}" id="livreGenre"
+                <p:selectCheckboxMenu value = "#{livresBean.genre}" id="livreGenre"
                                      required="true"
-                                     requiredMessage="#{I18N['formulaire.message.required.genre']}">
+                                     requiredMessage="#{I18N['formulaire.message.required.genre']}" multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
+                    <p:ajax event="itemUnselect" listener="#{genresBean.onItemUnselect}"/>
                     <f:selectItems value = "#{genresBean.readAll}" var="livgen" itemLabel="#{livgen.denomination}" itemValue="#{livgen}"/>
-                </p:selectManyMenu>
-                <!--<h:message for="livreGenre" styleClass="errorMessage"/>-->
+                </p:selectCheckboxMenu>
 
                 <p:outputLabel value = "#{I18N['livre.label.Annee']}"/>
                 <p:inputText id="livreAnnee"
@@ -61,7 +59,6 @@
                     <f:validateLongRange minimum="0"/>
                     <f:validateLength minimum="4" maximum="4"/>
                 </p:inputText>
-                <!--<h:message for="livreAnnee" styleClass="errorMessage"/>-->
 
                 <p:outputLabel value = "#{I18N['livre.label.Isbn']}"/>
                 <p:inputText id="livreISBN"
@@ -72,7 +69,6 @@
                              validator="isbnValidator">
                     <f:validateLength minimum="10" maximum="17"/>
                 </p:inputText>
-                <!--<h:message for="livreISBN" styleClass="errorMessage"/>-->
 
                 <p:outputLabel value = "#{I18N['editeur.label.Nom']}"/>
                 <p:selectOneMenu value = "#{livresBean.livre.editeurs}" id="livreEdit" converter="editeurConverter">

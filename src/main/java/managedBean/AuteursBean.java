@@ -5,6 +5,7 @@ import entities.ExemplairesLivres;
 import entities.Livres;
 import entities.LivresAuteurs;
 import org.apache.log4j.Logger;
+import org.primefaces.event.UnselectEvent;
 import services.SvcAuteurs;
 import services.SvcExemplairesLivres;
 import services.SvcLivres;
@@ -55,6 +56,16 @@ public class AuteursBean implements Serializable {
             init();
         }
         return "/tableAuteurs.xhtml?faces-redirect=true";
+    }
+
+    public void onItemUnselect(UnselectEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        FacesMessage msg = new FacesMessage();
+        msg.setSummary("Item unselected: " + event.getObject().toString());
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+
+        context.addMessage(null, msg);
     }
 
     // Méthode qui permet la sauvegarde de l'auteur dans la base de donnée

@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.Genres;
 import org.apache.log4j.Logger;
+import org.primefaces.event.UnselectEvent;
 import services.SvcGenres;
 
 import javax.annotation.PostConstruct;
@@ -42,6 +43,16 @@ public class GenresBean implements Serializable {
         }
         init();
         return "/tableGenres?faces-redirect=true";
+    }
+
+    public void onItemUnselect(UnselectEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        FacesMessage msg = new FacesMessage();
+        msg.setSummary("Item unselected: " + event.getObject().toString());
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+
+        context.addMessage(null, msg);
     }
 
     // Méthode qui permet la sauvegarde du genre dans la base de donnée.
