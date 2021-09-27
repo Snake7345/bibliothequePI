@@ -46,9 +46,14 @@
 
                         <shiro:hasPermission name="Auteurs:ActivDesactiv">
                         <p:column>
-                            <p:commandButton icon="pi pi-power-off" value ="Désactiver" rendered="#{aut.actif}" action="formConfirmationAuteur">
+                            <p:commandButton icon="pi pi-power-off" value ="Désactiver" rendered="#{aut.actif}" action="#{auteursBean.activdesactivAut}">
+                                <p:confirm type="popup" header="Confirmation" message="#{I18N['auteur.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
                                 <f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
                             </p:commandButton>
+                            <p:confirmPopup global="true">
+                                <p:commandButton value="Non" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirm-popup-yes" />
+                            </p:confirmPopup>
                             <p:commandButton icon="pi pi-check" value ="Activer" rendered="#{!aut.actif}" action="#{auteursBean.activdesactivAut}">
                                 <f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
                             </p:commandButton>

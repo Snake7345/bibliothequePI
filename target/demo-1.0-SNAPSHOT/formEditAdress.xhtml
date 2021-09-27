@@ -49,11 +49,20 @@
                 <!--<h:message for="adresseNumero" styleClass="errorMessage"/>-->
 
                 <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
-                <p:selectOneMenu value = "#{adressesBean.adresse.localites}" id="adressLoca"
-                                 converter="localiteConverter">
+                <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"
+                                 converter="localiteConverter" var="c" filter="true" filterMatchMode="contains">
                     <f:selectItems value = "#{localitesBean.readAll}" var="loca"
                                    itemLabel="#{loca.cp} - #{loca.ville}" itemValue="#{loca}"/>
-                </p:selectOneMenu>
+                    <p:column>
+                        <p:graphicImage value="/Images/belgium.png" style="width: 30px; height: 20px"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{c.cp}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{c.ville}"/>
+                    </p:column>
+                </p:selectOneListbox>
 
             </p:panelGrid>
 

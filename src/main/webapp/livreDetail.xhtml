@@ -64,7 +64,7 @@
                     </p:column>
                     <shiro:hasPermission name="Exemplaires:Creer">
                     <p:column>
-                        <p:commandButton  icon="fa fa-fw fa-plus" value="Ajouter exemplaires" action="tableExemplaireLivres">
+                        <p:commandButton  icon="fa fa-fw fa-plus" value="Ajouter exemplaires" action="tableExemplaireLivres?faces-redirect=true">
                             <!-- u minuscule -->
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" /> <!-- u minuscule -->
                         </p:commandButton>
@@ -72,7 +72,7 @@
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:Modification">
                     <p:column>
-                        <p:commandButton icon="fa fa-fw fa-pencil" value="Modifier" action="formEditLivre">		<!-- u minuscule -->
+                        <p:commandButton icon="fa fa-fw fa-pencil" value="Modifier" action="formEditLivre?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>

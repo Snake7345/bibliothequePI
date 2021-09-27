@@ -38,22 +38,27 @@
                         </ui:repeat>
                     </p:column>
                     <p:column>
-                        <p:commandButton  icon="pi pi-plus" value="Details" action="livreDetail">		<!-- u minuscule -->
+                        <p:commandButton  icon="pi pi-plus" value="Details" action="livreDetail?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}"/><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
                     <shiro:hasPermission name="Livres:Modification">
                     <p:column>
-                        <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditLivre">		<!-- u minuscule -->
+                        <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditLivre?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:ActivDesactiv">
                     <p:column>
-                        <p:commandButton rendered="#{liv.actif}" icon="pi pi-power-off" value ="Desactiver" action="formConfirmationLivre">
+                        <p:commandButton rendered="#{liv.actif}" icon="pi pi-power-off" value ="Desactiver" action="#{livresBean.activdesactivLiv}">
+                            <p:confirm type="popup" header="Confirmation" message="#{I18N['livre.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>
+                        <p:confirmPopup global="true">
+                            <p:commandButton value="Non" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirm-popup-yes" />
+                        </p:confirmPopup>
                         <p:commandButton rendered="#{!liv.actif}" icon="pi pi-check" value ="Activer" action="#{livresBean.activdesactivLiv}">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>

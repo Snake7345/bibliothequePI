@@ -45,14 +45,14 @@
                         <f:facet name="header">
                             <p:outputLabel value="Nombre de jours" />
                         </f:facet>
-                        <p:inputText value="#{LC.nbrJours}"
+                        <p:spinner value="#{LC.nbrJours}"
                                      id="nbrj"
                                      validatorMessage="Le nombre de jours minimum doit être de 1"
                                      converterMessage="Le nombre doit etre un entier positif"
                                      required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.nbrJ']}">
                             <f:validateLongRange minimum="1"/>
-                        </p:inputText>
+                        </p:spinner>
                     </p:column>
                     <p:column>
                         <!--<h:message for="CB" styleClass="errorMessage"/>--> <p:outputLabel value=" " />
