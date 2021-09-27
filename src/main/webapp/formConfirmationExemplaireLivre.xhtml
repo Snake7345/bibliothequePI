@@ -16,7 +16,7 @@
         <h:form>
         <h2 style="text-align:center">#{I18N['exempl.form.questionconfirm']}</h2>
         <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['commune.label.oui']}" action="#{exemplairesLivresBean.activdesactivExLiv}"/>
-        <p:commandButton value="#{I18N['commune.label.non']}" action="tableExemplaireLivres" immediate="true"/>
+        <p:commandButton value="#{I18N['commune.label.non']}" action="tableExemplaireLivres?faces-redirect=true" immediate="true"/>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Exemplaires:ActivDesactiv">

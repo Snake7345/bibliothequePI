@@ -57,9 +57,9 @@
                     </p:dataTable>
                 </p:panel>
                 <shiro:hasPermission name="Auteurs:Creer">
-                <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewAuteur" />
+                <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewAuteur?faces-redirect=true" />
                 </shiro:hasPermission>
-                <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchAuteur"/>
+                <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchAuteur?faces-redirect=true"/>
                 <p:commandButton icon="fa fa-fw fasearch-plus" value="#{I18N['application.button.autActiv']}" action="#{auteursBean.getReadActiv}"/>
                 <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.autInactiv']}" action="#{auteursBean.getReadInactiv}"/>
                 <shiro:hasPermission name="Autre:Connexion">

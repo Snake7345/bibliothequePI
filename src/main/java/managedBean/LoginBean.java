@@ -89,7 +89,7 @@ public class LoginBean implements Serializable {
         return "login";*/
         utilisateurAuth = new Utilisateurs();
         SecurityManager.processToLogout();
-        return "login";
+        return "/login.xhtml?faces-redirect=true";
     }
 
     //-------------------------Getter & Setter--------------------------------------------------------------------------------

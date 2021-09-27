@@ -67,7 +67,7 @@
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:ActivDesactiv">
                         <p:column>
-                            <p:commandButton rendered="#{liv.actif}" image="Images//activdesactiv.png" action="formConfirmationLivre">
+                            <p:commandButton rendered="#{liv.actif}" image="Images//activdesactiv.png" action="formConfirmationLivre?faces-redirect=true">
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                             </p:commandButton>
                             <p:commandButton rendered="#{!liv.actif}" image="Images//activdesactiv.png" action="#{livresBean.activdesactivLiv}">
