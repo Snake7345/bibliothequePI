@@ -29,13 +29,16 @@
                                  maxlength="100">
                         <f:validateLength minimum="2" maximum="100"/>
                     </p:inputText>
+                    <p:tooltip for="roleDenomination" value="Entre ta dénomination de role" position="right"/>
+
                     <p:outputLabel value = "#{I18N['Permissions.label.Type']}"/>
-                    <p:selectOneMenu value = "#{permissionsBean.type}" id="type">
+                    <p:selectOneMenu value = "#{permissionsBean.type}" id="type" >
                         <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
                                        itemLabel="#{ty}"
                                        itemValue="#{ty}"/>
-                        <f:ajax event="itemSelect" execute="type" listener="#{permissionsBean.permissionsAction}" render="action"/>
                     </p:selectOneMenu>
+
+                    <p:commandButton icon="fa fa-fw fa-rotate-left" action="#{permissionsBean.getPermissionsAction}" ajax="false"/>
 
                     <p:outputLabel value = "#{I18N['Permissions.label.Action']}"/>
                     <p:selectOneMenu value = "#{permissionsBean.action}" id="action">
@@ -56,4 +59,3 @@
 </ui:composition>
 
 </html>
-        <!--<p:commandButton action="#{permissionsBean.getpermissionsAction}" ajax="false"/>-->

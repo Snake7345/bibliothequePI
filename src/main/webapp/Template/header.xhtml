@@ -13,9 +13,8 @@
 	<ui:insert name="header">
 
 		<p:panel id="header2" class="table-entete">
-			<!--Pourquoi le p:graphicimage ne fonctionne pas-->
 			<p:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
-			<p:outputLabel> value="#{bibliothequesBean.idBiblio}"</p:outputLabel>
+			<p:outputLabel id="titrebib" value="Bienvenue sur la bibliothèque #{bibliothequesBean.listBibactuel.get(0).nom}" />
 		</p:panel>
 		<shiro:authenticated>
 				<h:form>
@@ -23,7 +22,7 @@
 						<shiro:hasPermission name="Permissions:Lire">
 							<p:submenu label="Gestion des permissions" icon="fa fa-fw fa-exclamation">
 								<shiro:hasPermission name="Permissions:Lire">
-									<p:menuitem value="Table des permissions" icon="fa fa-fw fa-table" action="tablePermissions.xhtml"/>
+									<p:menuitem value="Table des permissions" icon="fa fa-fw fa-table" action="tablePermissions.xhtml" />
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Permissions:Creer">
 									<p:menuitem value="Nouvelle permission" icon="fa fa-fw fa-plus" action="formNewPermission"/>
@@ -135,7 +134,7 @@
 							</p:submenu>
 						</shiro:hasPermission>
 						<f:facet name="options">
-							<p:button value="#{I18N['application.button.deconnexion']}" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{loginBean.deconnexion}"/>
+							<p:commandButton value="#{I18N['application.button.deconnexion']}" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{loginBean.deconnexion}"/>
 						</f:facet>
 					</p:menubar>
 				</h:form>

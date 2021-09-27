@@ -6,12 +6,19 @@
 	color: black;
 }
 
+
 #header2 {
 	width: 100%;
 	padding: 2px;
 	text-align: left;
-	font-size:20px;
+	font-size:50px;
 	color: black;
+}
+
+#titrebib
+{
+	text-align: right;
+	font-size: 50px;
 }
 
 /*body*/
@@ -152,6 +159,7 @@ body {
 	border-color:#8db1e2!important;
 	background-color:#8db1e2!important ;
 }
+
 .image
 {
 	background-color:white!important ;

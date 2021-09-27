@@ -6,6 +6,7 @@ import services.SvcPermissions;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class PermissionsBean implements Serializable {
     private Permissions permission;
     private static final Logger log = Logger.getLogger(PermissionsBean.class);
 
-    private String type = "Adresses";
+    private String type;
     private String action;
     private final List<Permissions> listPer = getReadAll();
 
@@ -38,6 +39,14 @@ public class PermissionsBean implements Serializable {
         return "/tablePermissions?faces-redirect=true";
     }
 
+    private String middlename;
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
+    }
     /*
      * Méthode qui permet via le service de retourner la liste de toutes les permissions
      */
@@ -79,7 +88,11 @@ public class PermissionsBean implements Serializable {
         log.debug("listAction : " + listAction.size());
         return listAction;
     }
-
+    public void stateChangeListener(ValueChangeEvent event) {
+        if (event.getNewValue() != type) {
+            getPermissionsAction();
+        }
+    }
 
     //-------------------------------Getter & Setter--------------------------------------------
 

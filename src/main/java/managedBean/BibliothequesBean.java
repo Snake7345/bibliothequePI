@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.Adresses;
 import entities.Bibliotheques;
+import enumeration.ExemplairesLivresEtatEnum;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import security.SecurityManager;
@@ -27,6 +28,8 @@ public class BibliothequesBean implements Serializable {
     private String nomBiblio;
 
     private int idBiblio;
+
+    private String nomBib;
     private Adresses adresses;
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
     private List<Bibliotheques> listBiblioActiv = new ArrayList<>();
@@ -46,6 +49,7 @@ public class BibliothequesBean implements Serializable {
         {
             idBiblio = recupIdBiblio();
         }
+        else
         bibliotheque = new Bibliotheques();
         listBiblioActiv = getReadBiblioActiv();
         listBibactuel = getFindBiblio();
@@ -58,6 +62,7 @@ public class BibliothequesBean implements Serializable {
         }
 
     }
+
 
     public int recupIdBiblio()
     {
@@ -223,6 +228,8 @@ public class BibliothequesBean implements Serializable {
         return listBiblioActiv;
     }
 
+
+
     public void beforePageLoad() throws IOException {
 
 
@@ -264,6 +271,7 @@ public class BibliothequesBean implements Serializable {
         catch (Exception e) {
             e.printStackTrace();
         }
+        init();
         return "/login?faces-redirect=true";
 
     }
@@ -332,5 +340,14 @@ public class BibliothequesBean implements Serializable {
 
     public void setUserdir(String userdir) {
         this.userdir = userdir;
+    }
+
+
+    public String getNomBib() {
+        return nomBib;
+    }
+
+    public void setNomBib(String nomBib) {
+        this.nomBib = nomBib;
     }
 }

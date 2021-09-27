@@ -146,7 +146,8 @@ public class FactureBean implements Serializable {
         }
         //vÃ©rif si livre non louÃ©
         for (locationCustom lc: listLC) {
-            if (serviceEL.findOneByCodeBarre(lc.getCB()).get(0).isLoue()){
+            if (serviceEL.findOneByCodeBarre(lc.getCB()).get(0).isLoue() || serviceEL.findOneByCodeBarre(lc.getCB()).get(0).getBibliotheques().equals(bibli))
+            {
                 flag=true;
                 break;
             }

@@ -13,9 +13,8 @@
 	<ui:insert name="header">
 
 		<p:panel id="header2" class="table-entete">
-			<!--Pourquoi le p:graphicimage ne fonctionne pas-->
 			<p:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
-			<p:outputLabel> value="#{bibliothequesBean.idBiblio}"</p:outputLabel>
+			<p:outputLabel id="titrebib" value="Bienvenue sur la bibliothèque #{bibliothequesBean.listBibactuel.get(0).nom}" />
 		</p:panel>
 		<shiro:authenticated>
 				<h:form>
@@ -23,30 +22,30 @@
 						<shiro:hasPermission name="Permissions:Lire">
 							<p:submenu label="Gestion des permissions" icon="fa fa-fw fa-exclamation">
 								<shiro:hasPermission name="Permissions:Lire">
-									<p:menuitem value="Table des permissions" icon="fa fa-fw fa-table" action="tablePermissions.xhtml"/>
+									<p:menuitem value="Table des permissions" icon="fa fa-fw fa-table" action="tablePermissions.xhtml" immediate="true"/>
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Permissions:Creer">
-									<p:menuitem value="Nouvelle permission" icon="fa fa-fw fa-plus" action="formNewPermission"/>
+									<p:menuitem value="Nouvelle permission" icon="fa fa-fw fa-plus" action="formNewPermission" immediate="true"/>
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="Tarifs:Lire">
 							<p:submenu label="Gestion des tarifs" icon="fa fa-fw fa-euro">
 								<shiro:hasPermission name="Tarifs:Lire">
-									<p:menuitem value="Voir les tarifs" icon="fa fa-fw fa-table" action="tableTarifs.xhtml"/>
+									<p:menuitem value="Voir les tarifs" icon="fa fa-fw fa-table" action="tableTarifs.xhtml" immediate="true"/>
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Tarifs:Creer">
-									<p:menuitem value="Nouvelle grille tarifaire" icon="fa fa-fw fa-plus" action="formNewTarif"/>
+									<p:menuitem value="Nouvelle grille tarifaire" icon="fa fa-fw fa-plus" action="formNewTarif" immediate="true"/>
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="Roles:Lire">
 							<p:submenu label="Gestion des rôles" icon="fa fa-fw fa-wrench">
 								<shiro:hasPermission name="Roles:Lire">
-									<p:menuitem value="Tables des rôles" icon="fa fa-fw fa-table" action="tableRoles.xhtml"/>
+									<p:menuitem value="Tables des rôles" icon="fa fa-fw fa-table" action="tableRoles.xhtml" immediate="true"/>
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Roles:Creer">
-									<p:menuitem value="Nouveau rôle" icon="fa fa-fw fa-plus" action="formNewRole"/>
+									<p:menuitem value="Nouveau rôle" icon="fa fa-fw fa-plus" action="formNewRole" immediate="true"/>
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>
@@ -54,18 +53,18 @@
 							<p:submenu label="Gestion des personnes" icon="fa fa-fw fa-users">
 								<p:submenu label="Voir les" icon="fa fa-fw fa-table">
 									<shiro:hasPermission name="Client:Lire">
-										<p:menuitem value="Clients" action="tableUtilisateursCli.xhtml" icon="fa fa-fw fa-user"/>
+										<p:menuitem value="Clients" action="tableUtilisateursCli.xhtml" icon="fa fa-fw fa-user" immediate="true"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Utilisateurs:Lire">
-										<p:menuitem value="Utilisateurs" action="tableUtilisateurs.xhtml" icon="fa fa-fw fa-user"/>
+										<p:menuitem value="Utilisateurs" action="tableUtilisateurs.xhtml" icon="fa fa-fw fa-user" immediate="true"/>
 									</shiro:hasPermission>
 								</p:submenu>
 								<p:submenu label="Ajouter" icon="fa fa-fw fa-plus">
 									<shiro:hasPermission name="Client:Creer">
-										<p:menuitem value="Client" action="formNewUtilisateurCli" icon="fa fa-fw fa-user"/>
+										<p:menuitem value="Client" action="formNewUtilisateurCli" icon="fa fa-fw fa-user" immediate="true"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Utilisateurs:Creer">
-										<p:menuitem value="Utilisateur" action="formNewUtilisateur" icon="fa fa-fw fa-user"/>
+										<p:menuitem value="Utilisateur" action="formNewUtilisateur" icon="fa fa-fw fa-user" immediate="true"/>
 									</shiro:hasPermission>
 								</p:submenu>
 							</p:submenu>
@@ -74,68 +73,68 @@
 							<p:submenu label="Gestion bibliothèque" icon="fa fa-fw fa-building-o">
 								<p:submenu label="Voir les" icon="fa fa-fw fa-table">
 									<shiro:hasPermission name="Bibliotheques:Lire">
-										<p:menuitem value="Bibliothèques" action="tableBibliotheques.xhtml" icon="fa fa-fw fa-building-o"/>
+										<p:menuitem value="Bibliothèques" action="tableBibliotheques.xhtml" icon="fa fa-fw fa-building-o" immediate="true"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Livres:Lire">
-										<p:menuitem value="Livres" action="tableLivres.xhtml" icon="fa fa-fw fa-book"/>
+										<p:menuitem value="Livres" action="tableLivres.xhtml" icon="fa fa-fw fa-book" immediate="true"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Genres:Lire">
-										<p:menuitem value="Genres" action="tableGenres.xhtml" icon="fa fa-fw fa-text-width"/>
+										<p:menuitem value="Genres" action="tableGenres.xhtml" icon="fa fa-fw fa-text-width" immediate="true"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Editeurs:Lire">
-										<p:menuitem value="Editeurs" action="tableEditeurs.xhtml" icon="fa fa-fw fa-building"/>
+										<p:menuitem value="Editeurs" action="tableEditeurs.xhtml" icon="fa fa-fw fa-building" immediate="true"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Auteurs:Lire">
-										<p:menuitem value="Auteurs" action="tableAuteurs.xhtml" icon="fa fa-fw fa-pencil"/>
+										<p:menuitem value="Auteurs" action="tableAuteurs.xhtml" icon="fa fa-fw fa-pencil" immediate="true"/>
 									</shiro:hasPermission>
 								</p:submenu>
 								<p:submenu label="Ajouter" icon="fa fa-fw fa-plus">
 									<shiro:hasPermission name="Bibliotheques:Creer">
-										<p:menuitem value="Bibliothèque" action="formNewBibliotheque" icon="fa fa-fw fa-building-o"/>
+										<p:menuitem value="Bibliothèque" action="formNewBibliotheque" icon="fa fa-fw fa-building-o" immediate="true"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Livres:Creer">
-										<p:menuitem value="Livre" action="formNewLivre" icon="fa fa-fw fa-book"/>
+										<p:menuitem value="Livre" action="formNewLivre" icon="fa fa-fw fa-book" immediate="true"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Genres:Lire">
-										<p:menuitem value="Genre" action="formNewGenre" icon="fa fa-fw fa-text-width"/>
+										<p:menuitem value="Genre" action="formNewGenre" icon="fa fa-fw fa-text-width" immediate="true"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Editeurs:Lire">
-										<p:menuitem value="Editeur" action="formNewEditeur" icon="fa fa-fw fa-building"/>
+										<p:menuitem value="Editeur" action="formNewEditeur" icon="fa fa-fw fa-building" immediate="true"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Auteurs:Lire">
-										<p:menuitem value="Auteur" action="formNewAuteur" icon="fa fa-fw fa-pencil"/>
+										<p:menuitem value="Auteur" action="formNewAuteur" icon="fa fa-fw fa-pencil" immediate="true"/>
 									</shiro:hasPermission>
 								</p:submenu>
 								<shiro:hasRole name="1">
-								<p:menuitem value="Reinitialisation de la bibliotheque" icon="fa fa-fw fa-refresh" action="formConfirmationReini.xhtml"/>
+								<p:menuitem value="Reinitialisation de la bibliotheque" icon="fa fa-fw fa-refresh" action="formConfirmationReini.xhtml" immediate="true"/>
 								</shiro:hasRole>
 							</p:submenu>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="Adresses:Lire">
 							<p:submenu label="Gestion des adresses" icon="fa fa-fw fa-street-view">
 								<shiro:hasPermission name="Adresses:Lire">
-									<p:menuitem value="Table des Adresses" icon="fa fa-fw fa-table" action="tableAdresses.xhtml"/>
+									<p:menuitem value="Table des Adresses" icon="fa fa-fw fa-table" action="tableAdresses.xhtml" immediate="true"/>
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Adresses:Creer">
-									<p:menuitem value="Nouvelle Adresses" icon="fa fa-fw fa-plus" action="formNewAdress"/>
+									<p:menuitem value="Nouvelle Adresses" icon="fa fa-fw fa-plus" action="formNewAdress" immediate="true"/>
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="Factures:Lire">
 							<p:submenu label="Gestion des factures" icon="fa fa-fw fa-euro">
 								<shiro:hasPermission name="Factures:Lire">
-									<p:menuitem value="Tables des factures" icon="fa fa-fw fa-table" action="tableFactures.xhtml"/>
+									<p:menuitem value="Tables des factures" icon="fa fa-fw fa-table" action="tableFactures.xhtml" immediate="true"/>
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Factures:Creer">
-									<p:menuitem value="Retour de livre" icon="fa fa-fw fa-book" action="formEtatQuestion"/>
+									<p:menuitem value="Retour de livre" icon="fa fa-fw fa-book" action="formEtatQuestion" immediate="true"/>
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Factures:Creer">
-									<p:menuitem value="Nouvelle Facture" icon="fa fa-fw fa-plus" action="formNewFact"/>
+									<p:menuitem value="Nouvelle Facture" icon="fa fa-fw fa-plus" action="formNewFact" immediate="true"/>
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>
 						<f:facet name="options">
-							<p:button value="#{I18N['application.button.deconnexion']}" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{loginBean.deconnexion}"/>
+							<p:commandButton value="#{I18N['application.button.deconnexion']}" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{loginBean.deconnexion}" immediate="true"/>
 						</f:facet>
 					</p:menubar>
 				</h:form>
