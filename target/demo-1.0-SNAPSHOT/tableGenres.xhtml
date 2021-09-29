@@ -39,10 +39,10 @@
                     </p:dataTable>
                 </p:panel>
                 <shiro:hasPermission name="Genres:Creer">
-                    <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewGenre" />
+                    <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewGenre?faces-redirect=true" ajax="false"/>
                 </shiro:hasPermission>
                 <shiro:hasPermission name="Autre:Connexion">
-                    <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+                    <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue?faces-redirect=true"/>
                 </shiro:hasPermission>
             </h:form>
         </shiro:hasPermission>

@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import services.SvcBibliotheques;
 import services.SvcExemplairesLivres;
+import services.SvcLivres;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -30,6 +31,7 @@ public class ExemplairesLivresBean implements Serializable {
     private Livres livre;
     private String LastBarCode;
     private final Bibliotheques bib = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private List<Bibliotheques> bibliotransfert = new ArrayList<>();
 
     public void init()
     {
@@ -109,6 +111,38 @@ public class ExemplairesLivresBean implements Serializable {
         }
     }
 
+    public String transfer()
+    {
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        EntityTransaction transaction = serviceEL.getTransaction();
+        transaction.begin();
+        try {
+            /*Si le livre est actif alors on le désactive; sinon on l'active*/
+            if(exemplairesLivre.isActif())
+            {
+                    exemplairesLivre.setReserve(true);
+                    exemplairesLivre.setBibliotheques(bibliotransfert.get(0));
+                    serviceEL.save(exemplairesLivre);
+                }
+            serviceEL.save(exemplairesLivre);
+
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation a échoué",null));
+            }
+            init();
+            serviceEL.close();
+        }
+        return "/tableExemplaireLivres.xhtml?faces-redirect=true";
+    }
+
     // Méthode qui permet de sauvegarder un exemplaire livre en DB
     public void save()
     {
@@ -116,7 +150,7 @@ public class ExemplairesLivresBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            exemplairesLivre.setBibliotheques(bibli);
+            exemplairesLivre.setBibliotheques(bib);
             service.save(exemplairesLivre);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -193,5 +227,13 @@ public class ExemplairesLivresBean implements Serializable {
 
     public Bibliotheques getBib() {
         return bib;
+    }
+
+    public List<Bibliotheques> getBibliotransfert() {
+        return bibliotransfert;
+    }
+
+    public void setBibliotransfert(List<Bibliotheques> bibliotransfert) {
+        this.bibliotransfert = bibliotransfert;
     }
 }

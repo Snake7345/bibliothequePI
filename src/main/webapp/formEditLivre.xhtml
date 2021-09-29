@@ -31,7 +31,7 @@
                              maxlength="100">
                     <f:validateLength minimum="1" maximum="100"/>
                 </p:inputText>
-                <!--<p:message for="livreTitre" styleClass="errorMessage"/>-->
+                <p:tooltip for="livreTitre" value="Encoder le titre du livre" position="right"/>
 
                 <p:outputLabel value = "#{I18N['livre.label.Annee']}"/>
                 <p:spinner id="livreAnnee"
@@ -46,7 +46,7 @@
                     <f:validateLongRange minimum="0"/>
                     <f:validateLength minimum="4" maximum="4"/>
                 </p:spinner>
-                <!--<h:message for="livreAnnee" styleClass="errorMessage"/>-->
+                <p:tooltip for="livreAnnee" value="Encoder l'année de parution du livre" position="right"/>
 
 
             </p:panelGrid>

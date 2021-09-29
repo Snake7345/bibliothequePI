@@ -146,7 +146,7 @@ public class FactureBean implements Serializable {
         }
         //vÃ©rif si livre non louÃ©
         for (locationCustom lc: listLC) {
-            if (serviceEL.findOneByCodeBarre(lc.getCB()).get(0).isLoue() || serviceEL.findOneByCodeBarre(lc.getCB()).get(0).getBibliotheques().equals(bibli))
+            if (serviceEL.findOneByCodeBarre(lc.getCB()).get(0).isLoue() || !serviceEL.findOneByCodeBarre(lc.getCB()).get(0).getBibliotheques().equals(bibli))
             {
                 flag=true;
                 break;
@@ -206,7 +206,7 @@ public class FactureBean implements Serializable {
         else {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"une erreur est survenue, soit Le livre est déjà loué ou une information est manquante (tarif, biblotheque)",null));
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Une erreur est survenue",null));
             return "/formNewFact.xhtml?faces-redirect=true";
         }
     }

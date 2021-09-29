@@ -34,7 +34,7 @@
                         </p:column>
                         <shiro:hasPermission name="Bibliotheques:Modification">
                         <p:column>
-                            <p:commandButton icon="pi pi-pencil" value="Modifier" action="formEditBibliotheque">		<!-- u minuscule -->
+                            <p:commandButton rendered="#{bi.idBibliotheques eq bibliothequesBean.idBiblio}" icon="pi pi-pencil" value="Modifier" action="formEditBibliotheque">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>

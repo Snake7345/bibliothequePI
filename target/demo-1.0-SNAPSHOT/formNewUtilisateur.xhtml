@@ -108,7 +108,7 @@
                     <p:selectOneListbox value = "#{utilisateursBean.adresses}" id="utiladress" required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.adresse']}"
                                      converter="adressConverter" var="c" filter="true" filterMatchMode="contains">
-                        <f:selectItems value = "#{adressesBean.readAll}" var="ad"
+                        <f:selectItems value = "#{adressesBean.readAllNotBibli}" var="ad"
                                        itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
                                        itemValue="#{ad}"/>
                         <p:column>

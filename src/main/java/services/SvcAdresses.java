@@ -1,6 +1,7 @@
 package services;
 
 import entities.Adresses;
+import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -50,5 +51,9 @@ public class SvcAdresses extends Service<Adresses> implements Serializable {
 		return adresses;
 	}
 
+	public List<Adresses> getfindAllNotAdBibli() {
+
+		return finder.findByNamedQuery("Adresses.findAllNotAdBibli", null);
+	}
 
 }

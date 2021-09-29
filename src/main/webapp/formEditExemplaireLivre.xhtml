@@ -24,6 +24,7 @@
                 <p:selectOneRadio id="exetat" value="#{exemplairesLivresBean.exemplairesLivre.etat}" required="true">
                     <f:selectItems value="#{exemplairesLivresEnumBean.etatEnum}" />
                 </p:selectOneRadio>
+                <p:tooltip for="exetat" value="Renseigner l'état du livre" position="right"/>
 
                 <p:outputLabel value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
                 <p:inputTextarea id="CommentaireEtat"
@@ -31,7 +32,7 @@
                                  maxlength="500"
                 required="true" requiredMessage="#{I18N['formulaire.message.required.exemplairelivreetat']}">
                 </p:inputTextarea>
-                <!--<h:message for="CommentaireEtat" styleClass="errorMessage"/>-->
+                <p:tooltip for="exetat" value="Veuillez mettre vos commentaires concernant l'état du livre" position="right"/>
 
 
             </p:panelGrid>

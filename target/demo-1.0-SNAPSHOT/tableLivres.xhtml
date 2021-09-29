@@ -38,22 +38,27 @@
                         </ui:repeat>
                     </p:column>
                     <p:column>
-                        <p:commandButton  icon="pi pi-plus" value="Details" action="livreDetail">		<!-- u minuscule -->
+                        <p:commandButton  icon="fa fa-fw fa-th-list" value="Details" action="livreDetail?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}"/><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
                     <shiro:hasPermission name="Livres:Modification">
                     <p:column>
-                        <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditLivre">		<!-- u minuscule -->
+                        <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditLivre?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:ActivDesactiv">
                     <p:column>
-                        <p:commandButton rendered="#{liv.actif}" icon="pi pi-power-off" value ="Desactiver" action="formConfirmationLivre">
+                        <p:commandButton rendered="#{liv.actif}" icon="pi pi-power-off" value ="Desactiver" action="#{livresBean.activdesactivLiv}">
+                            <p:confirm type="popup" header="Confirmation" message="#{I18N['livre.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>
+                        <p:confirmPopup global="true">
+                            <p:commandButton value="Non" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirm-popup-yes" />
+                        </p:confirmPopup>
                         <p:commandButton rendered="#{!liv.actif}" icon="pi pi-check" value ="Activer" action="#{livresBean.activdesactivLiv}">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>
@@ -63,14 +68,21 @@
                         <f:facet name="header">Disponibilité</f:facet>
                         <p:graphicImage value="#{livresBean.verifDispo(liv)}" width="100" height="100"/>
                     </p:column>
+                    <p:column>
+                    <p:commandButton value="Transférer" type="button">
+                        <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                        <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
+                    </p:commandButton>
+                    </p:column>
+
                 </p:dataTable>
             </p:panel>
             <shiro:hasPermission name="Livres:Creer">
-            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewLivre" />
+            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewLivre?faces-redirect=true" />
             </shiro:hasPermission>
-            <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchLivre"/>
-            <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}"/>
-            <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}"/>
+            <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchLivre?faces-redirect=true" ajax="false"/>
+            <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}" ajax="false"/>
+            <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}" ajax="false"/>
             <shiro:hasPermission name="Autre:Connexion">
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushBienv}"/>
             </shiro:hasPermission>
@@ -79,6 +91,24 @@
         <shiro:lacksPermission name="Livres:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
+        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+
+            <h:form id="formTransfer" prependId = "false">
+                <p:panelGrid columns="2" StyleClass="formConfig">
+                    <h:outputText value="Quel est la bibliothèque qui demande le transfert ?" />
+                    <p:selectOneMenu value = "#{livresBean.bibliotransfert}" id="bib" converter="biblioConverter">
+                        <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
+                                       itemLabel="#{biblio.nom}"
+                                       itemValue="#{biblio}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <p:commandButton value="Modifier" action="#{livresBean.transfert}"
+                                 onclick="PF('popup').hide();">
+                </p:commandButton>
+
+                <p:commandButton value="Annuler" action="#{livresBean.init}" onclick="PF('popup').hide();" />
+            </h:form>
+        </p:dialog>
     </ui:define>
 </ui:composition>
 </html>

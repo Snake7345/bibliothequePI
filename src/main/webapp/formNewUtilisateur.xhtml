@@ -108,7 +108,7 @@
                     <p:selectOneListbox value = "#{utilisateursBean.adresses}" id="utiladress" required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.adresse']}"
                                      converter="adressConverter" var="c" filter="true" filterMatchMode="contains">
-                        <f:selectItems value = "#{adressesBean.readAll}" var="ad"
+                        <f:selectItems value = "#{adressesBean.readAllNotBibli}" var="ad"
                                        itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
                                        itemValue="#{ad}"/>
                         <p:column>
@@ -117,8 +117,9 @@
                     </p:selectOneListbox>
 
 
-                    <!-- A rajouter l'adresse-->
-
+                    <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}" ajax="false">
+                    <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
+                    </p:commandButton>
 
                 </p:panelGrid>
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}" ajax="false"/>
@@ -130,6 +131,65 @@
         <shiro:lacksPermission name="Utilisateurs:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
+        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+
+            <h:form id="formAdresse" prependId = "false">
+                <p:panelGrid id="newrecform2" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+
+                    <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
+                    <p:inputText id="adresseRue"
+                                 validatorMessage="La rue doit avoir entre 2 et 100 caractere"
+                                 value="#{adressesBean.adresse.rue}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.rue']}"
+                                 maxlength="100">
+                        <f:validateLength minimum="2" maximum="100"/>
+                    </p:inputText>
+                    <!--<h:message for="adresseRue" styleClass="errorMessage"/>-->
+
+                    <p:outputLabel value = "#{I18N['adresse.label.Boite']}"/>
+                    <p:inputText id="adresseBoite"
+                                 required="false"
+                                 value="#{adressesBean.adresse.boite}"
+                                 maxlength="4">
+                    </p:inputText>
+                    <!--<h:message for="adresseBoite" styleClass="errorMessage"/>-->
+
+                    <p:outputLabel value = "#{I18N['adresse.label.Numero']}"/>
+                    <p:inputText id="adresseNumero"
+                                 validatorMessage="Le numero est de minimum 1 caracteres et de maximum 6 caracteres"
+                                 value="#{adressesBean.adresse.numero}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.numero']}"
+                                 maxlength="6">
+                        <f:validateLength minimum="1" maximum="6"/>
+                    </p:inputText>
+                    <!--<h:message for="adresseNumero" styleClass="errorMessage"/>-->
+
+                    <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
+                    <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"
+                                        converter="localiteConverter" var="c" filter="true" filterMatchMode="contains">
+                        <f:selectItems value = "#{localitesBean.readAll}" var="loca"
+                                       itemLabel="#{loca.cp} : #{loca.ville}" itemValue="#{loca}"/>
+                        <p:column>
+                            <p:graphicImage value="/Images/belgium.png" style="width: 30px; height: 20px"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{c.cp}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{c.ville}"/>
+                        </p:column>
+                    </p:selectOneListbox>
+
+                </p:panelGrid>
+                <p:commandButton value="Envoyer" action="#{adressesBean.newAdress}"
+                                 onclick="PF('popup').hide();">
+                </p:commandButton>
+
+                <p:commandButton value="Annuler" action="#{adressesBean.init}" onclick="PF('popup').hide();" />
+            </h:form>
+        </p:dialog>
     </ui:define>
 </ui:composition>
 

@@ -112,6 +112,16 @@ public class AdressesBean implements Serializable {
         return listAd;
     }
 
+    public List<Adresses> getReadAllNotBibli()
+    {
+        SvcAdresses service = new SvcAdresses();
+        List<Adresses> listAd = new ArrayList<Adresses>();
+        listAd= service.getfindAllNotAdBibli();
+
+        service.close();
+        return listAd;
+    }
+
 
 //-------------------------------Getter & Setter--------------------------------------------
 

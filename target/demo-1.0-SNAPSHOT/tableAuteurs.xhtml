@@ -46,9 +46,14 @@
 
                         <shiro:hasPermission name="Auteurs:ActivDesactiv">
                         <p:column>
-                            <p:commandButton icon="pi pi-power-off" value ="Désactiver" rendered="#{aut.actif}" action="formConfirmationAuteur">
+                            <p:commandButton icon="pi pi-power-off" value ="Désactiver" rendered="#{aut.actif}" action="#{auteursBean.activdesactivAut}">
+                                <p:confirm type="popup" header="Confirmation" message="#{I18N['auteur.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
                                 <f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
                             </p:commandButton>
+                            <p:confirmPopup global="true">
+                                <p:commandButton value="Non" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirm-popup-yes" />
+                            </p:confirmPopup>
                             <p:commandButton icon="pi pi-check" value ="Activer" rendered="#{!aut.actif}" action="#{auteursBean.activdesactivAut}">
                                 <f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
                             </p:commandButton>
@@ -57,11 +62,11 @@
                     </p:dataTable>
                 </p:panel>
                 <shiro:hasPermission name="Auteurs:Creer">
-                <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewAuteur" />
+                <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewAuteur?faces-redirect=true" ajax="false"/>
                 </shiro:hasPermission>
-                <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchAuteur"/>
-                <p:commandButton icon="fa fa-fw fasearch-plus" value="#{I18N['application.button.autActiv']}" action="#{auteursBean.getReadActiv}"/>
-                <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.autInactiv']}" action="#{auteursBean.getReadInactiv}"/>
+                <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchAuteur?faces-redirect=true" ajax="false"/>
+                <p:commandButton icon="fa fa-fw fasearch-plus" value="#{I18N['application.button.autActiv']}" action="#{auteursBean.getReadActiv}" ajax="false"/>
+                <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.autInactiv']}" action="#{auteursBean.getReadInactiv}" ajax="false"/>
                 <shiro:hasPermission name="Autre:Connexion">
                 <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{auteursBean.flushBienv}"/>
                 </shiro:hasPermission>

@@ -38,6 +38,8 @@ public class LivresBean implements Serializable {
     private final Bibliotheques bibliactuel = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
 
+
+
     @PostConstruct
     public void init()
     {
@@ -91,6 +93,11 @@ public class LivresBean implements Serializable {
             genre.clear();
             service.close();
         }
+    }
+
+    public void reception()
+    {
+
     }
 
     public void save()
@@ -165,6 +172,8 @@ public class LivresBean implements Serializable {
         }
             return "/tableLivres.xhtml?faces-redirect=true";
     }
+
+
 
     public String searchLivre()
     {
@@ -281,6 +290,10 @@ public class LivresBean implements Serializable {
         init();
         return "/bienvenue.xhtml?faces-redirect=true";
     }
+
+
+
+
 
     public String verifDispo(Livres liv)
     {
@@ -419,4 +432,6 @@ public class LivresBean implements Serializable {
     public void setGen(Genres gen) {
         this.gen = gen;
     }
+
+
 }

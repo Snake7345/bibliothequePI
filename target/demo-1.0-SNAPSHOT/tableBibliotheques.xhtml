@@ -34,7 +34,7 @@
                         </p:column>
                         <shiro:hasPermission name="Bibliotheques:Modification">
                         <p:column>
-                            <p:commandButton icon="pi pi-pencil" value="Modifier" action="formEditBibliotheque">		<!-- u minuscule -->
+                            <p:commandButton rendered="#{bi.idBibliotheques eq bibliothequesBean.idBiblio}" icon="pi pi-pencil" value="Modifier" action="formEditBibliotheque">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
@@ -42,10 +42,10 @@
                     </p:dataTable>
                 </p:panel>
             <shiro:hasPermission name="Bibliotheques:Creer">
-            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewBibliotheque" />
+            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewBibliotheque?faces-redirect=true" />
             </shiro:hasPermission>
             <shiro:hasPermission name="Autre:Connexion">
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue"/>
+                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue?faces-redirect=true"/>
             </shiro:hasPermission>
             </h:form>
         </shiro:hasPermission>

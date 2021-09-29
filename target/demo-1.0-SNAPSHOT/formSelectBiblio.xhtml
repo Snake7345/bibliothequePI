@@ -23,7 +23,7 @@
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <p:panelGrid columns="2" style="margin: 0 auto">
                     <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}"/>
-                    <p:selectOneMenu value = "#{bibliothequesBean.nomBiblio}" id="nombib">
+                    <p:selectOneMenu value = "#{bibliothequesBean.nomBiblio}">
                         <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
                                        itemLabel="#{biblio.nom}"
                                        itemValue="#{biblio.idBibliotheques}"/>

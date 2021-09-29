@@ -58,7 +58,7 @@
 			</p:column>
 			<shiro:hasPermission name="Auteurs:ActivDesactiv">
 				<p:column>
-					<p:commandButton image="Images//activ.png" rendered="#{aut.actif}" action="formConfirmationAuteur">
+					<p:commandButton image="Images//activ.png" rendered="#{aut.actif}" action="formConfirmationAuteur?faces-redirect=true">
 						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
 					</p:commandButton>
 					<p:commandButton image="Images//desactiv.png" rendered="#{!aut.actif}" action="#{auteursBean.activdesactivAut}">

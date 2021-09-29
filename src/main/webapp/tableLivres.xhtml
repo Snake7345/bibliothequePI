@@ -4,7 +4,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:shiro="http://shiro.apache.org/tags"
       xmlns:p="http://primefaces.org/ui">
 
@@ -68,6 +67,9 @@
                         <f:facet name="header">Disponibilité</f:facet>
                         <p:graphicImage value="#{livresBean.verifDispo(liv)}" width="100" height="100"/>
                     </p:column>
+
+
+
                 </p:dataTable>
             </p:panel>
             <shiro:hasPermission name="Livres:Creer">
@@ -76,6 +78,9 @@
             <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchLivre?faces-redirect=true" ajax="false"/>
             <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}" ajax="false"/>
             <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}" ajax="false"/>
+            <p:commandButton value="Livre reçu" type="button">
+                <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
+            </p:commandButton>
             <shiro:hasPermission name="Autre:Connexion">
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushBienv}"/>
             </shiro:hasPermission>
@@ -84,6 +89,22 @@
         <shiro:lacksPermission name="Livres:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
+        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+
+            <h:form id="formReception" prependId = "false">
+                <p:panelGrid columns="2" StyleClass="formConfig">
+                    <p:inputText value="#{livresBean.CB}"
+                                 id="CB"
+                                 required="true"
+                                 validator="codeBarreLivreValidator"/>
+                </p:panelGrid>
+                <p:commandButton value="Envoyer" action="#{LivresBean.reception}"
+                                 onclick="PF('popup').hide();">
+                </p:commandButton>
+
+                <p:commandButton value="Annuler" action="#{exemplairesLivresBean.init}" onclick="PF('popup').hide();" />
+            </h:form>
+        </p:dialog>
     </ui:define>
 </ui:composition>
 </html>

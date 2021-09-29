@@ -31,7 +31,7 @@
                              maxlength ="100">
                     <f:validateLength minimum="1" maximum="100"/>
                 </p:inputText>
-                <!--<h:message for="utilisateurNom" styleClass="errorMessage"/>-->
+                <p:tooltip for="utilisateurNom" value="Encoder le nom de l'utilisateur" position="right"/>
 
                 <p:outputLabel value = "#{I18N['utilisateur.label.Prenom']}"/>
                 <p:inputText id="utilisateurPrenom"
@@ -41,7 +41,7 @@
                              validator= "nomPrenomValidator"
                              maxlength ="100">
                 </p:inputText>
-                <!--<h:message for="utilisateurPrenom" styleClass="errorMessage"/>-->
+                <p:tooltip for="utilisateurPrenom" value="Encoder le Prénom de l'utilisateur" position="right"/>
 
                 <p:outputLabel value = "#{I18N['utilisateur.label.Sexe']}"/>
                 <p:selectOneRadio id="sexe" value="#{utilisateursBean.utilisateur.sexe}"
@@ -50,6 +50,7 @@
                     <f:selectItems value="#{utilisateursEnumBean.sexeEnum}" />
                 </p:selectOneRadio>
                 <!--<h:message for="sexe" styleClass="errorMessage"/>-->
+                <p:tooltip for="sexe" value="Encoder le Sexe de l'utilisateur" position="right"/>
 
                 <p:outputLabel value = "#{I18N['utilisateur.label.Courriel']}"/>
                 <p:inputText id="utilisateurCourriel"
@@ -60,7 +61,7 @@
                              maxlength="100">
                     <f:validateLength minimum="3" maximum="100"/>
                 </p:inputText>
-                <!--<h:message for="utilisateurCourriel" styleClass="errorMessage"/>-->
+                <p:tooltip for="sexe" value="Encoder l'email de l'utilisateur" position="right"/>
 
                 <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
                 <p:outputLabel value = "#{I18N['utilisateur.label.Mdp']}"/>
@@ -71,7 +72,7 @@
                              requiredMessage="#{I18N['formulaire.message.required.mdp']}"
                              required="true">
                 </p:password>
-                    <!--<h:message for="utilisateurMdp" styleClass="errorMessage"/>-->
+                    <p:tooltip for="utilisateurMdp" value="Encoder le mot de passe de l'utilisateur" position="right"/>
                 </c:if>
 
                 <p:selectCheckboxMenu rendered="#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}" value = "#{utilisateursBean.tabbibli}" id="menu" style="width: 15rem"
@@ -80,6 +81,7 @@
                                    itemLabel="#{biblio.nom}"
                                    itemValue="#{biblio}"/>
                 </p:selectCheckboxMenu>
+                <p:tooltip for="menu" value="Encoder les bibliothèques où l'utilisateur travaille" position="right"/>
 
                 <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client' and utilisateursBean.utilisateur.roles.denomination ne 'Administrateur'}">
                 <p:outputLabel value = "#{I18N['role.label.Denomination']}" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}"/>
@@ -102,14 +104,14 @@
                 <p:selectOneListbox value = "#{utilisateursBean.adresses}" id="utiladress" required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.adresse']}"
                                  converter="adressConverter"  var="c" filter="true" filterMatchMode="contains">
-                    <f:selectItems value = "#{adressesBean.readAll}" var="ad"
+                    <f:selectItems value = "#{adressesBean.readAllNotBibli}" var="ad"
                                    itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
                                    itemValue="#{ad}"/>
                     <p:column>
                         <h:outputText value="#{c.rue} #{c.numero} #{c.boite} #{c.localites.cp} #{c.localites.ville}" />
                     </p:column>
                 </p:selectOneListbox>
-                <!--<h:message for="utiladress" styleClass="errorMessage"/>-->
+                <p:tooltip for="utilisateurMdp" value="Encoder l'adresse de l'utilisateur" position="right"/>
 
 
                 <!-- A rajouter l'adresse-->
