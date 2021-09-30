@@ -132,7 +132,6 @@ public class UtilisateursBean implements Serializable {
                         serviceUA.save(utiladress);
                     }
                 }
-
             }
             if(listUB.size() > 0)
             {

@@ -46,6 +46,21 @@ public class AdressesBean implements Serializable {
 
     }
 
+    public void newAdresspopup()
+    {
+        if(verifAdresseExist(adresse))
+        {
+            save();
+        }
+        else{
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La donnée est déjà existante en DB",null));
+            init();
+        }
+
+    }
+
     // Méthode qui permet la sauvegarde d'une adresse en base de donnée
     public void save()
     {

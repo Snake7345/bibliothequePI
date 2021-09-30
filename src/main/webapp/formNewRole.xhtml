@@ -48,6 +48,36 @@
                     </p:selectOneMenu>
                 </p:panelGrid>
 
+                <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="Ajouter permission" action="#{rolesBean.addPermission}" ajax="false">
+                    <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
+                    <f:setPropertyActionListener target="#{rolesBean.pe.action}" value="#{permissionsBean.action}" />
+                </p:commandButton>
+
+                <p:dataTable value="#{rolesBean.listPerm}" emptyMessage="Aucun enregistrement trouvé" var="pe" id="tableListPerm"
+                             Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+
+                <p:column>
+                    <!-- column header -->
+                    <f:facet name="header">Type de permission</f:facet>
+                    <!-- row record -->
+                    <p:outputLabel value ="#{pe.type}"/>
+                </p:column>
+                <p:column>
+                    <!-- column header -->
+                    <f:facet name="header">Action</f:facet>
+                    <!-- row record -->
+                    <p:outputLabel value ="#{pe.action}"/>
+                </p:column>
+                    <p:column>
+                        <!-- column header -->
+                        <f:facet name="header">Supprimer la permission</f:facet>
+                        <!-- row record -->
+                        <p:commandButton icon="fa fa-fw fa-check-circle"  action="#{rolesBean.supPermission}" ajax="false">
+                        <f:setPropertyActionListener target="#{rolesBean.pe}" value="#{pe}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.newRoles}"/>
                 <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
             </h:form>

@@ -37,6 +37,8 @@ public class Livres implements Serializable {
     private Collection<LivresAuteurs> livresAuteurs;
     @OneToMany(mappedBy = "livre")
     private Collection<LivresGenres> livresGenres;
+    @OneToMany(mappedBy = "livre")
+    private Collection<Reservation> reservations;
 
     @Id
     @Column(name = "IdLivres", nullable = false)
@@ -150,5 +152,11 @@ public class Livres implements Serializable {
         this.editeurs = editeurs;
     }
 
+    public Collection<Reservation> getReservations() {
+        return reservations;
+    }
 
+    public void setReservations(Collection<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 }

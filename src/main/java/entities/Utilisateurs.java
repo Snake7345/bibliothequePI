@@ -51,6 +51,8 @@ public class Utilisateurs implements Serializable {
     private Collection<UtilisateursAdresses> utilisateursAdresses;
     @OneToMany(mappedBy = "utilisateur")
     private Collection<UtilisateursBibliotheques> utilisateursBibliotheques;
+    @OneToMany(mappedBy = "utilisateur")
+    private Collection<Reservation> reservations;
     @ManyToOne
     @JoinColumn(name = "RolesIdRoles")
     private Roles roles;
@@ -135,6 +137,13 @@ public class Utilisateurs implements Serializable {
         this.mdp = SecurityManager.encryptPassword(mdp);
     }
 
+    public Collection<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Collection<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
     @Basic
     @Column(name = "Actif", nullable = false)

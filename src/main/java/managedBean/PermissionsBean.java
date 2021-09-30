@@ -31,6 +31,9 @@ public class PermissionsBean implements Serializable {
     {
         listAction = getPermissionsAction();
         permission = new Permissions();
+        type ="";
+        action="";
+
     }
 
     public String flushPerm()

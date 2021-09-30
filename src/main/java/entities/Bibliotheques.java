@@ -31,6 +31,8 @@ public class Bibliotheques implements Serializable {
     private Collection<Factures> factures;
     @OneToMany(mappedBy = "bibliotheques")
     private Collection<UtilisateursBibliotheques> utilisateurs;
+    @OneToMany(mappedBy = "bibliotheques")
+    private Collection<Reservation> reservations;
 
 
     @Id
@@ -107,6 +109,14 @@ public class Bibliotheques implements Serializable {
 
     public void setExemplairesLivres(Collection<ExemplairesLivres> exemplairesLivres) {
         this.exemplairesLivres = exemplairesLivres;
+    }
+
+    public Collection<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Collection<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
     public Collection<Tarifs> getTarifs() {

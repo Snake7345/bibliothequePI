@@ -76,12 +76,6 @@
                             </p:confirmPopup>
                         </p:commandButton>
                     </p:column>
-                        <p:column>
-                            <p:commandButton value="Transférer" type="button">
-                                <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
-                                <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
-                            </p:commandButton>
-                        </p:column>
                     </shiro:hasPermission>
                 </p:dataTable>
             </p:panel>
@@ -91,32 +85,15 @@
             </p:commandButton>
             </shiro:hasPermission>
 
-            <shiro:hasPermission name="Autre:Connexion">
+            <shiro:authenticated>
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushLiv}"/>
-            </shiro:hasPermission>
+            </shiro:authenticated>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Exemplaires:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
-        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
 
-            <h:form id="formTransfer" prependId = "false">
-                <p:panelGrid columns="2" StyleClass="formConfig">
-                    <h:outputText value="Quel est la bibliothèque qui demande le transfert ?" />
-                    <p:selectOneMenu value = "#{exemplairesLivresBean.bibliotransfert}" id="bib" converter="biblioConverter">
-                        <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
-                                       itemLabel="#{biblio.nom}"
-                                       itemValue="#{biblio}"/>
-                    </p:selectOneMenu>
-                </p:panelGrid>
-                <p:commandButton value="Modifier" action="#{exemplairesLivresBean.transfer}"
-                                 onclick="PF('popup').hide();">
-                </p:commandButton>
-
-                <p:commandButton value="Annuler" action="#{exemplairesLivresBean.init}" onclick="PF('popup').hide();" />
-            </h:form>
-        </p:dialog>
     </ui:define>
 </ui:composition>
 </html>

@@ -17,6 +17,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Named
@@ -26,11 +27,149 @@ public class RolesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Roles role;
     private static final Logger log = Logger.getLogger(RolesBean.class);
+    private List<Permissions> listPerm;
+    private Permissions pe;
+    private Permissions permissions;
 
     @PostConstruct
     public void init()
     {
         role = new Roles();
+        listPerm=new ArrayList<>();
+        pe = new Permissions();
+        permissions = new Permissions();
+    }
+
+
+    public void addPermission()
+    {
+        boolean flag = false;
+        boolean flag2 = false;
+        boolean flag3 = false;
+        for(Permissions p : listPerm)
+        {
+            if (p.getType().equals(pe.getType()) && p.getAction().equals(pe.getAction())) {
+                flag = true;
+            }
+            if(p.getType().equals(pe.getType()) && p.getAction().equals("Lire"))
+            {
+                flag2 = true;
+            }
+            if(p.getType().equals(pe.getType()) && p.getAction().equals("Creer"))
+            {
+                flag3 = true;
+            }
+        }
+
+        if(!flag)
+        {
+            log.debug("1");
+            log.debug(pe.getAction()+ " "+ pe.getType());
+            permissions.setAction(pe.getAction());
+            permissions.setType(pe.getType());
+            listPerm.add(permissions);
+            permissions = new Permissions();
+            if(!flag2 && (pe.getAction().equals("Creer") || pe.getAction().equals("Modification") || pe.getAction().equals("ActivDesactiv")))
+            {
+                if(!flag3 && pe.getAction().equals("Modification"))
+                {
+                    log.debug("2");
+                    pe.setAction("Creer");
+                    permissions.setAction(pe.getAction());
+                    permissions.setType(pe.getType());
+                    listPerm.add(permissions);
+                    permissions = new Permissions();
+                    log.debug(pe.getAction()+ " "+ pe.getType());
+                }
+                log.debug("3");
+                pe.setAction("Lire");
+                log.debug(pe.getAction()+ " "+ pe.getType());
+                permissions.setAction(pe.getAction());
+                permissions.setType(pe.getType());
+                listPerm.add(permissions);
+                permissions = new Permissions();
+            }
+            if(!flag3 && flag2 && pe.getAction().equals("Modification"))
+            {
+                log.debug("4");
+                pe.setAction("Creer");
+                log.debug(pe.getAction()+ " "+ pe.getType());
+                permissions.setAction(pe.getAction());
+                permissions.setType(pe.getType());
+                listPerm.add(permissions);
+                permissions = new Permissions();
+            }
+            log.debug(Arrays.toString(listPerm.toArray()));
+        }
+
+        else
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La valeur est déjà dans le tableau",null));
+        }
+        pe = new Permissions();
+
+    }
+
+    public void supPermission()
+    {
+
+        boolean flag = false;
+        boolean flag2 = false;
+        boolean flag3 = false;
+        for(Permissions p : listPerm)
+        {
+            if(p.getType().equals(pe.getType()) && p.getAction().equals("Creer"))
+            {
+                flag = true;
+            }
+            if(p.getType().equals(pe.getType()) && p.getAction().equals("Modification"))
+            {
+                flag2 = true;
+            }
+            if(p.getType().equals(pe.getType()) && p.getAction().equals("ActivDesactiv"))
+            {
+                flag3 = true;
+            }
+        }
+
+
+
+        if(pe.getAction().equals("Lire"))
+        {
+            if(!flag && !flag2 && !flag3){
+                listPerm.remove(pe);
+            }
+            else {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Veuillez supprimer les autres actions liées a ce type de permission avant", null));
+            }
+        }
+        else if(pe.getAction().equals("Creer"))
+        {
+            if(!flag2){
+                listPerm.remove(pe);
+            }
+            else {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Veuillez supprimer l'action \"modifier\" avant de supprimer cette action", null));
+            }
+        }
+        else if(pe.getAction().equals("Modification") || pe.getAction().equals("ActivDesactiv"))
+        {
+                listPerm.remove(pe);
+        }
+
+        else
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La valeur est déjà dans le tableau",null));
+        }
+        pe = new Permissions();
     }
 
 
@@ -111,10 +250,26 @@ public class RolesBean implements Serializable {
     public void save()
     {
         SvcRoles service = new SvcRoles();
+        SvcPermissions serviceP = new SvcPermissions();
+        SvcPermissionRoles servicePR = new SvcPermissionRoles();
         EntityTransaction transaction = service.getTransaction();
+        servicePR.setEm(service.getEm());
         transaction.begin();
         try {
             service.save(role);
+            for(Permissions p : listPerm)
+            {
+                if(serviceP.findOnePermission(p).size()>0){
+                    servicePR.save(servicePR.createPermissionRoles(serviceP.findOnePermission(p).get(0),role));
+                }
+                else{
+                    transaction.rollback();
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'a pas reussie",null));
+                    break;
+                }
+            }
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
@@ -195,4 +350,19 @@ public class RolesBean implements Serializable {
         this.role = role;
     }
 
+    public List<Permissions> getListPerm() {
+        return listPerm;
+    }
+
+    public void setListPerm(List<Permissions> listPerm) {
+        this.listPerm = listPerm;
+    }
+
+    public Permissions getPe() {
+        return pe;
+    }
+
+    public void setPe(Permissions pe) {
+        this.pe = pe;
+    }
 }

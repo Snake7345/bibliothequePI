@@ -379,6 +379,7 @@ public class FactureBean implements Serializable {
                     if (fact.getEtat()==FactureEtatEnum.terminer){
                         service.save(fact);
                     }
+
                     transaction.commit();
                     FacesContext fc = FacesContext.getCurrentInstance();
                     fc.getExternalContext().getFlash().setKeepMessages(true);
