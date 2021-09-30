@@ -68,9 +68,8 @@
                         <p:graphicImage value="#{livresBean.verifDispo(liv)}" width="100" height="100"/>
                     </p:column>
                     <p:column>
-                        <p:commandButton rendered="#{livresBean.verifDispo(liv) eq 'Images/rouge2.png'}" icon="pi pi-pencil" value="Reservation">		<!-- u minuscule -->
+                        <p:commandButton icon="pi pi-pencil" value="Reservation" action="tableReservation?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{reservationBean.livre}" value="#{liv}" />
-                            <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>
@@ -89,27 +88,7 @@
         <shiro:lacksPermission name="Livres:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
-        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
 
-            <h:form id="formReservation" prependId = "false">
-                <p:panelGrid columns="2" StyleClass="formConfig">
-                    <p:outputLabel value="numéro de membre?" />
-                    <p:inputText value="#{reservationBean.numMembre}" id="numMembre"
-                                 required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.numero']}"
-                                 maxlength="9"
-                                 validator="codeBarreCliValidator">
-                    </p:inputText>
-                    <p:tooltip for="numMembre" value="Encoder le numéro de membre" position="right"/>
-
-                </p:panelGrid>
-                <p:commandButton value="Reserver" action="#{reservationBean.reservation}"
-                                 onclick="PF('popup').hide();">
-                </p:commandButton>
-
-                <p:commandButton value="Annuler" action="#{reservationBean.init}" onclick="PF('popup').hide();" />
-            </h:form>
-        </p:dialog>
     </ui:define>
 </ui:composition>
 </html>

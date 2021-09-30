@@ -1,6 +1,7 @@
 package managedBean;
 
 import entities.Adresses;
+import entities.Bibliotheques;
 import org.apache.log4j.Logger;
 import services.SvcAdresses;
 
@@ -21,10 +22,12 @@ public class AdressesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Adresses adresse;
     private static final Logger log = Logger.getLogger(AdressesBean.class);
+    private Bibliotheques bibliotheque;
 
     @PostConstruct
     public void init()
     {
+        bibliotheque = new Bibliotheques();
         adresse = new Adresses();
     }
 
@@ -137,6 +140,26 @@ public class AdressesBean implements Serializable {
         return listAd;
     }
 
+    public List<Adresses> getReadAllNotBibliNotUti()
+    {
+        SvcAdresses service = new SvcAdresses();
+        List<Adresses> listAd = new ArrayList<Adresses>();
+        listAd= service.getfindAllNotAdBibliNotUti();
+
+        service.close();
+        return listAd;
+    }
+
+    public List<Adresses> getReadAllNotBibliNotUtiForModif()
+    {
+        SvcAdresses service = new SvcAdresses();
+        List<Adresses> listAd = new ArrayList<Adresses>();
+        listAd= service.getfindAllNotAdBibliNotUtiForMofif(bibliotheque);
+
+        service.close();
+        return listAd;
+    }
+
 
 //-------------------------------Getter & Setter--------------------------------------------
 
@@ -148,6 +171,11 @@ public class AdressesBean implements Serializable {
         this.adresse = adresse;
     }
 
+    public Bibliotheques getBibliotheque() {
+        return bibliotheque;
+    }
 
-
+    public void setBibliotheque(Bibliotheques bibliotheque) {
+        this.bibliotheque = bibliotheque;
+    }
 }

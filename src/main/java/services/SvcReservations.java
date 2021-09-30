@@ -45,4 +45,12 @@ public class SvcReservations extends Service<Reservation> implements Serializabl
         param.put("livre", re.getLivre());
         return finder.findByNamedQuery("Reservation.findOneActiv",param);
     }
+
+    public List<Reservation> findAllActivbyLivre(Bibliotheques b, Livres l)
+    {
+        Map<String, Object> param = new HashMap<>();
+        param.put("bibliotheque", b);
+        param.put("livre", l);
+        return finder.findByNamedQuery("Reservation.findAllActivByLivre",param);
+    }
 }

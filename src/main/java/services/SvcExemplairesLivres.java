@@ -25,6 +25,11 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 		exemliv.setLoue(!exemliv.isLoue());
 		return exemliv;
 	}
+	public ExemplairesLivres reservExemplaire(ExemplairesLivres exemliv){
+		log.debug("Je reserve l'exemplaire livre :" + exemliv.isReserve());
+		exemliv.setReserve(!exemliv.isReserve());
+		return exemliv;
+	}
 
 	public List<ExemplairesLivres> findExemplairesLivresByLivre(Livres livres)
 	{

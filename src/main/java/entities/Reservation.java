@@ -9,6 +9,7 @@ import java.io.Serializable;
                 @NamedQuery(name = "Reservation.findAll", query = "SELECT r FROM Reservation r"),
                 @NamedQuery(name = "Reservation.findOneActiv", query = "SELECT r FROM Reservation r where r.actif=TRUE and r.utilisateur=:utilisateur " +
                         "and r.livre=:livre"),
+                @NamedQuery(name = "Reservation.findAllActivByLivre", query = "SELECT r FROM Reservation r where r.actif=TRUE and r.livre=:livre and r.bibliotheques=:bibliotheque"),
 
         })
 
@@ -21,6 +22,9 @@ public class Reservation implements Serializable {
     @Basic
     @Column(name = "Actif", nullable = false)
     private boolean actif = true;
+    @Basic
+    @Column(name = "mailEnvoye", nullable = false)
+    private boolean mailEnvoye = false;
     @ManyToOne
     @JoinColumn(name = "LivresIdLivres", nullable = false)
     private Livres livre;
@@ -71,5 +75,13 @@ public class Reservation implements Serializable {
 
     public void setBibliotheques(Bibliotheques bibliotheques) {
         this.bibliotheques = bibliotheques;
+    }
+
+    public boolean isMailEnvoye() {
+        return mailEnvoye;
+    }
+
+    public void setMailEnvoye(boolean mailEnvoye) {
+        this.mailEnvoye = mailEnvoye;
     }
 }
