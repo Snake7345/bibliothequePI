@@ -31,7 +31,7 @@
                              maxlength ="100">
                     <f:validateLength minimum="1" maximum="100"/>
                 </p:inputText>
-                <!--<h:message for="utilisateurNom" styleClass="errorMessage"/>-->
+                <p:tooltip for="utilisateurNom" value="Encoder le nom de l'utilisateur" position="right"/>
 
                 <p:outputLabel value = "#{I18N['utilisateur.label.Prenom']}"/>
                 <p:inputText id="utilisateurPrenom"
@@ -41,7 +41,7 @@
                              validator= "nomPrenomValidator"
                              maxlength ="100">
                 </p:inputText>
-                <!--<h:message for="utilisateurPrenom" styleClass="errorMessage"/>-->
+                <p:tooltip for="utilisateurPrenom" value="Encoder le Prénom de l'utilisateur" position="right"/>
 
                 <p:outputLabel value = "#{I18N['utilisateur.label.Sexe']}"/>
                 <p:selectOneRadio id="sexe" value="#{utilisateursBean.utilisateur.sexe}"
@@ -50,6 +50,7 @@
                     <f:selectItems value="#{utilisateursEnumBean.sexeEnum}" />
                 </p:selectOneRadio>
                 <!--<h:message for="sexe" styleClass="errorMessage"/>-->
+                <p:tooltip for="sexe" value="Encoder le Sexe de l'utilisateur" position="right"/>
 
                 <p:outputLabel value = "#{I18N['utilisateur.label.Courriel']}"/>
                 <p:inputText id="utilisateurCourriel"
@@ -60,7 +61,7 @@
                              maxlength="100">
                     <f:validateLength minimum="3" maximum="100"/>
                 </p:inputText>
-                <!--<h:message for="utilisateurCourriel" styleClass="errorMessage"/>-->
+                <p:tooltip for="sexe" value="Encoder l'email de l'utilisateur" position="right"/>
 
                 <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
                 <p:outputLabel value = "#{I18N['utilisateur.label.Mdp']}"/>
@@ -71,7 +72,7 @@
                              requiredMessage="#{I18N['formulaire.message.required.mdp']}"
                              required="true">
                 </p:password>
-                    <!--<h:message for="utilisateurMdp" styleClass="errorMessage"/>-->
+                    <p:tooltip for="utilisateurMdp" value="Encoder le mot de passe de l'utilisateur" position="right"/>
                 </c:if>
 
                 <p:selectCheckboxMenu rendered="#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}" value = "#{utilisateursBean.tabbibli}" id="menu" style="width: 15rem"
@@ -80,6 +81,7 @@
                                    itemLabel="#{biblio.nom}"
                                    itemValue="#{biblio}"/>
                 </p:selectCheckboxMenu>
+                <p:tooltip for="menu" value="Encoder les bibliothèques où l'utilisateur travaille" position="right"/>
 
                 <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client' and utilisateursBean.utilisateur.roles.denomination ne 'Administrateur'}">
                 <p:outputLabel value = "#{I18N['role.label.Denomination']}" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}"/>
@@ -109,7 +111,11 @@
                         <h:outputText value="#{c.rue} #{c.numero} #{c.boite} #{c.localites.cp} #{c.localites.ville}" />
                     </p:column>
                 </p:selectOneListbox>
-                <!--<h:message for="utiladress" styleClass="errorMessage"/>-->
+                <p:tooltip for="utilisateurMdp" value="Encoder l'adresse de l'utilisateur" position="right"/>
+
+                <p:commandButton icon="fa fa-fw fa-check-circle" value="Nouvelle Adresse">
+                    <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
+                </p:commandButton>
 
 
                 <!-- A rajouter l'adresse-->
@@ -129,6 +135,66 @@
         <c:if test="#{!(rolesBean.checkPermission('Utilisateurs:Modification') or loginBean.utilisateurAuth eq utilisateursBean.utilisateur)}">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </c:if>
+
+        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+
+            <h:form id="formAdresse" prependId = "false">
+                <p:panelGrid id="newrecform2" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+
+                    <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
+                    <p:inputText id="adresseRue"
+                                 validatorMessage="La rue doit avoir entre 2 et 100 caractere"
+                                 value="#{adressesBean.adresse.rue}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.rue']}"
+                                 maxlength="100">
+                        <f:validateLength minimum="2" maximum="100"/>
+                    </p:inputText>
+                    <!--<h:message for="adresseRue" styleClass="errorMessage"/>-->
+
+                    <p:outputLabel value = "#{I18N['adresse.label.Boite']}"/>
+                    <p:inputText id="adresseBoite"
+                                 required="false"
+                                 value="#{adressesBean.adresse.boite}"
+                                 maxlength="4">
+                    </p:inputText>
+                    <!--<h:message for="adresseBoite" styleClass="errorMessage"/>-->
+
+                    <p:outputLabel value = "#{I18N['adresse.label.Numero']}"/>
+                    <p:inputText id="adresseNumero"
+                                 validatorMessage="Le numero est de minimum 1 caracteres et de maximum 6 caracteres"
+                                 value="#{adressesBean.adresse.numero}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.numero']}"
+                                 maxlength="6">
+                        <f:validateLength minimum="1" maximum="6"/>
+                    </p:inputText>
+                    <!--<h:message for="adresseNumero" styleClass="errorMessage"/>-->
+
+                    <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
+                    <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"
+                                        converter="localiteConverter" var="c" filter="true" filterMatchMode="contains">
+                        <f:selectItems value = "#{localitesBean.readAll}" var="loca"
+                                       itemLabel="#{loca.cp} : #{loca.ville}" itemValue="#{loca}"/>
+                        <p:column>
+                            <p:graphicImage value="/Images/belgium.png" style="width: 30px; height: 20px"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{c.cp}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{c.ville}"/>
+                        </p:column>
+                    </p:selectOneListbox>
+
+                </p:panelGrid>
+                <p:commandButton value="Envoyer" action="#{adressesBean.newAdresspopup}"
+                                 onclick="PF('popup').hide();">
+                </p:commandButton>
+
+                <p:commandButton value="Annuler" action="#{adressesBean.init}" onclick="PF('popup').hide();" />
+            </h:form>
+        </p:dialog>
     </ui:define>
 </ui:composition>
 

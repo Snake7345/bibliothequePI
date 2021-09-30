@@ -44,9 +44,9 @@
             <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewFact?faces-redirect=true" />
                 <p:commandButton icon="fa fa-fw fa-book" value="#{I18N['application.button.returnlivre']}" action="formEtatQuestion?faces-redirect=true"/>
             </shiro:hasPermission>
-            <shiro:hasPermission name="Autre:Connexion">
+            <shiro:authenticated>
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue?faces-redirect=true"/>
-            </shiro:hasPermission>
+            </shiro:authenticated>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Factures:Lire">

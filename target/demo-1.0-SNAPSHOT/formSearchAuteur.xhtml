@@ -11,7 +11,7 @@
 	<ui:define name="title">#{I18N['application.auteurs.titleSearch']}</ui:define>
 
 	<ui:define name="content">
-		<shiro:hasPermission name="Autre:Connexion">
+		<shiro:authenticated>
 	<h:form prependId="false">
 	<p:panel layout="block" id="content">
 		<h2 style="text-align:center">#{I18N['application.auteurs.titleSearch']}</h2>
@@ -70,10 +70,10 @@
 		</p:panel>
 				<p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>
 		</h:form>
-		</shiro:hasPermission>
-		<shiro:lacksPermission name="Autre:Connexion">
+		</shiro:authenticated>
+		<shiro:notAuthenticated>
 			<p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-		</shiro:lacksPermission>
+		</shiro:notAuthenticated>
 	</ui:define>
 </ui:composition>
 </html>

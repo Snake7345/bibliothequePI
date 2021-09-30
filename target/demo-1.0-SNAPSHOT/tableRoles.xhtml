@@ -28,20 +28,16 @@
                     <p:column>
                         <!--TODO : Verifier que le shiro bien le dessus sur le c:if et qu'ils sont bien compatibles-->
                         <shiro:hasPermission name="Roles:ActivDesactiv">
-                        <c:if test= "#{rol.actif eq true}">
-                        <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}"
+                        <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur' and rol.actif eq true}"
                                          icon="pi pi-power-off" value ="Desactiver" action="#{rolesBean.activdesactivRol}">
                             <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                         </p:commandButton>
-                        </c:if>
                         </shiro:hasPermission>
                         <shiro:hasPermission name="Roles:ActivDesactiv">
-                        <c:if test= "#{rol.actif ne true}">
-                            <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}"
+                            <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur' and rol.actif ne true}"
                                              icon="pi pi-check" value ="Activer" action="#{rolesBean.activdesactivRol}">
                                 <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                             </p:commandButton>
-                        </c:if>
                         </shiro:hasPermission>
                     </p:column>
                     </shiro:hasPermission>
@@ -50,9 +46,9 @@
             <shiro:hasPermission name="Roles:Creer">
             <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewRole?faces-redirect=true"  ajax="false"/>
             </shiro:hasPermission>
-            <shiro:hasPermission name="Autre:Connexion">
+            <shiro:authenticated>
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue?faces-redirect=true"/>
-            </shiro:hasPermission>
+            </shiro:authenticated>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Roles:Lire">

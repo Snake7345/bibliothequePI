@@ -23,11 +23,12 @@
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <p:panelGrid columns="2" style="margin: 0 auto">
                     <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}"/>
-                    <p:selectOneMenu value = "#{bibliothequesBean.nomBiblio}">
+                    <p:selectOneMenu value = "#{bibliothequesBean.nomBiblio}" id="nomBiblio">
                         <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
                                        itemLabel="#{biblio.nom}"
                                        itemValue="#{biblio.idBibliotheques}"/>
                     </p:selectOneMenu>
+                    <p:tooltip for="nomBiblio" value="Selectionner la bibliothèque pour laquelle il faut se connecter" position="right"/>
                     <p:commandButton icon="fa fa-fw fa-sign-in" value ="#{I18N['application.button.pagelogin']}" action="#{bibliothequesBean.createFichier}" update="growl" ajax="false"/>
                 </p:panelGrid>
 

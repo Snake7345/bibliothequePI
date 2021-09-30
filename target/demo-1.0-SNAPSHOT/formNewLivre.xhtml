@@ -31,6 +31,7 @@
                              maxlength="100">
                     <f:validateLength minimum="1" maximum="100"/>
                 </p:inputText>
+                <p:tooltip for="livreTitre" value="Encoder le titre du livre" position="right"/>
 
                 <p:outputLabel value = "#{I18N['livre.label.Auteur']}"/>
                 <p:selectCheckboxMenu value = "#{livresBean.auteur}" id="livreauteur"
@@ -39,6 +40,7 @@
                     <f:selectItems value = "#{auteursBean.readActiv}" var="livaut" itemLabel="#{livaut.nom} #{livaut.prenom}" itemValue="#{livaut}"/>
                     <p:ajax event="itemUnselect" listener="#{auteursBean.onItemUnselect}"/>
                 </p:selectCheckboxMenu>
+                <p:tooltip for="livreauteur" value="Encoder l'auteur de ce livre" position="right"/>
 
                 <p:outputLabel value = "#{I18N['livre.label.Genre']}"/>
                 <p:selectCheckboxMenu value = "#{livresBean.genre}" id="livreGenre"
@@ -47,6 +49,7 @@
                     <p:ajax event="itemUnselect" listener="#{genresBean.onItemUnselect}"/>
                     <f:selectItems value = "#{genresBean.readAll}" var="livgen" itemLabel="#{livgen.denomination}" itemValue="#{livgen}"/>
                 </p:selectCheckboxMenu>
+                <p:tooltip for="livreGenre" value="Encoder le genre de ce livre" position="right"/>
 
                 <p:outputLabel value = "#{I18N['livre.label.Annee']}"/>
                 <p:spinner id="livreAnnee"
@@ -61,6 +64,7 @@
                     <f:validateLongRange minimum="0"/>
                     <f:validateLength minimum="4" maximum="4"/>
                 </p:spinner>
+                <p:tooltip for="livreAnnee" value="Encoder l'année de ce livre" position="right"/>
 
                 <p:outputLabel value = "#{I18N['livre.label.Isbn']}"/>
                 <p:inputText id="livreISBN"
@@ -71,6 +75,7 @@
                              validator="isbnValidator">
                     <f:validateLength minimum="10" maximum="17"/>
                 </p:inputText>
+                <p:tooltip for="livreISBN" value="Encoder l'isbn du livre" position="right"/>
 
                 <p:outputLabel value = "#{I18N['editeur.label.Nom']}"/>
                 <p:selectOneListbox  value = "#{livresBean.livre.editeurs}" id="livreEdit" converter="editeurConverter" var="c" filter="true" filterMatchMode="contains">

@@ -22,6 +22,7 @@
         <class>entities.Penalites</class>
         <class>entities.Permissions</class>
         <class>entities.PermissionsRoles</class>
+        <class>entities.Reservation</class>
         <class>entities.Roles</class>
         <class>entities.Tarifs</class>
         <class>entities.TarifsJours</class>

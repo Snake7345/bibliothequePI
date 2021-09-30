@@ -85,14 +85,15 @@
             </p:commandButton>
             </shiro:hasPermission>
 
-            <shiro:hasPermission name="Autre:Connexion">
+            <shiro:authenticated>
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushLiv}"/>
-            </shiro:hasPermission>
+            </shiro:authenticated>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Exemplaires:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
+
     </ui:define>
 </ui:composition>
 </html>

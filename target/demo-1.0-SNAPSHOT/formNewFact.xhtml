@@ -26,7 +26,7 @@
                              maxlength="9"
                 validator="codeBarreCliValidator">
                 </p:inputText>
-                <!--<h:message for="numMembre" styleClass="errorMessage"/>-->
+                <p:tooltip for="nbrExemp" value="Encoder le numéro de membre" position="right"/>
 
 <!--TODO : les numéros de membres correspondant pas a des personnes ne passent pas-->
                 <p:dataTable value="#{factureBean.listLC}" var="LC">
@@ -39,6 +39,7 @@
                                      required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.CB']}"
                                      validator="codeBarreLivreValidator"/>
+                        <p:tooltip for="CB" value="Encoder le code Barre du livre" position="right"/>
                     </p:column>
 
                     <p:column>
@@ -53,6 +54,7 @@
                                      requiredMessage="#{I18N['formulaire.message.required.nbrJ']}">
                             <f:validateLongRange minimum="1"/>
                         </p:spinner>
+                        <p:tooltip for="nbrj" value="Encoder le nombre de jours pour lesquelles le livre sera loué" position="right"/>
                     </p:column>
                     <p:column>
                         <!--<h:message for="CB" styleClass="errorMessage"/>--> <p:outputLabel value=" " />

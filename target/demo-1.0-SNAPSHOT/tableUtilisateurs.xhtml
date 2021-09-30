@@ -164,9 +164,9 @@
                 </shiro:hasPermission>
                 <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadUtilActiv}" ajax="false"/>
                 <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadUtilInactiv}" ajax="false"/>
-                <shiro:hasPermission name="Autre:Connexion">
+                <shiro:authenticated>
                 <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
-                </shiro:hasPermission>
+                </shiro:authenticated>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Utilisateurs:Lire">
