@@ -34,11 +34,21 @@
                         </p:column>
                         <shiro:hasPermission name="Bibliotheques:Modification">
                         <p:column>
-                            <p:commandButton rendered="#{bi.idBibliotheques eq bibliothequesBean.idBiblio}" icon="pi pi-pencil" value="Modifier" action="formEditBibliotheque">		<!-- u minuscule -->
+                            <p:commandButton rendered="#{bi.idBibliotheques eq bibliothequesBean.idBiblio}" icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditBibliotheque?faces-redirect=true">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>
+                        <p:column>
+                            <p:commandButton rendered="#{bi.idBibliotheques ne bibliothequesBean.idBiblio}" icon="pi pi-pencil" value="#{I18N['commune.label.desactiver']}" action="formSelectDesactivBiblio?faces-redirect=true">
+                                <p:confirm type="popup" header="Confirmation" message="Vous êtes sur de vouloir désactiver la bibliotheque ?" icon="pi pi-exclamation-triangle"/><!-- u minuscule -->
+                                <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" /><!-- u minuscule -->
+                            </p:commandButton>
+                            <p:confirmPopup global="true">
+                                <p:commandButton value="#{I18N['commune.label.non']}" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                                <p:commandButton value="#{I18N['commune.label.oui']}" type="button" styleClass="ui-confirm-popup-yes" />
+                            </p:confirmPopup>
+                        </p:column>
                     </p:dataTable>
                 </p:panel>
             <shiro:hasPermission name="Bibliotheques:Creer">

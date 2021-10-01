@@ -60,13 +60,13 @@
                         </p:column>
                         <p:column>
                             <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:Modification')) or (loginBean.utilisateurAuth eq ut)) and ((ut.roles.denomination ne 'Administrateur') or (loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'))}"
-                                             icon="pi pi-pencil" value="Modifier" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
+                                             icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                             </p:commandButton>
 
                        </p:column>
                         <p:column>
-                            <p:commandButton value="Modif.MDP" type="button">
+                            <p:commandButton value="#{I18N['application.button.modifierMDP']}" type="button">
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                 <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                             </p:commandButton>
@@ -131,13 +131,13 @@
                             </p:column>
                             <p:column>
                                 <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:Modification')) or (loginBean.utilisateurAuth eq ut)) and ((ut.roles.denomination ne 'Administrateur') or (loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'))}"
-                                                 icon="pi pi-pencil" value="Modifier" action="#{utilisateursBean.redirectModifUtil}" ajax="false">		<!-- u minuscule -->
+                                                 icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                                 </p:commandButton>
 
                             </p:column>
                             <p:column>
-                                <p:commandButton value="Modif.MDP" type="button">
+                                <p:commandButton value="#{I18N['application.button.modifierMDP']}" type="button">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                                 </p:commandButton>
@@ -177,21 +177,21 @@
 
             <h:form id="formModifMdp" prependId = "false">
                 <p:panelGrid columns="2" StyleClass="formConfig">
-                    <h:outputText value="Veuillez changer votre mot de passe" />
+                    <h:outputText value="#{I18N['tooltip.utilisateur.changemdp']}" />
                     <p:password id="mdp" value="#{utilisateursBean.mdpNouveau}" update="msg" maxlength="40">
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
-                    <h:outputText value="Confirmer le nouveau mot de passe" />
+                    <h:outputText value="#{I18N['confirm.label.mdp']}" />
                     <p:password id="confmdp" value="#{utilisateursBean.mdpNouveau2}" update="msg" maxlength="40"
                     validator="checkMdpValidator">
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
                 </p:panelGrid>
-                <p:commandButton value="Modifier" action="#{utilisateursBean.modifMdp}"
+                <p:commandButton value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.modifMdp}"
                                  onclick="PF('popup').hide();">
                 </p:commandButton>
 
-                <p:commandButton value="Annuler" action="#{utilisateursBean.init}" onclick="PF('popup').hide();" />
+                <p:commandButton value="#{I18N['application.button.annuler']}" action="#{utilisateursBean.init}" onclick="PF('popup').hide();" />
             </h:form>
         </p:dialog>
     </ui:define>

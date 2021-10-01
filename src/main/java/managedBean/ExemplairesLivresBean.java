@@ -8,8 +8,8 @@ import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import services.SvcBibliotheques;
 import services.SvcExemplairesLivres;
-import services.SvcLivres;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -17,6 +17,7 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Named
@@ -31,10 +32,15 @@ public class ExemplairesLivresBean implements Serializable {
     private Livres livre;
     private String LastBarCode;
     private final Bibliotheques bib = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
-    private List<Bibliotheques> bibliotransfert = new ArrayList<>();
+    private List<ExemplairesLivres> listCB;
 
+
+    @PostConstruct
     public void init()
     {
+        log.debug("init exemplaire livre lancé");
+        listCB = new ArrayList<>();
+        addNewListRow();
         exemplairesLivre = new ExemplairesLivres();
         SvcExemplairesLivres service = new SvcExemplairesLivres();
         SvcBibliotheques serviceB = new SvcBibliotheques();
@@ -46,6 +52,24 @@ public class ExemplairesLivresBean implements Serializable {
         }
         service.close();
         serviceB.close();
+    }
+
+    public void addNewListRow() {
+        listCB.add(new ExemplairesLivres());
+        log.debug(listCB.size());
+    }
+
+    public void delListRow() {
+        if (listCB.size() >1)
+        {
+            listCB.remove(listCB.size()-1);
+        }
+    }
+
+    public String flush()
+    {
+        init();
+        return "/tableLivres.xhtml?faces-redirect=true";
     }
 
     // Méthode qui permet d'ajouter autant d'exemplaire livre que demande l'utilisateur
@@ -111,26 +135,45 @@ public class ExemplairesLivresBean implements Serializable {
         }
     }
 
-    public String transfer()
+    public String reception()
     {
+        boolean flag = false;
+        List<ExemplairesLivres> listEL= new ArrayList<>();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         EntityTransaction transaction = serviceEL.getTransaction();
         transaction.begin();
         try {
-            /*Si le livre est actif alors on le désactive; sinon on l'active*/
-            if(exemplairesLivre.isActif())
+            for(ExemplairesLivres CB:listCB)
             {
-                    exemplairesLivre.setReserve(true);
-                    exemplairesLivre.setBibliotheques(bibliotransfert.get(0));
-                    serviceEL.save(exemplairesLivre);
+                listEL.add(serviceEL.findOneByCodeBarre(CB.getCodeBarre()).get(0));
+            }
+            for(ExemplairesLivres EL : listEL){
+                if(!EL.isReserve() || EL.isLoue())
+                {
+                    transaction.rollback();
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'exemplaire num "+EL.getCodeBarre()+" n'est pas en transfert",null));
+                    return "/tableLivres.xhtml?faces-redirect=true";
                 }
-            serviceEL.save(exemplairesLivre);
+                if(EL.isActif())
+                {
+                    EL.setReserve(false);
+                    EL.setBibliotheques(bib);
+                    serviceEL.save(EL);
+                }
+            }
+
 
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
-        } finally {
+        }
+        catch (NullPointerException npe){
+            npe.printStackTrace();
+        }
+        finally {
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
@@ -140,7 +183,68 @@ public class ExemplairesLivresBean implements Serializable {
             init();
             serviceEL.close();
         }
-        return "/tableExemplaireLivres.xhtml?faces-redirect=true";
+        return "/tableLivres.xhtml?faces-redirect=true";
+    }
+
+    public String transfer()
+    {
+        log.debug("transfert demare");
+        log.debug(listCB.size());
+        boolean flag = false;
+        List<ExemplairesLivres> listEL= new ArrayList<>();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        EntityTransaction transaction = serviceEL.getTransaction();
+        transaction.begin();
+        try {
+            for(ExemplairesLivres CB:listCB)
+            {
+                log.debug(CB);
+               listEL.add(serviceEL.findOneByCodeBarre(CB.getCodeBarre()).get(0));
+            }
+            for(ExemplairesLivres EL : listEL){
+                if(EL.isReserve())
+                {
+                    transaction.rollback();
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'exemplaire num "+EL.getCodeBarre()+" est déjà réservé",null));
+                    return "/tableLivres.xhtml?faces-redirect=true";
+                }
+                if(!EL.getBibliotheques().equals(bib))
+                {
+                    transaction.rollback();
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'exemplaire num "+EL.getCodeBarre()+" n'est pas censé être dans votre bibliotheque",null));
+                    return "/tableLivres.xhtml?faces-redirect=true";
+                }
+                if(EL.isActif())
+                {
+                    EL.setReserve(true);
+                    serviceEL.save(EL);
+                }
+            }
+
+
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+        }
+        catch (Error e){
+            e.printStackTrace();
+        }
+        finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation a échoué",null));
+            }
+            init();
+            serviceEL.close();
+        }
+        return "/tableLivres.xhtml?faces-redirect=true";
     }
 
     // Méthode qui permet de sauvegarder un exemplaire livre en DB
@@ -229,11 +333,14 @@ public class ExemplairesLivresBean implements Serializable {
         return bib;
     }
 
-    public List<Bibliotheques> getBibliotransfert() {
-        return bibliotransfert;
+    public List<ExemplairesLivres> getListCB() {
+        log.debug(Arrays.toString(listCB.toArray()));
+        return listCB;
     }
 
-    public void setBibliotransfert(List<Bibliotheques> bibliotransfert) {
-        this.bibliotransfert = bibliotransfert;
+    public void setListCB(List<ExemplairesLivres> listCB) {
+        log.debug(Arrays.toString(listCB.toArray()));
+        this.listCB = listCB;
+        log.debug(Arrays.toString(listCB.toArray()));
     }
 }

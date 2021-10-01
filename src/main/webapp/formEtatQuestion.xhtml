@@ -9,7 +9,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="Template/template.xhtml">
-    <ui:define name="title">#{I18N['utilisateur.form.nouveau.titre']}</ui:define>
+    <ui:define name="title">Formulaire retour livre</ui:define>
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
@@ -29,7 +29,7 @@
                          validator="codeBarreValidator">
                 <f:validateLength minimum="9" maximum="9"/>
             </p:inputText>
-            <p:tooltip for="exemplLivresCB" value="Encoder le code barre de l'exemplaire livre" position="right"/>
+            <p:tooltip for="exemplLivresCB" value="#{I18N['tooltip.exempl.CB']}" position="right"/>
             <h:message for="exemplLivresCB" styleClass="errorMessage"/>
             <br/>
             <p:outputLabel value="#{I18N['livre.form.question']}"/>

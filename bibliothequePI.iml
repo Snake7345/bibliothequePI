@@ -43,7 +43,7 @@
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="shiro-faces-2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.primefaces:primefaces:10.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces:primefaces:11.0.0-RC1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-lang:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-cache:1.8.0" level="project" />

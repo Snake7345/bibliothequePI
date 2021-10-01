@@ -29,7 +29,7 @@
                              validator="nomPrenomValidator">
                     <f:validateLength minimum="2" maximum="100"/>
                 </p:inputText>
-                <p:tooltip for="auteurNom" value="Encoder le nom de l'auteur" position="right"/>
+                <p:tooltip for="auteurNom" value="#{I18N['tooltip.auteur.nom']}" position="right"/>
 
                 <p:outputLabel value = "#{I18N['auteur.label.Prenom']}"/>
                 <p:inputText id="auteurPrenom"
@@ -40,7 +40,7 @@
                              validator = "nomPrenomValidator">
                     <f:validateLength minimum="2" maximum="100"/>
                 </p:inputText>
-                <p:tooltip for="auteurPrenom" value="Encoder le prénom de l'auteur" position="right"/>
+                <p:tooltip for="auteurPrenom" value="#{I18N['tooltip.auteur.prenom']}" position="right"/>
 
 
             </p:panelGrid>

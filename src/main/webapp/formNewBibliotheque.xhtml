@@ -29,7 +29,7 @@
                              maxlength="100">
                     <f:validateLength minimum="2" maximum="100"/>
                 </p:inputText>
-                <p:tooltip for="bibliothequeNom" value="Encoder le nom de la bibliotheque" position="right"/>
+                <p:tooltip for="bibliothequeNom" value="#{I18N['tooltip.bibliotheque.nom']}" position="right"/>
 <!--TODO : Modifier la requete au niveau des adresses, les adresses qui sont déjà a un utilisateur ne doivent pas être listées-->
                 <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
                 <p:selectOneListbox value = "#{bibliothequesBean.adresses}" id="biblioadress" required="true"
@@ -43,7 +43,7 @@
                     </p:column>
 
                 </p:selectOneListbox>
-                <p:tooltip for="biblioadress" value="Encoder l'adresse de la bibliothèque" position="right"/>
+                <p:tooltip for="biblioadress" value="#{I18N['tooltip.bibliotheque.adresse']}" position="right"/>
 
             </p:panelGrid>
 

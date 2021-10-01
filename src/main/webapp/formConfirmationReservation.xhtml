@@ -9,12 +9,11 @@
       xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="Template/template.xhtml">
-    <ui:define name="title">#{I18N['auteur.form.confirm']}</ui:define>
+    <ui:define name="title">Information reservation</ui:define>
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
         <shiro:hasRole name="1">
-            <p:outputLabel value=""/>
             <p:outputLabel value="Le livre #{factureBean.exemplairesLivres.livres.titre} est en attente pour une reservation, veuillez le placer en réserve"/>
         <h:form>
         <h2 style="text-align:center">L'avez vous fait ?</h2>

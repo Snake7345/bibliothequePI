@@ -28,7 +28,7 @@
                              maxlength="100">
                 <f:validateLength minimum="2" maximum="100"/>
                 </p:inputText>
-                <p:tooltip for="adresseRue" value="Encoder la rue pour l'adresse" position="right"/>
+                <p:tooltip for="adresseRue" value="#{I18N['tooltip.adresse.rue']}" position="right"/>
 
                 <p:outputLabel value = "#{I18N['adresse.label.Boite']}"/>
                 <p:inputText id="adresseBoite"
@@ -36,7 +36,7 @@
                              value="#{adressesBean.adresse.boite}"
                              maxlength="4">
                 </p:inputText>
-                <p:tooltip for="adresseBoite" value="Encoder la boite si c'est un appartement" position="right"/>
+                <p:tooltip for="adresseBoite" value="#{I18N['tooltip.adresse.boite']}" position="right"/>
 
                 <p:outputLabel value = "#{I18N['adresse.label.Numero']}"/>
                 <p:inputText id="adresseNumero"
@@ -47,7 +47,7 @@
                              maxlength="6">
                     <f:validateLength minimum="1" maximum="6"/>
                 </p:inputText>
-                <p:tooltip for="adresseNumero" value="Encoder le numéro de maison" position="right"/>
+                <p:tooltip for="adresseNumero" value="#{I18N['tooltip.adresse.numero']}" position="right"/>
 
                 <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
                 <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"
@@ -64,7 +64,7 @@
                         <h:outputText value="#{c.ville}"/>
                     </p:column>
                 </p:selectOneListbox>
-                <p:tooltip for="adressLoca" value="Encoder la localité" position="right"/>
+                <p:tooltip for="adressLoca" value="#{I18N['tooltip.localite']}" position="right"/>
 
             </p:panelGrid>
 

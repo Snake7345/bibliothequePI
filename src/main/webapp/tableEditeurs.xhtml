@@ -27,13 +27,13 @@
                         </p:column>
                         <shiro:hasPermission name="Editeurs:Modification">
                         <p:column>
-                            <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditEditeur">		<!-- u minuscule -->
+                            <p:commandButton  icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditEditeur">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{editeursBean.editeur}" value="#{ed}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>
                         <p:column>
-                            <p:commandButton icon="pi pi-book" value="livres par éditeur" action="#{livresBean.readByEditeurs}">		<!-- u minuscule -->
+                            <p:commandButton icon="pi pi-book" value="#{I18N['application.button.livreparediteur']}" action="#{livresBean.readByEditeurs}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.edit}" value="#{ed}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>

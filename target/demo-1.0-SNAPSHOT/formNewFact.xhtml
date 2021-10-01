@@ -19,32 +19,32 @@
                 </h:head>
                 <h2 style="text-align:center">#{I18N['fact.form.nouveau.titre']}</h2>
 
-                <p:outputLabel value="numéro de membre?" />
+                <p:outputLabel value="#{I18N['utilisateur.label.NumMembre']}" />
                 <p:inputText value="#{factureBean.numMembre}" id="numMembre"
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.numero']}"
                              maxlength="9"
                 validator="codeBarreCliValidator">
                 </p:inputText>
-                <p:tooltip for="numMembre" value="Encoder le numéro de membre" position="right"/>
+                <p:tooltip for="numMembre" value="#{I18N['tooltip.utilisateur.numMembre']}" position="right"/>
 
 <!--TODO : les numéros de membres correspondant pas a des personnes ne passent pas-->
                 <p:dataTable value="#{factureBean.listLC}" var="LC">
                     <p:column>
                         <f:facet name="header">
-                            <p:outputLabel value="code barre" />
+                            <p:outputLabel value="#{I18N['exemplaireslivres.label.CodeBarre']}" />
                         </f:facet>
                         <p:inputText value="#{LC.CB}"
                                      id="CB"
                                      required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.CB']}"
                                      validator="codeBarreLivreValidator"/>
-                        <p:tooltip for="CB" value="Encoder le code Barre du livre" position="right"/>
+                        <p:tooltip for="CB" value="#{I18N['tooltip.exempl.CB']}" position="right"/>
                     </p:column>
 
                     <p:column>
                         <f:facet name="header">
-                            <p:outputLabel value="Nombre de jours" />
+                            <p:outputLabel value="#{I18N['jour.label.NbrJour']}" />
                         </f:facet>
                         <p:spinner value="#{LC.nbrJours}"
                                      id="nbrj"
@@ -54,7 +54,7 @@
                                      requiredMessage="#{I18N['formulaire.message.required.nbrJ']}">
                             <f:validateLongRange minimum="1"/>
                         </p:spinner>
-                        <p:tooltip for="nbrj" value="Encoder le nombre de jours pour lesquelles le livre sera loué" position="right"/>
+                        <p:tooltip for="nbrj" value="#{I18N['tooltip.nbrjour']}" position="right"/>
                     </p:column>
                     <p:column>
                         <!--<h:message for="CB" styleClass="errorMessage"/>--> <p:outputLabel value=" " />
@@ -64,8 +64,8 @@
 
                 </p:dataTable>
 
-                <p:commandButton value="Add" action="#{factureBean.addNewListRow}"  ajax="false"/>
-                <p:commandButton value="Del" action="#{factureBean.delListRow}"  ajax="false"/>
+                <p:commandButton value="#{I18N['application.button.ajouterlig']}" action="#{factureBean.addNewListRow}"  ajax="false"/>
+                <p:commandButton value="#{I18N['application.button.suplig']}" action="#{factureBean.delListRow}"  ajax="false"/>
 
 
 

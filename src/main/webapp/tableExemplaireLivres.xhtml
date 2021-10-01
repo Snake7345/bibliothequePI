@@ -52,14 +52,14 @@
                     </p:column>
                     <shiro:hasPermission name="Factures:Creer">
                         <p:column>
-                            <p:commandButton rendered="#{livexemL.loue}" image="Images//inspectionsmini.jpg" action="formEtatQuestion?faces-redirect=true">		<!-- u minuscule -->
+                            <p:commandButton rendered="#{livexemL.loue}" image="Images//inspectionsmini.jpg" action="formEtatQuestion?faces-redirect=true" value="Retour livre">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{factureBean.CB}" value="#{livexemL.codeBarre}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Exemplaires:Modification">
                     <p:column>
-                        <p:commandButton rendered="#{livexemL.actif ne false and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="pi pi-pencil" value="Modifier" action="formEditExemplaireLivre?faces-redirect=true">
+                        <p:commandButton rendered="#{livexemL.actif ne false and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditExemplaireLivre?faces-redirect=true">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </p:commandButton>
                     </p:column>
@@ -71,8 +71,8 @@
                             <p:confirm type="popup" header="Confirmation" message="#{I18N['exempl.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                             <p:confirmPopup global="true">
-                                <p:commandButton value="Non" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
-                                <p:commandButton value="Yes" type="button" styleClass="ui-confirm-popup-yes" />
+                                <p:commandButton value="#{I18N['commune.label.non']}" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                                <p:commandButton value="#{I18N['commune.label.oui']}" type="button" styleClass="ui-confirm-popup-yes" />
                             </p:confirmPopup>
                         </p:commandButton>
                     </p:column>

@@ -116,7 +116,7 @@
                         </p:column>
                     </p:selectOneListbox>
 
-                    <p:commandButton icon="fa fa-fw fa-check-circle" value="Nouvelle Adresse">
+                    <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}">
                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                     </p:commandButton>
 
@@ -180,11 +180,11 @@
                     </p:selectOneListbox>
 
                 </p:panelGrid>
-                <p:commandButton value="Envoyer" action="#{adressesBean.newAdresspopup}"
+                <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{adressesBean.newAdresspopup}"
                                  onclick="PF('popup').hide();">
                 </p:commandButton>
 
-                <p:commandButton value="Annuler" action="#{adressesBean.init}" onclick="PF('popup').hide();" />
+                <p:commandButton value="#{I18N['application.button.annuler']}" action="#{adressesBean.init}" onclick="PF('popup').hide();" />
             </h:form>
         </p:dialog>
     </ui:define>

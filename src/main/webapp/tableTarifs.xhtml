@@ -41,7 +41,7 @@
                     </p:column>
                     <shiro:hasPermission name="Tarifs:Modification">
                         <p:column>
-                            <p:commandButton icon="pi pi-pencil" value="Modifier" action="#{tarifsBean.redirectEdit}">		<!-- u minuscule -->
+                            <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{tarifsBean.redirectEdit}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{tarifsBean.tarif}" value="#{tar}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>

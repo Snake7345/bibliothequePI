@@ -43,7 +43,7 @@
                     </p:column>
                     <shiro:hasPermission name="Livres:Modification">
                     <p:column>
-                        <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditLivre?faces-redirect=true">		<!-- u minuscule -->
+                        <p:commandButton  icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditLivre?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
@@ -55,8 +55,8 @@
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>
                         <p:confirmPopup global="true">
-                            <p:commandButton value="Non" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
-                            <p:commandButton value="Yes" type="button" styleClass="ui-confirm-popup-yes" />
+                            <p:commandButton value="#{I18N['commune.label.non']}" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                            <p:commandButton value="#{I18N['commune.label.oui']}" type="button" styleClass="ui-confirm-popup-yes" />
                         </p:confirmPopup>
                         <p:commandButton rendered="#{!liv.actif}" icon="pi pi-check" value ="Activer" action="#{livresBean.activdesactivLiv}">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
@@ -68,9 +68,8 @@
                         <p:graphicImage value="#{livresBean.verifDispo(liv)}" width="100" height="100"/>
                     </p:column>
                     <p:column>
-                        <p:commandButton rendered="#{livresBean.verifDispo(liv) eq 'Images/rouge2.png'}" icon="pi pi-pencil" value="Reservation">		<!-- u minuscule -->
+                        <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.reservation']}" action="tableReservation?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{reservationBean.livre}" value="#{liv}" />
-                            <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>
@@ -81,6 +80,14 @@
             <p:commandButton icon="fa fa-fw fa-search" value="#{I18N['application.button.find']}" action="formSearchLivre?faces-redirect=true" ajax="false"/>
             <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}" ajax="false"/>
             <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}" ajax="false"/>
+            <p:column>
+                <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.transfertlivre']}" action="formTransfertLivre?faces-redirect=true">		<!-- u minuscule -->
+                </p:commandButton>
+            </p:column>
+            <p:column>
+                <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.receptionlivre']}" action="formReceptionLivre?faces-redirect=true">		<!-- u minuscule -->
+                </p:commandButton>
+            </p:column>
             <shiro:authenticated>
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{livresBean.flushBienv}"/>
             </shiro:authenticated>
@@ -89,27 +96,7 @@
         <shiro:lacksPermission name="Livres:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
-        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
 
-            <h:form id="formReservation" prependId = "false">
-                <p:panelGrid columns="2" StyleClass="formConfig">
-                    <p:outputLabel value="numéro de membre?" />
-                    <p:inputText value="#{reservationBean.numMembre}" id="numMembre"
-                                 required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.numero']}"
-                                 maxlength="9"
-                                 validator="codeBarreCliValidator">
-                    </p:inputText>
-                    <p:tooltip for="numMembre" value="Encoder le numéro de membre" position="right"/>
-
-                </p:panelGrid>
-                <p:commandButton value="Reserver" action="#{reservationBean.reservation}"
-                                 onclick="PF('popup').hide();">
-                </p:commandButton>
-
-                <p:commandButton value="Annuler" action="#{reservationBean.init}" onclick="PF('popup').hide();" />
-            </h:form>
-        </p:dialog>
     </ui:define>
 </ui:composition>
 </html>
