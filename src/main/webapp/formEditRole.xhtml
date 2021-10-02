@@ -8,17 +8,17 @@
       xmlns:shiro="http://shiro.apache.org/tags"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="Template/template.xhtml">
-    <ui:define name="title">#{I18N['role.form.nouveau.titre']}</ui:define>
+    <ui:define name="title">#{I18N['role.form.modif.titre']}</ui:define>
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
         <shiro:hasPermission name="Roles:Creer">
             <h:form id="form" prependId="false">
                 <h:head>
-                    <title>#{I18N['role.form.nouveau.titre']}</title>
+                    <title>#{I18N['role.form.modif.titre']}</title>
                 </h:head>
-                <h2 style="text-align:center">#{I18N['role.form.nouveau.titre']}</h2>
-                <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <h2 style="text-align:center">#{I18N['role.form.modif.titre']}</h2>
+                <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <p:outputLabel value = "#{I18N['role.label.Denomination']}"/>
                     <p:inputText id="roleDenomination"
@@ -31,23 +31,19 @@
                     </p:inputText>
                     <p:tooltip for="roleDenomination" value="#{I18N['tooltip.role.deno']}" position="right"/>
 
-
                     <p:outputLabel value = "#{I18N['Permissions.label.Type']}"/>
                     <p:selectOneMenu value = "#{permissionsBean.type}" id="type" >
                         <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
                                        itemLabel="#{ty}"
                                        itemValue="#{ty}"/>
                     </p:selectOneMenu>
+
                     <p:commandButton icon="fa fa-fw fa-rotate-left" action="#{permissionsBean.getPermissionsAction}" ajax="false"/>
-
-
-
 
                     <p:outputLabel value = "#{I18N['Permissions.label.Action']}"/>
                     <p:selectOneMenu value = "#{permissionsBean.action}" id="action">
                         <f:selectItems value = "#{permissionsBean.listAction}" var="ac"
                                        itemLabel="#{ac}"
-
                                        itemValue="#{ac}"/>
                     </p:selectOneMenu>
                 </p:panelGrid>

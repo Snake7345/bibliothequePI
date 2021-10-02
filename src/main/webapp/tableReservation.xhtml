@@ -10,6 +10,7 @@
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['application.reservation.title']}</ui:define>
     <ui:define name="content">
+        <shiro:hasPermission name="Reservation:Lire">
             <h:form prependId="false">
                 <p:panel layout="block" id="content">
 
@@ -39,6 +40,10 @@
                     <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{reservationBean.flushReserv}" immediate="true"/>
                 </p:panel>
             </h:form>
+            </shiro:hasPermission>
+            <shiro:lacksPermission name="Reservation:Lire">
+                <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+            </shiro:lacksPermission>
         <p:dialog header="Formulaire nouvelle reservation" widgetVar="dlg1" minHeight="40">
 
             <h:form id="formReservation" prependId = "false">

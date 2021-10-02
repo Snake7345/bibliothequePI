@@ -64,7 +64,7 @@
                     </p:column>
                     <shiro:hasPermission name="Exemplaires:Creer">
                     <p:column>
-                        <p:commandButton  icon="fa fa-fw fa-plus" value="Ajouter exemplaires" action="tableExemplaireLivres?faces-redirect=true">
+                        <p:commandButton  icon="fa fa-fw fa-plus" value="#{I18N['exempl.label.add']}" action="tableExemplaireLivres?faces-redirect=true">
                             <!-- u minuscule -->
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" /> <!-- u minuscule -->
                         </p:commandButton>
@@ -72,14 +72,14 @@
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:Modification">
                     <p:column>
-                        <p:commandButton icon="fa fa-fw fa-pencil" value="Modifier" action="formEditLivre?faces-redirect=true">		<!-- u minuscule -->
+                        <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['livre.label.modif']}" action="formEditLivre?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:ActivDesactiv">
                     <p:column>
-                        <p:commandButton icon="pi pi-power-off" value="Désactiver exemplaire" action="#{livresBean.activdesactivLiv}">
+                        <p:commandButton icon="pi pi-power-off" value="#{I18N['exempl.label.des']}" action="#{livresBean.activdesactivLiv}">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>
                     </p:column>

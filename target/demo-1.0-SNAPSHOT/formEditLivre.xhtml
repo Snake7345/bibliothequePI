@@ -19,7 +19,7 @@
                 <title>#{I18N['livre.form.modif.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['livre.form.modif.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
                 <p:outputLabel value = "#{I18N['livre.label.Titre']}"/>
@@ -30,8 +30,9 @@
                              requiredMessage="#{I18N['formulaire.message.required.titre']}"
                              maxlength="100">
                     <f:validateLength minimum="1" maximum="100"/>
+                    <p:tooltip for="livreTitre" value="#{I18N['tooltip.livre.titre']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="livreTitre" value="Encoder le titre du livre" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['livre.label.Annee']}"/>
                 <p:spinner id="livreAnnee"
@@ -45,8 +46,9 @@
                              min="1800">
                     <f:validateLongRange minimum="0"/>
                     <f:validateLength minimum="4" maximum="4"/>
+                    <p:tooltip for="livreAnnee" value="#{I18N['tooltip.livre.annee']}" position="right"/>
                 </p:spinner>
-                <p:tooltip for="livreAnnee" value="Encoder l'année de parution du livre" position="right"/>
+
 
 
             </p:panelGrid>

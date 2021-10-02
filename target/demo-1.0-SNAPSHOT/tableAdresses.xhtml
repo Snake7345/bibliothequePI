@@ -51,19 +51,13 @@
                         </p:column>
                         <shiro:hasPermission name="Adresses:Modification">
                         <p:column>
-                            <p:commandButton icon="pi pi-pencil" value="Modifier" action="formEditAdress?faces-redirect=true">		<!-- u minuscule -->
+                            <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditAdress?faces-redirect=true">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{adressesBean.adresse}" value="#{ad}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>
                     </p:dataTable>
                 </p:panel>
-                <shiro:hasPermission name="Adresses:Creer">
-                <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewAdress?faces-redirect=true" />
-                </shiro:hasPermission>
-                <shiro:authenticated>
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue?faces-redirect=true"/>
-                </shiro:authenticated>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Adresses:Lire">

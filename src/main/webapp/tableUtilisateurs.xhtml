@@ -159,14 +159,9 @@
                         </p:dataTable>
                     </shiro:lacksRole>
                 </p:panel>
-                <shiro:hasPermission name="Utilisateurs:Creer">
-                <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewUtilisateur?faces-redirect=true" ajax="false"/>
-                </shiro:hasPermission>
                 <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadUtilActiv}" ajax="false"/>
                 <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadUtilInactiv}" ajax="false"/>
-                <shiro:authenticated>
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
-                </shiro:authenticated>
+
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Utilisateurs:Lire">
@@ -178,12 +173,26 @@
             <h:form id="formModifMdp" prependId = "false">
                 <p:panelGrid columns="2" StyleClass="formConfig">
                     <h:outputText value="#{I18N['tooltip.utilisateur.changemdp']}" />
-                    <p:password id="mdp" value="#{utilisateursBean.mdpNouveau}" update="msg" maxlength="40">
+                    <p:password id="mdp" value="#{utilisateursBean.mdpNouveau}" update="msg">
+                        validatorMessage="La valeur doit être comprise entre 8 et 40 caracteres"
+                        value="#{utilisateursBean.utilisateur.mdp}"
+                        requiredMessage="#{I18N['formulaire.message.required.mdp']}"
+                        required="true"
+                        toggleMask="true"
+                        redisplay="true"
+                        maxlength="40">
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
                     <h:outputText value="#{I18N['confirm.label.mdp']}" />
-                    <p:password id="confmdp" value="#{utilisateursBean.mdpNouveau2}" update="msg" maxlength="40"
+                    <p:password id="confmdp" value="#{utilisateursBean.mdpNouveau2}" update="msg"
                     validator="checkMdpValidator">
+                        validatorMessage="La valeur doit être comprise entre 8 et 40 caracteres"
+                        value="#{utilisateursBean.utilisateur.mdp}"
+                        requiredMessage="#{I18N['formulaire.message.required.mdp']}"
+                        required="true"
+                        toggleMask="true"
+                        redisplay="true"
+                        maxlength="40">
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
                 </p:panelGrid>

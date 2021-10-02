@@ -169,6 +169,15 @@ public class AuteursBean implements Serializable {
         }
         return "/tableAuteurs?faces-redirect=true";
     }
+    public String flushAutNew()
+    {
+        init();
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
+        return "/formNewAuteur?faces-redirect=true";
+    }
 
     // Méthode qui permet en fonction de la donnée de l'utilisateur de rechercher un nom parmi les auteurs et nous renvoi le resultat sur le formulaire de recherche des auteurs
     public String searchAuteur()

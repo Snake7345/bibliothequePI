@@ -83,12 +83,13 @@ public class UtilisateursBean implements Serializable {
                 adresses=ua.getAdresse();
             }
         }
-        log.debug("taille UB : "+utilisateur.getUtilisateursBibliotheques());
+        log.debug("taille UB : "+utilisateur.getUtilisateursBibliotheques().size());
         for (UtilisateursBibliotheques ub : utilisateur.getUtilisateursBibliotheques())
         {
             log.debug(ub.getBibliotheque().getNom());
             tabbibli.add(ub.getBibliotheque());
         }
+        log.debug("Taille tabbibli : " +tabbibli.size());
         log.debug("adresse choisie");
         log.debug(adresses.getIdAdresses());
         return "/formEditUtilisateur.xhtml?faces-redirect=true";
@@ -444,9 +445,6 @@ public class UtilisateursBean implements Serializable {
         }
     }
 
-
-
-
     /*Méthode qui permet de désactiver un utilisateur et de le réactiver en verifiant si son rôle est actif ou pas.
     * Si on desactiver/active un client il nous renverra sur la table des clients sinon il nous renverra sur la table des utilisateurs*/
     public String activdesactivUtil() {
@@ -506,11 +504,20 @@ public class UtilisateursBean implements Serializable {
         }
         return "/tableUtilisateursCli?faces-redirect=true";
     }
-    //Méthode qui permet de vider les variables et de revenir sur la page de bienvenue
-    public String flushBienv()
-    {
+
+    public String flushUtilCliNew() {
         init();
-        return "/bienvenue?faces-redirect=true";
+        if (searchResults != null) {
+            searchResults.clear();
+        }
+        return "/formNewUtilisateurCli?faces-redirect=true";
+    }
+    public String flushUtilNew() {
+        init();
+        if (searchResults != null) {
+            searchResults.clear();
+        }
+        return "/formNewUtilisateur?faces-redirect=true";
     }
     /*
      * Méthode qui permet via le service de retourner la liste de tous les utilisateurs actifs
@@ -710,7 +717,5 @@ public class UtilisateursBean implements Serializable {
     public void setListUB(List<UtilisateursBibliotheques> listUB) {
         this.listUB = listUB;
     }
-
-
 }
 

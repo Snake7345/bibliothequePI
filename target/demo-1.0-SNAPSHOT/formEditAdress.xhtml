@@ -16,7 +16,7 @@
                 <title>#{I18N['adresse.form.modif.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['adresse.form.modif.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                 <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
                 <p:inputText id="adresseRue"
@@ -26,16 +26,18 @@
                              requiredMessage="#{I18N['formulaire.message.required.rue']}"
                              maxlength="100">
                     <f:validateLength minimum="2" maximum="100"/>
+                    <p:tooltip for="adresseRue" value="#{I18N['tooltip.adresse.rue']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="adresseRue" value="Encoder la rue" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['adresse.label.Boite']}"/>
                 <p:inputText id="adresseBoite"
                              required="false"
                              value="#{adressesBean.adresse.boite}"
                              maxlength="4">
+                    <p:tooltip for="adresseBoite" value="#{I18N['tooltip.adresse.boite']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="adresseBoite" value="Encoder la boite si c'est un appartement" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['adresse.label.Numero']}"/>
                 <p:inputText id="adresseNumero"
@@ -45,8 +47,9 @@
                              requiredMessage="#{I18N['formulaire.message.required.numero']}"
                              maxlength="6">
                     <f:validateLength minimum="1" maximum="6"/>
+                    <p:tooltip for="adresseNumero" value="#{I18N['tooltip.adresse.numero']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="adresseNumero" value="Encoder le numéro de maison" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
                 <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"
@@ -62,8 +65,9 @@
                     <p:column>
                         <h:outputText value="#{c.ville}"/>
                     </p:column>
+                    <p:tooltip for="adressLoca" value="#{I18N['tooltip.localite']}" position="right"/>
                 </p:selectOneListbox>
-                <p:tooltip for="adressLoca" value="Encoder la localité" position="right"/>
+
 
             </p:panelGrid>
 

@@ -29,8 +29,9 @@
                              requiredMessage="#{I18N['formulaire.message.required.nom']}"
                              maxlength="100">
                     <f:validateLength minimum="2" maximum="100"/>
+                    <p:tooltip for="bibliothequeNom" value="#{I18N['tooltip.bibliotheque.nom']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="bibliothequeNom" value="Encoder le nom de la bibliotheque" position="right"/>
+
 
             </p:panelGrid>
 

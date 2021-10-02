@@ -96,6 +96,12 @@ public class EditeursBean implements Serializable {
         return "/tableEditeurs?faces-redirect=true";
     }
 
+    public String flushEdNew()
+    {
+        init();
+        return "/formNewEditeur?faces-redirect=true";
+    }
+
     /*
      * Méthode qui permet via le service de retourner
      * la liste de tous les éditeurs

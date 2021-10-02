@@ -21,7 +21,6 @@
 
             <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-
                 <p:outputLabel value = "#{I18N['livre.label.Titre']}"/>
                 <p:inputText id="livreTitre"
                              validatorMessage="La valeur doit être entre 1 et 100 caracteres"
@@ -30,8 +29,9 @@
                              requiredMessage="#{I18N['formulaire.message.required.titre']}"
                              maxlength="100">
                     <f:validateLength minimum="1" maximum="100"/>
+                    <p:tooltip for="livreTitre" value="#{I18N['tooltip.livre.titre']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="livreTitre" value="#{I18N['tooltip.livre.titre']}" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['livre.label.Auteur']}"/>
                 <p:selectCheckboxMenu value = "#{livresBean.auteur}" id="livreauteur"
@@ -39,8 +39,9 @@
                                      requiredMessage="#{I18N['formulaire.message.required.auteur']}" multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
                     <f:selectItems value = "#{auteursBean.readActiv}" var="livaut" itemLabel="#{livaut.nom} #{livaut.prenom}" itemValue="#{livaut}"/>
                     <p:ajax event="itemUnselect" listener="#{auteursBean.onItemUnselect}"/>
+                    <p:tooltip for="livreauteur" value="#{I18N['tooltip.auteur']}" position="right"/>
                 </p:selectCheckboxMenu>
-                <p:tooltip for="livreauteur" value="#{I18N['tooltip.auteur']}" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['livre.label.Genre']}"/>
                 <p:selectCheckboxMenu value = "#{livresBean.genre}" id="livreGenre"
@@ -48,8 +49,9 @@
                                      requiredMessage="#{I18N['formulaire.message.required.genre']}" multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
                     <p:ajax event="itemUnselect" listener="#{genresBean.onItemUnselect}"/>
                     <f:selectItems value = "#{genresBean.readAll}" var="livgen" itemLabel="#{livgen.denomination}" itemValue="#{livgen}"/>
+                    <p:tooltip for="livreGenre" value="#{I18N['tooltip.genre']}" position="right"/>
                 </p:selectCheckboxMenu>
-                <p:tooltip for="livreGenre" value="#{I18N['tooltip.genre']}" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['livre.label.Annee']}"/>
                 <p:spinner id="livreAnnee"
@@ -63,8 +65,9 @@
                              min="1800">
                     <f:validateLongRange minimum="0"/>
                     <f:validateLength minimum="4" maximum="4"/>
+                    <p:tooltip for="livreAnnee" value="#{I18N['tooltip.livre.annee']}" position="right"/>
                 </p:spinner>
-                <p:tooltip for="livreAnnee" value="#{I18N['tooltip.livre.annee']}" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['livre.label.Isbn']}"/>
                 <p:inputText id="livreISBN"
@@ -74,8 +77,9 @@
                              maxlength="17"
                              validator="isbnValidator">
                     <f:validateLength minimum="10" maximum="17"/>
+                    <p:tooltip for="livreISBN" value="#{I18N['tooltip.livre.isbn']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="livreISBN" value="#{I18N['tooltip.livre.isbn']}" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['editeur.label.Nom']}"/>
                 <p:selectOneListbox  value = "#{livresBean.livre.editeurs}" id="livreEdit" converter="editeurConverter" var="c" filter="true" filterMatchMode="contains">

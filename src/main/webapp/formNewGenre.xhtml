@@ -20,7 +20,7 @@
                 <title>#{I18N['genre.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['genre.form.nouveau.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
                 <p:outputLabel value = "#{I18N['genre.label.Denomination']}"/>
@@ -31,8 +31,9 @@
                              requiredMessage="#{I18N['formulaire.message.required.denomination']}"
                              maxlength="100">
                     <f:validateLength minimum="2" maximum="100"/>
+                    <p:tooltip for="genreDeno" value="#{I18N['tooltip.genre.deno']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="genreDeno" value="#{I18N['tooltip.genre.deno']}" position="right"/>
+
 
 
             </p:panelGrid>

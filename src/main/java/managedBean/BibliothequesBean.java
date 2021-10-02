@@ -203,6 +203,12 @@ public class BibliothequesBean implements Serializable {
         init();
         return "/tableBibliotheques?faces-redirect=true";
     }
+    public String flushBiblioNew()
+    {
+        init();
+        return "/formNewBibliotheque?faces-redirect=true";
+    }
+
     /*
      * Méthode qui permet via le service de retourner
      * la liste de toutes les bibliothèques

@@ -100,6 +100,13 @@ public class GenresBean implements Serializable {
         init();
         return "/tableGenres?faces-redirect=true";
     }
+    public String flushGenNew()
+    {
+        init();
+        return "/formNewGenre?faces-redirect=true";
+    }
+
+
 
     /*
      * Méthode qui permet via le service de retourner la liste de tous les genres

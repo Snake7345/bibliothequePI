@@ -41,19 +41,13 @@
                     </p:column>
                     <shiro:hasPermission name="Tarifs:Modification">
                         <p:column>
-                            <p:commandButton icon="pi pi-pencil" value="Modifier" action="#{tarifsBean.redirectEdit}">		<!-- u minuscule -->
+                            <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{tarifsBean.redirectEdit}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{tarifsBean.tarif}" value="#{tar}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
                     </shiro:hasPermission>
                 </p:dataTable>
             </p:panel>
-            <shiro:hasPermission name="Tarifs:Creer">
-            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewTarif?faces-redirect=true" />
-            </shiro:hasPermission>
-            <shiro:authenticated>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue?faces-redirect=true"/>
-            </shiro:authenticated>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Tarifs:Lire">

@@ -19,7 +19,7 @@
                 <title>#{I18N['utilisateurcli.form.nouveau.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['utilisateurcli.form.nouveau.titre']}</h2>
-                <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <p:outputLabel value = "#{I18N['utilisateur.label.Nom']}"/>
                     <p:inputText id="utilisateurNom"
@@ -31,7 +31,6 @@
                                  maxlength="100">
                         <f:validateLength minimum="1" maximum="100"/>
                     </p:inputText>
-                    <!--<h:message for="utilisateurNom" styleClass="errorMessage"/>-->
 
                     <p:outputLabel value = "#{I18N['utilisateur.label.Prenom']}"/>
                     <p:inputText id="utilisateurPrenom"
@@ -42,7 +41,6 @@
                                  maxlength="100">
                         <f:validateLength minimum="1" maximum="100"/>
                     </p:inputText>
-                    <!--<h:message for="utilisateurPrenom" styleClass="errorMessage"/>-->
 
                     <p:outputLabel value = "#{I18N['utilisateur.label.Sexe']}"/>
                     <p:selectOneRadio id="sexe" value="#{utilisateursBean.utilisateur.sexe}"
@@ -50,7 +48,6 @@
                                       requiredMessage="#{I18N['formulaire.message.required.sexe']}">
                         <f:selectItems value="#{utilisateursEnumBean.sexeEnum}" />
                     </p:selectOneRadio>
-                    <!--<h:message for="sexe" styleClass="errorMessage"/>-->
 
                     <p:outputLabel value = "#{I18N['utilisateur.label.Courriel']}"/>
                     <p:inputText id="utilisateurCourriel"
@@ -61,7 +58,6 @@
                                  maxlength="100">
                         <f:validateLength minimum="3" maximum="100"/>
                     </p:inputText>
-                    <!--<h:message for="utilisateurCourriel" styleClass="errorMessage"/>-->
 
                     <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
                     <p:selectOneListbox value = "#{utilisateursBean.adresses}" id="utiladress" required="true"
@@ -74,7 +70,6 @@
                             <h:outputText value="#{c.rue} #{c.numero} #{c.boite} #{c.localites.cp} #{c.localites.ville}" />
                         </p:column>
                     </p:selectOneListbox>
-                    <!--<h:message for="utiladress" styleClass="errorMessage"/>-->
 
                     <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}">
                         <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
@@ -114,7 +109,6 @@
                                  value="#{adressesBean.adresse.boite}"
                                  maxlength="4">
                     </p:inputText>
-                    <!--<h:message for="adresseBoite" styleClass="errorMessage"/>-->
 
                     <p:outputLabel value = "#{I18N['adresse.label.Numero']}"/>
                     <p:inputText id="adresseNumero"
@@ -125,7 +119,6 @@
                                  maxlength="6">
                         <f:validateLength minimum="1" maximum="6"/>
                     </p:inputText>
-                    <!--<h:message for="adresseNumero" styleClass="errorMessage"/>-->
 
                     <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
                     <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"

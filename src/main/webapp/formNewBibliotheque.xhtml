@@ -18,7 +18,7 @@
                 <title>#{I18N['bibliotheque.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['bibliotheque.form.nouveau.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                 <p:outputLabel value = "#{I18N['bibliotheque.label.Nom']}"/>
                 <p:inputText id="bibliothequeNom"
@@ -41,9 +41,9 @@
                     <p:column>
                         <h:outputText value="#{c.rue} #{c.numero} #{c.boite} #{c.localites.cp} #{c.localites.ville}" />
                     </p:column>
-
+                    <p:tooltip for="biblioadress" value="#{I18N['tooltip.bibliotheque.adresse']}" position="right"/>
                 </p:selectOneListbox>
-                <p:tooltip for="biblioadress" value="#{I18N['tooltip.bibliotheque.adresse']}" position="right"/>
+
 
             </p:panelGrid>
 

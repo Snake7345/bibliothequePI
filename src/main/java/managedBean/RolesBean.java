@@ -291,6 +291,11 @@ public class RolesBean implements Serializable {
         init();
         return "/tableRoles?faces-redirect=true";
     }
+    public String flushRolNew()
+    {
+        init();
+        return "/formNewRole?faces-redirect=true";
+    }
 
     /*
      * Méthode qui permet via le service de retourner la liste de tous les roles
@@ -339,6 +344,8 @@ public class RolesBean implements Serializable {
 
         return listRole;
     }
+
+
 
     //-------------------------------Getter & Setter--------------------------------------------
 

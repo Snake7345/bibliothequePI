@@ -23,7 +23,7 @@
                     <p:selectOneRadio id="exetat" value="#{factureBean.exemplairesLivres.etat}" required="true">
                         <f:selectItems value="#{exemplairesLivresEnumBean.etatEnum}"/>
                     </p:selectOneRadio>
-                    <p:tooltip for="exetat" value="Encoder l'état du livre" position="right"/>
+                    <p:tooltip for="exetat" value="#{I18N['tooltip.exempl.etat']}" position="right"/>
 
                     <p:outputLabel value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
                     <p:inputTextarea id="CommentaireEtat"
@@ -32,7 +32,7 @@
                                      required="true" requiredMessage="#{I18N['formulaire.message.required.exemplairelivreetat']}">
                     </p:inputTextarea>
                     <h:message for="CommentaireEtat" styleClass="errorMessage"/>
-                    <p:tooltip for="CommentaireEtat" value="Rédiger des commentaires sur l'état du livre" position="right"/>
+                    <p:tooltip for="CommentaireEtat" value="#{I18N['tooltip.exempl.commentaire']}" position="right"/>
 
                     <p:outputLabel value = "#{I18N['penalite.label.Nom']}"/>
                     <!--TODO : regarder l'équivalent du selectManyListBox en primefaces-->

@@ -19,7 +19,7 @@
                 <title>#{I18N['utilisateur.form.modif.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['utilisateur.form.modif.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
                 <p:outputLabel value = "#{I18N['utilisateur.label.Nom']}"/>
@@ -30,8 +30,9 @@
                              validator = "nomPrenomValidator"
                              maxlength ="100">
                     <f:validateLength minimum="1" maximum="100"/>
+                    <p:tooltip for="utilisateurNom" value="#{I18N['tooltip.utilisateur.nom']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="utilisateurNom" value="#{I18N['tooltip.utilisateur.nom']}" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['utilisateur.label.Prenom']}"/>
                 <p:inputText id="utilisateurPrenom"
@@ -40,17 +41,18 @@
                              requiredMessage="#{I18N['formulaire.message.required.prenom']}"
                              validator= "nomPrenomValidator"
                              maxlength ="100">
+                    <p:tooltip for="utilisateurPrenom" value="#{I18N['tooltip.utilisateur.prenom']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="utilisateurPrenom" value="#{I18N['tooltip.utilisateur.prenom']}" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['utilisateur.label.Sexe']}"/>
                 <p:selectOneRadio id="sexe" value="#{utilisateursBean.utilisateur.sexe}"
                                   required="true"
                                   requiredMessage="#{I18N['formulaire.message.required.sexe']}">
                     <f:selectItems value="#{utilisateursEnumBean.sexeEnum}" />
+                    <p:tooltip for="sexe" value="#{I18N['tooltip.utilisateur.sexe']}" position="right"/>
                 </p:selectOneRadio>
-                <!--<h:message for="sexe" styleClass="errorMessage"/>-->
-                <p:tooltip for="sexe" value="#{I18N['tooltip.utilisateur.sexe']}" position="right"/>
+
 
                 <p:outputLabel value = "#{I18N['utilisateur.label.Courriel']}"/>
                 <p:inputText id="utilisateurCourriel"
@@ -60,33 +62,24 @@
                              validator = "emailValidator"
                              maxlength="100">
                     <f:validateLength minimum="3" maximum="100"/>
+                    <p:tooltip for="sexe" value="#{I18N['tooltip.utilisateur.mail']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="sexe" value="#{I18N['tooltip.utilisateur.mail']}" position="right"/>
 
-                <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
-                <p:outputLabel value = "#{I18N['utilisateur.label.Mdp']}"/>
-                <p:password id="utilisateurMdp"
-                             value="#{utilisateursBean.utilisateur.mdp}"
-                             toggleMask="true"
-                             redisplay ="true"
-                             requiredMessage="#{I18N['formulaire.message.required.mdp']}"
-                             required="true">
-                </p:password>
-                    <p:tooltip for="utilisateurMdp" value="#{I18N['tooltip.utilisateur.mdp']}" position="right"/>
-                </c:if>
 
-                <p:selectCheckboxMenu rendered="#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}" value = "#{utilisateursBean.tabbibli}" id="menu" style="width: 15rem"
+                <p:outputLabel value = "Bibliotheque"/>
+                <p:selectManyCheckbox value = "#{utilisateursBean.tabbibli}" rendered="#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}"  id="menu" style="width: 15rem"
                                       filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" scrollHeight="250">
                     <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
                                    itemLabel="#{biblio.nom}"
                                    itemValue="#{biblio}"/>
-                </p:selectCheckboxMenu>
-                <p:tooltip for="menu" alue="#{I18N['tooltip.utilisateur.bibliotheque']}" position="right"/>
+                    <p:tooltip for="menu" alue="#{I18N['tooltip.utilisateur.bibliotheque']}" position="right"/>
+                </p:selectManyCheckbox>
+
 
                 <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client' and utilisateursBean.utilisateur.roles.denomination ne 'Administrateur'}">
                 <p:outputLabel value = "#{I18N['role.label.Denomination']}" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}"/>
-                <p:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}" requiredMessage="#{I18N['formulaire.message.required.role']}"
-                                 converter="roleConverter">
+                <p:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roleselectOne" required="true" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                                 converter="roleConverter" >
                     <shiro:hasRole name="1">
                         <f:selectItems value = "#{rolesBean.readActivUtil}" var="ro"
                                        itemLabel="#{ro.denomination}"
@@ -110,8 +103,9 @@
                     <p:column>
                         <h:outputText value="#{c.rue} #{c.numero} #{c.boite} #{c.localites.cp} #{c.localites.ville}" />
                     </p:column>
+                    <p:tooltip for="utiladress" value="#{I18N['tooltip.utilisateur.adresse']}" position="right"/>
                 </p:selectOneListbox>
-                <p:tooltip for="utiladress" value="#{I18N['tooltip.utilisateur.adresse']}" position="right"/>
+
 
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}">
                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>

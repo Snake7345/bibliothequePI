@@ -9,7 +9,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="Template/template.xhtml">
-    <ui:define name="title">#{I18N['application.utilisateur.title']}</ui:define>
+    <ui:define name="title">#{I18N['application.roles.title']}</ui:define>
     <ui:define name="content">
         <shiro:hasPermission name="Roles:Lire">
         <h:form prependId="false">
@@ -43,12 +43,6 @@
                     </shiro:hasPermission>
                 </p:dataTable>
             </p:panel>
-            <shiro:hasPermission name="Roles:Creer">
-            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewRole?faces-redirect=true"  ajax="false"/>
-            </shiro:hasPermission>
-            <shiro:authenticated>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue?faces-redirect=true"/>
-            </shiro:authenticated>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Roles:Lire">

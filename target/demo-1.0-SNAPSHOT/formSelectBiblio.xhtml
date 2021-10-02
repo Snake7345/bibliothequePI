@@ -28,7 +28,7 @@
                                        itemLabel="#{biblio.nom}"
                                        itemValue="#{biblio.idBibliotheques}"/>
                     </p:selectOneMenu>
-                    <p:tooltip for="nomBiblio" value="Selectionner la bibliothèque pour laquelle il faut se connecter" position="right"/>
+                    <p:tooltip for="nomBiblio" value="#{I18N['tooltip.bibliotheque']}" position="right"/>
                     <p:commandButton icon="fa fa-fw fa-sign-in" value ="#{I18N['application.button.pagelogin']}" action="#{bibliothequesBean.createFichier}" update="growl" ajax="false"/>
                 </p:panelGrid>
 

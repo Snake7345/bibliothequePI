@@ -49,7 +49,7 @@ public class Utilisateurs implements Serializable {
     private Collection<Factures> factures;
     @OneToMany(mappedBy = "utilisateur")
     private Collection<UtilisateursAdresses> utilisateursAdresses;
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "utilisateur")
     private Collection<UtilisateursBibliotheques> utilisateursBibliotheques;
     @OneToMany(mappedBy = "utilisateur")
     private Collection<Reservation> reservations;

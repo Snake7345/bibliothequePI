@@ -264,6 +264,10 @@ public class TarifsBean implements Serializable {
         init();
         return "/tableTarifs?faces-redirect=true";
     }
+    public String flushTarifsNew() {
+        init();
+        return "/formNewTarif?faces-redirect=true";
+    }
 
     //-------------------------------Getter & Setter--------------------------------------------
 

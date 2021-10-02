@@ -31,6 +31,8 @@ public class AdressesBean implements Serializable {
         adresse = new Adresses();
     }
 
+
+
     // Méthode qui permet l'appel de save() qui créée une nouvelle adresse et envoi un message si jamais
     // l'adresse se trouve déjà en base de donnée et nous renvoi sur la table des auteurs
     public String newAdress()
@@ -113,6 +115,12 @@ public class AdressesBean implements Serializable {
     {
         init();
         return "/tableAdresses?faces-redirect=true";
+    }
+
+    public String flushAddNew()
+    {
+        init();
+        return "/formNewRole?faces-redirect=true";
     }
 
 

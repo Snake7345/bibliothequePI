@@ -203,6 +203,16 @@ public class LivresBean implements Serializable {
         return "/tableLivres.xhtml?faces-redirect=true";
     }
 
+    public String flushLivNew()
+    {
+        init();
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
+        return "/formNewLivre.xhtml?faces-redirect=true";
+    }
+
 
     /*
      * Méthode qui permet via le service de retourner la liste de tous les livres

@@ -4,6 +4,7 @@ import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import services.SvcUtilisateurs;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -29,7 +30,11 @@ public class ReinitialisationBean implements Serializable {
     private String login;
     private String courriel;
 
-
+    @PostConstruct
+    public void init() {
+    login="";
+    courriel="";
+    }
 
     public String reinitia()
     {
@@ -133,6 +138,12 @@ public class ReinitialisationBean implements Serializable {
         }
 
         return sb.toString();
+    }
+
+    public String flushLogin()
+    {
+        init();
+        return "/login?faces-redirect=true";
     }
 
     public String getLogin() {

@@ -26,24 +26,18 @@
                         </p:column>
                         <shiro:hasPermission name="Genres:Modification">
                         <p:column>
-                            <p:commandButton  icon="pi pi-pencil" value="Modifier" action="formEditGenre">		<!-- u minuscule -->
+                            <p:commandButton  icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditGenre">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{genresBean.genre}" value="#{gen}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>
                         <p:column>
-                            <p:commandButton  icon="pi pi-book" value="livres par genres" action="#{livresBean.readByGenres}">		<!-- u minuscule -->
+                            <p:commandButton  icon="pi pi-book" value="#{I18N['application.button.livrepargenre']}" action="#{livresBean.readByGenres}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.gen}" value="#{gen}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
                     </p:dataTable>
                 </p:panel>
-                <shiro:hasPermission name="Genres:Creer">
-                    <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewGenre?faces-redirect=true" ajax="false"/>
-                </shiro:hasPermission>
-                <shiro:authenticated>
-                    <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.returnbienvenue']}" action="bienvenue?faces-redirect=true"/>
-                </shiro:authenticated>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Genres:Lire">
