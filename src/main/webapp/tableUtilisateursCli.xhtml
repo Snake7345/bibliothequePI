@@ -71,6 +71,7 @@
                                 </p:commandButton>
                             </p:column>
                         </shiro:hasPermission>
+                        <shiro:hasPermission name="Client:ActivDesactiv">
                             <p:column>
                                 <p:commandButton icon="pi pi-power-off" value ="Desactiver" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
@@ -79,6 +80,7 @@
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>
                             </p:column>
+                        </shiro:hasPermission>
                     </p:dataTable>
                 </p:panel>
                 <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}" ajax="false"/>

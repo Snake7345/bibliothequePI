@@ -31,6 +31,12 @@
                             <!-- row record -->
                             <p:outputLabel value ="#{aut.prenom}"/>
                         </p:column>
+                        <p:column>
+                            <!-- column header -->
+                            <f:facet name="header">#{I18N['commune.label.actif']}</f:facet>
+                            <!-- row record -->
+                            <h:outputLabel value ="#{aut.actif}"/>
+                        </p:column>
                         <shiro:hasPermission name="Auteurs:Modification">
                         <p:column>
                             <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditAuteur?faces-redirect=true">		<!-- u minuscule -->

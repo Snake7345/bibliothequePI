@@ -1,5 +1,6 @@
 package managedBean;
 
+import entities.Bibliotheques;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -26,6 +27,7 @@ public class LoginBean implements Serializable {
     @PersistenceUnit  (unitName = "bibliotheque")
     private String login;
     private String mdp;
+    private final Bibliotheques bibliactuel = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
 
 
@@ -51,16 +53,25 @@ public class LoginBean implements Serializable {
             log.debug("1");
             List<Utilisateurs> results = service.findByLogin(login);
             log.debug("2");
-            if (SecurityManager.processToLogin(login, mdp, false)){
+            if(bibliactuel.isActif()) {
+                if (SecurityManager.processToLogin(login, mdp, false)) {
 
-                log.debug("OKAY");
-                utilisateurAuth = results.get(0);
-                log.debug(utilisateurAuth.getIdUtilisateurs());
-                SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
-                SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
-                FacesContext.getCurrentInstance().getExternalContext().redirect("bienvenue.xhtml");
+                    log.debug("OKAY");
+                    utilisateurAuth = results.get(0);
+                    log.debug(utilisateurAuth.getIdUtilisateurs());
+                    SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
+                    SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("bienvenue.xhtml");
 
+                }
+            }
+            else
+            {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"la bibliotheque n'est pas active",null));
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
             }
 
             //TODO : Faire comprendre a Shiro qu'il doit intégrer cette permission
@@ -115,5 +126,9 @@ public class LoginBean implements Serializable {
 
     public void setMdp(String mdp) {
         this.mdp = mdp;
+    }
+
+    public Bibliotheques getBibliactuel() {
+        return bibliactuel;
     }
 }

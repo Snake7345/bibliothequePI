@@ -54,30 +54,43 @@
                         <p:outputLabel value ="#{liv.actif}"/>
                     </p:column>
                     <p:column>
-                        <p:commandButton  image="Images//plus.png" action="livreDetail">		<!-- u minuscule -->
+                        <p:commandButton  icon="fa fa-fw fa-th-list" value="Details" action="livreDetail?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}"/><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
                     <shiro:hasPermission name="Livres:Modification">
                         <p:column>
-                            <p:commandButton  image="Images//edit.png" action="formEditLivre">		<!-- u minuscule -->
+                            <p:commandButton  icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditLivre?faces-redirect=true">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:ActivDesactiv">
                         <p:column>
-                            <p:commandButton rendered="#{liv.actif}" image="Images//activdesactiv.png" action="formConfirmationLivre?faces-redirect=true">
+                            <p:commandButton rendered="#{liv.actif}" icon="pi pi-power-off" value ="Desactiver" action="#{livresBean.activdesactivLiv}">
+                                <p:confirm type="popup" header="Confirmation" message="#{I18N['livre.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                             </p:commandButton>
-                            <p:commandButton rendered="#{!liv.actif}" image="Images//activdesactiv.png" action="#{livresBean.activdesactivLiv}">
+                            <p:confirmPopup global="true">
+                                <p:commandButton value="#{I18N['commune.label.non']}" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                                <p:commandButton value="#{I18N['commune.label.oui']}" type="button" styleClass="ui-confirm-popup-yes" />
+                            </p:confirmPopup>
+                            <p:commandButton rendered="#{!liv.actif}" icon="pi pi-check" value ="Activer" action="#{livresBean.activdesactivLiv}">
                                 <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                             </p:commandButton>
                         </p:column>
                     </shiro:hasPermission>
+                    <p:column>
+                        <f:facet name="header">Disponibilité</f:facet>
+                        <p:graphicImage value="#{livresBean.verifDispo(liv)}" width="100" height="100"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.reservation']}" action="tableReservation?faces-redirect=true">		<!-- u minuscule -->
+                            <f:setPropertyActionListener target="#{reservationBean.livre}" value="#{liv}" />
+                        </p:commandButton>
+                    </p:column>
                 </p:dataTable>
             </p:panel>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}" immediate="true"/>
         </h:form>
         </shiro:authenticated>
         <shiro:notAuthenticated>

@@ -24,6 +24,13 @@
                         <!-- row record -->
                         <p:outputLabel value ="#{rol.denomination}"/>
                     </p:column>
+                    <shiro:hasPermission name="Roles:Modification">
+                    <p:column>
+                        <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}" icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{rolesBean.redirectModifRole}">		<!-- u minuscule -->
+                            <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" /><!-- u minuscule -->
+                        </p:commandButton>
+                    </p:column>
+                    </shiro:hasPermission>
                     <shiro:hasPermission name="Roles:ActivDesactiv">
                     <p:column>
                         <!--TODO : Verifier que le shiro bien le dessus sur le c:if et qu'ils sont bien compatibles-->

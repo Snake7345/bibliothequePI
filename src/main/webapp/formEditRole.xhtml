@@ -12,7 +12,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <shiro:hasPermission name="Roles:Creer">
+        <shiro:hasPermission name="Roles:Modification">
             <h:form id="form" prependId="false">
                 <h:head>
                     <title>#{I18N['role.form.modif.titre']}</title>
@@ -21,15 +21,7 @@
                 <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <p:outputLabel value = "#{I18N['role.label.Denomination']}"/>
-                    <p:inputText id="roleDenomination"
-                                 validatorMessage="La valeur doit être entre 2 et 100 caracteres"
-                                 value="#{rolesBean.role.denomination}"
-                                 required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.denomination']}"
-                                 maxlength="100">
-                        <f:validateLength minimum="2" maximum="100"/>
-                    </p:inputText>
-                    <p:tooltip for="roleDenomination" value="#{I18N['tooltip.role.deno']}" position="right"/>
+                    <p:outputLabel value ="#{rolesBean.role.denomination}"/>
 
                     <p:outputLabel value = "#{I18N['Permissions.label.Type']}"/>
                     <p:selectOneMenu value = "#{permissionsBean.type}" id="type" >
@@ -78,11 +70,11 @@
                     </p:column>
                 </p:dataTable>
 
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.newRoles}"/>
+                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.modifRole}"/>
                 <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
             </h:form>
         </shiro:hasPermission>
-        <shiro:lacksPermission name="Roles:Creer">
+        <shiro:lacksPermission name="Roles:Modification">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
     </ui:define>

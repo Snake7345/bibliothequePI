@@ -2,12 +2,13 @@ package managedBean;
 
 import entities.Adresses;
 import entities.Bibliotheques;
+import entities.ExemplairesLivres;
+import entities.Reservation;
 import enumeration.ExemplairesLivresEtatEnum;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import security.SecurityManager;
-import services.SvcAdresses;
-import services.SvcBibliotheques;
+import services.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -28,7 +29,7 @@ public class BibliothequesBean implements Serializable {
     private String nomBiblio;
 
     private int idBiblio;
-
+    private final Bibliotheques bibliactuel = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
     private Adresses adresses;
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
     private List<Bibliotheques> listBiblioActiv = new ArrayList<>();
@@ -289,6 +290,125 @@ public class BibliothequesBean implements Serializable {
         return listBib;
     }
 
+    public String ActivDesactivBiblio()
+    {
+        SvcBibliotheques serviceB = new SvcBibliotheques();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        serviceEL.setEm(serviceB.getEm());
+        EntityTransaction transaction = serviceB.getTransaction();
+
+        transaction.begin();
+        try
+        {
+            if(bibliotheque.isActif())
+            {
+                bibliotheque.setActif(false);
+                for (ExemplairesLivres el : bibliotheque.getExemplairesLivres()) {
+                    if(el.isActif() && !el.isLoue() && !el.isReserve())
+                    {
+                        el.setActif(false);
+                        serviceEL.save(el);
+                    }
+                    else if (el.isLoue())
+                    {
+                        transaction.rollback();
+                        FacesContext fc = FacesContext.getCurrentInstance();
+                        fc.getExternalContext().getFlash().setKeepMessages(true);
+                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"toutes les locations doivent être cloturer avant la fermeture de la bibliothèque ",null));
+                        return "/tableBibliotheques.xhtml?faces-redirect=true";
+                    }
+                    else if (el.isReserve())
+                    {
+                        transaction.rollback();
+                        FacesContext fc = FacesContext.getCurrentInstance();
+                        fc.getExternalContext().getFlash().setKeepMessages(true);
+                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"tout les livres doivent être disponible (pas de transfer pas de réservation) avant la fermeture de la bibliothèque ",null));
+                        return "/tableBibliotheques.xhtml?faces-redirect=true";
+                    }
+                }
+            }
+            else
+            {
+                bibliotheque.setActif(true);
+            }
+            serviceB.save(bibliotheque);
+
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation a échoué",null));
+            }
+            init();
+            serviceB.close();
+        }
+        return "/tableBibliotheques.xhtml?faces-redirect=true";
+    }
+
+    public String DesactivBiblioTransfert()
+    {
+        SvcBibliotheques serviceB = new SvcBibliotheques();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        SvcReservations serviceR = new SvcReservations();
+        serviceEL.setEm(serviceB.getEm());
+        serviceR.setEm(serviceB.getEm());
+        EntityTransaction transaction = serviceB.getTransaction();
+
+        transaction.begin();
+        try
+        {
+            if(bibliotheque.isActif())
+            {
+                bibliotheque.setActif(false);
+                for (ExemplairesLivres el : bibliotheque.getExemplairesLivres()) {
+                    if(el.isActif())
+                    {
+                        el.setBibliotheques(bibliactuel);
+                        serviceEL.save(el);
+                    }
+                }
+                for (Reservation r : bibliotheque.getReservations())
+                {
+                    if(r.isActif())
+                    {
+                        r.setBibliotheques(bibliactuel);
+                    }
+                }
+            }
+            else
+            {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La bibliotheque est déjà désactivé ",null));
+                return "/tableBibliotheques.xhtml?faces-redirect=true";
+            }
+            serviceB.save(bibliotheque);
+
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation a échoué",null));
+            }
+            init();
+            serviceB.close();
+        }
+        return "/tableBibliotheques.xhtml?faces-redirect=true";
+    }
+
+
+
     //-------------------------------Getter & Setter--------------------------------------------
 
     public Bibliotheques getBibliotheque() {
@@ -345,5 +465,9 @@ public class BibliothequesBean implements Serializable {
 
     public void setUserdir(String userdir) {
         this.userdir = userdir;
+    }
+
+    public Bibliotheques getBibliactuel() {
+        return bibliactuel;
     }
 }

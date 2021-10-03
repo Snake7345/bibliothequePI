@@ -126,6 +126,12 @@ public class UtilisateursBean implements Serializable {
         transaction.begin();
         try {
             service.save(utilisateur);
+            service.refreshEntity(utilisateur);
+            if(utilisateur.getUtilisateursBibliotheques().size()>0){
+                for(UtilisateursBibliotheques ub : utilisateur.getUtilisateursBibliotheques()){
+                    serviceUB.delete(ub.getIdUtilisateursBibliotheques());
+                }
+            }
             if(utilisateur.getIdUtilisateurs()!=0) {
                 for (UtilisateursAdresses utiladress : utilisateur.getUtilisateursAdresses()) {
                     if (!utiladress.equals(UA) && utiladress.isActif()) {
@@ -451,7 +457,8 @@ public class UtilisateursBean implements Serializable {
         if (utilisateur.isActif()) {
             utilisateur.setActif(false);
             saveActif();
-        } else {
+        }
+        else {
             if ((!utilisateur.isActif()) && (!utilisateur.getRoles().isActif())) {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);

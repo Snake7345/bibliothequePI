@@ -14,12 +14,13 @@
 
 		<p:panelGrid id="header2" class="table-entete" columns="2">
 			<p:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
-			<p:outputLabel id="titrebib" value="Bienvenue sur la bibliothèque #{bibliothequesBean.listBibactuel.get(0).nom}" />
+			<p:outputLabel id="titrebib" value="Bienvenue sur la bibliothèque #{bibliothequesBean.listBibactuel.get(0).nom} " />
 
 		</p:panelGrid>
 		<shiro:authenticated>
 				<h:form>
 					<p:menubar>
+						<p:menuitem value="Accueil" icon="fa fa-fw fa-home" action="bienvenue?faces-redirect=true"/>
 						<shiro:hasPermission name="Permissions:Lire">
 							<p:submenu label="Gestion des permissions" icon="fa fa-fw fa-exclamation">
 								<shiro:hasPermission name="Permissions:Lire">
@@ -33,7 +34,7 @@
 									<p:menuitem value="Voir les tarifs" icon="fa fa-fw fa-table" action="tableTarifs?faces-redirect=true"/>
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Tarifs:Creer">
-									<p:menuitem value="Nouvelle grille tarifaire" icon="fa fa-fw fa-plus" action="formNewTarif?faces-redirect=true"/>
+									<p:menuitem value="Nouvelle grille tarifaire" icon="fa fa-fw fa-plus" action="#{tarifsBean.flushTarifsNew}"/>
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>
@@ -43,7 +44,7 @@
 									<p:menuitem value="Tables des rôles" icon="fa fa-fw fa-table" action="tableRoles?faces-redirect=true"/>
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Roles:Creer">
-									<p:menuitem value="Nouveau rôle" icon="fa fa-fw fa-plus" action="formNewRole?faces-redirect=true"/>
+									<p:menuitem value="Nouveau rôle" icon="fa fa-fw fa-plus" action="#{rolesBean.flushRolNew}"/>
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>
@@ -59,10 +60,15 @@
 								</p:submenu>
 								<p:submenu label="Ajouter" icon="fa fa-fw fa-plus">
 									<shiro:hasPermission name="Client:Creer">
-										<p:menuitem value="Client" action="formNewUtilisateurCli?faces-redirect=true" icon="fa fa-fw fa-user"/>
+										<p:menuitem value="Client" action="#{utilisateursBean.flushUtilCliNew}" icon="fa fa-fw fa-user"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Utilisateurs:Creer">
-										<p:menuitem value="Utilisateur" action="formNewUtilisateur?faces-redirect=true" icon="fa fa-fw fa-user"/>
+										<p:menuitem value="Utilisateur" action="#{utilisateursBean.flushUtilNew}" icon="fa fa-fw fa-user"/>
+									</shiro:hasPermission>
+								</p:submenu>
+								<p:submenu label="Recherche" icon="fa fa-fw fa-search">
+									<shiro:hasPermission name="Utilisateurs:Lire">
+										<p:menuitem value="Clients" action="formSearchUtilisateur?faces-redirect=true" icon="fa fa-fw fa-user"/>
 									</shiro:hasPermission>
 								</p:submenu>
 							</p:submenu>
@@ -88,19 +94,28 @@
 								</p:submenu>
 								<p:submenu label="Ajouter" icon="fa fa-fw fa-plus">
 									<shiro:hasPermission name="Bibliotheques:Creer">
-										<p:menuitem value="Bibliothèque" action="formNewBibliotheque?faces-redirect=true" icon="fa fa-fw fa-building-o"/>
+										<p:menuitem value="Bibliothèque" action="#{bibliothequesBean.flushBiblioNew}" icon="fa fa-fw fa-building-o"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Livres:Creer">
-										<p:menuitem value="Livre" action="formNewLivre?faces-redirect=true" icon="fa fa-fw fa-book"/>
+										<p:menuitem value="Livre" action="#{livresBean.flushLivNew}" icon="fa fa-fw fa-book"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Genres:Lire">
-										<p:menuitem value="Genre" action="formNewGenre?faces-redirect=true" icon="fa fa-fw fa-text-width"/>
+										<p:menuitem value="Genre" action="#{genresBean.flushGenNew}" icon="fa fa-fw fa-text-width"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Editeurs:Lire">
-										<p:menuitem value="Editeur" action="formNewEditeur?faces-redirect=true" icon="fa fa-fw fa-building"/>
+										<p:menuitem value="Editeur" action="#{editeursBean.flushEdNew}" icon="fa fa-fw fa-building"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Auteurs:Lire">
-										<p:menuitem value="Auteur" action="formNewAuteur?faces-redirect=true" icon="fa fa-fw fa-pencil"/>
+										<p:menuitem value="Auteur" action="#{auteursBean.flushAutNew}" icon="fa fa-fw fa-pencil"/>
+									</shiro:hasPermission>
+
+								</p:submenu>
+								<p:submenu label="Recherche" icon="fa fa-fw fa-search">
+									<shiro:hasPermission name="Auteurs:Lire">
+										<p:menuitem value="Auteur" action="formSearchAuteur?faces-redirect=true" icon="fa fa-fw fa-pencil"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Livres:Lire">
+										<p:menuitem value="Livre" action="formSearchLivre?faces-redirect=true" icon="fa fa-fw fa-book"/>
 									</shiro:hasPermission>
 								</p:submenu>
 								<shiro:hasRole name="1">
@@ -114,7 +129,7 @@
 									<p:menuitem value="Table des Adresses" icon="fa fa-fw fa-table" action="tableAdresses?faces-redirect=true"/>
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Adresses:Creer">
-									<p:menuitem value="Nouvelle Adresses" icon="fa fa-fw fa-plus" action="formNewAdress?faces-redirect=true"/>
+									<p:menuitem value="Nouvelle Adresses" icon="fa fa-fw fa-plus" action="#{adressesBean.flushAddNew}"/>
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>

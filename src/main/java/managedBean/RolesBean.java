@@ -1,7 +1,6 @@
 package managedBean;
 
-import entities.Permissions;
-import entities.Roles;
+import entities.*;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import services.SvcPermissionRoles;
@@ -247,6 +246,20 @@ public class RolesBean implements Serializable {
 
     }
 
+    public String redirectModifRole(){
+        for (PermissionsRoles pr: role.getPermissionsRoles()) {
+            listPerm.add(pr.getPermissions());
+        }
+        return "/formEditRole.xhtml?faces-redirect=true";
+    }
+
+    public String modifRole()
+    {
+        save();
+        init();
+        return "/tableRoles.xhtml?faces-redirect=true";
+    }
+
     public void save()
     {
         SvcRoles service = new SvcRoles();
@@ -257,6 +270,12 @@ public class RolesBean implements Serializable {
         transaction.begin();
         try {
             service.save(role);
+            service.refreshEntity(role);
+            if(role.getPermissionsRoles().size()>0){
+                for(PermissionsRoles pr : role.getPermissionsRoles()){
+                    servicePR.delete(pr.getIdPermissionsRoles());
+                }
+            }
             for(Permissions p : listPerm)
             {
                 if(serviceP.findOnePermission(p).size()>0){

@@ -25,18 +25,21 @@
                             <!-- row record -->
                             <p:outputLabel value ="#{re.utilisateur.numMembre}"/>
                         </p:column>
+                        <shiro:hasPermission name="Reservation:ActivDesactiv">
                         <p:column>
                             <p:commandButton value="#{I18N['application.button.supprimer']}" action="#{reservationBean.suppReserv}" immediate="true">
                                 <f:setPropertyActionListener target="#{reservationBean.reserv}" value="#{re}" />
                             </p:commandButton>
                         </p:column>
+                        </shiro:hasPermission>
 
 
                     </p:dataTable>
-
+                    <shiro:hasPermission name="Reservation:Creer">
                     <p:commandButton value="#{I18N['reservation.label.newReserv']}" type="button">
                         <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                     </p:commandButton>
+                    </shiro:hasPermission>
                     <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{reservationBean.flushReserv}" immediate="true"/>
                 </p:panel>
             </h:form>

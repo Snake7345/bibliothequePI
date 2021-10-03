@@ -13,7 +13,6 @@
         <shiro:hasPermission name="Utilisateurs:Lire">
             <h:form prependId="false">
                 <p:panel layout="block" id="content">
-
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.utilisateur.title']}</h2>
                     <shiro:hasRole name="1">
@@ -63,15 +62,12 @@
                                              icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                             </p:commandButton>
-
                        </p:column>
                         <p:column>
                             <p:commandButton value="#{I18N['application.button.modifierMDP']}" type="button">
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                 <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                             </p:commandButton>
-
-
                         </p:column>
                        <shiro:hasPermission name="Utilisateurs:ActivDesactiv">
                            <p:column>
@@ -161,7 +157,6 @@
                 </p:panel>
                 <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadUtilActiv}" ajax="false"/>
                 <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadUtilInactiv}" ajax="false"/>
-
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Utilisateurs:Lire">
