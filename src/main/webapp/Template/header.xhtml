@@ -21,13 +21,13 @@
 				<h:form>
 					<p:menubar>
 						<p:menuitem value="Accueil" icon="fa fa-fw fa-home" action="bienvenue?faces-redirect=true"/>
-						<shiro:hasPermission name="Permissions:Lire">
+						<shiro:hasRole name="1">
 							<p:submenu label="Gestion des permissions" icon="fa fa-fw fa-exclamation">
 								<shiro:hasPermission name="Permissions:Lire">
 									<p:menuitem value="Table des permissions" icon="fa fa-fw fa-table" action="tablePermissions?faces-redirect=true" />
 								</shiro:hasPermission>
 							</p:submenu>
-						</shiro:hasPermission>
+						</shiro:hasRole>
 						<shiro:hasPermission name="Tarifs:Lire">
 							<p:submenu label="Gestion des tarifs" icon="fa fa-fw fa-euro">
 								<shiro:hasPermission name="Tarifs:Lire">
@@ -48,7 +48,6 @@
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>
-						<shiro:hasPermission name="Client:Lire">
 							<p:submenu label="Gestion des personnes" icon="fa fa-fw fa-users">
 								<p:submenu label="Voir les" icon="fa fa-fw fa-table">
 									<shiro:hasPermission name="Client:Lire">
@@ -72,8 +71,6 @@
 									</shiro:hasPermission>
 								</p:submenu>
 							</p:submenu>
-						</shiro:hasPermission>
-						<shiro:hasPermission name="Genres:Lire">
 							<p:submenu label="Gestion bibliothèque" icon="fa fa-fw fa-building-o">
 								<p:submenu label="Voir les" icon="fa fa-fw fa-table">
 									<shiro:hasPermission name="Bibliotheques:Lire">
@@ -108,7 +105,6 @@
 									<shiro:hasPermission name="Auteurs:Lire">
 										<p:menuitem value="Auteur" action="#{auteursBean.flushAutNew}" icon="fa fa-fw fa-pencil"/>
 									</shiro:hasPermission>
-
 								</p:submenu>
 								<p:submenu label="Recherche" icon="fa fa-fw fa-search">
 									<shiro:hasPermission name="Auteurs:Lire">
@@ -122,7 +118,6 @@
 								<p:menuitem value="Reinitialisation de la bibliotheque" icon="fa fa-fw fa-refresh" action="formConfirmationReini?faces-redirect=true"/>
 								</shiro:hasRole>
 							</p:submenu>
-						</shiro:hasPermission>
 						<shiro:hasPermission name="Adresses:Lire">
 							<p:submenu label="Gestion des adresses" icon="fa fa-fw fa-street-view">
 								<shiro:hasPermission name="Adresses:Lire">

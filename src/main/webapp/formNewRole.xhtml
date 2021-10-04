@@ -40,9 +40,6 @@
                     </p:selectOneMenu>
                     <p:commandButton icon="fa fa-fw fa-rotate-left" action="#{permissionsBean.getPermissionsAction}" ajax="false"/>
 
-
-
-
                     <p:outputLabel value = "#{I18N['Permissions.label.Action']}"/>
                     <p:selectOneMenu value = "#{permissionsBean.action}" id="action">
                         <f:selectItems value = "#{permissionsBean.listAction}" var="ac"

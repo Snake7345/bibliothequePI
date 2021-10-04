@@ -99,8 +99,20 @@ public class LoginBean implements Serializable {
         log.debug("test deco2 " + utilisateurAuth.getNom());
         return "login";*/
         utilisateurAuth = new Utilisateurs();
-        SecurityManager.processToLogout();
-        return "/login.xhtml?faces-redirect=true";
+        if(SecurityManager.processToLogout())
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Votre session est bien déconnectée",null));
+            return "/index.xhtml?faces-redirect=true";
+        }
+        else
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Une erreur s'est produite",null));
+            return "/index.xhtml?faces-redirect=true";
+        }
     }
 
     //-------------------------Getter & Setter--------------------------------------------------------------------------------

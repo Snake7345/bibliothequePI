@@ -129,7 +129,9 @@
                 <br/>
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.ajouterlig']}" action="#{tarifsBean.addNewPenaRow}" ajax="false"/>
                 <p:commandButton value="#{I18N['application.button.suplig']}" action="#{tarifsBean.delPenaRow}" ajax="false"/>
+                <shiro:hasPermission name="Tarifs:Lire">
                 <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
+                </shiro:hasPermission>
                 <p:commandButton icon="fa fa-fw fa-check-square" value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" ajax="false" />
             </h:form>
         </shiro:hasPermission>

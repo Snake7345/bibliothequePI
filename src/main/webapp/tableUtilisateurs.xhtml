@@ -15,7 +15,7 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.utilisateur.title']}</h2>
-                    <shiro:hasRole name="1">
+                    <shiro:hasPermission name="Utilisateurs:Lire">
                     <p:dataTable value="#{utilisateursBean.listUtil}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateursAdmin"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
 
@@ -57,18 +57,22 @@
                                     <p:outputLabel rendered="#{utad.actif}" value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
                             </ui:repeat>
                         </p:column>
+                        <shiro:hasPermission name="Utilisateurs:Modification">
                         <p:column>
                             <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:Modification')) or (loginBean.utilisateurAuth eq ut)) and ((ut.roles.denomination ne 'Administrateur') or (loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'))}"
                                              icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                             </p:commandButton>
                        </p:column>
+                        </shiro:hasPermission>
+                        <shiro:hasPermission name="Utilisateurs:Modification">
                         <p:column>
                             <p:commandButton value="#{I18N['application.button.modifierMDP']}" type="button">
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                 <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                             </p:commandButton>
                         </p:column>
+                        </shiro:hasPermission>
                        <shiro:hasPermission name="Utilisateurs:ActivDesactiv">
                            <p:column>
                                <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif eq true}"
@@ -82,8 +86,8 @@
                            </p:column>
                        </shiro:hasPermission>
                     </p:dataTable>
-                    </shiro:hasRole>
-                    <shiro:lacksRole name="1">
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="Utilisateurs:Lire">
                         <p:dataTable value="#{utilisateursBean.listUtilBib}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateurs"
                                      Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
 
@@ -125,21 +129,22 @@
                                     <p:outputLabel rendered="#{utad.actif}" value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
                                 </ui:repeat>
                             </p:column>
+                            <shiro:hasPermission name="Utilisateurs:Modification">
                             <p:column>
                                 <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:Modification')) or (loginBean.utilisateurAuth eq ut)) and ((ut.roles.denomination ne 'Administrateur') or (loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'))}"
                                                  icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                                 </p:commandButton>
-
                             </p:column>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="Utilisateurs:Modification">
                             <p:column>
                                 <p:commandButton value="#{I18N['application.button.modifierMDP']}" type="button">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                                 </p:commandButton>
-
-
                             </p:column>
+                            </shiro:hasPermission>
                             <shiro:hasPermission name="Utilisateurs:ActivDesactiv">
                                 <p:column>
                                     <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif eq true}"
@@ -153,7 +158,7 @@
                                 </p:column>
                             </shiro:hasPermission>
                         </p:dataTable>
-                    </shiro:lacksRole>
+                    </shiro:hasPermission>
                 </p:panel>
                 <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadUtilActiv}" ajax="false"/>
                 <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadUtilInactiv}" ajax="false"/>

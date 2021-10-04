@@ -13,7 +13,6 @@
         <shiro:hasPermission name="Reservation:Lire">
             <h:form prependId="false">
                 <p:panel layout="block" id="content">
-
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.reservation.title']}</h2>
                     <p:dataTable value="#{reservationBean.readAllReservActiv}" emptyMessage="Aucun enregistrement trouvé" var="re" id="tableUtilisateursAdmin"

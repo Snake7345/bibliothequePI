@@ -13,7 +13,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <shiro:hasRole name="1">
+        <shiro:hasPermission name="Livres:Reservation">
             <p:outputLabel value="Le livre #{factureBean.exemplairesLivres.livres.titre} est en attente pour une reservation, veuillez le placer en réserve"/>
         <h:form>
         <h2 style="text-align:center">L'avez vous fait ?</h2>
@@ -22,10 +22,10 @@
             </p:commandButton>
             <p:commandButton value="#{I18N['commune.label.non']}" action="#{factureBean.flushFact}" immediate="true"/>
         </h:form>
-        </shiro:hasRole>
-        <shiro:lacksRole name="1">
+        </shiro:hasPermission>
+        <shiro:hasPermission name="Livres:Reservation">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksRole>
+        </shiro:hasPermission>
     </ui:define>
 </ui:composition>
 

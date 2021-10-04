@@ -13,7 +13,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <c:if test= "#{(rolesBean.checkPermission('Utilisateurs:Modification') or loginBean.utilisateurAuth eq utilisateursBean.utilisateur)}">
+        <shiro:hasPermission name="Utilisateurs:Modification">
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['utilisateur.form.modif.titre']}</title>
@@ -125,10 +125,10 @@
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
             </c:if>
         </h:form>
-        </c:if>
-        <c:if test="#{!(rolesBean.checkPermission('Utilisateurs:Modification') or loginBean.utilisateurAuth eq utilisateursBean.utilisateur)}">
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Utilisateurs:Modification">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </c:if>
+        </shiro:lacksPermission>
 
         <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
 

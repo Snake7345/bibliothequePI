@@ -65,7 +65,7 @@ public class SecurityManager {
         Subject subject = SecurityUtils.getSubject();
 
         if (subject.isAuthenticated()) {
-            subject.getSession().stop();
+            subject.logout();
             return true;
         }
 

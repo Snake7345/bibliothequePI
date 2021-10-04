@@ -45,70 +45,71 @@ public class RolesBean implements Serializable {
         boolean flag = false;
         boolean flag2 = false;
         boolean flag3 = false;
-        for(Permissions p : listPerm)
+        log.debug("l'action est " + pe.getAction());
+        if(pe.getAction() == null || pe.getAction().equals(""))
         {
-            if (p.getType().equals(pe.getType()) && p.getAction().equals(pe.getAction())) {
-                flag = true;
-            }
-            if(p.getType().equals(pe.getType()) && p.getAction().equals("Lire"))
-            {
-                flag2 = true;
-            }
-            if(p.getType().equals(pe.getType()) && p.getAction().equals("Creer"))
-            {
-                flag3 = true;
-            }
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Veuillez rafrachir l'action pour ajouter une permission", null));
         }
-
-        if(!flag)
+        else
         {
-            log.debug("1");
-            log.debug(pe.getAction()+ " "+ pe.getType());
-            permissions.setAction(pe.getAction());
-            permissions.setType(pe.getType());
-            listPerm.add(permissions);
-            permissions = new Permissions();
-            if(!flag2 && (pe.getAction().equals("Creer") || pe.getAction().equals("Modification") || pe.getAction().equals("ActivDesactiv")))
-            {
-                if(!flag3 && pe.getAction().equals("Modification"))
-                {
-                    log.debug("2");
-                    pe.setAction("Creer");
+            log.debug("je passe la dedans : " + pe.getAction());
+            for (Permissions p : listPerm) {
+                if (p.getType().equals(pe.getType()) && p.getAction().equals(pe.getAction())) {
+                    flag = true;
+                }
+                if (p.getType().equals(pe.getType()) && p.getAction().equals("Lire")) {
+                    flag2 = true;
+                }
+                if (p.getType().equals(pe.getType()) && p.getAction().equals("Creer")) {
+                    flag3 = true;
+                }
+
+            }
+
+            if (!flag) {
+                log.debug("1");
+                log.debug(pe.getAction() + " " + pe.getType());
+                permissions.setAction(pe.getAction());
+                permissions.setType(pe.getType());
+                listPerm.add(permissions);
+                permissions = new Permissions();
+                if (!flag2 && (pe.getAction().equals("Creer") || pe.getAction().equals("Modification") || pe.getAction().equals("ActivDesactiv"))) {
+                    if (!flag3 && pe.getAction().equals("Modification")) {
+                        log.debug("2");
+                        pe.setAction("Creer");
+                        permissions.setAction(pe.getAction());
+                        permissions.setType(pe.getType());
+                        listPerm.add(permissions);
+                        permissions = new Permissions();
+                        log.debug(pe.getAction() + " " + pe.getType());
+                    }
+                    log.debug("3");
+                    pe.setAction("Lire");
+                    log.debug(pe.getAction() + " " + pe.getType());
                     permissions.setAction(pe.getAction());
                     permissions.setType(pe.getType());
                     listPerm.add(permissions);
                     permissions = new Permissions();
-                    log.debug(pe.getAction()+ " "+ pe.getType());
                 }
-                log.debug("3");
-                pe.setAction("Lire");
-                log.debug(pe.getAction()+ " "+ pe.getType());
-                permissions.setAction(pe.getAction());
-                permissions.setType(pe.getType());
-                listPerm.add(permissions);
-                permissions = new Permissions();
+                if (!flag3 && flag2 && pe.getAction().equals("Modification")) {
+                    log.debug("4");
+                    pe.setAction("Creer");
+                    log.debug(pe.getAction() + " " + pe.getType());
+                    permissions.setAction(pe.getAction());
+                    permissions.setType(pe.getType());
+                    listPerm.add(permissions);
+                    permissions = new Permissions();
+                }
+                log.debug(Arrays.toString(listPerm.toArray()));
+            } else {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "La valeur est déjà dans le tableau", null));
             }
-            if(!flag3 && flag2 && pe.getAction().equals("Modification"))
-            {
-                log.debug("4");
-                pe.setAction("Creer");
-                log.debug(pe.getAction()+ " "+ pe.getType());
-                permissions.setAction(pe.getAction());
-                permissions.setType(pe.getType());
-                listPerm.add(permissions);
-                permissions = new Permissions();
-            }
-            log.debug(Arrays.toString(listPerm.toArray()));
+            pe = new Permissions();
         }
-
-        else
-        {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La valeur est déjà dans le tableau",null));
-        }
-        pe = new Permissions();
-
     }
 
     public void supPermission()
