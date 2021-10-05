@@ -46,17 +46,24 @@ public class RolesBean implements Serializable {
         boolean flag2 = false;
         boolean flag3 = false;
         log.debug("l'action est " + pe.getAction());
+        SvcPermissions serviceP = new SvcPermissions();
         if(pe.getAction() == null || pe.getAction().equals(""))
         {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Veuillez rafrachir l'action pour ajouter une permission", null));
         }
+        else if(!(serviceP.findOnePermission(pe).size() >0)){
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Vous devez rafrachir les actions pour pouvoir ajouter une permission", null));
+        }
         else
         {
+
             log.debug("je passe la dedans : " + pe.getAction());
             for (Permissions p : listPerm) {
-                if (p.getType().equals(pe.getType()) && p.getAction().equals(pe.getAction())) {
+                if ((p.getType().equals(pe.getType()) && p.getAction().equals(pe.getAction()))) {
                     flag = true;
                 }
                 if (p.getType().equals(pe.getType()) && p.getAction().equals("Lire")) {
@@ -112,62 +119,49 @@ public class RolesBean implements Serializable {
         }
     }
 
-    public void supPermission()
-    {
+    public void supPermission() {
 
         boolean flag = false;
         boolean flag2 = false;
         boolean flag3 = false;
-        for(Permissions p : listPerm)
-        {
-            if(p.getType().equals(pe.getType()) && p.getAction().equals("Creer"))
-            {
+        for (Permissions p : listPerm) {
+            if (p.getType().equals(pe.getType()) && p.getAction().equals("Creer")) {
                 flag = true;
             }
-            if(p.getType().equals(pe.getType()) && p.getAction().equals("Modification"))
-            {
+            if (p.getType().equals(pe.getType()) && p.getAction().equals("Modification")) {
                 flag2 = true;
             }
-            if(p.getType().equals(pe.getType()) && p.getAction().equals("ActivDesactiv"))
-            {
+            if (p.getType().equals(pe.getType()) && p.getAction().equals("ActivDesactiv")) {
                 flag3 = true;
             }
         }
-
-
-
-        if(pe.getAction().equals("Lire"))
+        if(listPerm.contains(pe))
         {
-            if(!flag && !flag2 && !flag3){
+            if (pe.getAction().equals("Lire")) {
+                if (!flag && !flag2 && !flag3) {
+                    listPerm.remove(pe);
+                } else {
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Veuillez supprimer les autres actions liées a ce type de permission avant", null));
+                }
+            } else if (pe.getAction().equals("Creer")) {
+                if (!flag2) {
+                    listPerm.remove(pe);
+                } else {
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Veuillez supprimer l'action \"modifier\" avant de supprimer cette action", null));
+                }
+            } else {
                 listPerm.remove(pe);
             }
-            else {
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Veuillez supprimer les autres actions liées a ce type de permission avant", null));
-            }
         }
-        else if(pe.getAction().equals("Creer"))
-        {
-            if(!flag2){
-                listPerm.remove(pe);
-            }
-            else {
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Veuillez supprimer l'action \"modifier\" avant de supprimer cette action", null));
-            }
-        }
-        else if(pe.getAction().equals("Modification") || pe.getAction().equals("ActivDesactiv"))
-        {
-                listPerm.remove(pe);
-        }
-
         else
         {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La valeur est déjà dans le tableau",null));
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Une erreur est survenue",null));
         }
         pe = new Permissions();
     }

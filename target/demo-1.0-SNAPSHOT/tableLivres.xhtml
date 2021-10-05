@@ -67,23 +67,29 @@
                         <f:facet name="header">Disponibilité</f:facet>
                         <p:graphicImage value="#{livresBean.verifDispo(liv)}" width="100" height="100"/>
                     </p:column>
+                    <shiro:hasPermission name="Reservation:Lire">
                     <p:column>
                         <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.reservation']}" action="tableReservation?faces-redirect=true">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{reservationBean.livre}" value="#{liv}" />
                         </p:commandButton>
                     </p:column>
+                    </shiro:hasPermission>
                 </p:dataTable>
             </p:panel>
             <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}" ajax="false"/>
             <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}" ajax="false"/>
+            <shiro:hasPermission name="Livres:Transfert">
             <p:column>
                 <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.transfertlivre']}" action="formTransfertLivre?faces-redirect=true">		<!-- u minuscule -->
                 </p:commandButton>
             </p:column>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="Livres:Reception">
             <p:column>
                 <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.receptionlivre']}" action="formReceptionLivre?faces-redirect=true">		<!-- u minuscule -->
                 </p:commandButton>
             </p:column>
+            </shiro:hasPermission>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Livres:Lire">

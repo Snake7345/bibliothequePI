@@ -40,10 +40,6 @@
                     </p:column>
                 </p:dataTable>
             </p:panel>
-            <shiro:hasPermission name="Factures:Creer">
-            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.new']}" action="formNewFact?faces-redirect=true" />
-                <p:commandButton icon="fa fa-fw fa-book" value="#{I18N['application.button.returnlivre']}" action="formEtatQuestion?faces-redirect=true"/>
-            </shiro:hasPermission>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Factures:Lire">

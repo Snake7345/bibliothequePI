@@ -59,9 +59,7 @@
                             <f:facet name="header">#{I18N['adresse.label.complete']}</f:facet>
                             <!-- row record -->
                             <ui:repeat value="#{ut.utilisateursAdresses}" var="utad">
-
                                 <p:outputLabel rendered="#{utad.actif}" value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
-
                             </ui:repeat>
                         </p:column>
                         <shiro:hasPermission name="Client:Modification">

@@ -39,6 +39,7 @@
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>
+                        <shiro:hasPermission name="Bibliotheques:ActivDesactiv">
                         <p:column>
                             <p:commandButton rendered="#{(bi.idBibliotheques ne bibliothequesBean.idBiblio) and (bi.actif eq true)}" icon="pi pi-pencil" value="#{I18N['commune.label.desactiver']}" action="formDesactivBiblio?faces-redirect=true">
                                 <p:confirm type="popup" header="Confirmation" message="Vous êtes sur de vouloir désactiver la bibliotheque ?" icon="pi pi-exclamation-triangle"/><!-- u minuscule -->
@@ -52,6 +53,7 @@
                                 <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>
+                        </shiro:hasPermission>
                     </p:dataTable>
                 </p:panel>
             </h:form>

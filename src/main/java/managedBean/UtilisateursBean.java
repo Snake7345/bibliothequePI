@@ -17,6 +17,7 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Named
@@ -41,10 +42,7 @@ public class UtilisateursBean implements Serializable {
     private UtilisateursBibliotheques UB;
     private List<Bibliotheques> tabbibli = new ArrayList<>();
     private List<UtilisateursBibliotheques> listUB = new ArrayList<>();
-
     private String mdpNouveau;
-
-
     private String mdpNouveau2;
 
     public UtilisateursBean() {
@@ -71,6 +69,16 @@ public class UtilisateursBean implements Serializable {
             numMembre=service.findlastMembre().get(0).getNumMembre();
         }
         service.close();
+    }
+
+    public void addBibliothequeRow(){
+        tabbibli.add(new Bibliotheques());
+    }
+    public void supBibliothequeRow(){
+        if (tabbibli.size() >1)
+        {
+            tabbibli.remove(tabbibli.size()-1);
+        }
     }
 
     public String redirectModifUtil(){
@@ -126,7 +134,6 @@ public class UtilisateursBean implements Serializable {
         transaction.begin();
         try {
             service.save(utilisateur);
-            service.refreshEntity(utilisateur);
             if(utilisateur.getUtilisateursBibliotheques().size()>0){
                 for(UtilisateursBibliotheques ub : utilisateur.getUtilisateursBibliotheques()){
                     serviceUB.delete(ub.getIdUtilisateursBibliotheques());
@@ -137,13 +144,19 @@ public class UtilisateursBean implements Serializable {
                     if (!utiladress.equals(UA) && utiladress.isActif()) {
                         utiladress.setActif(false);
                         serviceUA.save(utiladress);
+                        log.debug("4");
                     }
                 }
+            }
+            else{
+                serviceUA.save(UA);
             }
             if(listUB.size() > 0)
             {
                 for(UtilisateursBibliotheques ub : listUB)
                 {
+                    log.debug(ub.getBibliotheque().getNom());
+                    log.debug(ub.getUtilisateur().getLogin());
                     serviceUB.save(ub);
                 }
             }
@@ -151,7 +164,7 @@ public class UtilisateursBean implements Serializable {
             {
                 serviceUB.save(UB);
             }
-            serviceUA.save(UA);
+
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
@@ -313,6 +326,9 @@ public class UtilisateursBean implements Serializable {
 
     public String modifUtil() {
         boolean flag = false;
+
+        log.debug("tabbibli entree modif");
+        log.debug(Arrays.toString(tabbibli.toArray()));
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
         SvcUtilisateursBibliotheques serviceUB = new SvcUtilisateursBibliotheques();
         utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
@@ -340,9 +356,32 @@ public class UtilisateursBean implements Serializable {
         if(verifUtilExist(utilisateur))
         {
             UA.setActif(true);
-            for (Bibliotheques ub : tabbibli)
+            for (Bibliotheques bib : tabbibli)
             {
-                listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur,ub));
+                log.debug("===");
+                log.debug(bib.getIdBibliotheques());
+                if(listUB.size()==0) {
+                    listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur, bib));
+                }
+                else{
+                    boolean fl = false;
+                    for (UtilisateursBibliotheques ub : listUB){
+                        log.debug(ub.getBibliotheque().getIdBibliotheques() );
+                        if (ub.getBibliotheque().getIdBibliotheques() == bib.getIdBibliotheques()) {
+                            fl = true;
+                            break;
+                        }
+                    }
+                    if(fl){
+                        listUB=new ArrayList<>();
+                        FacesContext fc = FacesContext.getCurrentInstance();
+                        fc.getExternalContext().getFlash().setKeepMessages(true);
+                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Vous ne pouvez pas choisir deux fois les mêmes bibliothèques",null));
+                        return "/formEditUtilisateur.xhtml?faces-redirect=true";}
+                    else {
+                        listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur, bib));
+                    }
+                }
             }
 
             saveUtilisateur();
@@ -710,10 +749,14 @@ public class UtilisateursBean implements Serializable {
     }
 
     public List<Bibliotheques> getTabbibli() {
+        log.debug("gettabbibli");
+        log.debug(Arrays.toString(tabbibli.toArray()));
         return tabbibli;
     }
 
     public void setTabbibli(List<Bibliotheques> tabbibli) {
+        log.debug("settabbibli");
+        log.debug(Arrays.toString(tabbibli.toArray()));
         this.tabbibli = tabbibli;
     }
 

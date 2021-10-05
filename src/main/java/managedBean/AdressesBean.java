@@ -120,7 +120,7 @@ public class AdressesBean implements Serializable {
     public String flushAddNew()
     {
         init();
-        return "/formNewRole?faces-redirect=true";
+        return "/formNewAdress?faces-redirect=true";
     }
 
 
