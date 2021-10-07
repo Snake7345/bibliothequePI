@@ -24,7 +24,7 @@
 			<p:commandButton value="#{I18N['application.button.find']}" action="#{auteursBean.searchAuteur}"/>
 			<h:message for="autRech" styleClass="errorMessage"/>
 				
-		<p:dataTable value="#{auteursBean.searchResults}" var="aut" id="tableSearchAuteurs"
+		<p:dataTable value="#{auteursBean.searchResults}" var="aut" id="tableSearchAuteurs" emptyMessage="Aucun enregistrement trouvé"
 								Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
 			<p:column>
 				<!-- column header -->

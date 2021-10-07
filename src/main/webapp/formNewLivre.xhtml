@@ -19,9 +19,9 @@
             </h:head>
             <h2 style="text-align:center">#{I18N['livre.form.nouveau.titre']}</h2>
 
-            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                <p:outputLabel value = "#{I18N['livre.label.Titre']}"/>
+                <p:outputLabel value = "#{I18N['livre.label.Titre']}" indicateRequired="true"/>
                 <p:inputText id="livreTitre"
                              validatorMessage="La valeur doit être entre 1 et 100 caracteres"
                              value="#{livresBean.livre.titre}"
@@ -33,7 +33,7 @@
                 </p:inputText>
 
 
-                <p:outputLabel value = "#{I18N['livre.label.Auteur']}"/>
+                <p:outputLabel value = "#{I18N['livre.label.Auteur']}" indicateRequired="true"/>
                 <p:selectCheckboxMenu value = "#{livresBean.auteur}" id="livreauteur"
                                      required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.auteur']}" multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
@@ -43,7 +43,7 @@
                 </p:selectCheckboxMenu>
 
 
-                <p:outputLabel value = "#{I18N['livre.label.Genre']}"/>
+                <p:outputLabel value = "#{I18N['livre.label.Genre']}" indicateRequired="true"/>
                 <p:selectCheckboxMenu value = "#{livresBean.genre}" id="livreGenre"
                                      required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.genre']}" multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
@@ -53,7 +53,7 @@
                 </p:selectCheckboxMenu>
 
 
-                <p:outputLabel value = "#{I18N['livre.label.Annee']}"/>
+                <p:outputLabel value = "#{I18N['livre.label.Annee']}" indicateRequired="true"/>
                 <p:spinner id="livreAnnee"
                              value="#{livresBean.livre.annee}"
                              required="true"
@@ -69,7 +69,7 @@
                 </p:spinner>
 
 
-                <p:outputLabel value = "#{I18N['livre.label.Isbn']}"/>
+                <p:outputLabel value = "#{I18N['livre.label.Isbn']}" indicateRequired="true"/>
                 <p:inputText id="livreISBN"
                              value="#{livresBean.livre.isbn}"
                              required="true"
@@ -81,19 +81,22 @@
                 </p:inputText>
 
 
-                <p:outputLabel value = "#{I18N['editeur.label.Nom']}"/>
-                <p:selectOneListbox  value = "#{livresBean.livre.editeurs}" id="livreEdit" converter="editeurConverter" var="c" filter="true" filterMatchMode="contains">
+                <p:outputLabel value = "#{I18N['editeur.label.Nom']}" indicateRequired="true"/>
+                <p:selectOneListbox  value = "#{livresBean.livre.editeurs}" id="livreEdit" converter="editeurConverter" var="c" filter="true" filterMatchMode="contains"
+                                     required="true"
+                                     requiredMessage="L'éditeur est indispensable">
                     <f:selectItems value = "#{editeursBean.readAll}" var="lived" itemLabel="#{lived.nom}" itemValue="#{lived}"/>
                     <p:column>
                         <h:outputText value="#{c.nom}"/>
                     </p:column>
                 </p:selectOneListbox>
-
+                <p:commandButton style="float: left" icon="fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}" immediate="true"/>
+                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{livresBean.newLivre}" ajax="false"/>
 
             </p:panelGrid>
 
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{livresBean.newLivre}" ajax="false"/>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}" immediate="true"/>
+
+
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Livres:Creer">

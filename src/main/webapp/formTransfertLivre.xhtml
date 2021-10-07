@@ -19,7 +19,7 @@
                 </h:head>
                 <h2 style="text-align:center">Formulaire Transfert de livre</h2>
                 <f:facet name="header">
-                    <p:outputLabel value="#{I18N['exemplaireslivres.label.CodeBarre']}" />
+                    <p:outputLabel value="#{I18N['exemplaireslivres.label.CodeBarre']}" indicateRequired="true"/>
                 </f:facet>
 
                 <p:dataTable id="ListCB" value="#{exemplairesLivresBean.listCB}" var="CB">

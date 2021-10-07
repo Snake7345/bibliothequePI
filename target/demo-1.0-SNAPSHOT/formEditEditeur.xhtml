@@ -18,9 +18,9 @@
                 <title>#{I18N['editeur.form.modif.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['editeur.form.modif.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                <p:outputLabel value = "#{I18N['editeur.label.Nom']}"/>
+                <p:outputLabel value = "#{I18N['editeur.label.Nom']}" indicateRequired="true"/>
                 <p:inputText id="editeurNom"
                              validatorMessage="La valeur doit être entre 2 et 100 caracteres"
                              value="#{editeursBean.editeur.nom}"
@@ -31,11 +31,11 @@
                 </p:inputText>
                 <p:tooltip for="editeurNom" value="Encoder le nom de l'éditeur" position="right"/>
 
-
+                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{editeursBean.flushEd}" immediate="true"/>
+                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{editeursBean.saveEditeur}" ajax="false"/>
             </p:panelGrid>
 
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{editeursBean.saveEditeur}" ajax="false"/>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{editeursBean.flushEd}" immediate="true"/>
+
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Editeurs:Modification">

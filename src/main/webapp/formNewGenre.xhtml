@@ -14,16 +14,15 @@
         <p:growl id="growl" showDetail="true" sticky="true" />
         <shiro:hasPermission name="Genres:Creer">
         <h:form id="form" prependId="false">
-            <!--<h:messages styleClass="errorBlock" globalOnly="true" />-->
 
             <h:head>
                 <title>#{I18N['genre.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['genre.form.nouveau.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
 
-                <p:outputLabel value = "#{I18N['genre.label.Denomination']}"/>
+                <p:outputLabel value = "#{I18N['genre.label.Denomination']}" indicateRequired="true"/>
                 <p:inputText id="genreDeno"
                              validatorMessage="La valeur doit être entre 2 et 100 caracteres"
                              value="#{genresBean.genre.denomination}"
@@ -34,12 +33,12 @@
                     <p:tooltip for="genreDeno" value="#{I18N['tooltip.genre.deno']}" position="right"/>
                 </p:inputText>
 
-
-
+                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{genresBean.flushGen}" immediate="true"/>
+                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{genresBean.saveGenres}" ajax="false"/>
             </p:panelGrid>
 
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{genresBean.saveGenres}" ajax="false"/>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{genresBean.flushGen}" immediate="true"/>
+
+
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Genres:Creer">

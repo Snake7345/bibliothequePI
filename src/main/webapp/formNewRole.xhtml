@@ -18,9 +18,9 @@
                     <title>#{I18N['role.form.nouveau.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['role.form.nouveau.titre']}</h2>
-                <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                    <p:outputLabel value = "#{I18N['role.label.Denomination']}"/>
+                    <p:outputLabel value = "#{I18N['role.label.Denomination']}" indicateRequired="true"/>
                     <p:inputText id="roleDenomination"
                                  validatorMessage="La valeur doit être entre 2 et 100 caracteres"
                                  value="#{rolesBean.role.denomination}"
@@ -32,7 +32,7 @@
                     <p:tooltip for="roleDenomination" value="#{I18N['tooltip.role.deno']}" position="right"/>
 
 
-                    <p:outputLabel value = "#{I18N['Permissions.label.Type']}"/>
+                    <p:outputLabel value = "#{I18N['Permissions.label.Type']}" indicateRequired="true"/>
                     <p:selectOneMenu value = "#{permissionsBean.type}" id="type" >
                         <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
                                        itemLabel="#{ty}"
@@ -40,14 +40,15 @@
                     </p:selectOneMenu>
                     <p:commandButton icon="fa fa-fw fa-rotate-left" action="#{permissionsBean.getPermissionsAction}" ajax="false"/>
 
-                    <p:outputLabel value = "#{I18N['Permissions.label.Action']}"/>
+                    <p:outputLabel value = "#{I18N['Permissions.label.Action']}" indicateRequired="true"/>
                     <p:selectOneMenu value = "#{permissionsBean.action}" id="action">
                         <f:selectItems value = "#{permissionsBean.listAction}" var="ac"
                                        itemLabel="#{ac}"
-
                                        itemValue="#{ac}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel></p:outputLabel>
                 </p:panelGrid>
+
 
                 <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="#{I18N['permissions.label.add']}" action="#{rolesBean.addPermission}" ajax="false">
                     <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
@@ -79,8 +80,8 @@
                     </p:column>
                 </p:dataTable>
 
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.newRoles}"/>
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
+                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.newRoles}" immediate="true"/>
+                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Roles:Creer">

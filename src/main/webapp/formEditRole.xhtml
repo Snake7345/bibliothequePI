@@ -18,7 +18,7 @@
                     <title>#{I18N['role.form.modif.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['role.form.modif.titre']}</h2>
-                <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <p:outputLabel value = "#{I18N['role.label.Denomination']}"/>
                     <p:outputLabel value ="#{rolesBean.role.denomination}"/>
@@ -69,9 +69,8 @@
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>
-
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.modifRole}"/>
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
+                <p:commandButton style="float: left;" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
+                <p:commandButton style="float: right;" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.modifRole}"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Roles:Modification">

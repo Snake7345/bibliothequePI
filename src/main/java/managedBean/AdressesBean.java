@@ -51,6 +51,10 @@ public class AdressesBean implements Serializable {
 
     }
 
+
+    // Méthode qui permet l'appel de save() qui créée une nouvelle adresse et envoi un message si jamais
+    // l'adresse se trouve déjà en base de donnée. L'appel se fait sur un popup.
+
     public void newAdresspopup()
     {
         if(verifAdresseExist(adresse))
@@ -116,7 +120,9 @@ public class AdressesBean implements Serializable {
         init();
         return "/tableAdresses?faces-redirect=true";
     }
-
+    /*
+     * Méthode qui permet de vider les variables et de revenir sur le formulaire d'une nouvelle adresse .
+     * */
     public String flushAddNew()
     {
         init();
@@ -138,6 +144,10 @@ public class AdressesBean implements Serializable {
         return listAd;
     }
 
+    /*
+     * Méthode qui permet via le service de retourner
+     * la liste des adresses qui n'est pas aloué a une bibliothèque
+     */
     public List<Adresses> getReadAllNotBibli()
     {
         SvcAdresses service = new SvcAdresses();
@@ -147,7 +157,10 @@ public class AdressesBean implements Serializable {
         service.close();
         return listAd;
     }
-
+    /*
+     * Méthode qui permet via le service de retourner
+     * la liste des adresses qui n'est pas aloué a une bibliothèque ni à un utilisateur
+     */
     public List<Adresses> getReadAllNotBibliNotUti()
     {
         SvcAdresses service = new SvcAdresses();
@@ -158,6 +171,10 @@ public class AdressesBean implements Serializable {
         return listAd;
     }
 
+    /*
+     * Méthode qui permet via le service de retourner
+     * la liste des adresses qui n'est pas aloué a une bibliothèque ni à un utilisateur
+     */
     public List<Adresses> getReadAllNotBibliNotUtiForModif()
     {
         SvcAdresses service = new SvcAdresses();

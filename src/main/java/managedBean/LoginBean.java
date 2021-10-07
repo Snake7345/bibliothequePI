@@ -36,7 +36,7 @@ public class LoginBean implements Serializable {
     //---------------------------------------------------------
     /*
      * Méthode qui permet l'authentification de l'utilisateur,
-     * on vérifie que l'utilisateur existe dans la base de données, mais également qu'il a la permission de se connecter
+     * on vérifie que l'utilisateur existe dans la base de données, et on lui attribuee des variables de session comme le role par exemple.
      *
      *
      * */
@@ -74,13 +74,6 @@ public class LoginBean implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
             }
 
-            //TODO : Faire comprendre a Shiro qu'il doit intégrer cette permission
-            /*else if(!RB.checkPermission(48,results.get(0).getRoles().getIdRoles())){
-                m = new FacesMessage("Connexion refuse: utilisateur non autorise");
-                FacesContext.getCurrentInstance().addMessage(null, m);
-
-            }*/
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,13 +84,6 @@ public class LoginBean implements Serializable {
 
     /*Cette méthode permet la deconnexion de l'utilisateur*/
     public String deconnexion(){
-        /*log.debug("test deco " + utilisateurAuth.getNom());
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
-        utilisateurAuth = new Utilisateurs();
-        log.debug("test deco2 " + utilisateurAuth.getNom());
-        return "login";*/
         utilisateurAuth = new Utilisateurs();
         if(SecurityManager.processToLogout())
         {

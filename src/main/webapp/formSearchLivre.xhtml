@@ -27,7 +27,7 @@
                 <p:commandButton value="#{I18N['application.button.find']}" action="#{livresBean.searchLivre}"/>
                 <!--<h:message for="livRech" styleClass="errorMessage"/>-->
 
-                <p:dataTable value="#{livresBean.searchResults}" var="liv" id="tableSearchLivres"
+                <p:dataTable value="#{livresBean.searchResults}" var="liv" id="tableSearchLivres" emptyMessage="Aucun enregistrement trouvé"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <p:column>
                         <!-- column header -->

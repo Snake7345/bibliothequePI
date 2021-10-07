@@ -17,9 +17,9 @@
                 <title>#{I18N['adresse.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['adresse.form.nouveau.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
+                <p:outputLabel value = "#{I18N['adresse.label.Rue']}" indicateRequired="true"/>
                 <p:inputText id="adresseRue"
                              validatorMessage="La rue doit avoir entre 2 et 100 caractere"
                              value="#{adressesBean.adresse.rue}"
@@ -40,7 +40,7 @@
                 </p:inputText>
 
 
-                <p:outputLabel value = "#{I18N['adresse.label.Numero']}"/>
+                <p:outputLabel value = "#{I18N['adresse.label.Numero']}" indicateRequired="true"/>
                 <p:inputText id="adresseNumero"
                              validatorMessage="Le numero est de minimum 1 caracteres et de maximum 6 caracteres"
                              value="#{adressesBean.adresse.numero}"
@@ -52,9 +52,9 @@
                 </p:inputText>
 
 
-                <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
+                <p:outputLabel value = "#{I18N['localite.label.Cp']}" indicateRequired="true"/>
                 <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"
-                converter="localiteConverter" var="c" filter="true" filterMatchMode="contains">
+                converter="localiteConverter" required="true" var="c" filter="true" filterMatchMode="contains">
                     <f:selectItems value = "#{localitesBean.readAll}" var="loca"
                                    itemLabel="#{loca.cp} : #{loca.ville}" itemValue="#{loca}"/>
                     <p:column>
@@ -68,12 +68,9 @@
                     </p:column>
                     <p:tooltip for="adressLoca" value="#{I18N['tooltip.localite']}" position="right"/>
                 </p:selectOneListbox>
-
-
+                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{adressesBean.flushAdd}" immediate="true"/>
+                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}" ajax="false"/>
             </p:panelGrid>
-
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}" ajax="false"/>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{adressesBean.flushAdd}" immediate="true"/>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Adresses:Creer">

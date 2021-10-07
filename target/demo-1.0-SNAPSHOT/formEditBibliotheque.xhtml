@@ -19,9 +19,9 @@
                 <title>#{I18N['bibliotheque.modif.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['bibliotheque.modif.nouveau.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                <p:outputLabel value = "#{I18N['bibliotheque.label.Nom']}"/>
+                <p:outputLabel value = "#{I18N['bibliotheque.label.Nom']}" indicateRequired="true"/>
                 <p:inputText id="bibliothequeNom"
                              validatorMessage="La valeur doit être entre 2 et 100 caracteres"
                              value="#{bibliothequesBean.bibliotheque.nom}"
@@ -31,12 +31,9 @@
                     <f:validateLength minimum="2" maximum="100"/>
                     <p:tooltip for="bibliothequeNom" value="#{I18N['tooltip.bibliotheque.nom']}" position="right"/>
                 </p:inputText>
-
-
+                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
+                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}" ajax="false"/>
             </p:panelGrid>
-
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}" ajax="false"/>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Bibliotheques:Modification">

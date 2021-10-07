@@ -19,9 +19,9 @@
                 <title>#{I18N['utilisateurcli.form.nouveau.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['utilisateurcli.form.nouveau.titre']}</h2>
-                <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                    <p:outputLabel value = "#{I18N['utilisateur.label.Nom']}"/>
+                    <p:outputLabel value = "#{I18N['utilisateur.label.Nom']}" indicateRequired="true"/>
                     <p:inputText id="utilisateurNom"
                                  value="#{utilisateursBean.utilisateur.nom}"
                                  validatorMessage="La valeur doit être compris entre 1 et 100 caracteres"
@@ -32,7 +32,7 @@
                         <f:validateLength minimum="1" maximum="100"/>
                     </p:inputText>
 
-                    <p:outputLabel value = "#{I18N['utilisateur.label.Prenom']}"/>
+                    <p:outputLabel value = "#{I18N['utilisateur.label.Prenom']}" indicateRequired="true"/>
                     <p:inputText id="utilisateurPrenom"
                                  value="#{utilisateursBean.utilisateur.prenom}"
                                  required="true"
@@ -42,14 +42,14 @@
                         <f:validateLength minimum="1" maximum="100"/>
                     </p:inputText>
 
-                    <p:outputLabel value = "#{I18N['utilisateur.label.Sexe']}"/>
+                    <p:outputLabel value = "#{I18N['utilisateur.label.Sexe']}" indicateRequired="true"/>
                     <p:selectOneRadio id="sexe" value="#{utilisateursBean.utilisateur.sexe}"
                                       required="true"
                                       requiredMessage="#{I18N['formulaire.message.required.sexe']}">
                         <f:selectItems value="#{utilisateursEnumBean.sexeEnum}" />
                     </p:selectOneRadio>
 
-                    <p:outputLabel value = "#{I18N['utilisateur.label.Courriel']}"/>
+                    <p:outputLabel value = "#{I18N['utilisateur.label.Courriel']}" indicateRequired="true"/>
                     <p:inputText id="utilisateurCourriel"
                                  value="#{utilisateursBean.utilisateur.courriel}"
                                  required="true"
@@ -59,7 +59,7 @@
                         <f:validateLength minimum="3" maximum="100"/>
                     </p:inputText>
 
-                    <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
+                    <p:outputLabel value = "#{I18N['adresse.label.Rue']}" indicateRequired="true"/>
                     <p:selectOneListbox value = "#{utilisateursBean.adresses}" id="utiladress" required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.adresse']}"
                                      converter="adressConverter" var="c" filter="true" filterMatchMode="contains">
@@ -74,23 +74,20 @@
                     <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}">
                         <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                     </p:commandButton>
+                        <p:outputLabel/>
                     </shiro:hasPermission>
-
-
+                    <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
+                    <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtilCli}" ajax="false"/>
                 </p:panelGrid>
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtilCli}" ajax="false"/>
-                <shiro:authenticated>
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
-                </shiro:authenticated>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Client:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
-        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+        <p:dialog header="Nouvelle adresse" widgetVar="dlg1" minHeight="40">
 
             <h:form id="formAdresse" prependId = "false">
-                <p:panelGrid id="newrecform2" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
                     <p:inputText id="adresseRue"

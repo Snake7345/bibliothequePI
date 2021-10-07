@@ -25,7 +25,7 @@ import java.util.List;
 public class BibliothequesBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
-    private Bibliotheques bibliotheque;
+    private Bibliotheques bibliotheque = new Bibliotheques();
     private String nomBiblio;
 
     private int idBiblio;
@@ -35,9 +35,7 @@ public class BibliothequesBean implements Serializable {
     private List<Bibliotheques> listBiblioActiv = new ArrayList<>();
     private List<Bibliotheques> listBibactuel;
     private String userdir;
-
-
-
+    private String nom;
 
     @PostConstruct
     public void init()
@@ -49,7 +47,6 @@ public class BibliothequesBean implements Serializable {
         {
             idBiblio = recupIdBiblio();
         }
-        else
         bibliotheque = new Bibliotheques();
         listBiblioActiv = getReadBiblioActiv();
         listBibactuel = getFindBiblio();
@@ -63,10 +60,9 @@ public class BibliothequesBean implements Serializable {
 
     }
 
-
+    /*Méthode qui permet de récupérer l'id de la bibliothèque contenu dans le fichier bibliotheque.txt*/
     public int recupIdBiblio()
     {
-
         String result = "";
         int result2;
         try
@@ -106,20 +102,7 @@ public class BibliothequesBean implements Serializable {
         return "/tableBibliotheques.xhtml?faces-redirect=true";
     }
 
-    // méthode qui verifie si il n'y a pas de bibliothèque déjà créée en DB
-    /*public boolean getCheckbibli(){
-        SvcBibliotheques serviceB = new SvcBibliotheques();
-        if(serviceB.findAllBibliotheques().size()==0)
-        {
-            serviceB.close();
-            return true;
-        }
-        else
-        {
-            serviceB.close();
-            return false;
-        }
-    }*/
+
     // Méthode qui permet la sauvegarde de la bibliothèque dans la base de donnée
     public void save()
     {
@@ -165,11 +148,10 @@ public class BibliothequesBean implements Serializable {
         return "/bienvenue?faces-redirect=true";
     }
 
+    /*Méthode permettant la réinitialisation de la bibliothèque de connexion du programme en supprimant le fichier bibliotheque.txt, l'utilisateur sera déconnecter de la session
+    * et renvoyer sur la page de selection de la bibliothèque*/
     public void reinitialisation()
     {
-
-
-
         try{
 
             File f = new File(userdir + "bibliotheque.txt");
@@ -469,5 +451,13 @@ public class BibliothequesBean implements Serializable {
 
     public Bibliotheques getBibliactuel() {
         return bibliactuel;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 }

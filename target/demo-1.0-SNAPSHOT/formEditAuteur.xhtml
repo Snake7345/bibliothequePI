@@ -18,9 +18,9 @@
                 <title>#{I18N['auteur.form.modif.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['auteur.form.modif.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                <p:outputLabel value = "#{I18N['auteur.label.Nom']}"/>
+                <p:outputLabel value = "#{I18N['auteur.label.Nom']}" indicateRequired="true"/>
                 <p:inputText id="auteurNom"
                              value="#{auteursBean.auteur.nom}"
                              required="true"
@@ -42,13 +42,11 @@
                     <f:validateLength minimum="2" maximum="100"/>
                     <p:tooltip for="auteurPrenom" value="#{I18N['tooltip.auteur.prenom']}" position="right"/>
                 </p:inputText>
-
-
-
+                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>
+                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{auteursBean.newAuteur}" ajax="false"/>
             </p:panelGrid>
 
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{auteursBean.newAuteur}" ajax="false"/>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>
+
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Auteurs:Modification">

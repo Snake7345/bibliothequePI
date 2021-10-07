@@ -10,6 +10,8 @@
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['bibliotheque.form.nouveau.titre']}</ui:define>
 
+    <!--TODO : Modifier la requete au niveau des adresses, les adresses qui sont déjà a un utilisateur ne doivent pas être listées
+               popup nouvelle adresse manquant-->
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
         <shiro:hasPermission name="Bibliotheques:Creer">
@@ -18,9 +20,9 @@
                 <title>#{I18N['bibliotheque.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['bibliotheque.form.nouveau.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                <p:outputLabel value = "#{I18N['bibliotheque.label.Nom']}"/>
+                <p:outputLabel value = "#{I18N['bibliotheque.label.Nom']}" indicateRequired="true"/>
                 <p:inputText id="bibliothequeNom"
                              validatorMessage="La valeur doit être entre 2 et 100 caracteres"
                              value="#{bibliothequesBean.bibliotheque.nom}"
@@ -28,14 +30,20 @@
                              requiredMessage="#{I18N['formulaire.message.required.nom']}"
                              maxlength="100">
                     <f:validateLength minimum="2" maximum="100"/>
+                    <p:tooltip for="bibliothequeNom" value="#{I18N['tooltip.bibliotheque.nom']}" position="right"/>
                 </p:inputText>
-                <p:tooltip for="bibliothequeNom" value="#{I18N['tooltip.bibliotheque.nom']}" position="right"/>
 
-<!--TODO : Modifier la requete au niveau des adresses, les adresses qui sont déjà a un utilisateur ne doivent pas être listées-->
-                <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
-                <p:selectOneListbox value = "#{bibliothequesBean.adresses}" id="biblioadress" required="true"
-                                 requiredMessage="#{I18N['formulaire.message.required.adresse']}"
-                                 converter="adressConverter" var="c" filter="true" filterMatchMode="contains">
+
+
+                <p:outputLabel value = "#{I18N['adresse.label.Rue']}" indicateRequired="true"/>
+                <p:selectOneListbox value = "#{bibliothequesBean.adresses}"
+                                    id="biblioadress"
+                                    required="true"
+                                    requiredMessage="#{I18N['formulaire.message.required.adresse']}"
+                                    converter="adressConverter"
+                                    var="c"
+                                    filter="true"
+                                    filterMatchMode="contains">
                     <f:selectItems value = "#{adressesBean.readAllNotBibliNotUti}" var="ad"
                                    itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
                                    itemValue="#{ad}"/>
@@ -44,12 +52,11 @@
                     </p:column>
                     <p:tooltip for="biblioadress" value="#{I18N['tooltip.bibliotheque.adresse']}" position="right"/>
                 </p:selectOneListbox>
-
-
+                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
+                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}" ajax="false"/>
             </p:panelGrid>
 
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{bibliothequesBean.newBiblio}" ajax="false"/>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{bibliothequesBean.flushBiblio}" immediate="true"/>
+
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Bibliotheques:Creer">

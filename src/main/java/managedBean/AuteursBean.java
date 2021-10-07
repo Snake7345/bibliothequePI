@@ -95,7 +95,7 @@ public class AuteursBean implements Serializable {
         }
     }
 
-    /*Méthode qui permet de désactiver un auteur ainsi que ces livres et exemplaires livres, d'activer un auteur et nous renvoi sur la table des auteurs*/
+    /*Méthode qui permet de désactiver un auteur ainsi que ces livres et exemplaires livres, d'activer un auteur, ces livres et nous renvoi sur la table des auteurs*/
     public String activdesactivAut()
     {
         SvcAuteurs service = new SvcAuteurs();
@@ -169,6 +169,7 @@ public class AuteursBean implements Serializable {
         }
         return "/tableAuteurs?faces-redirect=true";
     }
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de création d'un auteur
     public String flushAutNew()
     {
         init();
@@ -198,18 +199,8 @@ public class AuteursBean implements Serializable {
                 searchResults = service.getByName(auteur.getNom());
             }
 
-        //}
-        //catch
-        //{
-
-        //}
         return "/formSearchAuteur?faces-redirect=true";
     }
-
-    //public void edit()
-    //{
-
-    //}
 
     /*
      * Méthode qui permet de vérifier si un auteur existe ou non en DB
@@ -241,14 +232,7 @@ public class AuteursBean implements Serializable {
         return listAut;
     }
 
-    /*
-     * Méthode qui permet de vider les variables et de les mettres a leur valeur initiale avant de revenir sur la page web Bienvenue .
-     * */
-    public String flushBienv()
-    {
-        init();
-        return "/bienvenue?faces-redirect=true";
-    }
+
     /*
      * Méthode qui permet via le service de retourner
      * la liste de tous les auteurs actifs

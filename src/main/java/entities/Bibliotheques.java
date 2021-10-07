@@ -1,5 +1,7 @@
 package entities;
 
+import org.apache.log4j.Logger;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -15,6 +17,8 @@ import java.util.Objects;
 
         })
 public class Bibliotheques implements Serializable {
+    private static final Logger log = Logger.getLogger(Bibliotheques.class);
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -87,7 +91,9 @@ public class Bibliotheques implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bibliotheques that = (Bibliotheques) o;
-        return idBibliotheques == that.idBibliotheques && actif == that.actif && nom.equals(that.nom) && adresses.equals(that.adresses) && Objects.equals(exemplairesLivres, that.exemplairesLivres) && Objects.equals(tarifs, that.tarifs) && Objects.equals(factures, that.factures) && Objects.equals(utilisateurs, that.utilisateurs);
+        log.debug("test equals bib");
+        log.debug(idBibliotheques == that.idBibliotheques && actif == that.actif && nom.equals(that.nom) && adresses.equals(that.adresses));
+        return idBibliotheques == that.idBibliotheques && actif == that.actif && nom.equals(that.nom) && adresses.equals(that.adresses);
     }
 
     @Override

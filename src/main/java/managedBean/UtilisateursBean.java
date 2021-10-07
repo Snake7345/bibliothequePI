@@ -134,7 +134,7 @@ public class UtilisateursBean implements Serializable {
         transaction.begin();
         try {
             service.save(utilisateur);
-            if(utilisateur.getUtilisateursBibliotheques().size()>0){
+            if(!(null == utilisateur.getUtilisateursBibliotheques())){
                 for(UtilisateursBibliotheques ub : utilisateur.getUtilisateursBibliotheques()){
                     serviceUB.delete(ub.getIdUtilisateursBibliotheques());
                 }
@@ -281,14 +281,6 @@ public class UtilisateursBean implements Serializable {
         SvcUtilisateursBibliotheques serviceUB = new SvcUtilisateursBibliotheques();
         utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
         utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
-        /*
-
-        log.debug((SecurityManager.encryptPassword(utilisateur.getMdp())));
-
-        PasswordMatcher matcher = new PasswordMatcher();
-        log.debug(matcher.getPasswordService().passwordsMatch(utilisateur.getMdp(),SecurityManager.encryptPassword(utilisateur.getMdp())));
-
-        */
         if (utilisateur.getIdUtilisateurs()!=0) {
             for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()) {
                 if (ua.getAdresse().equals(adresses)) {

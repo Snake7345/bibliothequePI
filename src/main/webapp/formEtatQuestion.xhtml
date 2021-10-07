@@ -20,7 +20,7 @@
         <shiro:hasPermission name="Factures:Creer">
         <h:form>
 
-            <p:outputLabel value = "#{I18N['exemplaireslivres.label.CodeBarre']}"/>
+            <p:outputLabel value = "#{I18N['exemplaireslivres.label.CodeBarre']}" indicateRequired="true"/>
             <p:inputText id="exemplLivresCB"
                          value="#{factureBean.CB}"
                          required="true"
