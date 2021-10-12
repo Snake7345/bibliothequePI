@@ -357,7 +357,7 @@ public class LivresBean implements Serializable {
         }
         else
         {
-            return "Images/noir2.png";
+            return "Images/noir4.png";
         }
     }
 

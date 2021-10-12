@@ -23,7 +23,7 @@ public class Reservation implements Serializable {
     @Column(name = "Actif", nullable = false)
     private boolean actif = true;
     @Basic
-    @Column(name = "mailEnvoye", nullable = false)
+    @Column(name = "MailEnvoye", nullable = false)
     private boolean mailEnvoye = false;
     @ManyToOne
     @JoinColumn(name = "LivresIdLivres", nullable = false)

@@ -57,12 +57,12 @@
                             </p:column>
                             <p:column>
                                 <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:Modification')) or (loginBean.utilisateurAuth eq ut)) and ((ut.roles.denomination ne 'Administrateur') or (loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'))}"
-                                                 icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
+                                                 icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                                 </p:commandButton>
                             </p:column>
                             <p:column>
-                                <p:commandButton value="#{I18N['application.button.modifierMDP']}" type="button">
+                                <p:commandButton icon="fa fa-fw fa-key" value="#{I18N['application.button.modifierMDP']}" type="button">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                                 </p:commandButton>
@@ -70,11 +70,11 @@
                             <shiro:hasPermission name="Utilisateurs:ActivDesactiv">
                                 <p:column>
                                     <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif eq true}"
-                                                     icon="pi pi-power-off" value ="Desactiver" action="#{utilisateursBean.activdesactivUtil}">
+                                                     icon="fa fa-fw fa-power-off" value ="Desactiver" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>
                                     <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif ne true}"
-                                                     icon="pi pi-check" value ="Activer" action="#{utilisateursBean.activdesactivUtil}">
+                                                     icon="fa fa-fw fa-power-off" value ="Activer" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>
                                 </p:column>
@@ -125,7 +125,7 @@
                             </p:column>
                             <p:column>
                                 <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:Modification')) or (loginBean.utilisateurAuth eq ut)) and ((ut.roles.denomination ne 'Administrateur') or (loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'))}"
-                                                 icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
+                                                 icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                                 </p:commandButton>
 
@@ -141,11 +141,11 @@
                             <shiro:hasPermission name="Utilisateurs:ActivDesactiv">
                                 <p:column>
                                     <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif eq true}"
-                                                     icon="pi pi-power-off" value ="Desactiver" action="#{utilisateursBean.activdesactivUtil}">
+                                                     icon="fa fa-fw fa-power-off" value ="Desactiver" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>
                                     <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif ne true}"
-                                                     icon="pi pi-check" value ="Activer" action="#{utilisateursBean.activdesactivUtil}">
+                                                     icon="fa fa-fw fa-power-off" value ="Activer" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>
                                 </p:column>
@@ -162,8 +162,10 @@
         </shiro:lacksPermission>
         <!--TODO : evitez la faille de sécurité pour si l'utilisateur ferme la fenetre avec la croix-->
         <p:dialog header="Formulaire de modification de mot de passe" widgetVar="dlg1" minHeight="40">
+            <p:ajax event="close" update="formModifMdp" resetValues="true" />
 
             <h:form id="formModifMdp" prependId = "false">
+
                 <p:panelGrid columns="2" StyleClass="formConfig">
                     <h:outputText value="#{I18N['tooltip.utilisateur.changemdp']}" />
                     <p:password id="mdp" value="#{utilisateursBean.mdpNouveau}" update="msg"
@@ -184,14 +186,12 @@
                         toggleMask="true"
                         redisplay="true"
                         maxlength="40">
+
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
+                    <p:commandButton icon="fa fa-fw fa-check" style="float: right" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.modifMdp}"
+                                     onclick="PF('popup').hide();"/>
                 </p:panelGrid>
-                <p:commandButton value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.modifMdp}"
-                                 onclick="PF('popup').hide();">
-                </p:commandButton>
-
-                <p:commandButton value="#{I18N['application.button.annuler']}" action="#{utilisateursBean.init}" onclick="PF('popup').hide();" />
             </h:form>
         </p:dialog>
     </ui:define>

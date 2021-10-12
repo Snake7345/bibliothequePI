@@ -130,6 +130,7 @@
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
         <p:dialog header="Nouvelle adresse" widgetVar="dlg1" minHeight="40">
+            <p:ajax event="close" update="formAdresse" resetValues="true" />
 
             <h:form id="formAdresse" prependId = "false">
                 <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
@@ -176,10 +177,9 @@
                             <h:outputText value="#{c.ville}"/>
                         </p:column>
                     </p:selectOneListbox>
-
+                    <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{adressesBean.newAdresspopup}" onclick="PF('popup').hide();"/>
                 </p:panelGrid>
-                <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{adressesBean.newAdresspopup}" onclick="PF('popup').hide();"/>
-                <p:commandButton value="#{I18N['application.button.annuler']}" action="#{adressesBean.init}" onclick="PF('popup').hide();" />
+
             </h:form>
         </p:dialog>
     </ui:define>

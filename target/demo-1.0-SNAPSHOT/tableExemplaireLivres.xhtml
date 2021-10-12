@@ -59,7 +59,7 @@
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Exemplaires:Modification">
                     <p:column>
-                        <p:commandButton rendered="#{livexemL.actif ne false and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditExemplaireLivre?faces-redirect=true">
+                        <p:commandButton rendered="#{livexemL.actif ne false and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditExemplaireLivre?faces-redirect=true">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </p:commandButton>
                     </p:column>
@@ -67,8 +67,8 @@
                     <!--TODO : Verifier la permission shiro ci-dessous ainsi que l'application du if, il ne doit pas y avoir d'interaction entre les deux-->
                     <shiro:hasPermission name="Exemplaires:ActivDesactiv">
                     <p:column>
-                        <p:commandButton rendered="#{livexemL.actif and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="pi pi-power-off" value ="Désactiver" action="#{exemplairesLivresBean.activdesactivExLiv}">
-                            <p:confirm type="popup" header="Confirmation" message="#{I18N['exempl.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
+                        <p:commandButton rendered="#{livexemL.actif and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="fa fa-fw fa-power-off" value ="Désactiver" action="#{exemplairesLivresBean.activdesactivExLiv}">
+                            <p:confirm type="popup" header="Confirmation" message="#{I18N['exempl.form.questionconfirm']}" icon="fa fa-fw fa-warning"/>
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                             <p:confirmPopup global="true">
                                 <p:commandButton value="#{I18N['commune.label.non']}" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>

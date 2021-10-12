@@ -26,7 +26,7 @@
                     </p:column>
                     <shiro:hasPermission name="Roles:Modification">
                     <p:column>
-                        <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}" icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="#{rolesBean.redirectModifRole}">		<!-- u minuscule -->
+                        <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="#{rolesBean.redirectModifRole}">		<!-- u minuscule -->
                             <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" /><!-- u minuscule -->
                         </p:commandButton>
                     </p:column>
@@ -36,13 +36,13 @@
                         <!--TODO : Verifier que le shiro bien le dessus sur le c:if et qu'ils sont bien compatibles-->
                         <shiro:hasPermission name="Roles:ActivDesactiv">
                         <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur' and rol.actif eq true}"
-                                         icon="pi pi-power-off" value ="Desactiver" action="#{rolesBean.activdesactivRol}">
+                                         icon="fa fa-fw fa-power-off" value ="Desactiver" action="#{rolesBean.activdesactivRol}">
                             <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                         </p:commandButton>
                         </shiro:hasPermission>
                         <shiro:hasPermission name="Roles:ActivDesactiv">
                             <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur' and rol.actif ne true}"
-                                             icon="pi pi-check" value ="Activer" action="#{rolesBean.activdesactivRol}">
+                                             icon="fa fa-fw fa-power-off" value ="Activer" action="#{rolesBean.activdesactivRol}">
                                 <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                             </p:commandButton>
                         </shiro:hasPermission>

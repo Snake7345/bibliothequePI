@@ -46,14 +46,15 @@
                                        itemLabel="#{ac}"
                                        itemValue="#{ac}"/>
                     </p:selectOneMenu>
-                    <p:outputLabel></p:outputLabel>
+                    <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="#{I18N['permissions.label.add']}" action="#{rolesBean.addPermission}" ajax="false">
+                        <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
+                        <f:setPropertyActionListener target="#{rolesBean.pe.action}" value="#{permissionsBean.action}" />
+                    </p:commandButton>
                 </p:panelGrid>
 
 
-                <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="#{I18N['permissions.label.add']}" action="#{rolesBean.addPermission}" ajax="false">
-                    <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
-                    <f:setPropertyActionListener target="#{rolesBean.pe.action}" value="#{permissionsBean.action}" />
-                </p:commandButton>
+
+
 
                 <p:dataTable value="#{rolesBean.listPerm}" emptyMessage="Aucun enregistrement trouvé" var="pe" id="tableListPerm"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">

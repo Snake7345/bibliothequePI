@@ -51,7 +51,7 @@
                         </p:column>
                         <shiro:hasPermission name="Adresses:Modification">
                         <p:column>
-                            <p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditAdress?faces-redirect=true">		<!-- u minuscule -->
+                            <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditAdress?faces-redirect=true">		<!-- u minuscule -->
                                 <f:setPropertyActionListener target="#{adressesBean.adresse}" value="#{ad}" /><!-- u minuscule -->
                             </p:commandButton>
                         </p:column>

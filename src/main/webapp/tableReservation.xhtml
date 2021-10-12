@@ -47,7 +47,7 @@
                 <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
             </shiro:lacksPermission>
         <p:dialog header="Formulaire nouvelle reservation" widgetVar="dlg1" minHeight="40">
-
+            <p:ajax event="close" update="formReservation" resetValues="true" />
             <h:form id="formReservation" prependId = "false">
                 <p:panelGrid columns="2" StyleClass="formConfig">
                     <p:outputLabel value="#{I18N['utilisateur.label.NumMembre']}" />

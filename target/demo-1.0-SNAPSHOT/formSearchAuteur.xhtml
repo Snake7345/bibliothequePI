@@ -46,28 +46,28 @@
 			</p:column>
 			<shiro:hasPermission name="Auteurs:Modification">
 				<p:column>
-					<p:commandButton icon="pi pi-pencil" value="#{I18N['application.button.modifier']}" action="formEditAuteur?faces-redirect=true">		<!-- u minuscule -->
+					<p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditAuteur?faces-redirect=true">		<!-- u minuscule -->
 						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" /><!-- u minuscule -->
 					</p:commandButton>
 				</p:column>
 			</shiro:hasPermission>
 			<p:column>
-				<p:commandButton  icon="pi pi-book" value="#{I18N['application.button.livreparauteur']}" action="#{livresBean.readByAuteurs}">		<!-- u minuscule -->
+				<p:commandButton  icon="fa fa-fw fa-book" value="#{I18N['application.button.livreparauteur']}" action="#{livresBean.readByAuteurs}">		<!-- u minuscule -->
 					<f:setPropertyActionListener target="#{livresBean.aut}" value="#{aut}" /><!-- u minuscule -->
 				</p:commandButton>
 			</p:column>
 
 			<shiro:hasPermission name="Auteurs:ActivDesactiv">
 				<p:column>
-					<p:commandButton icon="pi pi-power-off" value ="Désactiver" rendered="#{aut.actif}" action="#{auteursBean.activdesactivAut}">
-						<p:confirm type="popup" header="Confirmation" message="#{I18N['auteur.form.questionconfirm']}" icon="pi pi-exclamation-triangle"/>
+					<p:commandButton icon="fa fa-fw fa-power-off" value ="Désactiver" rendered="#{aut.actif}" action="#{auteursBean.activdesactivAut}">
+						<p:confirm type="popup" header="Confirmation" message="#{I18N['auteur.form.questionconfirm']}" icon="fa fa-fw fa-warning"/>
 						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
 					</p:commandButton>
 					<p:confirmPopup global="true">
 						<p:commandButton value="#{I18N['commune.label.non']}" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
 						<p:commandButton value="#{I18N['commune.label.oui']}" type="button" styleClass="ui-confirm-popup-yes" />
 					</p:confirmPopup>
-					<p:commandButton icon="pi pi-check" value ="Activer" rendered="#{!aut.actif}" action="#{auteursBean.activdesactivAut}">
+					<p:commandButton icon="fa fa-fw fa-power-off" value ="Activer" rendered="#{!aut.actif}" action="#{auteursBean.activdesactivAut}">
 						<f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
 					</p:commandButton>
 				</p:column>

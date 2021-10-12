@@ -18,7 +18,8 @@ public class CheckMdpValidator implements Validator {
     private static final Logger log = Logger.getLogger(CheckMdpValidator.class);
 
     @Override
-    public void validate(FacesContext context, UIComponent uic, Object confmdp) throws ValidatorException {
+    public void validate(FacesContext context, UIComponent uic, Object confmdp) throws ValidatorException
+    {
         // TODO Auto-generated method stub
 
         // récupère le mot de passe de confirmation
