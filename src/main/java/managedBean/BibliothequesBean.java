@@ -50,11 +50,7 @@ public class BibliothequesBean implements Serializable {
         bibliotheque = new Bibliotheques();
         listBiblioActiv = getReadBiblioActiv();
         listBibactuel = getFindBiblio();
-        log.debug("valeur test");
-        log.debug(idBiblio);
-        log.debug(listBibactuel.size());
         if(listBibactuel.size() > 0) {
-            log.debug("test");
             SecurityUtils.getSubject().getSession().setAttribute("biblio", listBibactuel.get(0));
         }
 
@@ -90,12 +86,10 @@ public class BibliothequesBean implements Serializable {
             e.printStackTrace();
         }
         result2 = Integer.parseInt(result);
-        log.debug("La valeur de la bibliotheque est de : " + result2);
         return result2;
     }
 
-    // Méthode qui va appellé la méthode save() pour créer/modifier une bibliotheque en DB et qui envoi un message si jamais le nom de la biblio a pas été changé ou si l'utilisateur
-    // veut créer une nouvelle bibliothèque (limité à 1 pour ce projet) et nous renvoi sur la table des bibliothèques
+    // Méthode qui va appellé la méthode save() pour créer/modifier une bibliotheque en DB et nous renvoi sur la table des bibliothèques
     public String newBiblio()
     {
         save();
@@ -142,13 +136,15 @@ public class BibliothequesBean implements Serializable {
         }
     }
 
+    //Méthode qui permet de vider les variables et de revenir sur la page d'accueil
     public String flushAccueil()
     {
         init();
         return "/bienvenue?faces-redirect=true";
     }
 
-    /*Méthode permettant la réinitialisation de la bibliothèque de connexion du programme en supprimant le fichier bibliotheque.txt, l'utilisateur sera déconnecter de la session
+    /*Méthode permettant la réinitialisation de la bibliothèque liée au programme.
+    * En supprimant le fichier bibliotheque.txt, l'utilisateur sera déconnecté de la session
     * et renvoyer sur la page de selection de la bibliothèque*/
     public void reinitialisation()
     {
@@ -158,7 +154,6 @@ public class BibliothequesBean implements Serializable {
 
             if(f.delete())
             {
-                log.debug(f.getName() + " est supprimé.");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Reinitialisation du programme",null));
@@ -186,6 +181,10 @@ public class BibliothequesBean implements Serializable {
         init();
         return "/tableBibliotheques?faces-redirect=true";
     }
+    /*
+     * Méthode qui permet de vider les variables et de revenir sur la création d'une nouvelle bibliothèque .
+     *
+     */
     public String flushBiblioNew()
     {
         init();
@@ -205,7 +204,10 @@ public class BibliothequesBean implements Serializable {
         service.close();
         return listBib;
     }
-
+    /*
+     * Méthode qui permet via le service de retourner
+     * la liste de toutes les bibliothèques actives
+     */
     public List<Bibliotheques> getReadBiblioActiv()
     {
 
@@ -217,25 +219,26 @@ public class BibliothequesBean implements Serializable {
     }
 
 
-
+    /*
+    * cette méthode va précharger la page de démarrage du programme en fonction si bibliotheque.txt existe ou non
+     */
     public void beforePageLoad() throws IOException {
 
 
         File f = new File(userdir + "bibliotheque.txt");
-        log.debug("entree debut programme");
         if(!f.isFile())
         {
-            log.debug("Fichier biblio non trouve");
             FacesContext.getCurrentInstance().getExternalContext().redirect("formSelectBiblio.xhtml");
         }
         else
         {
-            log.debug("Fichier biblio trouve");
             FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
         }
     }
 
-
+    /*
+     * cette méthode va précharger la page de démarrage du programme en fonction si bibliotheque.txt existe ou non
+     */
     public String createFichier()
     {
 
@@ -249,7 +252,6 @@ public class BibliothequesBean implements Serializable {
             if (f.createNewFile()) {
                 FileWriter fw = new FileWriter(userdir + "bibliotheque.txt");
                 fw.write(nomBiblio);
-                log.debug("File created");
                 fw.close();
             }
             else {
@@ -263,7 +265,9 @@ public class BibliothequesBean implements Serializable {
         return "/login?faces-redirect=true";
 
     }
-
+    /*
+     * cette méthode va rechercher la bibliotheque en fonction de la bibliothèque selectionnée
+     */
     public List<Bibliotheques> getFindBiblio()
     {
         SvcBibliotheques service = new SvcBibliotheques();
@@ -271,7 +275,10 @@ public class BibliothequesBean implements Serializable {
         service.close();
         return listBib;
     }
-
+    /*
+     * cette méthode va permettre de désactiver la bibliothèque ainsi que les exemplaires des livres sauf si ils sont loué ou reservé.
+     * Cette méthode permet aussi la réactivation de la bibliothèque
+     */
     public String ActivDesactivBiblio()
     {
         SvcBibliotheques serviceB = new SvcBibliotheques();
@@ -304,7 +311,7 @@ public class BibliothequesBean implements Serializable {
                         transaction.rollback();
                         FacesContext fc = FacesContext.getCurrentInstance();
                         fc.getExternalContext().getFlash().setKeepMessages(true);
-                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"tout les livres doivent être disponible (pas de transfer pas de réservation) avant la fermeture de la bibliothèque ",null));
+                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"tout les livres doivent être disponible (pas de transfert pas de réservation) avant la fermeture de la bibliothèque ",null));
                         return "/tableBibliotheques.xhtml?faces-redirect=true";
                     }
                 }
@@ -332,6 +339,10 @@ public class BibliothequesBean implements Serializable {
         return "/tableBibliotheques.xhtml?faces-redirect=true";
     }
 
+    /*
+     * cette méthode va permettre de désactiver la bibliothèque mais également de transférer les exemplaires des livres dans la bibliothèque connecté
+     * et de nous renvoyer sur la table des bibliothèques
+     */
     public String DesactivBiblioTransfert()
     {
         SvcBibliotheques serviceB = new SvcBibliotheques();

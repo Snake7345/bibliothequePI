@@ -38,7 +38,7 @@ public class AuteursBean implements Serializable {
         auteur = new Auteurs();
     }
 
-    // Méthode qui permet l'appel de save() qui créée un nouvel auteur et envoi un message si jamais l'auteur se trouve déjà en base de donnée
+    // Méthode qui permet l'appel de save() qui créé un nouvel auteur et envoi un message si jamais l'auteur se trouve déjà en base de donnée
     // La méthode met également une majuscule pour la première lettre du nom et du prénom de l'auteur et nous renvoi sur la table des auteurs
     public String newAuteur()
     {
@@ -57,7 +57,9 @@ public class AuteursBean implements Serializable {
         }
         return "/tableAuteurs.xhtml?faces-redirect=true";
     }
-
+    /*
+    * Méthode qui permet de travailler sur le selectCheckboxMenu et de voir les éléments qui ne sont pas selectionné
+    * */
     public void onItemUnselect(UnselectEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
 
@@ -95,7 +97,9 @@ public class AuteursBean implements Serializable {
         }
     }
 
-    /*Méthode qui permet de désactiver un auteur ainsi que ces livres et exemplaires livres, d'activer un auteur, ces livres et nous renvoi sur la table des auteurs*/
+    /*Méthode qui permet de désactiver un auteur ainsi que ces livres et exemplaires livres.
+     * Cette méthode permet également d'activer un auteur et ces livres, il nous renvoi sur la table des auteurs
+     * */
     public String activdesactivAut()
     {
         SvcAuteurs service = new SvcAuteurs();
@@ -180,14 +184,12 @@ public class AuteursBean implements Serializable {
         return "/formNewAuteur?faces-redirect=true";
     }
 
-    // Méthode qui permet en fonction de la donnée de l'utilisateur de rechercher un nom parmi les auteurs et nous renvoi le resultat sur le formulaire de recherche des auteurs
+    // Méthode qui permet en fonction de la donnée que l'utilisateur encode, de rechercher
+    // un nom parmi les auteurs et nous renvoi le resultat sur le formulaire de recherche des auteurs
     public String searchAuteur()
     {
 
         SvcAuteurs service = new SvcAuteurs();
-        //try
-        //{
-
             if(service.getByName(auteur.getNom()).isEmpty())
             {
                 FacesContext fc = FacesContext.getCurrentInstance();

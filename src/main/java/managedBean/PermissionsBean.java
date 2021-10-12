@@ -72,7 +72,6 @@ public class PermissionsBean implements Serializable {
                 listType.add(p.getType());
             }
         }
-        log.debug("listType : " + listType.size());
         return listType;
     }
     public List<String> getPermissionsAction()
@@ -87,8 +86,6 @@ public class PermissionsBean implements Serializable {
                 listAction.add(p.getAction());
             }
         }
-        log.debug("type : " + type);
-        log.debug("listAction : " + listAction.size());
         return listAction;
     }
     public void stateChangeListener(ValueChangeEvent event) {
@@ -112,7 +109,6 @@ public class PermissionsBean implements Serializable {
     }
 
     public void setType(String type) {
-        log.debug("test type" + type);
         this.type = type;
     }
 
@@ -121,7 +117,6 @@ public class PermissionsBean implements Serializable {
     }
 
     public void setAction(String action) {
-        log.debug("test action" + action);
         this.action = action;
     }
 

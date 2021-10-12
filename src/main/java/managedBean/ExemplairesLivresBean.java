@@ -38,7 +38,6 @@ public class ExemplairesLivresBean implements Serializable {
     @PostConstruct
     public void init()
     {
-        log.debug("init exemplaire livre lancé");
         listCB = new ArrayList<>();
         addNewListRow();
         exemplairesLivre = new ExemplairesLivres();
@@ -53,19 +52,20 @@ public class ExemplairesLivresBean implements Serializable {
         service.close();
         serviceB.close();
     }
-
+    /*Cette méthode permet d'ajouter une nouvelle ligne dans un formulaire concernant le code barre du livre*/
     public void addNewListRow() {
         listCB.add(new ExemplairesLivres());
-        log.debug(listCB.size());
     }
-
+    /*Cette méthode permet de supprimer une ligne dans un formulaire concernant le code barre du livre*/
     public void delListRow() {
         if (listCB.size() >1)
         {
             listCB.remove(listCB.size()-1);
         }
     }
-
+    /*
+     * Méthode qui permet de vider les variables et de revenir sur la table des livres
+     */
     public String flush()
     {
         init();
@@ -108,7 +108,7 @@ public class ExemplairesLivresBean implements Serializable {
         return "/tableExemplaireLivres.xhtml?faces-redirect=true";
     }
 
-    // Méthode qui désactive le livre, si jamais son état est "mauvais" et renvoi vers tableExemplaireLivres
+    // Méthode qui désactive le livre, si jamais son état est "mauvais" et renvoi vers la table des exemplaires de livres.
     public String editExemplaireLivre()
     {
         if (exemplairesLivre.getEtat()==ExemplairesLivresEtatEnum.Mauvais)
@@ -134,7 +134,8 @@ public class ExemplairesLivresBean implements Serializable {
             return LastBarCode;
         }
     }
-
+    // Méthode qui permet via le service de confirmer la réception d'un livre via le code barre de ce livre SAUF si l'exemplaire est
+    // déjà loué ou n'est pas reservé un message s'affiche
     public String reception()
     {
         boolean flag = false;
@@ -185,11 +186,10 @@ public class ExemplairesLivresBean implements Serializable {
         }
         return "/tableLivres.xhtml?faces-redirect=true";
     }
-
+    // Méthode qui permet via le service de transférer un livre via le code barre de cet exemplaire livre SAUF si l'exemplaire est
+    // déjà reservé ou n'est pas dans la bibliothèque actuellement connecté
     public String transfer()
     {
-        log.debug("transfert demare");
-        log.debug(listCB.size());
         boolean flag = false;
         List<ExemplairesLivres> listEL= new ArrayList<>();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
@@ -198,7 +198,6 @@ public class ExemplairesLivresBean implements Serializable {
         try {
             for(ExemplairesLivres CB:listCB)
             {
-                log.debug(CB);
                listEL.add(serviceEL.findOneByCodeBarre(CB.getCodeBarre()).get(0));
             }
             for(ExemplairesLivres EL : listEL){
@@ -247,7 +246,7 @@ public class ExemplairesLivresBean implements Serializable {
         return "/tableLivres.xhtml?faces-redirect=true";
     }
 
-    // Méthode qui permet de sauvegarder un exemplaire livre en DB
+    // Méthode qui permet de sauvegarder un exemplaire livre en DB dans la bibliothèque auquel le programme est connecté
     public void save()
     {
         SvcExemplairesLivres service = new SvcExemplairesLivres();
@@ -334,13 +333,10 @@ public class ExemplairesLivresBean implements Serializable {
     }
 
     public List<ExemplairesLivres> getListCB() {
-        log.debug(Arrays.toString(listCB.toArray()));
         return listCB;
     }
 
     public void setListCB(List<ExemplairesLivres> listCB) {
-        log.debug(Arrays.toString(listCB.toArray()));
         this.listCB = listCB;
-        log.debug(Arrays.toString(listCB.toArray()));
     }
 }

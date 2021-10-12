@@ -70,10 +70,11 @@ public class UtilisateursBean implements Serializable {
         }
         service.close();
     }
-
+    /*Cette méthode permet d'ajouter une nouvelle ligne concernant la bibliothèque auquel appartient l'utilisateur*/
     public void addBibliothequeRow(){
         tabbibli.add(new Bibliotheques());
     }
+    /*Cette méthode permet de retirer une ligne concernant la bibliothèque */
     public void supBibliothequeRow(){
         if (tabbibli.size() >1)
         {
@@ -81,28 +82,20 @@ public class UtilisateursBean implements Serializable {
         }
     }
 
+    /*Cette méthode permet de récupérer les données liées a l'utilisateur et nous renvoit sur le formulaire d'édition de l'utilisateur*/
     public String redirectModifUtil(){
-        log.debug("je rentre dans redirect");
-        log.debug(utilisateur.getNom()+" "+utilisateur.getPrenom());
         for (UtilisateursAdresses ua: utilisateur.getUtilisateursAdresses()) {
-            log.debug("test vallue : " + ua.getAdresse().getIdAdresses());
-            log.debug(ua.isActif());
             if(ua.isActif()){
                 adresses=ua.getAdresse();
             }
         }
-        log.debug("taille UB : "+utilisateur.getUtilisateursBibliotheques().size());
         for (UtilisateursBibliotheques ub : utilisateur.getUtilisateursBibliotheques())
         {
-            log.debug(ub.getBibliotheque().getNom());
             tabbibli.add(ub.getBibliotheque());
         }
-        log.debug("Taille tabbibli : " +tabbibli.size());
-        log.debug("adresse choisie");
-        log.debug(adresses.getIdAdresses());
         return "/formEditUtilisateur.xhtml?faces-redirect=true";
     }
-
+    /**/
     public void saveActif() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         EntityTransaction transaction = service.getTransaction();
@@ -123,7 +116,7 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
-
+    /*Cette méthode permet de sauvegarder en db un utilisateur, l'adresse ainsi que les bibliothèques auquel il travaille*/
     public void saveUtilisateur() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
@@ -144,7 +137,6 @@ public class UtilisateursBean implements Serializable {
                     if (!utiladress.equals(UA) && utiladress.isActif()) {
                         utiladress.setActif(false);
                         serviceUA.save(utiladress);
-                        log.debug("4");
                     }
                 }
             }
@@ -155,8 +147,6 @@ public class UtilisateursBean implements Serializable {
             {
                 for(UtilisateursBibliotheques ub : listUB)
                 {
-                    log.debug(ub.getBibliotheque().getNom());
-                    log.debug(ub.getUtilisateur().getLogin());
                     serviceUB.save(ub);
                 }
             }
@@ -181,7 +171,7 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
-
+    /*Cette méthode permet de sauvegarder en db un client ainsi que son adresse*/
     public void saveUtilisateurCli() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
@@ -216,14 +206,11 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
-
+    /*Cette méthode permet de modifier un mot de passe d'un utilisateur*/
     public String modifMdp()
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
         EntityTransaction transaction = serviceU.getTransaction();
-        log.debug("utilisateur objet : " + utilisateur);
-        log.debug("utilisateur findbyLogin : " + serviceU.findByLogin(utilisateur.getLogin()).get(0).getMdp());
-        log.debug("utilisateur getmdp : " + utilisateur.getMdp());
 
         try
         {
@@ -274,7 +261,7 @@ public class UtilisateursBean implements Serializable {
         init();
         return "/tableUtilisateurs.xhtml?faces-redirect=true";
     }
-
+    /*Cette méthode permet la création de l'objet utilisateur ainsi que la vérification si un utilisateur est similaire*/
     public String newUtil() {
         boolean flag = false;
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
@@ -315,24 +302,14 @@ public class UtilisateursBean implements Serializable {
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
         }
     }
-
+    /*Cette méthode permet de modifier l'objet utilisateur et vérifie si un utilisateur existe*/
     public String modifUtil() {
         boolean flag = false;
 
-        log.debug("tabbibli entree modif");
-        log.debug(Arrays.toString(tabbibli.toArray()));
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
         SvcUtilisateursBibliotheques serviceUB = new SvcUtilisateursBibliotheques();
         utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
         utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
-        /*
-
-        log.debug((SecurityManager.encryptPassword(utilisateur.getMdp())));
-
-        PasswordMatcher matcher = new PasswordMatcher();
-        log.debug(matcher.getPasswordService().passwordsMatch(utilisateur.getMdp(),SecurityManager.encryptPassword(utilisateur.getMdp())));
-
-        */
         if (utilisateur.getIdUtilisateurs()!=0) {
             for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()) {
                 if (ua.getAdresse().equals(adresses)) {
@@ -350,15 +327,12 @@ public class UtilisateursBean implements Serializable {
             UA.setActif(true);
             for (Bibliotheques bib : tabbibli)
             {
-                log.debug("===");
-                log.debug(bib.getIdBibliotheques());
                 if(listUB.size()==0) {
                     listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur, bib));
                 }
                 else{
                     boolean fl = false;
                     for (UtilisateursBibliotheques ub : listUB){
-                        log.debug(ub.getBibliotheque().getIdBibliotheques() );
                         if (ub.getBibliotheque().getIdBibliotheques() == bib.getIdBibliotheques()) {
                             fl = true;
                             break;
@@ -389,7 +363,7 @@ public class UtilisateursBean implements Serializable {
     }
 
     /*TODO : Essayer de corriger la faille concernant le changement de mail : Si je met le mail de quelqu'un d'autre mais que je mets pas le même rôle ça passe MAIS CA NE DEVRAIT PAS*/
-
+    /*Cette méthode verifie si un utilisateur existe déjà*/
     public boolean verifUtilExist(Utilisateurs util)
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
@@ -425,7 +399,7 @@ public class UtilisateursBean implements Serializable {
             }
         }
     }
-
+    /*Cette méthode permet la création de l'objet utilisateur(client) ainsi que la vérification si un client est similaire*/
     public String newUtilCli() {
         boolean flag = false;
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
@@ -464,7 +438,7 @@ public class UtilisateursBean implements Serializable {
         return "/tableUtilisateursCli.xhtml?faces-redirect=true";
     }
 
-    //Méthode qui va créer un nouveau membre en commencant par le nombre 400000000
+    //Méthode qui va créer un nouveau membre en commencant par le nombre 400000000 (cette méthode concerne uniquement les clients)
     public String createNumMembre()
     {
         if (numMembre.equals("0")){
@@ -542,7 +516,7 @@ public class UtilisateursBean implements Serializable {
         }
         return "/tableUtilisateursCli?faces-redirect=true";
     }
-
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de création d'un client
     public String flushUtilCliNew() {
         init();
         if (searchResults != null) {
@@ -550,6 +524,7 @@ public class UtilisateursBean implements Serializable {
         }
         return "/formNewUtilisateurCli?faces-redirect=true";
     }
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de création d'un utilisateur
     public String flushUtilNew() {
         init();
         if (searchResults != null) {
@@ -615,7 +590,7 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listUtil;
     }
-
+    /*Méthode qui permet via le service de retournerl la liste de tous lees utilisateurs d'une bibliothèque*/
     public List<Utilisateurs> getReadAllUtilBib()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();
@@ -741,14 +716,10 @@ public class UtilisateursBean implements Serializable {
     }
 
     public List<Bibliotheques> getTabbibli() {
-        log.debug("gettabbibli");
-        log.debug(Arrays.toString(tabbibli.toArray()));
         return tabbibli;
     }
 
     public void setTabbibli(List<Bibliotheques> tabbibli) {
-        log.debug("settabbibli");
-        log.debug(Arrays.toString(tabbibli.toArray()));
         this.tabbibli = tabbibli;
     }
 

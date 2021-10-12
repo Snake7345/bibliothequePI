@@ -44,7 +44,9 @@ public class GenresBean implements Serializable {
         init();
         return "/tableGenres?faces-redirect=true";
     }
-
+    /*
+     * Méthode qui permet de travailler sur le selectCheckboxMenu et de voir les éléments qui ne sont pas selectionné
+     * */
     public void onItemUnselect(UnselectEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
 
@@ -78,7 +80,7 @@ public class GenresBean implements Serializable {
         }
 
     }
-
+    // Méthode qui permet de vérifier si un genre du même nom existe
     public boolean verifGenreExist(Genres gen)
     {
         SvcGenres serviceG = new SvcGenres();
@@ -94,12 +96,13 @@ public class GenresBean implements Serializable {
 
     }
 
-
+    //Méthode qui permet de vider les variables et de revenir sur le table des genres
     public String flushGen()
     {
         init();
         return "/tableGenres?faces-redirect=true";
     }
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de création d'un genre
     public String flushGenNew()
     {
         init();

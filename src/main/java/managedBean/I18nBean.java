@@ -26,7 +26,6 @@ public class I18nBean implements Serializable {
     private TimeZone timeZone = TimeZone.getTimeZone("Europe/Brussels");
 
     public String selectLanguage() {
-        log.debug("Selected language: " + language);
         // Update language
         int index = this.language.indexOf("_");
         if (index > 0) {

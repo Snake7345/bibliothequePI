@@ -36,29 +36,23 @@ public class LoginBean implements Serializable {
     //---------------------------------------------------------
     /*
      * Méthode qui permet l'authentification de l'utilisateur,
-     * on vérifie que l'utilisateur existe dans la base de données, et on lui attribuee des variables de session comme le role par exemple.
+     * on vérifie que l'utilisateur existe dans la base de données, et on lui attribue des variables de session comme le role par exemple.
      *
      *
      * */
     public void auth()
     {
 
-        log.debug("---------------------------------debut--------------------------");
         FacesMessage m = new FacesMessage("Login ou/et mot de passe incorrect");
         SvcUtilisateurs service= new SvcUtilisateurs();
         RolesBean RB = new RolesBean();
 
         try {
-            log.debug(login + " + " + mdp);
-            log.debug("1");
             List<Utilisateurs> results = service.findByLogin(login);
-            log.debug("2");
             if(bibliactuel.isActif()) {
                 if (SecurityManager.processToLogin(login, mdp, false)) {
 
-                    log.debug("OKAY");
                     utilisateurAuth = results.get(0);
-                    log.debug(utilisateurAuth.getIdUtilisateurs());
                     SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
                     SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);

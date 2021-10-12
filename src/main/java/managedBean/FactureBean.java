@@ -54,10 +54,11 @@ public class FactureBean implements Serializable {
         numMembre= "";
         CB= "";
     }
+    /*Cette méthode permet d'ajouter une nouvelle ligne dans un formulaire concernant une location */
     public void addNewListRow() {
         listLC.add(new locationCustom());
     }
-
+    /*Cette méthode permet de retirer une ligne dans un formulaire concernant une location */
     public void delListRow() {
         if (listLC.size() >1)
         {
@@ -66,6 +67,7 @@ public class FactureBean implements Serializable {
     }
     /*TODO : Penser a mettre les fonctions d'envoi de mail dans une même classe*/
     // Méthode qui permet l'envoi d'un mail via le mail de la bibliotheque avec la facture
+    /*Méthode qui permet d'envoyer un mail sur le email de l'utilisateur avec la facture */
     public static void sendMessage(String filename, String mailDest, String Texte, String Titre)  {
         //Création de la session
         String mail = "bibliolibatc@gmail.com";
@@ -113,7 +115,6 @@ public class FactureBean implements Serializable {
     //TODO : A tester pour multi-bibliothèque
     public String newFact()
     {
-        log.debug("1");
         //initialisation des services requis
         SvcFacture service =new SvcFacture();
         SvcFactureDetail serviceFD = new SvcFactureDetail();
@@ -136,7 +137,6 @@ public class FactureBean implements Serializable {
         Factures fact = new Factures();
         ModelFactBiblio MFB =new ModelFactBiblio();
         Tarifs T= new Tarifs();
-        log.debug(numMembre);
 
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
         boolean flag = false;
@@ -144,19 +144,14 @@ public class FactureBean implements Serializable {
 
         if (serviceT.getTarifByBiblio(date, bibli.getNom()).size()==0){
             flag=true;
-            log.debug("2");
         }else {
             T = serviceT.getTarifByBiblio(date, bibli.getNom()).get(0);
-            log.debug("3");
         }
-        //vÃ©rif si livre non louÃ©
+        //vérif si livre non loué
         for (locationCustom lc: listLC) {
             ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
             if (el.isLoue() || !(el.getBibliotheques().getIdBibliotheques() == (bibli.getIdBibliotheques())))
             {
-                log.debug(el.isLoue());
-                log.debug(!el.getBibliotheques().equals(bibli));
-                log.debug("4");
                 flag=true;
 
             }
@@ -186,10 +181,9 @@ public class FactureBean implements Serializable {
             //initialisation de la transaction
             EntityTransaction transaction = service.getTransaction();
             transaction.begin();
-            log.debug("5");
             try {
 
-                //crÃ©ation de la facture
+                //création de la facture
                 fact.setBibliotheques(bibli);
                 fact.setDateDebut(timestampdebut);
                 fact.setNumeroFacture(createNumFact());
@@ -230,7 +224,6 @@ public class FactureBean implements Serializable {
             } finally {
                 //bloc pour gÃ©rer les erreurs lors de la transactions
                 if (transaction.isActive()) {
-                    log.debug("6");
                     transaction.rollback();
                     FacesContext fc = FacesContext.getCurrentInstance();
                     fc.getExternalContext().getFlash().setKeepMessages(true);
@@ -245,7 +238,6 @@ public class FactureBean implements Serializable {
             }
         }
         else {
-            log.debug("7");
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Une erreur est survenue",null));
@@ -253,7 +245,7 @@ public class FactureBean implements Serializable {
         }
     }
 
-    // Méthode qui permet de créer une facture pénalité
+    // Méthode qui permet de créer une facture de pénalité
     public void newFactPena(FacturesDetail facturesDetail)
     {
 
@@ -303,7 +295,7 @@ public class FactureBean implements Serializable {
             fact.setEtat(FactureEtatEnum.terminer);
             fact.setUtilisateurs(u);
 
-            //création des facture dÃ©tails
+            //création des facture détails
             if (tarifsPenalites.size() >= 1){
                 for (TarifsPenalites tp: tarifsPenalites)
                 {
@@ -349,7 +341,8 @@ public class FactureBean implements Serializable {
             serviceTP.close();
         }
     }
-
+    /*Méthode qui permet de récupérer les infos de l'exemplaires livres et de renvoyer sur le formulaire pour constater l'état du livre
+    * quand il est rentré de location et d'appliquer éventuellement des pénalités*/
     public String redirectChoix(){
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         exemplairesLivres = serviceEL.findOneByCodeBarre(CB).get(0);
@@ -365,7 +358,7 @@ public class FactureBean implements Serializable {
         }
     }
 
-    // Méthode qui permet
+    // Méthode qui permet le retour d'un livre et vérifie si il est loué
     public String retourLivre(){
         FacturesDetail facturesDetail = new FacturesDetail();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();

@@ -95,7 +95,9 @@ public class EditeursBean implements Serializable {
         init();
         return "/tableEditeurs?faces-redirect=true";
     }
-
+    /*
+     * Méthode qui permet de vider les variables et de revenir sur la création d'un nouvel éditeur .
+     */
     public String flushEdNew()
     {
         init();

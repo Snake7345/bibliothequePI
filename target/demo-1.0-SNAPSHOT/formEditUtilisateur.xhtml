@@ -186,7 +186,6 @@
                             <h:outputText value="#{c.ville}"/>
                         </p:column>
                     </p:selectOneListbox>
-                    <p:commandButton style="float: left" value="#{I18N['application.button.annuler']}" action="#{adressesBean.init}" onclick="PF('popup').hide();" />
                     <p:commandButton style="float: right" value="#{I18N['application.button.envoyer']}" action="#{adressesBean.newAdresspopup}"
                                      onclick="PF('popup').hide();"/>
                 </p:panelGrid>

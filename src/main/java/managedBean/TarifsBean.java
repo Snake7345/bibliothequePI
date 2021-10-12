@@ -41,7 +41,7 @@ public class TarifsBean implements Serializable {
         grilleJour.add(new JourCustom());
 
     }
-
+    /*Cette méthode permet de sauvegarder la grille tarifaire*/
     public void save()
     {
         SvcTarifs service = new SvcTarifs();
@@ -63,6 +63,8 @@ public class TarifsBean implements Serializable {
             service.close();
         }
     }
+    /*Cette méthode permet de retrouver les infos concernant la grille tarifaire qu'on veut modifier et nous envoit ensuite sur le formulaire d'édition de tarif
+    * sauf dans le cas ou la grille tarfiaire est déjà appliquée alors elle nous renvoit sur la table des tarifs avec un message d'erreur*/
     public String redirectEdit(){
         long dn = new Date().getTime();
         if(tarif.getDateDebut().getTime() > dn){
@@ -87,7 +89,7 @@ public class TarifsBean implements Serializable {
         }
 
     }
-
+    /*Cette méthode permet d'ajouter une grille tarifaire et vérifier si les données sont correctes (date de début et de fin de tarif cohérente,...)*/
     public String newTarif()
     {
 
@@ -167,8 +169,6 @@ public class TarifsBean implements Serializable {
 
 
                     jours = serviceJ.addJours(j.getNbrJours());
-                    log.debug("test1 "+j.getNbrJours());
-                    log.debug("test2 "+jours.getNbrJour());
                     serviceTJ.save(serviceTJ.createTarifsJours(tarif, jours, ((int)((j.getPrix()*100)+0.5)/100.0), j.getDateDebut(), j.getDateFin()));
                 }
                 transaction.commit();
@@ -222,15 +222,15 @@ public class TarifsBean implements Serializable {
 
         }
     }
-
+    /*Cette méthode permet d'ajouter une nouvelle ligne concernant la grille des pénalités*/
     public void addNewPenaRow() {
         grillePena.add(new PenaCustom());
     }
-
+    /*Cette méthode permet d'ajouter une nouvelle ligne concernant la grille des jours */
     public void addNewJourRow() {
         grilleJour.add(new JourCustom());
     }
-
+    /*Cette méthode permet de retirer une ligne concernant la grille des pénalités */
     public void delPenaRow() {
         if (grillePena.size() >1)
         {
@@ -238,7 +238,7 @@ public class TarifsBean implements Serializable {
         }
 
     }
-
+    /*Cette méthode permet de retirer une ligne concernant la grille des jours */
     public void delJourRow() {
         if (grilleJour.size() >1)
         {
@@ -259,11 +259,16 @@ public class TarifsBean implements Serializable {
         service.close();
         return listTarifs;
     }
-
+    /*
+     * Méthode qui permet de vider les variables et nous renvoit sur la table des tarifs
+     */
     public String flushTarifs() {
         init();
         return "/tableTarifs?faces-redirect=true";
     }
+    /*
+     * Méthode qui permet de vider les variables et nous renvoit sur le formulaire de création d'une grille tarifaire
+     */
     public String flushTarifsNew() {
         init();
         return "/formNewTarif?faces-redirect=true";

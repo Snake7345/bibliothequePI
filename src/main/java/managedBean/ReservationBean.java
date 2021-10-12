@@ -44,7 +44,7 @@ public class ReservationBean implements Serializable
         exemplairesLivres = new ExemplairesLivres();
         numMembre = "";
     }
-
+    /*Cette méthode permet la reservation d'un livre en se basant sur le numéro de membre du client et la bibliothèque actuel connecté pour effectuer la reservation*/
     public String reservation() {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
         SvcReservations serviceR = new SvcReservations();
@@ -79,7 +79,7 @@ public class ReservationBean implements Serializable
         }
         return "/tableReservation.xhtml?faces-redirect=true";
     }
-
+    /*Cette méthode permet d'envoyer un mail au client qui a effectué une reservation concernant un livre rentré de location*/
     public static void sendMessagereserv( String mailDest, String Texte, String Titre)  {
         //Création de la session
         String mail = "bibliolibatc@gmail.com";
@@ -113,7 +113,7 @@ public class ReservationBean implements Serializable
             e.printStackTrace();
         }
     }
-
+    /*Cette méthode permet d'envoyer un mail au client si le livre est retourné en bibliothèque et est donc disponible pour le client qui a fait la réservation*/
     public String confirmReservation()
     {
         SvcReservations serviceR = new SvcReservations();
@@ -130,7 +130,6 @@ public class ReservationBean implements Serializable
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation n'a pas réussie", null));
             return "/tableFactures.xhtml?faces-redirect=true";
         }
-
 
         EntityTransaction transaction = serviceR.getTransaction();
         transaction.begin();
@@ -168,6 +167,7 @@ public class ReservationBean implements Serializable
         return "/tableFactures.xhtml?faces-redirect=true";
     }
 
+    /*Cette méthode permet de retourner la liste de toutes les réservations actives*/
     public List<Reservation> getReadAllReservActiv()
     {
         SvcReservations service = new SvcReservations();
@@ -177,7 +177,7 @@ public class ReservationBean implements Serializable
         service.close();
         return listReserv;
     }
-
+    /*Cette méthode permet de vider les variables et retourner sur la tables des livres*/
     public String flushReserv()
     {
         init();
@@ -191,6 +191,7 @@ public class ReservationBean implements Serializable
         reserv = new Reservation();
     }
 /*TODO : Optimisation possible : envoyer un mail a une autre reservation si mail déjà envoyé a celle supprimée*/
+    /*Cette méthode permet de désactiver une reservation*/
     public String suppReserv()
     {
         SvcReservations serviceR = new SvcReservations();

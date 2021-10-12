@@ -34,7 +34,7 @@ public class AdressesBean implements Serializable {
 
 
     // Méthode qui permet l'appel de save() qui créée une nouvelle adresse et envoi un message si jamais
-    // l'adresse se trouve déjà en base de donnée et nous renvoi sur la table des auteurs
+    // l'adresse se trouve déjà en base de donnée et nous renvoi sur la table des adresses
     public String newAdress()
     {
         if(verifAdresseExist(adresse))
@@ -97,7 +97,7 @@ public class AdressesBean implements Serializable {
         }
     }
 
-    // Méthode qui vérifie qu'une adresse déjà ou pas dans la base de donnée
+    // Méthode qui vérifie qu'une adresse se trouve déjà ou pas dans la base de donnée
     public boolean verifAdresseExist(Adresses ad)
     {
         SvcAdresses serviceA = new SvcAdresses();
@@ -113,7 +113,7 @@ public class AdressesBean implements Serializable {
 
     }
     /*
-     * Méthode qui permet de vider les variables et de revenir sur le table des Adresses .
+     * Méthode qui permet de vider les variables avec init() et de revenir sur le table des Adresses .
      * */
     public String flushAdd()
     {
@@ -121,7 +121,7 @@ public class AdressesBean implements Serializable {
         return "/tableAdresses?faces-redirect=true";
     }
     /*
-     * Méthode qui permet de vider les variables et de revenir sur le formulaire d'une nouvelle adresse .
+     * Méthode qui permet de vider les variables avec init() et de revenir sur le formulaire d'une nouvelle adresse .
      * */
     public String flushAddNew()
     {
@@ -132,7 +132,7 @@ public class AdressesBean implements Serializable {
 
     /*
      * Méthode qui permet via le service de retourner
-     * la liste des adresses
+     * la liste de toutes les adresses
      */
     public List<Adresses> getReadAll()
     {
@@ -146,7 +146,7 @@ public class AdressesBean implements Serializable {
 
     /*
      * Méthode qui permet via le service de retourner
-     * la liste des adresses qui n'est pas aloué a une bibliothèque
+     * la liste de toutes les adresses qui n'est pas aloué a une bibliothèque
      */
     public List<Adresses> getReadAllNotBibli()
     {
@@ -159,7 +159,7 @@ public class AdressesBean implements Serializable {
     }
     /*
      * Méthode qui permet via le service de retourner
-     * la liste des adresses qui n'est pas aloué a une bibliothèque ni à un utilisateur
+     * la liste de toutes les adresses qui n'est pas aloué ni a une bibliothèque ni à un utilisateur
      */
     public List<Adresses> getReadAllNotBibliNotUti()
     {
@@ -172,8 +172,7 @@ public class AdressesBean implements Serializable {
     }
 
     /*
-     * Méthode qui permet via le service de retourner
-     * la liste des adresses qui n'est pas aloué a une bibliothèque ni à un utilisateur
+     * Méthode pas encore utilisé
      */
     public List<Adresses> getReadAllNotBibliNotUtiForModif()
     {
