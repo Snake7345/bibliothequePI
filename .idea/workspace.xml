@@ -9,434 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.02 Mise a jour merdique">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/primefaces_11_0_0_RC1__1_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/bibliothequePI_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/bibliothequePI_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/13af90cb-c831-4625-83fd-97ef0c2466cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/13af90cb-c831-4625-83fd-97ef0c2466cf.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_primefaces_primefaces_10_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_primefaces_primefaces_11_0_0_RC1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/excite_bike_1_0_10.xml" beforeDir="false" />
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.03 Mise a jour fonctionnelle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/converter/BiblioConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/converter/BiblioConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Bibliotheques.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Bibliotheques.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/AdressesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/AdressesBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/AuteursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/AuteursBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/EditeursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/EditeursBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/GenresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/GenresBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/I18nBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/I18nBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PenalitesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/PenalitesBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReinitialisationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReinitialisationBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcPermissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcReservations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcReservations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/validators/CheckMdpValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/validators/CheckMdpValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Obsolete/formNewPermission.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Obsolete/formNewPermission.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/footer.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/footer.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formConfirmationReini.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formConfirmationReini.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formConfirmationReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formConfirmationReservation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formDesactivBiblio.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formDesactivBiblio.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditAdress.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditAdress.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditAuteur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditBibliotheque.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditBibliotheque.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditEditeur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditEditeur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditExemplaireLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditExemplaireLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditGenre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditGenre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditTarif.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEtatLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEtatLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEtatQuestion.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEtatQuestion.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewAdress.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewAdress.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewAuteur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewBibliotheque.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewBibliotheque.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewEditeur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewEditeur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewExemLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewExemLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewFact.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewFact.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewGenre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewGenre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateurCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateurCli.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formReceptionLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formReceptionLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formReinitialisation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formReinitialisation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchAuteur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSelectBiblio.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSelectBiblio.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formTransfertLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formTransfertLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bundle/messages.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/connexion/EMF.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/connexion/EntityFinder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/connexion/EntityFinderImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/converter/AdressConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/converter/BiblioConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/converter/DateConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/converter/EditeurConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/converter/LocaliteConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/converter/RoleConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Adresses.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Auteurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Bibliotheques.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Editeurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/ExemplairesLivres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Factures.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/FacturesDetail.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Genres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Jours.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Livres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/LivresAuteurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/LivresGenres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Localites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Pays.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Penalites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Permissions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/PermissionsRoles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Roles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Tarifs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/TarifsJours.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/TarifsPenalites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Utilisateurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/UtilisateursAdresses.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/UtilisateursBibliotheques.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/enumeration/ExemplairesLivresEtatEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/enumeration/FactureEtatEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/enumeration/UtilisateurSexeEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/AdressesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/AuteursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/BibliothequesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/EditeursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/ExemplairesLivresBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/ExemplairesLivresEnumBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/FactureBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/FactureDetailBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/FactureEnumBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/GenresBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/I18nBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/JoursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/LivresBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/LocalitesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/LoginBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/PaysBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/PenalitesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/PermissionsBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/ReinitialisationBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/RolesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/TarifsBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/TarifsJoursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/TarifsPenalitesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/UtilisateursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/UtilisateursEnumBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/objectCustom/JourCustom.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/objectCustom/PenaCustom.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/objectCustom/locationCustom.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pdfTools/Encadrement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblio.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblioPena.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/security/SecurityManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/IService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/Service.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcAdresses.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcAuteurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcBibliotheques.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcEditeurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcExemplairesLivres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcFacture.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcFactureDetail.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcGenres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcJours.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcLivres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcLivresAuteurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcLivresGenres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcLocalites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcPays.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcPenalites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcPermissionRoles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcPermissions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcRoles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcTarifs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcTarifsJours.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcTarifsPenalites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcUtilisateurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcUtilisateursAdresses.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validators/CheckMdpValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validators/CodeBarreCliValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validators/CodeBarreLivreValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validators/CodeBarreValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validators/DateValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validators/EmailValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validators/IsbnValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validators/NomPrenomValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validators/UtilisateurExistValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/Croix.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/activ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/adresse.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/auteurs.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/biblio.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/biblioLib.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/clients.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/coche.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/desactiv.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/edit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/editeurs.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/erreur-404.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/exemplaire.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/facturation.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/facture.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/genre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/inspections.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/inspectionsmini.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/livremini.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/livres.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/location.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/pdf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/permissions.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/personne.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/plus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/sensinterdit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Images/tarifs.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/META-INF/context.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/footer.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/header.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Template/template.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/beans.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/META-INF/persistence.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/connexion/EMF.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/connexion/EntityFinder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/connexion/EntityFinderImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/AdressConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/BiblioConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/DateConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/EditeurConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/LocaliteConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/RoleConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/converter/TimeStampConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Adresses.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Auteurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Bibliotheques.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Editeurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/ExemplairesLivres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Factures.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/FacturesDetail.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Genres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Jours.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Livres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/LivresAuteurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/LivresGenres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Localites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Pays.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Penalites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Permissions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/PermissionsRoles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Roles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Tarifs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/TarifsJours.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/TarifsPenalites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Utilisateurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/UtilisateursAdresses.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/UtilisateursBibliotheques.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/enumeration/ExemplairesLivresEtatEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/enumeration/FactureEtatEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/enumeration/UtilisateurSexeEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/AdressesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/AuteursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/BibliothequesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/EditeursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ExemplairesLivresBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ExemplairesLivresEnumBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureDetailBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureEnumBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/GenresBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/I18nBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/JoursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/LivresBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/LocalitesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/LoginBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/PaysBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/PenalitesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/PermissionsBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ReinitialisationBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/RolesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/TarifsBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/TarifsJoursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/TarifsPenalitesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/UtilisateursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/UtilisateursEnumBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/objectCustom/JourCustom.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/objectCustom/PenaCustom.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/objectCustom/locationCustom.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/Encadrement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblio.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblioPena.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/security/SecurityManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/IService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/Service.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcAdresses.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcAuteurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcBibliotheques.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcEditeurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcExemplairesLivres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcFacture.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcFactureDetail.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcGenres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcJours.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcLivres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcLivresAuteurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcLivresGenres.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcLocalites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcPays.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcPenalites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcPermissionRoles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcPermissions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcRoles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcTarifs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcTarifsJours.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcTarifsPenalites.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcUtilisateurs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcUtilisateursAdresses.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/CheckMdpValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/CodeBarreCliValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/CodeBarreLivreValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/CodeBarreValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/DateValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/EmailValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/IsbnValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/NomPrenomValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/UtilisateurExistValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/faces-config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/activation-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/commonj.sdo-2.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/commons-beanutils-1.9.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/commons-collections-3.2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/eclipselink-2.7.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/encoder-1.2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/excite-bike-1.0.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/fontbox-2.0.19.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.enterprise.cdi-api-2.0.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.faces-2.3.14.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.inject-api-1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.persistence-2.2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/javax.mail-1.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-annotations-api_1.3_spec-2.0.1.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-classfilewriter-1.2.4.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-el-api_3.0_spec-2.0.0.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-interceptors-api_1.2_spec-2.0.0.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/jboss-logging-3.2.1.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/log4j-1.2.17.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-8.0.24.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-2.0.19.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-debugger-2.0.19.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/pdfbox-tools-2.0.19.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/primefaces-10.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/protobuf-java-3.11.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-cache-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-config-core-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-config-ogdl-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-core-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-crypto-cipher-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-crypto-core-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-crypto-hash-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-event-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-faces-2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-lang-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-servlet-plugin-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/shiro-web-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.21.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/slf4j-log4j12-1.7.32.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-api-3.1.SP2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-core-impl-3.1.4.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-environment-common-3.1.4.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-jsf-3.1.4.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-probe-core-3.1.4.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-se-core-3.1.4.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-servlet-core-3.1.4.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-spi-3.1.SP2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/lib/weld-web-3.1.4.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/shiro.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/bienvenue.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/css/stylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/envoiInfo.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditAdress.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditAuteur.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditBibliotheque.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditEditeur.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditExemplaireLivre.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditGenre.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditLivre.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditTarif.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditUtilisateur.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEtatLivre.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEtatQuestion.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewAdress.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewAuteur.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewBibliotheque.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewEditeur.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewExemLivre.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewFact.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewGenre.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewLivre.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewRole.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewTarif.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewUtilisateur.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewUtilisateurCli.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formReinitialisation.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchAuteur.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchLivre.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSearchUtilisateur.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formSelectBiblio.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/livreDetail.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/login.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAdresses.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAuteurs.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableBibliotheques.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableEditeurs.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableExemplaireLivres.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableFactures.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableGenres.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableLivres.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tablePermissions.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableRoles.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableTarifs.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateurs.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateursCli.xhtml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -632,7 +216,7 @@
       <workItem from="1634235049400" duration="406000" />
       <workItem from="1634235480760" duration="176000" />
       <workItem from="1634235717184" duration="1000" />
-      <workItem from="1634247466155" duration="409000" />
+      <workItem from="1634247466155" duration="4217000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -690,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631791575126</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="v1.2.03 Mise a jour fonctionnelle">
+      <created>1634248080238</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1634248080238</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -717,6 +308,7 @@
     <MESSAGE value="v1.0.48 Mise en place du fichier de la biblliotheque ainsi que la selection de la bibliothèque au départ" />
     <MESSAGE value="v1.0.4- Correction général au niveau des logos pour les menus" />
     <MESSAGE value="v1.0.49 Correction général au niveau des logos pour les menus" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.0.49 Correction général au niveau des logos pour les menus" />
+    <MESSAGE value="v1.2.03 Mise a jour fonctionnelle" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2.03 Mise a jour fonctionnelle" />
   </component>
 </project>

@@ -31,7 +31,7 @@ public class ExemplairesLivresBean implements Serializable {
     private Bibliotheques bibli;
     private Livres livre;
     private String LastBarCode;
-    private final Bibliotheques bib = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
     private List<ExemplairesLivres> listCB;
 
 
@@ -81,7 +81,7 @@ public class ExemplairesLivresBean implements Serializable {
         try {
             for (int i = 0; i < nombreExemplaire; i++) {
 
-                exemplairesLivre.setBibliotheques(bib);
+                exemplairesLivre.setBibliotheques(bibliothequeActuelle);
                 exemplairesLivre.setEtat(ExemplairesLivresEtatEnum.Bon);
                 exemplairesLivre.setLivres(livre);
                 exemplairesLivre.setCodeBarre(generateBarCode());
@@ -160,7 +160,7 @@ public class ExemplairesLivresBean implements Serializable {
                 if(EL.isActif())
                 {
                     EL.setReserve(false);
-                    EL.setBibliotheques(bib);
+                    EL.setBibliotheques(bibliothequeActuelle);
                     serviceEL.save(EL);
                 }
             }
@@ -209,7 +209,7 @@ public class ExemplairesLivresBean implements Serializable {
                     fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'exemplaire num "+EL.getCodeBarre()+" est déjà réservé",null));
                     return "/tableLivres.xhtml?faces-redirect=true";
                 }
-                if(!EL.getBibliotheques().equals(bib))
+                if(!EL.getBibliotheques().equals(bibliothequeActuelle))
                 {
                     transaction.rollback();
                     FacesContext fc = FacesContext.getCurrentInstance();
@@ -253,7 +253,7 @@ public class ExemplairesLivresBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
-            exemplairesLivre.setBibliotheques(bib);
+            exemplairesLivre.setBibliotheques(bibliothequeActuelle);
             service.save(exemplairesLivre);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -329,7 +329,7 @@ public class ExemplairesLivresBean implements Serializable {
     }
 
     public Bibliotheques getBib() {
-        return bib;
+        return bibliothequeActuelle;
     }
 
     public List<ExemplairesLivres> getListCB() {

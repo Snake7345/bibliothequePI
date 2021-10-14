@@ -37,7 +37,7 @@ public class UtilisateursBean implements Serializable {
     private String numMembre;
     private Adresses adresses;
     private UtilisateursAdresses UA;
-    private final Bibliotheques bibliactuel = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
     private Bibliotheques bibli;
     private UtilisateursBibliotheques UB;
     private List<Bibliotheques> tabbibli = new ArrayList<>();
@@ -491,11 +491,15 @@ public class UtilisateursBean implements Serializable {
     public String searchUtilisateur() {
 
         SvcUtilisateurs service = new SvcUtilisateurs();
-
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
         if (service.getByName(utilisateur.getNom()).isEmpty()) {
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("utilRech", new FacesMessage("l'utilisateur n'a pas été trouvé"));
-            return null;
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'utilisateur n'a pas été trouvé",null));
+            return "/formSearchUtilisateur?faces-redirect=true";
         } else {
             searchResults = service.getByName(utilisateur.getNom());
         }
@@ -606,7 +610,7 @@ public class UtilisateursBean implements Serializable {
     public List<Utilisateurs> getReadAllUtilBib()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();
-        listUtilBib = service.findAllUtilisateursUtilBib(bibliactuel);
+        listUtilBib = service.findAllUtilisateursUtilBib(bibliothequeActuelle);
 
         service.close();
         return listUtilBib;
@@ -708,7 +712,7 @@ public class UtilisateursBean implements Serializable {
     }
 
     public Bibliotheques getBibliactuel() {
-        return bibliactuel;
+        return bibliothequeActuelle;
     }
 
     public Bibliotheques getBibli() {

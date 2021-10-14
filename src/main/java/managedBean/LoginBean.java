@@ -27,11 +27,8 @@ public class LoginBean implements Serializable {
     @PersistenceUnit  (unitName = "bibliotheque")
     private String login;
     private String mdp;
-    private final Bibliotheques bibliactuel = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
-
-
-
-    Utilisateurs utilisateurAuth = new Utilisateurs();
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private Utilisateurs utilisateurAuth = new Utilisateurs();
 
     //---------------------------------------------------------
     /*
@@ -49,7 +46,7 @@ public class LoginBean implements Serializable {
 
         try {
             List<Utilisateurs> results = service.findByLogin(login);
-            if(bibliactuel.isActif()) {
+            if(bibliothequeActuelle.isActif()) {
                 if (SecurityManager.processToLogin(login, mdp, false)) {
 
                     utilisateurAuth = results.get(0);
@@ -121,6 +118,6 @@ public class LoginBean implements Serializable {
     }
 
     public Bibliotheques getBibliactuel() {
-        return bibliactuel;
+        return bibliothequeActuelle;
     }
 }

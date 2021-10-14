@@ -44,7 +44,7 @@ public class FactureBean implements Serializable {
     private String CB;
     private boolean choixetat;
     private ExemplairesLivres exemplairesLivres;
-    private final Bibliotheques bibli = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
     @PostConstruct
     public void init(){
@@ -142,20 +142,20 @@ public class FactureBean implements Serializable {
         boolean flag = false;
         boolean flag2 = false;
 
-        if (serviceT.getTarifByBiblio(date, bibli.getNom()).size()==0){
+        if (serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).size()==0){
             flag=true;
         }else {
-            T = serviceT.getTarifByBiblio(date, bibli.getNom()).get(0);
+            T = serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).get(0);
         }
         //vérif si livre non loué
         for (locationCustom lc: listLC) {
             ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
-            if (el.isLoue() || !(el.getBibliotheques().getIdBibliotheques() == (bibli.getIdBibliotheques())))
+            if (el.isLoue() || !(el.getBibliotheques().getIdBibliotheques() == (bibliothequeActuelle.getIdBibliotheques())))
             {
                 flag=true;
 
             }
-            List<Reservation> reservations = serviceR.findAllActivbyLivre(bibli, el.getLivres());
+            List<Reservation> reservations = serviceR.findAllActivbyLivre(bibliothequeActuelle, el.getLivres());
 
             for (Reservation r : reservations)
             {
@@ -184,7 +184,7 @@ public class FactureBean implements Serializable {
             try {
 
                 //création de la facture
-                fact.setBibliotheques(bibli);
+                fact.setBibliotheques(bibliothequeActuelle);
                 fact.setDateDebut(timestampdebut);
                 fact.setNumeroFacture(createNumFact());
                 String path = "Factures\\" + fact.getNumeroFacture() + ".pdf";
@@ -199,7 +199,7 @@ public class FactureBean implements Serializable {
                     serviceEL.loueExemplaire(el);
                     if(el.isReserve()){
                         serviceEL.reservExemplaire(el);
-                        Reservation r= serviceR.findOneActiv(serviceR.createReservation(u,bibli,el.getLivres())).get(0);
+                        Reservation r= serviceR.findOneActiv(serviceR.createReservation(u,bibliothequeActuelle,el.getLivres())).get(0);
                         r.setActif(false);
                         serviceR.save(r);
                     }
@@ -218,7 +218,7 @@ public class FactureBean implements Serializable {
                 service.save(fact);
                 transaction.commit();
                 service.refreshEntity(fact);
-                MFB.creation(fact, bibli);
+                MFB.creation(fact, bibliothequeActuelle);
                 sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant votre location en piece jointe","Facture de location");
                 return "/tableFactures.xhtml?faces-redirect=true";
             } finally {
@@ -287,7 +287,7 @@ public class FactureBean implements Serializable {
         transaction.begin();
         try {
             //création de la facture
-            fact.setBibliotheques(bibli);
+            fact.setBibliotheques(bibliothequeActuelle);
             fact.setDateDebut(timestampfacture);
             fact.setNumeroFacture(createNumFact());
             String path = "Factures\\" + fact.getNumeroFacture() + ".pdf";
@@ -322,7 +322,7 @@ public class FactureBean implements Serializable {
             transaction.commit();
             //refresh pour récupérer les collections associÃ©es
             service.refreshEntity(fact);
-            MFB.creation(fact,tarifsPenalites,factdetretard, bibli);
+            MFB.creation(fact,tarifsPenalites,factdetretard, bibliothequeActuelle);
             sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant les pénalités suite a votre location en piece jointe","Facture de pénalité");
         }
         finally {
@@ -350,7 +350,7 @@ public class FactureBean implements Serializable {
         if (choixetat){
             Date date = new Date();
             SvcTarifs serviceT = new SvcTarifs();
-            tarifsPenalites= (List<TarifsPenalites>) serviceT.getTarifByBiblio(date, bibli.getNom()).get(0).getTarifsPenalites();
+            tarifsPenalites= (List<TarifsPenalites>) serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).get(0).getTarifsPenalites();
             return "/formEtatLivre.xhtml?faces-redirect=true";
         }
         else {
@@ -409,7 +409,7 @@ public class FactureBean implements Serializable {
                     {
                         exemplairesLivres.setActif(false);
                     }
-                    exemplairesLivres.setBibliotheques(bibli);
+                    exemplairesLivres.setBibliotheques(bibliothequeActuelle);
                     serviceEL.save(exemplairesLivres);
                     serviceFD.save(facturesDetail);
                     if (fact.getEtat()==FactureEtatEnum.terminer){
@@ -429,7 +429,7 @@ public class FactureBean implements Serializable {
                     service.close();
                     SvcReservations serviceR = new SvcReservations();
 
-                    if(serviceR.findAllActivbyLivre(bibli, exemplairesLivres.getLivres()).size()>0)
+                    if(serviceR.findAllActivbyLivre(bibliothequeActuelle, exemplairesLivres.getLivres()).size()>0)
                     {
                         reserve = true;
                     }
@@ -529,7 +529,7 @@ public class FactureBean implements Serializable {
     }
 
     public Bibliotheques getBibli() {
-        return bibli;
+        return bibliothequeActuelle;
     }
 
     public String getNumMembre() {

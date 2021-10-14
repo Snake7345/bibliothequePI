@@ -29,7 +29,7 @@ public class BibliothequesBean implements Serializable {
     private String nomBiblio;
 
     private int idBiblio;
-    private final Bibliotheques bibliactuel = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
     private Adresses adresses;
     private static final Logger log = Logger.getLogger(BibliothequesBean.class);
     private List<Bibliotheques> listBiblioActiv = new ArrayList<>();
@@ -361,7 +361,7 @@ public class BibliothequesBean implements Serializable {
                 for (ExemplairesLivres el : bibliotheque.getExemplairesLivres()) {
                     if(el.isActif())
                     {
-                        el.setBibliotheques(bibliactuel);
+                        el.setBibliotheques(bibliothequeActuelle);
                         serviceEL.save(el);
                     }
                 }
@@ -369,7 +369,7 @@ public class BibliothequesBean implements Serializable {
                 {
                     if(r.isActif())
                     {
-                        r.setBibliotheques(bibliactuel);
+                        r.setBibliotheques(bibliothequeActuelle);
                     }
                 }
             }
@@ -460,8 +460,8 @@ public class BibliothequesBean implements Serializable {
         this.userdir = userdir;
     }
 
-    public Bibliotheques getBibliactuel() {
-        return bibliactuel;
+    public Bibliotheques getBibli() {
+        return bibliothequeActuelle;
     }
 
     public String getNom() {

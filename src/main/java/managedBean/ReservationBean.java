@@ -34,7 +34,7 @@ public class ReservationBean implements Serializable
     private ExemplairesLivres exemplairesLivres;
     private static final Logger log = Logger.getLogger(ReservationBean.class);
     private String numMembre;
-    private final Bibliotheques bibliactuel = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
     @PostConstruct
     public void init()
@@ -49,7 +49,7 @@ public class ReservationBean implements Serializable
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
         SvcReservations serviceR = new SvcReservations();
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
-        Reservation reservation = serviceR.createReservation(u, bibliactuel, livre);
+        Reservation reservation = serviceR.createReservation(u, bibliothequeActuelle, livre);
         if(serviceR.findOneActiv(reservation).size() == 0) {
             EntityTransaction transaction = serviceR.getTransaction();
             transaction.begin();
@@ -120,9 +120,9 @@ public class ReservationBean implements Serializable
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         serviceEL.setEm(serviceR.getEm());
         List<Reservation> r= new ArrayList<>();
-        if(serviceR.findAllActivbyLivre(bibliactuel, exemplairesLivres.getLivres()).size()>0)
+        if(serviceR.findAllActivbyLivre(bibliothequeActuelle, exemplairesLivres.getLivres()).size()>0)
         {
-            r = serviceR.findAllActivbyLivre(bibliactuel, exemplairesLivres.getLivres());
+            r = serviceR.findAllActivbyLivre(bibliothequeActuelle, exemplairesLivres.getLivres());
         }
         else{
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -172,7 +172,7 @@ public class ReservationBean implements Serializable
     {
         SvcReservations service = new SvcReservations();
         List<Reservation> listReserv = new ArrayList<>();
-        listReserv = service.findAllActivbyLivre(bibliactuel, livre);
+        listReserv = service.findAllActivbyLivre(bibliothequeActuelle, livre);
 
         service.close();
         return listReserv;
@@ -216,10 +216,10 @@ public class ReservationBean implements Serializable
         return "/tableReservation.xhtml?faces-redirect=true";
     }
 
-    /*-----------------------------------*/
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Bibliotheques getBibliactuel() {
-        return bibliactuel;
+        return bibliothequeActuelle;
     }
 
     public String getNumMembre() {

@@ -29,7 +29,7 @@ public class TarifsBean implements Serializable {
 
     private List<PenaCustom> grillePena = new ArrayList<>();
     private List<JourCustom> grilleJour = new ArrayList<>();
-    private final Bibliotheques bib = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
     @PostConstruct
     public void init()
@@ -149,7 +149,7 @@ public class TarifsBean implements Serializable {
 
             transaction.begin();
             try {
-                tarif.setBibliotheques(bib);
+                tarif.setBibliotheques(bibliothequeActuelle);
                 tarif = service.save(tarif);
                 if(tarif.getIdTarifs()!=0){
                     for (TarifsJours tarifsJours:tarif.getTarifsJours())
@@ -301,6 +301,6 @@ public class TarifsBean implements Serializable {
     }
 
     public Bibliotheques getBib() {
-        return bib;
+        return bibliothequeActuelle;
     }
 }

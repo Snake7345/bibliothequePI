@@ -147,7 +147,7 @@ public class ReinitialisationBean implements Serializable {
         return "/login?faces-redirect=true";
     }
 
-    /*--------------------------------------------------------------------------------*/
+    //-------------------------------Getter & Setter--------------------------------------------
     public String getLogin() {
         return login;
     }

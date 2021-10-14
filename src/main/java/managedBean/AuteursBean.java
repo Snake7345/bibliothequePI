@@ -190,12 +190,16 @@ public class AuteursBean implements Serializable {
     {
 
         SvcAuteurs service = new SvcAuteurs();
-
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
             if(service.getByName(auteur.getNom()).isEmpty())
             {
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("autRech", new FacesMessage("l'auteur n'a pas été trouvé"));
-                return null;
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'auteur n'a pas été trouvé",null));
+                return "/formSearchAuteur.xhtml?faces-redirect=true";
             }
             else
             {

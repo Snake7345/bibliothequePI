@@ -35,7 +35,7 @@ public class LivresBean implements Serializable {
     private Genres gen;
     private List<Livres> listLiv = new ArrayList<Livres>();
     private List<Livres> searchResults;
-    private final Bibliotheques bibliactuel = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
 
 
@@ -322,7 +322,7 @@ public class LivresBean implements Serializable {
         {
             for (ExemplairesLivres el : liv.getExemplairesLivres())
             {
-                if (!el.isLoue() && (el.getBibliotheques().getIdBibliotheques() ==bibliactuel.getIdBibliotheques()) && el.isActif())
+                if (!el.isLoue() && (el.getBibliotheques().getIdBibliotheques() ==bibliothequeActuelle.getIdBibliotheques()) && el.isActif())
                 {
                     // Le livre est disponible
                     flag1 = true;
@@ -342,7 +342,7 @@ public class LivresBean implements Serializable {
         if(flag1)
         {
 
-            return "Images/vert2.png";
+            return "Images/vert3.png";
         }
         else if(flag2)
         {
@@ -350,11 +350,11 @@ public class LivresBean implements Serializable {
         }
         else if(flag3)
         {
-            return "Images/rouge2.png";
+            return "Images/rouge4.png";
         }
         else
         {
-            return "Images/noir4.png";
+            return "Images/noir2.png";
         }
     }
 
@@ -440,5 +440,7 @@ public class LivresBean implements Serializable {
         this.gen = gen;
     }
 
-
+    public Bibliotheques getBibliothequeActuelle() {
+        return bibliothequeActuelle;
+    }
 }
