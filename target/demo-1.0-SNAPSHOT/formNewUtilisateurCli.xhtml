@@ -86,6 +86,7 @@
         </shiro:lacksPermission>
         <p:dialog header="Nouvelle adresse" widgetVar="dlg1" minHeight="40">
             <p:ajax event="close" update="formAdresse" resetValues="true" />
+            <p:ajax event="open" update="formAdresse" resetValues="true" />
 
             <h:form id="formAdresse" prependId = "false">
                 <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">

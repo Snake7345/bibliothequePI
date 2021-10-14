@@ -259,6 +259,8 @@ public class UtilisateursBean implements Serializable {
         }
 
         init();
+        mdpNouveau="";
+        mdpNouveau2="";
         return "/tableUtilisateurs.xhtml?faces-redirect=true";
     }
     /*Cette méthode permet la création de l'objet utilisateur ainsi que la vérification si un utilisateur est similaire*/
@@ -532,6 +534,16 @@ public class UtilisateursBean implements Serializable {
         }
         return "/formNewUtilisateur?faces-redirect=true";
     }
+
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de recherche d'utilisateur
+    public String flushUtilSearch() {
+        init();
+        if (searchResults != null) {
+            searchResults.clear();
+        }
+        return "/formSearchUtilisateur?faces-redirect=true";
+    }
+
     /*
      * Méthode qui permet via le service de retourner la liste de tous les utilisateurs actifs
      */

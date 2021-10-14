@@ -105,7 +105,7 @@ public class EditeursBean implements Serializable {
     }
 
     /*
-     * Méthode qui permet via le service de retourner
+     * Méthode qui permet de retourner
      * la liste de tous les éditeurs
      */
     public List<Editeurs> getReadAll()

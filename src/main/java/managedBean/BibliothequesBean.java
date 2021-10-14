@@ -157,14 +157,14 @@ public class BibliothequesBean implements Serializable {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Reinitialisation du programme",null));
-
                 SecurityManager.processToLogout();
                 beforePageLoad();
             }
             else
             {
-                log.debug("Opération de suppression echouée");
-                /*TODO : ajouter une erreur 404 serait une bonne idée*/
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Reinitialisation du programme échouée",null));
             }
 
         }catch(Exception e){
@@ -220,7 +220,7 @@ public class BibliothequesBean implements Serializable {
 
 
     /*
-    * cette méthode va précharger la page de démarrage du programme en fonction si bibliotheque.txt existe ou non
+    * cette méthode va choisir la page de démarrage du programme en fonction si bibliotheque.txt existe ou non
      */
     public void beforePageLoad() throws IOException {
 
@@ -237,7 +237,7 @@ public class BibliothequesBean implements Serializable {
     }
 
     /*
-     * cette méthode va précharger la page de démarrage du programme en fonction si bibliotheque.txt existe ou non
+     * cette méthode va créer le fichier bibliotheque.txt si il n'existe pas en fonction de la bibliothèque selectionné dans le formulaire de démarrage de programme
      */
     public String createFichier()
     {
@@ -266,7 +266,7 @@ public class BibliothequesBean implements Serializable {
 
     }
     /*
-     * cette méthode va rechercher la bibliotheque en fonction de la bibliothèque selectionnée
+     * cette méthode va rechercher une bibliotheque en fonction de la bibliothèque selectionnée
      */
     public List<Bibliotheques> getFindBiblio()
     {
@@ -340,7 +340,7 @@ public class BibliothequesBean implements Serializable {
     }
 
     /*
-     * cette méthode va permettre de désactiver la bibliothèque mais également de transférer les exemplaires des livres dans la bibliothèque connecté
+     * cette méthode va permettre de désactiver la bibliothèque et de transférer les exemplaires des livres dans la bibliothèque connecté
      * et de nous renvoyer sur la table des bibliothèques
      */
     public String DesactivBiblioTransfert()

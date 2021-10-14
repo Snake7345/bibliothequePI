@@ -22,7 +22,6 @@
                     <p:inputText id="autRech" value="#{auteursBean.auteur.nom}" placeholder="Search" />
                 </span>
 			<p:commandButton value="#{I18N['application.button.find']}" action="#{auteursBean.searchAuteur}"/>
-			<h:message for="autRech" styleClass="errorMessage"/>
 				
 		<p:dataTable value="#{auteursBean.searchResults}" var="aut" id="tableSearchAuteurs" emptyMessage="Aucun enregistrement trouvé"
 								Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">

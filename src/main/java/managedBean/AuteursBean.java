@@ -163,7 +163,7 @@ public class AuteursBean implements Serializable {
 
     }
 
-    //Méthode qui permet de vider les variables et de revenir sur le table des Auteurs
+    //Méthode qui permet de vider les variables et de revenir sur la table des Auteurs
     public String flushAut()
     {
         init();
@@ -190,6 +190,7 @@ public class AuteursBean implements Serializable {
     {
 
         SvcAuteurs service = new SvcAuteurs();
+
             if(service.getByName(auteur.getNom()).isEmpty())
             {
                 FacesContext fc = FacesContext.getCurrentInstance();
@@ -234,9 +235,18 @@ public class AuteursBean implements Serializable {
         return listAut;
     }
 
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de recherche d'auteur
+    public String flushAutSearch() {
+        init();
+        if (searchResults != null) {
+            searchResults.clear();
+        }
+        return "/formSearchAuteur?faces-redirect=true";
+    }
+
 
     /*
-     * Méthode qui permet via le service de retourner
+     * Méthode qui permet de retourner
      * la liste de tous les auteurs actifs
      */
     public List<Auteurs> getReadActiv()
@@ -248,7 +258,7 @@ public class AuteursBean implements Serializable {
         return listAut;
     }
     /*
-     * Méthode qui permet via le service de retourner
+     * Méthode qui permet de retourner
      * la liste de tous les auteurs inactifs
      */
     public List<Auteurs> getReadInactiv()

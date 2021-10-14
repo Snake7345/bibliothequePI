@@ -131,7 +131,7 @@ public class AdressesBean implements Serializable {
 
 
     /*
-     * Méthode qui permet via le service de retourner
+     * Méthode qui permet de retourner
      * la liste de toutes les adresses
      */
     public List<Adresses> getReadAll()
@@ -145,8 +145,8 @@ public class AdressesBean implements Serializable {
     }
 
     /*
-     * Méthode qui permet via le service de retourner
-     * la liste de toutes les adresses qui n'est pas aloué a une bibliothèque
+     * Méthode qui permet de retourner
+     * la liste de toutes les adresses qui ne sont pas liées a une bibliothèque
      */
     public List<Adresses> getReadAllNotBibli()
     {
@@ -158,27 +158,14 @@ public class AdressesBean implements Serializable {
         return listAd;
     }
     /*
-     * Méthode qui permet via le service de retourner
-     * la liste de toutes les adresses qui n'est pas aloué ni a une bibliothèque ni à un utilisateur
+     * Méthode qui permet de retourner
+     * la liste de toutes les adresses qui ne sont pas liées ni a une bibliothèque ni à un utilisateur
      */
     public List<Adresses> getReadAllNotBibliNotUti()
     {
         SvcAdresses service = new SvcAdresses();
         List<Adresses> listAd = new ArrayList<Adresses>();
         listAd= service.getfindAllNotAdBibliNotUti();
-
-        service.close();
-        return listAd;
-    }
-
-    /*
-     * Méthode pas encore utilisé
-     */
-    public List<Adresses> getReadAllNotBibliNotUtiForModif()
-    {
-        SvcAdresses service = new SvcAdresses();
-        List<Adresses> listAd = new ArrayList<Adresses>();
-        listAd= service.getfindAllNotAdBibliNotUtiForMofif(bibliotheque);
 
         service.close();
         return listAd;

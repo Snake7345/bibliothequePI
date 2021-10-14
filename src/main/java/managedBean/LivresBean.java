@@ -179,19 +179,24 @@ public class LivresBean implements Serializable {
      */
     public String searchLivre()
     {
-
+        log.debug("titre recherché: " + livre.getTitre());
         SvcLivres service = new SvcLivres();
-
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
         if(service.getByTitre(livre.getTitre()).isEmpty())
         {
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("livRech", new FacesMessage("le livre n'a pas été trouvé"));
-            return null;
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"le livre n'a pas été trouvé",null));
+            return "/formSearchLivre.xhtml?faces-redirect=true";
         }
         else
         {
             searchResults = service.getByTitre(livre.getTitre());
         }
+
         return "/formSearchLivre.xhtml?faces-redirect=true";
     }
     //Méthode qui permet de vider les variables et de revenir sur le table des Livres
@@ -293,6 +298,15 @@ public class LivresBean implements Serializable {
 
         service.close();
         return "/tableLivres.xhtml?faces-redirect=true";
+    }
+
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de recherche de livres
+    public String flushLivSearch() {
+        init();
+        if (searchResults != null) {
+            searchResults.clear();
+        }
+        return "/formSearchLivre?faces-redirect=true";
     }
 
     /*

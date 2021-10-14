@@ -160,12 +160,12 @@
         <shiro:lacksPermission name="Utilisateurs:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
-        <!--TODO : evitez la faille de sécurité pour si l'utilisateur ferme la fenetre avec la croix-->
-        <p:dialog header="Formulaire de modification de mot de passe" widgetVar="dlg1" minHeight="40">
+        <p:dialog header="Formulaire de modification de mot de passe" widgetVar="dlg1" minHeight="40" >
             <p:ajax event="close" update="formModifMdp" resetValues="true" />
+            <p:ajax event="open" update="formModifMdp" resetValues="true" />
             <h:form id="formModifMdp" prependId = "false">
 
-                <p:panelGrid columns="2" StyleClass="formConfig">
+                <p:panelGrid id="pannel" columns="2" StyleClass="formConfig">
                     <h:outputText value="#{I18N['tooltip.utilisateur.changemdp']}" />
                     <p:password id="mdp" value="#{utilisateursBean.mdpNouveau}" update="msg"
                         validatorMessage="La valeur doit être comprise entre 8 et 40 caracteres"
@@ -189,7 +189,9 @@
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
                     <p:commandButton icon="fa fa-fw fa-check" style="float: right" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.modifMdp}"
-                                     onclick="PF('popup').hide();"/>
+                                     onclick="PF('popup').hide(); ">
+
+                    </p:commandButton>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
