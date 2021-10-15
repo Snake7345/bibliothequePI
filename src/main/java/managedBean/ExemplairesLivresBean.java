@@ -5,9 +5,11 @@ import entities.ExemplairesLivres;
 import entities.Livres;
 import enumeration.ExemplairesLivresEtatEnum;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import services.SvcBibliotheques;
 import services.SvcExemplairesLivres;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -15,6 +17,7 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Named
@@ -28,10 +31,15 @@ public class ExemplairesLivresBean implements Serializable {
     private Bibliotheques bibli;
     private Livres livre;
     private String LastBarCode;
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private List<ExemplairesLivres> listCB;
 
 
+    @PostConstruct
     public void init()
     {
+        listCB = new ArrayList<>();
+        addNewListRow();
         exemplairesLivre = new ExemplairesLivres();
         SvcExemplairesLivres service = new SvcExemplairesLivres();
         SvcBibliotheques serviceB = new SvcBibliotheques();
@@ -44,6 +52,25 @@ public class ExemplairesLivresBean implements Serializable {
         service.close();
         serviceB.close();
     }
+    /*Cette méthode permet d'ajouter une nouvelle ligne dans un formulaire concernant le code barre du livre*/
+    public void addNewListRow() {
+        listCB.add(new ExemplairesLivres());
+    }
+    /*Cette méthode permet de supprimer une ligne dans un formulaire concernant le code barre du livre*/
+    public void delListRow() {
+        if (listCB.size() >1)
+        {
+            listCB.remove(listCB.size()-1);
+        }
+    }
+    /*
+     * Méthode qui permet de vider les variables et de revenir sur la table des livres
+     */
+    public String flush()
+    {
+        init();
+        return "/tableLivres.xhtml?faces-redirect=true";
+    }
 
     // Méthode qui permet d'ajouter autant d'exemplaire livre que demande l'utilisateur
     public String addExemplaireLivre(){
@@ -54,7 +81,7 @@ public class ExemplairesLivresBean implements Serializable {
         try {
             for (int i = 0; i < nombreExemplaire; i++) {
 
-                exemplairesLivre.setBibliotheques(bibli);
+                exemplairesLivre.setBibliotheques(bibliothequeActuelle);
                 exemplairesLivre.setEtat(ExemplairesLivresEtatEnum.Bon);
                 exemplairesLivre.setLivres(livre);
                 exemplairesLivre.setCodeBarre(generateBarCode());
@@ -81,7 +108,7 @@ public class ExemplairesLivresBean implements Serializable {
         return "/tableExemplaireLivres.xhtml?faces-redirect=true";
     }
 
-    // Méthode qui désactive le livre, si jamais son état est "mauvais" et renvoi vers tableExemplaireLivres
+    // Méthode qui désactive le livre, si jamais son état est "mauvais" et renvoi vers la table des exemplaires de livres.
     public String editExemplaireLivre()
     {
         if (exemplairesLivre.getEtat()==ExemplairesLivresEtatEnum.Mauvais)
@@ -107,14 +134,126 @@ public class ExemplairesLivresBean implements Serializable {
             return LastBarCode;
         }
     }
+    // Méthode qui permet via le service de confirmer la réception d'un livre via le code barre de ce livre SAUF si l'exemplaire est
+    // déjà loué ou n'est pas reservé un message s'affiche
+    public String reception()
+    {
+        boolean flag = false;
+        List<ExemplairesLivres> listEL= new ArrayList<>();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        EntityTransaction transaction = serviceEL.getTransaction();
+        transaction.begin();
+        try {
+            for(ExemplairesLivres CB:listCB)
+            {
+                listEL.add(serviceEL.findOneByCodeBarre(CB.getCodeBarre()).get(0));
+            }
+            for(ExemplairesLivres EL : listEL){
+                if(!EL.isReserve() || EL.isLoue())
+                {
+                    transaction.rollback();
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'exemplaire num "+EL.getCodeBarre()+" n'est pas en transfert",null));
+                    return "/tableLivres.xhtml?faces-redirect=true";
+                }
+                if(EL.isActif())
+                {
+                    EL.setReserve(false);
+                    EL.setBibliotheques(bibliothequeActuelle);
+                    serviceEL.save(EL);
+                }
+            }
 
-    // Méthode qui permet de sauvegarder un exemplaire livre en DB
+
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+        }
+        catch (NullPointerException npe){
+            npe.printStackTrace();
+        }
+        finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation a échoué",null));
+            }
+            init();
+            serviceEL.close();
+        }
+        return "/tableLivres.xhtml?faces-redirect=true";
+    }
+    // Méthode qui permet via le service de transférer un livre via le code barre de cet exemplaire livre SAUF si l'exemplaire est
+    // déjà reservé ou n'est pas dans la bibliothèque actuellement connecté
+    public String transfer()
+    {
+        boolean flag = false;
+        List<ExemplairesLivres> listEL= new ArrayList<>();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        EntityTransaction transaction = serviceEL.getTransaction();
+        transaction.begin();
+        try {
+            for(ExemplairesLivres CB:listCB)
+            {
+               listEL.add(serviceEL.findOneByCodeBarre(CB.getCodeBarre()).get(0));
+            }
+            for(ExemplairesLivres EL : listEL){
+                if(EL.isReserve())
+                {
+                    transaction.rollback();
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'exemplaire num "+EL.getCodeBarre()+" est déjà réservé",null));
+                    return "/tableLivres.xhtml?faces-redirect=true";
+                }
+                if(!EL.getBibliotheques().equals(bibliothequeActuelle))
+                {
+                    transaction.rollback();
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'exemplaire num "+EL.getCodeBarre()+" n'est pas censé être dans votre bibliotheque",null));
+                    return "/tableLivres.xhtml?faces-redirect=true";
+                }
+                if(EL.isActif())
+                {
+                    EL.setReserve(true);
+                    serviceEL.save(EL);
+                }
+            }
+
+
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+        }
+        catch (Error e){
+            e.printStackTrace();
+        }
+        finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation a échoué",null));
+            }
+            init();
+            serviceEL.close();
+        }
+        return "/tableLivres.xhtml?faces-redirect=true";
+    }
+
+    // Méthode qui permet de sauvegarder un exemplaire livre en DB dans la bibliothèque auquel le programme est connecté
     public void save()
     {
         SvcExemplairesLivres service = new SvcExemplairesLivres();
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
+            exemplairesLivre.setBibliotheques(bibliothequeActuelle);
             service.save(exemplairesLivre);
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -187,5 +326,17 @@ public class ExemplairesLivresBean implements Serializable {
 
     public void setBibli(Bibliotheques bibli) {
         this.bibli = bibli;
+    }
+
+    public Bibliotheques getBib() {
+        return bibliothequeActuelle;
+    }
+
+    public List<ExemplairesLivres> getListCB() {
+        return listCB;
+    }
+
+    public void setListCB(List<ExemplairesLivres> listCB) {
+        this.listCB = listCB;
     }
 }

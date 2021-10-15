@@ -30,6 +30,7 @@ public class ExemplairesLivres implements Serializable {
     private boolean actif = true;
     private String commentaireEtat="Neuf";
     private boolean loue=false;
+    private boolean reserve=false;
     @OneToMany(mappedBy = "exemplairesLivre")
     private Collection<FacturesDetail> facturesDetails;
 
@@ -96,6 +97,16 @@ public class ExemplairesLivres implements Serializable {
         this.loue = loue;
     }
 
+    @Basic
+    @Column(name = "Reserve", nullable = false)
+    public boolean isReserve() {
+        return reserve;
+    }
+
+    public void setReserve(boolean reserve) {
+        this.reserve = reserve;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,6 +114,7 @@ public class ExemplairesLivres implements Serializable {
         ExemplairesLivres that = (ExemplairesLivres) o;
         return idExemplairesLivres == that.idExemplairesLivres &&
                 actif == that.actif &&
+                reserve == that.reserve &&
                 loue == that.loue &&
                 Objects.equals(codeBarre, that.codeBarre) &&
                 Objects.equals(commentaireEtat, that.commentaireEtat);
@@ -110,7 +122,7 @@ public class ExemplairesLivres implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idExemplairesLivres, codeBarre, actif, etat, commentaireEtat, loue);
+        return Objects.hash(idExemplairesLivres, codeBarre, actif, reserve, etat, commentaireEtat, loue);
     }
 
     @ManyToOne

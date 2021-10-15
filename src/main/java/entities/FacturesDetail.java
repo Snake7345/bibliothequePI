@@ -108,12 +108,11 @@ public class FacturesDetail implements Serializable {
                 Objects.equals(dateFin, that.dateFin) &&
                 Objects.equals(dateRetour, that.dateRetour) &&
                 Objects.equals(etatRendu, that.etatRendu) &&
-                Objects.equals(factures, that.factures) &&
                 Objects.equals(exemplairesLivre, that.exemplairesLivre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idFactureDetail, dateFin, dateRetour, etatRendu, prix, factures, exemplairesLivre);
+        return Objects.hash(idFactureDetail, dateFin, dateRetour, etatRendu, prix, exemplairesLivre);
     }
 }

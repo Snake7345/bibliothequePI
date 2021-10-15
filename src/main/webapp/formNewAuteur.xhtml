@@ -18,9 +18,9 @@
                 <title>#{I18N['auteur.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['auteur.form.nouveau.titre']}</h2>
-            <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
-                <p:outputLabel value = "#{I18N['auteur.label.Nom']}"/>
+                <p:outputLabel value = "#{I18N['auteur.label.Nom']}" indicateRequired="true"/>
                 <p:inputText id="auteurNom"
                              value="#{auteursBean.auteur.nom}"
                              required="true"
@@ -28,10 +28,11 @@
                              maxlength="100"
                              validator="nomPrenomValidator">
                     <f:validateLength minimum="2" maximum="100"/>
+                    <p:tooltip for="auteurNom" value="#{I18N['tooltip.auteur.nom']}" position="right"/>
                 </p:inputText>
-                <!--<h:message for="auteurNom" styleClass="errorMessage"/>-->
 
-                <p:outputLabel value = "#{I18N['auteur.label.Prenom']}"/>
+
+                <p:outputLabel value = "#{I18N['auteur.label.Prenom']}" indicateRequired="true"/>
                 <p:inputText id="auteurPrenom"
                              value="#{auteursBean.auteur.prenom}"
                              required="true"
@@ -39,14 +40,14 @@
                              maxlength="100"
                              validator = "nomPrenomValidator">
                     <f:validateLength minimum="2" maximum="100"/>
+                    <p:tooltip for="auteurPrenom" value="#{I18N['tooltip.auteur.prenom']}" position="right"/>
                 </p:inputText>
-                <!--<h:message for="auteurPrenom" styleClass="errorMessage"/>-->
 
-
+                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>
+                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{auteursBean.newAuteur}" ajax="false"/>
             </p:panelGrid>
 
-            <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{auteursBean.newAuteur}"/>
-            <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>
+
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Auteurs:Creer">

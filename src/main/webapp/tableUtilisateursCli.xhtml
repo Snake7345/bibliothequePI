@@ -16,7 +16,7 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.utilisateurCli.title']}</h2>
-                    <p:dataTable value="#{utilisateursBean.listCli}" var="ut" id="tableUtilisateurs"
+                    <p:dataTable value="#{utilisateursBean.listCli}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateurs"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column>
                             <!-- column header -->
@@ -59,37 +59,30 @@
                             <f:facet name="header">#{I18N['adresse.label.complete']}</f:facet>
                             <!-- row record -->
                             <ui:repeat value="#{ut.utilisateursAdresses}" var="utad">
-
                                 <p:outputLabel rendered="#{utad.actif}" value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
-
                             </ui:repeat>
                         </p:column>
                         <shiro:hasPermission name="Client:Modification">
                             <p:column>
-                                <p:commandButton  icon="pi pi-pencil" value="Modifier" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
+                                <p:commandButton  icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">		<!-- u minuscule -->
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" /><!-- u minuscule -->
                                 </p:commandButton>
                             </p:column>
                         </shiro:hasPermission>
+                        <shiro:hasPermission name="Client:ActivDesactiv">
                             <p:column>
-                                <p:commandButton icon="pi pi-power-off" value ="Desactiver" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
+                                <p:commandButton icon="fa fa-fw fa-power-off" value ="Desactiver" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                 </p:commandButton>
-                                    <p:commandButton icon="pi pi-check" value ="Activer" rendered="#{!ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
+                                    <p:commandButton icon="fa fa-fw fa-power-off" value ="Activer" rendered="#{!ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>
                             </p:column>
+                        </shiro:hasPermission>
                     </p:dataTable>
                 </p:panel>
-                <shiro:hasPermission name="Client:Creer">
-                    <p:commandButton icon="pi pi-plus" value="#{I18N['application.button.new']}" action="formNewUtilisateurCli" />
-                </shiro:hasPermission>
-                <p:commandButton icon="pi pi-search" value="#{I18N['application.button.find']}" action="formSearchUtilisateur"/>
-                <p:commandButton icon="pi pi-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}"/>
-                <p:commandButton icon="pi pi-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}"/>
-                <shiro:hasPermission name="Autre:Connexion">
-                    <p:commandButton icon="pi pi-home" value="#{I18N['application.button.returnbienvenue']}" action="#{utilisateursBean.flushBienv}"/>
-                </shiro:hasPermission>
+                <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}" ajax="false"/>
+                <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}" ajax="false"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Client:Lire">

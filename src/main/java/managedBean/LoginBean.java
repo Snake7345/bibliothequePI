@@ -1,5 +1,6 @@
 package managedBean;
 
+import entities.Bibliotheques;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -26,49 +27,43 @@ public class LoginBean implements Serializable {
     @PersistenceUnit  (unitName = "bibliotheque")
     private String login;
     private String mdp;
-
-
-
-    Utilisateurs utilisateurAuth = new Utilisateurs();
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+    private Utilisateurs utilisateurAuth = new Utilisateurs();
 
     //---------------------------------------------------------
     /*
      * Méthode qui permet l'authentification de l'utilisateur,
-     * on vérifie que l'utilisateur existe dans la base de données, mais également qu'il a la permission de se connecter
+     * on vérifie que l'utilisateur existe dans la base de données, et on lui attribue des variables de session comme le role par exemple.
      *
      *
      * */
     public void auth()
     {
 
-        log.debug("---------------------------------debut--------------------------");
         FacesMessage m = new FacesMessage("Login ou/et mot de passe incorrect");
         SvcUtilisateurs service= new SvcUtilisateurs();
         RolesBean RB = new RolesBean();
 
         try {
-            log.debug(login + " + " + mdp);
-            log.debug("1");
             List<Utilisateurs> results = service.findByLogin(login);
-            log.debug("2");
-            if (SecurityManager.processToLogin(login, mdp, false)){
+            if(bibliothequeActuelle.isActif()) {
+                if (SecurityManager.processToLogin(login, mdp, false)) {
 
-                log.debug("OKAY");
-                utilisateurAuth = results.get(0);
-                log.debug(utilisateurAuth.getIdUtilisateurs());
-                SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
-                SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
-                FacesContext.getCurrentInstance().getExternalContext().redirect("bienvenue.xhtml");
+                    utilisateurAuth = results.get(0);
+                    SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
+                    SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("bienvenue.xhtml");
 
+                }
             }
-
-            //TODO : Faire comprendre a Shiro qu'il doit intégrer cette permission
-            /*else if(!RB.checkPermission(48,results.get(0).getRoles().getIdRoles())){
-                m = new FacesMessage("Connexion refuse: utilisateur non autorise");
-                FacesContext.getCurrentInstance().addMessage(null, m);
-
-            }*/
+            else
+            {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"la bibliotheque n'est pas active",null));
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            }
 
 
         } catch (IOException e) {
@@ -79,14 +74,22 @@ public class LoginBean implements Serializable {
     }
 
     /*Cette méthode permet la deconnexion de l'utilisateur*/
-    public String deconnexion() throws IOException {
-        log.debug("test deco " + utilisateurAuth.getNom());
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+    public String deconnexion(){
         utilisateurAuth = new Utilisateurs();
-        log.debug("test deco2 " + utilisateurAuth.getNom());
-        return "login";
+        if(SecurityManager.processToLogout())
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Votre session est bien déconnectée",null));
+            return "/index.xhtml?faces-redirect=true";
+        }
+        else
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Une erreur s'est produite",null));
+            return "/index.xhtml?faces-redirect=true";
+        }
     }
 
     //-------------------------Getter & Setter--------------------------------------------------------------------------------
@@ -112,5 +115,9 @@ public class LoginBean implements Serializable {
 
     public void setMdp(String mdp) {
         this.mdp = mdp;
+    }
+
+    public Bibliotheques getBibliactuel() {
+        return bibliothequeActuelle;
     }
 }

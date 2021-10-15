@@ -33,10 +33,11 @@ public class SvcPermissions extends Service<Permissions> implements Serializable
 		return permissions;
 	}
 
-	public List<Permissions> findOnePermission(String perm)
+	public List<Permissions> findOnePermission(Permissions perm)
 	{
 		Map<String, Object> param = new HashMap<>();
-		param.put("denomination", perm);
+		param.put("type", perm.getType());
+		param.put("action", perm.getAction());
 		return finder.findByNamedQuery("Permissions.findOne",param);
 	}
 

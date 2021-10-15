@@ -35,13 +35,14 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>login.xhtml</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
 
     <context-param>
-    <param-name>primefaces.THEME</param-name>
-    <param-value>excite-bike</param-value>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>true</param-value>
     </context-param>
+
 
 
 </web-app>

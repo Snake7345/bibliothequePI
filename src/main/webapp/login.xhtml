@@ -11,11 +11,9 @@
     <ui:define name="title">#{I18N['application.loginpage.titre']}</ui:define>
 
     <ui:define name="header">
-        <p:panel id="header">
-            <p:panelGrid class="table-entete" columns="2">
+        <p:panel id="header2" class="table-entete">
                 <!--Pourquoi le p:graphicimage ne fonctionne pas-->
                 <p:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
-            </p:panelGrid>
         </p:panel>
     </ui:define>
     <!--TODO : Changer le niveau des messages d'erreurs (info, warning, erreur)-->
@@ -24,15 +22,17 @@
             <h:form prependId="false">
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <p:panelGrid columns="2" style="margin: 0 auto">
-                    <p:outputLabel for="utilisateurLogin" value="#{I18N['utilisateur.label.Login']}"/>
-                    <p:inputText id="utilisateurLogin" 	value="#{loginBean.login}"
+                    <p:outputLabel for="utilisateurLogin" value="#{I18N['utilisateur.label.Login']}" indicateRequired="true"/>
+                    <p:inputText id="utilisateurLogin"
+                                 value="#{loginBean.login}"
+                                 indicateRequired="true"
                                  required="true"
                                  validatorMessage="La longueur ne peut être inférieur à 4 caracteres"
                                  requiredMessage="#{I18N['utilisateur.login.validation']}"
                                  maxlength="80">
                         <f:validateLength minimum ="4" maximum = "80" />
                     </p:inputText>
-                    <p:outputLabel value="#{I18N['utilisateur.label.Mdp']}"/>
+                    <p:outputLabel value="#{I18N['utilisateur.label.Mdp']}" indicateRequired="true"/>
                     <p:password id="password" value="#{loginBean.mdp}"
                                    toggleMask="true"
                                    redisplay="true"
@@ -42,8 +42,8 @@
                                    maxlength="40">
                         <f:validateLength minimum = "8" maximum = "40" />
                     </p:password>
-                    <p:commandButton icon="pi pi-sign-in" value ="#{I18N['application.button.login']}" action="#{loginBean.auth}" update="growl" ajax="false"/>
-                    <p:commandButton icon="pi pi-lock-open" value ="#{I18N['application.button.MdpOublie']}" action="formReinitialisation.xhtml" immediate="true" update="growl" ajax="false"/>
+                    <p:commandButton style="float:left;" icon="fa fa-fw fa-unlock" value ="#{I18N['application.button.MdpOublie']}" action="formReinitialisation?faces-redirect=true" immediate="true" update="growl" ajax="false"/>
+                    <p:commandButton style="float:right;" icon="fa fa-fw fa-sign-in" value ="#{I18N['application.button.login']}" action="#{loginBean.auth}" update="growl" ajax="false"/>
                 </p:panelGrid>
 
             </h:form>

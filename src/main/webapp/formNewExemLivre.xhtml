@@ -19,19 +19,12 @@
                     <title>#{I18N['exempl.form.nouveau.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['exempl.form.nouveau.titre']}</h2>
-                <p:panelGrid id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
-
-                    <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}" />
-                    <p:selectOneMenu value = "#{exemplairesLivresBean.bibli}" id="bibli" required="true" requiredMessage="#{I18N['formulaire.message.required.nom']}"
-                                     converter="biblioConverter">
-                        <f:selectItems value = "#{bibliothequesBean.readAll}" var="bi"
-                                       itemLabel="#{bi.nom}"
-                                       itemValue="#{bi}"/>
-                    </p:selectOneMenu>
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                    
                     <!--<h:message for="bibli" styleClass="errorMessage"/>-->
 
-                    <p:outputLabel value = "#{I18N['application.question.exemplaire']}"/>
-                    <p:inputText id="nbrExemp"
+                    <p:outputLabel value = "#{I18N['application.question.exemplaire']}" indicateRequired="true"/>
+                    <p:spinner id="nbrExemp"
                                  validatorMessage="La valeur va de 0 a 9999"
                                  value="#{exemplairesLivresBean.nombreExemplaire}"
                                  required="true"
@@ -39,14 +32,11 @@
                                  maxlength="4">
                         <f:validateLongRange minimum="0"/>
                         <f:validateLength minimum="0" maximum="4"/>
-                    </p:inputText>
-                    <!--<h:message for="nbrExemp" styleClass="errorMessage"/>-->
-
-
+                    </p:spinner>
+                    <p:tooltip for="nbrExemp" value="#{I18N['tooltip.exempl.nbrCB']}" position="right"/>
+                    <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="tableLivres" immediate="true"/>
+                    <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.addExemplaireLivre}" ajax="false"/>
                 </p:panelGrid>
-
-                <p:commandButton icon="pi pi-check-circle" value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.addExemplaireLivre}"/>
-                <p:commandButton icon="pi pi-home" value="#{I18N['application.button.return']}" action="tableLivres" immediate="true"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Exemplaires:Creer">

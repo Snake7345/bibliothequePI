@@ -5,6 +5,7 @@ import entities.ExemplairesLivres;
 import entities.Livres;
 import entities.LivresAuteurs;
 import org.apache.log4j.Logger;
+import org.primefaces.event.UnselectEvent;
 import services.SvcAuteurs;
 import services.SvcExemplairesLivres;
 import services.SvcLivres;
@@ -37,7 +38,7 @@ public class AuteursBean implements Serializable {
         auteur = new Auteurs();
     }
 
-    // Méthode qui permet l'appel de save() qui créée un nouvel auteur et envoi un message si jamais l'auteur se trouve déjà en base de donnée
+    // Méthode qui permet l'appel de save() qui créé un nouvel auteur et envoi un message si jamais l'auteur se trouve déjà en base de donnée
     // La méthode met également une majuscule pour la première lettre du nom et du prénom de l'auteur et nous renvoi sur la table des auteurs
     public String newAuteur()
     {
@@ -55,6 +56,18 @@ public class AuteursBean implements Serializable {
             init();
         }
         return "/tableAuteurs.xhtml?faces-redirect=true";
+    }
+    /*
+    * Méthode qui permet de travailler sur le selectCheckboxMenu et de voir les éléments qui ne sont pas selectionné
+    * */
+    public void onItemUnselect(UnselectEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        FacesMessage msg = new FacesMessage();
+        msg.setSummary("Item unselected: " + event.getObject().toString());
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+
+        context.addMessage(null, msg);
     }
 
     // Méthode qui permet la sauvegarde de l'auteur dans la base de donnée
@@ -84,7 +97,9 @@ public class AuteursBean implements Serializable {
         }
     }
 
-    /*Méthode qui permet de désactiver un auteur ainsi que ces livres et exemplaires livres, d'activer un auteur et nous renvoi sur la table des auteurs*/
+    /*Méthode qui permet de désactiver un auteur ainsi que ces livres et exemplaires livres.
+     * Cette méthode permet également d'activer un auteur et ces livres, il nous renvoi sur la table des auteurs
+     * */
     public String activdesactivAut()
     {
         SvcAuteurs service = new SvcAuteurs();
@@ -148,7 +163,7 @@ public class AuteursBean implements Serializable {
 
     }
 
-    //Méthode qui permet de vider les variables et de revenir sur le table des Auteurs
+    //Méthode qui permet de vider les variables et de revenir sur la table des Auteurs
     public String flushAut()
     {
         init();
@@ -158,38 +173,41 @@ public class AuteursBean implements Serializable {
         }
         return "/tableAuteurs?faces-redirect=true";
     }
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de création d'un auteur
+    public String flushAutNew()
+    {
+        init();
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
+        return "/formNewAuteur?faces-redirect=true";
+    }
 
-    // Méthode qui permet en fonction de la donnée de l'utilisateur de rechercher un nom parmi les auteurs et nous renvoi le resultat sur le formulaire de recherche des auteurs
+    // Méthode qui permet en fonction de la donnée que l'utilisateur encode, de rechercher
+    // un nom parmi les auteurs et nous renvoi le resultat sur le formulaire de recherche des auteurs
     public String searchAuteur()
     {
 
         SvcAuteurs service = new SvcAuteurs();
-        //try
-        //{
-
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
             if(service.getByName(auteur.getNom()).isEmpty())
             {
                 FacesContext fc = FacesContext.getCurrentInstance();
-                fc.addMessage("autRech", new FacesMessage("l'auteur n'a pas été trouvé"));
-                return null;
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'auteur n'a pas été trouvé",null));
+                return "/formSearchAuteur.xhtml?faces-redirect=true";
             }
             else
             {
                 searchResults = service.getByName(auteur.getNom());
             }
 
-        //}
-        //catch
-        //{
-
-        //}
         return "/formSearchAuteur?faces-redirect=true";
     }
-
-    //public void edit()
-    //{
-
-    //}
 
     /*
      * Méthode qui permet de vérifier si un auteur existe ou non en DB
@@ -221,16 +239,18 @@ public class AuteursBean implements Serializable {
         return listAut;
     }
 
-    /*
-     * Méthode qui permet de vider les variables et de les mettres a leur valeur initiale avant de revenir sur la page web Bienvenue .
-     * */
-    public String flushBienv()
-    {
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de recherche d'auteur
+    public String flushAutSearch() {
         init();
-        return "/bienvenue?faces-redirect=true";
+        if (searchResults != null) {
+            searchResults.clear();
+        }
+        return "/formSearchAuteur?faces-redirect=true";
     }
+
+
     /*
-     * Méthode qui permet via le service de retourner
+     * Méthode qui permet de retourner
      * la liste de tous les auteurs actifs
      */
     public List<Auteurs> getReadActiv()
@@ -242,7 +262,7 @@ public class AuteursBean implements Serializable {
         return listAut;
     }
     /*
-     * Méthode qui permet via le service de retourner
+     * Méthode qui permet de retourner
      * la liste de tous les auteurs inactifs
      */
     public List<Auteurs> getReadInactiv()

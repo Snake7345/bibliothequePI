@@ -5,141 +5,151 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f = "http://java.sun.com/jsf/core"
 	  xmlns:shiro="http://shiro.apache.org/tags">
 
 <ui:composition>
 	<div id="header">
 	<ui:insert name="header">
 
-		<p:panelGrid columns="1">
+		<p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="header2" class="table-entete" columns="2">
 			<p:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
-			<h:form>
-				<p:commandButton icon="pi pi-sign-out" value="#{I18N['application.button.deconnexion']}" action="#{loginBean.deconnexion}"
-								 class="lienMenu"/>
-			</h:form>
+			<p:outputLabel id="titrebib" value="Bienvenue sur la bibliothèque #{bibliothequesBean.listBibactuel.get(0).nom} " />
 
 		</p:panelGrid>
 		<shiro:authenticated>
-		<p:panelGrid columns="5">
-			<h:form>
-		<p:menubar>
-			<shiro:hasPermission name="Permissions:Lire">
-			<p:submenu label="Gestion des permissions" icon="pi pi-fw pi-file">
-				<shiro:hasPermission name="Permissions:Lire">
-				<p:menuitem value="Table des permissions" icon="pi pi-fw pi-external-link" action="tablePermissions.xhtml"/>
-				</shiro:hasPermission>
-				<shiro:hasPermission name="Permissions:Creer">
-				<p:menuitem value="Nouvelle permission" icon="pi pi-fw pi-plus" action="formNewPermission"/>
-				</shiro:hasPermission>
-			</p:submenu>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="Tarifs:Lire">
-			<p:submenu label="Gestion des tarifs" icon="pi pi-fw pi-file">
-				<shiro:hasPermission name="Tarifs:Lire">
-				<p:menuitem value="Voir les tarifs" icon="pi pi-fw pi-external-link" action="tableTarifs.xhtml"/>
-				</shiro:hasPermission>
-				<shiro:hasPermission name="Tarifs:Creer">
-				<p:menuitem value="Nouvelle grille tarifaire" icon="pi pi-fw pi-plus" action="formNewTarif"/>
-				</shiro:hasPermission>
-			</p:submenu>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="Roles:Lire">
-			<p:submenu label="Gestion des rôles" icon="pi pi-fw pi-file">
-				<shiro:hasPermission name="Roles:Lire">
-				<p:menuitem value="Tables des rôles" icon="pi pi-fw pi-external-link" action="tableRoles.xhtml"/>
-				</shiro:hasPermission>
-				<shiro:hasPermission name="Roles:Creer">
-				<p:menuitem value="Nouveau rôle" icon="pi pi-fw pi-plus" action="formNewRole"/>
-				</shiro:hasPermission>
-			</p:submenu>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="Client:Lire">
-			<p:submenu label="Gestion des personnes" icon="pi pi-fw pi-file">
-				<p:submenu label="Voir les" icon="pi pi-fw pi-external-link">
-					<shiro:hasPermission name="Client:Lire">
-					<p:menuitem value="Clients" action="tableUtilisateursCli.xhtml"/>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="Utilisateurs:Lire">
-					<p:menuitem value="Utilisateurs" action="tableUtilisateurs.xhtml"/>
-					</shiro:hasPermission>
-				</p:submenu>
-				<p:submenu label="Ajouter" icon="pi pi-fw pi-plus">
-					<shiro:hasPermission name="Client:Creer">
-					<p:menuitem value="Client" action="formNewUtilisateurCli"/>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="Utilisateurs:Creer">
-					<p:menuitem value="Utilisateur" action="formNewUtilisateur"/>
-					</shiro:hasPermission>
-				</p:submenu>
-			</p:submenu>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="Genres:Lire">
-			<p:submenu label="Gestion bibliothèque" icon="pi pi-fw pi-file">
-				<p:submenu label="Voir les" icon="pi pi-fw pi-external-link">
-					<shiro:hasPermission name="Bibliotheques:Lire">
-					<p:menuitem value="Bibliothèques" action="tableBibliotheques.xhtml"/>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="Livres:Lire">
-					<p:menuitem value="Livres" action="tableLivres.xhtml"/>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="Genres:Lire">
-					<p:menuitem value="Genres" action="tableGenres.xhtml"/>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="Editeurs:Lire">
-					<p:menuitem value="Editeurs" action="tableEditeurs.xhtml"/>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="Auteurs:Lire">
-					<p:menuitem value="Auteurs" action="tableAuteurs.xhtml"/>
-					</shiro:hasPermission>
-				</p:submenu>
-				<p:submenu label="Ajouter" icon="pi pi-fw pi-plus">
-					<shiro:hasPermission name="Bibliotheques:Creer">
-					<p:menuitem value="Bibliothèque" action="formNewBibliotheque"/>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="Livres:Creer">
-					<p:menuitem value="Livre" action="formNewLivre"/>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="Genres:Lire">
-					<p:menuitem value="Genre" action="formNewGenre"/>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="Editeurs:Lire">
-					<p:menuitem value="Editeur" action="formNewEditeur"/>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="Auteurs:Lire">
-					<p:menuitem value="Auteur" action="formNewAuteur"/>
-					</shiro:hasPermission>
-				</p:submenu>
-			</p:submenu>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="Adresses:Lire">
-			<p:submenu label="Gestion des adresses" icon="pi pi-fw pi-file">
-				<shiro:hasPermission name="Adresses:Lire">
-				<p:menuitem value="Table des Adresses" icon="pi pi-fw pi-external-link" action="tableAdresses.xhtml"/>
-				</shiro:hasPermission>
-				<shiro:hasPermission name="Adresses:Creer">
-				<p:menuitem value="Nouvelle Adresses" icon="pi pi-fw pi-plus" action="formNewAdress"/>
-				</shiro:hasPermission>
-			</p:submenu>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="Factures:Lire">
-			<p:submenu label="Gestion des factures" icon="pi pi-fw pi-file">
-				<shiro:hasPermission name="Factures:Lire">
-				<p:menuitem value="Tables des factures" icon="pi pi-fw pi-external-link" action="tableFactures.xhtml"/>
-				</shiro:hasPermission>
-				<shiro:hasPermission name="Factures:Creer">
-				<p:menuitem value="Retour de livre" icon="pi pi-fw pi-external-link" action="formEtatQuestion"/>
-				</shiro:hasPermission>
-				<shiro:hasPermission name="Factures:Creer">
-				<p:menuitem value="Nouvelle Facture" icon="pi pi-fw pi-plus" action="formNewFact"/>
-				</shiro:hasPermission>
-			</p:submenu>
-			</shiro:hasPermission>
-		</p:menubar>
-			</h:form>
-		</p:panelGrid>
+				<h:form>
+					<p:menubar>
+						<p:menuitem value="Accueil" icon="fa fa-fw fa-home" action="bienvenue?faces-redirect=true"/>
+						<shiro:hasRole name="1">
+							<p:submenu label="Gestion des permissions" icon="fa fa-fw fa-exclamation">
+								<shiro:hasPermission name="Permissions:Lire">
+									<p:menuitem value="Table des permissions" icon="fa fa-fw fa-table" action="tablePermissions?faces-redirect=true" />
+								</shiro:hasPermission>
+							</p:submenu>
+						</shiro:hasRole>
+						<shiro:hasPermission name="Tarifs:Lire">
+							<p:submenu label="Gestion des tarifs" icon="fa fa-fw fa-euro">
+								<shiro:hasPermission name="Tarifs:Lire">
+									<p:menuitem value="Voir les tarifs" icon="fa fa-fw fa-table" action="tableTarifs?faces-redirect=true"/>
+								</shiro:hasPermission>
+								<shiro:hasPermission name="Tarifs:Creer">
+									<p:menuitem value="Nouvelle grille tarifaire" icon="fa fa-fw fa-plus" action="#{tarifsBean.flushTarifsNew}"/>
+								</shiro:hasPermission>
+							</p:submenu>
+						</shiro:hasPermission>
+						<shiro:hasPermission name="Roles:Lire">
+							<p:submenu label="Gestion des rôles" icon="fa fa-fw fa-wrench">
+								<shiro:hasPermission name="Roles:Lire">
+									<p:menuitem value="Tables des rôles" icon="fa fa-fw fa-table" action="tableRoles?faces-redirect=true"/>
+								</shiro:hasPermission>
+								<shiro:hasPermission name="Roles:Creer">
+									<p:menuitem value="Nouveau rôle" icon="fa fa-fw fa-plus" action="#{rolesBean.flushRolNew}"/>
+								</shiro:hasPermission>
+							</p:submenu>
+						</shiro:hasPermission>
+							<p:submenu label="Gestion des personnes" icon="fa fa-fw fa-users">
+								<p:submenu label="Voir les" icon="fa fa-fw fa-table">
+									<shiro:hasPermission name="Client:Lire">
+										<p:menuitem value="Clients" action="tableUtilisateursCli?faces-redirect=true" icon="fa fa-fw fa-user"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Utilisateurs:Lire">
+										<p:menuitem value="Utilisateurs" action="tableUtilisateurs?faces-redirect=true" icon="fa fa-fw fa-user"/>
+									</shiro:hasPermission>
+								</p:submenu>
+								<p:submenu label="Ajouter" icon="fa fa-fw fa-plus">
+									<shiro:hasPermission name="Client:Creer">
+										<p:menuitem value="Client" action="#{utilisateursBean.flushUtilCliNew}" icon="fa fa-fw fa-user"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Utilisateurs:Creer">
+										<p:menuitem value="Utilisateur" action="#{utilisateursBean.flushUtilNew}" icon="fa fa-fw fa-user"/>
+									</shiro:hasPermission>
+								</p:submenu>
+								<p:submenu label="Recherche" icon="fa fa-fw fa-search">
+									<shiro:hasPermission name="Utilisateurs:Lire">
+										<p:menuitem value="Clients" action="#{utilisateursBean.flushUtilSearch}" icon="fa fa-fw fa-user"/>
+									</shiro:hasPermission>
+								</p:submenu>
+							</p:submenu>
+							<p:submenu label="Gestion bibliothèque" icon="fa fa-fw fa-building-o">
+								<p:submenu label="Voir les" icon="fa fa-fw fa-table">
+									<shiro:hasPermission name="Bibliotheques:Lire">
+										<p:menuitem value="Bibliothèques" action="tableBibliotheques?faces-redirect=true" icon="fa fa-fw fa-building-o"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Livres:Lire">
+										<p:menuitem value="Livres" action="tableLivres?faces-redirect=true" icon="fa fa-fw fa-book"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Genres:Lire">
+										<p:menuitem value="Genres" action="tableGenres?faces-redirect=true" icon="fa fa-fw fa-text-width"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Editeurs:Lire">
+										<p:menuitem value="Editeurs" action="tableEditeurs?faces-redirect=true" icon="fa fa-fw fa-building"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Auteurs:Lire">
+										<p:menuitem value="Auteurs" action="tableAuteurs?faces-redirect=true" icon="fa fa-fw fa-pencil"/>
+									</shiro:hasPermission>
+								</p:submenu>
+								<p:submenu label="Ajouter" icon="fa fa-fw fa-plus">
+									<shiro:hasPermission name="Bibliotheques:Creer">
+										<p:menuitem value="Bibliothèque" action="#{bibliothequesBean.flushBiblioNew}" icon="fa fa-fw fa-building-o"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Livres:Creer">
+										<p:menuitem value="Livre" action="#{livresBean.flushLivNew}" icon="fa fa-fw fa-book"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Genres:Lire">
+										<p:menuitem value="Genre" action="#{genresBean.flushGenNew}" icon="fa fa-fw fa-text-width"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Editeurs:Lire">
+										<p:menuitem value="Editeur" action="#{editeursBean.flushEdNew}" icon="fa fa-fw fa-building"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Auteurs:Lire">
+										<p:menuitem value="Auteur" action="#{auteursBean.flushAutNew}" icon="fa fa-fw fa-pencil"/>
+									</shiro:hasPermission>
+								</p:submenu>
+								<p:submenu label="Recherche" icon="fa fa-fw fa-search">
+									<shiro:hasPermission name="Auteurs:Lire">
+										<p:menuitem value="Auteur" action="#{auteursBean.flushAutSearch}" icon="fa fa-fw fa-pencil"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Livres:Lire">
+										<p:menuitem value="Livre" action="#{livresBean.flushLivSearch}" icon="fa fa-fw fa-book"/>
+									</shiro:hasPermission>
+								</p:submenu>
+								<shiro:hasRole name="1">
+								<p:menuitem value="Reinitialisation de la bibliotheque" icon="fa fa-fw fa-refresh" action="formConfirmationReini?faces-redirect=true"/>
+								</shiro:hasRole>
+							</p:submenu>
+						<shiro:hasPermission name="Adresses:Lire">
+							<p:submenu label="Gestion des adresses" icon="fa fa-fw fa-street-view">
+								<shiro:hasPermission name="Adresses:Lire">
+									<p:menuitem value="Table des Adresses" icon="fa fa-fw fa-table" action="tableAdresses?faces-redirect=true"/>
+								</shiro:hasPermission>
+								<shiro:hasPermission name="Adresses:Creer">
+									<p:menuitem value="Nouvelle Adresses" icon="fa fa-fw fa-plus" action="#{adressesBean.flushAddNew}"/>
+								</shiro:hasPermission>
+							</p:submenu>
+						</shiro:hasPermission>
+						<shiro:hasPermission name="Factures:Lire">
+							<p:submenu label="Gestion des factures" icon="fa fa-fw fa-euro">
+								<shiro:hasPermission name="Factures:Lire">
+									<p:menuitem value="Tables des factures" icon="fa fa-fw fa-table" action="tableFactures?faces-redirect=true"/>
+								</shiro:hasPermission>
+								<shiro:hasPermission name="Factures:Creer">
+									<p:menuitem value="Retour de livre" icon="fa fa-fw fa-book" action="formEtatQuestion?faces-redirect=true"/>
+								</shiro:hasPermission>
+								<shiro:hasPermission name="Factures:Creer">
+									<p:menuitem value="Nouvelle Facture" icon="fa fa-fw fa-plus" action="formNewFact?faces-redirect=true"/>
+								</shiro:hasPermission>
+							</p:submenu>
+						</shiro:hasPermission>
+						<f:facet name="options">
+							<p:commandButton value="#{I18N['application.button.deconnexion']}" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{loginBean.deconnexion}"/>
+						</f:facet>
+					</p:menubar>
+				</h:form>
 		</shiro:authenticated>
 	</ui:insert>
 	</div>
 </ui:composition>
 
 </html>
+

@@ -2,6 +2,7 @@ package services;
 
 
 import entities.Auteurs;
+import entities.Bibliotheques;
 import entities.Roles;
 import entities.Utilisateurs;
 import org.apache.log4j.Logger;
@@ -37,9 +38,6 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 	public List<Utilisateurs> findOneUtilisateur(Utilisateurs util)
 	{
 		Map<String, Object> param = new HashMap<>();
-		param.put("nom", util.getNom());
-		param.put("prenom", util.getPrenom());
-		param.put("sexe", util.getSexe());
 		param.put("courriel", util.getCourriel());
 		param.put("role", util.getRoles());
 		return finder.findByNamedQuery("Utilisateurs.findOne",param);
@@ -97,6 +95,12 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		param.put("login", login);
 
 		return finder.findByNamedQuery("Utilisateurs.findByLogin", param);
+	}
+	public List<Utilisateurs> findAllUtilisateursUtilBib (Bibliotheques bib) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("bib", bib);
+
+		return finder.findByNamedQuery("Utilisateurs.findAllUtilBib", param);
 	}
 
 	public List<Utilisateurs> reinitialisation(String login, String courriel) {

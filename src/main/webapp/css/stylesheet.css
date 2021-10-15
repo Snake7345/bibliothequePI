@@ -1,49 +1,117 @@
-/* Partie Header */
-#header {
-  width: 100%;
-  background-color: #b8bab9;
-  padding: 2px;
-  text-align: center;
-  font-size:20px;
-  color: black;
+html {
+	height: 100%;              /* for the page to take full window height */
+	box-sizing: border-box;    /* to have the footer displayed at the bottom of the page without scrolling */
 }
 
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;       /* enable the "border-box effect" everywhere */
+}
+
+#body {
+
+}
+
+/* Partie Header */
+#header {
+	width: 100%;
+	padding: 2px;
+	font-size:20px;
+	color: black;
+	border-style:none;
+
+}
+
+#header2 {
+	width: 100%;
+	padding: 2px;
+	text-align: left;
+	font-size:50px;
+	color: black;
+	border-style:none;
+}
+
+#titrebib
+{
+	text-align: right;
+	font-size: 50px;
+	border:none;
+
+}
 
 /*body*/
 
 body {
 	background-color:#77bbff;
+	position: relative;        /* for the footer to move with the page size */
+	min-height: 100%;          /* for the footer to be at the bottom */
+	padding-bottom: 6rem;      /* Space available between last element and bottom border of the page */
+	border-style:none;
+
+}
+
+#newrecform
+{
+	border-color:white;
+}
+#newrecform2
+{
+	border-color:white;
 }
 
 /*footer*/
 
-#footer 
+#footer
 {
-  background-color: #b8bab9;
-  padding: 10px;
-  text-align: center;
-  color: black;
+	background-color: #77bbff;
+	padding: 10px;
+	text-align: center;
+	color: black;
+	left:0;
+	bottom:0;
+}
+#footer tr {
+	background-color: #77bbff;
+}
+#footer td {
+	background-color: #77bbff;
+	border-color: #77bbff;
+	width:700px;
 }
 
 
-#container { width:100%; }
+#container { width:100%; border:none;}
 
 #content {
 	width: 100%;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	background-color:#77bbff;
+	border:none;
 }
+#content_content
+{
+	background-color: #77bbff;
+	border:none;
+}
+
+
+
 #content_login, #content_form {
 	width: 100%;
 	padding-left: 600px;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	border:none;
 }
 #contentFormSitEmpl{
-	
+
 	padding-left: 100px;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	border:none;
 }
 
 #confirmpswd{
@@ -54,17 +122,17 @@ body {
 }
 .SE_gauche{
 	float:left;
-/*	background-color:#ffff80;*/
+	/*	background-color:#ffff80;*/
 	width:650px;
 	align: center;
 	padding-bottom: 20px;
 }
 .SE_droite{
 	float:left;
-/*	background-color:#80ff80;*/
+	/*	background-color:#80ff80;*/
 	width:50%;
 	padding-bottom: 20px;
-/*	overflow: auto;*/
+	/*	overflow: auto;*/
 }
 .SE_droite2{
 	/*	background-color:#80ff80;*/
@@ -102,15 +170,37 @@ body {
 	border: 2px  solid #ffff00;
 	width: 600px;
 	height: 250px;
-	
+
 }
 /*-------------------config tableau-------------------*/
 .table{
 	width:100%;
 	margin-left: 20px;
 	margin-bottom: 20px;
-	text-align:center;	
+	text-align:center;
 	border:0px;
+}
+
+
+
+.image
+{
+	background-color:white!important ;
+}
+
+body .ui-panel .ui-panel-content
+{
+	background: #77bbff!important;
+}
+
+tbody
+{
+	border:none;
+}
+body .ui-clock
+{
+	border:none;
+	background:none;
 }
 
 .table-header{
@@ -132,13 +222,13 @@ body {
 	border-top:1px solid #BBBBBB;
 }
 
-.tableCP{ 
-	height: 250px; 
-	overflow: auto; 
+.tableCP{
+	height: 250px;
+	overflow: auto;
 }
 
 .lienMenu{
-	text-decoration:none; 
+	text-decoration:none;
 	color:white;
 }
 .Col1{	width: 200px; }
@@ -157,27 +247,28 @@ body {
 .textNormal{ color: black; }
 
 .tablescroller {
-  width: 1800px;
-  height: 500px;
-  overflow-y: scroll;
-  scrollbar-color: #808080 #c0c0c0;
-  scrollbar-width: thin;
+	width: 1800px;
+	height: 500px;
+	overflow-y: scroll;
+	scrollbar-color: #808080 #c0c0c0;
+	scrollbar-width: thin;
 }
 /*--------------------Menu Entete---------------------------------*/
 #menu{
-	text-align:center;
+	text-align:left;
 	width: 100%;
 }
+
 ul {
-	 padding:0;
-	 margin:0;
-	 list-style-type:none;
- }
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
 li {
 	margin-left: 2px;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 16px;/* float:left; /*pour IE*/
- }
+}
 ul li {
 	text-align: center;
 	vertical-align: middle;
@@ -185,17 +276,43 @@ ul li {
 	font-size: 20px;
 	display: inline;
 	width: auto;
-	background-color: red;
 	color: black;
 	text-decoration: none;
 	text-align: center;
 	padding: 5px;
- }
+}
 #header p
- {
-	color:yellow; 
- 	text-align:right
- }
+{
+	color:yellow;
+	text-align:right
+}
 ul li:hover {
- background-color:#D3D3D3;
- } 
+	background-color:#D3D3D3;
+}
+
+.ui-widget-content
+{
+	border:none;
+	background:#77bbff;
+}
+
+body .ui-panelgrid .ui-panelgrid-cell
+{
+	border-style:none;
+	border:none;
+}
+
+body .ui-panel .ui-panel-content
+{
+	border: none;
+}
+
+#container_content
+{
+	border:none;
+}
+
+.container_content
+{
+	border:none;
+}

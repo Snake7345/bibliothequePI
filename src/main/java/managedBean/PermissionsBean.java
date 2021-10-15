@@ -6,10 +6,8 @@ import services.SvcPermissions;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
-import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,63 +22,19 @@ public class PermissionsBean implements Serializable {
 
     private String type;
     private String action;
+    private final List<Permissions> listPer = getReadAll();
+
+    private List<String> listAction = new ArrayList<>();
 
     @PostConstruct
     public void init()
     {
-        type="";
-        action="";
+        listAction = getPermissionsAction();
         permission = new Permissions();
+        type ="";
+        action="";
+
     }
-
-/*
-Méthode désactivée pour raison de stabilité
-
-    public String newPermission()
-    {
-        /*SvcPermissions service = new SvcPermissions();
-        EntityTransaction transaction = service.getTransaction();
-        transaction.begin();
-        if (checkPermExist()) {
-            try {
-
-                service.save(permission);
-
-                transaction.commit();
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
-                return "/tablePermissions.xhtml?faces-redirect=true";
-            } finally {
-                if (transaction.isActive()) {
-                    transaction.rollback();
-                    FacesContext fc = FacesContext.getCurrentInstance();
-                    fc.getExternalContext().getFlash().setKeepMessages(true);
-                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation n'a pas reussie", null));
-
-                    return "";
-                } else {
-                    init();
-                }
-
-                service.close();
-            }
-        }
-        else {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cette permission existe déjà en base de donnée", null));
-            return "/tablePermissions.xhtml?faces-redirect=true";
-        }
-
-        return "";
-    }
-
-    // Méthode qui vérifie si une permission est déjà existante dans la base de donnée ou non
-    public boolean checkPermExist(){
-        SvcPermissions serviceP = new SvcPermissions();
-        return (serviceP.findOnePermission(permission.getDenomination()).size() == 0);
-}*/
 
     public String flushPerm()
     {
@@ -88,6 +42,14 @@ Méthode désactivée pour raison de stabilité
         return "/tablePermissions?faces-redirect=true";
     }
 
+    private String middlename;
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
+    }
     /*
      * Méthode qui permet via le service de retourner la liste de toutes les permissions
      */
@@ -103,7 +65,6 @@ Méthode désactivée pour raison de stabilité
     public List<String> getPermissionsType()
     {
         List<String> listType = new ArrayList<>();
-        List<Permissions> listPer= getReadAll();
         for(Permissions p : listPer)
         {
             if(!listType.contains(p.getType()))
@@ -111,26 +72,27 @@ Méthode désactivée pour raison de stabilité
                 listType.add(p.getType());
             }
         }
-        log.debug("listType : " + listType.size());
         return listType;
     }
-    public List<String> getPermissionsAction(Object ty)
+    public List<String> getPermissionsAction()
     {
-        List<String> listAction = new ArrayList<>();
-        List<Permissions> listPer= getReadAll();
+
+        if (listAction.size()>0){
+            listAction.clear();
+        }
         for(Permissions p : listPer)
         {
-            if(p.getType().equals(ty.toString()))
-            {
-
+            if (p.getType().equals(type)) {
                 listAction.add(p.getAction());
             }
         }
-        log.debug("type : " + type);
-        log.debug("listAction : " + listAction.size());
         return listAction;
     }
-
+    public void stateChangeListener(ValueChangeEvent event) {
+        if (event.getNewValue() != type) {
+            getPermissionsAction();
+        }
+    }
 
     //-------------------------------Getter & Setter--------------------------------------------
 
@@ -156,5 +118,17 @@ Méthode désactivée pour raison de stabilité
 
     public void setAction(String action) {
         this.action = action;
+    }
+
+    public List<Permissions> getListPer() {
+        return listPer;
+    }
+
+    public List<String> getListAction() {
+        return listAction;
+    }
+
+    public void setListAction(List<String> listAction) {
+        this.listAction = listAction;
     }
 }

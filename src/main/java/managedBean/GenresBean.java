@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.Genres;
 import org.apache.log4j.Logger;
+import org.primefaces.event.UnselectEvent;
 import services.SvcGenres;
 
 import javax.annotation.PostConstruct;
@@ -43,6 +44,18 @@ public class GenresBean implements Serializable {
         init();
         return "/tableGenres?faces-redirect=true";
     }
+    /*
+     * Méthode qui permet de travailler sur le selectCheckboxMenu et de voir les éléments qui ne sont pas selectionné
+     * */
+    public void onItemUnselect(UnselectEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        FacesMessage msg = new FacesMessage();
+        msg.setSummary("Item unselected: " + event.getObject().toString());
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+
+        context.addMessage(null, msg);
+    }
 
     // Méthode qui permet la sauvegarde du genre dans la base de donnée.
     public void save()
@@ -67,7 +80,7 @@ public class GenresBean implements Serializable {
         }
 
     }
-
+    // Méthode qui permet de vérifier si un genre du même nom existe
     public boolean verifGenreExist(Genres gen)
     {
         SvcGenres serviceG = new SvcGenres();
@@ -83,12 +96,20 @@ public class GenresBean implements Serializable {
 
     }
 
-
+    //Méthode qui permet de vider les variables et de revenir sur le table des genres
     public String flushGen()
     {
         init();
         return "/tableGenres?faces-redirect=true";
     }
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de création d'un genre
+    public String flushGenNew()
+    {
+        init();
+        return "/formNewGenre?faces-redirect=true";
+    }
+
+
 
     /*
      * Méthode qui permet via le service de retourner la liste de tous les genres

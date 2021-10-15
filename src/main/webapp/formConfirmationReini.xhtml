@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">Confirmation de la reinitialisation</ui:define>
+
+    <ui:define name="content">
+        <p:growl id="growl" showDetail="true" sticky="true" />
+        <shiro:hasRole name="1">
+        <h:form>
+        <h2 style="text-align:center">#{I18N['reini.form.questionconfirm']}</h2>
+            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['commune.label.oui']}" action="#{bibliothequesBean.reinitialisation}"/>
+            <p:commandButton value="#{I18N['commune.label.non']}" action="#{bibliothequesBean.flushAccueil}" immediate="true"/>
+    </h:form>
+        </shiro:hasRole>
+        <shiro:lacksRole name="1">
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+        </shiro:lacksRole>
+    </ui:define>
+</ui:composition>
+
+</html>

@@ -43,20 +43,23 @@
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="shiro-faces-2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.primefaces:primefaces:10.0.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-lang:1.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-cache:1.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-hash:1.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-core:1.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-cipher:1.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-config-core:1.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-config-ogdl:1.7.1" level="project" />
+    <orderEntry type="library" name="all-themes-1.0.10" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces:primefaces:11.0.0-RC1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-lang:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-cache:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-hash:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-core:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-cipher:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-config-core:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-config-ogdl:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.4" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-event:1.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-web:1.7.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-event:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-web:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.owasp.encoder:encoder:1.2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-ehcache:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache-core:2.6.11" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.21" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.7.32" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-servlet-plugin:1.7.1" level="project" />

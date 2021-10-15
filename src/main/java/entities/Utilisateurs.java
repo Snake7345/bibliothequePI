@@ -16,7 +16,7 @@ import security.SecurityManager;
 @NamedQueries
         ({
                 @NamedQuery(name = "Utilisateurs.findAll", query = "SELECT u FROM Utilisateurs u"),
-                @NamedQuery(name = "Utilisateurs.findOne", query = "SELECT u FROM Utilisateurs u WHERE  u.nom=:nom AND u.prenom=:prenom AND u.courriel=:courriel AND u.sexe=:sexe AND u.roles=:role"),
+                @NamedQuery(name = "Utilisateurs.findOne", query = "SELECT u FROM Utilisateurs u WHERE u.courriel=:courriel AND u.roles=:role"),
                 @NamedQuery(name = "Utilisateurs.findAllUtil", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NULL"),
                 @NamedQuery(name = "Utilisateurs.findActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE AND u.numMembre IS NULL"),
                 @NamedQuery(name = "Utilisateurs.findInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE AND u.numMembre IS NULL"),
@@ -28,6 +28,7 @@ import security.SecurityManager;
                 @NamedQuery(name = "Utilisateurs.findAllCli", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NOT NULL"),
                 @NamedQuery(name = "Utilisateurs.findCliActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE AND u.numMembre IS NOT NULL"),
                 @NamedQuery(name = "Utilisateurs.findCliInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE AND u.numMembre IS NOT NULL"),
+                @NamedQuery(name = "Utilisateurs.findAllUtilBib", query = "SELECT u FROM Utilisateurs u, UtilisateursBibliotheques ub WHERE u.numMembre IS NULL AND ub.utilisateur=u AND ub.bibliotheques=:bib"),
         })
 public class Utilisateurs implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -48,8 +49,10 @@ public class Utilisateurs implements Serializable {
     private Collection<Factures> factures;
     @OneToMany(mappedBy = "utilisateur")
     private Collection<UtilisateursAdresses> utilisateursAdresses;
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "utilisateur")
     private Collection<UtilisateursBibliotheques> utilisateursBibliotheques;
+    @OneToMany(mappedBy = "utilisateur")
+    private Collection<Reservation> reservations;
     @ManyToOne
     @JoinColumn(name = "RolesIdRoles")
     private Roles roles;
@@ -134,6 +137,13 @@ public class Utilisateurs implements Serializable {
         this.mdp = SecurityManager.encryptPassword(mdp);
     }
 
+    public Collection<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Collection<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
     @Basic
     @Column(name = "Actif", nullable = false)

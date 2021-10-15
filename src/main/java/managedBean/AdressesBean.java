@@ -1,6 +1,7 @@
 package managedBean;
 
 import entities.Adresses;
+import entities.Bibliotheques;
 import org.apache.log4j.Logger;
 import services.SvcAdresses;
 
@@ -21,15 +22,19 @@ public class AdressesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Adresses adresse;
     private static final Logger log = Logger.getLogger(AdressesBean.class);
+    private Bibliotheques bibliotheque;
 
     @PostConstruct
     public void init()
     {
+        bibliotheque = new Bibliotheques();
         adresse = new Adresses();
     }
 
+
+
     // Méthode qui permet l'appel de save() qui créée une nouvelle adresse et envoi un message si jamais
-    // l'adresse se trouve déjà en base de donnée et nous renvoi sur la table des auteurs
+    // l'adresse se trouve déjà en base de donnée et nous renvoi sur la table des adresses
     public String newAdress()
     {
         if(verifAdresseExist(adresse))
@@ -43,6 +48,25 @@ public class AdressesBean implements Serializable {
             init();
         }
         return "/tableAdresses.xhtml?faces-redirect=true";
+
+    }
+
+
+    // Méthode qui permet l'appel de save() qui créée une nouvelle adresse et envoi un message si jamais
+    // l'adresse se trouve déjà en base de donnée. L'appel se fait sur un popup.
+
+    public void newAdresspopup()
+    {
+        if(verifAdresseExist(adresse))
+        {
+            save();
+        }
+        else{
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"La donnée est déjà existante en DB",null));
+            init();
+        }
 
     }
 
@@ -73,7 +97,7 @@ public class AdressesBean implements Serializable {
         }
     }
 
-    // Méthode qui vérifie qu'une adresse déjà ou pas dans la base de donnée
+    // Méthode qui vérifie qu'une adresse se trouve déjà ou pas dans la base de donnée
     public boolean verifAdresseExist(Adresses ad)
     {
         SvcAdresses serviceA = new SvcAdresses();
@@ -89,24 +113,59 @@ public class AdressesBean implements Serializable {
 
     }
     /*
-     * Méthode qui permet de vider les variables et de revenir sur le table des Adresses .
+     * Méthode qui permet de vider les variables avec init() et de revenir sur le table des Adresses .
      * */
     public String flushAdd()
     {
         init();
         return "/tableAdresses?faces-redirect=true";
     }
+    /*
+     * Méthode qui permet de vider les variables avec init() et de revenir sur le formulaire d'une nouvelle adresse .
+     * */
+    public String flushAddNew()
+    {
+        init();
+        return "/formNewAdress?faces-redirect=true";
+    }
 
 
     /*
-     * Méthode qui permet via le service de retourner
-     * la liste des adresses
+     * Méthode qui permet de retourner
+     * la liste de toutes les adresses
      */
     public List<Adresses> getReadAll()
     {
         SvcAdresses service = new SvcAdresses();
         List<Adresses> listAd = new ArrayList<Adresses>();
         listAd= service.findAllAdresses();
+
+        service.close();
+        return listAd;
+    }
+
+    /*
+     * Méthode qui permet de retourner
+     * la liste de toutes les adresses qui ne sont pas liées a une bibliothèque
+     */
+    public List<Adresses> getReadAllNotBibli()
+    {
+        SvcAdresses service = new SvcAdresses();
+        List<Adresses> listAd = new ArrayList<Adresses>();
+        listAd= service.getfindAllNotAdBibli();
+
+        service.close();
+        return listAd;
+    }
+    /*
+     * Méthode qui permet de retourner
+     * la liste de toutes les adresses qui ne sont pas liées ni a une bibliothèque ni à un utilisateur
+     */
+    public List<Adresses> getReadAllNotBibliNotUti()
+    {
+        SvcAdresses service = new SvcAdresses();
+        List<Adresses> listAd = new ArrayList<Adresses>();
+        listAd= service.getfindAllNotAdBibliNotUti();
 
         service.close();
         return listAd;
@@ -123,6 +182,11 @@ public class AdressesBean implements Serializable {
         this.adresse = adresse;
     }
 
+    public Bibliotheques getBibliotheque() {
+        return bibliotheque;
+    }
 
-
+    public void setBibliotheque(Bibliotheques bibliotheque) {
+        this.bibliotheque = bibliotheque;
+    }
 }

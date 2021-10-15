@@ -2,6 +2,7 @@ package managedBean;
 
 import entities.*;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import services.SvcExemplairesLivres;
 import services.SvcLivres;
 import services.SvcLivresAuteurs;
@@ -34,6 +35,10 @@ public class LivresBean implements Serializable {
     private Genres gen;
     private List<Livres> listLiv = new ArrayList<Livres>();
     private List<Livres> searchResults;
+    private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
+
+
+
 
     @PostConstruct
     public void init()
@@ -44,7 +49,8 @@ public class LivresBean implements Serializable {
         edit = new Editeurs();
         gen = new Genres();
     }
-
+    /* Cette méthode permet la création d'un nouveau livre avec le bon format d'ISBN avec l'auteur, le genre
+    * */
     public String newLivre()
     {
         SvcLivres service = new SvcLivres();
@@ -90,6 +96,9 @@ public class LivresBean implements Serializable {
         }
     }
 
+    /* Cette méthode permet la sauvegarde d'un nouveau livre
+     *
+     */
     public void save()
     {
         SvcLivres service = new SvcLivres();
@@ -108,7 +117,7 @@ public class LivresBean implements Serializable {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'a pas reussie",null));
             }
             else
             {
@@ -122,7 +131,9 @@ public class LivresBean implements Serializable {
     }
 
 
-
+    /* Cette méthode permet de désactiver un livre ainsi que les exemplaires liées.
+     * Cette méthode permet aussi de réactiver un livre (mais pas les exemplaires livres associés)
+     */
     public String activdesactivLiv()
     {
         SvcLivres service = new SvcLivres();
@@ -163,24 +174,32 @@ public class LivresBean implements Serializable {
             return "/tableLivres.xhtml?faces-redirect=true";
     }
 
+
+    /* Cette méthode permet de rechercher en fonction de ce qu'encode l'utilisateur un livre
+     */
     public String searchLivre()
     {
-
+        log.debug("titre recherché: " + livre.getTitre());
         SvcLivres service = new SvcLivres();
-
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
         if(service.getByTitre(livre.getTitre()).isEmpty())
         {
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("livRech", new FacesMessage("le livre n'a pas été trouvé"));
-            return null;
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"le livre n'a pas été trouvé",null));
+            return "/formSearchLivre.xhtml?faces-redirect=true";
         }
         else
         {
             searchResults = service.getByTitre(livre.getTitre());
         }
+
         return "/formSearchLivre.xhtml?faces-redirect=true";
     }
-
+    //Méthode qui permet de vider les variables et de revenir sur le table des Livres
     public String flushLiv()
     {
         init();
@@ -189,6 +208,16 @@ public class LivresBean implements Serializable {
             searchResults.clear();
         }
         return "/tableLivres.xhtml?faces-redirect=true";
+    }
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de création de livre
+    public String flushLivNew()
+    {
+        init();
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
+        return "/formNewLivre.xhtml?faces-redirect=true";
     }
 
 
@@ -205,7 +234,7 @@ public class LivresBean implements Serializable {
         return listLiv;
     }
     /*
-     * Méthode qui permet via le service de retourner sous une liste le livre actuel
+     * Méthode qui permet via le service de retourner le livre actuel
      */
     public List<Livres> getReadlivre()
     {
@@ -237,7 +266,9 @@ public class LivresBean implements Serializable {
         service.close();
         return listLiv;
     }
-
+    /*
+     * Méthode qui permet via le service de retourner la liste des livres en fonction de l'auteur
+     */
     public String readByAuteurs()
     {
         SvcLivres service = new SvcLivres();
@@ -246,7 +277,9 @@ public class LivresBean implements Serializable {
         service.close();
         return "/tableLivres.xhtml?faces-redirect=true";
     }
-
+    /*
+     * Méthode qui permet via le service de retourner la liste des livres en fonction de l'éditeur
+     */
     public String readByEditeurs()
     {
         SvcLivres service = new SvcLivres();
@@ -255,7 +288,9 @@ public class LivresBean implements Serializable {
         service.close();
         return "/tableLivres.xhtml?faces-redirect=true";
     }
-
+    /*
+     * Méthode qui permet via le service de retourner la liste des livres en fonction du genre
+     */
     public String readByGenres()
     {
         SvcLivres service = new SvcLivres();
@@ -264,19 +299,63 @@ public class LivresBean implements Serializable {
         service.close();
         return "/tableLivres.xhtml?faces-redirect=true";
     }
-    public String getRefreshtable()
-    {
+
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de recherche de livres
+    public String flushLivSearch() {
         init();
-        return "tableLivres.xhtml";
+        if (searchResults != null) {
+            searchResults.clear();
+        }
+        return "/formSearchLivre?faces-redirect=true";
     }
 
     /*
-     * Méthode qui permet de vider les variables et retourne sur la page de bienvenue
-     * */
-    public String flushBienv()
+     * Méthode qui permet via une pastille de décrire la disponibilité d'un livre
+     */
+    public String verifDispo(Livres liv)
     {
-        init();
-        return "/bienvenue.xhtml?faces-redirect=true";
+
+        boolean flag1=false;
+        boolean flag2=false;
+        boolean flag3=false;
+        if(liv.getExemplairesLivres().size() >0)
+        {
+            for (ExemplairesLivres el : liv.getExemplairesLivres())
+            {
+                if (!el.isLoue() && (el.getBibliotheques().getIdBibliotheques() ==bibliothequeActuelle.getIdBibliotheques()) && el.isActif())
+                {
+                    // Le livre est disponible
+                    flag1 = true;
+                }
+                else if (!el.isLoue() && el.isActif())
+                {
+                    // le livre est disponible mais pas dans la bibliothèque actuelle.
+                    flag2 = true;
+                }
+                else if (el.isLoue())
+                {
+                    // Le livre est loué
+                    flag3 = true;
+                }
+            }
+        }
+        if(flag1)
+        {
+
+            return "Images/vert3.png";
+        }
+        else if(flag2)
+        {
+            return "Images/orange2.png";
+        }
+        else if(flag3)
+        {
+            return "Images/rouge4.png";
+        }
+        else
+        {
+            return "Images/noir2.png";
+        }
     }
 
     //-------------------------------Getter & Setter--------------------------------------------
@@ -359,5 +438,9 @@ public class LivresBean implements Serializable {
 
     public void setGen(Genres gen) {
         this.gen = gen;
+    }
+
+    public Bibliotheques getBibliothequeActuelle() {
+        return bibliothequeActuelle;
     }
 }

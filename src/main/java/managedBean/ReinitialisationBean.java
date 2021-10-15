@@ -4,6 +4,7 @@ import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import services.SvcUtilisateurs;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -29,14 +30,19 @@ public class ReinitialisationBean implements Serializable {
     private String login;
     private String courriel;
 
+    @PostConstruct
+    public void init() {
+    login="";
+    courriel="";
+    }
 
-
+    /*Cette méthode permet de regénerer un mot de passe random si il y a une correspondance en fonction de l'email et du pseudo que l'utilisateur rentre,
+    si pas une message d'erreur s'affiche */
     public String reinitia()
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
         List<Utilisateurs> results = serviceU.reinitialisation(login,courriel);
         EntityTransaction transaction = serviceU.getTransaction();
-        log.debug("je passe la dedans");
 
         try
         {
@@ -45,7 +51,6 @@ public class ReinitialisationBean implements Serializable {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
-                log.debug("jerome est passé la dedans");
                 return "/envoiInfo?faces-redirect=true";
             }
             else
@@ -58,7 +63,6 @@ public class ReinitialisationBean implements Serializable {
                 transaction.commit();
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
-                log.debug("axel est passé la dedans");
                 sendMessage(utilisateur.getCourriel(),"Vous avez demandé une réinitialisation du mot de passe, désormais votre nouveau mot de passe sera : " + mdp,"Réinitialisation du mot de passe");
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
             }
@@ -77,6 +81,7 @@ public class ReinitialisationBean implements Serializable {
     }
 
     /*TODO : Penser a mettre les fonctions d'envoi de mail dans une même classe*/
+    /*Méthode qui permet d'envoyer un mail sur le email de l'utilisateur avec le nouveau mot de passe */
     public static void sendMessage( String mailDest, String Texte, String Titre)  {
         //Création de la session
         String mail = "bibliolibatc@gmail.com";
@@ -120,6 +125,7 @@ public class ReinitialisationBean implements Serializable {
      *
      *
      */
+    /*Cette méthode génère un mot de passe random*/
     public String randomMdp()
     {
         String candidateChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
@@ -134,7 +140,14 @@ public class ReinitialisationBean implements Serializable {
 
         return sb.toString();
     }
+    /*Cette méthode permet de vider les variables et de retourner sur le formulaire de connexion*/
+    public String flushLogin()
+    {
+        init();
+        return "/login?faces-redirect=true";
+    }
 
+    //-------------------------------Getter & Setter--------------------------------------------
     public String getLogin() {
         return login;
     }

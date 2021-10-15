@@ -39,7 +39,8 @@
                                  maxlength="80">
                         <f:validateLength minimum ="4" maximum = "80" />
                     </p:inputText>
-                    <p:commandButton icon="pi pi-sign-in" value ="#{I18N['application.button.Envoyer.Mail']}" action="#{reinitialisationBean.reinitia}" update="growl" ajax="false"/>
+                    <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.retourconnexion']}" action="#{reinitialisationBean.flushLogin}" immediate="true" ajax="false"/>
+                    <p:commandButton style="float: right" icon="fa fa-fw fa-sign-in" value ="#{I18N['application.button.Envoyer.Mail']}" action="#{reinitialisationBean.reinitia}" update="growl" ajax="false"/>
                 </p:panelGrid>
 
             </h:form>

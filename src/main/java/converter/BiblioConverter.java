@@ -20,7 +20,7 @@ public class BiblioConverter implements Converter {
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
         if (s != null && s.trim().length() > 0) {
             int id = Integer.parseInt(s);
-
+            log.debug(service.getById(id));
             return service.getById(id);
         } else
             return null;

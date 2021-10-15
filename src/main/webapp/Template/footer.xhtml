@@ -2,12 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
->
-
+	  xmlns:p="http://primefaces.org/ui">
 <ui:composition>
 <div id="footer">
 	<ui:insert name="footer">
-		<h1>#{I18N['application.defaultpage.footer.content']}</h1>
+		<table>
+			<tr>
+				<td style="text-align: left"> <p:clock pattern="dd/MM/yyyy" mode="server"/>  </td>
+				<td style="text-align: center"><h2>#{I18N['application.defaultpage.footer.content']} </h2></td>
+				<td style="text-align: right"><p:clock pattern="HH:mm:ss" mode="server" /></td>
+			</tr>
+		</table>
 	</ui:insert>
 </div>
 </ui:composition>
