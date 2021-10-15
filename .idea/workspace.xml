@@ -9,19 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.03 Mise a jour fonctionnelle">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/AuteursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/AuteursBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReinitialisationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReinitialisationBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
-    </list>
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.04 Correction de quelques commentaires + correction graphique" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -217,6 +205,7 @@
       <workItem from="1634235480760" duration="176000" />
       <workItem from="1634235717184" duration="1000" />
       <workItem from="1634247466155" duration="4217000" />
+      <workItem from="1634251738228" duration="42000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -281,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634248080238</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="v1.2.04 Correction de quelques commentaires + correction graphique">
+      <created>1634251776171</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1634251776172</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,6 +305,7 @@
     <MESSAGE value="v1.0.4- Correction général au niveau des logos pour les menus" />
     <MESSAGE value="v1.0.49 Correction général au niveau des logos pour les menus" />
     <MESSAGE value="v1.2.03 Mise a jour fonctionnelle" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.2.03 Mise a jour fonctionnelle" />
+    <MESSAGE value="v1.2.04 Correction de quelques commentaires + correction graphique" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2.04 Correction de quelques commentaires + correction graphique" />
   </component>
 </project>
