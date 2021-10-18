@@ -343,7 +343,7 @@ public class LivresBean implements Serializable {
         if(flag1)
         {
 
-            return "Images/vert3.png";
+            return "Images/vert5.png";
         }
         else if(flag2)
         {
@@ -351,7 +351,7 @@ public class LivresBean implements Serializable {
         }
         else if(flag3)
         {
-            return "Images/rouge4.png";
+            return "Images/rouge5.png";
         }
         else
         {
