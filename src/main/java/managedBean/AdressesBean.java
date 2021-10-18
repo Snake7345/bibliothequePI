@@ -18,12 +18,14 @@ import java.util.List;
 @Named
 @SessionScoped
 public class AdressesBean implements Serializable {
+
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Adresses adresse;
     private static final Logger log = Logger.getLogger(AdressesBean.class);
     private Bibliotheques bibliotheque;
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -70,7 +72,7 @@ public class AdressesBean implements Serializable {
 
     }
 
-    // Méthode qui permet la sauvegarde d'une adresse en base de donnée
+    // Méthode qui permet la sauvegarde d'un objet "adresse" en base de donnée
     public void save()
     {
         SvcAdresses service = new SvcAdresses();

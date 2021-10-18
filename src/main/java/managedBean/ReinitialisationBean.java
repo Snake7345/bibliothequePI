@@ -30,6 +30,7 @@ public class ReinitialisationBean implements Serializable {
     private String login;
     private String courriel;
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init() {
     login="";
@@ -116,15 +117,6 @@ public class ReinitialisationBean implements Serializable {
         }
     }
 
-    /**
-     *
-     * candidateChars
-     *            the candidate chars
-     * length
-     *            the number of random chars to be generated
-     *
-     *
-     */
     /*Cette méthode génère un mot de passe random*/
     public String randomMdp()
     {

@@ -9,7 +9,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.04 Correction de quelques commentaires + correction graphique" />
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.04 Correction de quelques commentaires + correction graphique">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateurNumMembre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/ExemplairesLivres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/ExemplairesLivres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/AdressesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/AdressesBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/AuteursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/AuteursBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/EditeursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/EditeursBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/GenresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/GenresBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/I18nBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/JoursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/JoursBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PenalitesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/PenalitesBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReinitialisationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReinitialisationBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsJoursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsJoursBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsPenalitesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsPenalitesBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateur.xhtml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,6 +85,9 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="2" />
+  </component>
   <component name="ProjectId" id="1y8lv6RuqNb8Ov1tTky0SnuUw4Z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -70,24 +100,24 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/log4j.properties" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.50313586" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\theba\Documents\GitHub\bibliothequePI\src\main\webapp" />
       <recent name="C:\Users\theba\Documents\GitHub\bibliothequePI" />
       <recent name="C:\Users\theba\Documents\GitHub\bibliothequePI\Lib jar" />
-      <recent name="C:\Users\theba\Documents\GitHub\bibliothequePI\src\main\webapp" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.38" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.38" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/bibliothequePI_war_exploded/" />
       <option name="BROWSER_ID" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -99,6 +129,7 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="d8d0400f-2166-4c10-9e4a-7bf8cdfbf720" />
+        <option name="JNDI_PORT" value="1011" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -206,6 +237,11 @@
       <workItem from="1634235717184" duration="1000" />
       <workItem from="1634247466155" duration="4217000" />
       <workItem from="1634251738228" duration="42000" />
+      <workItem from="1634293811688" duration="8659000" />
+      <workItem from="1634319796534" duration="1662000" />
+      <workItem from="1634417530097" duration="1986000" />
+      <workItem from="1634477576155" duration="2172000" />
+      <workItem from="1634588745529" duration="7742000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -277,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634251776172</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="v1.2.04 Correction de quelques commentaires + correction graphique">
+      <created>1634293821774</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1634293821774</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -31,6 +31,7 @@ public class ExemplairesLivres implements Serializable {
     private String commentaireEtat="Neuf";
     private boolean loue=false;
     private boolean reserve=false;
+    private boolean transfert=false;
     @OneToMany(mappedBy = "exemplairesLivre")
     private Collection<FacturesDetail> facturesDetails;
 
@@ -62,6 +63,16 @@ public class ExemplairesLivres implements Serializable {
 
     public void setActif(boolean actif) {
         this.actif = actif;
+    }
+
+    @Basic
+    @Column(name = "Transfert", nullable = false)
+    public boolean isTransfert() {
+        return transfert;
+    }
+
+    public void setTransfert(boolean transfert) {
+        this.transfert = transfert;
     }
 
     @Enumerated(EnumType.STRING)
@@ -116,13 +127,14 @@ public class ExemplairesLivres implements Serializable {
                 actif == that.actif &&
                 reserve == that.reserve &&
                 loue == that.loue &&
+                transfert == that.transfert &&
                 Objects.equals(codeBarre, that.codeBarre) &&
                 Objects.equals(commentaireEtat, that.commentaireEtat);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idExemplairesLivres, codeBarre, actif, reserve, etat, commentaireEtat, loue);
+        return Objects.hash(idExemplairesLivres, codeBarre, actif, reserve, etat, commentaireEtat, loue, transfert);
     }
 
     @ManyToOne

@@ -34,7 +34,7 @@ public class ExemplairesLivresBean implements Serializable {
     private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
     private List<ExemplairesLivres> listCB;
 
-
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -124,15 +124,14 @@ public class ExemplairesLivresBean implements Serializable {
 
         if (LastBarCode.equals("0")){
             LastBarCode="100000001";
-            return LastBarCode;
         }
         else{
             LastBarCode=String.valueOf(Integer.parseInt(LastBarCode)+1);
             if (LastBarCode.equals("400000000")){
                 LastBarCode="500000000";
             }
-            return LastBarCode;
         }
+        return LastBarCode;
     }
     // Méthode qui permet via le service de confirmer la réception d'un livre via le code barre de ce livre SAUF si l'exemplaire est
     // déjà loué ou n'est pas reservé un message s'affiche
@@ -246,7 +245,7 @@ public class ExemplairesLivresBean implements Serializable {
         return "/tableLivres.xhtml?faces-redirect=true";
     }
 
-    // Méthode qui permet de sauvegarder un exemplaire livre en DB dans la bibliothèque auquel le programme est connecté
+    // Méthode qui permet de sauvegarder un objet "exemplaire livre" en DB dans la bibliothèque auquel le programme est connecté
     public void save()
     {
         SvcExemplairesLivres service = new SvcExemplairesLivres();

@@ -46,6 +46,7 @@ public class FactureBean implements Serializable {
     private ExemplairesLivres exemplairesLivres;
     private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init(){
         listLC = new ArrayList<>();
@@ -54,6 +55,7 @@ public class FactureBean implements Serializable {
         numMembre= "";
         CB= "";
     }
+
     /*Cette méthode permet d'ajouter une nouvelle ligne dans un formulaire concernant une location */
     public void addNewListRow() {
         listLC.add(new locationCustom());
@@ -147,7 +149,7 @@ public class FactureBean implements Serializable {
         }else {
             T = serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).get(0);
         }
-        //vérif si livre non loué
+        //vérification si le livre est loué
         for (locationCustom lc: listLC) {
             ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
             if (el.isLoue() || !(el.getBibliotheques().getIdBibliotheques() == (bibliothequeActuelle.getIdBibliotheques())))
@@ -194,7 +196,7 @@ public class FactureBean implements Serializable {
                 // parcour de la liste des location a inscrire dans la facture
                 for (locationCustom lc : listLC) {
 
-                    //crÃ©ation des dÃ©tails de la facture
+                    //création des détails de la facture
                     ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
                     serviceEL.loueExemplaire(el);
                     if(el.isReserve()){
@@ -222,7 +224,7 @@ public class FactureBean implements Serializable {
                 sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant votre location en piece jointe","Facture de location");
                 return "/tableFactures.xhtml?faces-redirect=true";
             } finally {
-                //bloc pour gÃ©rer les erreurs lors de la transactions
+                //bloc pour gérer les erreurs lors de la transactions
                 if (transaction.isActive()) {
                     transaction.rollback();
                     FacesContext fc = FacesContext.getCurrentInstance();
@@ -462,7 +464,7 @@ public class FactureBean implements Serializable {
         SvcFacture serviceF = new SvcFacture();
         List<Factures> fact;
 
-        //tester si l'année en cours = année de la derniÃ¨re facture
+        //On teste si l'année en cours est égale à l'année de la dernière facture
         try
         {
             fact = serviceF.findAllFactureDesc();

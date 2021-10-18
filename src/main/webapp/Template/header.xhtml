@@ -67,7 +67,10 @@
 								</p:submenu>
 								<p:submenu label="Recherche" icon="fa fa-fw fa-search">
 									<shiro:hasPermission name="Utilisateurs:Lire">
-										<p:menuitem value="Clients" action="#{utilisateursBean.flushUtilSearch}" icon="fa fa-fw fa-user"/>
+										<p:menuitem value="Clients par nom" action="#{utilisateursBean.flushUtilSearch}" icon="fa fa-fw fa-user"/>
+									</shiro:hasPermission>
+									<shiro:hasPermission name="Utilisateurs:Lire">
+										<p:menuitem value="Clients par numero de membre" action="#{utilisateursBean.flushUtilSearchNum}" icon="fa fa-fw fa-user"/>
 									</shiro:hasPermission>
 								</p:submenu>
 							</p:submenu>

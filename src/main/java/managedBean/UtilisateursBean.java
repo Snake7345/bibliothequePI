@@ -17,7 +17,6 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Named
@@ -25,9 +24,9 @@ import java.util.List;
 
 
 public class UtilisateursBean implements Serializable {
+
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
-
     private Utilisateurs utilisateur;
     private static final Logger log = Logger.getLogger(UtilisateursBean.class);
     private List<Utilisateurs> listUtil = new ArrayList<>();
@@ -44,16 +43,19 @@ public class UtilisateursBean implements Serializable {
     private List<UtilisateursBibliotheques> listUB = new ArrayList<>();
     private String mdpNouveau;
     private String mdpNouveau2;
+    private List<Reservation> reservationClient = new ArrayList<>();
 
     public UtilisateursBean() {
         super();
     }
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init() {
         listUtil = getReadAllUtil();
         listUtilBib = getReadAllUtilBib();
         listCli = getReadAllCli();
+        reservationClient = new ArrayList<>();
         bibli = new Bibliotheques();
         utilisateur = new Utilisateurs();
         listUB = new ArrayList<>();
@@ -95,7 +97,7 @@ public class UtilisateursBean implements Serializable {
         }
         return "/formEditUtilisateur.xhtml?faces-redirect=true";
     }
-    /**/
+    /*Méthode qui permet la sauvegarde de la modification d'un objet "utilisateur"*/
     public void saveActif() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         EntityTransaction transaction = service.getTransaction();
@@ -116,7 +118,22 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
-    /*Cette méthode permet de sauvegarder en db un utilisateur, l'adresse ainsi que les bibliothèques auquel il travaille*/
+
+    public void afficheReservations()
+    {
+        SvcUtilisateurs serviceU = new SvcUtilisateurs();
+        serviceU.refreshEntity(utilisateur);
+        serviceU.close();
+        for(Reservation r : utilisateur.getReservations())
+        {
+            if(r.isActif())
+            {
+                reservationClient.add(r);
+            }
+        }
+    }
+
+    /*Cette méthode permet de sauvegarder un objet "utilisateur", l'adresse ainsi que les bibliothèques auquel il travaille*/
     public void saveUtilisateur() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
@@ -171,7 +188,7 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
-    /*Cette méthode permet de sauvegarder en db un client ainsi que son adresse*/
+    /*Cette méthode permet de sauvegarder un objet "utilisateur" en db, c-a-d le client ainsi que son adresse*/
     public void saveUtilisateurCli() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
@@ -506,6 +523,25 @@ public class UtilisateursBean implements Serializable {
 
         return "/formSearchUtilisateur?faces-redirect=true";
     }
+
+    public String searchUtilisateurNumMembre() {
+
+        SvcUtilisateurs service = new SvcUtilisateurs();
+        if(searchResults!= null)
+        {
+            searchResults.clear();
+        }
+        if (service.getByNumMembre(utilisateur.getNumMembre()).isEmpty()) {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'utilisateur n'a pas été trouvé",null));
+            return "/formSearchUtilisateurNumMembre?faces-redirect=true";
+        } else {
+            searchResults = service.getByNumMembre(utilisateur.getNumMembre());
+        }
+
+        return "/formSearchUtilisateurNumMembre?faces-redirect=true";
+    }
     //Méthode qui permet de vider les variables et de revenir sur le table des utilisateurs
     public String flushUtil() {
         init();
@@ -546,6 +582,13 @@ public class UtilisateursBean implements Serializable {
             searchResults.clear();
         }
         return "/formSearchUtilisateur?faces-redirect=true";
+    }
+    public String flushUtilSearchNum() {
+        init();
+        if (searchResults != null) {
+            searchResults.clear();
+        }
+        return "/formSearchUtilisateurNumMembre?faces-redirect=true";
     }
 
     /*
@@ -628,7 +671,6 @@ public class UtilisateursBean implements Serializable {
     }
 
 
-
 //-------------------------------Getter & Setter--------------------------------------------
     public Utilisateurs getUtilisateur() {
         return utilisateur;
@@ -645,7 +687,6 @@ public class UtilisateursBean implements Serializable {
     public void setSearchResults(List<Utilisateurs> searchResults) {
         this.searchResults = searchResults;
     }
-
 
     public List<Utilisateurs> getListUtil() {
         return listUtil;
@@ -745,6 +786,14 @@ public class UtilisateursBean implements Serializable {
 
     public void setListUB(List<UtilisateursBibliotheques> listUB) {
         this.listUB = listUB;
+    }
+
+    public List<Reservation> getReservationClient() {
+        return reservationClient;
+    }
+
+    public void setReservationClient(List<Reservation> reservationClient) {
+        this.reservationClient = reservationClient;
     }
 }
 

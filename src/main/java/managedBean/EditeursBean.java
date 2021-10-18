@@ -22,6 +22,7 @@ public class EditeursBean implements Serializable {
     private Editeurs editeur;
     private static final Logger log = Logger.getLogger(EditeursBean.class);
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -63,7 +64,7 @@ public class EditeursBean implements Serializable {
 
     }
 
-    // Méthode qui sauvegarde l'éditeur en base de donnée
+    // Méthode qui sauvegarde un objet "éditeur" en base de donnée
     public void save()
     {
         SvcEditeurs service = new SvcEditeurs();

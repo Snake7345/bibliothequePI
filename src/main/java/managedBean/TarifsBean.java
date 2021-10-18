@@ -31,6 +31,7 @@ public class TarifsBean implements Serializable {
     private List<JourCustom> grilleJour = new ArrayList<>();
     private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -41,7 +42,8 @@ public class TarifsBean implements Serializable {
         grilleJour.add(new JourCustom());
 
     }
-    /*Cette méthode permet de sauvegarder la grille tarifaire*/
+
+    /*Cette méthode permet de sauvegarder un objet "tarifs"*/
     public void save()
     {
         SvcTarifs service = new SvcTarifs();

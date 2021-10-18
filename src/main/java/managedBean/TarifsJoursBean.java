@@ -23,7 +23,7 @@ public class TarifsJoursBean implements Serializable {
 
 
     private static final Logger log = Logger.getLogger(TarifsJoursBean.class);
-
+    /*Méthode qui permet la sauvegarde d'un objet tarifs jours*/
     public void save()
     {
         SvcTarifsJours service = new SvcTarifsJours();

@@ -23,7 +23,8 @@ public class TarifsPenalitesBean implements Serializable {
     private TarifsPenalites tarifsPenalite;
     private static final Logger log = Logger.getLogger(TarifsPenalites.class);
 
-        public void save()
+    /*Méthode qui permet la sauvegarde d'un objet "tarifs Pénalités"*/
+    public void save()
     {
         SvcTarifsPenalites service = new SvcTarifsPenalites();
         EntityTransaction transaction = service.getTransaction();

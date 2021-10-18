@@ -227,23 +227,26 @@ public class ModelFactBiblioPena implements Serializable
 	    contentStream.beginText();
 	    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
 	    contentStream.setLeading(7.25f);
-	    contentStream.newLineAtOffset(57, 90);	 
-	    String pdp1 = "Conditions generales";
-	    String pdp2 = "Toutes nos factures doivent etre paye au moment de la creation de la facture.";
-	    String pdp4 = "Les reclamations doivent etre introduites par lettre recommandee, sous peine de decheance, dans les 8 jours de la reception de la facture.";
-	    String pdp6 = "A defaut, nos factures sont reputees conformes.";
-	    
+	    contentStream.newLineAtOffset(57, 90);
+			String pdp1 = "Conditions generales";
+			String pdp2 = "Toutes nos factures doivent etre paye au moment de la creation de la facture.";
+			String pdp3 = "Les reclamations doivent etre introduites par lettre recommandee, sous peine de decheance, dans les 8 jours de la reception de la facture.";
+			String pdp4 = "Toutes pénalités sont appliquées en fonction de la grille tarifaire de la bibliothèque au moment et au lieu où le livre a été loué.";
+			String pdp5 = "A defaut, nos factures sont reputees conformes.";
 
-	    contentStream.showText(pdp1);
-	    contentStream.setFont(PDType1Font.HELVETICA, 7);
-	    contentStream.newLine();
-	    contentStream.newLine();
-	    contentStream.showText(pdp2);
-	    contentStream.newLine();
-	    contentStream.showText(pdp4);
-	    contentStream.newLine();
-	    contentStream.showText(pdp6);
-	    contentStream.endText();
+
+			contentStream.showText(pdp1);
+			contentStream.setFont(PDType1Font.HELVETICA, 7);
+			contentStream.newLine();
+			contentStream.newLine();
+			contentStream.showText(pdp2);
+			contentStream.newLine();
+			contentStream.showText(pdp3);
+			contentStream.newLine();
+			contentStream.showText(pdp4);
+			contentStream.newLine();
+			contentStream.showText(pdp5);
+			contentStream.endText();
 
 	    
 	    contentStream.close();

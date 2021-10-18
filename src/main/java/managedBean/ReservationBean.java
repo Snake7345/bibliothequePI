@@ -36,6 +36,7 @@ public class ReservationBean implements Serializable
     private String numMembre;
     private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -44,6 +45,7 @@ public class ReservationBean implements Serializable
         exemplairesLivres = new ExemplairesLivres();
         numMembre = "";
     }
+
     /*Cette méthode permet la reservation d'un livre en se basant sur le numéro de membre du client et la bibliothèque actuel connecté pour effectuer la reservation*/
     public String reservation() {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();

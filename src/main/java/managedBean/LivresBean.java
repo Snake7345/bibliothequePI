@@ -39,7 +39,7 @@ public class LivresBean implements Serializable {
 
 
 
-
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -49,6 +49,7 @@ public class LivresBean implements Serializable {
         edit = new Editeurs();
         gen = new Genres();
     }
+
     /* Cette méthode permet la création d'un nouveau livre avec le bon format d'ISBN avec l'auteur, le genre
     * */
     public String newLivre()
@@ -96,7 +97,7 @@ public class LivresBean implements Serializable {
         }
     }
 
-    /* Cette méthode permet la sauvegarde d'un nouveau livre
+    /* Cette méthode permet la sauvegarde d'un objet "livre"
      *
      */
     public void save()

@@ -23,7 +23,7 @@ public class PenalitesBean implements Serializable {
     private static final Logger log = Logger.getLogger(PenalitesBean.class);
 
     /*
-     * Méthode qui permet de sauver une pénalité
+     * Méthode qui permet de sauvegarder un objet "pénalité" en DB
      */
     public void save()
     {

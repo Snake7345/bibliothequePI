@@ -21,7 +21,7 @@ public class JoursBean implements Serializable {
     private Jours jour;
     private static final Logger log = Logger.getLogger(JoursBean.class);
 
-    // Méthode qui permet la sauvegarde du jour dans la base de donnée.
+    // Méthode qui permet la sauvegarde d'un objet "jour" dans la base de donnée.
     public void save()
     {
         SvcJours service = new SvcJours();

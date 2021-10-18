@@ -30,7 +30,7 @@ public class AuteursBean implements Serializable {
     private List<Auteurs> searchResults;
     private List<Auteurs> listAut;
 
-
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -70,7 +70,7 @@ public class AuteursBean implements Serializable {
         context.addMessage(null, msg);
     }
 
-    // Méthode qui permet la sauvegarde de l'auteur dans la base de donnée
+    // Méthode qui permet la sauvegarde d'un objet "auteur" dans la base de donnée
     public void save()
     {
         SvcAuteurs service = new SvcAuteurs();

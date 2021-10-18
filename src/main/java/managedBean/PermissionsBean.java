@@ -26,6 +26,7 @@ public class PermissionsBean implements Serializable {
 
     private List<String> listAction = new ArrayList<>();
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -62,6 +63,9 @@ public class PermissionsBean implements Serializable {
         return listPermissions;
     }
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de toutes les types de permissions
+     */
     public List<String> getPermissionsType()
     {
         List<String> listType = new ArrayList<>();
@@ -74,6 +78,9 @@ public class PermissionsBean implements Serializable {
         }
         return listType;
     }
+    /*
+     * Méthode qui permet via le service de retourner la liste de toutes les actions de permissions
+     */
     public List<String> getPermissionsAction()
     {
 
@@ -88,6 +95,7 @@ public class PermissionsBean implements Serializable {
         }
         return listAction;
     }
+
     public void stateChangeListener(ValueChangeEvent event) {
         if (event.getNewValue() != type) {
             getPermissionsAction();

@@ -37,6 +37,7 @@ public class BibliothequesBean implements Serializable {
     private String userdir;
     private String nom;
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -97,7 +98,7 @@ public class BibliothequesBean implements Serializable {
     }
 
 
-    // Méthode qui permet la sauvegarde de la bibliothèque dans la base de donnée
+    // Méthode qui permet la sauvegarde d'un objet "bibliothèque" dans la base de donnée
     public void save()
     {
         SvcAdresses serviceA = new SvcAdresses();

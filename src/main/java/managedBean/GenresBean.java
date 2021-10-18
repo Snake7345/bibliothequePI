@@ -23,6 +23,7 @@ public class GenresBean implements Serializable {
     private Genres genre;
     private static final Logger log = Logger.getLogger(GenresBean.class);
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -57,7 +58,7 @@ public class GenresBean implements Serializable {
         context.addMessage(null, msg);
     }
 
-    // Méthode qui permet la sauvegarde du genre dans la base de donnée.
+    // Méthode qui permet la sauvegarde d'un objet "genre" dans la base de donnée.
     public void save()
     {
         SvcGenres service = new SvcGenres();

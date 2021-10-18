@@ -30,6 +30,7 @@ public class RolesBean implements Serializable {
     private Permissions pe;
     private Permissions permissions;
 
+    /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init()
     {
@@ -242,7 +243,7 @@ public class RolesBean implements Serializable {
         init();
         return "/tableRoles.xhtml?faces-redirect=true";
     }
-    /*Cette méthode permet la sauvegarde du rôle en db ainsi que ces permissions*/
+    /*Cette méthode permet la sauvegarde d'un objet "rôle" en db*/
     public void save()
     {
         SvcRoles service = new SvcRoles();
