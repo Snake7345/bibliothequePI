@@ -4,11 +4,12 @@ import entities.Permissions;
 import entities.PermissionsRoles;
 import entities.Roles;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SvcPermissionRoles extends Service<PermissionsRoles>
+public class SvcPermissionRoles extends Service<PermissionsRoles> implements Serializable
 {
 
     public SvcPermissionRoles()

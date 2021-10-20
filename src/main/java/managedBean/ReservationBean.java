@@ -192,6 +192,11 @@ public class ReservationBean implements Serializable
         numMembre = "";
         reserv = new Reservation();
     }
+    public void flushReservPopup()
+    {
+        exemplairesLivres = new ExemplairesLivres();
+        reserv = new Reservation();
+    }
 /*TODO : Optimisation possible : envoyer un mail a une autre reservation si mail déjà envoyé a celle supprimée*/
     /*Cette méthode permet de désactiver une reservation*/
     public String suppReserv()
@@ -216,6 +221,30 @@ public class ReservationBean implements Serializable
         serviceR.close();
         flushNewReserv();
         return "/tableReservation.xhtml?faces-redirect=true";
+    }
+
+    /*Cette méthode permet de désactiver une reservation via le popup des réservations d'un client*/
+    public void suppReservPopup()
+    {
+        SvcReservations serviceR = new SvcReservations();
+        EntityTransaction transaction = serviceR.getTransaction();
+        transaction.begin();
+        try{
+            reserv.setActif(false);
+            serviceR.save(reserv);
+            transaction.commit();
+        }
+        finally
+        {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation n'a pas réussie", null));
+            }
+        }
+        serviceR.close();
+        flushReservPopup();
     }
 
     //-------------------------------Getter & Setter--------------------------------------------

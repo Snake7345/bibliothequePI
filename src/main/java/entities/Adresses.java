@@ -20,9 +20,16 @@ public class Adresses implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdAdresses", nullable = false)
     private int idAdresses;
+    @Basic
+    @Column(name = "Rue", nullable = false, length = 255)
     private String rue;
+    @Basic
+    @Column(name = "Boite", nullable = true, length = 4)
     private String boite;
+    @Basic
+    @Column(name = "Numero", nullable = false, length = 6)
     private String numero;
     @OneToMany(mappedBy = "adresse")
     private Collection<UtilisateursAdresses> utilisateursAdresses;
@@ -33,8 +40,21 @@ public class Adresses implements Serializable {
     @JoinColumn(name = "LocalitesIdLocalites", referencedColumnName = "IdLocalites", nullable = false)
     private Localites localites;
 
-    @Id
-    @Column(name = "IdAdresses", nullable = false)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Adresses adresses = (Adresses) o;
+        return idAdresses == adresses.idAdresses && rue.equals(adresses.rue) && Objects.equals(boite, adresses.boite) && numero.equals(adresses.numero);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idAdresses, rue, boite, numero);
+    }
+
+
+
     public int getIdAdresses() {
         return idAdresses;
     }
@@ -43,8 +63,7 @@ public class Adresses implements Serializable {
         this.idAdresses = idAdresses;
     }
 
-    @Basic
-    @Column(name = "Rue", nullable = false, length = 255)
+
     public String getRue() {
         return rue;
     }
@@ -53,8 +72,7 @@ public class Adresses implements Serializable {
         this.rue = rue;
     }
 
-    @Basic
-    @Column(name = "Boite", nullable = true, length = 4)
+
     public String getBoite() {
         return boite;
     }
@@ -63,8 +81,7 @@ public class Adresses implements Serializable {
         this.boite = boite;
     }
 
-    @Basic
-    @Column(name = "Numero", nullable = false, length = 6)
+
     public String getNumero() {
         return numero;
     }
@@ -97,16 +114,4 @@ public class Adresses implements Serializable {
         this.utilisateursAdresses = utilisateursAdressesByIdAdresses;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Adresses adresses = (Adresses) o;
-        return idAdresses == adresses.idAdresses && rue.equals(adresses.rue) && Objects.equals(boite, adresses.boite) && numero.equals(adresses.numero);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idAdresses, rue, boite, numero);
-    }
 }

@@ -4,10 +4,7 @@ import entities.*;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import security.SecurityManager;
-import services.SvcRoles;
-import services.SvcUtilisateurs;
-import services.SvcUtilisateursAdresses;
-import services.SvcUtilisateursBibliotheques;
+import services.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -121,16 +118,13 @@ public class UtilisateursBean implements Serializable {
 
     public void afficheReservations()
     {
-        SvcUtilisateurs serviceU = new SvcUtilisateurs();
-        serviceU.refreshEntity(utilisateur);
-        serviceU.close();
-        for(Reservation r : utilisateur.getReservations())
-        {
-            if(r.isActif())
-            {
-                reservationClient.add(r);
-            }
-        }
+
+        SvcReservations service = new SvcReservations();
+        reservationClient = service.findAllActivbyClient(bibliothequeActuelle,utilisateur);
+        service.close();
+        FacesContext fc = FacesContext.getCurrentInstance();
+        fc.getExternalContext().getFlash().setKeepMessages(true);
+        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"la réservation a bien été désactivé",null));
     }
 
     /*Cette méthode permet de sauvegarder un objet "utilisateur", l'adresse ainsi que les bibliothèques auquel il travaille*/

@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
@@ -14,23 +15,24 @@ import java.util.Objects;
                 @NamedQuery(name = "Roles.findInactiv", query="SELECT r FROM Roles r WHERE r.actif=FALSE"),
                 @NamedQuery(name = "Roles.findRole", query="SELECT r FROM Roles r WHERE r.denomination=:denomination"),
                 @NamedQuery(name = "Roles.findActivUtil", query="SELECT r FROM Roles r WHERE r.actif=TRUE AND r.denomination <>'Client' "),
-
-
         })
 public class Roles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdRoles", nullable = false)
     private int idRoles;
+    @Basic
+    @Column(name = "Denomination", nullable = false, length = 150)
     private String denomination;
+    @Basic
+    @Column(name = "Actif", nullable = false)
     private boolean actif = true;
     @OneToMany(mappedBy = "role")
     private Collection<PermissionsRoles> permissionsRoles;
     @OneToMany(mappedBy = "roles")
     private Collection<Utilisateurs> utilisateurs;
 
-    @Id
-    @Column(name = "IdRoles", nullable = false)
     public int getIdRoles() {
         return idRoles;
     }
@@ -39,8 +41,7 @@ public class Roles implements Serializable {
         this.idRoles = idRoles;
     }
 
-    @Basic
-    @Column(name = "Denomination", nullable = false, length = 150)
+
     public String getDenomination() {
         return denomination;
     }
@@ -50,8 +51,7 @@ public class Roles implements Serializable {
     }
 
 
-    @Basic
-    @Column(name = "Actif", nullable = false)
+
     public boolean isActif() {
         return actif;
     }

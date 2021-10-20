@@ -148,7 +148,7 @@ public class ExemplairesLivresBean implements Serializable {
                 listEL.add(serviceEL.findOneByCodeBarre(CB.getCodeBarre()).get(0));
             }
             for(ExemplairesLivres EL : listEL){
-                if(!EL.isReserve() || EL.isLoue())
+                if(!EL.isTransfert() || EL.isReserve() || EL.isLoue())
                 {
                     transaction.rollback();
                     FacesContext fc = FacesContext.getCurrentInstance();
@@ -158,7 +158,7 @@ public class ExemplairesLivresBean implements Serializable {
                 }
                 if(EL.isActif())
                 {
-                    EL.setReserve(false);
+                    EL.setTransfert(false);
                     EL.setBibliotheques(bibliothequeActuelle);
                     serviceEL.save(EL);
                 }
@@ -218,7 +218,7 @@ public class ExemplairesLivresBean implements Serializable {
                 }
                 if(EL.isActif())
                 {
-                    EL.setReserve(true);
+                    EL.setTransfert(true);
                     serviceEL.save(EL);
                 }
             }

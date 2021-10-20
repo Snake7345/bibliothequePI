@@ -1,6 +1,8 @@
 package managedBean;
 
-import entities.*;
+import entities.Permissions;
+import entities.PermissionsRoles;
+import entities.Roles;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import services.SvcPermissionRoles;
@@ -13,10 +15,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Named
@@ -161,6 +161,8 @@ public class RolesBean implements Serializable {
     /*Cette méthode permet de vérifier si un rôle avec une même dénomination existe (avec la méthode verifRoleExist) et permet d'appeler la méthode save qui va sauvegarder le rôle et les permissions liées */
     public String newRoles()
     {
+        log.debug("role " + role.getPermissionsRoles());
+        log.debug("role " + role.getDenomination());
         if(verifRoleExist(role))
         {
             save();
@@ -246,18 +248,23 @@ public class RolesBean implements Serializable {
     /*Cette méthode permet la sauvegarde d'un objet "rôle" en db*/
     public void save()
     {
-        SvcRoles service = new SvcRoles();
+        SvcRoles serviceR = new SvcRoles();
         SvcPermissions serviceP = new SvcPermissions();
         SvcPermissionRoles servicePR = new SvcPermissionRoles();
-        EntityTransaction transaction = service.getTransaction();
-        servicePR.setEm(service.getEm());
+        servicePR.setEm(serviceR.getEm());
+        EntityTransaction transaction = serviceR.getTransaction();
         transaction.begin();
         try {
-            service.save(role);
-            service.refreshEntity(role);
-            if(role.getPermissionsRoles().size()>0){
-                for(PermissionsRoles pr : role.getPermissionsRoles()){
-                    servicePR.delete(pr.getIdPermissionsRoles());
+            serviceR.save(role);
+            if(role.getIdRoles()>0)
+            {
+                serviceR.refreshEntity(role);
+            }
+            if(role.getPermissionsRoles() != null) {
+                if (role.getPermissionsRoles().size() > 0) {
+                    for (PermissionsRoles pr : role.getPermissionsRoles()) {
+                        servicePR.delete(pr.getIdPermissionsRoles());
+                    }
                 }
             }
             for(Permissions p : listPerm)
@@ -284,7 +291,7 @@ public class RolesBean implements Serializable {
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'a pas reussie",null));
             }
-            service.close();
+            serviceR.close();
         }
 
     }

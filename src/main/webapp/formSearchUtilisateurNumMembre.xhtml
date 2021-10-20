@@ -82,7 +82,7 @@
                         </ui:repeat>
 
                     <p:commandButton icon="fa fa-fw fa-check" style="float: right" value="Voir les réservations" action="#{utilisateursBean.afficheReservations}"
-                                     onclick="PF('dlg1').hide();PF('dlg2').show(); "> </p:commandButton>
+                                     onclick="PF('dlg1').hide();PF('dlg2').show(); " update="DetailReservation"> </p:commandButton>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
@@ -100,7 +100,13 @@
                         <f:facet name="header">#{I18N['bibliotheque.label.Nom']}</f:facet>
                         <p:outputLabel value ="#{utilReservation.bibliotheques.nom}"/>
                     </p:column>
-
+                    <shiro:hasPermission name="Reservation:ActivDesactiv">
+                        <p:column>
+                            <p:commandButton value="#{I18N['application.button.supprimer']}" action="#{reservationBean.suppReservPopup}" immediate="true" onclick="PF('dlg2').hide();PF('dlg1').show(); ">
+                                <f:setPropertyActionListener target="#{reservationBean.reserv}" value="#{utilReservation}" />
+                            </p:commandButton>
+                        </p:column>
+                    </shiro:hasPermission>
                 </p:dataTable>
                 <p:commandButton icon="fa fa-fw fa-check" style="float: right" value="Retour aux infos du clients" onclick="PF('dlg2').hide();PF('dlg1').show(); ">
             </p:commandButton>

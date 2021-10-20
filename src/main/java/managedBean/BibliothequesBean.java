@@ -294,7 +294,7 @@ public class BibliothequesBean implements Serializable {
             {
                 bibliotheque.setActif(false);
                 for (ExemplairesLivres el : bibliotheque.getExemplairesLivres()) {
-                    if(el.isActif() && !el.isLoue() && !el.isReserve())
+                    if(el.isActif() && !el.isLoue() && !el.isReserve() && !el.isTransfert())
                     {
                         el.setActif(false);
                         serviceEL.save(el);
@@ -307,7 +307,7 @@ public class BibliothequesBean implements Serializable {
                         fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"toutes les locations doivent être cloturer avant la fermeture de la bibliothèque ",null));
                         return "/tableBibliotheques.xhtml?faces-redirect=true";
                     }
-                    else if (el.isReserve())
+                    else if (el.isReserve() || el.isTransfert())
                     {
                         transaction.rollback();
                         FacesContext fc = FacesContext.getCurrentInstance();
