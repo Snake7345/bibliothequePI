@@ -22,8 +22,13 @@ public class Bibliotheques implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdBibliotheques", nullable = false)
     private int idBibliotheques;
+    @Basic
+    @Column(name = "Nom", nullable = false, length = 255)
     private String nom;
+    @Basic
+    @Column(name = "Actif", nullable = false)
     private boolean actif = true;
     @OneToMany(mappedBy = "bibliotheques")
     private Collection<Adresses> adresses;
@@ -37,54 +42,6 @@ public class Bibliotheques implements Serializable {
     private Collection<UtilisateursBibliotheques> utilisateurs;
     @OneToMany(mappedBy = "bibliotheques")
     private Collection<Reservation> reservations;
-
-
-    @Id
-    @Column(name = "IdBibliotheques", nullable = false)
-    public int getIdBibliotheques() {
-        return idBibliotheques;
-    }
-
-    public void setIdBibliotheques(int idBibliotheques) {
-        this.idBibliotheques = idBibliotheques;
-    }
-
-    @Basic
-    @Column(name = "Actif", nullable = false)
-    public boolean isActif() {
-        return actif;
-    }
-
-    public void setActif(boolean actif) {
-        this.actif = actif;
-    }
-
-    @Basic
-    @Column(name = "Nom", nullable = false, length = 255)
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public Collection<Factures> getFactures() {
-        return factures;
-    }
-
-    public void setFactures(Collection<Factures> factures) {
-        this.factures = factures;
-    }
-
-
-    public Collection<UtilisateursBibliotheques> getUtilisateurs() {
-        return utilisateurs;
-    }
-
-    public void setUtilisateurs(Collection<UtilisateursBibliotheques> utilisateurs) {
-        this.utilisateurs = utilisateurs;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -100,6 +57,27 @@ public class Bibliotheques implements Serializable {
     public int hashCode() {
         return Objects.hash(idBibliotheques, actif, nom, adresses, exemplairesLivres, tarifs, factures,utilisateurs);
     }
+
+    @Override
+    public Bibliotheques clone(){
+        Bibliotheques biblio = null;
+        try{
+            biblio = (Bibliotheques) super.clone();
+        }catch (CloneNotSupportedException e) {
+            e.printStackTrace(System.err);
+        }
+        return biblio;
+    }
+
+    public void setFields(Bibliotheques biblio) {
+        this.nom = biblio.nom;
+        this.adresses = biblio.adresses;
+        this.exemplairesLivres = biblio.exemplairesLivres;
+        this.tarifs = biblio.tarifs;
+        this.actif = biblio.actif;
+    }
+
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Collection<Adresses> getAdresses() {
         return adresses;
@@ -133,22 +111,44 @@ public class Bibliotheques implements Serializable {
         this.tarifs = tarifs;
     }
 
-    @Override
-    public Bibliotheques clone(){
-        Bibliotheques biblio = null;
-        try{
-            biblio = (Bibliotheques) super.clone();
-        }catch (CloneNotSupportedException e) {
-            e.printStackTrace(System.err);
-        }
-        return biblio;
+    public int getIdBibliotheques() {
+        return idBibliotheques;
     }
 
-    public void setFields(Bibliotheques biblio) {
-        this.nom = biblio.nom;
-        this.adresses = biblio.adresses;
-        this.exemplairesLivres = biblio.exemplairesLivres;
-        this.tarifs = biblio.tarifs;
-        this.actif = biblio.actif;
+    public void setIdBibliotheques(int idBibliotheques) {
+        this.idBibliotheques = idBibliotheques;
     }
+
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Collection<Factures> getFactures() {
+        return factures;
+    }
+
+    public void setFactures(Collection<Factures> factures) {
+        this.factures = factures;
+    }
+
+    public Collection<UtilisateursBibliotheques> getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(Collection<UtilisateursBibliotheques> utilisateurs) {
+        this.utilisateurs = utilisateurs;
+    }
+
 }

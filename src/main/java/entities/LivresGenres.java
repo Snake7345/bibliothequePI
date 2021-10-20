@@ -17,10 +17,14 @@ public class LivresGenres implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idLivresGenres;
-
-    @Id
     @Column(name = "IdLivresGenres", nullable = false)
+    private int idLivresGenres;
+    @ManyToOne
+    @JoinColumn(name = "LivresIdLivres", nullable = false)
+    private Livres livre;
+    @ManyToOne
+    @JoinColumn(name = "GenresIdGenres", nullable = false)
+    private Genres genre;
 
     public int getIdLivresGenres() {
         return idLivresGenres;
@@ -30,11 +34,6 @@ public class LivresGenres implements Serializable {
         this.idLivresGenres = idLivresGenres;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "LivresIdLivres", nullable = false)
-    private Livres livre;
-
     public Livres getLivre() {
         return livre;
     }
@@ -42,10 +41,6 @@ public class LivresGenres implements Serializable {
     public void setLivre(Livres livre) {
         this.livre = livre;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "GenresIdGenres", nullable = false)
-    private Genres genre;
 
     public Genres getGenre() {
         return genre;

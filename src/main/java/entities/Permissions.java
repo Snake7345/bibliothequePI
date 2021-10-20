@@ -18,41 +18,16 @@ public class Permissions implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdPermissions", nullable = false)
     private int idPermissions;
+    @Basic
+    @Column(name = "Type", nullable = false, length = 100)
     private String type;
+    @Basic
+    @Column(name = "Action", nullable = false, length = 150)
     private String action;
     @OneToMany(mappedBy = "permissions")
     private Collection<PermissionsRoles> permissionsRoles;
-
-    @Id
-    @Column(name = "IdPermissions", nullable = false)
-    public int getIdPermissions() {
-        return idPermissions;
-    }
-
-    public void setIdPermissions(int idPermissions) {
-        this.idPermissions = idPermissions;
-    }
-
-    @Basic
-    @Column(name = "Type", nullable = false, length = 100)
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String Type) {
-        this.type = Type;
-    }
-
-    @Basic
-    @Column(name = "Action", nullable = false, length = 150)
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String Action) {
-        this.action = Action;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -74,4 +49,32 @@ public class Permissions implements Serializable {
     public void setPermissionsRoles(Collection<PermissionsRoles> permissionsRolesByIdPermissions) {
         this.permissionsRoles = permissionsRolesByIdPermissions;
     }
+
+    //-------------------------------Getter & Setter--------------------------------------------
+
+    public int getIdPermissions() {
+        return idPermissions;
+    }
+
+    public void setIdPermissions(int idPermissions) {
+        this.idPermissions = idPermissions;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String Type) {
+        this.type = Type;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String Action) {
+        this.action = Action;
+    }
+
+
 }

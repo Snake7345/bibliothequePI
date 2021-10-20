@@ -122,9 +122,6 @@ public class UtilisateursBean implements Serializable {
         SvcReservations service = new SvcReservations();
         reservationClient = service.findAllActivbyClient(bibliothequeActuelle,utilisateur);
         service.close();
-        FacesContext fc = FacesContext.getCurrentInstance();
-        fc.getExternalContext().getFlash().setKeepMessages(true);
-        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"la réservation a bien été désactivé",null));
     }
 
     /*Cette méthode permet de sauvegarder un objet "utilisateur", l'adresse ainsi que les bibliothèques auquel il travaille*/

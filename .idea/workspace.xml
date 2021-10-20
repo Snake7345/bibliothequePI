@@ -9,36 +9,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.06 Multiples corrections">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.07 Correction du formulaire des rôles ainsi que début de normalisation des entités">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Adresses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Adresses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Auteurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Auteurs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Bibliotheques.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Bibliotheques.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Editeurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Editeurs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/ExemplairesLivres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/ExemplairesLivres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Factures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Factures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/FacturesDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/FacturesDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Genres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Genres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Jours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Jours.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Livres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Livres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/LivresAuteurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/LivresAuteurs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/LivresGenres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/LivresGenres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Localites.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Localites.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Pays.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Pays.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Penalites.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Penalites.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Permissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Permissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/PermissionsRoles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/PermissionsRoles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Reservation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/Roles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Roles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Tarifs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Tarifs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/TarifsJours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/TarifsJours.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/TarifsPenalites.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/TarifsPenalites.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Utilisateurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Utilisateurs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/UtilisateursAdresses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/UtilisateursAdresses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/UtilisateursBibliotheques.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/UtilisateursBibliotheques.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcPermissionRoles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcPermissionRoles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcReservations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcReservations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/noir.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/noir2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Images/noir2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/orange.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/rouge.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/rouge2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Images/rouge2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/rouge3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/rouge4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/rouge5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/vert.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/vert2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Images/vert2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/vert3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/vert5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateurNumMembre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateurNumMembre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +244,7 @@
       <workItem from="1634656739716" duration="2516000" />
       <workItem from="1634677891956" duration="14640000" />
       <workItem from="1634696114727" duration="4136000" />
-      <workItem from="1634735699285" duration="2016000" />
+      <workItem from="1634735699285" duration="6508000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -341,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634598500316</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="v1.2.07 Correction du formulaire des rôles ainsi que début de normalisation des entités">
+      <created>1634737782549</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1634737782550</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,6 +375,7 @@
     <MESSAGE value="v1.2.04 Correction de quelques commentaires + correction graphique" />
     <MESSAGE value="v1.2.05 Multiples corrections" />
     <MESSAGE value="v1.2.06 Multiples corrections" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.2.06 Multiples corrections" />
+    <MESSAGE value="v1.2.07 Correction du formulaire des rôles ainsi que début de normalisation des entités" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2.07 Correction du formulaire des rôles ainsi que début de normalisation des entités" />
   </component>
 </project>

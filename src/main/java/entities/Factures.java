@@ -21,24 +21,47 @@ public class Factures implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdFactures", nullable = false)
     private int idFactures;
+    @Basic
+    @Column(name = "DateDebut", nullable = false)
     private Timestamp dateDebut;
+    @Basic
+    @Column(name = "PrixTVAC", nullable = true, precision = 0)
     private Double prixTvac;
+    @Basic
+    @Column(name = "NumeroFacture", nullable = true, length = 45)
     private String numeroFacture;
+    @Basic
+    @Column(name = "LienPdf", nullable = false, length = 255)
     private String lienPdf;
-
     @OneToMany(mappedBy = "factures")
     private Collection<FacturesDetail> facturesDetails;
-    
     @ManyToOne
     @JoinColumn(name = "UtilisateursIdUtilisateurs", nullable = false)
     private Utilisateurs utilisateurs;
     @ManyToOne
     @JoinColumn(name = "Bibliotheques_IdBibliotheques", nullable = false)
     private Bibliotheques bibliotheques;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false,columnDefinition = "varchar(2) default 'FR'" ,name = "etat")
+    private FactureEtatEnum etat;
 
-    @Id
-    @Column(name = "IdFactures", nullable = false)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Factures factures = (Factures) o;
+        return idFactures == factures.idFactures && dateDebut.equals(factures.dateDebut) && Objects.equals(prixTvac, factures.prixTvac) && Objects.equals(numeroFacture, factures.numeroFacture) && lienPdf.equals(factures.lienPdf) && facturesDetails.equals(factures.facturesDetails) && utilisateurs.equals(factures.utilisateurs) && etat == factures.etat;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, lienPdf, facturesDetails, utilisateurs, etat);
+    }
+
+    //-------------------------------Getter & Setter--------------------------------------------
+
     public int getIdFactures() {
         return idFactures;
     }
@@ -47,8 +70,6 @@ public class Factures implements Serializable {
         this.idFactures = idFactures;
     }
 
-    @Basic
-    @Column(name = "DateDebut", nullable = false)
     public Timestamp getDateDebut() {
         return dateDebut;
     }
@@ -57,8 +78,6 @@ public class Factures implements Serializable {
         this.dateDebut = dateDebut;
     }
 
-    @Basic
-    @Column(name = "PrixTVAC", nullable = true, precision = 0)
     public Double getPrixTvac() {
         return prixTvac;
     }
@@ -67,8 +86,6 @@ public class Factures implements Serializable {
         this.prixTvac = prixTvac;
     }
 
-    @Basic
-    @Column(name = "NumeroFacture", nullable = true, length = 45)
     public String getNumeroFacture() {
         return numeroFacture;
     }
@@ -77,8 +94,6 @@ public class Factures implements Serializable {
         this.numeroFacture = numeroFacture;
     }
 
-    @Basic
-    @Column(name = "LienPdf", nullable = false, length = 255)
     public String getLienPdf() {
         return lienPdf;
     }
@@ -87,10 +102,6 @@ public class Factures implements Serializable {
         this.lienPdf = lienPdf;
     }
 
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false,columnDefinition = "varchar(2) default 'FR'" ,name = "etat")
-    private FactureEtatEnum etat;
     public FactureEtatEnum getEtat() {
         return etat;
     }
@@ -107,26 +118,12 @@ public class Factures implements Serializable {
         this.facturesDetails = facturesDetails1;
     }
 
-
     public Bibliotheques getBibliotheques() {
         return bibliotheques;
     }
 
     public void setBibliotheques(Bibliotheques bibliotheques) {
         this.bibliotheques = bibliotheques;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Factures factures = (Factures) o;
-        return idFactures == factures.idFactures && dateDebut.equals(factures.dateDebut) && Objects.equals(prixTvac, factures.prixTvac) && Objects.equals(numeroFacture, factures.numeroFacture) && lienPdf.equals(factures.lienPdf) && facturesDetails.equals(factures.facturesDetails) && utilisateurs.equals(factures.utilisateurs) && etat == factures.etat;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idFactures, dateDebut, prixTvac, numeroFacture, lienPdf, facturesDetails, utilisateurs, etat);
     }
 
     public Utilisateurs getUtilisateurs() {

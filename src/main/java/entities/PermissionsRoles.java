@@ -14,17 +14,14 @@ public class PermissionsRoles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPermissionsRoles;
-
-    @Id
     @Column(name = "IdPermissionsRoles", nullable = false)
-    public int getIdPermissionsRoles() {
-        return idPermissionsRoles;
-    }
-
-    public void setIdPermissionsRoles(int idPermissionsRoles) {
-        this.idPermissionsRoles = idPermissionsRoles;
-    }
+    private int idPermissionsRoles;
+    @ManyToOne
+    @JoinColumn(name = "PermissionsIdPermissions", nullable = false)
+    private Permissions permissions;
+    @ManyToOne
+    @JoinColumn(name = "RolesIdRoles", nullable = false)
+    private Roles role;
 
     @Override
     public boolean equals(Object o) {
@@ -41,9 +38,15 @@ public class PermissionsRoles implements Serializable {
         return Objects.hash(idPermissionsRoles, permissions, role);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "PermissionsIdPermissions", nullable = false)
-    private Permissions permissions;
+    //-------------------------------Getter & Setter--------------------------------------------
+
+    public int getIdPermissionsRoles() {
+        return idPermissionsRoles;
+    }
+
+    public void setIdPermissionsRoles(int idPermissionsRoles) {
+        this.idPermissionsRoles = idPermissionsRoles;
+    }
 
     public Permissions getPermissions() {
         return permissions;
@@ -53,10 +56,6 @@ public class PermissionsRoles implements Serializable {
         this.permissions = permissions;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "RolesIdRoles", nullable = false)
-    private Roles role;
-
     public Roles getRole() {
         return role;
     }
@@ -64,4 +63,6 @@ public class PermissionsRoles implements Serializable {
     public void setRole(Roles role) {
         this.role = role;
     }
+
+
 }

@@ -17,30 +17,13 @@ public class Pays implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdPays", nullable = false)
     private int idPays;
+    @Basic
+    @Column(name = "Nom", nullable = false, length = 150)
     private String nom;
     @OneToMany(mappedBy = "pays")
     private Collection<Localites> localites;
-
-    @Id
-    @Column(name = "IdPays", nullable = false)
-    public int getIdPays() {
-        return idPays;
-    }
-
-    public void setIdPays(int idPays) {
-        this.idPays = idPays;
-    }
-
-    @Basic
-    @Column(name = "Nom", nullable = false, length = 150)
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -56,6 +39,7 @@ public class Pays implements Serializable {
         return Objects.hash(idPays, nom);
     }
 
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Collection<Localites> getLocalites() {
         return localites;
@@ -63,5 +47,21 @@ public class Pays implements Serializable {
 
     public void setLocalites(Collection<Localites> localites) {
         this.localites = localites;
+    }
+
+    public int getIdPays() {
+        return idPays;
+    }
+
+    public void setIdPays(int idPays) {
+        this.idPays = idPays;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 }

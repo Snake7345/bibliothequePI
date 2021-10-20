@@ -25,98 +25,37 @@ public class ExemplairesLivres implements Serializable {
     private static final Logger log = Logger.getLogger(ExemplairesLivres.class);
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idExemplairesLivres;
-    private String codeBarre;
-    private boolean actif = true;
-    private String commentaireEtat="Neuf";
-    private boolean loue=false;
-    private boolean reserve=false;
-    private boolean transfert=false;
-    @OneToMany(mappedBy = "exemplairesLivre")
-    private Collection<FacturesDetail> facturesDetails;
-
-    @Id
     @Column(name = "IdExemplairesLivres", nullable = false)
-    public int getIdExemplairesLivres() {
-        return idExemplairesLivres;
-    }
-
-    public void setIdExemplairesLivres(int idExemplairesLivres) {
-        this.idExemplairesLivres = idExemplairesLivres;
-    }
-
+    private int idExemplairesLivres;
     @Basic
     @Column(name = "CodeBarre", nullable = false, length = 45)
-    public String getCodeBarre() {
-        return codeBarre;
-    }
-
-    public void setCodeBarre(String codeBarre) {
-        this.codeBarre = codeBarre;
-    }
-
+    private String codeBarre;
     @Basic
     @Column(name = "Actif", nullable = false)
-    public boolean isActif() {
-        return actif;
-    }
-
-    public void setActif(boolean actif) {
-        this.actif = actif;
-    }
-
-    @Basic
-    @Column(name = "Transfert", nullable = false)
-    public boolean isTransfert() {
-        return transfert;
-    }
-
-    public void setTransfert(boolean transfert) {
-        this.transfert = transfert;
-    }
-
+    private boolean actif = true;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, columnDefinition = "varchar(2) default 'FR'", name = "etat")
     private ExemplairesLivresEtatEnum etat;
-
-    public ExemplairesLivresEtatEnum getEtat() {
-        return etat;
-    }
-
-    public void setEtat(ExemplairesLivresEtatEnum etat) {
-        this.etat = etat;
-    }
-
     @Basic
     @Column(name = "CommentaireEtat", nullable = false, length = 500)
-    public String getCommentaireEtat() {
-        return commentaireEtat;
-    }
-
-    public void setCommentaireEtat(String commentaireEtat) {
-        this.commentaireEtat = commentaireEtat;
-    }
-
-
+    private String commentaireEtat="Neuf";
     @Basic
     @Column(name = "Loue", nullable = false)
-    public boolean isLoue() {
-        return loue;
-    }
-
-    public void setLoue(boolean loue) {
-        this.loue = loue;
-    }
-
+    private boolean loue=false;
     @Basic
     @Column(name = "Reserve", nullable = false)
-    public boolean isReserve() {
-        return reserve;
-    }
-
-    public void setReserve(boolean reserve) {
-        this.reserve = reserve;
-    }
+    private boolean reserve=false;
+    @Basic
+    @Column(name = "Transfert", nullable = false)
+    private boolean transfert=false;
+    @OneToMany(mappedBy = "exemplairesLivre")
+    private Collection<FacturesDetail> facturesDetails;
+    @ManyToOne
+    @JoinColumn(name = "BibliothequesIdBibliotheques", nullable = false)
+    private Bibliotheques bibliotheques;
+    @ManyToOne
+    @JoinColumn(name = "LivresIdLivres", nullable = false)
+    private Livres livres;
 
     @Override
     public boolean equals(Object o) {
@@ -137,9 +76,73 @@ public class ExemplairesLivres implements Serializable {
         return Objects.hash(idExemplairesLivres, codeBarre, actif, reserve, etat, commentaireEtat, loue, transfert);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "BibliothequesIdBibliotheques", nullable = false)
-    private Bibliotheques bibliotheques;
+    //-------------------------------Getter & Setter--------------------------------------------
+
+    public int getIdExemplairesLivres() {
+        return idExemplairesLivres;
+    }
+
+    public void setIdExemplairesLivres(int idExemplairesLivres) {
+        this.idExemplairesLivres = idExemplairesLivres;
+    }
+
+    public String getCodeBarre() {
+        return codeBarre;
+    }
+
+    public void setCodeBarre(String codeBarre) {
+        this.codeBarre = codeBarre;
+    }
+
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
+
+    public boolean isTransfert() {
+        return transfert;
+    }
+
+    public void setTransfert(boolean transfert) {
+        this.transfert = transfert;
+    }
+
+    public ExemplairesLivresEtatEnum getEtat() {
+        return etat;
+    }
+
+    public void setEtat(ExemplairesLivresEtatEnum etat) {
+        this.etat = etat;
+    }
+
+    public String getCommentaireEtat() {
+        return commentaireEtat;
+    }
+
+    public void setCommentaireEtat(String commentaireEtat) {
+        this.commentaireEtat = commentaireEtat;
+    }
+
+    public boolean isLoue() {
+        return loue;
+    }
+
+    public void setLoue(boolean loue) {
+        this.loue = loue;
+    }
+
+
+    public boolean isReserve() {
+        return reserve;
+    }
+
+    public void setReserve(boolean reserve) {
+        this.reserve = reserve;
+    }
+
     public Bibliotheques getBibliotheques() {
         return bibliotheques;
     }
@@ -148,9 +151,7 @@ public class ExemplairesLivres implements Serializable {
         this.bibliotheques = bibliotheques1;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "LivresIdLivres", nullable = false)
-    private Livres livres;
+
     public Livres getLivres() {
         return livres;
     }

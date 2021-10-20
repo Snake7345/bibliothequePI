@@ -17,30 +17,13 @@ public class Genres implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdGenres", nullable = false)
     private int idGenres;
+    @Basic
+    @Column(name = "Denomination", nullable = false, length = 255)
     private String denomination;
     @OneToMany(mappedBy = "genre")
     private Collection<LivresGenres> livresGenres;
-
-    @Id
-    @Column(name = "IdGenres", nullable = false)
-    public int getIdGenres() {
-        return idGenres;
-    }
-
-    public void setIdGenres(int idGenres) {
-        this.idGenres = idGenres;
-    }
-
-    @Basic
-    @Column(name = "Denomination", nullable = false, length = 255)
-    public String getDenomination() {
-        return denomination;
-    }
-
-    public void setDenomination(String denomination) {
-        this.denomination = denomination;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -54,15 +37,6 @@ public class Genres implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(idGenres, denomination);
-    }
-
-
-    public Collection<LivresGenres> getLivresGenres() {
-        return livresGenres;
-    }
-
-    public void setLivresGenres(Collection<LivresGenres> livresGenres) {
-        this.livresGenres = livresGenres;
     }
 
     @Override
@@ -79,5 +53,31 @@ public class Genres implements Serializable {
     public void setFields(Genres gen) {
         this.denomination = gen.denomination;
         this.livresGenres = gen.livresGenres;
+    }
+
+    //-------------------------------Getter & Setter--------------------------------------------
+
+    public int getIdGenres() {
+        return idGenres;
+    }
+
+    public void setIdGenres(int idGenres) {
+        this.idGenres = idGenres;
+    }
+
+    public String getDenomination() {
+        return denomination;
+    }
+
+    public void setDenomination(String denomination) {
+        this.denomination = denomination;
+    }
+
+    public Collection<LivresGenres> getLivresGenres() {
+        return livresGenres;
+    }
+
+    public void setLivresGenres(Collection<LivresGenres> livresGenres) {
+        this.livresGenres = livresGenres;
     }
 }

@@ -19,6 +19,7 @@ public class Reservation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idReservations", nullable = false)
     private int idReservations;
     @Basic
     @Column(name = "Actif", nullable = false)
@@ -36,8 +37,9 @@ public class Reservation implements Serializable {
     @JoinColumn(name = "BibliothequesIdBibliotheques", nullable = false)
     private Bibliotheques bibliotheques;
 
-    @Id
-    @Column(name = "idReservations", nullable = false)
+
+    //-------------------------------Getter & Setter--------------------------------------------
+
     public int getIdReservation() {
         return idReservations;
     }

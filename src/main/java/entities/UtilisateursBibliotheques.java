@@ -13,6 +13,7 @@ public class UtilisateursBibliotheques implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdUtilisateursBibliotheques", nullable = false)
     private int idUtilisateursBibliotheques;
     @ManyToOne
     @JoinColumn(name = "BibliothequesIdBibliotheques", nullable = false)
@@ -21,8 +22,7 @@ public class UtilisateursBibliotheques implements Serializable {
     @JoinColumn(name = "UtilisateursIdUtilisateurs", nullable = false)
     private Utilisateurs utilisateur;
 
-    @Id
-    @Column(name = "IdUtilisateursBibliotheques", nullable = false)
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public int getIdUtilisateursBibliotheques() {
         return idUtilisateursBibliotheques;

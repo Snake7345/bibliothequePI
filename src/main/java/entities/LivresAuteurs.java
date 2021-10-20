@@ -12,13 +12,19 @@ import java.io.Serializable;
         })
 public class LivresAuteurs implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int IdLivresAuteurs;
-
-    @Id
     @Column(name = "IdLivresAuteurs", nullable = false)
+    private int IdLivresAuteurs;
+    @ManyToOne
+    @JoinColumn(name = "AuteursIdAuteurs", nullable = false)
+    private Auteurs auteur;
+    @ManyToOne
+    @JoinColumn(name = "LivresIdLivres", nullable = false)
+    private Livres livre;
+
+    //-------------------------------Getter & Setter--------------------------------------------
+
     public int getIdLivresAuteurs() {
         return IdLivresAuteurs;
     }
@@ -27,11 +33,6 @@ public class LivresAuteurs implements Serializable {
         IdLivresAuteurs = idLivresAuteurs;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "AuteursIdAuteurs", nullable = false)
-    private Auteurs auteur;
-
     public Auteurs getAuteur() {
         return auteur;
     }
@@ -39,10 +40,6 @@ public class LivresAuteurs implements Serializable {
     public void setAuteur(Auteurs auteur) {
         this.auteur = auteur;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "LivresIdLivres", nullable = false)
-    private Livres livre;
 
     public Livres getLivre() {
         return livre;

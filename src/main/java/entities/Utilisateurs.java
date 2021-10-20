@@ -34,16 +34,31 @@ public class Utilisateurs implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdUtilisateurs", nullable = false)
     private int idUtilisateurs;
+    @Basic
+    @Column(name = "Nom", nullable = false, length = 150)
     private String nom;
+    @Basic
+    @Column(name = "Prenom", nullable = false, length = 150)
     private String prenom;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "sexe")
     private UtilisateurSexeEnum sexe;
+    @Basic
+    @Column(name = "Courriel", nullable = false, length = 255)
     private String courriel;
+    @Basic
+    @Column(name = "Login", nullable = true, length = 255)
     private String login;
+    @Basic
+    @Column(name = "Mdp", nullable = true, length = 255)
     private String mdp;
+    @Basic
+    @Column(name = "NumMembre", nullable = true, length = 10)
     private String numMembre;
+    @Basic
+    @Column(name = "Actif", nullable = false)
     private boolean actif = true;
     @OneToMany(mappedBy = "utilisateurs")
     private Collection<Factures> factures;
@@ -57,8 +72,45 @@ public class Utilisateurs implements Serializable {
     @JoinColumn(name = "RolesIdRoles")
     private Roles roles;
 
-    @Id
-    @Column(name = "IdUtilisateurs", nullable = false)
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Utilisateurs that = (Utilisateurs) o;
+        return idUtilisateurs == that.idUtilisateurs && actif == that.actif && nom.equals(that.nom) && prenom.equals(that.prenom) && sexe == that.sexe && courriel.equals(that.courriel) && Objects.equals(login, that.login) && Objects.equals(mdp, that.mdp) && Objects.equals(numMembre, that.numMembre) &&  roles.equals(that.roles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, numMembre, actif, roles);
+    }
+
+    @Override
+    public Utilisateurs clone(){
+        Utilisateurs utili = null;
+        try{
+            utili = (Utilisateurs) super.clone();
+        }catch (CloneNotSupportedException e) {
+            e.printStackTrace(System.err);
+        }
+        return utili;
+    }
+
+    public void setFields(Utilisateurs utilisateur) {
+        this.nom = utilisateur.nom;
+        this.prenom = utilisateur.prenom;
+        this.sexe = utilisateur.sexe;
+        this.courriel = utilisateur.courriel;
+        this.login = utilisateur.login;
+        this.mdp = utilisateur.mdp;
+        this.actif = utilisateur.actif;
+        this.factures = utilisateur.factures;
+        this.utilisateursAdresses = utilisateur.utilisateursAdresses;
+    }
+
+    //-------------------------------Getter & Setter--------------------------------------------
+
     public int getIdUtilisateurs() {
         return idUtilisateurs;
     }
@@ -67,8 +119,6 @@ public class Utilisateurs implements Serializable {
         this.idUtilisateurs = idUtilisateurs;
     }
 
-    @Basic
-    @Column(name = "NumMembre", nullable = true, length = 10)
     public String getNumMembre() {
         return numMembre;
     }
@@ -77,8 +127,6 @@ public class Utilisateurs implements Serializable {
         this.numMembre = numMembre;
     }
 
-    @Basic
-    @Column(name = "Nom", nullable = false, length = 150)
     public String getNom() {
         return nom;
     }
@@ -87,8 +135,6 @@ public class Utilisateurs implements Serializable {
         this.nom = nom;
     }
 
-    @Basic
-    @Column(name = "Prenom", nullable = false, length = 150)
     public String getPrenom() {
         return prenom;
     }
@@ -96,7 +142,6 @@ public class Utilisateurs implements Serializable {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-
 
     public UtilisateurSexeEnum getSexe() {
         return sexe;
@@ -106,8 +151,7 @@ public class Utilisateurs implements Serializable {
         this.sexe = sexe;
     }
 
-    @Basic
-    @Column(name = "Courriel", nullable = false, length = 255)
+
     public String getCourriel() {
         return courriel;
     }
@@ -116,8 +160,7 @@ public class Utilisateurs implements Serializable {
         this.courriel = courriel;
     }
 
-    @Basic
-    @Column(name = "Login", nullable = true, length = 255)
+
     public String getLogin() {
         return login;
     }
@@ -126,8 +169,7 @@ public class Utilisateurs implements Serializable {
         this.login = login;
     }
 
-    @Basic
-    @Column(name = "Mdp", nullable = true, length = 255)
+
     public String getMdp() {
         return mdp;
     }
@@ -145,8 +187,6 @@ public class Utilisateurs implements Serializable {
         this.reservations = reservations;
     }
 
-    @Basic
-    @Column(name = "Actif", nullable = false)
     public boolean isActif() {
         return actif;
     }
@@ -171,19 +211,6 @@ public class Utilisateurs implements Serializable {
         this.utilisateursBibliotheques = utilisateursBibliotheques;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Utilisateurs that = (Utilisateurs) o;
-        return idUtilisateurs == that.idUtilisateurs && actif == that.actif && nom.equals(that.nom) && prenom.equals(that.prenom) && sexe == that.sexe && courriel.equals(that.courriel) && Objects.equals(login, that.login) && Objects.equals(mdp, that.mdp) && Objects.equals(numMembre, that.numMembre) &&  roles.equals(that.roles);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idUtilisateurs, nom, prenom, sexe, courriel, login, mdp, numMembre, actif, roles);
-    }
-
     public Collection<Factures> getFactures() {
         return factures;
     }
@@ -192,36 +219,12 @@ public class Utilisateurs implements Serializable {
         this.factures = facturesByIdUtilisateurs;
     }
 
-
     public Collection<UtilisateursAdresses> getUtilisateursAdresses() {
         return utilisateursAdresses;
     }
 
     public void setUtilisateursAdresses(Collection<UtilisateursAdresses> utilisateursAdressesByIdUtilisateurs) {
         this.utilisateursAdresses = utilisateursAdressesByIdUtilisateurs;
-    }
-
-    @Override
-    public Utilisateurs clone(){
-        Utilisateurs utili = null;
-        try{
-            utili = (Utilisateurs) super.clone();
-        }catch (CloneNotSupportedException e) {
-            e.printStackTrace(System.err);
-        }
-        return utili;
-    }
-
-    public void setFields(Utilisateurs utilisateur) {
-        this.nom = utilisateur.nom;
-        this.prenom = utilisateur.prenom;
-        this.sexe = utilisateur.sexe;
-        this.courriel = utilisateur.courriel;
-        this.login = utilisateur.login;
-        this.mdp = utilisateur.mdp;
-        this.actif = utilisateur.actif;
-        this.factures = utilisateur.factures;
-        this.utilisateursAdresses = utilisateur.utilisateursAdresses;
     }
 
 }

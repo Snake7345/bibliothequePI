@@ -17,30 +17,13 @@ public class Jours implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdJours", nullable = false)
     private int idJours;
+    @Basic
+    @Column(name = "NbrJour", nullable = false)
     private int nbrJour;
     @OneToMany(mappedBy = "jours")
     private Collection<TarifsJours> tarifsJours;
-
-    @Id
-    @Column(name = "IdJours", nullable = false)
-    public int getIdJours() {
-        return idJours;
-    }
-
-    public void setIdJours(int idJours) {
-        this.idJours = idJours;
-    }
-
-    @Basic
-    @Column(name = "NbrJour", nullable = false)
-    public int getNbrJour() {
-        return nbrJour;
-    }
-
-    public void setNbrJour(int nbrJour) {
-        this.nbrJour = nbrJour;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -56,6 +39,23 @@ public class Jours implements Serializable {
         return Objects.hash(idJours, nbrJour);
     }
 
+    //-------------------------------Getter & Setter--------------------------------------------
+
+    public int getIdJours() {
+        return idJours;
+    }
+
+    public void setIdJours(int idJours) {
+        this.idJours = idJours;
+    }
+
+    public int getNbrJour() {
+        return nbrJour;
+    }
+
+    public void setNbrJour(int nbrJour) {
+        this.nbrJour = nbrJour;
+    }
 
     public Collection<TarifsJours> getTarifsJours() {
         return tarifsJours;

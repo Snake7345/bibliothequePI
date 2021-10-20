@@ -26,11 +26,23 @@ public class Livres implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdLivres", nullable = false)
     private int idLivres;
+    @Basic
+    @Column(name = "Titre", nullable = false, length = 255)
     private String titre;
+    @Basic
+    @Column(name = "Annee", nullable = false)
     private int annee;
+    @Basic
+    @Column(name = "ISBN", nullable = false)
     private String isbn;
+    @Basic
+    @Column(name = "Actif", nullable = false)
     private boolean actif = true;
+    @ManyToOne
+    @JoinColumn(name = "EditeursIdEditeurs", referencedColumnName = "IdEditeurs", nullable = false)
+    private Editeurs editeurs;
     @OneToMany(mappedBy = "livres")
     private Collection<ExemplairesLivres> exemplairesLivres;
     @OneToMany(mappedBy = "livre")
@@ -39,60 +51,6 @@ public class Livres implements Serializable {
     private Collection<LivresGenres> livresGenres;
     @OneToMany(mappedBy = "livre")
     private Collection<Reservation> reservations;
-
-    @Id
-    @Column(name = "IdLivres", nullable = false)
-    public int getIdLivres() {
-        return idLivres;
-    }
-
-    public void setIdLivres(int idLivres) {
-        this.idLivres = idLivres;
-    }
-
-    @Basic
-    @Column(name = "Titre", nullable = false, length = 255)
-    public String getTitre() {
-        return titre;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-    @Basic
-    @Column(name = "Annee", nullable = false)
-    public int getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(int annee) {
-        this.annee = annee;
-    }
-
-
-    @Basic
-    @Column(name = "ISBN", nullable = false)
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-
-    @Basic
-    @Column(name = "Actif", nullable = false)
-
-    public boolean isActif() {
-        return actif;
-    }
-
-    public void setActif(boolean actif) {
-        this.actif = actif;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -112,6 +70,47 @@ public class Livres implements Serializable {
         return Objects.hash(idLivres, titre, annee, isbn, actif, editeurs);
     }
 
+    //-------------------------------Getter & Setter--------------------------------------------
+
+    public int getIdLivres() {
+        return idLivres;
+    }
+
+    public void setIdLivres(int idLivres) {
+        this.idLivres = idLivres;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public int getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(int annee) {
+        this.annee = annee;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
 
     public Collection<ExemplairesLivres> getExemplairesLivres() {
         return exemplairesLivres;
@@ -121,7 +120,6 @@ public class Livres implements Serializable {
         this.exemplairesLivres = exemplairesLivresByIdLivres;
     }
 
-
     public Collection<LivresAuteurs> getLivresAuteurs() {
         return livresAuteurs;
     }
@@ -129,7 +127,6 @@ public class Livres implements Serializable {
     public void setLivresAuteurs(Collection<LivresAuteurs> livresAuteurs) {
         this.livresAuteurs = livresAuteurs;
     }
-
 
     public Collection<LivresGenres> getLivresGenres()
     {
@@ -140,10 +137,6 @@ public class Livres implements Serializable {
         this.livresGenres = livresGenres;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "EditeursIdEditeurs", referencedColumnName = "IdEditeurs", nullable = false)
-    private Editeurs editeurs;
     public Editeurs getEditeurs() {
         return editeurs;
     }

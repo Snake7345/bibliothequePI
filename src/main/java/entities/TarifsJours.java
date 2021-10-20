@@ -17,51 +17,23 @@ public class TarifsJours implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTarifsJours;
-    private double prix;
-    private Date dateDebut;
-    private Date dateFin;
-
-    @Id
     @Column(name = "IdTarifsJours", nullable = false)
-    public int getIdTarifsJours() {
-        return idTarifsJours;
-    }
-
-    public void setIdTarifsJours(int idTarifsJours) {
-        this.idTarifsJours = idTarifsJours;
-    }
-
+    private int idTarifsJours;
     @Basic
     @Column(name = "Prix", nullable = false, precision = 0)
-    public double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
-
+    private double prix;
     @Basic
     @Column(name = "DateDebut", nullable = false)
-
-    public Date getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
+    private Date dateDebut;
     @Basic
     @Column(name = "DateFin", nullable = false)
-    public Date getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
-    }
+    private Date dateFin;
+    @ManyToOne
+    @JoinColumn(name = "TarifsIdTarifs", nullable = false)
+    private Tarifs tarif;
+    @ManyToOne
+    @JoinColumn(name = "JoursIdJours", nullable = false)
+    private Jours jours;
 
     @Override
     public boolean equals(Object o) {
@@ -79,9 +51,40 @@ public class TarifsJours implements Serializable {
         return Objects.hash(idTarifsJours, prix, dateDebut, dateFin);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "TarifsIdTarifs", nullable = false)
-    private Tarifs tarif;
+    //-------------------------------Getter & Setter--------------------------------------------
+
+    public int getIdTarifsJours() {
+        return idTarifsJours;
+    }
+
+    public void setIdTarifsJours(int idTarifsJours) {
+        this.idTarifsJours = idTarifsJours;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
     public Tarifs getTarif() {
         return tarif;
     }
@@ -90,9 +93,6 @@ public class TarifsJours implements Serializable {
         this.tarif = tarif1;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "JoursIdJours", nullable = false)
-    private Jours jours;
     public Jours getJours() {
         return jours;
     }

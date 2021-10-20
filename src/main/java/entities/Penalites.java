@@ -16,13 +16,30 @@ public class Penalites implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdPenalites", nullable = false)
     private int idPenalites;
+    @Basic
+    @Column(name = "Denomination", nullable = false, length = 150)
     private String denomination;
     @OneToMany(mappedBy = "penalite")
     private Collection<TarifsPenalites> tarifsPenalites;
 
-    @Id
-    @Column(name = "IdPenalites", nullable = false)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Penalites penalites = (Penalites) o;
+        return idPenalites == penalites.idPenalites &&
+                Objects.equals(denomination, penalites.denomination);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idPenalites, denomination);
+    }
+
+    //-------------------------------Getter & Setter--------------------------------------------
+
     public int getIdPenalites() {
         return idPenalites;
     }
@@ -31,8 +48,6 @@ public class Penalites implements Serializable {
         this.idPenalites = idPenalites;
     }
 
-    @Basic
-    @Column(name = "Denomination", nullable = false, length = 150)
     public String getDenomination() {
         return denomination;
     }
@@ -48,20 +63,5 @@ public class Penalites implements Serializable {
     public void setTarifsPenalites(Collection<TarifsPenalites> tarifsPenalites) {
         this.tarifsPenalites = tarifsPenalites;
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Penalites penalites = (Penalites) o;
-        return idPenalites == penalites.idPenalites &&
-                Objects.equals(denomination, penalites.denomination);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idPenalites, denomination);
-    }
-
-
 
 }

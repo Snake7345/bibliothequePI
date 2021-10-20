@@ -22,46 +22,21 @@ public class Tarifs implements Serializable {
     private static final Logger log = Logger.getLogger(Tarifs.class);
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdTarifs", nullable = false)
     private int idTarifs;
+    @Basic
+    @Column(name = "Denomination", nullable = false, length = 255)
     private String denomination;
+    @Basic
+    @Column(name = "DateDebut", nullable = false)
     private Date dateDebut;
     @OneToMany(mappedBy = "tarif")
     private Collection<TarifsJours> tarifsJours;
     @OneToMany(mappedBy = "tarif")
     private Collection<TarifsPenalites> tarifsPenalites;
-
-    @Id
-    @Column(name = "IdTarifs", nullable = false)
-    public int getIdTarifs() {
-        return idTarifs;
-    }
-
-    public void setIdTarifs(int idTarifs) {
-        this.idTarifs = idTarifs;
-    }
-
-    @Basic
-    @Column(name = "Denomination", nullable = false, length = 255)
-    public String getDenomination() {
-        return denomination;
-    }
-
-    public void setDenomination(String denomination) {
-        this.denomination = denomination;
-    }
-
-
-
-    @Basic
-    @Column(name = "DateDebut", nullable = false)
-
-    public Date getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
+    @ManyToOne
+    @JoinColumn(name = "Bibliotheques_IdBibliotheques", nullable = false)
+    private Bibliotheques bibliotheques;
 
     @Override
     public boolean equals(Object o) {
@@ -78,9 +53,7 @@ public class Tarifs implements Serializable {
         return Objects.hash(idTarifs, denomination, dateDebut);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "Bibliotheques_IdBibliotheques", nullable = false)
-    private Bibliotheques bibliotheques;
+    //-------------------------------Getter & Setter--------------------------------------------
 
     public Bibliotheques getBibliotheques() {
         return bibliotheques;
@@ -90,7 +63,6 @@ public class Tarifs implements Serializable {
         this.bibliotheques = bibliotheques1;
     }
 
-
     public Collection<TarifsJours> getTarifsJours() {
         return tarifsJours;
     }
@@ -99,12 +71,35 @@ public class Tarifs implements Serializable {
         this.tarifsJours = tarifsJoursByIdTarifs;
     }
 
-
     public Collection<TarifsPenalites> getTarifsPenalites() {
         return tarifsPenalites;
     }
 
     public void setTarifsPenalites(Collection<TarifsPenalites> tarifsPenalitesByIdTarifs) {
         this.tarifsPenalites = tarifsPenalitesByIdTarifs;
+    }
+
+    public int getIdTarifs() {
+        return idTarifs;
+    }
+
+    public void setIdTarifs(int idTarifs) {
+        this.idTarifs = idTarifs;
+    }
+
+    public String getDenomination() {
+        return denomination;
+    }
+
+    public void setDenomination(String denomination) {
+        this.denomination = denomination;
+    }
+
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
     }
 }

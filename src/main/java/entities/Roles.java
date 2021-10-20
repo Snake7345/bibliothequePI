@@ -33,33 +33,6 @@ public class Roles implements Serializable {
     @OneToMany(mappedBy = "roles")
     private Collection<Utilisateurs> utilisateurs;
 
-    public int getIdRoles() {
-        return idRoles;
-    }
-
-    public void setIdRoles(int idRoles) {
-        this.idRoles = idRoles;
-    }
-
-
-    public String getDenomination() {
-        return denomination;
-    }
-
-    public void setDenomination(String denomination) {
-        this.denomination = denomination;
-    }
-
-
-
-    public boolean isActif() {
-        return actif;
-    }
-
-    public void setActif(boolean actif) {
-        this.actif = actif;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,23 +46,6 @@ public class Roles implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(idRoles, denomination, actif);
-    }
-
-    public Collection<PermissionsRoles> getPermissionsRoles() {
-        return permissionsRoles;
-    }
-
-    public void setPermissionsRoles(Collection<PermissionsRoles> pr) {
-        this.permissionsRoles = pr;
-    }
-
-
-    public Collection<Utilisateurs> getUtilisateurs() {
-        return utilisateurs;
-    }
-
-    public void setUtilisateurs(Collection<Utilisateurs> user) {
-        this.utilisateurs = user;
     }
 
     @Override
@@ -108,5 +64,47 @@ public class Roles implements Serializable {
         this.actif = role.actif;
         this.permissionsRoles = role.permissionsRoles;
         this.utilisateurs = role.utilisateurs;
+    }
+
+    //-------------------------------Getter & Setter--------------------------------------------
+
+    public int getIdRoles() {
+        return idRoles;
+    }
+
+    public void setIdRoles(int idRoles) {
+        this.idRoles = idRoles;
+    }
+
+    public String getDenomination() {
+        return denomination;
+    }
+
+    public void setDenomination(String denomination) {
+        this.denomination = denomination;
+    }
+
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
+
+    public Collection<PermissionsRoles> getPermissionsRoles() {
+        return permissionsRoles;
+    }
+
+    public void setPermissionsRoles(Collection<PermissionsRoles> pr) {
+        this.permissionsRoles = pr;
+    }
+
+    public Collection<Utilisateurs> getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(Collection<Utilisateurs> user) {
+        this.utilisateurs = user;
     }
 }

@@ -17,79 +17,23 @@ public class TarifsPenalites implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTarifsPenalites;
-    private double prix;
-    private Date dateDebut;
-    private Date dateFin;
-
-    @Id
     @Column(name = "IdTarifsPenalites", nullable = false)
-    public int getIdTarifsPenalites() {
-        return idTarifsPenalites;
-    }
-
-    public void setIdTarifsPenalites(int idTarifsPenalites) {
-        this.idTarifsPenalites = idTarifsPenalites;
-    }
-
+    private int idTarifsPenalites;
+    @Basic
+    @Column(name = "Prix", nullable = false, precision = 0)
+    private double prix;
+    @Basic
+    @Column(name = "DateDebut", nullable = false)
+    private Date dateDebut;
+    @Basic
+    @Column(name = "DateFin", nullable = false)
+    private Date dateFin;
     @ManyToOne
     @JoinColumn(name = "TarifsIdTarifs", nullable = false)
     private Tarifs tarif;
-
-    public Tarifs getTarif() {
-        return tarif;
-    }
-
-    public void setTarif(Tarifs tarif) {
-        this.tarif = tarif;
-    }
-
     @ManyToOne
     @JoinColumn(name = "PenalitesIdPenalites", nullable = false)
     private Penalites penalite;
-
-    public Penalites getPenalite() {
-        return penalite;
-    }
-
-    public void setPenalite(Penalites penalite) {
-        this.penalite = penalite;
-    }
-
-    @Basic
-    @Column(name = "Prix", nullable = false, precision = 0)
-    public double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
-
-
-
-    @Basic
-    @Column(name = "DateDebut", nullable = false)
-    public Date getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-
-    @Basic
-    @Column(name = "DateFin", nullable = false)
-
-    public Date getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -103,9 +47,59 @@ public class TarifsPenalites implements Serializable {
                 Objects.equals(tarif, that.tarif) &&
                 Objects.equals(penalite, that.penalite);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(idTarifsPenalites, prix, dateDebut, dateFin, tarif, penalite);
     }
+
+    //-------------------------------Getter & Setter--------------------------------------------
+
+    public int getIdTarifsPenalites() {
+        return idTarifsPenalites;
+    }
+
+    public void setIdTarifsPenalites(int idTarifsPenalites) {
+        this.idTarifsPenalites = idTarifsPenalites;
+    }
+
+    public Tarifs getTarif() {
+        return tarif;
+    }
+
+    public void setTarif(Tarifs tarif) {
+        this.tarif = tarif;
+    }
+
+    public Penalites getPenalite() {
+        return penalite;
+    }
+
+    public void setPenalite(Penalites penalite) {
+        this.penalite = penalite;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
 }
