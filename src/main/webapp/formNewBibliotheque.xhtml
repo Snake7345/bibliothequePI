@@ -10,8 +10,6 @@
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['bibliotheque.form.nouveau.titre']}</ui:define>
 
-    <!--TODO : Modifier la requete au niveau des adresses, les adresses qui sont déjà a un utilisateur ne doivent pas être listées
-               popup nouvelle adresse manquant-->
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
         <shiro:hasPermission name="Bibliotheques:Creer">

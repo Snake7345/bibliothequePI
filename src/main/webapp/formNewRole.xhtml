@@ -30,9 +30,9 @@
                         <f:validateLength minimum="2" maximum="100"/>
                         <p:tooltip for="roleDenomination" value="#{I18N['tooltip.role.deno']}" position="right"/>
                     </p:inputText>
-
+                    <!--TODO : Il faut empecher un manager de donner des privilège d'administrateur à des tiers-->
                     <p:outputLabel value = "#{I18N['Permissions.label.Type']}" indicateRequired="true"/>
-                    <p:selectOneMenu value = "#{permissionsBean.type}" id="type" >
+                    <p:selectOneMenu style="height: 40px; width: 200px;" styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type" >
                         <f:selectItem itemValue="#{null}"/>
                         <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
                                        itemLabel="#{ty}"
@@ -41,11 +41,19 @@
                     </p:selectOneMenu>
 
                     <p:outputLabel value = "#{I18N['Permissions.label.Action']}" indicateRequired="true"/>
-                    <p:selectOneMenu value = "#{permissionsBean.action}" id="action">
+                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{permissionsBean.action}" id="action">
                         <f:selectItems value = "#{permissionsBean.listAction}" var="ac"
                                        itemLabel="#{ac}"
                                        itemValue="#{ac}"/>
                     </p:selectOneMenu>
+                    <shiro:hasRole name="2">
+                    <p:outputLabel value = "Si vous souhaitez intégrér l'archétype Employé, cliquez ici : "/>
+                    <p:commandButton icon="fa fa-fw fa-check-circle" value="Ajouter l'archétype employé" action="#{rolesBean.addArcheEmploye}" ajax="false"/>
+                    </shiro:hasRole>
+                    <shiro:hasRole name="1">
+                        <p:outputLabel value = "Si vous souhaitez intégrér l'archétype Manager, cliquez ici : "/>
+                        <p:commandButton icon="fa fa-fw fa-check-circle" value="Ajouter l'archétype Manager" action="#{rolesBean.addArcheManager}" ajax="false"/>
+                    </shiro:hasRole>
                     <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="#{I18N['permissions.label.add']}" action="#{rolesBean.addPermission}" ajax="false">
                         <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
                         <f:setPropertyActionListener target="#{rolesBean.pe.action}" value="#{permissionsBean.action}" />
@@ -56,9 +64,7 @@
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
 
                 <p:column>
-                    <!-- column header -->
                     <f:facet name="header">Type de permission</f:facet>
-                    <!-- row record -->
                     <p:outputLabel value ="#{pe.type}"/>
                 </p:column>
                 <p:column>

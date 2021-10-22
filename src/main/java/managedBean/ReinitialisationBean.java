@@ -37,7 +37,7 @@ public class ReinitialisationBean implements Serializable {
     courriel="";
     }
 
-    /*Cette méthode permet de regénerer un mot de passe random si il y a une correspondance en fonction de l'email et du pseudo que l'utilisateur rentre,
+    /*Cette méthode permet de regénerer un mot de passe random s'il y a une correspondance en fonction de l'email et du pseudo que l'utilisateur rentre,
     si pas une message d'erreur s'affiche */
     public String reinitia()
     {
@@ -81,7 +81,6 @@ public class ReinitialisationBean implements Serializable {
         return "/envoiInfo?faces-redirect=true";
     }
 
-    /*TODO : Penser a mettre les fonctions d'envoi de mail dans une même classe*/
     /*Méthode qui permet d'envoyer un mail sur le email de l'utilisateur avec le nouveau mot de passe */
     public static void sendMessage( String mailDest, String Texte, String Titre)  {
         //Création de la session
@@ -91,7 +90,7 @@ public class ReinitialisationBean implements Serializable {
 
         Properties properties = new Properties();
 
-
+        /*On crée ensuite le mail avec son nouveau mot de passe*/
         Session session = Session.getInstance(properties);
         MimeMessage message = new MimeMessage(session);
         try {

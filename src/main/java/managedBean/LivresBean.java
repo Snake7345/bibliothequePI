@@ -50,7 +50,7 @@ public class LivresBean implements Serializable {
         gen = new Genres();
     }
 
-    /* Cette méthode permet la création d'un nouveau livre avec le bon format d'ISBN avec l'auteur, le genre
+    /* Cette méthode permet la création d'un objet "livre" avec le bon format d'ISBN avec l'auteur, le genre
     * */
     public String newLivre()
     {
@@ -98,7 +98,6 @@ public class LivresBean implements Serializable {
     }
 
     /* Cette méthode permet la sauvegarde d'un objet "livre"
-     *
      */
     public void save()
     {
@@ -132,8 +131,8 @@ public class LivresBean implements Serializable {
     }
 
 
-    /* Cette méthode permet de désactiver un livre ainsi que les exemplaires liées.
-     * Cette méthode permet aussi de réactiver un livre (mais pas les exemplaires livres associés)
+    /* Cette méthode permet de désactiver un objet "livre" ainsi que les exemplaires liées.
+     * Cette méthode permet aussi de réactiver un objet "livre" (mais pas les exemplaires livres associés)
      */
     public String activdesactivLiv()
     {
@@ -355,6 +354,7 @@ public class LivresBean implements Serializable {
         }
         else
         {
+            /*Le livre est indisponible*/
             return "Images/noir2.png";
         }
     }

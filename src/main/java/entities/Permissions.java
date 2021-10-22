@@ -9,7 +9,6 @@ import java.util.Objects;
 @Table(name = "permissions")
 @NamedQueries
         ({
-                //TODO : Faire attention aux permissions car elles doivent être adaptées
                 @NamedQuery(name = "Permissions.findAllTri", query = "SELECT p FROM Permissions p ORDER BY p.type ASC"),
                 @NamedQuery(name = "Permissions.findOne", query ="SELECT p FROM Permissions p WHERE p.type=:type AND p.action=:action"),
                 @NamedQuery(name = "Permissions.findByType", query ="SELECT p FROM Permissions p WHERE p.type=:type AND p.action=:action"),

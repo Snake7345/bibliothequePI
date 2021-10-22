@@ -68,7 +68,7 @@
 
                 <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client' and utilisateursBean.utilisateur.roles.denomination ne 'Administrateur'}">
                 <p:outputLabel value = "#{I18N['role.label.Denomination']}" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}" indicateRequired="true"/>
-                <p:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roleselectOne" required="true" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                <p:selectOneMenu styleClass="selectOneMenu" value = "#{utilisateursBean.utilisateur.roles}" id="roleselectOne" required="true" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                  converter="roleConverter" >
                     <shiro:hasRole name="1">
                         <f:selectItems value = "#{rolesBean.readActivUtil}" var="ro"
@@ -109,7 +109,7 @@
                 <p:dataTable value="#{utilisateursBean.tabbibli}" var="bib">
                     <p:column>
                     <p:outputLabel value = "Bibliotheque"/>
-                    <p:selectOneMenu value = "#{bib.idBibliotheques}"  id="menu" style="width: 15rem"
+                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{bib.idBibliotheques}"  id="menu" style="width: 15rem"
                                      filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem">
                         <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
                                        itemLabel="#{biblio.nom}"

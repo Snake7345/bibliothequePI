@@ -30,7 +30,8 @@ public class GenresBean implements Serializable {
         genre = new Genres();
     }
 
-    // Méthode qui va appellé la méthode save() pour créer/modifier un genre en DB et qui envoi un message si jamais le nom du genre existe en DB et nous renvoi sur la table des genres
+    // Méthode qui va appellé la méthode save() pour créer/modifier un objet "genre" en DB et qui envoi un message si jamais le nom du genre existe
+    // et nous renvoi sur la table des genres
     public String saveGenres()
     {
         if(verifGenreExist(genre))

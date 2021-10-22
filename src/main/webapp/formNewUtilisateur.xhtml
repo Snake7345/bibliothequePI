@@ -83,7 +83,7 @@
                     </p:password>
 
                     <p:outputLabel value = "#{I18N['role.label.Denomination']}" indicateRequired="true"/>
-                    <p:selectOneMenu value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                      converter="roleConverter">
                         <shiro:hasRole name="1">
                             <f:selectItems value = "#{rolesBean.readActivUtil}" var="ro"
@@ -98,7 +98,7 @@
                     </p:selectOneMenu>
 
                     <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}" indicateRequired="true"/>
-                    <p:selectOneMenu value = "#{utilisateursBean.bibli}" id="bib" converter="biblioConverter">
+                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{utilisateursBean.bibli}" id="bib" converter="biblioConverter">
                         <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
                                        itemLabel="#{biblio.nom}"
                                        itemValue="#{biblio}"/>
@@ -134,7 +134,7 @@
             <p:ajax event="open" update="formAdresse" resetValues="true" />
 
             <h:form id="formAdresse" prependId = "false">
-                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
                     <p:inputText id="adresseRue"

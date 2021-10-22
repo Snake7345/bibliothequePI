@@ -28,6 +28,7 @@ import java.util.Properties;
 
 public class ReservationBean implements Serializable
 {
+    // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Livres livre;
     private Reservation reserv;
@@ -46,7 +47,7 @@ public class ReservationBean implements Serializable
         numMembre = "";
     }
 
-    /*Cette méthode permet la reservation d'un livre en se basant sur le numéro de membre du client et la bibliothèque actuel connecté pour effectuer la reservation*/
+    /*Cette méthode permet la reservation d'un objet livre en se basant sur le numéro de membre du client et la bibliothèque actuelle connecté pour effectuer la reservation*/
     public String reservation() {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
         SvcReservations serviceR = new SvcReservations();
@@ -90,7 +91,7 @@ public class ReservationBean implements Serializable
 
         Properties properties = new Properties();
 
-
+        /*On crée ensuite le mail avec son nouveau mot de passe*/
         Session session = Session.getInstance(properties);
         MimeMessage message = new MimeMessage(session);
         try {
@@ -186,18 +187,21 @@ public class ReservationBean implements Serializable
         return "/tableLivres.xhtml?faces-redirect=true";
     }
 
+
+    /*Cette méthode permet de vider les variables exemplaires livres, numéro de membre et reserv*/
     public void flushNewReserv()
     {
         exemplairesLivres = new ExemplairesLivres();
         numMembre = "";
         reserv = new Reservation();
     }
+    /*Cette méthode permet de vider les variables exemplaires livres et reserv pour le pop-up*/
     public void flushReservPopup()
     {
         exemplairesLivres = new ExemplairesLivres();
         reserv = new Reservation();
     }
-/*TODO : Optimisation possible : envoyer un mail a une autre reservation si mail déjà envoyé a celle supprimée*/
+
     /*Cette méthode permet de désactiver une reservation*/
     public String suppReserv()
     {

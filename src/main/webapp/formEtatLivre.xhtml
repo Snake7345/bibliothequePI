@@ -35,7 +35,6 @@
                     <p:tooltip for="CommentaireEtat" value="#{I18N['tooltip.exempl.commentaire']}" position="right"/>
 
                     <p:outputLabel value = "#{I18N['penalite.label.Nom']}"/>
-                    <!--TODO : regarder l'équivalent du selectManyListBox en primefaces-->
                     <p:selectManyMenu value = "#{factureBean.tarifsPenalites}">
                         <f:selectItems value = "#{factureBean.tarifsPenalites}" var="pena" itemLabel="#{pena.penalite.denomination}" itemValue="#{pena}"/>
                     </p:selectManyMenu>

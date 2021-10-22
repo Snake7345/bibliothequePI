@@ -24,7 +24,7 @@
                     <p:outputLabel value ="#{rolesBean.role.denomination}"/>
 
                     <p:outputLabel value = "#{I18N['Permissions.label.Type']}"/>
-                    <p:selectOneMenu value = "#{permissionsBean.type}" id="type">
+                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type">
                         <f:selectItem itemValue="#{null}"/>
                         <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
                                        itemLabel="#{ty}"
@@ -33,7 +33,7 @@
                     </p:selectOneMenu>
 
                     <p:outputLabel value = "#{I18N['Permissions.label.Action']}"/>
-                    <p:selectOneMenu value = "#{permissionsBean.action}" id="action">
+                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{permissionsBean.action}" id="action">
                         <f:selectItems value = "#{permissionsBean.listAction}" var="ac"
                                        itemLabel="#{ac}"
                                        itemValue="#{ac}"/>

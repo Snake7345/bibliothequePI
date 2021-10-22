@@ -38,7 +38,7 @@ public class AuteursBean implements Serializable {
         auteur = new Auteurs();
     }
 
-    // Méthode qui permet l'appel de save() qui créé un nouvel auteur et envoi un message si jamais l'auteur se trouve déjà en base de donnée
+    // Méthode qui permet l'appel de save() qui créé un nouvel objet "auteur" et envoi un message si jamais l'auteur se trouve déjà en base de donnée
     // La méthode met également une majuscule pour la première lettre du nom et du prénom de l'auteur et nous renvoi sur la table des auteurs
     public String newAuteur()
     {
@@ -97,7 +97,7 @@ public class AuteursBean implements Serializable {
         }
     }
 
-    /*Méthode qui permet de désactiver un auteur ainsi que ces livres et exemplaires livres.
+    /* Méthode qui permet de désactiver un objet "auteur" ainsi que ces livres et exemplaires livres.
      * Cette méthode permet également d'activer un auteur et ces livres, il nous renvoi sur la table des auteurs
      * */
     public String activdesactivAut()
@@ -111,10 +111,12 @@ public class AuteursBean implements Serializable {
 
         transaction.begin();
         try {
+            /*On vérifie si l'objet "auteur" est actif*/
             if(auteur.isActif())
             {
 
                 if (auteur.getLivresAuteur().size()>=1){
+                    /*Si oui alors on désactivera tous les livres ainsi que tous les exemplaires liées à cet auteur*/
                     for (LivresAuteurs LA: auteur.getLivresAuteur()){
                         Livres livres = LA.getLivre();
                         if (livres.getExemplairesLivres().size()>=1){
@@ -132,6 +134,7 @@ public class AuteursBean implements Serializable {
             }
             else
             {
+                /*Sinon, alors l'auteur est désactivé, du coup on activera l'auteur ainsi que ces livres (les exemplaires de livres ne seront pas réactivés)*/
                 if (auteur.getLivresAuteur().size()>=1){
                     for (LivresAuteurs LA: auteur.getLivresAuteur()){
                         Livres livres = LA.getLivre();

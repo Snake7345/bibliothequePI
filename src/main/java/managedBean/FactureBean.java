@@ -67,22 +67,21 @@ public class FactureBean implements Serializable {
             listLC.remove(listLC.size()-1);
         }
     }
-    /*TODO : Penser a mettre les fonctions d'envoi de mail dans une même classe*/
-    // Méthode qui permet l'envoi d'un mail via le mail de la bibliotheque avec la facture
+
     /*Méthode qui permet d'envoyer un mail sur le email de l'utilisateur avec la facture */
     public static void sendMessage(String filename, String mailDest, String Texte, String Titre)  {
         //Création de la session
         String mail = "bibliolibatc@gmail.com";
         String password = "porte7345";
 
-
+        /*On prend la facture dans le dossier ci-dessus*/
         String userdir = System.getProperty("user.dir");
         userdir = userdir.substring(0,userdir.length()-24) + "\\src\\main\\webapp\\Factures\\" + filename;
 
 
         Properties properties = new Properties();
 
-
+        /*On crée ensuite le mail ainsi que la facture ci-jointe avec celui-ci*/
         Session session = Session.getInstance(properties);
         MimeMessage message = new MimeMessage(session);
         try {
@@ -114,7 +113,6 @@ public class FactureBean implements Serializable {
     }
 
     // Méthode qui permet de créer une facture
-    //TODO : A tester pour multi-bibliothèque
     public String newFact()
     {
         //initialisation des services requis
@@ -306,7 +304,7 @@ public class FactureBean implements Serializable {
                     serviceFD.save(factdet);
                 }
             }
-
+            /*Calcul des pénalités par jour de retard ainsi que des frais de pénalités divers*/
             if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin())){
                 int nbjour = (int)((facturesDetail.getDateRetour().getTime() - facturesDetail.getDateFin().getTime())/(1000*60*60*24));
 
@@ -343,8 +341,8 @@ public class FactureBean implements Serializable {
             serviceTP.close();
         }
     }
-    /*Méthode qui permet de récupérer les infos de l'exemplaires livres et de renvoyer sur le formulaire pour constater l'état du livre
-    * quand il est rentré de location et d'appliquer éventuellement des pénalités*/
+    /*Méthode qui permet de récupérer les infos de l'objet "exemplaire livre" et de renvoyer sur le formulaire pour constater l'état du livre quand il est rentré de location.
+    On appliquera d'appliquer éventuellement des pénalités*/
     public String redirectChoix(){
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         exemplairesLivres = serviceEL.findOneByCodeBarre(CB).get(0);
@@ -360,8 +358,9 @@ public class FactureBean implements Serializable {
         }
     }
 
-    // Méthode qui permet le retour d'un livre et vérifie si il est loué
+    // Méthode qui permet le retour d'un exemplaire de livre et vérifie si il est loué
     public String retourLivre(){
+        /*Déclaration des valeurs */
         FacturesDetail facturesDetail = new FacturesDetail();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         Factures fact = new Factures();
@@ -370,6 +369,7 @@ public class FactureBean implements Serializable {
         Timestamp timestampretour = new Timestamp(rounded);
         boolean flag =false;
         boolean reserve = false;
+        /*On vérifie si le livre est bien loué*/
         if (exemplairesLivres.isLoue())
         {
             for (FacturesDetail fd : exemplairesLivres.getFactureDetails()){

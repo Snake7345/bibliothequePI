@@ -21,6 +21,7 @@ public class PermissionsBean implements Serializable {
     private static final Logger log = Logger.getLogger(PermissionsBean.class);
 
     private String type;
+    private String middlename;
     private String action;
     private final List<Permissions> listPer = getReadAll();
 
@@ -36,21 +37,14 @@ public class PermissionsBean implements Serializable {
         action="";
 
     }
-
+    //Méthode qui permet de vider les variables et de revenir sur le table des permissions
     public String flushPerm()
     {
         init();
         return "/tablePermissions?faces-redirect=true";
     }
 
-    private String middlename;
-    public String getMiddlename() {
-        return middlename;
-    }
 
-    public void setMiddlename(String middlename) {
-        this.middlename = middlename;
-    }
     /*
      * Méthode qui permet via le service de retourner la liste de toutes les permissions
      */
@@ -95,7 +89,7 @@ public class PermissionsBean implements Serializable {
         }
         return listAction;
     }
-
+    /*il faut un commentaire*/
     public void stateChangeListener(ValueChangeEvent event) {
         if (event.getNewValue() != type) {
             getPermissionsAction();
@@ -138,5 +132,13 @@ public class PermissionsBean implements Serializable {
 
     public void setListAction(List<String> listAction) {
         this.listAction = listAction;
+    }
+
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
     }
 }

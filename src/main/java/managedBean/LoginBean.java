@@ -21,6 +21,7 @@ import java.util.List;
 @SessionScoped
 
 public class LoginBean implements Serializable {
+
     /*Déclaration des variables*/
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(LoginBean.class);
@@ -30,12 +31,10 @@ public class LoginBean implements Serializable {
     private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
     private Utilisateurs utilisateurAuth = new Utilisateurs();
 
-    //---------------------------------------------------------
+
     /*
      * Méthode qui permet l'authentification de l'utilisateur,
      * on vérifie que l'utilisateur existe dans la base de données, et on lui attribue des variables de session comme le role par exemple.
-     *
-     *
      * */
     public void auth()
     {

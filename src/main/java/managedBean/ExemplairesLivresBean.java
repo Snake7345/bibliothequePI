@@ -23,6 +23,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class ExemplairesLivresBean implements Serializable {
+
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private ExemplairesLivres exemplairesLivre;
@@ -52,11 +53,13 @@ public class ExemplairesLivresBean implements Serializable {
         service.close();
         serviceB.close();
     }
-    /*Cette méthode permet d'ajouter une nouvelle ligne dans un formulaire concernant le code barre du livre*/
+    /*Cette méthode permet d'ajouter une nouvelle ligne dans un formulaire concernant le code barre d'un exemplaire livre*/
+
     public void addNewListRow() {
         listCB.add(new ExemplairesLivres());
     }
-    /*Cette méthode permet de supprimer une ligne dans un formulaire concernant le code barre du livre*/
+
+    /*Cette méthode permet de supprimer une ligne dans un formulaire concernant le code barre d'un exemplaire livre*/
     public void delListRow() {
         if (listCB.size() >1)
         {
@@ -72,7 +75,7 @@ public class ExemplairesLivresBean implements Serializable {
         return "/tableLivres.xhtml?faces-redirect=true";
     }
 
-    // Méthode qui permet d'ajouter autant d'exemplaire livre que demande l'utilisateur
+    // Méthode qui permet d'ajouter autant d'exemplaire de livre que demande l'utilisateur en fonction du livre qu'il a choisit
     public String addExemplaireLivre(){
         init();
         SvcExemplairesLivres service = new SvcExemplairesLivres();
@@ -108,7 +111,7 @@ public class ExemplairesLivresBean implements Serializable {
         return "/tableExemplaireLivres.xhtml?faces-redirect=true";
     }
 
-    // Méthode qui désactive le livre, si jamais son état est "mauvais" et renvoi vers la table des exemplaires de livres.
+    // Méthode qui désactive un objet "livre", si jamais son état est "mauvais" et renvoi vers la table des exemplaires de livres.
     public String editExemplaireLivre()
     {
         if (exemplairesLivre.getEtat()==ExemplairesLivresEtatEnum.Mauvais)
@@ -119,7 +122,7 @@ public class ExemplairesLivresBean implements Serializable {
         return "/tableExemplaireLivres.xhtml?faces-redirect=true";
     }
 
-    // Méthode qui permet de générer un code barre pour l'exemplaire livre
+    // Méthode qui permet de générer un code barre pour l'exemplaire de livre
     public String generateBarCode(){
 
         if (LastBarCode.equals("0")){
@@ -133,7 +136,7 @@ public class ExemplairesLivresBean implements Serializable {
         }
         return LastBarCode;
     }
-    // Méthode qui permet via le service de confirmer la réception d'un livre via le code barre de ce livre SAUF si l'exemplaire est
+    // Méthode qui permet via le service de confirmer la réception d'un objet "exemplaire livre" via le code barre de cet exemplaire SAUF si il est
     // déjà loué ou n'est pas reservé un message s'affiche
     public String reception()
     {
@@ -148,6 +151,7 @@ public class ExemplairesLivresBean implements Serializable {
                 listEL.add(serviceEL.findOneByCodeBarre(CB.getCodeBarre()).get(0));
             }
             for(ExemplairesLivres EL : listEL){
+                /*On vérifiera que l'exemplaire n'est pas en transfert, ni reservé, ni loué si un de ces critères est vrai -> Message d'erreur*/
                 if(!EL.isTransfert() || EL.isReserve() || EL.isLoue())
                 {
                     transaction.rollback();
@@ -156,6 +160,7 @@ public class ExemplairesLivresBean implements Serializable {
                     fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'exemplaire num "+EL.getCodeBarre()+" n'est pas en transfert",null));
                     return "/tableLivres.xhtml?faces-redirect=true";
                 }
+                /*Si le livre est actif, alors on passera le transfert a faux et on l'attribuera a l'objet "bibliotheque" connectée et on sauvegarde en DB*/
                 if(EL.isActif())
                 {
                     EL.setTransfert(false);
@@ -185,7 +190,7 @@ public class ExemplairesLivresBean implements Serializable {
         }
         return "/tableLivres.xhtml?faces-redirect=true";
     }
-    // Méthode qui permet via le service de transférer un livre via le code barre de cet exemplaire livre SAUF si l'exemplaire est
+    // Méthode qui permet via le service de transférer un objet "exemplaire de livre" via le code barre de cet exemplaire livre SAUF si l'exemplaire est
     // déjà reservé ou n'est pas dans la bibliothèque actuellement connecté
     public String transfer()
     {
@@ -200,6 +205,7 @@ public class ExemplairesLivresBean implements Serializable {
                listEL.add(serviceEL.findOneByCodeBarre(CB.getCodeBarre()).get(0));
             }
             for(ExemplairesLivres EL : listEL){
+                /*On vérifie si l'exemplaire est déjà reservé, si oui -> Message d'erreur*/
                 if(EL.isReserve())
                 {
                     transaction.rollback();
@@ -208,6 +214,7 @@ public class ExemplairesLivresBean implements Serializable {
                     fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'exemplaire num "+EL.getCodeBarre()+" est déjà réservé",null));
                     return "/tableLivres.xhtml?faces-redirect=true";
                 }
+                /*Si l'exemplaire de livre est pas dans la bibliothèque -> Message d'erreur*/
                 if(!EL.getBibliotheques().equals(bibliothequeActuelle))
                 {
                     transaction.rollback();
@@ -216,6 +223,7 @@ public class ExemplairesLivresBean implements Serializable {
                     fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'exemplaire num "+EL.getCodeBarre()+" n'est pas censé être dans votre bibliotheque",null));
                     return "/tableLivres.xhtml?faces-redirect=true";
                 }
+                /*Si l'exemplaire de livre est actif, alors on passe le transfert a true et on sauvegarde en DB*/
                 if(EL.isActif())
                 {
                     EL.setTransfert(true);

@@ -115,7 +115,7 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
-
+    /*Méthode permettant d'afficher la liste des reservations actives en fonction du client (cette méthode est faite pour le popup*/
     public void afficheReservations()
     {
 
@@ -372,7 +372,6 @@ public class UtilisateursBean implements Serializable {
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
     }
 
-    /*TODO : Essayer de corriger la faille concernant le changement de mail : Si je met le mail de quelqu'un d'autre mais que je mets pas le même rôle ça passe MAIS CA NE DEVRAIT PAS*/
     /*Cette méthode verifie si un utilisateur existe déjà*/
     public boolean verifUtilExist(Utilisateurs util)
     {
@@ -574,6 +573,7 @@ public class UtilisateursBean implements Serializable {
         }
         return "/formSearchUtilisateur?faces-redirect=true";
     }
+    //Méthode qui permet de vider les variables et de revenir sur le formulaire de recherche d'utilisateur en fonction de son numéro de membre
     public String flushUtilSearchNum() {
         init();
         if (searchResults != null) {

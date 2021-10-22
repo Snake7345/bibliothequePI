@@ -40,6 +40,18 @@ public class RolesBean implements Serializable {
         permissions = new Permissions();
     }
 
+    public void addArcheManager()
+    {
+
+    }
+    public void addArcheEmploye()
+    {
+        SvcPermissions serviceP = new SvcPermissions();
+        SvcPermissionRoles servicePR = new SvcPermissionRoles();
+        for(PermissionsRoles pr : )
+
+    }
+
     /*Cette méthode permet d'ajouter une permission a un rôle, analyse les permissions et ajoute si nécéssaire les autres permissions.
     * Si les permissions ne sont pas rafraichie alors affichage d'un message d'erreur*/
     public void addPermission()
@@ -48,6 +60,7 @@ public class RolesBean implements Serializable {
         boolean flag2 = false;
         boolean flag3 = false;
         SvcPermissions serviceP = new SvcPermissions();
+        /*On vérifie si l'utilisateur nous a pas encodé une action/un type vide*/
         if(pe.getAction() == null || pe.getAction().equals(""))
         {
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -61,7 +74,6 @@ public class RolesBean implements Serializable {
         }
         else
         {
-
             for (Permissions p : listPerm) {
                 if ((p.getType().equals(pe.getType()) && p.getAction().equals(pe.getAction()))) {
                     flag = true;
@@ -73,13 +85,13 @@ public class RolesBean implements Serializable {
                     flag3 = true;
                 }
 
-            }
 
             if (!flag) {
                 permissions.setAction(pe.getAction());
                 permissions.setType(pe.getType());
                 listPerm.add(permissions);
                 permissions = new Permissions();
+                /*Il faut un commentaire*/
                 if (!flag2 && (pe.getAction().equals("Creer") || pe.getAction().equals("Modification") || pe.getAction().equals("ActivDesactiv"))) {
                     if (!flag3 && pe.getAction().equals("Modification")) {
                         pe.setAction("Creer");
@@ -109,8 +121,9 @@ public class RolesBean implements Serializable {
             pe = new Permissions();
         }
     }
-    /*Cette méthode permet de supprimer une permission a un rôle, cette méthode affichera un message d'erreur si l'utilisateur supprime une permission liées à une autre permission*/
-    public void supPermission() {
+    /*Cette méthode permet de supprimer une permission a un objet "rôle", cette méthode affichera un message d'erreur si l'utilisateur supprime une permission liées à une autre permission*/
+    public void supPermission()
+    {
 
         boolean flag = false;
         boolean flag2 = false;
@@ -128,6 +141,7 @@ public class RolesBean implements Serializable {
         }
         if(listPerm.contains(pe))
         {
+            /*Pour pouvoir supprimer la permission Lire il faut supprimer toutes les autres actions, Créer, ActivDesactiv, Modifier*/
             if (pe.getAction().equals("Lire")) {
                 if (!flag && !flag2 && !flag3) {
                     listPerm.remove(pe);
@@ -136,6 +150,7 @@ public class RolesBean implements Serializable {
                     fc.getExternalContext().getFlash().setKeepMessages(true);
                     fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Veuillez supprimer les autres actions liées a ce type de permission avant", null));
                 }
+                /*Pour pouvoir supprimer la permission Lire il faut supprimer l'action modifier */
             } else if (pe.getAction().equals("Creer")) {
                 if (!flag2) {
                     listPerm.remove(pe);
@@ -158,7 +173,7 @@ public class RolesBean implements Serializable {
     }
 
 
-    /*Cette méthode permet de vérifier si un rôle avec une même dénomination existe (avec la méthode verifRoleExist) et permet d'appeler la méthode save qui va sauvegarder le rôle et les permissions liées */
+    /*Cette méthode permet de vérifier si un objet "rôle" avec une même dénomination existe (avec la méthode verifRoleExist) et permet d'appeler la méthode save qui va sauvegarder l'objet "rôle" et les permissions liées */
     public String newRoles()
     {
         log.debug("role " + role.getPermissionsRoles());
@@ -192,7 +207,7 @@ public class RolesBean implements Serializable {
         }
 
     }
-    /*Cette méthode permet la désactivation du rôle TANT que ce n'est pas l'archétype de base du programme et permet également la réactivation d'un rôle*/
+    /*Cette méthode permet la désactivation d'un objet "rôle" TANT que ce n'est pas l'archétype de base du programme et permet également la réactivation d'un rôle*/
     public String activdesactivRol()
     {
         if(role.isActif())
@@ -216,7 +231,7 @@ public class RolesBean implements Serializable {
         save();
         return "/tableRoles.xhtml?faces-redirect=true";
     }
-
+    /*il faut un commentaire*/
     public boolean checkPermission(String permission)
     {
         try
@@ -231,7 +246,8 @@ public class RolesBean implements Serializable {
         return false;
 
     }
-    /*Cette méthode permet de charger les permissions d'un rôle et de retourner le formulaire de modification d'un rôle*/
+
+    /*Cette méthode permet de charger les permissions d'un rôle ainsi que ces informations et de retourner le formulaire de modification d'un rôle*/
     public String redirectModifRole(){
         for (PermissionsRoles pr: role.getPermissionsRoles()) {
             listPerm.add(pr.getPermissions());
@@ -329,18 +345,6 @@ public class RolesBean implements Serializable {
         SvcRoles service = new SvcRoles();
         List<Roles> listRole = new ArrayList<Roles>();
         listRole = service.findAllRolesActiv();
-
-
-        return listRole;
-    }
-    /*
-     * Méthode qui permet via le service de retourner la liste de tous les roles inactifs
-     */
-    public List<Roles> getReadInactiv()
-    {
-        SvcRoles service = new SvcRoles();
-        List<Roles> listRole = new ArrayList<Roles>();
-        listRole = service.findAllRolesInactiv();
 
 
         return listRole;

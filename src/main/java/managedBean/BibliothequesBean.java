@@ -23,6 +23,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class BibliothequesBean implements Serializable {
+
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Bibliotheques bibliotheque = new Bibliotheques();
@@ -57,7 +58,7 @@ public class BibliothequesBean implements Serializable {
 
     }
 
-    /*Méthode qui permet de récupérer l'id de la bibliothèque contenu dans le fichier bibliotheque.txt*/
+    /*Méthode qui permet de récupérer l'id de l'objet bibliothèque contenu dans le fichier bibliotheque.txt*/
     public int recupIdBiblio()
     {
         String result = "";
@@ -90,7 +91,7 @@ public class BibliothequesBean implements Serializable {
         return result2;
     }
 
-    // Méthode qui va appellé la méthode save() pour créer/modifier une bibliotheque en DB et nous renvoi sur la table des bibliothèques
+    // Méthode qui va appeler la méthode save() pour créer/modifier un objet bibliotheque en DB et nous renvoi sur la table des bibliothèques
     public String newBiblio()
     {
         save();
@@ -245,11 +246,9 @@ public class BibliothequesBean implements Serializable {
 
         try {
 
-            // Recevoir le fichier
             File f = new File(userdir + "bibliotheque.txt");
 
-            // Créer un nouveau fichier
-            // Vérifier s'il n'existe pas
+            // On vérifie si le fichier existe et si pas on créée un nouveau fichier
             if (f.createNewFile()) {
                 FileWriter fw = new FileWriter(userdir + "bibliotheque.txt");
                 fw.write(nomBiblio);
@@ -277,7 +276,7 @@ public class BibliothequesBean implements Serializable {
         return listBib;
     }
     /*
-     * cette méthode va permettre de désactiver la bibliothèque ainsi que les exemplaires des livres sauf si ils sont loué ou reservé.
+     * Cette méthode va permettre de désactiver un objet "bibliothèque" ainsi que les exemplaires des livres sauf si ils sont loué ou reservé.
      * Cette méthode permet aussi la réactivation de la bibliothèque
      */
     public String ActivDesactivBiblio()
@@ -290,6 +289,7 @@ public class BibliothequesBean implements Serializable {
         transaction.begin();
         try
         {
+            /*Si la bibliothèque est activé, on désactive les exemplaires de livres tant qu'ils ne sont pas louées, pas reservé ni en transfert*/
             if(bibliotheque.isActif())
             {
                 bibliotheque.setActif(false);
@@ -341,8 +341,8 @@ public class BibliothequesBean implements Serializable {
     }
 
     /*
-     * cette méthode va permettre de désactiver la bibliothèque et de transférer les exemplaires des livres dans la bibliothèque connecté
-     * et de nous renvoyer sur la table des bibliothèques
+     * cette méthode va permettre de désactiver l'objet "bibliothèque" et de transférer les exemplaires des livres dans la bibliothèque connecté ainsi que
+     * de nous renvoyer sur la table des bibliothèques
      */
     public String DesactivBiblioTransfert()
     {

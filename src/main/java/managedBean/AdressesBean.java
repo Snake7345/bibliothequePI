@@ -35,7 +35,7 @@ public class AdressesBean implements Serializable {
 
 
 
-    // Méthode qui permet l'appel de save() qui créée une nouvelle adresse et envoi un message si jamais
+    // Méthode qui permet l'appel de save() qui créé un nouvel objet "adresse" et envoi un message si jamais
     // l'adresse se trouve déjà en base de donnée et nous renvoi sur la table des adresses
     public String newAdress()
     {
@@ -54,7 +54,7 @@ public class AdressesBean implements Serializable {
     }
 
 
-    // Méthode qui permet l'appel de save() qui créée une nouvelle adresse et envoi un message si jamais
+    // Méthode qui permet l'appel de save() qui créé un nouvel objet "adresse" et envoi un message si jamais
     // l'adresse se trouve déjà en base de donnée. L'appel se fait sur un popup.
 
     public void newAdresspopup()
