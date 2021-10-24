@@ -20,21 +20,19 @@
                     <p:dataTable value="#{editeursBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="ed" id="tableEditeurs"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column>
-                            <!-- column header -->
                             <f:facet name="header">#{I18N['editeur.label.Nom']}</f:facet>
-                            <!-- row record -->
                             <p:outputLabel value ="#{ed.nom}"/>
                         </p:column>
                         <shiro:hasPermission name="Editeurs:Modification">
                         <p:column>
-                            <p:commandButton  icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditEditeur">		<!-- u minuscule -->
-                                <f:setPropertyActionListener target="#{editeursBean.editeur}" value="#{ed}" /><!-- u minuscule -->
+                            <p:commandButton  icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditEditeur?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{editeursBean.editeur}" value="#{ed}" />
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>
                         <p:column>
-                            <p:commandButton icon="fa fa-fw fa-book" value="#{I18N['application.button.livreparediteur']}" action="#{livresBean.readByEditeurs}">		<!-- u minuscule -->
-                                <f:setPropertyActionListener target="#{livresBean.edit}" value="#{ed}" /><!-- u minuscule -->
+                            <p:commandButton icon="fa fa-fw fa-book" value="#{I18N['application.button.livreparediteur']}" action="#{livresBean.readByEditeurs}">
+                                <f:setPropertyActionListener target="#{livresBean.edit}" value="#{ed}" />
                             </p:commandButton>
                         </p:column>
                     </p:dataTable>

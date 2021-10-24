@@ -19,15 +19,11 @@
                     <p:dataTable value="#{permissionsBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="per" id="tablePermissions"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column>
-                            <!-- column header -->
                             <f:facet name="header">#{I18N['permission.label.Denomination']}</f:facet>
-                            <!-- row record -->
                             <p:outputLabel value ="#{per.type}"/>
                         </p:column>
                         <p:column>
-                            <!-- column header -->
                             <f:facet name="header">#{I18N['permission.label.Denomination']}</f:facet>
-                            <!-- row record -->
                             <p:outputLabel value ="#{per.action}"/>
                         </p:column>
                     </p:dataTable>

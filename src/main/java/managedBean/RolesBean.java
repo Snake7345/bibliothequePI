@@ -42,14 +42,35 @@ public class RolesBean implements Serializable {
 
     public void addArcheManager()
     {
-
+        SvcPermissions serviceP = new SvcPermissions();
+        List<Permissions> listPermManager = serviceP.findPermissionsFromRoles(3);
+        log.debug("Affichage de list " + listPermManager.toString());
+        for(Permissions p : listPermManager)
+        {
+            log.debug("Affichage de p " + p.getAction());
+            log.debug("Affichage de p " + p.getType());
+            permissions = new Permissions();
+            permissions.setAction(p.getAction());
+            permissions.setType(p.getType());
+            listPerm.add(permissions);
+        }
+        serviceP.close();
     }
     public void addArcheEmploye()
     {
         SvcPermissions serviceP = new SvcPermissions();
-        SvcPermissionRoles servicePR = new SvcPermissionRoles();
-        for(PermissionsRoles pr : )
-
+        List<Permissions> listPermManager = serviceP.findPermissionsFromRoles(4);
+        log.debug("Affichage de list " + listPermManager.toString());
+        for(Permissions p : listPermManager)
+        {
+            log.debug("Affichage de p " + p.getAction());
+            log.debug("Affichage de pe " + p.getType());
+            permissions = new Permissions();
+            permissions.setAction(p.getAction());
+            permissions.setType(p.getType());
+            listPerm.add(permissions);
+        }
+        serviceP.close();
     }
 
     /*Cette méthode permet d'ajouter une permission a un rôle, analyse les permissions et ajoute si nécéssaire les autres permissions.
@@ -85,7 +106,7 @@ public class RolesBean implements Serializable {
                     flag3 = true;
                 }
 
-
+            }
             if (!flag) {
                 permissions.setAction(pe.getAction());
                 permissions.setType(pe.getType());
@@ -122,8 +143,7 @@ public class RolesBean implements Serializable {
         }
     }
     /*Cette méthode permet de supprimer une permission a un objet "rôle", cette méthode affichera un message d'erreur si l'utilisateur supprime une permission liées à une autre permission*/
-    public void supPermission()
-    {
+    public void supPermission() {
 
         boolean flag = false;
         boolean flag2 = false;

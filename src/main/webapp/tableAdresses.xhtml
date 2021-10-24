@@ -20,39 +20,29 @@
                     <p:dataTable value="#{adressesBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="ad" id="tableAdresses"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column>
-                            <!-- column header -->
                             <f:facet name="header">#{I18N['adresse.label.Rue']}</f:facet>
-                            <!-- row record -->
                             <p:outputLabel value ="#{ad.rue}"/>
                         </p:column>
                         <p:column>
-                            <!-- column header -->
                             <f:facet name="header">#{I18N['adresse.label.Boite']}</f:facet>
-                            <!-- row record -->
                             <p:outputLabel value ="#{ad.boite}"/>
                         </p:column>
                         <p:column>
-                            <!-- column header -->
                             <f:facet name="header">#{I18N['adresse.label.Numero']}</f:facet>
-                            <!-- row record -->
                             <p:outputLabel value ="#{ad.numero}"/>
                         </p:column>
                         <p:column>
-                            <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['localite.label.Cp']}</f:facet>
-                            <!-- row record -->
                             <p:outputLabel value ="#{ad.localites.cp}"/>
                         </p:column>
                         <p:column>
-                            <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                             <f:facet name="header">#{I18N['localite.label.Ville']}</f:facet>
-                            <!-- row record -->
                             <p:outputLabel value ="#{ad.localites.ville}"/>
                         </p:column>
                         <shiro:hasPermission name="Adresses:Modification">
                         <p:column>
-                            <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditAdress?faces-redirect=true">		<!-- u minuscule -->
-                                <f:setPropertyActionListener target="#{adressesBean.adresse}" value="#{ad}" /><!-- u minuscule -->
+                            <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditAdress?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{adressesBean.adresse}" value="#{ad}" />
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>

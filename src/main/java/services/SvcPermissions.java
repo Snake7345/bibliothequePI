@@ -3,6 +3,7 @@ package services;
 import entities.Auteurs;
 import entities.Penalites;
 import entities.Permissions;
+import entities.PermissionsRoles;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -39,6 +40,13 @@ public class SvcPermissions extends Service<Permissions> implements Serializable
 		param.put("type", perm.getType());
 		param.put("action", perm.getAction());
 		return finder.findByNamedQuery("Permissions.findOne",param);
+	}
+
+	public List<Permissions> findPermissionsFromRoles(int role) {
+		Map<String, Integer> param = new HashMap<>();
+		param.put("role", role);
+
+		return finder.findByNamedQuery("Permissions.findPermissionsFromRoles", param);
 	}
 
 	//Méthode qui permet via une requete de retourner la liste entière des permissions

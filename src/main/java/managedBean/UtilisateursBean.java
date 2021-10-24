@@ -640,7 +640,7 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listUtil;
     }
-    /*Méthode qui permet via le service de retournerl la liste de tous lees utilisateurs d'une bibliothèque*/
+    /*Méthode qui permet via le service de retourner la liste de tous lees utilisateurs d'une bibliothèque*/
     public List<Utilisateurs> getReadAllUtilBib()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();

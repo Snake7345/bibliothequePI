@@ -18,10 +18,7 @@
                 <p:dataTable value="#{livresBean.listLiv}" emptyMessage="Aucun enregistrement trouvé" var="liv" id="tableLivres"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <p:column>
-
-                        <!-- column header -->
                         <f:facet name="header">#{I18N['livre.label.Titre']}</f:facet>
-                        <!-- row record -->
                         <p:outputLabel value ="#{liv.titre}"/>
                     </p:column>
                     <p:column>
@@ -38,14 +35,14 @@
                         </ui:repeat>
                     </p:column>
                     <p:column>
-                        <p:commandButton  icon="fa fa-fw fa-th-list" value="Details" action="livreDetail?faces-redirect=true">		<!-- u minuscule -->
-                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}"/><!-- u minuscule -->
+                        <p:commandButton  icon="fa fa-fw fa-th-list" value="Details" action="livreDetail?faces-redirect=true">
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}"/>
                         </p:commandButton>
                     </p:column>
                     <shiro:hasPermission name="Livres:Modification">
                     <p:column>
-                        <p:commandButton  icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditLivre?faces-redirect=true">		<!-- u minuscule -->
-                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" /><!-- u minuscule -->
+                        <p:commandButton  icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditLivre?faces-redirect=true">
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
@@ -76,7 +73,7 @@
                     </p:column>
                     <shiro:hasPermission name="Reservation:Lire">
                     <p:column>
-                        <p:commandButton icon="fa fa-fw fa-leanpub" value="#{I18N['application.button.reservation']}" action="tableReservation?faces-redirect=true">		<!-- u minuscule -->
+                        <p:commandButton icon="fa fa-fw fa-leanpub" value="#{I18N['application.button.reservation']}" action="tableReservation?faces-redirect=true">
                             <f:setPropertyActionListener target="#{reservationBean.livre}" value="#{liv}" />
                         </p:commandButton>
                     </p:column>
@@ -87,13 +84,13 @@
             <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}" ajax="false"/>
             <shiro:hasPermission name="Livres:Transfert">
             <p:column>
-                <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.transfertlivre']}" action="formTransfertLivre?faces-redirect=true">		<!-- u minuscule -->
+                <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.transfertlivre']}" action="formTransfertLivre?faces-redirect=true">
                 </p:commandButton>
             </p:column>
             </shiro:hasPermission>
             <shiro:hasPermission name="Livres:Reception">
             <p:column>
-                <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.receptionlivre']}" action="formReceptionLivre?faces-redirect=true">		<!-- u minuscule -->
+                <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.receptionlivre']}" action="formReceptionLivre?faces-redirect=true">
                 </p:commandButton>
             </p:column>
             </shiro:hasPermission>

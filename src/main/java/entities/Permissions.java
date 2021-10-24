@@ -12,6 +12,7 @@ import java.util.Objects;
                 @NamedQuery(name = "Permissions.findAllTri", query = "SELECT p FROM Permissions p ORDER BY p.type ASC"),
                 @NamedQuery(name = "Permissions.findOne", query ="SELECT p FROM Permissions p WHERE p.type=:type AND p.action=:action"),
                 @NamedQuery(name = "Permissions.findByType", query ="SELECT p FROM Permissions p WHERE p.type=:type AND p.action=:action"),
+                @NamedQuery(name = "Permissions.findPermissionsFromRoles",  query ="SELECT p FROM Permissions p INNER JOIN PermissionsRoles pr WHERE pr.role.idRoles=:role AND p.idPermissions=pr.permissions.idPermissions "),
         })
 public class Permissions implements Serializable {
     private static final long serialVersionUID = 1L;

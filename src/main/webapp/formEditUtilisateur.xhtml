@@ -101,9 +101,6 @@
                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                 </p:commandButton>
 
-
-                <!-- A rajouter l'adresse-->
-
             </p:panelGrid>
             <shiro:hasPermission name="Utilisateurs:ModificationBibliotheques">
                 <p:dataTable value="#{utilisateursBean.tabbibli}" var="bib">

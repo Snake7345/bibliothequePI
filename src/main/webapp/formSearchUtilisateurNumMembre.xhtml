@@ -6,7 +6,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:shiro="http://shiro.apache.org/tags"
       xmlns:p="http://primefaces.org/ui">
-<!-- Attention Code a modifier -->
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['application.utilisateur.titleSearch']}</ui:define>
 
@@ -27,21 +26,15 @@
                 <p:dataTable value="#{utilisateursBean.searchResults}" var="util" id="tableSearchUtilisateurs" emptyMessage="Aucun enregistrement trouvé"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <p:column>
-                        <!-- column header -->
                         <f:facet name="header">#{I18N['utilisateur.label.Nom']}</f:facet>
-                        <!-- row record -->
                         <p:outputLabel value ="#{util.nom}"/>
                     </p:column>
                     <p:column>
-                        <!-- column header -->
                         <f:facet name="header">#{I18N['utilisateur.label.Prenom']}</f:facet>
-                        <!-- row record -->
                         <p:outputLabel value ="#{util.prenom}"/>
                     </p:column>
                     <p:column>
-                        <!-- column header Cette colonne doit être modifier pour voir l'utilisateur qui a cette adresse-->
                         <f:facet name="header">#{I18N['utilisateur.label.NumMembre']}</f:facet>
-                        <!-- row record -->
                         <p:outputLabel value ="#{util.numMembre}"/>
                     </p:column>
                     <p:column>

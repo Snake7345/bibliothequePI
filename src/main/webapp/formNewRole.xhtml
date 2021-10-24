@@ -30,7 +30,6 @@
                         <f:validateLength minimum="2" maximum="100"/>
                         <p:tooltip for="roleDenomination" value="#{I18N['tooltip.role.deno']}" position="right"/>
                     </p:inputText>
-                    <!--TODO : Il faut empecher un manager de donner des privilège d'administrateur à des tiers-->
                     <p:outputLabel value = "#{I18N['Permissions.label.Type']}" indicateRequired="true"/>
                     <p:selectOneMenu style="height: 40px; width: 200px;" styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type" >
                         <f:selectItem itemValue="#{null}"/>
@@ -46,14 +45,13 @@
                                        itemLabel="#{ac}"
                                        itemValue="#{ac}"/>
                     </p:selectOneMenu>
-                    <shiro:hasRole name="2">
-                    <p:outputLabel value = "Si vous souhaitez intégrér l'archétype Employé, cliquez ici : "/>
-                    <p:commandButton icon="fa fa-fw fa-check-circle" value="Ajouter l'archétype employé" action="#{rolesBean.addArcheEmploye}" ajax="false"/>
-                    </shiro:hasRole>
-                    <shiro:hasRole name="1">
-                        <p:outputLabel value = "Si vous souhaitez intégrér l'archétype Manager, cliquez ici : "/>
-                        <p:commandButton icon="fa fa-fw fa-check-circle" value="Ajouter l'archétype Manager" action="#{rolesBean.addArcheManager}" ajax="false"/>
-                    </shiro:hasRole>
+                    <p:outputLabel rendered="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Manager'}" value = "Si vous souhaitez intégrér l'archétype Employé, cliquez ici : "/>
+                    <p:commandButton rendered="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Manager'}" icon="fa fa-fw fa-check-circle" value="Ajouter l'archétype employé" action="#{rolesBean.addArcheEmploye}" ajax="false"/>
+
+                    <p:outputLabel rendered="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'}" value = "Si vous souhaitez intégrér l'archétype Manager, cliquez ici : "/>
+                    <p:commandButton rendered="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'}" icon="fa fa-fw fa-check-circle" value="Ajouter l'archétype Manager" action="#{rolesBean.addArcheManager}" ajax="false"/>
+
+
                     <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="#{I18N['permissions.label.add']}" action="#{rolesBean.addPermission}" ajax="false">
                         <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
                         <f:setPropertyActionListener target="#{rolesBean.pe.action}" value="#{permissionsBean.action}" />
@@ -68,15 +66,11 @@
                     <p:outputLabel value ="#{pe.type}"/>
                 </p:column>
                 <p:column>
-                    <!-- column header -->
                     <f:facet name="header">Action</f:facet>
-                    <!-- row record -->
                     <p:outputLabel value ="#{pe.action}"/>
                 </p:column>
                     <p:column>
-                        <!-- column header -->
                         <f:facet name="header">Supprimer la permission</f:facet>
-                        <!-- row record -->
                         <p:commandButton icon="fa fa-fw fa-check-circle"  action="#{rolesBean.supPermission}" ajax="false">
                         <f:setPropertyActionListener target="#{rolesBean.pe}" value="#{pe}" />
                         </p:commandButton>

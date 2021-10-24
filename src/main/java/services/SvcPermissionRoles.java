@@ -1,5 +1,6 @@
 package services;
 
+import entities.Editeurs;
 import entities.Permissions;
 import entities.PermissionsRoles;
 import entities.Roles;
@@ -46,7 +47,6 @@ public class SvcPermissionRoles extends Service<PermissionsRoles> implements Ser
         param.put("role", role);
         return finder.findByNamedQuery("PermissionsRoles.findPermissionsRoles", param);
     }
-
 
 
 }

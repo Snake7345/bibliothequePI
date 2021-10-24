@@ -23,9 +23,6 @@
                 <p:calendar value="#{tarifsBean.tarif.dateDebut}" showOn="button" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                     <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                 </p:calendar>
-                <!--<p:inputText id="dateDebutGrille" value="#{tarifsBean.tarif.dateDebut}" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
-                    <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
-                </p:inputText>-->
 
 
                 <p:outputLabel value="#{I18N['tarif.label.nom']}" />
