@@ -13,7 +13,7 @@
 
     <ui:define name="content">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <shiro:hasPermission name="Utilisateurs:Modification">
+        <shiro:authenticated>
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['utilisateur.form.modif.titre']}</title>
@@ -96,11 +96,9 @@
                     <p:tooltip for="utiladress" value="#{I18N['tooltip.utilisateur.adresse']}" position="right"/>
                 </p:selectOneListbox>
 
-
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}">
                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                 </p:commandButton>
-
             </p:panelGrid>
             <shiro:hasPermission name="Utilisateurs:ModificationBibliotheques">
                 <p:dataTable value="#{utilisateursBean.tabbibli}" var="bib">
@@ -118,26 +116,16 @@
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="sup" action="#{utilisateursBean.supBibliothequeRow}" ajax="false"/>
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="add" action="#{utilisateursBean.addBibliothequeRow}" ajax="false"/>
             </shiro:hasPermission>
-
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.modifUtil}" ajax="false"/>
-
-            <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
-            </c:if>
-            <c:if test= "#{utilisateursBean.utilisateur.roles.denomination eq 'Client'}">
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
-            </c:if>
+            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.modifUtilProfil}" ajax="false"/>
         </h:form>
-        </shiro:hasPermission>
-        <shiro:lacksPermission name="Utilisateurs:Modification">
+        </shiro:authenticated>
+        <shiro:notAuthenticated>
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksPermission>
+        </shiro:notAuthenticated>
 
         <p:dialog header="Nouvelle adresse" widgetVar="dlg1" minHeight="40">
             <p:ajax event="close" update="formAdresse" resetValues="true" />
             <p:ajax event="open" update="formAdresse" resetValues="true" />
-
-
             <h:form id="formAdresse" prependId = "false">
                 <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 

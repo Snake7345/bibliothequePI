@@ -44,7 +44,7 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 	}
 
 	//Méthode qui permet via une requete de retourner la liste entière des utilisateurs
-	public List<Utilisateurs> findAllUtilisateursUtil() {
+	public List<Utilisateurs> findAllUtilisateursNotCli() {
 		return finder.findByNamedQuery("Utilisateurs.findAllUtil", null);
 	}
 	//Méthode qui permet via une requete de retourner la liste entière des utilisateurs (client)

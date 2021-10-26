@@ -82,7 +82,9 @@ public class UtilisateursBean implements Serializable {
     }
 
     /*Cette méthode permet de récupérer les données liées a l'utilisateur et nous renvoit sur le formulaire d'édition de l'utilisateur*/
-    public String redirectModifUtil(){
+    public String redirectModifUtil()
+    {
+        tabbibli.clear();
         for (UtilisateursAdresses ua: utilisateur.getUtilisateursAdresses()) {
             if(ua.isActif()){
                 adresses=ua.getAdresse();
@@ -93,6 +95,20 @@ public class UtilisateursBean implements Serializable {
             tabbibli.add(ub.getBibliotheque());
         }
         return "/formEditUtilisateur.xhtml?faces-redirect=true";
+    }
+    public String redirectModifUtilProfil()
+    {
+        tabbibli.clear();
+        for (UtilisateursAdresses ua: utilisateur.getUtilisateursAdresses()) {
+            if(ua.isActif()){
+                adresses=ua.getAdresse();
+            }
+        }
+        for (UtilisateursBibliotheques ub : utilisateur.getUtilisateursBibliotheques())
+        {
+            tabbibli.add(ub.getBibliotheque());
+        }
+        return "/formEditProfil.xhtml?faces-redirect=true";
     }
     /*Méthode qui permet la sauvegarde de la modification d'un objet "utilisateur"*/
     public void saveActif() {
@@ -371,6 +387,64 @@ public class UtilisateursBean implements Serializable {
             init();
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
     }
+    public String modifUtilProfil() {
+        boolean flag = false;
+
+        SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
+        SvcUtilisateursBibliotheques serviceUB = new SvcUtilisateursBibliotheques();
+        utilisateur.setNom(utilisateur.getNom().substring(0,1).toUpperCase() + utilisateur.getNom().substring(1));
+        utilisateur.setPrenom(utilisateur.getPrenom().substring(0,1).toUpperCase() + utilisateur.getPrenom().substring(1));
+        if (utilisateur.getIdUtilisateurs()!=0) {
+            for (UtilisateursAdresses ua : utilisateur.getUtilisateursAdresses()) {
+                if (ua.getAdresse().equals(adresses)) {
+                    flag = true;
+                    UA = ua;
+                    break;
+                }
+            }
+        }
+        if (!flag){
+            UA = serviceUA.createUtilisateursAdresses(utilisateur, adresses);
+        }
+        if(verifUtilExist(utilisateur))
+        {
+            UA.setActif(true);
+            for (Bibliotheques bib : tabbibli)
+            {
+                if(listUB.size()==0) {
+                    listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur, bib));
+                }
+                else{
+                    boolean fl = false;
+                    for (UtilisateursBibliotheques ub : listUB){
+                        if (ub.getBibliotheque().getIdBibliotheques() == bib.getIdBibliotheques()) {
+                            fl = true;
+                            break;
+                        }
+                    }
+                    if(fl){
+                        listUB=new ArrayList<>();
+                        FacesContext fc = FacesContext.getCurrentInstance();
+                        fc.getExternalContext().getFlash().setKeepMessages(true);
+                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Vous ne pouvez pas choisir deux fois les mêmes bibliothèques",null));
+                        return "/formEditUtilisateur.xhtml?faces-redirect=true";}
+                    else {
+                        listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur, bib));
+                    }
+                }
+            }
+
+            saveUtilisateur();
+        }else {
+
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur existe déjà tel quel en DB; opération échouée",null));
+        }
+
+        init();
+        return "/bienvenue.xhtml?faces-redirect=true";
+    }
 
     /*Cette méthode verifie si un utilisateur existe déjà*/
     public boolean verifUtilExist(Utilisateurs util)
@@ -630,13 +704,12 @@ public class UtilisateursBean implements Serializable {
     }
 
     /*
-     * Méthode qui permet via le service de retourner la liste de tous les utilisateurs
+     * Méthode qui permet via le service de retourner la liste de tous les utilisateurs qui ne sont pas des clients
      */
     public List<Utilisateurs> getReadAllUtil()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();
-        listUtil = service.findAllUtilisateursUtil();
-
+        listUtil = service.findAllUtilisateursNotCli();
         service.close();
         return listUtil;
     }

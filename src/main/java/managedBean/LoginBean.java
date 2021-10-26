@@ -46,14 +46,13 @@ public class LoginBean implements Serializable {
         try {
             List<Utilisateurs> results = service.findByLogin(login);
             if(bibliothequeActuelle.isActif()) {
-                if (SecurityManager.processToLogin(login, mdp, false)) {
-
+                if (SecurityManager.processToLogin(login, mdp, false))
+                {
                     utilisateurAuth = results.get(0);
                     SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
                     SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
                     FacesContext.getCurrentInstance().getExternalContext().redirect("bienvenue.xhtml");
-
                 }
             }
             else

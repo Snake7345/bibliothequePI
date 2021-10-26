@@ -11,6 +11,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Named
 @SessionScoped
@@ -24,8 +25,8 @@ public class PermissionsBean implements Serializable {
     private String middlename;
     private String action;
     private final List<Permissions> listPer = getReadAll();
-
     private List<String> listAction = new ArrayList<>();
+
 
     /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
@@ -44,7 +45,6 @@ public class PermissionsBean implements Serializable {
         return "/tablePermissions?faces-redirect=true";
     }
 
-
     /*
      * Méthode qui permet via le service de retourner la liste de toutes les permissions
      */
@@ -58,15 +58,32 @@ public class PermissionsBean implements Serializable {
     }
 
     /*
-     * Méthode qui permet via le service de retourner la liste de toutes les types de permissions
+     * Méthode qui permet de retourner la liste de toutes les types de permissions
      */
     public List<String> getPermissionsType()
+    {
+
+        List<String> listType = new ArrayList<>();
+        for(Permissions p : listPer)
+        {
+            if(!listType.contains(p.getType()))
+            {
+                listType.add(p.getType());
+            }
+        }
+        return listType;
+    }
+    /*
+     * Méthode qui permet de retourner la liste de toutes les types de permissions si l'utilisateur connecté est un manager
+     */
+    public List<String> getPermissionsTypeManager()
     {
         List<String> listType = new ArrayList<>();
         for(Permissions p : listPer)
         {
             if(!listType.contains(p.getType()))
             {
+                if(!Objects.equals(p.getType(), "Permissions"))
                 listType.add(p.getType());
             }
         }

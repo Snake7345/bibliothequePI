@@ -53,16 +53,16 @@
                     </p:column>
                     <shiro:hasPermission name="Client:Modification">
                         <p:column>
-                            <p:commandButton  icon="fa fa-fw fa-power-off" action="#{utilisateursBean.redirectModifUtil}">
+                            <p:commandButton  icon="fa fa-fw fa-pencil" value="Modifier" action="#{utilisateursBean.redirectModifUtil}">
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" />
                             </p:commandButton>
                         </p:column>
                     </shiro:hasPermission>
                     <p:column>
-                        <p:commandButton icon="fa fa-fw fa-power-off" rendered="#{util.actif}" action="#{utilisateursBean.activdesactivUtil}">
+                        <p:commandButton icon="fa fa-fw fa-power-off" value ="Désactiver" rendered="#{util.actif}" action="#{utilisateursBean.activdesactivUtil}">
                             <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" />
                         </p:commandButton>
-                        <p:commandButton icon="fa fa-fw fa-power-off"  value ="Désactiver" rendered="#{!util.actif}" action="#{utilisateursBean.activdesactivUtil}">
+                        <p:commandButton icon="fa fa-fw fa-power-off"  value ="Activer" rendered="#{!util.actif}" action="#{utilisateursBean.activdesactivUtil}">
                             <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{util}" />
                         </p:commandButton>
                     </p:column>

@@ -30,14 +30,26 @@
                         <f:validateLength minimum="2" maximum="100"/>
                         <p:tooltip for="roleDenomination" value="#{I18N['tooltip.role.deno']}" position="right"/>
                     </p:inputText>
+                    <shiro:hasRole name="1">
                     <p:outputLabel value = "#{I18N['Permissions.label.Type']}" indicateRequired="true"/>
-                    <p:selectOneMenu style="height: 40px; width: 200px;" styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type" >
+                    <p:selectOneMenu style="height: 40px; width: 200px;" styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type2" >
                         <f:selectItem itemValue="#{null}"/>
                         <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
                                        itemLabel="#{ty}"
                                        itemValue="#{ty}"/>
                         <p:ajax event="change" listener="#{permissionsBean.getPermissionsAction}" update="form:action" />
                     </p:selectOneMenu>
+                    </shiro:hasRole>
+                    <shiro:hasRole name="3">
+                        <p:outputLabel value = "#{I18N['Permissions.label.Type']}" indicateRequired="true"/>
+                        <p:selectOneMenu style="height: 40px; width: 200px;" styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type3" >
+                            <f:selectItem itemValue="#{null}"/>
+                            <f:selectItems value = "#{permissionsBean.permissionsTypeManager}" var="ty"
+                                           itemLabel="#{ty}"
+                                           itemValue="#{ty}"/>
+                            <p:ajax event="change" listener="#{permissionsBean.getPermissionsAction}" update="form:action" />
+                        </p:selectOneMenu>
+                    </shiro:hasRole>
 
                     <p:outputLabel value = "#{I18N['Permissions.label.Action']}" indicateRequired="true"/>
                     <p:selectOneMenu styleClass="selectOneMenu" value = "#{permissionsBean.action}" id="action">
@@ -45,16 +57,16 @@
                                        itemLabel="#{ac}"
                                        itemValue="#{ac}"/>
                     </p:selectOneMenu>
-                    <p:outputLabel rendered="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Manager'}" value = "Si vous souhaitez intégrér l'archétype Employé, cliquez ici : "/>
-                    <p:commandButton rendered="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Manager'}" icon="fa fa-fw fa-check-circle" value="Ajouter l'archétype employé" action="#{rolesBean.addArcheEmploye}" ajax="false"/>
 
-                    <p:outputLabel rendered="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'}" value = "Si vous souhaitez intégrér l'archétype Manager, cliquez ici : "/>
-                    <p:commandButton rendered="#{loginBean.utilisateurAuth.roles.denomination eq 'Administrateur'}" icon="fa fa-fw fa-check-circle" value="Ajouter l'archétype Manager" action="#{rolesBean.addArcheManager}" ajax="false"/>
-
+                    <p:commandButton icon="fa fa-fw fa-check-circle" value="Si vous souhaitez intégrer un archétype c'est ici">
+                        <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
+                    </p:commandButton>
 
                     <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="#{I18N['permissions.label.add']}" action="#{rolesBean.addPermission}" ajax="false">
                         <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
                         <f:setPropertyActionListener target="#{rolesBean.pe.action}" value="#{permissionsBean.action}" />
+                    </p:commandButton>
+                    <p:commandButton icon="fa fa-fw fa-check-circle" value="Supprimer toutes les permissions" action="#{rolesBean.clearListPermissions}" ajax="false">
                     </p:commandButton>
                 </p:panelGrid>
 
@@ -84,6 +96,33 @@
         <shiro:lacksPermission name="Roles:Creer">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
+        <p:dialog header="Ajouter un archétype" widgetVar="dlg1" minHeight="40">
+            <p:ajax event="close" update="formArchetype" resetValues="true" />
+            <p:ajax event="open" update="formArchetype" resetValues="true" />
+
+            <h:form id="formArchetype" prependId = "false">
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+
+                    <p:outputLabel value = "Selectionner l'archétype que vous souhaitez intégrer"/>
+                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{rolesBean.role}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                                     converter="roleConverter">
+                        <shiro:hasRole name="1">
+                            <f:selectItems value = "#{rolesBean.readActivUtil}" var="ro"
+                                           itemLabel="#{ro.denomination}"
+                                           itemValue="#{ro}"/>
+                        </shiro:hasRole>
+                        <shiro:lacksRole name="1">
+                            <f:selectItems value = "#{rolesBean.readActiv}" var="ro"
+                                           itemLabel="#{ro.denomination}"
+                                           itemValue="#{ro}"/>
+                        </shiro:lacksRole>
+                    </p:selectOneMenu>
+
+                    <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{rolesBean.addArchetype}" onclick="PF('popup').hide();"/>
+                </p:panelGrid>
+
+            </h:form>
+        </p:dialog>
     </ui:define>
 </ui:composition>
 

@@ -11,13 +11,14 @@
 <ui:composition>
 	<div id="header">
 	<ui:insert name="header">
-
+		<shiro:authenticated>
 		<p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="header2" class="table-entete" columns="2">
 			<p:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
 			<p:outputLabel id="titrebib" value="Bienvenue sur la bibliothèque #{bibliothequesBean.listBibactuel.get(0).nom} " />
-
 		</p:panelGrid>
-		<shiro:authenticated>
+			<p:commandButton value="Mon profil" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{utilisateursBean.redirectModifUtilProfil}">
+				<f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{loginBean.utilisateurAuth}" />
+			</p:commandButton>
 				<h:form>
 					<p:menubar>
 						<p:menuitem value="Accueil" icon="fa fa-fw fa-home" action="bienvenue?faces-redirect=true"/>

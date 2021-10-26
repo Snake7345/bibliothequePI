@@ -9,44 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.10 Multiples corrections graphiques + ajout dess commentaires + ajout en cours de la fonctionnalité cconcernant les archétypes">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.12 Suppression des commentaires sur les pages webs">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Permissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Permissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Utilisateurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Utilisateurs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcPermissionRoles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcPermissionRoles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcPermissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/template.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/template.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/envoiInfo.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/envoiInfo.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditEditeur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditEditeur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcUtilisateurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcUtilisateurs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditTarif.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewExemLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewExemLivre.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formReinitialisation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formReinitialisation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchAuteur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchLivre.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateurNumMembre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateurNumMembre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSelectBiblio.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSelectBiblio.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +248,9 @@
       <workItem from="1634777564971" duration="2812000" />
       <workItem from="1634819339385" duration="9793000" />
       <workItem from="1634910557377" duration="15796000" />
-      <workItem from="1635094490769" duration="6994000" />
+      <workItem from="1635094490769" duration="12937000" />
+      <workItem from="1635198069878" duration="17299000" />
+      <workItem from="1635216799973" duration="8502000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -384,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634915528592</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="v1.2.12 Suppression des commentaires sur les pages webs">
+      <created>1635104044686</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1635104044686</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,6 +405,7 @@
     <MESSAGE value="v1.2.07 Correction du formulaire des rôles ainsi que début de normalisation des entités" />
     <MESSAGE value="v1.2.08 Normalisation des entités" />
     <MESSAGE value="v1.2.10 Multiples corrections graphiques + ajout dess commentaires + ajout en cours de la fonctionnalité cconcernant les archétypes" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.2.10 Multiples corrections graphiques + ajout dess commentaires + ajout en cours de la fonctionnalité cconcernant les archétypes" />
+    <MESSAGE value="v1.2.12 Suppression des commentaires sur les pages webs" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2.12 Suppression des commentaires sur les pages webs" />
   </component>
 </project>

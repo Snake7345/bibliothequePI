@@ -32,6 +32,14 @@ html {
 	color: black;
 	border-style:none;
 }
+#header3 {
+	width: 100%;
+	padding: 2px;
+	text-align: left;
+	font-size:50px;
+	color: black;
+	border-style:none;
+}
 
 #titrebib
 {

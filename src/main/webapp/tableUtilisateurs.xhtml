@@ -111,8 +111,6 @@
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                                 </p:commandButton>
-
-
                             </p:column>
                             <shiro:hasPermission name="Utilisateurs:ActivDesactiv">
                                 <p:column>

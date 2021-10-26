@@ -17,7 +17,9 @@ import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Named
 @SessionScoped
@@ -40,81 +42,80 @@ public class RolesBean implements Serializable {
         permissions = new Permissions();
     }
 
-    public void addArcheManager()
+    public void addArchetype()
     {
         SvcPermissions serviceP = new SvcPermissions();
-        List<Permissions> listPermManager = serviceP.findPermissionsFromRoles(3);
-        log.debug("Affichage de list " + listPermManager.toString());
+        List<Permissions> listPermManager = serviceP.findPermissionsFromRoles(role.getIdRoles());
         for(Permissions p : listPermManager)
         {
-            log.debug("Affichage de p " + p.getAction());
-            log.debug("Affichage de p " + p.getType());
-            permissions = new Permissions();
             permissions.setAction(p.getAction());
             permissions.setType(p.getType());
             listPerm.add(permissions);
-        }
-        serviceP.close();
-    }
-    public void addArcheEmploye()
-    {
-        SvcPermissions serviceP = new SvcPermissions();
-        List<Permissions> listPermManager = serviceP.findPermissionsFromRoles(4);
-        log.debug("Affichage de list " + listPermManager.toString());
-        for(Permissions p : listPermManager)
-        {
-            log.debug("Affichage de p " + p.getAction());
-            log.debug("Affichage de pe " + p.getType());
             permissions = new Permissions();
-            permissions.setAction(p.getAction());
-            permissions.setType(p.getType());
-            listPerm.add(permissions);
         }
         serviceP.close();
     }
 
+
+    public void clearListPermissions()
+    {
+        if(listPerm.size()>0)
+        {
+            listPerm.clear();
+        }
+        else
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "La liste des permissions est vide", null));
+        }
+    }
+
     /*Cette méthode permet d'ajouter une permission a un rôle, analyse les permissions et ajoute si nécéssaire les autres permissions.
-    * Si les permissions ne sont pas rafraichie alors affichage d'un message d'erreur*/
+    * Si les permissions ne sont pas rafraichies alors affichage d'un message d'erreur*/
     public void addPermission()
     {
         boolean flag = false;
         boolean flag2 = false;
         boolean flag3 = false;
-        SvcPermissions serviceP = new SvcPermissions();
+        log.debug("1");
         /*On vérifie si l'utilisateur nous a pas encodé une action/un type vide*/
         if(pe.getAction() == null || pe.getAction().equals(""))
         {
+            log.debug("2");
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Veuillez rafrachir l'action pour ajouter une permission", null));
         }
-        else if(!(serviceP.findOnePermission(pe).size() >0)){
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Vous devez rafrachir les actions pour pouvoir ajouter une permission", null));
-        }
         else
         {
+            log.debug("4");
             for (Permissions p : listPerm) {
+
                 if ((p.getType().equals(pe.getType()) && p.getAction().equals(pe.getAction()))) {
                     flag = true;
+                    log.debug("5");
                 }
                 if (p.getType().equals(pe.getType()) && p.getAction().equals("Lire")) {
                     flag2 = true;
+                    log.debug("6");
                 }
                 if (p.getType().equals(pe.getType()) && p.getAction().equals("Creer")) {
                     flag3 = true;
+                    log.debug("7");
                 }
 
             }
             if (!flag) {
+                log.debug("8");
                 permissions.setAction(pe.getAction());
                 permissions.setType(pe.getType());
                 listPerm.add(permissions);
                 permissions = new Permissions();
                 /*Il faut un commentaire*/
-                if (!flag2 && (pe.getAction().equals("Creer") || pe.getAction().equals("Modification") || pe.getAction().equals("ActivDesactiv"))) {
+                if (!flag2 && (pe.getAction().equals("Creer") || pe.getAction().equals("Modification") || pe.getAction().equals("ActivDesactiv"))) {log.debug("9");
                     if (!flag3 && pe.getAction().equals("Modification")) {
+                        log.debug("10");
                         pe.setAction("Creer");
                         permissions.setAction(pe.getAction());
                         permissions.setType(pe.getType());
@@ -126,6 +127,8 @@ public class RolesBean implements Serializable {
                     permissions.setType(pe.getType());
                     listPerm.add(permissions);
                     permissions = new Permissions();
+                    log.debug("11");
+
                 }
                 if (!flag3 && flag2 && pe.getAction().equals("Modification")) {
                     pe.setAction("Creer");
@@ -133,13 +136,14 @@ public class RolesBean implements Serializable {
                     permissions.setType(pe.getType());
                     listPerm.add(permissions);
                     permissions = new Permissions();
+                    log.debug("12");
                 }
             } else {
+                log.debug("13");
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "La valeur est déjà dans le tableau", null));
             }
-            pe = new Permissions();
         }
     }
     /*Cette méthode permet de supprimer une permission a un objet "rôle", cette méthode affichera un message d'erreur si l'utilisateur supprime une permission liées à une autre permission*/

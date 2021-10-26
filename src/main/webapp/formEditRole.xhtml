@@ -23,14 +23,26 @@
                     <p:outputLabel value = "#{I18N['role.label.Denomination']}"/>
                     <p:outputLabel value ="#{rolesBean.role.denomination}"/>
 
-                    <p:outputLabel value = "#{I18N['Permissions.label.Type']}"/>
-                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type">
-                        <f:selectItem itemValue="#{null}"/>
-                        <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
-                                       itemLabel="#{ty}"
-                                       itemValue="#{ty}"/>
-                        <p:ajax event="change" listener="#{permissionsBean.getPermissionsAction}" update="form:action" />
-                    </p:selectOneMenu>
+                    <shiro:hasRole name="1">
+                        <p:outputLabel value = "#{I18N['Permissions.label.Type']}" indicateRequired="true"/>
+                        <p:selectOneMenu style="height: 40px; width: 200px;" styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type2" >
+                            <f:selectItem itemValue="#{null}"/>
+                            <f:selectItems value = "#{permissionsBean.permissionsType}" var="ty"
+                                           itemLabel="#{ty}"
+                                           itemValue="#{ty}"/>
+                            <p:ajax event="change" listener="#{permissionsBean.getPermissionsAction}" update="form:action" />
+                        </p:selectOneMenu>
+                    </shiro:hasRole>
+                    <shiro:hasRole name="3">
+                        <p:outputLabel value = "#{I18N['Permissions.label.Type']}" indicateRequired="true"/>
+                        <p:selectOneMenu style="height: 40px; width: 200px;" styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type3" >
+                            <f:selectItem itemValue="#{null}"/>
+                            <f:selectItems value = "#{permissionsBean.permissionsTypeManager}" var="ty"
+                                           itemLabel="#{ty}"
+                                           itemValue="#{ty}"/>
+                            <p:ajax event="change" listener="#{permissionsBean.getPermissionsAction}" update="form:action" />
+                        </p:selectOneMenu>
+                    </shiro:hasRole>
 
                     <p:outputLabel value = "#{I18N['Permissions.label.Action']}"/>
                     <p:selectOneMenu styleClass="selectOneMenu" value = "#{permissionsBean.action}" id="action">
