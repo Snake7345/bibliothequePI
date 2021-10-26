@@ -8,7 +8,6 @@ public class PenaCustom {
     private Double prix;
     private Date dateDebut, dateFin;
 
-
     public PenaCustom(String name, Double prix, Date dateDebut, Date dateFin) {
         this.name = name;
         this.prix = prix;

@@ -42,13 +42,7 @@ public class Permissions implements Serializable {
         return Objects.hash(idPermissions, type, action);
     }
 
-    public Collection<PermissionsRoles> getPermissionsRoles() {
-        return permissionsRoles;
-    }
 
-    public void setPermissionsRoles(Collection<PermissionsRoles> permissionsRolesByIdPermissions) {
-        this.permissionsRoles = permissionsRolesByIdPermissions;
-    }
 
     //-------------------------------Getter & Setter--------------------------------------------
 
@@ -74,6 +68,14 @@ public class Permissions implements Serializable {
 
     public void setAction(String Action) {
         this.action = Action;
+    }
+
+    public Collection<PermissionsRoles> getPermissionsRoles() {
+        return permissionsRoles;
+    }
+
+    public void setPermissionsRoles(Collection<PermissionsRoles> permissionsRolesByIdPermissions) {
+        this.permissionsRoles = permissionsRolesByIdPermissions;
     }
 
 

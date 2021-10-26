@@ -30,6 +30,11 @@
                         <f:validateLength minimum="2" maximum="100"/>
                         <p:tooltip for="roleDenomination" value="#{I18N['tooltip.role.deno']}" position="right"/>
                     </p:inputText>
+                    <p:commandButton icon="fa fa-fw fa-check-circle" value="Si vous souhaitez intégrer un archétype c'est ici">
+                        <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
+                    </p:commandButton>
+                    <br/>
+
                     <shiro:hasRole name="1">
                     <p:outputLabel value = "#{I18N['Permissions.label.Type']}" indicateRequired="true"/>
                     <p:selectOneMenu style="height: 40px; width: 200px;" styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type2" >
@@ -58,16 +63,12 @@
                                        itemValue="#{ac}"/>
                     </p:selectOneMenu>
 
-                    <p:commandButton icon="fa fa-fw fa-check-circle" value="Si vous souhaitez intégrer un archétype c'est ici">
-                        <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
-                    </p:commandButton>
 
                     <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="#{I18N['permissions.label.add']}" action="#{rolesBean.addPermission}" ajax="false">
                         <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
                         <f:setPropertyActionListener target="#{rolesBean.pe.action}" value="#{permissionsBean.action}" />
                     </p:commandButton>
-                    <p:commandButton icon="fa fa-fw fa-check-circle" value="Supprimer toutes les permissions" action="#{rolesBean.clearListPermissions}" ajax="false">
-                    </p:commandButton>
+                    <p:commandButton icon="fa fa-fw fa-check-circle" value="Supprimer toutes les permissions" action="#{rolesBean.clearListPermissions}" ajax="false"/>
                 </p:panelGrid>
 
                 <p:dataTable value="#{rolesBean.listPerm}" emptyMessage="Aucun enregistrement trouvé" var="pe" id="tableListPerm"
@@ -88,7 +89,6 @@
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>
-
                 <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.newRoles}" immediate="true"/>
                 <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
             </h:form>
@@ -120,7 +120,6 @@
 
                     <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{rolesBean.addArchetype}" onclick="PF('popup').hide();"/>
                 </p:panelGrid>
-
             </h:form>
         </p:dialog>
     </ui:define>

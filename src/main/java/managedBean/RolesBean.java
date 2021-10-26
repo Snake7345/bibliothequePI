@@ -24,6 +24,7 @@ import java.util.Objects;
 @Named
 @SessionScoped
 public class RolesBean implements Serializable {
+
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Roles role;
@@ -45,18 +46,21 @@ public class RolesBean implements Serializable {
     public void addArchetype()
     {
         SvcPermissions serviceP = new SvcPermissions();
-        List<Permissions> listPermManager = serviceP.findPermissionsFromRoles(role.getIdRoles());
-        for(Permissions p : listPermManager)
+        List<Permissions> listPermArchetype = serviceP.findPermissionsFromRoles(role.getIdRoles());
+        for(Permissions p : listPermArchetype)
         {
-            permissions.setAction(p.getAction());
-            permissions.setType(p.getType());
-            listPerm.add(permissions);
-            permissions = new Permissions();
+            if(!listPerm.contains(p))
+            {
+                permissions.setAction(p.getAction());
+                permissions.setType(p.getType());
+                listPerm.add(permissions);
+                permissions = new Permissions();
+            }
         }
         serviceP.close();
     }
 
-
+    /*Méthode qui permet de vider le tableau des permissions*/
     public void clearListPermissions()
     {
         if(listPerm.size()>0)

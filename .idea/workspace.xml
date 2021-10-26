@@ -9,22 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.12 Suppression des commentaires sur les pages webs">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" afterDir="false" />
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.13 Multiples corrections concernant certains bugs mineurs et un majeur, réarangement de la création du rôle + ajout du bouton Mon profil">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Utilisateurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Utilisateurs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Permissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Permissions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcUtilisateurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcUtilisateurs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/stylesheet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/objectCustom/PenaCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objectCustom/PenaCustom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/bibliotheque.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bibliotheque.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +31,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -250,7 +242,9 @@
       <workItem from="1634910557377" duration="15796000" />
       <workItem from="1635094490769" duration="12937000" />
       <workItem from="1635198069878" duration="17299000" />
-      <workItem from="1635216799973" duration="8502000" />
+      <workItem from="1635216799973" duration="11926000" />
+      <workItem from="1635231159637" duration="1000" />
+      <workItem from="1635262895023" duration="2948000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -371,7 +365,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635104044686</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="v1.2.13 Multiples corrections concernant certains bugs mineurs et un majeur, réarangement de la création du rôle + ajout du bouton Mon profil">
+      <created>1635227757279</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1635227757279</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,6 +407,8 @@
     <MESSAGE value="v1.2.08 Normalisation des entités" />
     <MESSAGE value="v1.2.10 Multiples corrections graphiques + ajout dess commentaires + ajout en cours de la fonctionnalité cconcernant les archétypes" />
     <MESSAGE value="v1.2.12 Suppression des commentaires sur les pages webs" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.2.12 Suppression des commentaires sur les pages webs" />
+    <MESSAGE value="v1.2.13 Multiples corrections concernant certains bugs mineurs et un majeur, réarangement de la création du rôle" />
+    <MESSAGE value="v1.2.13 Multiples corrections concernant certains bugs mineurs et un majeur, réarangement de la création du rôle + ajout du bouton Mon profil" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2.13 Multiples corrections concernant certains bugs mineurs et un majeur, réarangement de la création du rôle + ajout du bouton Mon profil" />
   </component>
 </project>
