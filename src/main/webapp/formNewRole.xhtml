@@ -6,6 +6,7 @@
       xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['role.form.nouveau.titre']}</ui:define>
@@ -49,7 +50,7 @@
                         <p:outputLabel value = "#{I18N['Permissions.label.Type']}" indicateRequired="true"/>
                         <p:selectOneMenu style="height: 40px; width: 200px;" styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type3" >
                             <f:selectItem itemValue="#{null}"/>
-                            <f:selectItems value = "#{permissionsBean.permissionsTypeManager}" var="ty"
+                            <f:selectItems value = "#{permissionsBean.permissionsTypeUtilisateur}" var="ty"
                                            itemLabel="#{ty}"
                                            itemValue="#{ty}"/>
                             <p:ajax event="change" listener="#{permissionsBean.getPermissionsAction}" update="form:action" />
@@ -74,6 +75,9 @@
                 <p:dataTable value="#{rolesBean.listPerm}" emptyMessage="Aucun enregistrement trouvé" var="pe" id="tableListPerm"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
 
+                    <f:facet name="header">
+                        <span class="p-text-bold">In total there are #{fn:length(rolesBean.listPerm)} permissions.</span>
+                    </f:facet>
                 <p:column>
                     <f:facet name="header">Type de permission</f:facet>
                     <p:outputLabel value ="#{pe.type}"/>
@@ -88,6 +92,7 @@
                         <f:setPropertyActionListener target="#{rolesBean.pe}" value="#{pe}" />
                         </p:commandButton>
                     </p:column>
+
                 </p:dataTable>
                 <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.newRoles}" immediate="true"/>
                 <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
@@ -104,7 +109,7 @@
                 <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <p:outputLabel value = "Selectionner l'archétype que vous souhaitez intégrer"/>
-                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{rolesBean.role}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{rolesBean.roleArchetype}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
                                      converter="roleConverter">
                         <shiro:hasRole name="1">
                             <f:selectItems value = "#{rolesBean.readActivUtil}" var="ro"
@@ -118,6 +123,8 @@
                         </shiro:lacksRole>
                     </p:selectOneMenu>
 
+                    <p:outputLabel value = "Attention, l'intégration d'un nouvel archétype en cours de procédure entrainera la réinitialisation complète de la liste des permissions"/>
+                    <br/>
                     <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{rolesBean.addArchetype}" onclick="PF('popup').hide();"/>
                 </p:panelGrid>
             </h:form>

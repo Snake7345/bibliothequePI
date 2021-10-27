@@ -98,6 +98,11 @@ public class UtilisateursBean implements Serializable {
     }
     public String redirectModifUtilProfil()
     {
+        SvcUtilisateurs serviceU = new SvcUtilisateurs();
+        List<Utilisateurs> listU = serviceU.findByLogin(SecurityUtils.getSubject().getPrincipal().toString());
+        serviceU.close();
+        if(listU.size()>0){
+        utilisateur = listU.get(0);
         tabbibli.clear();
         for (UtilisateursAdresses ua: utilisateur.getUtilisateursAdresses()) {
             if(ua.isActif()){
@@ -108,7 +113,15 @@ public class UtilisateursBean implements Serializable {
         {
             tabbibli.add(ub.getBibliotheque());
         }
-        return "/formEditProfil.xhtml?faces-redirect=true";
+
+        return "/formEditProfil.xhtml?faces-redirect=true";}
+        else {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"une erreur est survenue",null));
+            return null;
+        }
+
     }
     /*Méthode qui permet la sauvegarde de la modification d'un objet "utilisateur"*/
     public void saveActif() {
@@ -484,6 +497,7 @@ public class UtilisateursBean implements Serializable {
     }
     /*Cette méthode permet la création de l'objet utilisateur(client) ainsi que la vérification si un client est similaire*/
     public String newUtilCli() {
+
         boolean flag = false;
         SvcUtilisateursAdresses serviceUA = new SvcUtilisateursAdresses();
         SvcRoles serviceR = new SvcRoles();

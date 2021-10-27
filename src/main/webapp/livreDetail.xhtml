@@ -18,56 +18,49 @@
             <p:panel layout="block" id="content">
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <h2 style="text-align:center">#{I18N['application.livre.title']}</h2>
-                <p:dataTable value="#{livresBean.readlivre}" var="liv" id="tableLivres"
+                <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{livresBean.readlivre}" var="liv" id="tableLivres"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-                    <p:column>
-                        <f:facet name="header">#{I18N['livre.label.Titre']}</f:facet>
+                    <p:column headerText="#{I18N['livre.label.Titre']}" style="text-align: center">
                         <p:outputLabel value ="#{liv.titre}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">#{I18N['livre.label.Isbn']}</f:facet>
+                    <p:column headerText="#{I18N['livre.label.Isbn']}" style="text-align: center">
                         <p:outputLabel value ="#{liv.isbn}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">#{I18N['commune.label.actif']}</f:facet>
+                    <p:column headerText="#{I18N['commune.label.actif']}" style="text-align: center">
                         <p:outputLabel value ="#{liv.actif}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">#{I18N['livre.label.Annee']}</f:facet>
+                    <p:column headerText="#{I18N['livre.label.Annee']}" style="text-align: center">
                         <p:outputLabel value ="#{liv.annee}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">#{I18N['editeur.label.Nom']}</f:facet>
+                    <p:column headerText="#{I18N['editeur.label.Nom']}" style="text-align: center">
                         <p:outputLabel value ="#{liv.editeurs.nom}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">#{I18N['auteur.label.NomPrenom']}</f:facet>
+                    <p:column headerText="#{I18N['auteur.label.NomPrenom']}" style="text-align: center">
                         <ui:repeat value="#{liv.livresAuteurs}" var="livauth">
                                 <p:outputLabel value ="#{livauth.auteur.nom} - #{livauth.auteur.prenom}"/>
                         </ui:repeat>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">#{I18N['genre.label.Denomination']}</f:facet>
+                    <p:column headerText="#{I18N['genre.label.Denomination']}" style="text-align: center">
                         <ui:repeat value="#{liv.livresGenres}" var="livgen">
                                 <p:outputLabel value ="#{livgen.genre.denomination}"/>
                         </ui:repeat>
                     </p:column>
                     <shiro:hasPermission name="Exemplaires:Creer">
-                    <p:column>
-                        <p:commandButton  icon="fa fa-fw fa-plus" value="Voir les exemplaires" action="tableExemplaireLivres?faces-redirect=true">
+                    <p:column style="text-align: center">
+                        <p:commandButton style="text-align: center" icon="fa fa-fw fa-plus" value="Voir les exemplaires" action="tableExemplaireLivres?faces-redirect=true">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:Modification">
-                    <p:column>
+                    <p:column style="text-align: center">
                         <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['livre.label.modif']}" action="formEditLivre?faces-redirect=true">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Livres:ActivDesactiv">
-                    <p:column>
+                    <p:column style="text-align: center">
                         <p:commandButton icon="fa fa-fw fa-power-off" value="#{I18N['exempl.label.des']}" action="#{livresBean.activdesactivLiv}">
                             <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
                         </p:commandButton>

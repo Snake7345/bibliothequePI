@@ -115,7 +115,7 @@
                             <h:outputText value="#{c.rue} #{c.numero} #{c.boite} #{c.localites.cp} #{c.localites.ville}" />
                         </p:column>
                     </p:selectOneListbox>
-                    <shiro:hasPermission name="Adresses:Lire">
+                    <shiro:hasPermission name="Adresses:Creer">
                     <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}">
                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                     </p:commandButton>

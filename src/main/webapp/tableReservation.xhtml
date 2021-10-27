@@ -14,29 +14,26 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.reservation.title']}</h2>
-                    <p:dataTable value="#{reservationBean.readAllReservActiv}" emptyMessage="Aucun enregistrement trouvé" var="re" id="tableUtilisateursAdmin"
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{reservationBean.readAllReservActiv}" emptyMessage="Aucun enregistrement trouvé" var="re" id="tableUtilisateursAdmin"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
 
-                        <p:column>
-                            <f:facet name="header">Numéro de client</f:facet>
+                        <p:column headerText="Numéro de client" style="text-align: center">
                             <p:outputLabel value ="#{re.utilisateur.numMembre}"/>
                         </p:column>
                         <shiro:hasPermission name="Reservation:ActivDesactiv">
-                        <p:column>
+                        <p:column style="text-align: center">
                             <p:commandButton value="#{I18N['application.button.supprimer']}" action="#{reservationBean.suppReserv}" immediate="true">
                                 <f:setPropertyActionListener target="#{reservationBean.reserv}" value="#{re}" />
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>
-
-
                     </p:dataTable>
                     <shiro:hasPermission name="Reservation:Creer">
-                    <p:commandButton value="#{I18N['reservation.label.newReserv']}" type="button">
+                    <p:commandButton style="text-align: center" value="#{I18N['reservation.label.newReserv']}" type="button">
                         <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                     </p:commandButton>
                     </shiro:hasPermission>
-                    <p:commandButton value="#{I18N['application.button.returnbienvenue']}" action="#{reservationBean.flushReserv}" immediate="true"/>
+                    <p:commandButton style="text-align: center" value="#{I18N['application.button.returnbienvenue']}" action="#{reservationBean.flushReserv}" immediate="true"/>
                 </p:panel>
             </h:form>
             </shiro:hasPermission>

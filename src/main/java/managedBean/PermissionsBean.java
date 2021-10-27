@@ -21,11 +21,12 @@ public class PermissionsBean implements Serializable {
     private Permissions permission;
     private static final Logger log = Logger.getLogger(PermissionsBean.class);
 
-    private String type;
-    private String middlename;
+
     private String action;
     private final List<Permissions> listPer = getReadAll();
+    private List<Permissions> listPermRole = new ArrayList<>();
     private List<String> listAction = new ArrayList<>();
+    private String type;
 
 
     /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
@@ -76,14 +77,13 @@ public class PermissionsBean implements Serializable {
     /*
      * Méthode qui permet de retourner la liste de toutes les types de permissions si l'utilisateur connecté est un manager
      */
-    public List<String> getPermissionsTypeManager()
+    public List<String> getPermissionsTypeUtilisateur()
     {
         List<String> listType = new ArrayList<>();
         for(Permissions p : listPer)
         {
-            if(!listType.contains(p.getType()))
+            if(!listType.contains(p.getType()) && !Objects.equals(p.getType(), "Permissions"))
             {
-                if(!Objects.equals(p.getType(), "Permissions"))
                 listType.add(p.getType());
             }
         }
@@ -94,10 +94,10 @@ public class PermissionsBean implements Serializable {
      */
     public List<String> getPermissionsAction()
     {
-
         if (listAction.size()>0){
             listAction.clear();
         }
+
         for(Permissions p : listPer)
         {
             if (p.getType().equals(type)) {
@@ -151,11 +151,11 @@ public class PermissionsBean implements Serializable {
         this.listAction = listAction;
     }
 
-    public String getMiddlename() {
-        return middlename;
+    public List<Permissions> getListPermRole() {
+        return listPermRole;
     }
 
-    public void setMiddlename(String middlename) {
-        this.middlename = middlename;
+    public void setListPermRole(List<Permissions> listPermRole) {
+        this.listPermRole = listPermRole;
     }
 }

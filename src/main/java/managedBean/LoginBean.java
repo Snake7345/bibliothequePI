@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import security.SecurityManager;
 import services.SvcUtilisateurs;
+import services.SvcUtilisateursBibliotheques;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -39,29 +40,41 @@ public class LoginBean implements Serializable {
     public void auth()
     {
 
-        FacesMessage m = new FacesMessage("Login ou/et mot de passe incorrect");
-        SvcUtilisateurs service= new SvcUtilisateurs();
-        RolesBean RB = new RolesBean();
-
+        SvcUtilisateurs serviceU= new SvcUtilisateurs();
+        SvcUtilisateursBibliotheques serviceUB = new SvcUtilisateursBibliotheques();
         try {
-            List<Utilisateurs> results = service.findByLogin(login);
-            if(bibliothequeActuelle.isActif()) {
-                if (SecurityManager.processToLogin(login, mdp, false))
+            List<Utilisateurs> results = serviceU.findByLogin(login);
+            if(results.size()>0){
+                if(bibliothequeActuelle.isActif()) {
+                    if (SecurityManager.processToLogin(login, mdp, false))
+                    {
+                        utilisateurAuth = results.get(0);
+                        if (utilisateurAuth.getRoles().getIdRoles()!=1 && !(serviceUB.findOneUtilisateurBibliotheque(bibliothequeActuelle,utilisateurAuth).size()>0))
+                        {
+                            FacesContext fc = FacesContext.getCurrentInstance();
+                            fc.getExternalContext().getFlash().setKeepMessages(true);
+                            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Vous ne travaillez pas dans cette bibliotheque",null));
+                            SecurityManager.processToLogout();
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+                        }
+                        else
+                        {
+                            SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
+                            SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
+                            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("bienvenue.xhtml");
+                        }
+                    }
+                }
+                else
                 {
-                    utilisateurAuth = results.get(0);
-                    SecurityUtils.getSubject().getSession().setAttribute("role", utilisateurAuth.getRoles());
-                    SecurityUtils.getSubject().getSession().setAttribute("user", utilisateurAuth);
-                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userAuth", utilisateurAuth);
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("bienvenue.xhtml");
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().getFlash().setKeepMessages(true);
+                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"la bibliotheque n'est pas active",null));
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
                 }
             }
-            else
-            {
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"la bibliotheque n'est pas active",null));
-                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
-            }
+
 
 
         } catch (IOException e) {

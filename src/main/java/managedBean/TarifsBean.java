@@ -40,7 +40,6 @@ public class TarifsBean implements Serializable {
         grillePena.clear();
         grillePena.add(new PenaCustom());
         grilleJour.add(new JourCustom());
-
     }
 
     /*Cette méthode permet de sauvegarder un objet "tarifs"*/

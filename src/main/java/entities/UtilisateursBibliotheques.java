@@ -8,6 +8,7 @@ import java.io.Serializable;
 @NamedQueries
         ({
                 @NamedQuery(name = "UtilisateursBibliotheques.findAll", query = "SELECT u FROM UtilisateursBibliotheques u"),
+                @NamedQuery(name = "UtilisateursBibliotheques.findOne", query = "SELECT u FROM UtilisateursBibliotheques u WHERE u.utilisateur=:utilisateur AND u.bibliotheques=:bibliotheque"),
         })
 public class UtilisateursBibliotheques implements Serializable {
     private static final long serialVersionUID = 1L;

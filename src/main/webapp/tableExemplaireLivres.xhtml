@@ -18,43 +18,34 @@
             <p:panel layout="block" id="content">
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <h2 style="text-align:center">#{I18N['application.exempl.title']}</h2>
-                <p:dataTable value="#{exemplairesLivresBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="livexemL" id="tableExemplairesLivres"
+                <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{exemplairesLivresBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="livexemL" id="tableExemplairesLivres"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-                    <p:column>
-                        <f:facet name="header">#{I18N['exemplaireslivres.label.CodeBarre']}</f:facet>
+                    <p:column headerText="#{I18N['exemplaireslivres.label.CodeBarre']}" style="text-align: center">
 
                         <p:outputLabel value ="#{livexemL.codeBarre}"/>
 
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">#{I18N['exemplaireslivres.label.Etat']}</f:facet>
-
+                    <p:column headerText="#{I18N['exemplaireslivres.label.Etat']}" style="text-align: center">
                         <p:outputLabel value ="#{livexemL.etat}"/>
-
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">#{I18N['exemplaireslivres.label.Loue']}</f:facet>
-
+                    <p:column headerText="#{I18N['exemplaireslivres.label.Loue']}" style="text-align: center">
                         <p:outputLabel value ="#{livexemL.loue}"/>
-
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">#{I18N['commune.label.actif']}</f:facet>
+                    <p:column headerText="#{I18N['commune.label.actif']}" style="text-align: center">
                         <p:outputLabel value ="#{livexemL.actif}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">bibliotheque</f:facet>
+                    <p:column headerText="bibliotheque" style="text-align: center">
                         <p:outputLabel value ="#{livexemL.bibliotheques.nom}"/>
                     </p:column>
                     <shiro:hasPermission name="Factures:Creer">
-                        <p:column>
-                            <p:commandButton rendered="#{livexemL.loue}" image="Images//inspectionsmini.jpg" action="formEtatQuestion?faces-redirect=true" value="Retour livre">
+                        <p:column style="text-align: center">
+                            <p:commandButton style="text-align: center" rendered="#{livexemL.loue}" image="Images//inspectionsmini.jpg" action="formEtatQuestion?faces-redirect=true" value="Retour livre">
                                 <f:setPropertyActionListener target="#{factureBean.CB}" value="#{livexemL.codeBarre}" />
                             </p:commandButton>
                         </p:column>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Exemplaires:Modification">
-                    <p:column>
+                    <p:column style="text-align: center">
                         <p:commandButton rendered="#{livexemL.actif ne false and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditExemplaireLivre?faces-redirect=true">
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
                         </p:commandButton>
@@ -62,7 +53,7 @@
                     </shiro:hasPermission>
 
                     <shiro:hasPermission name="Exemplaires:ActivDesactiv">
-                    <p:column>
+                    <p:column style="text-align: center">
                         <p:commandButton rendered="#{livexemL.actif and (livexemL.bibliotheques.idBibliotheques eq exemplairesLivresBean.bib.idBibliotheques)}" icon="fa fa-fw fa-power-off" value ="Désactiver" action="#{exemplairesLivresBean.activdesactivExLiv}">
                             <p:confirm type="popup" header="Confirmation" message="#{I18N['exempl.form.questionconfirm']}" icon="fa fa-fw fa-warning"/>
                             <f:setPropertyActionListener target="#{exemplairesLivresBean.exemplairesLivre}" value="#{livexemL}" />
@@ -76,7 +67,7 @@
                 </p:dataTable>
             </p:panel>
             <shiro:hasPermission name="Exemplaires:Creer">
-            <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre?faces-redirect=true" ajax="false">
+            <p:commandButton style="text-align: center" icon="fa fa-fw fa-plus" value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre?faces-redirect=true" ajax="false">
                 <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
             </p:commandButton>
             </shiro:hasPermission>

@@ -4,7 +4,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:shiro="http://shiro.apache.org/tags"
       xmlns:p="http://primefaces.org/ui">
 
@@ -16,14 +15,12 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.permission.title']}</h2>
-                    <p:dataTable value="#{permissionsBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="per" id="tablePermissions"
-                                 Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-                        <p:column>
-                            <f:facet name="header">#{I18N['permission.label.Denomination']}</f:facet>
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{permissionsBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="per" id="tablePermissions"
+                                 Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row" >
+                        <p:column headerText="Type de permissions" style="text-align: center;">
                             <p:outputLabel value ="#{per.type}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">#{I18N['permission.label.Denomination']}</f:facet>
+                        <p:column headerText="Action de la permission" style="text-align: center;" >
                             <p:outputLabel value ="#{per.action}"/>
                         </p:column>
                     </p:dataTable>

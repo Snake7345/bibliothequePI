@@ -16,21 +16,20 @@
             <p:panel layout="block" id="content">
                 <p:growl id="growl" showDetail="true" sticky="true" />
                 <h2 style="text-align:center">#{I18N['application.roles.title']}</h2>
-                <p:dataTable value="#{rolesBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="rol" id="tableRoles"
+                <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{rolesBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="rol" id="tableRoles"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-                    <p:column>
-                        <f:facet name="header">#{I18N['commune.label.denomination']}</f:facet>
+                    <p:column headerText="#{I18N['commune.label.denomination']}" style="text-align: center">
                         <p:outputLabel value ="#{rol.denomination}"/>
                     </p:column>
                     <shiro:hasPermission name="Roles:Modification">
-                    <p:column>
+                    <p:column style="text-align: center">
                         <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur'}" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="#{rolesBean.redirectModifRole}">
                             <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="Roles:ActivDesactiv">
-                    <p:column>
+                    <p:column style="text-align: center">
                         <shiro:hasPermission name="Roles:ActivDesactiv">
                         <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur' and rol.actif eq true}"
                                          icon="fa fa-fw fa-power-off" value ="Desactiver" action="#{rolesBean.activdesactivRol}">

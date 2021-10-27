@@ -28,6 +28,7 @@ public class RolesBean implements Serializable {
     // Déclaration des variables globales
     private static final long serialVersionUID = 1L;
     private Roles role;
+    private Roles roleArchetype;
     private static final Logger log = Logger.getLogger(RolesBean.class);
     private List<Permissions> listPerm;
     private Permissions pe;
@@ -43,20 +44,13 @@ public class RolesBean implements Serializable {
         permissions = new Permissions();
     }
 
+
+    /*Méthode qui permet d'ajouter une liste de permissions liées a un archétype*/
     public void addArchetype()
     {
         SvcPermissions serviceP = new SvcPermissions();
-        List<Permissions> listPermArchetype = serviceP.findPermissionsFromRoles(role.getIdRoles());
-        for(Permissions p : listPermArchetype)
-        {
-            if(!listPerm.contains(p))
-            {
-                permissions.setAction(p.getAction());
-                permissions.setType(p.getType());
-                listPerm.add(permissions);
-                permissions = new Permissions();
-            }
-        }
+        listPerm.clear();
+        listPerm = serviceP.findPermissionsFromRoles(roleArchetype.getIdRoles());
         serviceP.close();
     }
 
@@ -392,6 +386,8 @@ public class RolesBean implements Serializable {
 
 
 
+
+
     //-------------------------------Getter & Setter--------------------------------------------
 
     public Roles getRole() {
@@ -416,5 +412,13 @@ public class RolesBean implements Serializable {
 
     public void setPe(Permissions pe) {
         this.pe = pe;
+    }
+
+    public Roles getRoleArchetype() {
+        return roleArchetype;
+    }
+
+    public void setRoleArchetype(Roles roleArchetype) {
+        this.roleArchetype = roleArchetype;
     }
 }

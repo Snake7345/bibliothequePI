@@ -17,7 +17,6 @@
 			<p:outputLabel id="titrebib" value="Bienvenue sur la bibliothèque #{bibliothequesBean.listBibactuel.get(0).nom} " />
 		</p:panelGrid>
 			<p:commandButton value="Mon profil" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{utilisateursBean.redirectModifUtilProfil}">
-				<f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{loginBean.utilisateurAuth}" />
 			</p:commandButton>
 				<h:form>
 					<p:menubar>

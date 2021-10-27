@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SvcUtilisateursBibliotheques extends Service<UtilisateursBibliotheques> implements Serializable
@@ -36,4 +37,10 @@ public class SvcUtilisateursBibliotheques extends Service<UtilisateursBibliotheq
 
             return ub;
         }
+    public List<UtilisateursBibliotheques> findOneUtilisateurBibliotheque (Bibliotheques bib, Utilisateurs util) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("bibliotheque", bib);
+        param.put("utilisateur", util);
+        return finder.findByNamedQuery("UtilisateursBibliotheques.findOne", param);
+    }
 }

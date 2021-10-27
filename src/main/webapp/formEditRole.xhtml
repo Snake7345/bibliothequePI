@@ -37,7 +37,7 @@
                         <p:outputLabel value = "#{I18N['Permissions.label.Type']}" indicateRequired="true"/>
                         <p:selectOneMenu style="height: 40px; width: 200px;" styleClass="selectOneMenu" value = "#{permissionsBean.type}" id="type3" >
                             <f:selectItem itemValue="#{null}"/>
-                            <f:selectItems value = "#{permissionsBean.permissionsTypeManager}" var="ty"
+                            <f:selectItems value = "#{permissionsBean.permissionsTypeUtilisateur}" var="ty"
                                            itemLabel="#{ty}"
                                            itemValue="#{ty}"/>
                             <p:ajax event="change" listener="#{permissionsBean.getPermissionsAction}" update="form:action" />
@@ -55,6 +55,7 @@
                 <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="#{I18N['permissions.label.add']}" action="#{rolesBean.addPermission}" ajax="false">
                     <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
                     <f:setPropertyActionListener target="#{rolesBean.pe.action}" value="#{permissionsBean.action}" />
+                    <f:setPropertyActionListener target="#{permissionsBean.listPermRole}" value="#{rolesBean.listPerm}" />
                 </p:commandButton>
 
                 <p:dataTable value="#{rolesBean.listPerm}" emptyMessage="Aucun enregistrement trouvé" var="pe" id="tableListPerm"

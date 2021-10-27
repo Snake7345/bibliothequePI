@@ -16,47 +16,41 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.utilisateurCli.title']}</h2>
-                    <p:dataTable value="#{utilisateursBean.listCli}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateurs"
+                    <p:dataTable style="text-align: center" value="#{utilisateursBean.listCli}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateurs"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-                        <p:column>
+                        <p:column style="text-align: center">
                             <f:facet name="header">#{I18N['utilisateur.label.Id']}</f:facet>
                             <p:outputLabel value ="#{ut.idUtilisateurs}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">#{I18N['utilisateur.label.Nom']}</f:facet>
+                        <p:column headerText="#{I18N['utilisateur.label.Nom']}" style="text-align: center">
                             <p:outputLabel value ="#{ut.nom}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">#{I18N['utilisateur.label.Prenom']}</f:facet>
+                        <p:column headerText="#{I18N['utilisateur.label.Prenom']}" style="text-align: center">
                             <p:outputLabel value ="#{ut.prenom}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">#{I18N['utilisateur.label.Sexe']}</f:facet>
+                        <p:column headerText="#{I18N['utilisateur.label.Sexe']}" style="text-align: center">
                             <p:outputLabel value ="#{ut.sexe}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">#{I18N['utilisateur.label.Courriel']}</f:facet>
+                        <p:column headerText="#{I18N['utilisateur.label.Courriel']}" style="text-align: center">
                             <p:outputLabel value ="#{ut.courriel}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">#{I18N['utilisateur.label.NumMembre']}</f:facet>
+                        <p:column headerText="#{I18N['utilisateur.label.NumMembre']}" style="text-align: center">
                             <p:outputLabel value ="#{ut.numMembre}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">#{I18N['adresse.label.complete']}</f:facet>
+                        <p:column headerText="#{I18N['adresse.label.complete']}" style="text-align: center">
                             <ui:repeat value="#{ut.utilisateursAdresses}" var="utad">
                                 <p:outputLabel rendered="#{utad.actif}" value ="#{utad.adresse.rue}, #{utad.adresse.numero}#{utad.adresse.boite} #{utad.adresse.localites.cp} #{utad.adresse.localites.ville}"/>
                             </ui:repeat>
                         </p:column>
                         <shiro:hasPermission name="Client:Modification">
-                            <p:column>
-                                <p:commandButton  icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">
+                            <p:column style="text-align: center">
+                                <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                 </p:commandButton>
                             </p:column>
                         </shiro:hasPermission>
                         <shiro:hasPermission name="Client:ActivDesactiv">
-                            <p:column>
+                            <p:column style="text-align: center">
                                 <p:commandButton icon="fa fa-fw fa-power-off" value ="Desactiver" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                 </p:commandButton>

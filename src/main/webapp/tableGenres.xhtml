@@ -16,20 +16,19 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.genre.title']}</h2>
-                    <p:dataTable value="#{genresBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="gen" id="tableGenres"
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{genresBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="gen" id="tableGenres"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-                        <p:column>
-                            <f:facet name="header">#{I18N['genre.label.Denomination']}</f:facet>
+                        <p:column headerText="#{I18N['genre.label.Denomination']}" style="text-align: center">
                             <p:outputLabel value ="#{gen.denomination}"/>
                         </p:column>
                         <shiro:hasPermission name="Genres:Modification">
-                        <p:column>
+                        <p:column style="text-align: center">
                             <p:commandButton  icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditGenre?faces-redirect=true" immediate="true">
                                 <f:setPropertyActionListener target="#{genresBean.genre}" value="#{gen}" />
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>
-                        <p:column>
+                        <p:column style="text-align: center">
                             <p:commandButton  icon="fa fa-fw fa-book" value="#{I18N['application.button.livrepargenre']}" action="#{livresBean.readByGenres}">
                                 <f:setPropertyActionListener target="#{livresBean.gen}" value="#{gen}" />
                             </p:commandButton>
