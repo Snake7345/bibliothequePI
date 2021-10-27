@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name="Adresses")
 @NamedQueries
         ({
-                @NamedQuery(name = "Adresses.findAll", query = "SELECT a FROM Adresses a"),
+                @NamedQuery(name = "Adresses.findAll", query = "SELECT a FROM Adresses a "),
                 @NamedQuery(name = "Adresses.findOne", query = "SELECT a FROM Adresses a WHERE a.boite=:boite AND a.numero=:numero AND a.localites=:localite AND a.rue=:rue"),
                 @NamedQuery(name = "Adresses.findAllNotAdBibli", query = "SELECT a FROM Adresses a WHERE a.bibliotheques IS NULL"),
                 @NamedQuery(name = "Adresses.findAllNotAdBibliNotUtiForMofif", query = "SELECT a FROM Adresses a WHERE (a.bibliotheques IS NULL or a.bibliotheques=:bibliotheque) and a.idAdresses not in (select ua.adresse.idAdresses from UtilisateursAdresses ua)"),

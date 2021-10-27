@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name="auteurs")
 @NamedQueries
         ({
-                @NamedQuery(name = "Auteurs.findAll", query = "SELECT a FROM Auteurs a"),
+                @NamedQuery(name = "Auteurs.findAll", query = "SELECT a FROM Auteurs a "),
                 @NamedQuery(name = "Auteurs.findOne", query = "SELECT a FROM Auteurs a WHERE a.nom=:nom AND a.prenom=:prenom "),
                 @NamedQuery(name = "Auteurs.findAllTri", query="SELECT a FROM Auteurs a ORDER BY a.nom ASC"),
                 @NamedQuery(name = "Auteurs.findAllActiv", query = "SELECT a FROM Auteurs a WHERE a.actif=TRUE"),

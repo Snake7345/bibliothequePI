@@ -9,36 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="v1.2.14 Mise a jour avant modification entities">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.17 Multiples corrections graphiques et correction des quelques fonctions restantes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/UtilisateursBibliotheques.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/UtilisateursBibliotheques.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/objectCustom/PenaCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objectCustom/PenaCustom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcUtilisateursBibliotheques.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcUtilisateursBibliotheques.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Adresses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Adresses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Auteurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Auteurs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/bibliotheque.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bibliotheque.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -272,7 +252,9 @@
       <workItem from="1635216799973" duration="11926000" />
       <workItem from="1635231159637" duration="1000" />
       <workItem from="1635262895023" duration="21504000" />
-      <workItem from="1635337467383" duration="10161000" />
+      <workItem from="1635337467383" duration="12483000" />
+      <workItem from="1635366399157" duration="1554000" />
+      <workItem from="1635369295559" duration="2407000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -407,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635266151489</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="V1.2.17 Multiples corrections graphiques et correction des quelques fonctions restantes">
+      <created>1635349362577</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1635349362578</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,6 +434,7 @@
     <MESSAGE value="v1.2.13 Multiples corrections concernant certains bugs mineurs et un majeur, réarangement de la création du rôle" />
     <MESSAGE value="v1.2.13 Multiples corrections concernant certains bugs mineurs et un majeur, réarangement de la création du rôle + ajout du bouton Mon profil" />
     <MESSAGE value="v1.2.14 Mise a jour avant modification entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.2.14 Mise a jour avant modification entities" />
+    <MESSAGE value="V1.2.17 Multiples corrections graphiques et correction des quelques fonctions restantes" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.2.17 Multiples corrections graphiques et correction des quelques fonctions restantes" />
   </component>
 </project>

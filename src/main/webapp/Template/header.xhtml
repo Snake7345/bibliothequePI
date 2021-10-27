@@ -16,8 +16,6 @@
 			<p:graphicImage value="/Images/biblioLib.png" width="550" height="150"/>
 			<p:outputLabel id="titrebib" value="Bienvenue sur la bibliothèque #{bibliothequesBean.listBibactuel.get(0).nom} " />
 		</p:panelGrid>
-			<p:commandButton value="Mon profil" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{utilisateursBean.redirectModifUtilProfil}">
-			</p:commandButton>
 				<h:form>
 					<p:menubar>
 						<p:menuitem value="Accueil" icon="fa fa-fw fa-home" action="bienvenue?faces-redirect=true"/>
@@ -145,6 +143,7 @@
 							</p:submenu>
 						</shiro:hasPermission>
 						<f:facet name="options">
+							<p:commandButton value="Mon profil" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{utilisateursBean.redirectModifUtilProfil}"/>
 							<p:commandButton value="#{I18N['application.button.deconnexion']}" icon="fa fa fw fa-sign-out" styleClass="ui-button-info" action="#{loginBean.deconnexion}"/>
 						</f:facet>
 					</p:menubar>
