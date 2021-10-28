@@ -43,7 +43,7 @@
                         </f:facet>
                         <p:spinner id ="jour" value="#{J.nbrJours}" required="true"
                                      requiredMessage="#{I18N['formulaire.message.required.nbrJ']}"
-                        maxlength="6" validatorMessage="Nombre entier requis" converterMessage="Seuls les chiffres entier positif sont autorisés">
+                        maxlength="6" validatorMessage="Nombre entier requis" converterMessage="Seuls les chiffres entier positif sont autorisés" min="1">
 
                             <f:validateLongRange minimum="0"/>
                         </p:spinner>

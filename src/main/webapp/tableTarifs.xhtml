@@ -16,6 +16,7 @@
         <h:form prependId="false">
             <p:panel layout="block" id="content">
                 <p:growl id="growl" showDetail="true" sticky="true" />
+                <shiro:hasRole name="1">
                 <h2 style="text-align:center">#{I18N['application.tarifs.title']}</h2>
                 <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{tarifsBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="tar" id="tableTarifs"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
@@ -38,6 +39,28 @@
                         </p:column>
                     </shiro:hasPermission>
                 </p:dataTable>
+                </shiro:hasRole>
+                <shiro:lacksRole name="1">
+                    <h2 style="text-align:center">#{I18N['application.tarifs.title']}</h2>
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{tarifsBean.tarifByBiblioActuelle}" emptyMessage="Aucun enregistrement trouvé" var="tar" id="tableTarifs"
+                                 Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                        <p:column headerText="#{I18N['commune.label.denomination']}" style="text-align: center" sortBy="#{tar.denomination}" filterBy="#{tar.denomination}">
+                            <p:outputLabel value ="#{tar.denomination}"/>
+                        </p:column>
+                        <p:column headerText="#{I18N['tarif.label.DateDebut']}" style="text-align: center" sortBy="#{tar.dateDebut}" filterBy="#{tar.dateDebut}">
+                            <p:outputLabel value ="#{tar.dateDebut}">
+                                <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
+                            </p:outputLabel>
+                        </p:column>
+                        <shiro:hasPermission name="Tarifs:Modification">
+                            <p:column style="text-align: center">
+                                <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="#{tarifsBean.redirectEdit}">
+                                    <f:setPropertyActionListener target="#{tarifsBean.tarif}" value="#{tar}" />
+                                </p:commandButton>
+                            </p:column>
+                        </shiro:hasPermission>
+                    </p:dataTable>
+                </shiro:lacksRole>
             </p:panel>
         </h:form>
         </shiro:hasPermission>

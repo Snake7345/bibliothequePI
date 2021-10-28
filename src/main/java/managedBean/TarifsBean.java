@@ -260,6 +260,15 @@ public class TarifsBean implements Serializable {
         service.close();
         return listTarifs;
     }
+
+    public List<Tarifs> getTarifByBiblioActuelle()
+    {
+        SvcTarifs service = new SvcTarifs();
+        List<Tarifs> listTarifs;
+        listTarifs = service.getTarifByBiblioActuelle(bibliothequeActuelle.getIdBibliotheques());
+        service.close();
+        return listTarifs;
+    }
     /*
      * Méthode qui permet de vider les variables et nous renvoit sur la table des tarifs
      */

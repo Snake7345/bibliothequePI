@@ -1,5 +1,6 @@
 package services;
 
+import entities.Bibliotheques;
 import entities.Genres;
 import entities.Tarifs;
 import org.apache.log4j.Logger;
@@ -56,6 +57,14 @@ public class SvcTarifs extends Service<Tarifs> implements Serializable {
 
 		return finder.findByNamedQuery("Tarifs.findByBiblio", param);
 	}
+
+	public List<Tarifs> getTarifByBiblioActuelle(int biblio) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("bibliotheque", biblio);
+
+		return finder.findByNamedQuery("Tarifs.findTarifsByBiblio", param);
+	}
+
 
 
 }

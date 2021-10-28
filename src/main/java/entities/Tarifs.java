@@ -16,6 +16,7 @@ import java.util.Objects;
                 @NamedQuery(name = "Tarifs.findOneByDenom", query ="SELECT t FROM Tarifs t WHERE t.denomination=:denomination"),
                 @NamedQuery(name = "Tarifs.findOneByDateDebut", query ="SELECT t FROM Tarifs t WHERE t.dateDebut=:date"),
                 @NamedQuery(name = "Tarifs.findByBiblio", query = "SELECT t FROM Tarifs t WHERE t.bibliotheques.nom=:bibliotheque AND t.dateDebut<=:date ORDER BY t.dateDebut DESC"),
+                @NamedQuery(name = "Tarifs.findTarifsByBiblio", query = "SELECT t FROM Tarifs t WHERE t.bibliotheques.idBibliotheques=:bibliotheque"),
         })
 public class Tarifs implements Serializable {
     private static final long serialVersionUID = 1L;
