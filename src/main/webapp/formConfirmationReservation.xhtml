@@ -12,7 +12,7 @@
     <ui:define name="title">Information reservation</ui:define>
 
     <ui:define name="content">
-        <p:growl id="growl" showDetail="true" sticky="true" />
+        <p:growl id="growl" sticky="true" />
         <shiro:hasPermission name="Livres:Reservation">
             <p:outputLabel value="Le livre #{factureBean.exemplairesLivres.livres.titre} est en attente pour une reservation, veuillez le placer en réserve"/>
         <h:form>

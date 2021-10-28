@@ -11,7 +11,7 @@
         <shiro:hasPermission name="Utilisateurs:Lire">
             <h:form prependId="false">
                 <p:panel layout="block" id="content">
-                    <p:growl id="growl" showDetail="true" sticky="true" />
+                    <p:growl id="growl" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.utilisateur.title']}</h2>
                     <shiro:hasRole name="1">
                         <p:dataTable style="text-align: center" value="#{utilisateursBean.listUtil}" tableStyle="table-layout: auto;" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateursAdmin"

@@ -15,7 +15,7 @@
         <shiro:hasPermission name="Tarifs:Lire">
         <h:form prependId="false">
             <p:panel layout="block" id="content">
-                <p:growl id="growl" showDetail="true" sticky="true" />
+                <p:growl id="growl" sticky="true" />
                 <shiro:hasRole name="1">
                 <h2 style="text-align:center">#{I18N['application.tarifs.title']}</h2>
                 <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{tarifsBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="tar" id="tableTarifs"

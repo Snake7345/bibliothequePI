@@ -13,7 +13,7 @@
         <shiro:hasPermission name="Roles:Lire">
         <h:form prependId="false">
             <p:panel layout="block" id="content">
-                <p:growl id="growl" showDetail="true" sticky="true" />
+                <p:growl id="growl" sticky="true" />
                 <h2 style="text-align:center">#{I18N['application.roles.title']}</h2>
                 <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{rolesBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="rol" id="tableRoles"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">

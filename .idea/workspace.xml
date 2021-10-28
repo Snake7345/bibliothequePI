@@ -9,13 +9,59 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.30 les méthodes searchs ainsi que les variables liées a search sont supprimés des beans pour plus de clarté">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.32 Correction des tarifs (désormais il ne s'affiche plus que pour la bibliothèque concernés sauf pour l'administrateur), Suppression du nom de la bibliothèque dans les tarifs, application du nombre de jours minimums pour les jours">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Tarifs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Tarifs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcTarifs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcTarifs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib jar/all-themes-1.0.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Obsolete/formNewPermission.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Obsolete/formNewPermission.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/envoiInfo.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/envoiInfo.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formConfirmationReini.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formConfirmationReini.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formConfirmationReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formConfirmationReservation.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formDesactivBiblio.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formDesactivBiblio.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditAdress.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditAdress.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditAuteur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditBibliotheque.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditBibliotheque.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditEditeur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditEditeur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditExemplaireLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditExemplaireLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditGenre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditGenre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditTarif.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEtatLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEtatLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEtatQuestion.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEtatQuestion.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewAdress.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewAdress.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewAuteur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewBibliotheque.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewBibliotheque.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewEditeur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewEditeur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewExemLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewExemLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewFact.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewFact.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewGenre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewGenre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateurCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateurCli.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formReceptionLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formReceptionLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formReinitialisation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formReinitialisation.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSelectBiblio.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSelectBiblio.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formTransfertLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formTransfertLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,7 +295,8 @@
       <workItem from="1635366399157" duration="1554000" />
       <workItem from="1635369295559" duration="3613000" />
       <workItem from="1635379021099" duration="6996000" />
-      <workItem from="1635396030781" duration="1165000" />
+      <workItem from="1635396030781" duration="1583000" />
+      <workItem from="1635430347575" duration="2423000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -419,7 +466,21 @@
       <option name="project" value="LOCAL" />
       <updated>1635385123750</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="V1.2.32 Correction des tarifs (désormais il ne s'affiche plus que pour la bibliothèque concernés sauf pour l'administrateur), Suppression du nom de la bibliothèque dans les tarifs, application du nombre de jours minimums pour les jours">
+      <created>1635397562057</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1635397562057</updated>
+    </task>
+    <task id="LOCAL-00026" summary="V1.2.32 Correction des tarifs (désormais il ne s'affiche plus que pour la bibliothèque concernés sauf pour l'administrateur), Suppression du nom de la bibliothèque dans les tarifs, application du nombre de jours minimums pour les jours">
+      <created>1635397588147</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1635397588147</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,6 +523,7 @@
     <MESSAGE value="V1.2.25 Correction multiples au niveau graphiques, ajout des recherches sur tous les formulaires + correction des colonnes où on mets un headertext pour que ça soit plus propres" />
     <MESSAGE value="V1.2.26 Incorporation du système de recherche pour le numero de membre" />
     <MESSAGE value="V1.2.30 les méthodes searchs ainsi que les variables liées a search sont supprimés des beans pour plus de clarté" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.2.30 les méthodes searchs ainsi que les variables liées a search sont supprimés des beans pour plus de clarté" />
+    <MESSAGE value="V1.2.32 Correction des tarifs (désormais il ne s'affiche plus que pour la bibliothèque concernés sauf pour l'administrateur), Suppression du nom de la bibliothèque dans les tarifs, application du nombre de jours minimums pour les jours" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.2.32 Correction des tarifs (désormais il ne s'affiche plus que pour la bibliothèque concernés sauf pour l'administrateur), Suppression du nom de la bibliothèque dans les tarifs, application du nombre de jours minimums pour les jours" />
   </component>
 </project>

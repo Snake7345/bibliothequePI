@@ -6,13 +6,12 @@
       xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:shiro="http://shiro.apache.org/tags"
-      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="Template/template.xhtml">
     <ui:define name="title">#{I18N['role.form.nouveau.titre']}</ui:define>
 
     <ui:define name="content">
-        <p:growl id="growl" showDetail="true" sticky="true" />
+        <p:growl id="growl" sticky="true" />
         <shiro:hasPermission name="Roles:Creer">
             <h:form id="form" prependId="false">
                 <h:head>
@@ -74,10 +73,6 @@
 
                 <p:dataTable value="#{rolesBean.listPerm}" emptyMessage="Aucun enregistrement trouvé" var="pe" id="tableListPerm"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-
-                    <f:facet name="header">
-                        <span class="p-text-bold">In total there are #{fn:length(rolesBean.listPerm)} permissions.</span>
-                    </f:facet>
                 <p:column>
                     <f:facet name="header">Type de permission</f:facet>
                     <p:outputLabel value ="#{pe.type}"/>

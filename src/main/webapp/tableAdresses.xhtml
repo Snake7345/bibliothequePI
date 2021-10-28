@@ -15,7 +15,7 @@
         <shiro:hasPermission name="Adresses:Lire">
             <h:form prependId="false">
                 <p:panel layout="block" id="content">
-                    <p:growl id="growl" showDetail="true" sticky="true" />
+                    <p:growl id="growl" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.adresse.title']}</h2>
                     <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{adressesBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="ad" id="tableAdresses"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">

@@ -15,7 +15,7 @@
         <shiro:hasPermission name="Auteurs:Lire">
             <h:form prependId="false">
                 <p:panel layout="block" id="content">
-                    <p:growl id="growl" showDetail="true" sticky="true" />
+                    <p:growl id="growl" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.auteur.title']}</h2>
                     <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{auteursBean.listAut}" var="aut" emptyMessage="Aucun enregistrement trouvé" id="tableAuteurs"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">

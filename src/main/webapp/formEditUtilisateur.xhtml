@@ -12,7 +12,7 @@
     <ui:define name="title">#{I18N['utilisateur.form.modif.titre']}</ui:define>
 
     <ui:define name="content">
-        <p:growl id="growl" showDetail="true" sticky="true" />
+        <p:growl id="growl" sticky="true" />
         <shiro:hasPermission name="Utilisateurs:Modification">
         <h:form id="form" prependId="false">
             <h:head>
@@ -102,8 +102,9 @@
                 </p:commandButton>
 
             </p:panelGrid>
+            <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
             <shiro:hasPermission name="Utilisateurs:ModificationBibliotheques">
-                <p:dataTable value="#{utilisateursBean.tabbibli}" var="bib">
+                <p:dataTable value="#{utilisateursBean.tabbibli}" var="bib" emptyMessage="Aucun enregistrement trouvé">
                     <p:column>
                     <p:outputLabel value = "Bibliotheque"/>
                     <p:selectOneMenu styleClass="selectOneMenu" value = "#{bib.idBibliotheques}"  id="menu" style="width: 15rem"
@@ -118,7 +119,7 @@
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="sup" action="#{utilisateursBean.supBibliothequeRow}" ajax="false"/>
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="add" action="#{utilisateursBean.addBibliothequeRow}" ajax="false"/>
             </shiro:hasPermission>
-
+            </c:if>
             <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.modifUtil}" ajax="false"/>
 
             <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
