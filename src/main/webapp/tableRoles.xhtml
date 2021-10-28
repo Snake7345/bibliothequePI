@@ -17,7 +17,7 @@
                 <h2 style="text-align:center">#{I18N['application.roles.title']}</h2>
                 <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{rolesBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="rol" id="tableRoles"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-                    <p:column headerText="#{I18N['commune.label.denomination']}" style="text-align: center">
+                    <p:column headerText="#{I18N['commune.label.denomination']}" style="text-align: center" sortBy="#{rol.denomination}" filterBy="#{rol.denomination}">
                         <p:outputLabel value ="#{rol.denomination}"/>
                     </p:column>
                     <shiro:hasPermission name="Roles:Modification">

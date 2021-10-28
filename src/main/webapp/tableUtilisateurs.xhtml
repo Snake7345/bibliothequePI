@@ -14,22 +14,21 @@
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.utilisateur.title']}</h2>
                     <shiro:hasRole name="1">
-                        <p:dataTable style="text-align: center" value="#{utilisateursBean.listUtil}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateursAdmin"
+                        <p:dataTable style="text-align: center" value="#{utilisateursBean.listUtil}" tableStyle="table-layout: auto;" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateursAdmin"
                                      Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-
-                            <p:column headerText="#{I18N['utilisateur.label.Nom']}" style="text-align: center">
+                            <p:column headerText="#{I18N['utilisateur.label.Nom']}" style="text-align: center" sortBy="#{ut.nom}" filterBy="#{ut.nom}">
                                 <p:outputLabel value ="#{ut.nom}"/>
                             </p:column>
-                            <p:column headerText="#{I18N['utilisateur.label.Prenom']}" style="text-align: center">
+                            <p:column headerText="#{I18N['utilisateur.label.Prenom']}" style="text-align: center" sortBy="#{ut.prenom}" filterBy="#{ut.prenom}">
                                 <p:outputLabel value ="#{ut.prenom}"/>
                             </p:column>
-                            <p:column headerText="#{I18N['utilisateur.label.Sexe']}" style="text-align: center">
+                            <p:column headerText="#{I18N['utilisateur.label.Sexe']}" style="text-align: center" sortBy="#{ut.sexe}" filterBy="#{ut.sexe}">
                                 <p:outputLabel value ="#{ut.sexe}"/>
                             </p:column>
-                            <p:column headerText="#{I18N['utilisateur.label.Courriel']}" style="text-align: center">
+                            <p:column headerText="#{I18N['utilisateur.label.Courriel']}" style="text-align: center" sortBy="#{ut.courriel}" filterBy="#{ut.numMembre}">
                                 <p:outputLabel value ="#{ut.courriel}"/>
                             </p:column>
-                            <p:column headerText="#{I18N['utilisateur.label.Role']}" style="text-align: center">
+                            <p:column headerText="#{I18N['utilisateur.label.Role']}" style="text-align: center" sortBy="#{ut.roles.denomination}" filterBy="#{ut.roles.denomination}">
                                 <p:outputLabel value ="#{ut.roles.denomination}"/>
                             </p:column>
                             <p:column headerText="#{I18N['adresse.label.complete']}" style="text-align: center">
@@ -67,19 +66,19 @@
                         <p:dataTable style="text-align: center" value="#{utilisateursBean.listUtilBib}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateurs"
                                      Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
 
-                            <p:column headerText="#{I18N['utilisateur.label.Nom']}" style="text-align: center">
+                            <p:column headerText="#{I18N['utilisateur.label.Nom']}" style="text-align: center" sortBy="#{ut.nom}" filterBy="#{ut.nom}">
                                 <p:outputLabel value ="#{ut.nom}"/>
                             </p:column>
-                            <p:column headerText="#{I18N['utilisateur.label.Prenom']}" style="text-align: center">
+                            <p:column headerText="#{I18N['utilisateur.label.Prenom']}" style="text-align: center" sortBy="#{ut.prenom}" filterBy="#{ut.prenom}">
                                 <p:outputLabel value ="#{ut.prenom}"/>
                             </p:column>
-                            <p:column headerText="#{I18N['utilisateur.label.Sexe']}" style="text-align: center">
+                            <p:column headerText="#{I18N['utilisateur.label.Sexe']}" style="text-align: center" sortBy="#{ut.sexe}" filterBy="#{ut.sexe}">
                                 <p:outputLabel value ="#{ut.sexe}"/>
                             </p:column>
-                            <p:column headerText="#{I18N['utilisateur.label.Courriel']}" style="text-align: center">
+                            <p:column headerText="#{I18N['utilisateur.label.Courriel']}" style="text-align: center" sortBy="#{ut.courriel}" filterBy="#{ut.courriel}">
                                 <p:outputLabel value ="#{ut.courriel}"/>
                             </p:column>
-                            <p:column headerText="#{I18N['utilisateur.label.Role']}" style="text-align: center">
+                            <p:column headerText="#{I18N['utilisateur.label.Role']}" style="text-align: center" sortBy="#{ut.roles.denomination}" filterBy="#{ut.roles.denomination}">
                                 <p:outputLabel value ="#{ut.roles.denomination}"/>
                             </p:column>
                             <p:column headerText="#{I18N['adresse.label.complete']}" style="text-align: center">

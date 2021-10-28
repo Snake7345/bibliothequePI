@@ -15,21 +15,21 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" showDetail="true" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.utilisateurCli.title']}</h2>
-                    <p:dataTable style="text-align: center" value="#{utilisateursBean.listCli}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateurs"
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{utilisateursBean.listCli}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateurs"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-                        <p:column headerText="#{I18N['utilisateur.label.Nom']}" style="text-align: center">
+                        <p:column headerText="#{I18N['utilisateur.label.Nom']}" style="text-align: center" sortBy="#{ut.nom}" filterBy="#{ut.nom}">
                             <p:outputLabel value ="#{ut.nom}"/>
                         </p:column>
-                        <p:column headerText="#{I18N['utilisateur.label.Prenom']}" style="text-align: center">
+                        <p:column headerText="#{I18N['utilisateur.label.Prenom']}" style="text-align: center" sortBy="#{ut.prenom}" filterBy="#{ut.prenom}">
                             <p:outputLabel value ="#{ut.prenom}"/>
                         </p:column>
-                        <p:column headerText="#{I18N['utilisateur.label.Sexe']}" style="text-align: center">
+                        <p:column headerText="#{I18N['utilisateur.label.Sexe']}" style="text-align: center" sortBy="#{ut.sexe}" filterBy="#{ut.sexe}">
                             <p:outputLabel value ="#{ut.sexe}"/>
                         </p:column>
-                        <p:column headerText="#{I18N['utilisateur.label.Courriel']}" style="text-align: center">
+                        <p:column headerText="#{I18N['utilisateur.label.Courriel']}" style="text-align: center" sortBy="#{ut.courriel}" filterBy="#{ut.courriel}">
                             <p:outputLabel value ="#{ut.courriel}"/>
                         </p:column>
-                        <p:column headerText="#{I18N['utilisateur.label.NumMembre']}" style="text-align: center">
+                        <p:column headerText="#{I18N['utilisateur.label.NumMembre']}" style="text-align: center" sortBy="#{ut.courriel}" filterBy="#{ut.numMembre}">
                             <p:outputLabel value ="#{ut.numMembre}"/>
                         </p:column>
                         <p:column headerText="#{I18N['adresse.label.complete']}" style="text-align: center">

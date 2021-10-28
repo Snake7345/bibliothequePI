@@ -65,9 +65,6 @@
 								</p:submenu>
 								<p:submenu label="Recherche" icon="fa fa-fw fa-search">
 									<shiro:hasPermission name="Utilisateurs:Lire">
-										<p:menuitem value="Clients par nom" action="#{utilisateursBean.flushUtilSearch}" icon="fa fa-fw fa-user"/>
-									</shiro:hasPermission>
-									<shiro:hasPermission name="Utilisateurs:Lire">
 										<p:menuitem value="Clients par numero de membre" action="#{utilisateursBean.flushUtilSearchNum}" icon="fa fa-fw fa-user"/>
 									</shiro:hasPermission>
 								</p:submenu>
@@ -105,14 +102,6 @@
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Auteurs:Lire">
 										<p:menuitem value="Auteur" action="#{auteursBean.flushAutNew}" icon="fa fa-fw fa-pencil"/>
-									</shiro:hasPermission>
-								</p:submenu>
-								<p:submenu label="Recherche" icon="fa fa-fw fa-search">
-									<shiro:hasPermission name="Auteurs:Lire">
-										<p:menuitem value="Auteur" action="#{auteursBean.flushAutSearch}" icon="fa fa-fw fa-pencil"/>
-									</shiro:hasPermission>
-									<shiro:hasPermission name="Livres:Lire">
-										<p:menuitem value="Livre" action="#{livresBean.flushLivSearch}" icon="fa fa-fw fa-book"/>
 									</shiro:hasPermission>
 								</p:submenu>
 								<shiro:hasRole name="1">

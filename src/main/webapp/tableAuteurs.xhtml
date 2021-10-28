@@ -19,13 +19,13 @@
                     <h2 style="text-align:center">#{I18N['application.auteur.title']}</h2>
                     <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{auteursBean.listAut}" var="aut" emptyMessage="Aucun enregistrement trouvé" id="tableAuteurs"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
-                        <p:column headerText="#{I18N['auteur.label.Nom']}" style="text-align: center">
+                        <p:column headerText="#{I18N['auteur.label.Nom']}" style="text-align: center" sortBy="#{aut.nom}" filterBy="#{aut.nom}">
                             <p:outputLabel value ="#{aut.nom}"/>
                         </p:column>
-                        <p:column headerText="#{I18N['auteur.label.Prenom']}" style="text-align: center">
+                        <p:column headerText="#{I18N['auteur.label.Prenom']}" style="text-align: center" sortBy="#{aut.prenom}" filterBy="#{aut.prenom}">
                             <p:outputLabel value ="#{aut.prenom}"/>
                         </p:column>
-                        <p:column headerText="#{I18N['commune.label.actif']}" style="text-align: center">
+                        <p:column headerText="#{I18N['commune.label.actif']}" style="text-align: center" sortBy="#{aut.actif}" filterBy="#{aut.actif}">
                             <h:outputLabel value ="#{aut.actif}"/>
                         </p:column>
                         <shiro:hasPermission name="Auteurs:Modification">
