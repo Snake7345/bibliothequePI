@@ -147,7 +147,6 @@ public class UtilisateursBean implements Serializable {
     /*Méthode permettant d'afficher la liste des reservations actives en fonction du client (cette méthode est faite pour le popup*/
     public void afficheReservations()
     {
-
         SvcReservations service = new SvcReservations();
         reservationClient = service.findAllActivbyClient(bibliothequeActuelle,utilisateur);
         service.close();

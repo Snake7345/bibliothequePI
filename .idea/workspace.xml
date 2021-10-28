@@ -9,28 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.18 Correction des bugs">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.25 Correction multiples au niveau graphiques, ajout des recherches sur tous les formulaires + correction des colonnes où on mets un headertext pour que ça soit plus propres">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewFact.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewFact.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchAuteur.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchLivre.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateur.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateurNumMembre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateurNumMembre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -267,7 +249,7 @@
       <workItem from="1635337467383" duration="12483000" />
       <workItem from="1635366399157" duration="1554000" />
       <workItem from="1635369295559" duration="3613000" />
-      <workItem from="1635379021099" duration="4706000" />
+      <workItem from="1635379021099" duration="5195000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -416,7 +398,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635373232569</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="V1.2.25 Correction multiples au niveau graphiques, ajout des recherches sur tous les formulaires + correction des colonnes où on mets un headertext pour que ça soit plus propres">
+      <created>1635383814469</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1635383814469</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,6 +445,7 @@
     <MESSAGE value="v1.2.14 Mise a jour avant modification entities" />
     <MESSAGE value="V1.2.17 Multiples corrections graphiques et correction des quelques fonctions restantes" />
     <MESSAGE value="V1.2.18 Correction des bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.2.18 Correction des bugs" />
+    <MESSAGE value="V1.2.25 Correction multiples au niveau graphiques, ajout des recherches sur tous les formulaires + correction des colonnes où on mets un headertext pour que ça soit plus propres" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.2.25 Correction multiples au niveau graphiques, ajout des recherches sur tous les formulaires + correction des colonnes où on mets un headertext pour que ça soit plus propres" />
   </component>
 </project>
