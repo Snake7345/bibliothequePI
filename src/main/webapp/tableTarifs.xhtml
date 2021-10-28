@@ -42,7 +42,7 @@
                 </shiro:hasRole>
                 <shiro:lacksRole name="1">
                     <h2 style="text-align:center">#{I18N['application.tarifs.title']}</h2>
-                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{tarifsBean.tarifByBiblioActuelle}" emptyMessage="Aucun enregistrement trouvé" var="tar" id="tableTarifs"
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{tarifsBean.tarifByBiblioActuelle}" emptyMessage="Aucun enregistrement trouvé" var="tar" id="tableTarifs2"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column headerText="#{I18N['commune.label.denomination']}" style="text-align: center" sortBy="#{tar.denomination}" filterBy="#{tar.denomination}">
                             <p:outputLabel value ="#{tar.denomination}"/>
