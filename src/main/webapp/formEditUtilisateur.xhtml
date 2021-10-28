@@ -121,7 +121,6 @@
             </shiro:hasPermission>
             </c:if>
             <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.modifUtil}" ajax="false"/>
-
             <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
             <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
             </c:if>

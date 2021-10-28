@@ -15,6 +15,7 @@ import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Named
 @SessionScoped
@@ -325,7 +326,7 @@ public class UtilisateursBean implements Serializable {
 
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur existe déjà tel quel en DB; opération échouée",null));
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur existe déjà tel quel en DB ou l'adresse mail est déjà utilisé opération échouée",null));
         }
         if(utilisateur.getRoles().getDenomination().equals("Client"))
         {
@@ -362,41 +363,55 @@ public class UtilisateursBean implements Serializable {
         if(verifUtilExist(utilisateur))
         {
             UA.setActif(true);
-            for (Bibliotheques bib : tabbibli)
-            {
-                if(listUB.size()==0) {
-                    listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur, bib));
-                }
-                else{
-                    boolean fl = false;
-                    for (UtilisateursBibliotheques ub : listUB){
-                        if (ub.getBibliotheque().getIdBibliotheques() == bib.getIdBibliotheques()) {
-                            fl = true;
-                            break;
-                        }
-                    }
-                    if(fl){
-                        listUB=new ArrayList<>();
-                        FacesContext fc = FacesContext.getCurrentInstance();
-                        fc.getExternalContext().getFlash().setKeepMessages(true);
-                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Vous ne pouvez pas choisir deux fois les mêmes bibliothèques",null));
-                        return "/formEditUtilisateur.xhtml?faces-redirect=true";}
-                    else {
+            if(!Objects.equals(utilisateur.getRoles().getDenomination(), "Client")){
+                for (Bibliotheques bib : tabbibli)
+                {
+                    if(listUB.size()==0) {
                         listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur, bib));
                     }
+                    else{
+                        boolean fl = false;
+                        for (UtilisateursBibliotheques ub : listUB){
+                            if (ub.getBibliotheque().getIdBibliotheques() == bib.getIdBibliotheques()) {
+                                fl = true;
+                                break;
+                            }
+                        }
+                        if(fl){
+                            listUB=new ArrayList<>();
+                            FacesContext fc = FacesContext.getCurrentInstance();
+                            fc.getExternalContext().getFlash().setKeepMessages(true);
+                            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Vous ne pouvez pas choisir deux fois les mêmes bibliothèques",null));
+                            return "/formEditUtilisateur.xhtml?faces-redirect=true";}
+                        else {
+                            listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur, bib));
+                        }
+                    }
                 }
+                saveUtilisateur();
+            }
+            else {
+                saveUtilisateurCli();
             }
 
-            saveUtilisateur();
+
         }else {
 
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur existe déjà tel quel en DB; opération échouée",null));
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur existe déjà tel quel en DB ou l'adresse mail est déjà utilisé opération échouée",null));
+        }
+        if(utilisateur.getRoles().getDenomination().equals("Client"))
+        {
+            init();
+            return "/tableUtilisateursCli.xhtml?faces-redirect=true";
         }
 
+        else
+        {
             init();
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
+        }
     }
     public String modifUtilProfil() {
         boolean flag = false;
@@ -450,7 +465,7 @@ public class UtilisateursBean implements Serializable {
 
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'utilisateur existe déjà tel quel en DB; opération échouée",null));
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'adresse mail est déjà utilisé. Opération échouée",null));
         }
 
         init();
@@ -461,8 +476,13 @@ public class UtilisateursBean implements Serializable {
     public boolean verifUtilExist(Utilisateurs util)
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
-
-        List<Utilisateurs> listUtil = serviceU.findOneUtilisateur(util);
+        List<Utilisateurs> listUtil =new ArrayList<>();
+        if(Objects.equals(util.getRoles().getDenomination(), "Client")){
+            listUtil = serviceU.findOneCli(util);
+        }
+        else {
+            listUtil = serviceU.findOneUtilisateur(util);
+        }
         if (util.getIdUtilisateurs()!=0)
         {
 
@@ -518,7 +538,7 @@ public class UtilisateursBean implements Serializable {
         if(!verifUtilExist(utilisateur)) {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le client existe déjà tel quel en DB; opération échouée",null));
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le client existe déjà tel quel en DB l'adresse mail est déjà utilisé opération échouée",null));
         }
         else if(utilisateur.getNumMembre().equals("999999999")){
             FacesContext fc = FacesContext.getCurrentInstance();

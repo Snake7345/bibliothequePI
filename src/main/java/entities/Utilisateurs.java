@@ -16,7 +16,8 @@ import security.SecurityManager;
 @NamedQueries
         ({
                 @NamedQuery(name = "Utilisateurs.findAll", query = "SELECT u FROM Utilisateurs u"),
-                @NamedQuery(name = "Utilisateurs.findOne", query = "SELECT u FROM Utilisateurs u WHERE u.courriel=:courriel AND u.roles=:role"),
+                @NamedQuery(name = "Utilisateurs.findOneUtil", query = "SELECT u FROM Utilisateurs u WHERE u.courriel=:courriel AND u.roles.denomination<>'Client'"),
+                @NamedQuery(name = "Utilisateurs.findOneCli", query = "SELECT u FROM Utilisateurs u WHERE u.courriel=:courriel AND u.roles.denomination='Client'"),
                 @NamedQuery(name = "Utilisateurs.findAllUtil", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NULL"),
                 @NamedQuery(name = "Utilisateurs.findActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE AND u.numMembre IS NULL"),
                 @NamedQuery(name = "Utilisateurs.findInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE AND u.numMembre IS NULL"),

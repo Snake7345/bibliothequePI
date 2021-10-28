@@ -503,6 +503,20 @@ public class FactureBean implements Serializable {
         service.close();
         return listFact;
     }
+
+    /*
+     * Méthode qui permet via le service de retourner la liste de toutes les factures en fonction de la bibliothèque où on est connecté
+     */
+    public List<Factures> getReadAllByBiblio()
+    {
+        SvcFacture service = new SvcFacture();
+        List<Factures> listFact = new ArrayList<Factures>();
+        listFact= service.findAllByBibliotheque(bibliothequeActuelle.getIdBibliotheques());
+
+        service.close();
+        return listFact;
+    }
+
     /*
      * Méthode qui permet de vider les variables et retourne sur la table des factures
      * */

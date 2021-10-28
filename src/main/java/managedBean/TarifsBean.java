@@ -237,6 +237,12 @@ public class TarifsBean implements Serializable {
         {
             grillePena.remove(grillePena.size()-1);
         }
+        else
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Vous devez avoir obligatoirement une pénalité", null));
+        }
 
     }
     /*Cette méthode permet de retirer une ligne concernant la grille des jours */
@@ -244,6 +250,12 @@ public class TarifsBean implements Serializable {
         if (grilleJour.size() >1)
         {
             grilleJour.remove(grilleJour.size()-1);
+        }
+        else
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Vous devez avoir obligatoirement un tarif pour le jour", null));
         }
     }
 

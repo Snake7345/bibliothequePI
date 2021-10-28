@@ -20,8 +20,6 @@
             </h:head>
             <h2 style="text-align:center">#{I18N['livre.form.modif.titre']}</h2>
             <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
-
-
                 <p:outputLabel value = "#{I18N['livre.label.Titre']}" indicateRequired="true"/>
                 <p:inputText id="livreTitre"
                              validatorMessage="La valeur doit être entre 1 et 100 caracteres"
@@ -32,7 +30,6 @@
                     <f:validateLength minimum="1" maximum="100"/>
                     <p:tooltip for="livreTitre" value="#{I18N['tooltip.livre.titre']}" position="right"/>
                 </p:inputText>
-
 
                 <p:outputLabel value = "#{I18N['livre.label.Annee']}"/>
                 <p:spinner id="livreAnnee"

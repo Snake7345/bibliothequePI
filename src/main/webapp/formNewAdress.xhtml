@@ -54,7 +54,7 @@
 
                 <p:outputLabel value = "#{I18N['localite.label.Cp']}" indicateRequired="true"/>
                 <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"
-                converter="localiteConverter" required="true" var="c" filter="true" filterMatchMode="contains">
+                converter="localiteConverter" required="true" requiredMessage="Vous devez selectionner un code postal" var="c" filter="true" filterMatchMode="contains">
                     <f:selectItems value = "#{localitesBean.readAll}" var="loca"
                                    itemLabel="#{loca.cp} : #{loca.ville}" itemValue="#{loca}"/>
                     <p:column>

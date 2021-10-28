@@ -24,7 +24,7 @@
                              required="true"
                              requiredMessage="#{I18N['formulaire.message.required.numero']}"
                              maxlength="9"
-                validator="codeBarreCliValidator">
+                             validator="codeBarreCliValidator">
                     <p:tooltip for="numMembre" value="#{I18N['tooltip.utilisateur.numMembre']}" position="right"/>
                 </p:inputText>
                 </p:panelGrid>
@@ -58,13 +58,19 @@
                         </p:spinner>
                         <p:tooltip for="nbrj" value="#{I18N['tooltip.nbrjour']}" position="right"/>
                     </p:column>
-
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton icon="fa fa-fw fa-minus" style="float: left" value="#{I18N['application.button.suplig']}" action="#{factureBean.delListRow}"  ajax="false"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton icon="fa fa-fw fa-plus" style="float: right" value="#{I18N['application.button.ajouterlig']}" action="#{factureBean.addNewListRow}"  ajax="false"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                 </p:dataTable>
 
-                <p:commandButton style="float: left" value="#{I18N['application.button.suplig']}" action="#{factureBean.delListRow}"  ajax="false"/>
-                <p:commandButton style="float: right" value="#{I18N['application.button.ajouterlig']}" action="#{factureBean.addNewListRow}"  ajax="false"/>
-                <br/>
-                <br/>
+
                 <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="tableFactures" immediate="true" ajax="false"/>
                 <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.newFact}" ajax="false"/>
                 <br/>

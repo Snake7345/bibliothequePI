@@ -20,14 +20,14 @@
 					<p:menubar>
 						<p:menuitem value="Accueil" icon="fa fa-fw fa-home" action="bienvenue?faces-redirect=true"/>
 						<shiro:hasRole name="1">
-							<p:submenu label="Gestion des permissions" icon="fa fa-fw fa-exclamation">
+							<p:submenu label="Permissions" icon="fa fa-fw fa-exclamation">
 								<shiro:hasPermission name="Permissions:Lire">
-									<p:menuitem value="Table des permissions" icon="fa fa-fw fa-table" action="tablePermissions?faces-redirect=true" />
+									<p:menuitem value="Permissions" icon="fa fa-fw fa-table" action="tablePermissions?faces-redirect=true" />
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasRole>
 						<shiro:hasPermission name="Tarifs:Lire">
-							<p:submenu label="Gestion des tarifs" icon="fa fa-fw fa-euro">
+							<p:submenu label="Tarifs" icon="fa fa-fw fa-euro">
 								<shiro:hasPermission name="Tarifs:Lire">
 									<p:menuitem value="Voir les tarifs" icon="fa fa-fw fa-table" action="tableTarifs?faces-redirect=true"/>
 								</shiro:hasPermission>
@@ -37,7 +37,7 @@
 							</p:submenu>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="Roles:Lire">
-							<p:submenu label="Gestion des rôles" icon="fa fa-fw fa-wrench">
+							<p:submenu label="Rôles" icon="fa fa-fw fa-wrench">
 								<shiro:hasPermission name="Roles:Lire">
 									<p:menuitem value="Tables des rôles" icon="fa fa-fw fa-table" action="tableRoles?faces-redirect=true"/>
 								</shiro:hasPermission>
@@ -46,7 +46,7 @@
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>
-							<p:submenu label="Gestion des personnes" icon="fa fa-fw fa-users">
+							<p:submenu label="Personnes" icon="fa fa-fw fa-users">
 								<p:submenu label="Voir les" icon="fa fa-fw fa-table">
 									<shiro:hasPermission name="Client:Lire">
 										<p:menuitem value="Clients" action="tableUtilisateursCli?faces-redirect=true" icon="fa fa-fw fa-user"/>
@@ -64,7 +64,7 @@
 									</shiro:hasPermission>
 								</p:submenu>
 							</p:submenu>
-							<p:submenu label="Gestion bibliothèque" icon="fa fa-fw fa-building-o">
+							<p:submenu label="Bibliothèques" icon="fa fa-fw fa-building-o">
 								<p:submenu label="Voir les" icon="fa fa-fw fa-table">
 									<shiro:hasPermission name="Bibliotheques:Lire">
 										<p:menuitem value="Bibliothèques" action="tableBibliotheques?faces-redirect=true" icon="fa fa-fw fa-building-o"/>
@@ -104,7 +104,7 @@
 								</shiro:hasRole>
 							</p:submenu>
 						<shiro:hasPermission name="Adresses:Lire">
-							<p:submenu label="Gestion des adresses" icon="fa fa-fw fa-street-view">
+							<p:submenu label="Adresses" icon="fa fa-fw fa-street-view">
 								<shiro:hasPermission name="Adresses:Lire">
 									<p:menuitem value="Table des Adresses" icon="fa fa-fw fa-table" action="tableAdresses?faces-redirect=true"/>
 								</shiro:hasPermission>
@@ -114,7 +114,7 @@
 							</p:submenu>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="Factures:Lire">
-							<p:submenu label="Gestion des factures" icon="fa fa-fw fa-euro">
+							<p:submenu label="Factures" icon="fa fa-fw fa-euro">
 								<shiro:hasPermission name="Factures:Lire">
 									<p:menuitem value="Tables des factures" icon="fa fa-fw fa-table" action="tableFactures?faces-redirect=true"/>
 								</shiro:hasPermission>

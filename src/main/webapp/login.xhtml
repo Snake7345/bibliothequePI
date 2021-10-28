@@ -41,10 +41,9 @@
                                    maxlength="40">
                         <f:validateLength minimum = "8" maximum = "40" />
                     </p:password>
-                    <p:commandButton style="float:left;" icon="fa fa-fw fa-unlock" value ="#{I18N['application.button.MdpOublie']}" action="formReinitialisation?faces-redirect=true" immediate="true" update="growl" ajax="false"/>
                     <p:commandButton style="float:right;" icon="fa fa-fw fa-sign-in" value ="#{I18N['application.button.login']}" action="#{loginBean.auth}" update="growl" ajax="false"/>
+                    <p:commandButton style="float:left;" icon="fa fa-fw fa-unlock" value ="#{I18N['application.button.MdpOublie']}" action="formReinitialisation?faces-redirect=true" immediate="true" update="growl" ajax="false"/>
                 </p:panelGrid>
-
             </h:form>
         </p:panel>
     </ui:define>

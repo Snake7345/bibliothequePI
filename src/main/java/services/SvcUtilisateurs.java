@@ -39,8 +39,14 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 	{
 		Map<String, Object> param = new HashMap<>();
 		param.put("courriel", util.getCourriel());
-		param.put("role", util.getRoles());
-		return finder.findByNamedQuery("Utilisateurs.findOne",param);
+		return finder.findByNamedQuery("Utilisateurs.findOneUtil",param);
+	}
+
+	public List<Utilisateurs> findOneCli(Utilisateurs client)
+	{
+		Map<String, Object> param = new HashMap<>();
+		param.put("courriel", client.getCourriel());
+		return finder.findByNamedQuery("Utilisateurs.findOneCli",param);
 	}
 
 	//Méthode qui permet via une requete de retourner la liste entière des utilisateurs
