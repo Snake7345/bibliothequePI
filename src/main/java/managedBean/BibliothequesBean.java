@@ -4,7 +4,6 @@ import entities.Adresses;
 import entities.Bibliotheques;
 import entities.ExemplairesLivres;
 import entities.Reservation;
-import enumeration.ExemplairesLivresEtatEnum;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import security.SecurityManager;

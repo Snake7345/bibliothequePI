@@ -33,8 +33,7 @@ public class LivresBean implements Serializable {
     private Auteurs aut;
     private Editeurs edit;
     private Genres gen;
-    private List<Livres> listLiv = new ArrayList<Livres>();
-    private List<Livres> searchResults;
+    private List<Livres> listLiv = new ArrayList<>();
     private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
 
 
@@ -173,50 +172,16 @@ public class LivresBean implements Serializable {
         }
             return "/tableLivres.xhtml?faces-redirect=true";
     }
-
-
-    /* Cette méthode permet de rechercher en fonction de ce qu'encode l'utilisateur un livre
-     */
-    public String searchLivre()
-    {
-        log.debug("titre recherché: " + livre.getTitre());
-        SvcLivres service = new SvcLivres();
-        if(searchResults!= null)
-        {
-            searchResults.clear();
-        }
-        if(service.getByTitre(livre.getTitre()).isEmpty())
-        {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"le livre n'a pas été trouvé",null));
-            return "/formSearchLivre.xhtml?faces-redirect=true";
-        }
-        else
-        {
-            searchResults = service.getByTitre(livre.getTitre());
-        }
-
-        return "/formSearchLivre.xhtml?faces-redirect=true";
-    }
     //Méthode qui permet de vider les variables et de revenir sur le table des Livres
     public String flushLiv()
     {
         init();
-        if(searchResults!= null)
-        {
-            searchResults.clear();
-        }
         return "/tableLivres.xhtml?faces-redirect=true";
     }
     //Méthode qui permet de vider les variables et de revenir sur le formulaire de création de livre
     public String flushLivNew()
     {
         init();
-        if(searchResults!= null)
-        {
-            searchResults.clear();
-        }
         return "/formNewLivre.xhtml?faces-redirect=true";
     }
 
@@ -300,15 +265,6 @@ public class LivresBean implements Serializable {
         return "/tableLivres.xhtml?faces-redirect=true";
     }
 
-    //Méthode qui permet de vider les variables et de revenir sur le formulaire de recherche de livres
-    public String flushLivSearch() {
-        init();
-        if (searchResults != null) {
-            searchResults.clear();
-        }
-        return "/formSearchLivre?faces-redirect=true";
-    }
-
     /*
      * Méthode qui permet via une pastille de décrire la disponibilité d'un livre
      */
@@ -367,14 +323,6 @@ public class LivresBean implements Serializable {
 
     public void setLivre(Livres livre) {
         this.livre = livre;
-    }
-
-    public List<Livres> getSearchResults() {
-        return searchResults;
-    }
-
-    public void setSearchResults(List<Livres> searchResults) {
-        this.searchResults = searchResults;
     }
 
     public LivresAuteurs getLivresAuteur() {

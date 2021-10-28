@@ -9,11 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.25 Correction multiples au niveau graphiques, ajout des recherches sur tous les formulaires + correction des colonnes où on mets un headertext pour que ça soit plus propres">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.26 Incorporation du système de recherche pour le numero de membre">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/AuteursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/AuteursBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateurNumMembre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formSearchUtilisateurNumMembre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,9 +74,6 @@
     <option name="FILTER_INFO" value="true" />
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="2" />
   </component>
   <component name="ProjectId" id="1y8lv6RuqNb8Ov1tTky0SnuUw4Z" />
   <component name="ProjectViewState">
@@ -249,7 +249,7 @@
       <workItem from="1635337467383" duration="12483000" />
       <workItem from="1635366399157" duration="1554000" />
       <workItem from="1635369295559" duration="3613000" />
-      <workItem from="1635379021099" duration="5195000" />
+      <workItem from="1635379021099" duration="5752000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -405,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635383814469</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="V1.2.26 Incorporation du système de recherche pour le numero de membre">
+      <created>1635384514236</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1635384514236</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -446,6 +453,7 @@
     <MESSAGE value="V1.2.17 Multiples corrections graphiques et correction des quelques fonctions restantes" />
     <MESSAGE value="V1.2.18 Correction des bugs" />
     <MESSAGE value="V1.2.25 Correction multiples au niveau graphiques, ajout des recherches sur tous les formulaires + correction des colonnes où on mets un headertext pour que ça soit plus propres" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.2.25 Correction multiples au niveau graphiques, ajout des recherches sur tous les formulaires + correction des colonnes où on mets un headertext pour que ça soit plus propres" />
+    <MESSAGE value="V1.2.26 Incorporation du système de recherche pour le numero de membre" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.2.26 Incorporation du système de recherche pour le numero de membre" />
   </component>
 </project>

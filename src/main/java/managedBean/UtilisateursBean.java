@@ -29,7 +29,6 @@ public class UtilisateursBean implements Serializable {
     private List<Utilisateurs> listUtil = new ArrayList<>();
     private List<Utilisateurs> listUtilBib = new ArrayList<>();
     private List<Utilisateurs> listCli = new ArrayList<>();
-    private List<Utilisateurs> searchResults;
     private String numMembre;
     private Adresses adresses;
     private UtilisateursAdresses UA;
@@ -581,92 +580,25 @@ public class UtilisateursBean implements Serializable {
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
         }
     }
-    // Méthode qui permet en fonction de la donnée de l'utilisateur de rechercher un nom parmi les utilisateurs(Client) et nous renvoi sur le formulaire de recherche des utilisateurs(Client)
-    public String searchUtilisateur() {
-
-        SvcUtilisateurs service = new SvcUtilisateurs();
-        if(searchResults!= null)
-        {
-            searchResults.clear();
-        }
-        if (service.getByName(utilisateur.getNom()).isEmpty()) {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'utilisateur n'a pas été trouvé",null));
-            return "/formSearchUtilisateur?faces-redirect=true";
-        } else {
-            searchResults = service.getByName(utilisateur.getNom());
-        }
-
-        return "/formSearchUtilisateur?faces-redirect=true";
-    }
-
-    public String searchUtilisateurNumMembre() {
-
-        SvcUtilisateurs service = new SvcUtilisateurs();
-        if(searchResults!= null)
-        {
-            searchResults.clear();
-        }
-        if (service.getByNumMembre(utilisateur.getNumMembre()).isEmpty()) {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'utilisateur n'a pas été trouvé",null));
-            return "/formSearchUtilisateurNumMembre?faces-redirect=true";
-        } else {
-            searchResults = service.getByNumMembre(utilisateur.getNumMembre());
-        }
-
-        return "/formSearchUtilisateurNumMembre?faces-redirect=true";
-    }
     //Méthode qui permet de vider les variables et de revenir sur le table des utilisateurs
     public String flushUtil() {
         init();
-        if (searchResults != null) {
-            searchResults.clear();
-        }
         return "/tableUtilisateurs?faces-redirect=true";
     }
     //Méthode qui permet de vider les variables et de revenir sur le table des utilisateurs(Client)
     public String flushUtilCli() {
         init();
-        if (searchResults != null) {
-            searchResults.clear();
-        }
         return "/tableUtilisateursCli?faces-redirect=true";
     }
     //Méthode qui permet de vider les variables et de revenir sur le formulaire de création d'un client
     public String flushUtilCliNew() {
         init();
-        if (searchResults != null) {
-            searchResults.clear();
-        }
         return "/formNewUtilisateurCli?faces-redirect=true";
     }
     //Méthode qui permet de vider les variables et de revenir sur le formulaire de création d'un utilisateur
     public String flushUtilNew() {
         init();
-        if (searchResults != null) {
-            searchResults.clear();
-        }
         return "/formNewUtilisateur?faces-redirect=true";
-    }
-
-    //Méthode qui permet de vider les variables et de revenir sur le formulaire de recherche d'utilisateur
-    public String flushUtilSearch() {
-        init();
-        if (searchResults != null) {
-            searchResults.clear();
-        }
-        return "/formSearchUtilisateur?faces-redirect=true";
-    }
-    //Méthode qui permet de vider les variables et de revenir sur le formulaire de recherche d'utilisateur en fonction de son numéro de membre
-    public String flushUtilSearchNum() {
-        init();
-        if (searchResults != null) {
-            searchResults.clear();
-        }
-        return "/formSearchUtilisateurNumMembre?faces-redirect=true";
     }
 
     /*
@@ -755,14 +687,6 @@ public class UtilisateursBean implements Serializable {
 
     public void setUtilisateur(Utilisateurs utilisateur) {
         this.utilisateur = utilisateur;
-    }
-
-    public List<Utilisateurs> getSearchResults() {
-        return searchResults;
-    }
-
-    public void setSearchResults(List<Utilisateurs> searchResults) {
-        this.searchResults = searchResults;
     }
 
     public List<Utilisateurs> getListUtil() {

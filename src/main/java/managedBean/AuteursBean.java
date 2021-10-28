@@ -27,7 +27,6 @@ public class AuteursBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private Auteurs auteur;
     private static final Logger log = Logger.getLogger(AuteursBean.class);
-    private List<Auteurs> searchResults;
     private List<Auteurs> listAut;
 
     /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
@@ -170,46 +169,13 @@ public class AuteursBean implements Serializable {
     public String flushAut()
     {
         init();
-        if(searchResults!= null)
-        {
-            searchResults.clear();
-        }
         return "/tableAuteurs?faces-redirect=true";
     }
     //Méthode qui permet de vider les variables et de revenir sur le formulaire de création d'un auteur
     public String flushAutNew()
     {
         init();
-        if(searchResults!= null)
-        {
-            searchResults.clear();
-        }
         return "/formNewAuteur?faces-redirect=true";
-    }
-
-    // Méthode qui permet en fonction de la donnée que l'utilisateur encode, de rechercher
-    // un nom parmi les auteurs et nous renvoi le resultat sur le formulaire de recherche des auteurs
-    public String searchAuteur()
-    {
-
-        SvcAuteurs service = new SvcAuteurs();
-        if(searchResults!= null)
-        {
-            searchResults.clear();
-        }
-            if(service.getByName(auteur.getNom()).isEmpty())
-            {
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'auteur n'a pas été trouvé",null));
-                return "/formSearchAuteur.xhtml?faces-redirect=true";
-            }
-            else
-            {
-                searchResults = service.getByName(auteur.getNom());
-            }
-
-        return "/formSearchAuteur?faces-redirect=true";
     }
 
     /*
@@ -240,15 +206,6 @@ public class AuteursBean implements Serializable {
 
         service.close();
         return listAut;
-    }
-
-    //Méthode qui permet de vider les variables et de revenir sur le formulaire de recherche d'auteur
-    public String flushAutSearch() {
-        init();
-        if (searchResults != null) {
-            searchResults.clear();
-        }
-        return "/formSearchAuteur?faces-redirect=true";
     }
 
 
@@ -285,15 +242,6 @@ public class AuteursBean implements Serializable {
     public void setAuteur(Auteurs auteur) {
         this.auteur = auteur;
     }
-
-    public List<Auteurs> getSearchResults() {
-        return searchResults;
-    }
-
-    public void setSearchResults(List<Auteurs> searchResults) {
-        this.searchResults = searchResults;
-    }
-
 
     public List<Auteurs> getListAut() {
         return listAut;
