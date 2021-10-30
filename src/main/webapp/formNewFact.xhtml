@@ -68,12 +68,17 @@
                             </f:facet>
                         </p:toolbar>
                     </f:facet>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="tableFactures" immediate="true" ajax="false"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.newFact}" ajax="false"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                 </p:dataTable>
-
-
-                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="tableFactures" immediate="true" ajax="false"/>
-                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.newFact}" ajax="false"/>
-                <br/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Factures:Creer">

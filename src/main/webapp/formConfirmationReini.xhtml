@@ -13,11 +13,15 @@
     <ui:define name="content">
         <p:growl id="growl" sticky="true" />
         <shiro:hasRole name="1">
+
         <h:form>
-        <h2 style="text-align:center">#{I18N['reini.form.questionconfirm']}</h2>
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <h2 style="text-align:center">#{I18N['reini.form.questionconfirm']} ?</h2>
+                <p:outputLabel/>
             <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['commune.label.oui']}" action="#{bibliothequesBean.reinitialisation}"/>
             <p:commandButton value="#{I18N['commune.label.non']}" action="#{bibliothequesBean.flushAccueil}" immediate="true"/>
-    </h:form>
+            </p:panelGrid>
+        </h:form>
         </shiro:hasRole>
         <shiro:lacksRole name="1">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>

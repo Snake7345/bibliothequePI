@@ -17,32 +17,28 @@
                     <title>#{I18N['etatlivre.form.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['etatlivre.form.titre']}</h2>
-                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="3" columnClasses="col1Newrec,col2Newrec,col3Newrec">
-
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
                     <p:outputLabel value = "#{I18N['exemplaireslivres.label.Etat']}" indicateRequired="true"/>
                     <p:selectOneRadio id="exetat" value="#{factureBean.exemplairesLivres.etat}" required="true">
                         <f:selectItems value="#{exemplairesLivresEnumBean.etatEnum}"/>
+                        <p:tooltip for="exetat" value="#{I18N['tooltip.exempl.etat']}" position="right"/>
                     </p:selectOneRadio>
-                    <p:tooltip for="exetat" value="#{I18N['tooltip.exempl.etat']}" position="right"/>
-
                     <p:outputLabel value = "#{I18N['exemplaireslivres.label.CommentaireEtat']}"/>
                     <p:inputTextarea id="CommentaireEtat"
                                  value="#{factureBean.exemplairesLivres.commentaireEtat}" cols="25" rows="5"
                                      maxlength="500"
                                      required="true" requiredMessage="#{I18N['formulaire.message.required.exemplairelivreetat']}">
+                        <p:tooltip for="CommentaireEtat" value="#{I18N['tooltip.exempl.commentaire']}" position="right"/>
                     </p:inputTextarea>
-                    <h:message for="CommentaireEtat" styleClass="errorMessage"/>
-                    <p:tooltip for="CommentaireEtat" value="#{I18N['tooltip.exempl.commentaire']}" position="right"/>
-
                     <p:outputLabel value = "#{I18N['penalite.label.Nom']}"/>
-                    <p:selectManyMenu value = "#{factureBean.tarifsPenalites}">
+                    <p:selectCheckboxMenu value = "#{factureBean.tarifsPenalites}" multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
+                        <!--A modifier-->
                         <f:selectItems value = "#{factureBean.tarifsPenalites}" var="pena" itemLabel="#{pena.penalite.denomination}" itemValue="#{pena}"/>
-                    </p:selectManyMenu>
-
+                        <p:ajax event="itemUnselect" listener="#{factureBean.onItemUnselect}"/>
+                    </p:selectCheckboxMenu>
+                    <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
+                    <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.retourLivre}" ajax="false"/>
                 </p:panelGrid>
-
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{factureBean.retourLivre}" ajax="false"/>
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{factureBean.flushFact}" immediate="true"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Factures:Creer">

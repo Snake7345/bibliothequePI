@@ -18,14 +18,13 @@
                     <title>#{I18N['tarif.form.nouveau.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['tarif.form.nouveau.titre']}</h2>
-                <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}" />
-                <p:outputLabel value="#{tarifsBean.tarif.bibliotheques.nom}" />
-                <p:outputLabel value="#{I18N['tarif.label.dateDebutgrille']}" />
-                <p:outputLabel value="#{tarifsBean.tarif.dateDebut}" >
+                <p:outputLabel value="#{I18N['bibliotheque.label.Nom']} " />
+                <p:outputLabel value="#{tarifsBean.tarif.bibliotheques.nom} " />
+                <p:outputLabel value="#{I18N['tarif.label.dateDebutgrille']} : " />
+                <p:outputLabel value="#{tarifsBean.tarif.dateDebut} " >
                     <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                 </p:outputLabel>
-                <p:outputLabel value="#{I18N['tarif.label.nom']}" />
-                <p:outputLabel value="#{I18N['tarif.label.nom']}" />
+                <p:outputLabel value="#{I18N['tarif.label.nom']} : " />
                 <p:outputLabel id="nomGrille" value="#{tarifsBean.tarif.denomination}" required="true"
                              requiredMessage="#{I18N['formulaire.message.required.denomination']}" maxlength="255"/>
 
@@ -73,11 +72,17 @@
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </p:calendar>
                     </p:column>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton icon="fa fa-fw fa-minus" value="#{I18N['tarifjour.label.del']}" action="#{tarifsBean.delJourRow}" ajax="false" style="text-align: left"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['tarifjour.label.add']}" action="#{tarifsBean.addNewJourRow}" ajax="false" style="text-align: right"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                 </p:dataTable>
-
-                <p:commandButton value="#{I18N['tarifjour.label.add']}" action="#{tarifsBean.addNewJourRow}" />
-                <p:commandButton value="#{I18N['tarifjour.label.del']}" action="#{tarifsBean.delJourRow}" />
-
                 <p:dataTable value="#{tarifsBean.grillePena}" var="P">
                     <p:column>
                         <f:facet name="header">
@@ -117,12 +122,30 @@
                             <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>
                         </p:calendar>
                     </p:column>
+                    <f:facet name="footer">
+                        <p:outputLabel value="#{I18N['tarifpenalite.explication.retard']}" />
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton icon="fa fa-fw fa-minus" value="#{I18N['application.button.suplig']}" action="#{tarifsBean.delPenaRow}" ajax="false"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton icon="fa fa-fw fa-plus" value="#{I18N['application.button.ajouterlig']}" action="#{tarifsBean.addNewPenaRow}" ajax="false"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <shiro:hasPermission name="Tarifs:Lire">
+                                    <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
+                                </shiro:hasPermission>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" ajax="false"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                 </p:dataTable>
-                <br/>
-                <p:commandButton value="#{I18N['tarifpenalite.label.add']}" action="#{tarifsBean.addNewPenaRow}" ajax="false"/>
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{tarifsBean.flushTarifs}" immediate="true"/>
-                <p:commandButton value="#{I18N['tarifpenalite.label.del']}" action="#{tarifsBean.delPenaRow}" />
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.sauvegarder']}" action="#{tarifsBean.newTarif}" ajax="false"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Tarifs:Modification">

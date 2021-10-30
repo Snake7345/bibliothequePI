@@ -1,5 +1,6 @@
 package managedBean;
 
+import com.sun.xml.internal.ws.client.RequestContext;
 import entities.*;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -242,12 +243,68 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
+
+    /*Cette méthode permet de modifier un mot de passe d'un utilisateur*/
+    public void modifMdpProfil()
+    {
+        SvcUtilisateurs serviceU = new SvcUtilisateurs();
+        EntityTransaction transaction = serviceU.getTransaction();
+        try
+        {
+            if(!mdpNouveau.equals(mdpNouveau2))
+            {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le nouveau mot de passe et la confirmation ne correspondent pas", null));
+            }
+            else
+            {
+                if (utilisateur.getMdp().equals(serviceU.findByLogin(utilisateur.getLogin()).get(0).getMdp())) {
+                    if (SecurityManager.PasswordMatch(mdpNouveau, utilisateur.getMdp())) {
+                        FacesContext fc = FacesContext.getCurrentInstance();
+                        fc.getExternalContext().getFlash().setKeepMessages(true);
+                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "le mot de passe est le même que précédemment", null));
+                    } else {
+
+                        transaction.begin();
+                        utilisateur.setMdp(mdpNouveau);
+                        serviceU.save(utilisateur);
+                        transaction.commit();
+                        FacesContext fc = FacesContext.getCurrentInstance();
+                        fc.getExternalContext().getFlash().setKeepMessages(true);
+                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
+
+                    }
+
+                }
+            }
+        }
+        catch (NullPointerException npe)
+        {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Une erreur est survenue(erreur 101), veuillez contacter le support technique", null));
+        }
+        finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation n'a pas reussie", null));
+            }
+            serviceU.close();
+        }
+
+        init();
+        mdpNouveau="";
+        mdpNouveau2="";
+    }
+
     /*Cette méthode permet de modifier un mot de passe d'un utilisateur*/
     public String modifMdp()
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
         EntityTransaction transaction = serviceU.getTransaction();
-
         try
         {
             if(!mdpNouveau.equals(mdpNouveau2))
@@ -299,6 +356,7 @@ public class UtilisateursBean implements Serializable {
         mdpNouveau2="";
         return "/tableUtilisateurs.xhtml?faces-redirect=true";
     }
+
     /*Cette méthode permet la création de l'objet utilisateur ainsi que la vérification si un utilisateur est similaire*/
     public String newUtil() {
         boolean flag = false;
@@ -603,6 +661,7 @@ public class UtilisateursBean implements Serializable {
     //Méthode qui permet de vider les variables et de revenir sur le table des utilisateurs
     public String flushUtil() {
         init();
+
         return "/tableUtilisateurs?faces-redirect=true";
     }
     //Méthode qui permet de vider les variables et de revenir sur le table des utilisateurs(Client)

@@ -6,6 +6,7 @@ import enumeration.FactureEtatEnum;
 import objectCustom.locationCustom;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
+import org.primefaces.event.UnselectEvent;
 import pdfTools.ModelFactBiblio;
 import pdfTools.ModelFactBiblioPena;
 import services.*;
@@ -356,6 +357,19 @@ public class FactureBean implements Serializable {
         else {
             return retourLivre();
         }
+    }
+
+    /*
+     * Méthode qui permet de travailler sur le selectCheckboxMenu et de voir les éléments qui ne sont pas selectionné
+     * */
+    public void onItemUnselect(UnselectEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        FacesMessage msg = new FacesMessage();
+        msg.setSummary("Item unselected: " + event.getObject().toString());
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+
+        context.addMessage(null, msg);
     }
 
     // Méthode qui permet le retour d'un exemplaire de livre et vérifie si il est loué

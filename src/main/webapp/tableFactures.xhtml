@@ -17,7 +17,7 @@
                 <p:growl id="growl" sticky="true" />
                 <h2 style="text-align:center">#{I18N['application.fact.title']}</h2>
                 <shiro:hasRole name="1">
-                <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{factureBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="fa" id="tableFactures"
+                <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{factureBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="fa" id="tableFactures1"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <p:column headerText="#{I18N['factures.label.NumeroFacture']}" style="text-align: center" sortBy="#{fa.numeroFacture}" filterBy="#{fa.numeroFacture}">
                         <p:outputLabel value ="#{fa.numeroFacture}"/>
@@ -33,7 +33,7 @@
                 </p:dataTable>
                 </shiro:hasRole>
                 <shiro:lacksRole name="1">
-                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{factureBean.readAllByBiblio}" emptyMessage="Aucun enregistrement trouvé" var="fa" id="tableFactures"
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{factureBean.readAllByBiblio}" emptyMessage="Aucun enregistrement trouvé" var="fa" id="tableFactures2"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column headerText="#{I18N['factures.label.NumeroFacture']}" style="text-align: center" sortBy="#{fa.numeroFacture}" filterBy="#{fa.numeroFacture}">
                             <p:outputLabel value ="#{fa.numeroFacture}"/>

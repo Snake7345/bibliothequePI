@@ -95,12 +95,17 @@
                     </p:column>
                     <p:tooltip for="utiladress" value="#{I18N['tooltip.utilisateur.adresse']}" position="right"/>
                 </p:selectOneListbox>
-
-
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}">
                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                 </p:commandButton>
-
+                <p:outputLabel/>
+                <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
+                    <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
+                </c:if>
+                <c:if test= "#{utilisateursBean.utilisateur.roles.denomination eq 'Client'}">
+                    <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
+                </c:if>
+                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.modifUtil}" ajax="false"/>
             </p:panelGrid>
             <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
             <shiro:hasPermission name="Utilisateurs:ModificationBibliotheques">
@@ -115,17 +120,18 @@
                         <p:tooltip for="menu" alue="#{I18N['tooltip.utilisateur.bibliotheque']}" position="right"/>
                     </p:selectOneMenu>
                     </p:column>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton icon="fa fa-fw fa-check-circle" value="sup" action="#{utilisateursBean.supBibliothequeRow}" ajax="false"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton icon="fa fa-fw fa-check-circle" value="add" action="#{utilisateursBean.addBibliothequeRow}" ajax="false"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                 </p:dataTable>
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="sup" action="#{utilisateursBean.supBibliothequeRow}" ajax="false"/>
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="add" action="#{utilisateursBean.addBibliothequeRow}" ajax="false"/>
             </shiro:hasPermission>
-            </c:if>
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.modifUtil}" ajax="false"/>
-            <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client'}">
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true"/>
-            </c:if>
-            <c:if test= "#{utilisateursBean.utilisateur.roles.denomination eq 'Client'}">
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtilCli}" immediate="true"/>
             </c:if>
         </h:form>
         </shiro:hasPermission>

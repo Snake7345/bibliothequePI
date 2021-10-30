@@ -66,9 +66,15 @@
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                 </p:dataTable>
             </p:panel>
-            <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Livres:Lire">

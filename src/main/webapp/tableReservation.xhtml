@@ -26,13 +26,21 @@
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>
+                        <f:facet name="footer">
+                            <p:toolbar style="border-color:#f8f9fa!important;">
+                                <f:facet name="left">
+                                    <p:commandButton icon="fa fa-fw fa-home" style="text-align: center" value="#{I18N['application.button.returnbienvenue']}" action="#{reservationBean.flushReserv}" immediate="true"/>
+                                </f:facet>
+                                <f:facet name="right">
+                                    <shiro:hasPermission name="Reservation:Creer">
+                                        <p:commandButton icon="fa fa-fw fa-check" style="text-align: center" value="#{I18N['reservation.label.newReserv']}" type="button">
+                                            <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
+                                        </p:commandButton>
+                                    </shiro:hasPermission>
+                                </f:facet>
+                            </p:toolbar>
+                        </f:facet>
                     </p:dataTable>
-                    <shiro:hasPermission name="Reservation:Creer">
-                    <p:commandButton style="text-align: center" value="#{I18N['reservation.label.newReserv']}" type="button">
-                        <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
-                    </p:commandButton>
-                    </shiro:hasPermission>
-                    <p:commandButton style="text-align: center" value="#{I18N['application.button.returnbienvenue']}" action="#{reservationBean.flushReserv}" immediate="true"/>
                 </p:panel>
             </h:form>
             </shiro:hasPermission>

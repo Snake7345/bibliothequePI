@@ -42,7 +42,6 @@
                     <f:validateLength minimum="2" maximum="100"/>
                     <p:tooltip for="auteurPrenom" value="#{I18N['tooltip.auteur.prenom']}" position="right"/>
                 </p:inputText>
-
                 <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{auteursBean.flushAut}" immediate="true"/>
                 <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{auteursBean.newAuteur}" ajax="false"/>
             </p:panelGrid>
