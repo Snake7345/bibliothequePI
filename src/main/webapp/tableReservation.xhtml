@@ -68,10 +68,6 @@
                                  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('popup').hide();">
                     <p:resetInput target="formReservation" />
                 </p:commandButton>
-
-                <p:commandButton value="#{I18N['application.button.annuler']}" action="#{reservationBean.flushNewReserv}" onclick="PF('popup').hide();">
-                    <p:resetInput target="formReservation" />
-            </p:commandButton>
             </h:form>
         </p:dialog>
     </ui:define>

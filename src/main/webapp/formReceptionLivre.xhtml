@@ -33,17 +33,27 @@
                         </p:inputText>
                         <p:tooltip for="CB" value="#{I18N['tooltip.exempl.CB']}" position="right"/>
                     </p:column>
-
-
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton value="#{I18N['application.button.ajouterlig']}" action="#{exemplairesLivresBean.addNewListRow}"  ajax="false"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton value="#{I18N['application.button.suplig']}" action="#{exemplairesLivresBean.delListRow}"  ajax="false"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{exemplairesLivresBean.flush}" immediate="true" ajax="false"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.reception}" ajax="false"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                 </p:dataTable>
-
-                <p:commandButton value="#{I18N['application.button.ajouterlig']}" action="#{exemplairesLivresBean.addNewListRow}"  ajax="false"/>
-                <p:commandButton value="#{I18N['application.button.suplig']}" action="#{exemplairesLivresBean.delListRow}"  ajax="false"/>
-
-
-
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.reception}" ajax="false"/>
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{exemplairesLivresBean.flush}" immediate="true" ajax="false"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Livres:Reception">
