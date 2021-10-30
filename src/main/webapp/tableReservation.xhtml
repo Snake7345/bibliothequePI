@@ -49,8 +49,10 @@
             </shiro:lacksPermission>
         <p:dialog header="Formulaire nouvelle reservation" widgetVar="dlg1" minHeight="40">
             <p:ajax event="close" update="formReservation" resetValues="true" />
-            <p:ajax event="open" update="formReservation" resetValues="true" />
             <h:form id="formReservation" prependId = "false">
+                <p:messages id="messages" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>
                 <p:panelGrid columns="2" StyleClass="formConfig">
                     <p:outputLabel value="#{I18N['utilisateur.label.NumMembre']}" />
                     <p:inputText value="#{reservationBean.numMembre}" id="numMembre"
@@ -63,10 +65,13 @@
 
                 </p:panelGrid>
                 <p:commandButton value="#{I18N['application.button.reservation']}" action="#{reservationBean.reservation}"
-                                 onclick="PF('popup').hide();">
+                                 oncomplete="if (args &amp;&amp; !args.validationFailed) PF('popup').hide();">
+                    <p:resetInput target="formReservation" />
                 </p:commandButton>
 
-                <p:commandButton value="#{I18N['application.button.annuler']}" action="#{reservationBean.flushNewReserv}" onclick="PF('popup').hide();" />
+                <p:commandButton value="#{I18N['application.button.annuler']}" action="#{reservationBean.flushNewReserv}" onclick="PF('popup').hide();">
+                    <p:resetInput target="formReservation" />
+            </p:commandButton>
             </h:form>
         </p:dialog>
     </ui:define>

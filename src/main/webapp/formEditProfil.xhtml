@@ -128,7 +128,9 @@
 
         <p:dialog header="Nouvelle adresse" widgetVar="dlg1" minHeight="40">
             <p:ajax event="close" update="formAdresse" resetValues="true" />
-            <p:ajax event="open" update="formAdresse" resetValues="true" />
+            <p:messages id="messages" closable="true">
+                <p:autoUpdate/>
+            </p:messages>
             <h:form id="formAdresse" prependId = "false">
                 <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
@@ -175,16 +177,19 @@
                         </p:column>
                     </p:selectOneListbox>
                     <p:commandButton style="float: right" value="#{I18N['application.button.envoyer']}" action="#{adressesBean.newAdresspopup}"
-                                     onclick="PF('popup').hide();"/>
+                                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('popup').hide();">
+                    <p:resetInput target="formAdresse" />
+                    </p:commandButton>
                 </p:panelGrid>
 
             </h:form>
         </p:dialog>
         <p:dialog header="Formulaire de modification de mot de passe" widgetVar="dlg2" minHeight="40" >
             <p:ajax event="close" update="formModifMdp" resetValues="true" />
-            <p:ajax event="open" update="formModifMdp" resetValues="true" />
             <h:form id="formModifMdp" prependId = "false">
-
+                <p:messages id="messages2" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>
                 <p:panelGrid id="pannel" columns="2" StyleClass="formConfig">
                     <h:outputText value="#{I18N['tooltip.utilisateur.changemdp']}" />
                     <p:password id="mdp" value="#{utilisateursBean.mdpNouveau}" update="msg"
@@ -209,7 +214,8 @@
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
                     <p:commandButton icon="fa fa-fw fa-check" style="float: right" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.modifMdpProfil}"
-                                     onclick="PF('popup').hide(); ">
+                                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('popup').hide();">
+                        <p:resetInput target="formModifMdp" />
                     </p:commandButton>
                 </p:panelGrid>
             </h:form>
