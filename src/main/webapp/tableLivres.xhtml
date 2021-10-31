@@ -69,7 +69,7 @@
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
-                    <shiro:hasPermission name="Livres:ActivDesactiv">
+                    <shiro:hasPermission name="Livres:ActiveDesactive">
                     <p:column style="text-align: center">
                         <p:commandButton style="text-align: center" rendered="#{liv.actif}" icon="fa fa-fw fa-power-off" value ="Desactiver" action="#{livresBean.activdesactivLiv}">
                             <p:confirm type="popup" header="Confirmation" message="#{I18N['livre.form.questionconfirm']}" icon="fa fa-fw fa-warning"/>

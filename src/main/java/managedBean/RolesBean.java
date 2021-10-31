@@ -109,7 +109,7 @@ public class RolesBean implements Serializable {
                 listPerm.add(permissions);
                 permissions = new Permissions();
                 /*Il faut un commentaire*/
-                if (!flag2 && (pe.getAction().equals("Creer") || pe.getAction().equals("Modification") || pe.getAction().equals("ActivDesactiv"))) {log.debug("9");
+                if (!flag2 && (pe.getAction().equals("Creer") || pe.getAction().equals("Modification") || pe.getAction().equals("ActiveDesactive"))) {log.debug("9");
                     if (!flag3 && pe.getAction().equals("Modification")) {
                         log.debug("10");
                         pe.setAction("Creer");
@@ -155,7 +155,7 @@ public class RolesBean implements Serializable {
             if (p.getType().equals(pe.getType()) && p.getAction().equals("Modification")) {
                 flag2 = true;
             }
-            if (p.getType().equals(pe.getType()) && p.getAction().equals("ActivDesactiv")) {
+            if (p.getType().equals(pe.getType()) && p.getAction().equals("ActiveDesactive")) {
                 flag3 = true;
             }
         }

@@ -54,7 +54,7 @@
                                 </p:commandButton>
                             </p:column>
                         </shiro:hasPermission>
-                        <shiro:hasPermission name="Client:ActivDesactiv">
+                        <shiro:hasPermission name="Client:ActiveDesactive">
                             <p:column style="text-align: center">
                                 <p:commandButton icon="fa fa-fw fa-power-off" value ="Desactiver" rendered="#{ut.actif}" action="#{utilisateursBean.activdesactivUtil}">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
@@ -98,7 +98,7 @@
                     <p:column headerText="#{I18N['bibliotheque.label.Nom']}" style="text-align: center" sortBy="#{utilReservation.bibliotheques.nom}" filterBy="#{utilReservation.bibliotheques.nom}">
                         <p:outputLabel value ="#{utilReservation.bibliotheques.nom}"/>
                     </p:column>
-                    <shiro:hasPermission name="Reservation:ActivDesactiv">
+                    <shiro:hasPermission name="Reservation:ActiveDesactive">
                         <p:column>
                             <p:commandButton value="#{I18N['application.button.supprimer']}" action="#{reservationBean.suppReservPopup}" immediate="true" onclick="PF('dlg2').hide();PF('dlg1').show(); ">
                                 <f:setPropertyActionListener target="#{reservationBean.reserv}" value="#{utilReservation}" />

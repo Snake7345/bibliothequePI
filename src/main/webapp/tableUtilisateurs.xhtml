@@ -35,7 +35,7 @@
                             <p:column headerText="#{I18N['utilisateur.label.Sexe']}" style="text-align: center" sortBy="#{ut.sexe}" filterBy="#{ut.sexe}">
                                 <p:outputLabel value ="#{ut.sexe}"/>
                             </p:column>
-                            <p:column headerText="#{I18N['utilisateur.label.Courriel']}" style="text-align: center" sortBy="#{ut.courriel}" filterBy="#{ut.numMembre}">
+                            <p:column headerText="#{I18N['utilisateur.label.Courriel']}" style="text-align: center" sortBy="#{ut.courriel}" filterBy="#{ut.courriel}">
                                 <p:outputLabel value ="#{ut.courriel}"/>
                             </p:column>
                             <p:column headerText="#{I18N['utilisateur.label.Role']}" style="text-align: center" sortBy="#{ut.roles.denomination}" filterBy="#{ut.roles.denomination}">
@@ -58,13 +58,13 @@
                                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                                 </p:commandButton>
                             </p:column>
-                            <shiro:hasPermission name="Utilisateurs:ActivDesactiv">
+                            <shiro:hasPermission name="Utilisateurs:ActiveDesactive">
                                 <p:column style="text-align: center">
-                                    <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif eq true}"
+                                    <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActiveDesactive') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif eq true}"
                                                      icon="fa fa-fw fa-power-off" value ="Desactiver" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>
-                                    <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif ne true}"
+                                    <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActiveDesactive') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif ne true}"
                                                      icon="fa fa-fw fa-power-off" value ="Activer" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>
@@ -128,13 +128,13 @@
                                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                                 </p:commandButton>
                             </p:column>
-                            <shiro:hasPermission name="Utilisateurs:ActivDesactiv">
+                            <shiro:hasPermission name="Utilisateurs:ActiveDesactive">
                                 <p:column style="text-align: center">
-                                    <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif eq true}"
+                                    <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActiveDesactive') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif eq true}"
                                                      icon="fa fa-fw fa-power-off" value ="Desactiver" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>
-                                    <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActivDesactiv') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif ne true}"
+                                    <p:commandButton rendered="#{((rolesBean.checkPermission('Utilisateurs:ActiveDesactive') and loginBean.utilisateurAuth ne ut) and (ut.roles.denomination ne 'Administrateur' or loginBean.utilisateurAuth.roles.denomination eq 'Administrateur')) and ut.actif ne true}"
                                                      icon="fa fa-fw fa-power-off" value ="Activer" action="#{utilisateursBean.activdesactivUtil}">
                                         <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                     </p:commandButton>

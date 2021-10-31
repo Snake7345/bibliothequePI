@@ -51,7 +51,7 @@
                             </p:commandButton>
                         </p:column>
 
-                        <shiro:hasPermission name="Auteurs:ActivDesactiv">
+                        <shiro:hasPermission name="Auteurs:ActiveDesactive">
                         <p:column style="text-align: center">
                             <p:commandButton style="text-align: center" icon="fa fa-fw fa-power-off" value ="Désactiver" rendered="#{aut.actif}" action="#{auteursBean.activdesactivAut}">
                                 <p:confirm type="popup" header="Confirmation" message="#{I18N['auteur.form.questionconfirm']}" icon="fa fa-fw fa-warning"/>

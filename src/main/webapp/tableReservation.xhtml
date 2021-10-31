@@ -19,7 +19,7 @@
                         <p:column headerText="Numéro de client" style="text-align: center" sortBy="#{re.utilisateur.numMembre}" filterBy="#{re.utilisateur.numMembre}">
                             <p:outputLabel value ="#{re.utilisateur.numMembre}"/>
                         </p:column>
-                        <shiro:hasPermission name="Reservation:ActivDesactiv">
+                        <shiro:hasPermission name="Reservation:ActiveDesactive">
                         <p:column style="text-align: center">
                             <p:commandButton value="#{I18N['application.button.supprimer']}" action="#{reservationBean.suppReserv}" immediate="true">
                                 <f:setPropertyActionListener target="#{reservationBean.reserv}" value="#{re}" />

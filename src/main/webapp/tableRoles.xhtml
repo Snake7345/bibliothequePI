@@ -27,15 +27,15 @@
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
-                    <shiro:hasPermission name="Roles:ActivDesactiv">
+                    <shiro:hasPermission name="Roles:ActiveDesactive">
                     <p:column style="text-align: center">
-                        <shiro:hasPermission name="Roles:ActivDesactiv">
+                        <shiro:hasPermission name="Roles:ActiveDesactive">
                         <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur' and rol.actif eq true}"
                                          icon="fa fa-fw fa-power-off" value ="Desactiver" action="#{rolesBean.activdesactivRol}">
                             <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
                         </p:commandButton>
                         </shiro:hasPermission>
-                        <shiro:hasPermission name="Roles:ActivDesactiv">
+                        <shiro:hasPermission name="Roles:ActiveDesactive">
                             <p:commandButton rendered="#{rol.denomination ne 'Client' and rol.denomination ne 'Manager' and rol.denomination ne 'Employe' and rol.denomination ne 'Administrateur' and rol.actif ne true}"
                                              icon="fa fa-fw fa-power-off" value ="Activer" action="#{rolesBean.activdesactivRol}">
                                 <f:setPropertyActionListener target="#{rolesBean.role}" value="#{rol}" />
