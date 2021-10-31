@@ -14,6 +14,10 @@
                     <p:growl id="growl" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.utilisateur.title']}</h2>
                     <shiro:hasRole name="1">
+                        <p:breadCrumb>
+                            <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                            <p:menuitem value="Table des Utilisateurs" action="#{utilisateursBean.flushUtil}" />
+                        </p:breadCrumb>
                         <p:dataTable style="text-align: center" value="#{utilisateursBean.listUtil}" tableStyle="table-layout: auto;" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateursAdmin"
                                      Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                             <f:facet name="header">
@@ -83,6 +87,10 @@
                         </p:dataTable>
                     </shiro:hasRole>
                     <shiro:lacksRole name="1">
+                        <p:breadCrumb>
+                            <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                            <p:menuitem value="Table des Utilisateurs" action="#{utilisateursBean.flushUtil}" />
+                        </p:breadCrumb>
                         <p:dataTable style="text-align: center" value="#{utilisateursBean.listUtilBib}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateurs"
                                      Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                             <f:facet name="header">

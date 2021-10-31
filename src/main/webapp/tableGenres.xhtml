@@ -16,6 +16,10 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.genre.title']}</h2>
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Table des Genres" action="#{genresBean.flushGen}" />
+                    </p:breadCrumb>
                     <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{genresBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="gen" id="tableGenres"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column headerText="#{I18N['genre.label.Denomination']}" style="text-align: center" sortBy="#{gen.denomination}" filterBy="#{gen.denomination}">

@@ -15,6 +15,10 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.permission.title']}</h2>
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Table des Permissions" action="#{permissionsBean.flushPerm}" />
+                    </p:breadCrumb>
                     <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{permissionsBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="per" id="tablePermissions"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column headerText="Type de permissions" style="text-align: center;" sortBy="#{per.type}" filterBy="#{per.type}">

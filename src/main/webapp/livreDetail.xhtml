@@ -18,6 +18,11 @@
             <p:panel layout="block" id="content">
                 <p:growl id="growl" sticky="true" />
                 <h2 style="text-align:center">#{I18N['application.livre.title']}</h2>
+                <p:breadCrumb>
+                    <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                    <p:menuitem value="Table des Livres" action="#{livresBean.flushLiv}" />
+                    <p:menuitem value="Detail du livre" action="livreDetail?faces-redirect=true" />
+                </p:breadCrumb>
                 <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{livresBean.readlivre}" var="liv" id="tableLivres"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <p:column headerText="#{I18N['livre.label.Titre']}" style="text-align: center" sortBy="#{liv.titre}" filterBy="#{liv.titre}">
@@ -66,13 +71,6 @@
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
-                    <f:facet name="footer">
-                        <p:toolbar style="border-color:#f8f9fa!important;">
-                            <f:facet name="left">
-                                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}"/>
-                            </f:facet>
-                        </p:toolbar>
-                    </f:facet>
                 </p:dataTable>
             </p:panel>
         </h:form>

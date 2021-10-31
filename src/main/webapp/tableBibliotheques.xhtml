@@ -16,6 +16,10 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.bibliotheque.title']}</h2>
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Table des Bibliothèques" action="#{bibliothequesBean.flushBiblio}" />
+                    </p:breadCrumb>
                     <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{bibliothequesBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="bi" id="tableClient"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column headerText="#{I18N['bibliotheque.label.Nom']}" style="text-align: center" sortBy="#{bi.nom}" filterBy="#{bi.nom}">

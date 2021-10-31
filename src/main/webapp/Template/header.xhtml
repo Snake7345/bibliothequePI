@@ -49,10 +49,10 @@
 							<p:submenu label="Personnes" icon="fa fa-fw fa-users">
 								<p:submenu label="Voir les" icon="fa fa-fw fa-table">
 									<shiro:hasPermission name="Client:Lire">
-										<p:menuitem value="Clients" action="tableUtilisateursCli?faces-redirect=true" icon="fa fa-fw fa-user"/>
+										<p:menuitem value="Clients" action="#{utilisateursBean.flushUtilCli}" icon="fa fa-fw fa-user"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Utilisateurs:Lire">
-										<p:menuitem value="Utilisateurs" action="tableUtilisateurs?faces-redirect=true" icon="fa fa-fw fa-user"/>
+										<p:menuitem value="Utilisateurs" action="#{utilisateursBean.flushUtil}" icon="fa fa-fw fa-user"/>
 									</shiro:hasPermission>
 								</p:submenu>
 								<p:submenu label="Ajouter" icon="fa fa-fw fa-plus">
@@ -70,7 +70,7 @@
 										<p:menuitem value="Bibliothèques" action="tableBibliotheques?faces-redirect=true" icon="fa fa-fw fa-building-o"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Livres:Lire">
-										<p:menuitem value="Livres" action="tableLivres?faces-redirect=true" icon="fa fa-fw fa-book"/>
+										<p:menuitem value="Livres" action="#{livresBean.flushLiv}" icon="fa fa-fw fa-book"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Genres:Lire">
 										<p:menuitem value="Genres" action="tableGenres?faces-redirect=true" icon="fa fa-fw fa-text-width"/>
@@ -79,7 +79,7 @@
 										<p:menuitem value="Editeurs" action="tableEditeurs?faces-redirect=true" icon="fa fa-fw fa-building"/>
 									</shiro:hasPermission>
 									<shiro:hasPermission name="Auteurs:Lire">
-										<p:menuitem value="Auteurs" action="tableAuteurs?faces-redirect=true" icon="fa fa-fw fa-pencil"/>
+										<p:menuitem value="Auteurs" action="#{auteursBean.flushAut}" icon="fa fa-fw fa-pencil"/>
 									</shiro:hasPermission>
 								</p:submenu>
 								<p:submenu label="Ajouter" icon="fa fa-fw fa-plus">
