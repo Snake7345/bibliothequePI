@@ -9,11 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.53 Correction de quelques bugs concernant les popups">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.55 Correction de quelques bugs graphiques concernant certains boutons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formReceptionLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formReceptionLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formTransfertLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formTransfertLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formConfirmationReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formConfirmationReservation.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +256,7 @@
       <workItem from="1635474339767" duration="319000" />
       <workItem from="1635508617058" duration="15618000" />
       <workItem from="1635587602533" duration="14884000" />
-      <workItem from="1635631872572" duration="2224000" />
+      <workItem from="1635631872572" duration="8360000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -468,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635631898801</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="V1.2.55 Correction de quelques bugs graphiques concernant certains boutons">
+      <created>1635634624549</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1635634624549</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +494,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.0.47 Correction de certains logos ainsi que des bugs graphiques" />
     <MESSAGE value="v1.0.48 Mise en place du fichier de la biblliotheque ainsi que la selection de la bibliothèque au départ" />
     <MESSAGE value="v1.0.4- Correction général au niveau des logos pour les menus" />
     <MESSAGE value="v1.0.49 Correction général au niveau des logos pour les menus" />
@@ -512,6 +518,7 @@
     <MESSAGE value="V1.2.40 Correction des gros bugs et correction graphiques" />
     <MESSAGE value="V1.2.50 Corrections des bugs graphiques" />
     <MESSAGE value="V1.2.53 Correction de quelques bugs concernant les popups" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.2.53 Correction de quelques bugs concernant les popups" />
+    <MESSAGE value="V1.2.55 Correction de quelques bugs graphiques concernant certains boutons" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.2.55 Correction de quelques bugs graphiques concernant certains boutons" />
   </component>
 </project>

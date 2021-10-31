@@ -4,6 +4,7 @@ import com.sun.xml.internal.ws.client.RequestContext;
 import entities.*;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
+import org.primefaces.PrimeFaces;
 import security.SecurityManager;
 import services.*;
 
@@ -81,6 +82,9 @@ public class UtilisateursBean implements Serializable {
             tabbibli.remove(tabbibli.size()-1);
         }
     }
+
+
+
 
     /*Cette méthode permet de récupérer les données liées a l'utilisateur et nous renvoit sur le formulaire d'édition de l'utilisateur*/
     public String redirectModifUtil()
@@ -312,6 +316,9 @@ public class UtilisateursBean implements Serializable {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le nouveau mot de passe et la confirmation ne correspondent pas", null));
+                /*PrimeFaces primefaces = PrimeFaces.current();
+                primefaces.ajax().update("dialog");
+                primefaces.executeScript("PF('widgetVar').show();");*/
             }
             else
             {

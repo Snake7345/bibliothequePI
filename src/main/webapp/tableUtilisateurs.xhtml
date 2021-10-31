@@ -158,7 +158,7 @@
         <shiro:lacksPermission name="Utilisateurs:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
-        <p:dialog header="Formulaire de modification de mot de passe" widgetVar="dlg1" minHeight="40" >
+        <p:dialog id="formModifMdpdialog" header="Formulaire de modification de mot de passe" widgetVar="dlg1" minHeight="40" >
             <p:ajax event="close" update="formModifMdp" resetValues="true" />
             <h:form id="formModifMdp" prependId = "false">
                 <p:messages id="messages" closable="true">
@@ -185,6 +185,7 @@
                         maxlength="40">
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
+                    <p:outputLabel/>
                     <p:commandButton icon="fa fa-fw fa-check" style="float: right" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.modifMdp}"
                                      oncomplete="if (args &amp;&amp; !args.validationFailed) PF('popup').hide();">
                         <p:resetInput target="formModifMdp" />
