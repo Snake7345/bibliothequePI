@@ -19,6 +19,7 @@ import java.util.Objects;
                 @NamedQuery(name = "ExemplairesLivres.findLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=TRUE"),
                 @NamedQuery(name = "ExemplairesLivres.findNotLoue", query = "SELECT el FROM ExemplairesLivres el WHERE el.loue=FALSE"),
                 @NamedQuery(name = "ExemplairesLivres.findLastExemplaire", query = "SELECT el FROM ExemplairesLivres el ORDER BY el.codeBarre DESC"),
+                @NamedQuery(name = "ExemplairesLivres.findAllByLivresByBibliotheque", query = "SELECT el FROM ExemplairesLivres el WHERE el.livres=:livre AND el.bibliotheques=:bibliotheque"),
         })
 public class ExemplairesLivres implements Serializable {
     private static final long serialVersionUID = 1L;

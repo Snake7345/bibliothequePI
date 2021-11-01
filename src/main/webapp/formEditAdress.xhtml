@@ -17,7 +17,6 @@
             </h:head>
             <h2 style="text-align:center">#{I18N['adresse.form.modif.titre']}</h2>
             <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
-
                 <p:outputLabel value = "#{I18N['adresse.label.Rue']}" indicateRequired="true"/>
                 <p:inputText id="adresseRue"
                              validatorMessage="La rue doit avoir entre 2 et 100 caractere"
@@ -49,7 +48,6 @@
                     <f:validateLength minimum="1" maximum="6"/>
                     <p:tooltip for="adresseNumero" value="#{I18N['tooltip.adresse.numero']}" position="right"/>
                 </p:inputText>
-
 
                 <p:outputLabel value = "#{I18N['localite.label.Cp']}" indicateRequired="true"/>
                 <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"

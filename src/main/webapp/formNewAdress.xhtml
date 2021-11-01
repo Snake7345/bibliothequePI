@@ -12,11 +12,19 @@
         <p:panel id="content">
         <p:growl id="growl" sticky="true" />
         <shiro:hasPermission name="Adresses:Creer">
+            <h:form id="menu" prependId="false">
+                <p:breadCrumb>
+                    <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" ajax="false"/>
+                    <p:menuitem value="Table des Adresses" action="#{adressesBean.flushAdd}" ajax="false"/>
+                    <p:menuitem value="Nouvelle Adresse" action="#{adressesBean.flushAddNew}" ajax="false"/>
+                </p:breadCrumb>
+            </h:form>
         <h:form id="form" prependId="false">
             <h:head>
                 <title>#{I18N['adresse.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['adresse.form.nouveau.titre']}</h2>
+
             <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                 <p:outputLabel value = "#{I18N['adresse.label.Rue']}" indicateRequired="true"/>

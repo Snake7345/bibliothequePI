@@ -1,5 +1,6 @@
 package services;
 
+import entities.Bibliotheques;
 import entities.ExemplairesLivres;
 import entities.Livres;
 import org.apache.log4j.Logger;
@@ -47,6 +48,14 @@ public class SvcExemplairesLivres extends Service<ExemplairesLivres> implements 
 		Map<String, String> param = new HashMap<>();
 		param.put("codeBarre", CB);
 		return finder.findByNamedQuery("ExemplairesLivres.findOneCB",param);
+	}
+
+	public List<ExemplairesLivres> findAllByLivreByBibliotheque(Livres livres, Bibliotheques biblio)
+	{
+		Map<String, Object> param = new HashMap<>();
+		param.put("livre", livres);
+		param.put("bibliotheque", biblio);
+		return finder.findByNamedQuery("ExemplairesLivres.findAllByLivresByBibliotheque",param);
 	}
 
 	@Override

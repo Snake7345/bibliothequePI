@@ -300,6 +300,18 @@ public class ExemplairesLivresBean implements Serializable {
         return listExemplaires;
     }
 
+    /*
+     * Méthode qui permet via le service de retourner la liste de tous les exemplaires livres
+     */
+    public List<ExemplairesLivres> getReadAllByBiblio()
+    {
+        SvcExemplairesLivres service = new SvcExemplairesLivres();
+        List<ExemplairesLivres> listExemplaires = new ArrayList<ExemplairesLivres>();
+        listExemplaires= service.findAllByLivreByBibliotheque(livre,bibliothequeActuelle);
+        service.close();
+        return listExemplaires;
+    }
+
     //-------------------------------Getter & Setter--------------------------------------------
 
     public ExemplairesLivres getExemplairesLivre() {
