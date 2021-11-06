@@ -195,7 +195,7 @@
                     </p:password>
                     <p:outputLabel/>
                     <p:commandButton icon="fa fa-fw fa-check" style="float: right" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.modifMdp}"
-                                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('popup').hide();">
+                                     onsuccess="PF('popup').hide();">
                         <p:resetInput target="formModifMdp" />
                     </p:commandButton>
                 </p:panelGrid>

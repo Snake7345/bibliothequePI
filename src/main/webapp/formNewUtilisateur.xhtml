@@ -177,8 +177,7 @@
                             <h:outputText value="#{c.ville}"/>
                         </p:column>
                     </p:selectOneListbox>
-                    <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{adressesBean.newAdresspopup}" onclick="PF('popup').hide();"
-                                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('popup').hide();">
+                    <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{adressesBean.newAdresspopup}">
                         <p:resetInput target="formAdresse" />
                     </p:commandButton>
                 </p:panelGrid>

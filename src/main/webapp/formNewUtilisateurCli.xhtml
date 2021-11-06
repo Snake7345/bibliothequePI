@@ -85,10 +85,10 @@
         </shiro:lacksPermission>
         <p:dialog header="Nouvelle adresse" widgetVar="dlg1" minHeight="40">
             <p:ajax event="close" update="formAdresse" resetValues="true" />
-            <p:messages id="messages" closable="true">
-                <p:autoUpdate/>
-            </p:messages>
             <h:form id="formAdresse" prependId = "false">
+                <p:messages id="messages" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>
                 <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                     <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
@@ -133,8 +133,7 @@
                             <h:outputText value="#{c.ville}"/>
                         </p:column>
                     </p:selectOneListbox>
-                    <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{adressesBean.newAdresspopup}"
-                                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('popup').hide();">
+                    <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{adressesBean.newAdresspopup}">
                         <p:resetInput target="formAdresse" />
                     </p:commandButton>
                 </p:panelGrid>

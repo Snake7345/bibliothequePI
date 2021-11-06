@@ -3,11 +3,13 @@ package managedBean;
 import entities.Permissions;
 import entities.PermissionsRoles;
 import entities.Roles;
+import entities.Utilisateurs;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import services.SvcPermissionRoles;
 import services.SvcPermissions;
 import services.SvcRoles;
+import services.SvcUtilisateurs;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -18,6 +20,7 @@ import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 @Named
 @SessionScoped
@@ -240,6 +243,7 @@ public class RolesBean implements Serializable {
             }
             else
             {
+                log.debug("desactivation role " + role.getDenomination());
                 role.setActif(false);
             }
 
@@ -284,6 +288,7 @@ public class RolesBean implements Serializable {
     /*Cette méthode permet la sauvegarde d'un objet "rôle" en db*/
     public void save()
     {
+        log.debug("entree save");
         SvcRoles serviceR = new SvcRoles();
         SvcPermissions serviceP = new SvcPermissions();
         SvcPermissionRoles servicePR = new SvcPermissionRoles();
@@ -292,10 +297,6 @@ public class RolesBean implements Serializable {
         transaction.begin();
         try {
             serviceR.save(role);
-            if(role.getIdRoles()>0)
-            {
-                serviceR.refreshEntity(role);
-            }
             if(role.getPermissionsRoles() != null) {
                 if (role.getPermissionsRoles().size() > 0) {
                     for (PermissionsRoles pr : role.getPermissionsRoles()) {

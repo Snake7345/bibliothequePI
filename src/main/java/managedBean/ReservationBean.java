@@ -42,7 +42,6 @@ public class ReservationBean implements Serializable
     public void init()
     {
         reserv = new Reservation();
-        livre = new Livres();
         exemplairesLivres = new ExemplairesLivres();
         numMembre = "";
     }
@@ -57,7 +56,6 @@ public class ReservationBean implements Serializable
             EntityTransaction transaction = serviceR.getTransaction();
             transaction.begin();
             try {
-
                 serviceR.save(reservation);
                 transaction.commit();
                 FacesContext fc = FacesContext.getCurrentInstance();
@@ -78,7 +76,7 @@ public class ReservationBean implements Serializable
             init();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le client a déjà une réservation pour ce livre dans une bibliotheque", null));
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le client a déjà une réservation pour ce livre", null));
         }
         return "/tableReservation.xhtml?faces-redirect=true";
     }

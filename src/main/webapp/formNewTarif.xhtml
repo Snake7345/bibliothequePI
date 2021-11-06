@@ -18,7 +18,15 @@
                     <title>#{I18N['tarif.form.nouveau.titre']}</title>
                 </h:head>
                 <h2 style="text-align:center">#{I18N['tarif.form.nouveau.titre']}</h2>
-
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="1" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                    <h:form id="menu" prependId="false">
+                        <p:breadCrumb>
+                            <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" ajax="false"/>
+                            <p:menuitem value="Table des Tarifs" action="#{tarifsBean.flushTarifs}" ajax="false"/>
+                            <p:menuitem value="Nouvelle grille tarifaire" action="#{tarifsBean.flushTarifsNew}" ajax="false"/>
+                        </p:breadCrumb>
+                    </h:form>
+                </p:panelGrid>
                 <p:outputLabel value="#{I18N['tarif.label.dateDebutgrille']}" />
                 <p:calendar value="#{tarifsBean.tarif.dateDebut}" showOn="button" required="true" requiredMessage="#{I18N['formulaire.message.required.date']}">
                     <f:convertDateTime timeZone="Europe/Brussels" type="date" pattern="dd/MM/yyyy"/>

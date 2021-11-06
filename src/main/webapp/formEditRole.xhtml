@@ -50,13 +50,13 @@
                                        itemLabel="#{ac}"
                                        itemValue="#{ac}"/>
                     </p:selectOneMenu>
+                    <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="#{I18N['permissions.label.add']}" action="#{rolesBean.addPermission}" ajax="false">
+                        <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
+                        <f:setPropertyActionListener target="#{rolesBean.pe.action}" value="#{permissionsBean.action}" />
+                        <f:setPropertyActionListener target="#{permissionsBean.listPermRole}" value="#{rolesBean.listPerm}" />
+                    </p:commandButton>
+                    <p:commandButton icon="fa fa-fw fa-check-circle" value="Supprimer toutes les permissions" action="#{rolesBean.clearListPermissions}" ajax="false"/>
                 </p:panelGrid>
-
-                <p:commandButton rendered="#{permissionsBean.action ne null}" icon="fa fa-fw fa-check-circle" value="#{I18N['permissions.label.add']}" action="#{rolesBean.addPermission}" ajax="false">
-                    <f:setPropertyActionListener target="#{rolesBean.pe.type}" value="#{permissionsBean.type}" />
-                    <f:setPropertyActionListener target="#{rolesBean.pe.action}" value="#{permissionsBean.action}" />
-                    <f:setPropertyActionListener target="#{permissionsBean.listPermRole}" value="#{rolesBean.listPerm}" />
-                </p:commandButton>
 
                 <p:dataTable value="#{rolesBean.listPerm}" emptyMessage="Aucun enregistrement trouvé" var="pe" id="tableListPerm"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
@@ -75,9 +75,19 @@
                         <f:setPropertyActionListener target="#{rolesBean.pe}" value="#{pe}" />
                         </p:commandButton>
                     </p:column>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <shiro:hasPermission name="Roles:Lire">
+                                    <p:commandButton style="float: left;" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
+                                </shiro:hasPermission>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton style="float: right;" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.modifRole}"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                 </p:dataTable>
-                <p:commandButton style="float: left;" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{rolesBean.flushRol}" immediate="true"/>
-                <p:commandButton style="float: right;" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{rolesBean.modifRole}"/>
             </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Roles:Modification">

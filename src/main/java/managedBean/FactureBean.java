@@ -354,7 +354,8 @@ public class FactureBean implements Serializable {
             tarifsPenalites= (List<TarifsPenalites>) serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).get(0).getTarifsPenalites();
             return "/formEtatLivre.xhtml?faces-redirect=true";
         }
-        else {
+        else
+        {
             return retourLivre();
         }
     }
@@ -386,8 +387,11 @@ public class FactureBean implements Serializable {
         /*On vérifie si le livre est bien loué*/
         if (exemplairesLivres.isLoue())
         {
+            log.debug("1");
             for (FacturesDetail fd : exemplairesLivres.getFactureDetails()){
+                log.debug("2");
                 if (fd.getDateRetour() == null) {
+                    log.debug("3");
                     facturesDetail = fd;
                     numMembre=fd.getFacture().getUtilisateurs().getNumMembre();
                     flag=true;
@@ -395,21 +399,25 @@ public class FactureBean implements Serializable {
             }
             if (flag)
             {
+                log.debug("4");
                 flag=false;
                 facturesDetail.setDateRetour(timestampretour);
                 if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin()) || tarifsPenalites.size()>=1)
                 {
-
+                    log.debug("5");
                     newFactPena(facturesDetail);
                 }
                 for (FacturesDetail fd: facturesDetail.getFacture().getFactureDetails())
                 {
+                    log.debug("6");
                     if (fd.getDateRetour() == null) {
+                        log.debug("7");
                         flag = true;
                         break;
                     }
                 }
                 if (!flag){
+                    log.debug("8");
                     fact = facturesDetail.getFacture();
                     fact.setEtat(FactureEtatEnum.terminer);
                 }
@@ -420,6 +428,7 @@ public class FactureBean implements Serializable {
                 EntityTransaction transaction = service.getTransaction();
                 transaction.begin();
                 try {
+                    log.debug("9");
                     exemplairesLivres.setLoue(false);
                     if (exemplairesLivres.getEtat()==ExemplairesLivresEtatEnum.Mauvais)
                     {
@@ -429,6 +438,7 @@ public class FactureBean implements Serializable {
                     serviceEL.save(exemplairesLivres);
                     serviceFD.save(facturesDetail);
                     if (fact.getEtat()==FactureEtatEnum.terminer){
+                        log.debug("10");
                         service.save(fact);
                     }
 
@@ -437,7 +447,9 @@ public class FactureBean implements Serializable {
                     fc.getExternalContext().getFlash().setKeepMessages(true);
                     fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"retour ok",null));
                 } finally {
+                    log.debug("11");
                     if (transaction.isActive()) {
+                        log.debug("12");
                         transaction.rollback();
                         FacesContext fc = FacesContext.getCurrentInstance();
                         fc.addMessage("Erreur", new FacesMessage("l'operation n'est pas reussie"));
@@ -447,6 +459,7 @@ public class FactureBean implements Serializable {
 
                     if(serviceR.findAllActivbyLivre(bibliothequeActuelle, exemplairesLivres.getLivres()).size()>0)
                     {
+                        log.debug("13");
                         reserve = true;
                     }
                 }
@@ -454,15 +467,18 @@ public class FactureBean implements Serializable {
         }
         else
         {
+            log.debug("14");
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Le livre n'est pas loue",null));
         }
         if(reserve)
         {
+            log.debug("15");
             return "/formConfirmationReservation.xhtml?faces-redirect=true";
         }
         else {
+            log.debug("16");
             return "/tableFactures.xhtml?faces-redirect=true";
         }
     }
@@ -488,16 +504,16 @@ public class FactureBean implements Serializable {
 
                 if(annee == anneelastFact)
                 {
-                    int nb = Integer.parseInt(text.substring(text.length() - 5, text.length()));
-                    numFact = "FB" + annee + String.format("%02d", mois) + String.format("%05d",nb+1);
+                    int nb = Integer.parseInt(text.substring(text.length() - 6, text.length()));
+                    numFact = "FB" + annee + String.format("%02d", mois) + String.format("%06d",nb+1);
                 }
                 else
                 {
-                    numFact = "FB" + annee + String.format("%02d", mois) + "00001";
+                    numFact = "FB" + annee + String.format("%02d", mois) + "000001";
                 }
             }
             else{
-                numFact = "FB" + annee + String.format("%02d", mois) + "00001";
+                numFact = "FB" + annee + String.format("%02d", mois) + "000001";
             }
         }
         catch(NullPointerException ignored) {
@@ -538,6 +554,12 @@ public class FactureBean implements Serializable {
     {
         init();
         return "/tableFactures.xhtml?faces-redirect=true";
+    }
+
+    public String flushFactNew()
+    {
+        init();
+        return "/formNewFact.xhtml?faces-redirect=true";
     }
 
     //-------------------------------Getter & Setter--------------------------------------------

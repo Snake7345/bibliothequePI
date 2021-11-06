@@ -30,6 +30,7 @@ import security.SecurityManager;
                 @NamedQuery(name = "Utilisateurs.findCliActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE AND u.numMembre IS NOT NULL"),
                 @NamedQuery(name = "Utilisateurs.findCliInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE AND u.numMembre IS NOT NULL"),
                 @NamedQuery(name = "Utilisateurs.findAllUtilBib", query = "SELECT u FROM Utilisateurs u, UtilisateursBibliotheques ub WHERE u.numMembre IS NULL AND u.roles.idRoles <> 1 AND ub.utilisateur=u AND ub.bibliotheques=:bib"),
+                @NamedQuery(name = "Utilisateurs.findAllByRole", query = "SELECT u FROM Utilisateurs u WHERE u.roles =:role"),
         })
 public class Utilisateurs implements Serializable {
     private static final long serialVersionUID = 1L;

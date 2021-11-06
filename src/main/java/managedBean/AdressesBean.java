@@ -3,6 +3,7 @@ package managedBean;
 import entities.Adresses;
 import entities.Bibliotheques;
 import org.apache.log4j.Logger;
+import org.primefaces.PrimeFaces;
 import services.SvcAdresses;
 
 import javax.annotation.PostConstruct;
@@ -24,6 +25,7 @@ public class AdressesBean implements Serializable {
     private Adresses adresse;
     private static final Logger log = Logger.getLogger(AdressesBean.class);
     private Bibliotheques bibliotheque;
+    private boolean flag=false;
 
     /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
@@ -59,9 +61,14 @@ public class AdressesBean implements Serializable {
 
     public void newAdresspopup()
     {
+        flag=false;
         if(verifAdresseExist(adresse))
         {
+            flag=true;
             save();
+            PrimeFaces.current().executeScript("PF('dlg1').hide();");
+            PrimeFaces.current().ajax().update("form:utiladress");
+            PrimeFaces.current().dialog().showMessageDynamic(new FacesMessage(FacesMessage.SEVERITY_INFO,"L'adresse a bien été ajoutée",null));
         }
         else{
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -190,5 +197,13 @@ public class AdressesBean implements Serializable {
 
     public void setBibliotheque(Bibliotheques bibliotheque) {
         this.bibliotheque = bibliotheque;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
     }
 }

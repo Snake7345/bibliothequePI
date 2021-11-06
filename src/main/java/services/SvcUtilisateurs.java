@@ -90,6 +90,13 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		return finder.findByNamedQuery("Utilisateurs.searchName", param);
 	}
 
+	public List<Utilisateurs> getByRole(Roles role) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("role", role);
+
+		return finder.findByNamedQuery("Utilisateurs.findAllByRole", param);
+	}
+
 	public List<Utilisateurs> getByNumMembre(String numMembre) {
 		Map<String, String> param = new HashMap<>();
 		param.put("numMembre", numMembre);

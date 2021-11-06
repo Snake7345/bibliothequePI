@@ -13,7 +13,6 @@
 
     <ui:define name="content">
         <p:growl id="growl" sticky="true" />
-        <shiro:hasPermission name="Livres:Reservation">
         <h:form>
             <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
         <h2 style="text-align:center">Le livre #{factureBean.exemplairesLivres.livres.titre} est en attente pour une reservation, veuillez le placer en réserve.L'avez vous fait ?</h2>
@@ -23,10 +22,7 @@
             </p:commandButton>
             </p:panelGrid>
         </h:form>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="Livres:Reservation">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:hasPermission>
     </ui:define>
 </ui:composition>
 

@@ -122,7 +122,7 @@
 									<p:menuitem value="Retour de livre" icon="fa fa-fw fa-book" action="formEtatQuestion?faces-redirect=true"/>
 								</shiro:hasPermission>
 								<shiro:hasPermission name="Factures:Creer">
-									<p:menuitem value="Nouvelle Facture" icon="fa fa-fw fa-plus" action="formNewFact?faces-redirect=true"/>
+									<p:menuitem value="Nouvelle Facture" icon="fa fa-fw fa-plus" action="#{factureBean.flushFactNew}"/>
 								</shiro:hasPermission>
 							</p:submenu>
 						</shiro:hasPermission>

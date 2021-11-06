@@ -18,6 +18,15 @@
                 <title>#{I18N['auteur.form.nouveau.titre']}</title>
             </h:head>
             <h2 style="text-align:center">#{I18N['auteur.form.nouveau.titre']}</h2>
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="1" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <h:form id="menu" prependId="false">
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" ajax="false"/>
+                        <p:menuitem value="Table des auteurs" action="#{auteursBean.flushAut}" ajax="false"/>
+                        <p:menuitem value="Nouveau auteur" action="#{auteursBean.flushAutNew}" ajax="false"/>
+                    </p:breadCrumb>
+                </h:form>
+            </p:panelGrid>
             <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
 
                 <p:outputLabel value = "#{I18N['auteur.label.Nom']}" indicateRequired="true"/>
