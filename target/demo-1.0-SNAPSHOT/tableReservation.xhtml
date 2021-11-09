@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['application.reservation.title']}</ui:define>
+    <ui:define name="content">
+        <shiro:hasPermission name="Reservation:Lire">
+            <h:form prependId="false">
+                <p:panel layout="block" id="content">
+                    <p:growl id="growl" sticky="true" />
+                    <h2 style="text-align:center">#{I18N['application.reservation.title']}</h2>
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Table des Réservations" action="#{reservationBean.flushReserv}" />
+                    </p:breadCrumb>
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{reservationBean.readAllReservActiv}" emptyMessage="Aucun enregistrement trouvé" var="re" id="tableReservation"
+                                 Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                        <p:column headerText="Numéro de client" style="text-align: center" sortBy="#{re.utilisateur.numMembre}" filterBy="#{re.utilisateur.numMembre}">
+                            <p:outputLabel value ="#{re.utilisateur.numMembre}"/>
+                        </p:column>
+                        <shiro:hasPermission name="Reservation:ActiveDesactive">
+                        <p:column style="text-align: center">
+                            <p:commandButton value="#{I18N['application.button.supprimer']}" action="#{reservationBean.suppReserv}" immediate="true">
+                                <f:setPropertyActionListener target="#{reservationBean.reserv}" value="#{re}" />
+                            </p:commandButton>
+                        </p:column>
+                        </shiro:hasPermission>
+                        <f:facet name="footer">
+                            <p:toolbar style="border-color:#f8f9fa!important;">
+                                <f:facet name="left">
+                                    <p:commandButton icon="fa fa-fw fa-home" style="text-align: center" value="#{I18N['application.button.returnbienvenue']}" action="#{reservationBean.flushReserv}" immediate="true"/>
+                                </f:facet>
+                                <f:facet name="right">
+                                    <shiro:hasPermission name="Reservation:Creer">
+                                        <p:commandButton icon="fa fa-fw fa-check" style="text-align: center" value="#{I18N['reservation.label.newReserv']}" type="button">
+                                            <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
+                                        </p:commandButton>
+                                    </shiro:hasPermission>
+                                </f:facet>
+                            </p:toolbar>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+            </shiro:hasPermission>
+            <shiro:lacksPermission name="Reservation:Lire">
+                <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+            </shiro:lacksPermission>
+        <p:dialog header="Formulaire nouvelle reservation" widgetVar="dlg1" minHeight="40">
+            <p:ajax event="close" update="formReservation" resetValues="true" />
+            <h:form id="formReservation" prependId = "false">
+                <p:messages id="messages" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>
+                <p:panelGrid columns="2" StyleClass="formConfig">
+                    <p:outputLabel value="#{I18N['utilisateur.label.NumMembre']}" />
+                    <p:inputText value="#{reservationBean.numMembre}" id="numMembre"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.numero']}"
+                                 maxlength="9"
+                                 validator="codeBarreCliValidator">
+                    </p:inputText>
+                    <p:tooltip for="numMembre" value="#{I18N['tooltip.utilisateur.numMembre']}" position="right"/>
+
+                </p:panelGrid>
+                <p:commandButton value="#{I18N['application.button.reservation']}" action="#{reservationBean.reservation}"
+                                 oncomplete="if (args &amp;&amp; !args.validationFailed) PF('popup').hide();" update="tableReservation">
+                    <p:resetInput target="formReservation" />
+                </p:commandButton>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
+
+</html>

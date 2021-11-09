@@ -9,21 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.64 Correction des bugs concernant les filigranes (ils sont pas implémenter partout encore)">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/bibliothequePI_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/bibliothequePI_war_exploded.xml" afterDir="false" />
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.65 problème ajax">
+      <change afterPath="$PROJECT_DIR$/src/main/java/security/sessionlistener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/formConfirmationPaiement.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Utilisateurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Utilisateurs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/AdressesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/AdressesBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/FactureEnumBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/FactureEnumBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcUtilisateurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcUtilisateurs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Template/header.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsPenalitesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsPenalitesBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/shiro.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/shiro.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formConfirmationReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formConfirmationReservation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEtatLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEtatLivre.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewAdress.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewAdress.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewAuteur.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewBibliotheque.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewBibliotheque.xhtml" afterDir="false" />
@@ -32,11 +30,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewLivre.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateurCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewUtilisateurCli.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,8 +45,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -291,7 +285,14 @@
       <workItem from="1635886343931" duration="4921000" />
       <workItem from="1635965480637" duration="10434000" />
       <workItem from="1635990514297" duration="4343000" />
-      <workItem from="1636165500656" duration="1179000" />
+      <workItem from="1636165500656" duration="1538000" />
+      <workItem from="1636167220714" duration="2016000" />
+      <workItem from="1636259236444" duration="36000" />
+      <workItem from="1636400501285" duration="757000" />
+      <workItem from="1636404193626" duration="4776000" />
+      <workItem from="1636412413286" duration="4813000" />
+      <workItem from="1636417962377" duration="6349000" />
+      <workItem from="1636424652253" duration="766000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -538,7 +539,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635800830257</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="V1.2.65 problème ajax">
+      <created>1636166778000</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1636166778000</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -557,7 +565,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.2.05 Multiples corrections" />
     <MESSAGE value="v1.2.06 Multiples corrections" />
     <MESSAGE value="v1.2.07 Correction du formulaire des rôles ainsi que début de normalisation des entités" />
     <MESSAGE value="v1.2.08 Normalisation des entités" />
@@ -582,6 +589,7 @@
     <MESSAGE value="V1.2.62 Ajout du filigrane pour les tables principales mais pas pour les formulaires de nouvelle XXX ou de modification de XXX" />
     <MESSAGE value="V1.2.64 Correction des bugs concernant les filigranes" />
     <MESSAGE value="V1.2.64 Correction des bugs concernant les filigranes (ils sont pas implémenter partout encore)" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.2.64 Correction des bugs concernant les filigranes (ils sont pas implémenter partout encore)" />
+    <MESSAGE value="V1.2.65 problème ajax" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.2.65 problème ajax" />
   </component>
 </project>

@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['application.livre.title']}</ui:define>
+
+    <ui:define name="content">
+        <shiro:hasPermission name="Livres:Lire">
+        <h:form prependId="false">
+            <p:panel layout="block" id="content">
+                <p:growl id="growl" sticky="true" />
+                <h2 style="text-align:center">#{I18N['application.livre.title']}</h2>
+                <p:breadCrumb>
+                    <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                    <p:menuitem value="Table des Livres" action="#{livresBean.flushLiv}" />
+                    <p:menuitem value="Detail du livre" action="livreDetail?faces-redirect=true" />
+                </p:breadCrumb>
+                <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{livresBean.readlivre}" var="liv" id="tableLivres"
+                             Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                    <p:column headerText="#{I18N['livre.label.Titre']}" style="text-align: center" sortBy="#{liv.titre}" filterBy="#{liv.titre}">
+                        <p:outputLabel value ="#{liv.titre}"/>
+                    </p:column>
+                    <p:column headerText="#{I18N['livre.label.Isbn']}" style="text-align: center" sortBy="#{liv.isbn}" filterBy="#{liv.isbn}">
+                        <p:outputLabel value ="#{liv.isbn}"/>
+                    </p:column>
+                    <p:column headerText="#{I18N['commune.label.actif']}" style="text-align: center" sortBy="#{liv.actif}" filterBy="#{liv.actif}">
+                        <p:outputLabel value ="#{liv.actif}"/>
+                    </p:column>
+                    <p:column headerText="#{I18N['livre.label.Annee']}" style="text-align: center" sortBy="#{liv.annee}" filterBy="#{liv.annee}">
+                        <p:outputLabel value ="#{liv.annee}"/>
+                    </p:column>
+                    <p:column headerText="#{I18N['editeur.label.Nom']}" style="text-align: center" sortBy="#{liv.editeurs.nom}" filterBy="#{liv.editeurs.nom}">
+                        <p:outputLabel value ="#{liv.editeurs.nom}"/>
+                    </p:column>
+                    <p:column headerText="#{I18N['auteur.label.NomPrenom']}" style="text-align: center">
+                        <ui:repeat value="#{liv.livresAuteurs}" var="livauth">
+                                <p:outputLabel value ="#{livauth.auteur.nom} - #{livauth.auteur.prenom}"/>
+                        </ui:repeat>
+                    </p:column>
+                    <p:column headerText="#{I18N['genre.label.Denomination']}" style="text-align: center">
+                        <ui:repeat value="#{liv.livresGenres}" var="livgen">
+                                <p:outputLabel value ="#{livgen.genre.denomination}"/>
+                        </ui:repeat>
+                    </p:column>
+                    <shiro:hasPermission name="Exemplaires:Creer">
+                    <p:column style="text-align: center">
+                        <p:commandButton style="text-align: center" icon="fa fa-fw fa-plus" value="Voir les exemplaires" action="tableExemplaireLivres?faces-redirect=true">
+                            <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
+                        </p:commandButton>
+                    </p:column>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="Livres:Modification">
+                    <p:column style="text-align: center">
+                        <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['livre.label.modif']}" action="formEditLivre?faces-redirect=true">
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                        </p:commandButton>
+                    </p:column>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="Livres:ActiveDesactive">
+                    <p:column style="text-align: center">
+                        <p:commandButton icon="fa fa-fw fa-power-off" value="#{I18N['exempl.label.des']}" action="#{livresBean.activdesactivLiv}">
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                        </p:commandButton>
+                    </p:column>
+                    </shiro:hasPermission>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Livres:Lire">
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+        </shiro:lacksPermission>
+    </ui:define>
+</ui:composition>
+</html>

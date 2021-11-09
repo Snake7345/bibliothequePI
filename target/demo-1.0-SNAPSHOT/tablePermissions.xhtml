@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['application.permission.title']}</ui:define>
+    <ui:define name="content">
+        <shiro:hasPermission name="Permissions:Lire">
+        <h:form prependId="false">
+                <p:panel layout="block" id="content">
+                    <p:growl id="growl" sticky="true" />
+                    <h2 style="text-align:center">#{I18N['application.permission.title']}</h2>
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Table des Permissions" action="#{permissionsBean.flushPerm}" />
+                    </p:breadCrumb>
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{permissionsBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="per" id="tablePermissions"
+                                 Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                        <p:column headerText="Type de permissions" style="text-align: center;" sortBy="#{per.type}" filterBy="#{per.type}">
+                            <p:outputLabel value ="#{per.type}"/>
+                        </p:column>
+                        <p:column headerText="Action de la permission" style="text-align: center;" sortBy="#{per.action}" filterBy="#{per.action}">
+                            <p:outputLabel value ="#{per.action}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Permissions:Lire">
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+        </shiro:lacksPermission>
+    </ui:define>
+</ui:composition>
+</html>

@@ -40,7 +40,8 @@ public class FactureBean implements Serializable {
     private Factures factures;
     private static final Logger log = Logger.getLogger(FactureBean.class);
     private List<locationCustom> listLC = new ArrayList<>();
-    private List<TarifsPenalites> tarifsPenalites;
+    private List<TarifsPenalites> tarifsPenalitesChoisie;
+    private List<TarifsPenalites> listTarifsPenalites;
     private String numMembre;
     private String CB;
     private boolean choixetat;
@@ -297,8 +298,8 @@ public class FactureBean implements Serializable {
             fact.setUtilisateurs(u);
 
             //création des facture détails
-            if (tarifsPenalites.size() >= 1){
-                for (TarifsPenalites tp: tarifsPenalites)
+            if (tarifsPenalitesChoisie.size() >= 1){
+                for (TarifsPenalites tp: tarifsPenalitesChoisie)
                 {
                     factdet=serviceFD.newPena(facturesDetail.getExemplairesLivre(),fact,T, tp.getPenalite(), Date.from(facturesDetail.getFacture().getDateDebut().toInstant()),timestampfacture);
                     prixTVAC=prixTVAC+factdet.getPrix();
@@ -323,7 +324,7 @@ public class FactureBean implements Serializable {
             transaction.commit();
             //refresh pour récupérer les collections associÃ©es
             service.refreshEntity(fact);
-            MFB.creation(fact,tarifsPenalites,factdetretard, bibliothequeActuelle);
+            MFB.creation(fact, tarifsPenalitesChoisie,factdetretard, bibliothequeActuelle);
             sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant les pénalités suite a votre location en piece jointe","Facture de pénalité");
         }
         finally {
@@ -347,11 +348,20 @@ public class FactureBean implements Serializable {
     public String redirectChoix(){
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         exemplairesLivres = serviceEL.findOneByCodeBarre(CB).get(0);
-        tarifsPenalites= new ArrayList<>();
+        tarifsPenalitesChoisie = new ArrayList<>();
+        listTarifsPenalites = new ArrayList<>();
         if (choixetat){
             Date date = new Date();
             SvcTarifs serviceT = new SvcTarifs();
-            tarifsPenalites= (List<TarifsPenalites>) serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).get(0).getTarifsPenalites();
+            listTarifsPenalites = (List<TarifsPenalites>) serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).get(0).getTarifsPenalites();
+            for(TarifsPenalites tp : listTarifsPenalites)
+            {
+                if(tp.getPenalite().getDenomination().equals("Retard"))
+                {
+                    listTarifsPenalites.remove(tp);
+                    break;
+                }
+            }
             return "/formEtatLivre.xhtml?faces-redirect=true";
         }
         else
@@ -402,7 +412,7 @@ public class FactureBean implements Serializable {
                 log.debug("4");
                 flag=false;
                 facturesDetail.setDateRetour(timestampretour);
-                if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin()) || tarifsPenalites.size()>=1)
+                if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin()) || tarifsPenalitesChoisie.size()>=1)
                 {
                     log.debug("5");
                     newFactPena(facturesDetail);
@@ -462,6 +472,7 @@ public class FactureBean implements Serializable {
                         log.debug("13");
                         reserve = true;
                     }
+                    serviceR.close();
                 }
             }
         }
@@ -518,7 +529,7 @@ public class FactureBean implements Serializable {
         }
         catch(NullPointerException ignored) {
         }
-
+        serviceF.close();
         return numFact;
     }
     /*
@@ -600,12 +611,12 @@ public class FactureBean implements Serializable {
         this.CB = CB;
     }
 
-    public List<TarifsPenalites> getTarifsPenalites() {
-        return tarifsPenalites;
+    public List<TarifsPenalites> getTarifsPenalitesChoisie() {
+        return tarifsPenalitesChoisie;
     }
 
-    public void setTarifsPenalites(List<TarifsPenalites> tarifsPenalites) {
-        this.tarifsPenalites = tarifsPenalites;
+    public void setTarifsPenalitesChoisie(List<TarifsPenalites> tarifsPenalitesChoisie) {
+        this.tarifsPenalitesChoisie = tarifsPenalitesChoisie;
     }
 
     public boolean isChoixetat() {
@@ -624,5 +635,11 @@ public class FactureBean implements Serializable {
         this.exemplairesLivres = exemplairesLivres;
     }
 
+    public List<TarifsPenalites> getListTarifsPenalites() {
+        return listTarifsPenalites;
+    }
 
+    public void setListTarifsPenalites(List<TarifsPenalites> listTarifsPenalites) {
+        this.listTarifsPenalites = listTarifsPenalites;
+    }
 }

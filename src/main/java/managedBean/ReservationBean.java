@@ -51,6 +51,7 @@ public class ReservationBean implements Serializable
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
         SvcReservations serviceR = new SvcReservations();
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
+        serviceU.close();
         Reservation reservation = serviceR.createReservation(u, bibliothequeActuelle, livre);
         if(serviceR.findOneActiv(reservation).size() == 0) {
             EntityTransaction transaction = serviceR.getTransaction();
@@ -70,6 +71,7 @@ public class ReservationBean implements Serializable
                 }
                 init();
                 serviceR.close();
+
             }
         }
         else {
@@ -78,6 +80,7 @@ public class ReservationBean implements Serializable
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le client a déjà une réservation pour ce livre", null));
         }
+
         return "/tableReservation.xhtml?faces-redirect=true";
     }
     /*Cette méthode permet d'envoyer un mail au client qui a effectué une reservation concernant un livre rentré de location*/

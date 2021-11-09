@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['adresse.form.modif.titre']}</ui:define>
+
+    <ui:define name="content">
+        <p:growl id="growl" sticky="true" />
+        <shiro:hasPermission name="Adresses:Modification">
+        <h:form id="form" prependId="false">
+            <h:head>
+                <title>#{I18N['adresse.form.modif.titre']}</title>
+            </h:head>
+            <h2 style="text-align:center">#{I18N['adresse.form.modif.titre']}</h2>
+            <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                <p:outputLabel value = "#{I18N['adresse.label.Rue']}" indicateRequired="true"/>
+                <p:inputText id="adresseRue"
+                             validatorMessage="La rue doit avoir entre 2 et 100 caractere"
+                             value="#{adressesBean.adresse.rue}"
+                             required="true"
+                             requiredMessage="#{I18N['formulaire.message.required.rue']}"
+                             maxlength="100">
+                    <f:validateLength minimum="2" maximum="100"/>
+                    <p:tooltip for="adresseRue" value="#{I18N['tooltip.adresse.rue']}" position="right"/>
+                </p:inputText>
+
+
+                <p:outputLabel value = "#{I18N['adresse.label.Boite']}"/>
+                <p:inputText id="adresseBoite"
+                             required="false"
+                             value="#{adressesBean.adresse.boite}"
+                             maxlength="4">
+                    <p:tooltip for="adresseBoite" value="#{I18N['tooltip.adresse.boite']}" position="right"/>
+                </p:inputText>
+
+
+                <p:outputLabel value = "#{I18N['adresse.label.Numero']}" indicateRequired="true"/>
+                <p:inputText id="adresseNumero"
+                             validatorMessage="Le numero est de minimum 1 caracteres et de maximum 6 caracteres"
+                             value="#{adressesBean.adresse.numero}"
+                             required="true"
+                             requiredMessage="#{I18N['formulaire.message.required.numero']}"
+                             maxlength="6">
+                    <f:validateLength minimum="1" maximum="6"/>
+                    <p:tooltip for="adresseNumero" value="#{I18N['tooltip.adresse.numero']}" position="right"/>
+                </p:inputText>
+
+                <p:outputLabel value = "#{I18N['localite.label.Cp']}" indicateRequired="true"/>
+                <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca"
+                                 converter="localiteConverter" var="c" filter="true" filterMatchMode="contains" required="true">
+                    <f:selectItems value = "#{localitesBean.readAll}" var="loca"
+                                   itemLabel="#{loca.cp} - #{loca.ville}" itemValue="#{loca}"/>
+                    <p:column>
+                        <p:graphicImage value="/Images/belgium.png" style="width: 30px; height: 20px"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{c.cp}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{c.ville}"/>
+                    </p:column>
+                    <p:tooltip for="adressLoca" value="#{I18N['tooltip.localite']}" position="right"/>
+                </p:selectOneListbox>
+                <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{adressesBean.flushAdd}" immediate="true"/>
+                <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{adressesBean.newAdress}" ajax="false"/>
+            </p:panelGrid>
+
+        </h:form>
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Adresses:Modification">
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+        </shiro:lacksPermission>
+    </ui:define>
+</ui:composition>
+
+</html>

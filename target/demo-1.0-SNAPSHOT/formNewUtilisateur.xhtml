@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['utilisateur.form.nouveau.titre']}</ui:define>
+
+    <ui:define name="content">
+        <p:growl id="growl" sticky="true"/>
+        <shiro:hasPermission name="Utilisateurs:Creer">
+            <h:form id="form" prependId="false">
+                <h:head>
+                <title>#{I18N['utilisateur.form.nouveau.titre']}</title>
+                </h:head>
+                <h2 style="text-align:center">#{I18N['utilisateur.form.nouveau.titre']}</h2>
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+                    <p:outputLabel value = "#{I18N['utilisateur.label.Nom']}" indicateRequired="true"/>
+                    <p:inputText id="utilisateurNom"
+                                 value="#{utilisateursBean.utilisateur.nom}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.nom']}"
+                                 validator = "nomPrenomValidator"
+                                 maxlength="100">
+                        <f:validateLength minimum="1" maximum="100"/>
+                    </p:inputText>
+
+                    <p:outputLabel value = "#{I18N['utilisateur.label.Prenom']}" indicateRequired="true"/>
+                    <p:inputText id="utilisateurPrenom"
+                                 value="#{utilisateursBean.utilisateur.prenom}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.prenom']}"
+                                 validator = "nomPrenomValidator"
+                                 maxlength="100">
+                        <f:validateLength minimum="1" maximum="100"/>
+                    </p:inputText>
+
+                    <p:outputLabel value = "#{I18N['utilisateur.label.Sexe']}" indicateRequired="true"/>
+                    <p:selectOneRadio id="sexe" value="#{utilisateursBean.utilisateur.sexe}"
+                                      required="true"
+                                      requiredMessage="#{I18N['formulaire.message.required.sexe']}">
+                        <f:selectItems value="#{utilisateursEnumBean.sexeEnum}" />
+                    </p:selectOneRadio>
+
+                    <p:outputLabel value = "#{I18N['utilisateur.label.Courriel']}" indicateRequired="true"/>
+                    <p:inputText id="utilisateurCourriel"
+                                 value="#{utilisateursBean.utilisateur.courriel}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.courriel']}"
+                                 validator = "emailValidator"
+                                 maxlength="100">
+                        <f:validateLength minimum="3" maximum="100"/>
+                    </p:inputText>
+
+                    <p:outputLabel value = "#{I18N['utilisateur.label.Login']}" indicateRequired="true"/>
+                    <p:inputText id="utilisateurLogin"
+                                 value="#{utilisateursBean.utilisateur.login}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.login']}"
+                                 validator = "utilisateurExistValidator"
+                                 maxlength="80">
+                        <f:validateLength minimum="4" maximum="80"/>
+                    </p:inputText>
+
+                    <p:outputLabel value = "#{I18N['utilisateur.label.Mdp']}" indicateRequired="true"/>
+                    <p:password id="utilisateurMdp"
+                                   validatorMessage="La valeur doit être comprise entre 8 et 40 caracteres"
+                                   value="#{utilisateursBean.utilisateur.mdp}"
+                                   requiredMessage="#{I18N['formulaire.message.required.mdp']}"
+                                   required="true"
+                                   toggleMask="true"
+                                   redisplay="true"
+                                   maxlength="40">
+                        <f:validateLength minimum="8" maximum="40"/>
+                    </p:password>
+
+                    <p:outputLabel value = "#{I18N['role.label.Denomination']}" indicateRequired="true"/>
+                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{utilisateursBean.utilisateur.roles}" id="roles" required="true" requiredMessage="#{I18N['formulaire.message.required.role']}"
+                                     converter="roleConverter">
+                        <shiro:hasRole name="1">
+                            <f:selectItems value = "#{rolesBean.readActivUtil}" var="ro"
+                                           itemLabel="#{ro.denomination}"
+                                           itemValue="#{ro}"/>
+                        </shiro:hasRole>
+                        <shiro:lacksRole name="1">
+                            <f:selectItems value = "#{rolesBean.readActiv}" var="ro"
+                                           itemLabel="#{ro.denomination}"
+                                           itemValue="#{ro}"/>
+                        </shiro:lacksRole>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="#{I18N['bibliotheque.label.Nom']}" indicateRequired="true"/>
+                    <p:selectOneMenu styleClass="selectOneMenu" value = "#{utilisateursBean.bibli}" id="bib" converter="biblioConverter">
+                        <f:selectItems value = "#{bibliothequesBean.listBiblioActiv}" var="biblio"
+                                       itemLabel="#{biblio.nom}"
+                                       itemValue="#{biblio}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value = "#{I18N['adresse.label.Rue']}" indicateRequired="true"/>
+                    <p:selectOneListbox value = "#{utilisateursBean.adresses}" id="utiladress" required="true"
+                                     requiredMessage="#{I18N['formulaire.message.required.adresse']}"
+                                     converter="adressConverter" var="c" filter="true" filterMatchMode="contains">
+                        <f:selectItems value = "#{adressesBean.readAllNotBibli}" var="ad"
+                                       itemLabel="#{ad.rue} #{ad.numero} #{ad.boite} #{ad.localites.cp}"
+                                       itemValue="#{ad}"/>
+                        <p:column>
+                            <h:outputText value="#{c.rue} #{c.numero} #{c.boite} #{c.localites.cp} #{c.localites.ville}" />
+                        </p:column>
+                    </p:selectOneListbox>
+                    <shiro:hasPermission name="Adresses:Creer">
+                    <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}" immediate="true">
+                    <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
+                    </p:commandButton>
+                        <p:outputLabel/>
+                    </shiro:hasPermission>
+                    <p:commandButton style="float:left;" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{utilisateursBean.flushUtil}" immediate="true" ajax="false"/>
+                    <p:commandButton style="float:right;" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.newUtil}" ajax="false"/>
+                </p:panelGrid>
+            </h:form>
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Utilisateurs:Creer">
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+        </shiro:lacksPermission>
+        <p:dialog header="Nouvelle adresse" widgetVar="dlg1" minHeight="40">
+            <p:ajax event="close" update="formAdresse" resetValues="true" />
+            <p:messages id="messages" closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+            <h:form id="formAdresse" prependId = "false">
+                <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform2" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
+
+                    <p:outputLabel value = "#{I18N['adresse.label.Rue']}"/>
+                    <p:inputText id="adresseRue"
+                                 validatorMessage="La rue doit avoir entre 2 et 100 caractere"
+                                 value="#{adressesBean.adresse.rue}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.rue']}"
+                                 maxlength="100">
+                        <f:validateLength minimum="2" maximum="100"/>
+                    </p:inputText>
+
+                    <p:outputLabel value = "#{I18N['adresse.label.Boite']}"/>
+                    <p:inputText id="adresseBoite"
+                                 required="false"
+                                 value="#{adressesBean.adresse.boite}"
+                                 maxlength="4">
+                    </p:inputText>
+
+                    <p:outputLabel value = "#{I18N['adresse.label.Numero']}"/>
+                    <p:inputText id="adresseNumero"
+                                 validatorMessage="Le numero est de minimum 1 caracteres et de maximum 6 caracteres"
+                                 value="#{adressesBean.adresse.numero}"
+                                 required="true"
+                                 requiredMessage="#{I18N['formulaire.message.required.numero']}"
+                                 maxlength="6">
+                        <f:validateLength minimum="1" maximum="6"/>
+                    </p:inputText>
+
+                    <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
+                    <p:selectOneListbox value = "#{adressesBean.adresse.localites}" id="adressLoca" required="true" requiredMessage="Le code postal est requis"
+                                        converter="localiteConverter" var="c" filter="true" filterMatchMode="contains">
+                        <f:selectItems value = "#{localitesBean.readAll}" var="loca"
+                                       itemLabel="#{loca.cp} : #{loca.ville}" itemValue="#{loca}"/>
+                        <p:column>
+                            <p:graphicImage value="/Images/belgium.png" style="width: 30px; height: 20px"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{c.cp}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{c.ville}"/>
+                        </p:column>
+                    </p:selectOneListbox>
+                    <p:commandButton value="#{I18N['application.button.envoyer']}" action="#{adressesBean.newAdresspopup}">
+                        <p:resetInput target="formAdresse" />
+                    </p:commandButton>
+                </p:panelGrid>
+
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
+
+</html>

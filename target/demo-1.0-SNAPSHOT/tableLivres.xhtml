@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['application.livre.title']}</ui:define>
+    <ui:define name="content">
+        <shiro:hasPermission name="Livres:Lire">
+        <h:form prependId="false">
+            <p:panel layout="block" id="content">
+                <p:growl id="growl" sticky="true" />
+                <h2 style="text-align:center">#{I18N['application.livre.title']}</h2>
+                <p:breadCrumb>
+                    <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                    <p:menuitem value="Table des Livres" action="#{livresBean.flushLiv}" />
+                </p:breadCrumb>
+                <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{livresBean.listLiv}" emptyMessage="Aucun enregistrement trouvé" var="liv" id="tableLivres"
+                             Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                    <f:facet name="header">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <shiro:hasPermission name="Livres:Transfert">
+                                    <p:commandButton style="text-align: center" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.transfertlivre']}" action="formTransfertLivre?faces-redirect=true">
+                                    </p:commandButton>
+                                </shiro:hasPermission>
+                            </f:facet>
+                            <f:facet name="right">
+                                <shiro:hasPermission name="Livres:Reception">
+                                    <p:commandButton style="text-align: center" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.receptionlivre']}" action="formReceptionLivre?faces-redirect=true">
+                                    </p:commandButton>
+                                </shiro:hasPermission>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
+                    <f:facet name="header">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton style="text-align: center" icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}" ajax="false"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton style="text-align: center" icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}" ajax="false"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
+                    <p:column headerText="#{I18N['livre.label.Titre']}" style="text-align: center" sortBy="#{liv.titre}" filterBy="#{liv.titre}">
+                        <p:outputLabel value ="#{liv.titre}"/>
+                    </p:column>
+                    <p:column headerText="#{I18N['auteur.label.NomPrenom']}" style="text-align: center">
+                        <ui:repeat value="#{liv.livresAuteurs}" var="livauth">
+                                <p:outputLabel value ="#{livauth.auteur.nom} #{livauth.auteur.prenom} "/>
+                        </ui:repeat>
+                    </p:column>
+
+                    <p:column headerText="#{I18N['genre.label.Denomination']}" style="text-align: center">
+                        <ui:repeat value="#{liv.livresGenres}" var="livgen">
+                                <p:outputLabel value ="#{livgen.genre.denomination} "/>
+                        </ui:repeat>
+                    </p:column>
+                    <p:column style="text-align: center">
+                        <p:commandButton  icon="fa fa-fw fa-th-list" value="Details" action="livreDetail?faces-redirect=true">
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}"/>
+                        </p:commandButton>
+                    </p:column>
+                    <shiro:hasPermission name="Livres:Modification">
+                    <p:column style="text-align: center">
+                        <p:commandButton  icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditLivre?faces-redirect=true">
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                        </p:commandButton>
+                    </p:column>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="Livres:ActiveDesactive">
+                    <p:column style="text-align: center">
+                        <p:commandButton style="text-align: center" rendered="#{liv.actif}" icon="fa fa-fw fa-power-off" value ="Desactiver" action="#{livresBean.activdesactivLiv}">
+                            <p:confirm type="popup" header="Confirmation" message="#{I18N['livre.form.questionconfirm']}" icon="fa fa-fw fa-warning"/>
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                        </p:commandButton>
+                        <p:confirmPopup global="true">
+                            <p:commandButton value="#{I18N['commune.label.non']}" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                            <p:commandButton value="#{I18N['commune.label.oui']}" type="button" styleClass="ui-confirm-popup-yes" />
+                        </p:confirmPopup>
+                        <p:commandButton style="text-align: center" rendered="#{!liv.actif}" icon="fa fa-fw fa-power-off" value ="Activer" action="#{livresBean.activdesactivLiv}">
+                            <f:setPropertyActionListener target="#{livresBean.livre}" value="#{liv}" />
+                        </p:commandButton>
+                    </p:column>
+                    </shiro:hasPermission>
+                    <p:column headerText="Disponibilité" style="text-align: center">
+                        <p:graphicImage id="pastille" value="#{livresBean.verifDispo(liv)}" width="100" height="100"/>
+                        <p:tooltip for="pastille" trackMouse="true">
+                        Vert : Disponible <br/>
+                            Orange : Disponible mais tous les livres sont louées<br/>
+                            Rouge : Disponible mais tous les livres sont dans d'autres bibliothèques<br/>
+                            Noir : Indisponible
+                        </p:tooltip>
+                    </p:column>
+                    <shiro:hasPermission name="Reservation:Lire">
+                    <p:column style="text-align: center">
+                        <p:commandButton style="text-align: center" icon="fa fa-fw fa-leanpub" value="#{I18N['application.button.reservation']}" action="tableReservation?faces-redirect=true">
+                            <f:setPropertyActionListener target="#{reservationBean.livre}" value="#{liv}" />
+                        </p:commandButton>
+                    </p:column>
+                    </shiro:hasPermission>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton style="text-align: center" icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.livInactiv']}" action="#{livresBean.getReadInactiv}" ajax="false"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton style="text-align: center" icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.livActiv']}" action="#{livresBean.getReadActiv}" ajax="false"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <shiro:hasPermission name="Livres:Transfert">
+                                    <p:commandButton style="text-align: center" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.transfertlivre']}" action="formTransfertLivre?faces-redirect=true">
+                                    </p:commandButton>
+                                </shiro:hasPermission>
+                            </f:facet>
+                            <f:facet name="right">
+                                <shiro:hasPermission name="Livres:Reception">
+                                    <p:commandButton style="text-align: center" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.receptionlivre']}" action="formReceptionLivre?faces-redirect=true">
+                                    </p:commandButton>
+                                </shiro:hasPermission>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Livres:Lire">
+            <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+        </shiro:lacksPermission>
+    </ui:define>
+</ui:composition>
+</html>

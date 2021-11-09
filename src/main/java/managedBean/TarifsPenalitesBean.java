@@ -58,6 +58,7 @@ public class TarifsPenalitesBean implements Serializable {
     }
 
 
+
     //-------------------------------Getter & Setter--------------------------------------------
 
     public TarifsPenalites getTarifsPenalite() {

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['application.bibliotheque.title']}</ui:define>
+    <ui:define name="content">
+        <shiro:hasPermission name="Bibliotheques:Lire">
+        <h:form prependId="false">
+                <p:panel layout="block" id="content">
+                    <p:growl id="growl" sticky="true" />
+                    <h2 style="text-align:center">#{I18N['application.bibliotheque.title']}</h2>
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Table des Bibliothèques" action="#{bibliothequesBean.flushBiblio}" />
+                    </p:breadCrumb>
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{bibliothequesBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="bi" id="tableClient"
+                                 Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                        <p:column headerText="#{I18N['bibliotheque.label.Nom']}" style="text-align: center" sortBy="#{bi.nom}" filterBy="#{bi.nom}">
+                            <p:outputLabel value ="#{bi.nom}"/>
+                        </p:column>
+                        <p:column headerText="#{I18N['adresse.label.complete']}" style="text-align: center">
+                            <ui:repeat value="#{bi.adresses}" var="biad">
+                                <p:outputLabel value ="#{biad.rue}, #{biad.numero} #{biad.boite} #{biad.localites.cp} #{biad.localites.ville}"/>
+                            </ui:repeat>
+                        </p:column>
+                        <shiro:hasPermission name="Bibliotheques:Modification">
+                        <p:column style="text-align: center">
+                            <p:commandButton style="text-align: center" rendered="#{bi.idBibliotheques eq bibliothequesBean.idBiblio}" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditBibliotheque?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" />
+                            </p:commandButton>
+                        </p:column>
+                        </shiro:hasPermission>
+                        <shiro:hasPermission name="Bibliotheques:ActiveDesactive">
+                        <p:column style="text-align: center">
+                            <p:commandButton style="text-align: center" rendered="#{(bi.idBibliotheques ne bibliothequesBean.idBiblio) and (bi.actif eq true)}" icon="fa fa-fw fa-power-off" value="#{I18N['commune.label.desactiver']}" action="formDesactivBiblio?faces-redirect=true">
+                                <p:confirm type="popup" header="Confirmation" message="Vous êtes sur de vouloir désactiver la bibliotheque ?" icon="fa fa-fw fa-warning"/>
+                                <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" />
+                            </p:commandButton>
+                            <p:confirmPopup global="true">
+                                <p:commandButton value="#{I18N['commune.label.non']}" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+                                <p:commandButton value="#{I18N['commune.label.oui']}" type="button" styleClass="ui-confirm-popup-yes" />
+                            </p:confirmPopup>
+                            <p:commandButton style="text-align: center" rendered="#{bi.actif eq false}" icon="fa fa-fw fa-power-off" value="Activer" action="#{bibliothequesBean.ActivDesactivBiblio}">
+                                <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" />
+                            </p:commandButton>
+                        </p:column>
+                        </shiro:hasPermission>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Bibliotheques:Lire">
+        <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+        </shiro:lacksPermission>
+    </ui:define>
+</ui:composition>
+</html>

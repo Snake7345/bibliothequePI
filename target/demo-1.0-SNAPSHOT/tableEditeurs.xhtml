@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="Template/template.xhtml">
+    <ui:define name="title">#{I18N['application.editeur.title']}</ui:define>
+
+    <ui:define name="content">
+        <shiro:hasPermission name="Editeurs:Lire">
+        <h:form prependId="false">
+                <p:panel layout="block" id="content">
+                    <p:growl id="growl" sticky="true" />
+                    <h2 style="text-align:center">#{I18N['application.editeur.title']}</h2>
+                    <p:breadCrumb>
+                        <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
+                        <p:menuitem value="Table des éditeurs" action="#{editeursBean.flushEd}" />
+                    </p:breadCrumb>
+                    <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{editeursBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="ed" id="tableEditeurs"
+                                 Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                        <p:column headerText="#{I18N['editeur.label.Nom']}" style="text-align: center" sortBy="#{ed.nom}" filterBy="#{ed.nom}">
+                            <p:outputLabel value ="#{ed.nom}"/>
+                        </p:column>
+                        <shiro:hasPermission name="Editeurs:Modification">
+                        <p:column style="text-align: center">
+                            <p:commandButton style="text-align: center"  icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditEditeur?faces-redirect=true">
+                                <f:setPropertyActionListener target="#{editeursBean.editeur}" value="#{ed}" />
+                            </p:commandButton>
+                        </p:column>
+                        </shiro:hasPermission>
+                        <p:column style="text-align: center">
+                            <p:commandButton style="text-align: center" icon="fa fa-fw fa-book" value="#{I18N['application.button.livreparediteur']}" action="#{livresBean.readByEditeurs}">
+                                <f:setPropertyActionListener target="#{livresBean.edit}" value="#{ed}" />
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Editeurs:Lire">
+        <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
+        </shiro:lacksPermission>
+    </ui:define>
+</ui:composition>
+</html>
