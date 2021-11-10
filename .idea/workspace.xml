@@ -9,28 +9,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.65 problème ajax">
-      <change afterPath="$PROJECT_DIR$/src/main/java/security/sessionlistener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/formConfirmationPaiement.xhtml" afterDir="false" />
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.66 Correction multiples">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateurCli.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/FactureEnumBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/FactureEnumBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsPenalitesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsPenalitesBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/shiro.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/shiro.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formConfirmationReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formConfirmationReservation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEtatLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEtatLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewAdress.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewAdress.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewAuteur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewAuteur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewBibliotheque.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewBibliotheque.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewEditeur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewEditeur.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewGenre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewGenre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/bibliotheque.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/envoiInfo.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/envoiInfo.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formConfirmationPaiement.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formConfirmationPaiementLoca.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditUtilisateur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewFact.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewFact.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/formReinitialisation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formReinitialisation.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/FactureBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/FactureBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/LoginBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/LoginBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/UtilisateursBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/UtilisateursBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblioPena.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblioPena.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000008.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000008.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000009.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000009.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000010.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000010.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000011.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000011.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000012.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000012.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000013.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000013.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000014.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000014.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000015.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000016.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000017.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000018.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000019.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000020.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000021.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000022.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/LoginBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/LoginBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/UtilisateursBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/UtilisateursBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblioPena.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblioPena.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/bibliotheque.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/bibliotheque.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/envoiInfo.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/envoiInfo.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formConfirmationPaiement.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditProfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditProfil.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditUtilisateur.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditUtilisateur.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewFact.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewFact.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formReinitialisation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formReinitialisation.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableBibliotheques.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateursCli.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,7 +326,10 @@
       <workItem from="1636404193626" duration="4776000" />
       <workItem from="1636412413286" duration="4813000" />
       <workItem from="1636417962377" duration="6349000" />
-      <workItem from="1636424652253" duration="766000" />
+      <workItem from="1636424652253" duration="1130000" />
+      <workItem from="1636460049126" duration="21190000" />
+      <workItem from="1636499174240" duration="3633000" />
+      <workItem from="1636504026005" duration="674000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -546,7 +583,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636166778000</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="V1.2.66 Correction multiples">
+      <created>1636425584209</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1636425584209</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -565,7 +609,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.2.06 Multiples corrections" />
     <MESSAGE value="v1.2.07 Correction du formulaire des rôles ainsi que début de normalisation des entités" />
     <MESSAGE value="v1.2.08 Normalisation des entités" />
     <MESSAGE value="v1.2.10 Multiples corrections graphiques + ajout dess commentaires + ajout en cours de la fonctionnalité cconcernant les archétypes" />
@@ -590,6 +633,7 @@
     <MESSAGE value="V1.2.64 Correction des bugs concernant les filigranes" />
     <MESSAGE value="V1.2.64 Correction des bugs concernant les filigranes (ils sont pas implémenter partout encore)" />
     <MESSAGE value="V1.2.65 problème ajax" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.2.65 problème ajax" />
+    <MESSAGE value="V1.2.66 Correction multiples" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.2.66 Correction multiples" />
   </component>
 </project>

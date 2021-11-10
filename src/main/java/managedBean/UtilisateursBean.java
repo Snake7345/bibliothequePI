@@ -51,6 +51,7 @@ public class UtilisateursBean implements Serializable {
     /*Permet d'attribuer et/ou vider les variables au démarrage du bean*/
     @PostConstruct
     public void init() {
+        log.debug("init fait");
         listUtil = getReadAllUtil();
         listUtilBib = getReadAllUtilBib();
         listCli = getReadAllCli();
@@ -101,6 +102,18 @@ public class UtilisateursBean implements Serializable {
         }
         return "/formEditUtilisateur.xhtml?faces-redirect=true";
     }
+
+    public String redirectModifUtilCli()
+    {
+        tabbibli.clear();
+        for (UtilisateursAdresses ua: utilisateur.getUtilisateursAdresses()) {
+            if(ua.isActif()){
+                adresses=ua.getAdresse();
+            }
+        }
+        return "/formEditUtilisateurCli.xhtml?faces-redirect=true";
+    }
+
     public String redirectModifUtilProfil()
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
@@ -263,6 +276,8 @@ public class UtilisateursBean implements Serializable {
             }
             else
             {
+                log.debug(utilisateur.getLogin());
+
                 if (utilisateur.getMdp().equals(serviceU.findByLogin(utilisateur.getLogin()).get(0).getMdp())) {
                     if (SecurityManager.PasswordMatch(mdpNouveau, utilisateur.getMdp())) {
                         FacesContext fc = FacesContext.getCurrentInstance();
@@ -274,13 +289,12 @@ public class UtilisateursBean implements Serializable {
                         utilisateur.setMdp(mdpNouveau);
                         serviceU.save(utilisateur);
                         transaction.commit();
-                        FacesContext fc = FacesContext.getCurrentInstance();
-                        fc.getExternalContext().getFlash().setKeepMessages(true);
-                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
-
+                        PrimeFaces.current().executeScript("PF('dlg2').hide();");
+                        PrimeFaces.current().dialog().showMessageDynamic(new FacesMessage(FacesMessage.SEVERITY_INFO,"Le mot de passe a été modifié",null));
                     }
 
                 }
+
             }
         }
         catch (NullPointerException npe)
@@ -299,7 +313,7 @@ public class UtilisateursBean implements Serializable {
             serviceU.close();
         }
 
-        init();
+
         mdpNouveau="";
         mdpNouveau2="";
     }
@@ -316,9 +330,6 @@ public class UtilisateursBean implements Serializable {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 fc.getExternalContext().getFlash().setKeepMessages(true);
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le nouveau mot de passe et la confirmation ne correspondent pas", null));
-                /*PrimeFaces primefaces = PrimeFaces.current();
-                primefaces.ajax().update("dialog");
-                primefaces.executeScript("PF('widgetVar').show();");*/
             }
             else
             {
@@ -336,9 +347,7 @@ public class UtilisateursBean implements Serializable {
                         FacesContext fc = FacesContext.getCurrentInstance();
                         fc.getExternalContext().getFlash().setKeepMessages(true);
                         fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
-
                     }
-
                 }
             }
         }
@@ -518,7 +527,7 @@ public class UtilisateursBean implements Serializable {
                         FacesContext fc = FacesContext.getCurrentInstance();
                         fc.getExternalContext().getFlash().setKeepMessages(true);
                         fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Vous ne pouvez pas choisir deux fois les mêmes bibliothèques",null));
-                        return "/formEditUtilisateur.xhtml?faces-redirect=true";}
+                        return "/formEditProfil.xhtml?faces-redirect=true";}
                     else {
                         listUB.add(serviceUB.createUtilisateursBibliotheques(utilisateur, bib));
                     }
@@ -671,6 +680,13 @@ public class UtilisateursBean implements Serializable {
 
         return "/tableUtilisateurs?faces-redirect=true";
     }
+    //Méthode qui permet de vider les variables et de revenir sur le table des utilisateurs
+    public String flushProfil() {
+        init();
+
+        return "/bienvenue?faces-redirect=true";
+    }
+
     //Méthode qui permet de vider les variables et de revenir sur le table des utilisateurs(Client)
     public String flushUtilCli() {
         init();

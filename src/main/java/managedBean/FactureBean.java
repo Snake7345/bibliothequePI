@@ -26,6 +26,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.persistence.EntityTransaction;
+import java.io.File;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.*;
@@ -38,6 +39,7 @@ public class FactureBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Factures factures;
+    private FacturesDetail facturesDetails;
     private static final Logger log = Logger.getLogger(FactureBean.class);
     private List<locationCustom> listLC = new ArrayList<>();
     private List<TarifsPenalites> tarifsPenalitesChoisie;
@@ -56,6 +58,7 @@ public class FactureBean implements Serializable {
         factures= new Factures();
         numMembre= "";
         CB= "";
+        facturesDetails= new FacturesDetail();
     }
 
     /*Cette méthode permet d'ajouter une nouvelle ligne dans un formulaire concernant une location */
@@ -114,8 +117,7 @@ public class FactureBean implements Serializable {
         }
     }
 
-    // Méthode qui permet de créer une facture
-    public String newFact()
+    public String redirectConfirmLocation()
     {
         //initialisation des services requis
         SvcFacture service =new SvcFacture();
@@ -123,21 +125,15 @@ public class FactureBean implements Serializable {
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
         SvcTarifs serviceT = new SvcTarifs();
-        SvcJours serviceJ = new SvcJours();
         SvcReservations serviceR = new SvcReservations();
 
-        //rassemblement des entity managers pour la transaction
-        serviceFD.setEm(service.getEm());
-        serviceEL.setEm(service.getEm());
-        serviceR.setEm(service.getEm());
+
         //initialisation des object et variables
         double prixTVAC = 0;
         long now =  System.currentTimeMillis();
         long rounded = now - now % 60000;
         Timestamp timestampdebut = new Timestamp(rounded);
         Date date = new Date();
-        Factures fact = new Factures();
-        ModelFactBiblio MFB =new ModelFactBiblio();
         Tarifs T= new Tarifs();
 
         Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
@@ -180,72 +176,131 @@ public class FactureBean implements Serializable {
         }
 
         if (!flag) {
-            //initialisation de la transaction
-            EntityTransaction transaction = service.getTransaction();
-            transaction.begin();
+
             try {
 
                 //création de la facture
-                fact.setBibliotheques(bibliothequeActuelle);
-                fact.setDateDebut(timestampdebut);
-                fact.setNumeroFacture(createNumFact());
-                String path = "Factures\\" + fact.getNumeroFacture() + ".pdf";
-                fact.setLienPdf(path);
-                fact.setEtat(FactureEtatEnum.en_cours);
-                fact.setUtilisateurs(u);
+                factures.setBibliotheques(bibliothequeActuelle);
+                factures.setDateDebut(timestampdebut);
+                factures.setEtat(FactureEtatEnum.en_cours);
+                factures.setUtilisateurs(u);
                 // parcour de la liste des location a inscrire dans la facture
                 for (locationCustom lc : listLC) {
 
                     //création des détails de la facture
                     ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
-                    serviceEL.loueExemplaire(el);
-                    if(el.isReserve()){
-                        serviceEL.reservExemplaire(el);
-                        Reservation r= serviceR.findOneActiv(serviceR.createReservation(u,bibliothequeActuelle,el.getLivres())).get(0);
-                        r.setActif(false);
-                        serviceR.save(r);
-                    }
 
                     Timestamp timestampretour = new Timestamp(rounded + (lc.getNbrJours() * 24 * 3600 * 1000));
-                    FacturesDetail Factdet = serviceFD.newRent(el, fact, T, lc.getNbrJours(), timestampretour);
+                    FacturesDetail Factdet = serviceFD.newRent(el, factures, T, lc.getNbrJours(), timestampretour);
 
-                    serviceFD.save(Factdet);
-                    serviceEL.save(el);
                     prixTVAC = prixTVAC + Factdet.getPrix();
                 }
-
-                fact.setPrixTvac(prixTVAC);
-
-                // sauvegarde de la facture et commit de transaction
-                service.save(fact);
-                transaction.commit();
-                service.refreshEntity(fact);
-                MFB.creation(fact, bibliothequeActuelle);
-                sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant votre location en piece jointe","Facture de location");
-                return "/tableFactures.xhtml?faces-redirect=true";
+                factures.setPrixTvac(prixTVAC);
+                return "/formConfirmationPaiementLoca.xhtml?faces-redirect=true";
             } finally {
-                //bloc pour gérer les erreurs lors de la transactions
-                if (transaction.isActive()) {
-                    transaction.rollback();
-                    FacesContext fc = FacesContext.getCurrentInstance();
-                    fc.getExternalContext().getFlash().setKeepMessages(true);
-                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation n'a pas reussie",null));
-                    return "";
-                }
                 //fermeture des service
                 service.close();
-                serviceJ.close();
                 serviceU.close();
                 serviceT.close();
+                serviceFD.close();
+                serviceEL.close();
+                serviceR.close();
             }
         }
         else {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Une erreur est survenue",null));
+            factures=new Factures();
             return "/formNewFact.xhtml?faces-redirect=true";
         }
     }
+
+    // Méthode qui permet de créer une facture
+    public String newFact()
+    {
+        //initialisation des services requis
+        SvcFacture service =new SvcFacture();
+        SvcFactureDetail serviceFD = new SvcFactureDetail();
+        SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
+        SvcUtilisateurs serviceU = new SvcUtilisateurs();
+        SvcTarifs serviceT = new SvcTarifs();
+        SvcJours serviceJ = new SvcJours();
+        SvcReservations serviceR = new SvcReservations();
+
+        //rassemblement des entity managers pour la transaction
+        serviceFD.setEm(service.getEm());
+        serviceEL.setEm(service.getEm());
+        serviceR.setEm(service.getEm());
+        //initialisation des object et variables
+        long now =  System.currentTimeMillis();
+        long rounded = now - now % 60000;
+        Date date = new Date();
+        ModelFactBiblio MFB =new ModelFactBiblio();
+        Tarifs T= new Tarifs();
+
+        Utilisateurs u = serviceU.getByNumMembre(numMembre).get(0);
+
+        if (!(serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).size()==0))
+        {
+            T = serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).get(0);
+        }
+
+        //initialisation de la transaction
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            //création de la facture
+            factures.setNumeroFacture(createNumFact());
+            String path = "Factures\\" + factures.getNumeroFacture() + ".pdf";
+            factures.setLienPdf(path);
+            // parcour de la liste des location a inscrire dans la facture
+            for (locationCustom lc : listLC) {
+
+                //création des détails de la facture
+                ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
+                serviceEL.loueExemplaire(el);
+                if(el.isReserve()){
+                    serviceEL.reservExemplaire(el);
+                    Reservation r= serviceR.findOneActiv(serviceR.createReservation(u,bibliothequeActuelle,el.getLivres())).get(0);
+                    r.setActif(false);
+                    serviceR.save(r);
+                }
+
+                Timestamp timestampretour = new Timestamp(rounded + (lc.getNbrJours() * 24 * 3600 * 1000));
+                FacturesDetail Factdet = serviceFD.newRent(el, factures, T, lc.getNbrJours(), timestampretour);
+
+                serviceFD.save(Factdet);
+                serviceEL.save(el);
+            }
+
+            // sauvegarde de la facture et commit de transaction
+            service.save(factures);
+            transaction.commit();
+            service.refreshEntity(factures);
+            MFB.creation(factures, bibliothequeActuelle);
+            sendMessage(factures.getNumeroFacture()+".pdf",factures.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant votre location en piece jointe","Facture de location");
+            factures=new Factures();
+            return "/tableFactures.xhtml?faces-redirect=true";
+        }
+        finally
+        {
+            //bloc pour gérer les erreurs lors de la transactions
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'operation n'a pas reussie",null));
+                //return "";
+            }
+            //fermeture des service
+            service.close();
+            serviceJ.close();
+            serviceU.close();
+            serviceT.close();
+        }
+    }
+
 
     // Méthode qui permet de créer une facture de pénalité
     public void newFactPena(FacturesDetail facturesDetail)
@@ -343,6 +398,7 @@ public class FactureBean implements Serializable {
             serviceTP.close();
         }
     }
+
     /*Méthode qui permet de récupérer les infos de l'objet "exemplaire livre" et de renvoyer sur le formulaire pour constater l'état du livre quand il est rentré de location.
     On appliquera d'appliquer éventuellement des pénalités*/
     public String redirectChoix(){

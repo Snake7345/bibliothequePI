@@ -32,14 +32,14 @@
                         </p:column>
                         <shiro:hasPermission name="Bibliotheques:Modification">
                         <p:column style="text-align: center">
-                            <p:commandButton style="text-align: center" rendered="#{bi.idBibliotheques eq bibliothequesBean.idBiblio}" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditBibliotheque?faces-redirect=true">
+                            <p:commandButton style="text-align: center" rendered="#{(bi.idBibliotheques eq bibliothequesBean.idBiblio) and (bi.actif eq true) and (bi.nom ne 'bibliolib')}" icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="formEditBibliotheque?faces-redirect=true">
                                 <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" />
                             </p:commandButton>
                         </p:column>
                         </shiro:hasPermission>
                         <shiro:hasPermission name="Bibliotheques:ActiveDesactive">
                         <p:column style="text-align: center">
-                            <p:commandButton style="text-align: center" rendered="#{(bi.idBibliotheques ne bibliothequesBean.idBiblio) and (bi.actif eq true)}" icon="fa fa-fw fa-power-off" value="#{I18N['commune.label.desactiver']}" action="formDesactivBiblio?faces-redirect=true">
+                            <p:commandButton style="text-align: center" rendered="#{(bi.idBibliotheques ne bibliothequesBean.idBiblio) and (bi.actif eq true) and (bi.nom ne 'bibliolib')}" icon="fa fa-fw fa-power-off" value="#{I18N['commune.label.desactiver']}" action="formDesactivBiblio?faces-redirect=true">
                                 <p:confirm type="popup" header="Confirmation" message="Vous êtes sur de vouloir désactiver la bibliotheque ?" icon="fa fa-fw fa-warning"/>
                                 <f:setPropertyActionListener target="#{bibliothequesBean.bibliotheque}" value="#{bi}" />
                             </p:commandButton>

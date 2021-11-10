@@ -95,13 +95,15 @@
                     </p:column>
                     <p:tooltip for="utiladress" value="#{I18N['tooltip.utilisateur.adresse']}" position="right"/>
                 </p:selectOneListbox>
-                <p:commandButton value="Modifier mot de passe" icon="fa fa fw fa-sign-out" styleClass="ui-button-info">
+                <p:commandButton value="Modifier mot de passe" icon="fa fa fw fa-key" styleClass="ui-button-info">
                     <f:ajax event="click" onevent="function f(data){PF('dlg2').show();}"/>
                 </p:commandButton>
 
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}">
                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                 </p:commandButton>
+                <p:commandButton icon="fa fa-fw fa-home" value="Retour accueil" action="#{utilisateursBean.flushProfil}" ajax="false"/>
+                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.modifUtilProfil}" ajax="false"/>
             </p:panelGrid>
             <!--Ajouter un test-->
             <shiro:hasPermission name="Utilisateurs:ModificationBibliotheques">
@@ -116,11 +118,18 @@
                         <p:tooltip for="menu" alue="#{I18N['tooltip.utilisateur.bibliotheque']}" position="right"/>
                     </p:selectOneMenu>
                     </p:column>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton icon="fa fa-fw fa-minus" value="Supprimer bibliothèque" action="#{utilisateursBean.supBibliothequeRow}" ajax="false"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:commandButton icon="fa fa-fw fa-plus" value="Ajouter une bibliothèque" action="#{utilisateursBean.addBibliothequeRow}" ajax="false"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                 </p:dataTable>
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="sup" action="#{utilisateursBean.supBibliothequeRow}" ajax="false"/>
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="add" action="#{utilisateursBean.addBibliothequeRow}" ajax="false"/>
             </shiro:hasPermission>
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.modifUtilProfil}" ajax="false"/>
         </h:form>
         </shiro:authenticated>
         <shiro:notAuthenticated>
@@ -203,18 +212,15 @@
                     </p:password>
                     <h:outputText value="#{I18N['confirm.label.mdp']}" />
                     <p:password id="confmdp" value="#{utilisateursBean.mdpNouveau2}" update="msg"
-                                validator="checkMdpValidator"
                                 validatorMessage="La valeur doit être comprise entre 8 et 40 caracteres"
                                 requiredMessage="#{I18N['formulaire.message.required.mdp']}"
                                 required="true"
                                 toggleMask="true"
                                 redisplay="true"
                                 maxlength="40">
-
                         <f:validateLength minimum="8" maximum="40"/>
                     </p:password>
-                    <p:commandButton icon="fa fa-fw fa-check" style="float: right" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.modifMdpProfil}"
-                                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('popup').hide();">
+                    <p:commandButton icon="fa fa-fw fa-check" style="float: right" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.modifMdpProfil}">
                         <p:resetInput target="formModifMdp" />
                     </p:commandButton>
                 </p:panelGrid>

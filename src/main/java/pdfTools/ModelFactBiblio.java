@@ -103,12 +103,14 @@ public class ModelFactBiblio implements Serializable
 		String entete2 = "";
 		String entete3 = "TVA: BE0448.150.750 - Tel: 071 35 44 71";
 
-		for (Adresses adress: bib.getAdresses()) {
-			entete1 = bib.getNom();
-			entete2 = adress.getRue() + " " + adress.getNumero() + " " + adress.getLocalites().getCp() + " " + adress.getLocalites().getVille();
+			if(null!=bib) {
+				entete1 = bib.getNom();
+				for (Adresses adress : bib.getAdresses()) {
 
-			break;
-		}
+					entete2 = adress.getRue() + " " + adress.getNumero() + " " + adress.getLocalites().getCp() + " " + adress.getLocalites().getVille();
+					break;
+				}
+			}
 
 
 	    contentStream.showText(entete1);      	    								//Adding text in the form of string 

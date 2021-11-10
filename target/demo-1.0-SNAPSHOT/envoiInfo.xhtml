@@ -21,8 +21,9 @@
                 <p:growl id="growl" sticky="true" />
                 <p:panelGrid columns="2" style="margin: 0 auto">
                     <p:outputLabel value="#{I18N['application.label.MessageInfo']}"/>
+                    <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.retourconnexion']}" action="login?faces-redirect=true"/>
                 </p:panelGrid>
-                <p:commandButton icon="fa fa-fw fa-home" value="#{I18N['application.button.retourconnexion']}" action="login"/>
+
             </h:form>
         </p:panel>
     </ui:define>

@@ -53,7 +53,7 @@
                         </p:column>
                         <shiro:hasPermission name="Client:Modification">
                             <p:column style="text-align: center">
-                                <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtil}">
+                                <p:commandButton icon="fa fa-fw fa-pencil" value="#{I18N['application.button.modifier']}" action="#{utilisateursBean.redirectModifUtilCli}">
                                     <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}" />
                                 </p:commandButton>
                             </p:column>
