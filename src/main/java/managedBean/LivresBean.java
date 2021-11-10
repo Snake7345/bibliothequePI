@@ -181,6 +181,9 @@ public class LivresBean implements Serializable {
     //Méthode qui permet de vider les variables et de revenir sur le formulaire de création de livre
     public String flushLivNew()
     {
+
+        genre = new ArrayList<>();
+        auteur = new ArrayList<>();
         init();
         return "/formNewLivre.xhtml?faces-redirect=true";
     }

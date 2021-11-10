@@ -26,9 +26,7 @@
                          required="true"
                          requiredMessage="#{I18N['formulaire.message.required.CB']}"
                          maxlength="9"
-                         validatorMessage="La valeur doit être de 9 caractères pour le code barre"
                          validator="codeBarreValidator">
-                <f:validateLength maximum="9"/>
                 <p:tooltip for="exemplLivresCB" value="#{I18N['tooltip.exempl.CB']}" position="right"/>
             </p:inputText>
             <p:outputLabel value="#{I18N['livre.form.question']}"/>

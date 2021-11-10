@@ -29,7 +29,6 @@
                              requiredMessage="#{I18N['formulaire.message.required.nom']}"
                              validator = "nomPrenomValidator"
                              maxlength ="100">
-                    <f:validateLength minimum="1" maximum="100"/>
                     <p:tooltip for="utilisateurNom" value="#{I18N['tooltip.utilisateur.nom']}" position="right"/>
                 </p:inputText>
 
@@ -61,7 +60,6 @@
                              requiredMessage="#{I18N['formulaire.message.required.courriel']}"
                              validator = "emailValidator"
                              maxlength="100">
-                    <f:validateLength minimum="3" maximum="100"/>
                     <p:tooltip for="sexe" value="#{I18N['tooltip.utilisateur.mail']}" position="right"/>
                 </p:inputText>
 
@@ -95,14 +93,14 @@
                     </p:column>
                     <p:tooltip for="utiladress" value="#{I18N['tooltip.utilisateur.adresse']}" position="right"/>
                 </p:selectOneListbox>
-                <p:commandButton value="Modifier mot de passe" icon="fa fa fw fa-key" styleClass="ui-button-info">
+                <p:commandButton value="Modifier mot de passe" icon="fa fa fw fa-key" styleClass="ui-button-info" immediate="true">
                     <f:ajax event="click" onevent="function f(data){PF('dlg2').show();}"/>
                 </p:commandButton>
 
-                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}">
+                <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['adresse.label.newAdresse']}" immediate="true">
                     <f:ajax event="click" onevent="function f(data){PF('dlg1').show();}"/>
                 </p:commandButton>
-                <p:commandButton icon="fa fa-fw fa-home" value="Retour accueil" action="#{utilisateursBean.flushProfil}" ajax="false"/>
+                <p:commandButton icon="fa fa-fw fa-home" value="Retour accueil" action="#{utilisateursBean.flushProfil}" ajax="false" immediate="true"/>
                 <p:commandButton icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{utilisateursBean.modifUtilProfil}" ajax="false"/>
             </p:panelGrid>
             <!--Ajouter un test-->
@@ -213,7 +211,7 @@
                     <h:outputText value="#{I18N['confirm.label.mdp']}" />
                     <p:password id="confmdp" value="#{utilisateursBean.mdpNouveau2}" update="msg"
                                 validatorMessage="La valeur doit être comprise entre 8 et 40 caracteres"
-                                requiredMessage="#{I18N['formulaire.message.required.mdp']}"
+                                requiredMessage="La confirmation du mot de passe est requise"
                                 required="true"
                                 toggleMask="true"
                                 redisplay="true"

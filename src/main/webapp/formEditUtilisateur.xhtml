@@ -29,7 +29,6 @@
                              requiredMessage="#{I18N['formulaire.message.required.nom']}"
                              validator = "nomPrenomValidator"
                              maxlength ="100">
-                    <f:validateLength minimum="1" maximum="100"/>
                     <p:tooltip for="utilisateurNom" value="#{I18N['tooltip.utilisateur.nom']}" position="right"/>
                 </p:inputText>
 
@@ -61,7 +60,6 @@
                              requiredMessage="#{I18N['formulaire.message.required.courriel']}"
                              validator = "emailValidator"
                              maxlength="100">
-                    <f:validateLength minimum="3" maximum="100"/>
                     <p:tooltip for="sexe" value="#{I18N['tooltip.utilisateur.mail']}" position="right"/>
                 </p:inputText>
 
@@ -170,12 +168,10 @@
 
                     <p:outputLabel value = "#{I18N['adresse.label.Numero']}"/>
                     <p:inputText id="adresseNumero"
-                                 validatorMessage="Le numero est de minimum 1 caracteres et de maximum 6 caracteres"
                                  value="#{adressesBean.adresse.numero}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.numero']}"
                                  maxlength="6">
-                        <f:validateLength minimum="1" maximum="6"/>
                     </p:inputText>
 
                     <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>

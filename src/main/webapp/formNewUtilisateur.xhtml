@@ -28,7 +28,6 @@
                                  requiredMessage="#{I18N['formulaire.message.required.nom']}"
                                  validator = "nomPrenomValidator"
                                  maxlength="100">
-                        <f:validateLength minimum="1" maximum="100"/>
                     </p:inputText>
 
                     <p:outputLabel value = "#{I18N['utilisateur.label.Prenom']}" indicateRequired="true"/>
@@ -38,7 +37,6 @@
                                  requiredMessage="#{I18N['formulaire.message.required.prenom']}"
                                  validator = "nomPrenomValidator"
                                  maxlength="100">
-                        <f:validateLength minimum="1" maximum="100"/>
                     </p:inputText>
 
                     <p:outputLabel value = "#{I18N['utilisateur.label.Sexe']}" indicateRequired="true"/>
@@ -55,22 +53,21 @@
                                  requiredMessage="#{I18N['formulaire.message.required.courriel']}"
                                  validator = "emailValidator"
                                  maxlength="100">
-                        <f:validateLength minimum="3" maximum="100"/>
                     </p:inputText>
 
                     <p:outputLabel value = "#{I18N['utilisateur.label.Login']}" indicateRequired="true"/>
                     <p:inputText id="utilisateurLogin"
                                  value="#{utilisateursBean.utilisateur.login}"
                                  required="true"
+                                 validatorMessage="Le login doit être au minimum de 4 caracteres jusqu'à 80"
                                  requiredMessage="#{I18N['formulaire.message.required.login']}"
                                  validator = "utilisateurExistValidator"
                                  maxlength="80">
-                        <f:validateLength minimum="4" maximum="80"/>
                     </p:inputText>
 
                     <p:outputLabel value = "#{I18N['utilisateur.label.Mdp']}" indicateRequired="true"/>
                     <p:password id="utilisateurMdp"
-                                   validatorMessage="La valeur doit être comprise entre 8 et 40 caracteres"
+                                   validatorMessage="Le mot de passe doit être comprise entre 8 et 40 caracteres"
                                    value="#{utilisateursBean.utilisateur.mdp}"
                                    requiredMessage="#{I18N['formulaire.message.required.mdp']}"
                                    required="true"
@@ -154,12 +151,10 @@
 
                     <p:outputLabel value = "#{I18N['adresse.label.Numero']}"/>
                     <p:inputText id="adresseNumero"
-                                 validatorMessage="Le numero est de minimum 1 caracteres et de maximum 6 caracteres"
                                  value="#{adressesBean.adresse.numero}"
                                  required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.numero']}"
                                  maxlength="6">
-                        <f:validateLength minimum="1" maximum="6"/>
                     </p:inputText>
 
                     <p:outputLabel value = "#{I18N['localite.label.Cp']}"/>
