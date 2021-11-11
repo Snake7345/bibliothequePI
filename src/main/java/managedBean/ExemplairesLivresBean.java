@@ -277,6 +277,7 @@ public class ExemplairesLivresBean implements Serializable {
         }
     }
 
+    /*Méthode qui permet de désactiver tous les exemplaires livres de la bibliothèque connectée*/
     public void deactivateAllExLiv()
     {
         log.debug("entree desactive ex liv");
@@ -312,7 +313,7 @@ public class ExemplairesLivresBean implements Serializable {
     }
 
     // Méthode qui permet la désactivation de l'exemplaire livre et renvoi vers la table des livres
-    public String activdesactivExLiv()
+    public String desactivExLiv()
     {
         /*Si l'exemplaire est actif alors on le désactive;*/
         if(exemplairesLivre.isActif())
@@ -331,18 +332,6 @@ public class ExemplairesLivresBean implements Serializable {
         SvcExemplairesLivres service = new SvcExemplairesLivres();
         List<ExemplairesLivres> listExemplaires = new ArrayList<ExemplairesLivres>();
         listExemplaires= service.findExemplairesLivresByLivre(livre);
-        service.close();
-        return listExemplaires;
-    }
-
-    /*
-     * Méthode qui permet via le service de retourner la liste de tous les exemplaires livres
-     */
-    public List<ExemplairesLivres> getReadAllByBiblio()
-    {
-        SvcExemplairesLivres service = new SvcExemplairesLivres();
-        List<ExemplairesLivres> listExemplaires = new ArrayList<ExemplairesLivres>();
-        listExemplaires= service.findAllByLivreByBibliotheque(livre,bibliothequeActuelle);
         service.close();
         return listExemplaires;
     }
@@ -371,14 +360,6 @@ public class ExemplairesLivresBean implements Serializable {
 
     public void setLivre(Livres livre) {
         this.livre = livre;
-    }
-
-    public Bibliotheques getBibli() {
-        return bibli;
-    }
-
-    public void setBibli(Bibliotheques bibli) {
-        this.bibli = bibli;
     }
 
     public Bibliotheques getBib() {

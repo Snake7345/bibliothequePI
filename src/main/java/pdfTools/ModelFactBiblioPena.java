@@ -104,7 +104,7 @@ public class ModelFactBiblioPena implements Serializable
 			contentStream.setNonStrokingColor(Color.BLACK);
 			contentStream.setLeading(24.5f);
 
-			//Cr�ation de l'entete de la page
+			//Création de l'entete de la page
 			contentStream.newLineAtOffset(198, 725);	    							//Setting the position for the line (l x h)
 			String entete1="";
 			String entete2 = "";
@@ -179,8 +179,8 @@ public class ModelFactBiblioPena implements Serializable
 			contentStream.newLineAtOffset(80, 455);
 			contentStream.showText("Penalites concernant l'exemplaire de : ");
 			contentStream.newLine();
-			contentStream.showText(fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getLivres().getTitre() + " sous le code barre " + fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getCodeBarre());;
-			contentStream.newLine();
+			contentStream.showText(fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getLivres().getTitre() + " sous le code barre " + fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getCodeBarre());
+            contentStream.newLine();
 
 			if(retard != null){
 				contentStream.showText("Retard");

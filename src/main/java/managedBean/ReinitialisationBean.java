@@ -37,8 +37,7 @@ public class ReinitialisationBean implements Serializable {
     courriel="";
     }
 
-    /*Cette méthode permet de regénerer un mot de passe random s'il y a une correspondance en fonction de l'email et du pseudo que l'utilisateur rentre,
-    si pas une message d'erreur s'affiche */
+    /*Cette méthode permet de regénerer un mot de passe random s'il y a une correspondance en fonction de l'email et du pseudo que l'utilisateur rentre*/
     public String reinitia()
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();

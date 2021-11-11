@@ -75,7 +75,7 @@ public class PermissionsBean implements Serializable {
         return listType;
     }
     /*
-     * Méthode qui permet de retourner la liste de toutes les types de permissions si l'utilisateur connecté est un manager
+     * Méthode qui permet de retourner la liste de toutes les types de permissions si l'utilisateur connecté possède les droits de visualiser cette liste
      */
     public List<String> getPermissionsTypeUtilisateur()
     {
@@ -105,12 +105,6 @@ public class PermissionsBean implements Serializable {
             }
         }
         return listAction;
-    }
-    /*il faut un commentaire*/
-    public void stateChangeListener(ValueChangeEvent event) {
-        if (event.getNewValue() != type) {
-            getPermissionsAction();
-        }
     }
 
     //-------------------------------Getter & Setter--------------------------------------------

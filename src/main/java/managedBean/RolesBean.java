@@ -90,15 +90,17 @@ public class RolesBean implements Serializable {
         {
             log.debug("4");
             for (Permissions p : listPerm) {
-
+                /*Si une permission choisie se trouve déjà dans le tableau, alors on marque un message d'erreur*/
                 if ((p.getType().equals(pe.getType()) && p.getAction().equals(pe.getAction()))) {
                     flag = true;
                     log.debug("5");
                 }
+                /*Si Lire est présent dans le tableau, on en prend compte*/
                 if (p.getType().equals(pe.getType()) && p.getAction().equals("Lire")) {
                     flag2 = true;
                     log.debug("6");
                 }
+                /*Si Lire est présent dans le tableau, on en prend compte*/
                 if (p.getType().equals(pe.getType()) && p.getAction().equals("Creer")) {
                     flag3 = true;
                     log.debug("7");
@@ -111,8 +113,9 @@ public class RolesBean implements Serializable {
                 permissions.setType(pe.getType());
                 listPerm.add(permissions);
                 permissions = new Permissions();
-                /*Il faut un commentaire*/
+                /*Si lire n'est pas dans le tableau et que l'action choisie est créer, modificiation ou activeDesactive, alors on ajoute lire*/
                 if (!flag2 && (pe.getAction().equals("Creer") || pe.getAction().equals("Modification") || pe.getAction().equals("ActiveDesactive"))) {log.debug("9");
+                    /*Si créer n'est pas dans le tableau et que l'action choisie est "modification" alors on ajoute créer*/
                     if (!flag3 && pe.getAction().equals("Modification")) {
                         log.debug("10");
                         pe.setAction("Creer");
@@ -129,6 +132,7 @@ public class RolesBean implements Serializable {
                     log.debug("11");
 
                 }
+                /*Si créer n'est pas dans le tableau mais que lire y est, et que l'action choisie est "modification" alors on ajoute créer*/
                 if (!flag3 && flag2 && pe.getAction().equals("Modification")) {
                     pe.setAction("Creer");
                     permissions.setAction(pe.getAction());
@@ -263,7 +267,7 @@ public class RolesBean implements Serializable {
         listPerm=new ArrayList<>();
         return "/tableRoles.xhtml?faces-redirect=true";
     }
-    /*il faut un commentaire*/
+    /*méthode utiliser pour vérifier si un utilisateur a une permission dans le cadre d'un rendered ou d'un c:if*/
     public boolean checkPermission(String permission)
     {
         try

@@ -9,88 +9,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.2.90 Concernant des bugs concernant les employés">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.3 Version finale">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bibliothequePI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bibliothequePI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Utilisateurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Utilisateurs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/AuteursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/AuteursBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/BibliothequesBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/EditeursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/EditeursBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ExemplairesLivresBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/FactureBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/FactureDetailBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/GenresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/GenresBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/JoursBean.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LivresBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/LoginBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PaysBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PenalitesBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/PermissionsBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReinitialisationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReinitialisationBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/ReservationBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/RolesBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsJoursBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsPenalitesBean.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/UtilisateursBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/security/sessionlistener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcReservations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcReservations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/SvcUtilisateurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/SvcUtilisateurs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/validators/CodeBarreLivreValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/validators/CodeBarreLivreValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bundle/messages.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formDesactivBiblio.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formDesactivBiblio.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditProfil.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewExemLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewExemLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formReceptionLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formReceptionLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formTransfertLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formTransfertLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/livreDetail.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAdresses.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableBibliotheques.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableEditeurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/validators/CheckMdpValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/validators/CheckMdpValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableFactures.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableGenres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tablePermissions.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableReservation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableRoles.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableTarifs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableUtilisateursCli.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entities/Reservation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entities/Utilisateurs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entities/Utilisateurs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/AuteursBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/AuteursBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/BibliothequesBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/BibliothequesBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/ExemplairesLivresBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/ExemplairesLivresBean.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/managedBean/FactureBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/FactureBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/ReinitialisationBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/ReinitialisationBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/JoursBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/LivresBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/LivresBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/PenalitesBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/RolesBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/RolesBean.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/managedBean/TarifsBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/TarifsBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/UtilisateursBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/UtilisateursBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/security/sessionlistener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcReservations.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/services/SvcReservations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/SvcUtilisateurs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/services/SvcUtilisateurs.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Reservation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Utilisateurs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/entities/Utilisateurs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/validators/CodeBarreLivreValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/validators/CodeBarreLivreValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/AuteursBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/AuteursBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/BibliothequesBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/BibliothequesBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ExemplairesLivresBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ExemplairesLivresBean.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ReinitialisationBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ReinitialisationBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/JoursBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/LivresBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/LivresBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/PenalitesBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/RolesBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/RolesBean.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/TarifsBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/TarifsBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/UtilisateursBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/UtilisateursBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/security/sessionlistener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcReservations.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcReservations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcUtilisateurs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/services/SvcUtilisateurs.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formDesactivBiblio.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formDesactivBiblio.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditProfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditProfil.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditRole.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditRole.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewExemLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewExemLivre.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formNewTarif.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/livreDetail.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/livreDetail.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/login.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAdresses.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAdresses.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAuteurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableAuteurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableBibliotheques.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableBibliotheques.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableEditeurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableEditeurs.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/CodeBarreLivreValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/CodeBarreLivreValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formReceptionLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formReceptionLivre.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formTransfertLivre.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formTransfertLivre.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableExemplaireLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableFactures.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableFactures.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableGenres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableGenres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tablePermissions.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tablePermissions.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableReservation.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableReservation.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableRoles.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableRoles.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableTarifs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableTarifs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateursCli.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,9 +114,6 @@
     <option name="FILTER_INFO" value="true" />
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1y8lv6RuqNb8Ov1tTky0SnuUw4Z" />
   <component name="ProjectViewState">
@@ -363,7 +326,7 @@
       <workItem from="1636653064742" duration="9686000" />
       <workItem from="1636664042022" duration="8362000" />
       <workItem from="1636627610099" duration="513000" />
-      <workItem from="1636628144415" duration="21706000" />
+      <workItem from="1636628144415" duration="28107000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -638,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636554534940</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="V1.3 Version finale">
+      <created>1636659709619</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1636659709619</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -657,7 +627,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.2.10 Multiples corrections graphiques + ajout dess commentaires + ajout en cours de la fonctionnalité cconcernant les archétypes" />
     <MESSAGE value="v1.2.12 Suppression des commentaires sur les pages webs" />
     <MESSAGE value="v1.2.13 Multiples corrections concernant certains bugs mineurs et un majeur, réarangement de la création du rôle" />
     <MESSAGE value="v1.2.13 Multiples corrections concernant certains bugs mineurs et un majeur, réarangement de la création du rôle + ajout du bouton Mon profil" />
@@ -682,6 +651,7 @@
     <MESSAGE value="V1.2.66 Correction multiples" />
     <MESSAGE value="V1.2.85 Multiples corrections" />
     <MESSAGE value="V1.2.90 Concernant des bugs concernant les employés" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.2.90 Concernant des bugs concernant les employés" />
+    <MESSAGE value="V1.3 Version finale" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.3 Version finale" />
   </component>
 </project>

@@ -62,10 +62,12 @@ public class FactureBean implements Serializable {
     }
 
     /*Cette méthode permet d'ajouter une nouvelle ligne dans un formulaire concernant une location */
+
     public void addNewListRow() {
         listLC.add(new locationCustom());
     }
-    /*Cette méthode permet de retirer une ligne dans un formulaire concernant une location */
+
+    /*Cette méthode permet de retirer une ligne dans un formulaire concernant une location sauf si il y a qu'une ligne de location, alors cela sera refusé*/
     public void delListRow() {
         if (listLC.size() >1)
         {
@@ -73,7 +75,7 @@ public class FactureBean implements Serializable {
         }
     }
 
-    /*Méthode qui permet d'envoyer un mail sur le email de l'utilisateur avec la facture */
+    /*Méthode qui permet d'envoyer un mail sur l'email de l'utilisateur avec la facture */
     public static void sendMessage(String filename, String mailDest, String Texte, String Titre)  {
         //Création de la session
         String mail = "bibliolibatc@gmail.com";
@@ -116,7 +118,7 @@ public class FactureBean implements Serializable {
             e.printStackTrace();
         }
     }
-
+    /*Cette méthode permet de créer une partie de l'objet facture, pour avoir quelques informations concernant le prix de la location du livre*/
     public String redirectConfirmLocation()
     {
         //initialisation des services requis
@@ -145,7 +147,7 @@ public class FactureBean implements Serializable {
         }else {
             T = serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).get(0);
         }
-        //vérification si le livre est loué
+        //vérification si un livre est loué
         for (locationCustom lc: listLC) {
             ExemplairesLivres el = serviceEL.findOneByCodeBarre(lc.getCB()).get(0);
             if (el.isLoue() || !(el.getBibliotheques().getIdBibliotheques() == (bibliothequeActuelle.getIdBibliotheques())))
@@ -153,8 +155,8 @@ public class FactureBean implements Serializable {
                 flag=true;
 
             }
+            /*Vérification si le livre est reservé; et si oui, que le client a une réservation concernant ce livre*/
             List<Reservation> reservations = serviceR.findAllActivbyLivre(bibliothequeActuelle, el.getLivres());
-
             for (Reservation r : reservations)
             {
                 if (r.getUtilisateur().getIdUtilisateurs()==u.getIdUtilisateurs())
@@ -179,9 +181,9 @@ public class FactureBean implements Serializable {
 
             try {
 
-                //création de la facture
+                //création partielle de la facture
 
-                // parcour de la liste des location a inscrire dans la facture
+                // parcours de la liste des location a inscrire dans la facture
                 for (locationCustom lc : listLC) {
 
                     //création des détails de la facture
@@ -285,7 +287,7 @@ public class FactureBean implements Serializable {
             factures=new Factures();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Faccture créée",null));
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Facture créée",null));
             return "/tableFactures.xhtml?faces-redirect=true";
         }
         finally
@@ -332,8 +334,6 @@ public class FactureBean implements Serializable {
         long now =  System.currentTimeMillis();
         long rounded = now - now % 60000;
         Timestamp timestampfacture = new Timestamp(rounded);
-
-        Date date = new Date();
 
         Factures fact = new Factures();
         FacturesDetail factdet= new FacturesDetail();
@@ -382,13 +382,13 @@ public class FactureBean implements Serializable {
             // sauvegarde de la facture et commit de transaction
             service.save(fact);
             transaction.commit();
-            //refresh pour récupérer les collections associÃ©es
+            //refresh pour récupérer les collections associées
             service.refreshEntity(fact);
             MFB.creation(fact, tarifsPenalitesChoisie,factdetretard, bibliothequeActuelle);
             sendMessage(fact.getNumeroFacture()+".pdf",fact.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant les pénalités suite a votre location en piece jointe","Facture de pénalité");
         }
         finally {
-            //bloc pour gérer les erreurs lors de la transactions
+            //bloc pour gérer les erreurs lors de la transaction
             if (transaction.isActive()) {
                 transaction.rollback();
                 FacesContext fc = FacesContext.getCurrentInstance();
@@ -405,7 +405,7 @@ public class FactureBean implements Serializable {
     }
 
     /*Méthode qui permet de récupérer les infos de l'objet "exemplaire livre" et de renvoyer sur le formulaire pour constater l'état du livre quand il est rentré de location.
-    On appliquera d'appliquer éventuellement des pénalités*/
+    On appliquera éventuellement des pénalités en fonction de la bibliothèque d'ou vient l'exemplaire*/
     public String redirectChoix(){
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         exemplairesLivres = serviceEL.findOneByCodeBarre(CB).get(0);
@@ -414,7 +414,7 @@ public class FactureBean implements Serializable {
         if (choixetat){
             Date date = new Date();
             SvcTarifs serviceT = new SvcTarifs();
-            listTarifsPenalites = (List<TarifsPenalites>) serviceT.getTarifByBiblio(date, bibliothequeActuelle.getNom()).get(0).getTarifsPenalites();
+            listTarifsPenalites = (List<TarifsPenalites>) serviceT.getTarifByBiblio(date, exemplairesLivres.getBibliotheques().getNom()).get(0).getTarifsPenalites();
             for(TarifsPenalites tp : listTarifsPenalites)
             {
                 if(tp.getPenalite().getDenomination().equals("Retard"))
@@ -432,7 +432,7 @@ public class FactureBean implements Serializable {
     }
 
     /*
-     * Méthode qui permet de travailler sur le selectCheckboxMenu et de voir les éléments qui ne sont pas selectionné
+     * Méthode qui permet de travailler sur le selectCheckboxMenu via AJAX
      * */
     public void onItemUnselect(UnselectEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -455,10 +455,11 @@ public class FactureBean implements Serializable {
         Timestamp timestampretour = new Timestamp(rounded);
         boolean flag =false;
         boolean reserve = false;
-        /*On vérifie si le livre est bien loué*/
+        /*On vérifie si l'exemplaire est bien loué*/
         if (exemplairesLivres.isLoue())
         {
             log.debug("1");
+            /*On parcourt la liste des factures détails et on retrouvee du coup celle qui correspond*/
             for (FacturesDetail fd : exemplairesLivres.getFactureDetails()){
                 log.debug("2");
                 if (fd.getDateRetour() == null) {
@@ -468,16 +469,19 @@ public class FactureBean implements Serializable {
                     flag=true;
                 }
             }
+            /*Si trouvé, on complète l'objet factureDetail avec la date de retour du livre*/
             if (flag)
             {
                 log.debug("4");
                 flag=false;
                 facturesDetail.setDateRetour(timestampretour);
+                // On détermine si une facture de pénalité doit être créée.
                 if (facturesDetail.getDateRetour().after(facturesDetail.getDateFin()) || tarifsPenalitesChoisie.size()>=1)
                 {
                     log.debug("5");
                     newFactPena(facturesDetail);
                 }
+                //On parcourt pour trouver si d'autres exemplaires de livres sont non-rendus.
                 for (FacturesDetail fd: facturesDetail.getFacture().getFactureDetails())
                 {
                     log.debug("6");
@@ -487,6 +491,7 @@ public class FactureBean implements Serializable {
                         break;
                     }
                 }
+                /*Si pas on passe la facture a terminé*/
                 if (!flag){
                     log.debug("8");
                     fact = facturesDetail.getFacture();
@@ -498,9 +503,11 @@ public class FactureBean implements Serializable {
                 serviceFD.setEm(service.getEm());
                 EntityTransaction transaction = service.getTransaction();
                 transaction.begin();
+                /*On enregistre le tout en DB en passant l'exemplaire de livre a non loué*/
                 try {
                     log.debug("9");
                     exemplairesLivres.setLoue(false);
+                    /*Si jamais l'exemplaire livre est dans un état "mauvais" alors on le désactive*/
                     if (exemplairesLivres.getEtat()==ExemplairesLivresEtatEnum.Mauvais)
                     {
                         exemplairesLivres.setActif(false);
@@ -508,6 +515,7 @@ public class FactureBean implements Serializable {
                     exemplairesLivres.setBibliotheques(bibliothequeActuelle);
                     serviceEL.save(exemplairesLivres);
                     serviceFD.save(facturesDetail);
+                    /*Si la facture est terminé alors on sauvegarde en DB*/
                     if (fact.getEtat()==FactureEtatEnum.terminer){
                         log.debug("10");
                         service.save(fact);
@@ -527,7 +535,7 @@ public class FactureBean implements Serializable {
                     }
                     service.close();
                     SvcReservations serviceR = new SvcReservations();
-
+                    /*On vérifie si jamais le livre a été reservé et donc doit être mis de coté*/
                     if(serviceR.findAllActivbyLivre(bibliothequeActuelle, exemplairesLivres.getLivres()).size()>0)
                     {
                         log.debug("13");
@@ -555,7 +563,7 @@ public class FactureBean implements Serializable {
         }
     }
 
-    /*Méthode permettant de créer un numéro de facture avec FB(FactureBiblio) suivi de l'année, le mois et un nombre a 4 chiffres*/
+    /*Méthode permettant de créer un numéro de facture avec FB(FactureBiblio) suivi de l'année, le mois et un nombre a 6 chiffres*/
     public String createNumFact()
     {
 
@@ -627,7 +635,9 @@ public class FactureBean implements Serializable {
         init();
         return "/tableFactures.xhtml?faces-redirect=true";
     }
-
+    /*
+     * Méthode qui permet de vider les variables et retourne sur la cré
+     * */
     public String flushFactNew()
     {
         init();

@@ -41,9 +41,5 @@ public class CheckMdpValidator implements Validator {
             context.renderResponse();
         }
     }
-    //------------------------------------------------------------------------------------------------
-    public static Logger getLog() {
-        return log;
-    }
 
 }

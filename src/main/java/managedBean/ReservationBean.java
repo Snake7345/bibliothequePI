@@ -117,7 +117,7 @@ public class ReservationBean implements Serializable
             e.printStackTrace();
         }
     }
-    /*Cette méthode permet d'envoyer un mail au client si le livre est retourné en bibliothèque et est donc disponible pour le client qui a fait la réservation*/
+    /*Cette méthode permet d'envoyer un mail au client si le livre est retourné en bibliothèque et est rendu disponible pour le client qui a fait la réservation*/
     public String confirmReservation()
     {
         SvcReservations serviceR = new SvcReservations();

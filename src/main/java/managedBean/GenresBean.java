@@ -30,7 +30,7 @@ public class GenresBean implements Serializable {
         genre = new Genres();
     }
 
-    // Méthode qui va appellé la méthode save() pour créer/modifier un objet "genre" en DB et qui envoi un message si jamais le nom du genre existe
+    // Méthode qui va appeler la méthode save() pour créer/modifier un objet "genre" en DB et qui envoi un message si jamais le nom du genre existe
     // et nous renvoi sur la table des genres
     public String saveGenres()
     {
@@ -47,7 +47,7 @@ public class GenresBean implements Serializable {
         return "/tableGenres?faces-redirect=true";
     }
     /*
-     * Méthode qui permet de travailler sur le selectCheckboxMenu et de voir les éléments qui ne sont pas selectionné
+     * Méthode qui permet de travailler sur le selectCheckboxMenu via le AJAX
      * */
     public void onItemUnselect(UnselectEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -98,7 +98,7 @@ public class GenresBean implements Serializable {
 
     }
 
-    //Méthode qui permet de vider les variables et de revenir sur le table des genres
+    //Méthode qui permet de vider les variables et de revenir sur la table des genres
     public String flushGen()
     {
         init();

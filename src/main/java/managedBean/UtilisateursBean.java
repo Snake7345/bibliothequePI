@@ -87,7 +87,7 @@ public class UtilisateursBean implements Serializable {
 
 
 
-    /*Cette méthode permet de récupérer les données liées a l'utilisateur et nous renvoit sur le formulaire d'édition de l'utilisateur*/
+    /*Cette méthode permet de récupérer les données liées a l'utilisateur et nous renvoi sur le formulaire d'édition de l'utilisateur*/
     public String redirectModifUtil()
     {
         tabbibli.clear();
@@ -102,7 +102,7 @@ public class UtilisateursBean implements Serializable {
         }
         return "/formEditUtilisateur.xhtml?faces-redirect=true";
     }
-
+    /*Cette méthode permet de récupérer les données liées au client et nous renvoi sur le formulaire d'édition du client*/
     public String redirectModifUtilCli()
     {
         tabbibli.clear();
@@ -113,7 +113,7 @@ public class UtilisateursBean implements Serializable {
         }
         return "/formEditUtilisateurCli.xhtml?faces-redirect=true";
     }
-
+    /*Cette méthode permet de récupérer les données liées a l'utilisateur et nous renvoi sur le formulaire d'édition du profil de l'utilisateur*/
     public String redirectModifUtilProfil()
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
@@ -141,7 +141,8 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
-    /*Méthode qui permet la sauvegarde de la modification d'un objet "utilisateur"*/
+    /*Méthode qui permet la sauvegarde de la modification d'un objet "utilisateur" et désactive les réservations liées à cet objet seulement si on désactive l'utilisateur
+    * Surtout utilisé dans le cadre d'une activation, désactivation*/
     public void saveActif() {
         SvcUtilisateurs service = new SvcUtilisateurs();
         SvcReservations serviceR = new SvcReservations();
@@ -177,7 +178,7 @@ public class UtilisateursBean implements Serializable {
         }
 
     }
-    /*Méthode permettant d'afficher la liste des reservations actives en fonction du client (cette méthode est faite pour le popup*/
+    /*Méthode permettant d'afficher la liste des reservations actives en fonction du client (cette méthode est faite pour le popup)*/
     public void afficheReservations()
     {
         SvcReservations service = new SvcReservations();
@@ -276,7 +277,7 @@ public class UtilisateursBean implements Serializable {
 
     }
 
-    /*Cette méthode permet de modifier un mot de passe d'un utilisateur*/
+    /*Cette méthode permet de modifier un mot de passe d'un utilisateur sur son profil*/
     public void modifMdpProfil()
     {
         SvcUtilisateurs serviceU = new SvcUtilisateurs();
@@ -429,7 +430,7 @@ public class UtilisateursBean implements Serializable {
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
         }
     }
-    /*Cette méthode permet de modifier l'objet utilisateur et vérifie si un utilisateur existe*/
+    /*Cette méthode permet de modifier l'objet utilisateur et vérifie si un utilisateur existe, il vérifie également que deux bibliothèque identiques ne soit pas dedans*/
     public String modifUtil() {
         boolean flag = false;
 
@@ -502,6 +503,8 @@ public class UtilisateursBean implements Serializable {
             return "/tableUtilisateurs.xhtml?faces-redirect=true";
         }
     }
+    /*Cette méthode permet de modifier l'objet utilisateur et vérifie si un utilisateur existe, il vérifie également que deux bibliothèque identiques ne soit pas dedans
+    * Cette méthode est utilisée pour le profil*/
     public String modifUtilProfil() {
         boolean flag = false;
 
@@ -701,7 +704,7 @@ public class UtilisateursBean implements Serializable {
 
         return "/tableUtilisateurs?faces-redirect=true";
     }
-    //Méthode qui permet de vider les variables et de revenir sur le table des utilisateurs
+        //Méthode qui permet de vider les variables et de revenir sur la page d'accueil
     public String flushProfil() {
         init();
 
@@ -783,7 +786,7 @@ public class UtilisateursBean implements Serializable {
         service.close();
         return listUtil;
     }
-    /*Méthode qui permet via le service de retourner la liste de tous lees utilisateurs d'une bibliothèque*/
+    /*Méthode qui permet via le service de retourner la liste de tous les utilisateurs d'une bibliothèque*/
     public List<Utilisateurs> getReadAllUtilBib()
     {
         SvcUtilisateurs service = new SvcUtilisateurs();

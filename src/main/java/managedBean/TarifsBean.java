@@ -65,7 +65,7 @@ public class TarifsBean implements Serializable {
             service.close();
         }
     }
-    /*Cette méthode permet de retrouver les infos concernant la grille tarifaire qu'on veut modifier et nous envoit ensuite sur le formulaire d'édition de tarif
+    /*Cette méthode permet de retrouver les infos concernant la grille tarifaire qu'on veut modifier et nous envoi ensuite sur le formulaire d'édition de tarif
     * sauf dans le cas ou la grille tarfiaire est déjà appliquée alors elle nous renvoit sur la table des tarifs avec un message d'erreur*/
     public String redirectEdit(){
         long dn = new Date().getTime();
@@ -109,11 +109,6 @@ public class TarifsBean implements Serializable {
             flagV1=service.findOneTarifByDenom(tarif).size()==0;
         }
 
-        if(prixdefaut!=0.0)
-        {
-            grilleJour.add(new JourCustom(1,prixdefaut,tarif.getDateDebut(),Date.from(Instant.parse("2100-01-01T01:00:00Z"))));
-        }
-
         for (JourCustom j: grilleJour){
             if (j.getNbrJours() == 1) {
                 flagJ = true;
@@ -140,6 +135,11 @@ public class TarifsBean implements Serializable {
 
 
         if (flagJ && !flagD1 && !flagD2 && flagV1 && !flagD3) {
+
+            if(prixdefaut!=0.0)
+            {
+                grilleJour.add(new JourCustom(1,prixdefaut,tarif.getDateDebut(),Date.from(Instant.parse("2100-01-01T01:00:00Z"))));
+            }
 
             SvcTarifsJours serviceTJ = new SvcTarifsJours();
             SvcTarifsPenalites serviceTP = new SvcTarifsPenalites();
@@ -278,7 +278,7 @@ public class TarifsBean implements Serializable {
         service.close();
         return listTarifs;
     }
-
+    /*méthode qui permet de retourner les grilles tarifaires de la bibliothèques connectées*/
     public List<Tarifs> getTarifByBiblioActuelle()
     {
         SvcTarifs service = new SvcTarifs();
@@ -295,7 +295,7 @@ public class TarifsBean implements Serializable {
         return "/tableTarifs?faces-redirect=true";
     }
     /*
-     * Méthode qui permet de vider les variables et nous renvoit sur le formulaire de création d'une grille tarifaire
+     * Méthode qui permet de vider les variables et nous renvoi sur le formulaire de création d'une grille tarifaire
      */
     public String flushTarifsNew() {
         init();

@@ -189,7 +189,7 @@ public class LivresBean implements Serializable {
         }
             return "/tableLivres.xhtml?faces-redirect=true";
     }
-    //Méthode qui permet de vider les variables et de revenir sur le table des Livres
+    //Méthode qui permet de vider les variables et de revenir sur la table des Livres
     public String flushLiv()
     {
         init();

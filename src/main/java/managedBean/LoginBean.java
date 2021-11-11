@@ -35,7 +35,7 @@ public class LoginBean implements Serializable {
 
     /*
      * Méthode qui permet l'authentification de l'utilisateur,
-     * on vérifie que l'utilisateur existe dans la base de données, et on lui attribue des variables de session comme le role par exemple.
+     * on vérifie que l'utilisateur existe grâce à shiro, et on lui attribue des variables de session
      * */
     public void auth()
     {
