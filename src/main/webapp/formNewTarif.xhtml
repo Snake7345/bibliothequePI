@@ -25,7 +25,11 @@
 
                 <p:outputLabel value="#{I18N['tarif.label.nom']}" />
                 <p:inputText id="nomGrille" value="#{tarifsBean.tarif.denomination}" required="true" requiredMessage="#{I18N['formulaire.message.required.denomination']}" maxlength="255"/>
-
+                <p:outputLabel value="Prix par jour par défaut" />
+                <p:inputNumber id="prixjour" value="#{tarifsBean.prixdefaut}" required="true" requiredMessage="Le prix par défaut est requis"
+                               maxlength="11" symbol="€" symbolPosition="s" decimalSeparator="," thousandSeparator=".">
+                    <f:validateDoubleRange minimum="0.0"/>
+                </p:inputNumber>
 
                 <p:dataTable value="#{tarifsBean.grilleJour}" var="J">
                     <p:column>

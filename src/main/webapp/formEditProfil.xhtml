@@ -63,24 +63,6 @@
                     <p:tooltip for="sexe" value="#{I18N['tooltip.utilisateur.mail']}" position="right"/>
                 </p:inputText>
 
-
-                <c:if test= "#{utilisateursBean.utilisateur.roles.denomination ne 'Client' and utilisateursBean.utilisateur.roles.denomination ne 'Administrateur'}">
-                <p:outputLabel value = "#{I18N['role.label.Denomination']}" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}" indicateRequired="true"/>
-                <p:selectOneMenu styleClass="selectOneMenu" value = "#{utilisateursBean.utilisateur.roles}" id="roleselectOne" required="true" rendered="#{rolesBean.checkPermission('Utilisateurs:Modification')}" requiredMessage="#{I18N['formulaire.message.required.role']}"
-                                 converter="roleConverter" >
-                    <shiro:hasRole name="1">
-                        <f:selectItems value = "#{rolesBean.readActivUtil}" var="ro"
-                                       itemLabel="#{ro.denomination}"
-                                       itemValue="#{ro}"/>
-                    </shiro:hasRole>
-                    <shiro:lacksRole name="1">
-                        <f:selectItems value = "#{rolesBean.readActiv}" var="ro"
-                                       itemLabel="#{ro.denomination}"
-                                       itemValue="#{ro}"/>
-                    </shiro:lacksRole>
-                </p:selectOneMenu>
-
-                </c:if>
                 <p:outputLabel value = "#{I18N['adresse.label.Rue']}" indicateRequired="true"/>
                 <p:selectOneListbox value = "#{utilisateursBean.adresses}" id="utiladress" required="true"
                                  requiredMessage="#{I18N['formulaire.message.required.adresse']}"

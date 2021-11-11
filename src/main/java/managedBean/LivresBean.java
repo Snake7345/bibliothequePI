@@ -138,6 +138,7 @@ public class LivresBean implements Serializable {
         SvcLivres service = new SvcLivres();
         SvcExemplairesLivres serviceEL = new SvcExemplairesLivres();
         serviceEL.setEm(service.getEm());
+        boolean flag=false;
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
@@ -149,17 +150,33 @@ public class LivresBean implements Serializable {
                     el.setActif(false);
                     serviceEL.save(el);
                 }
+                service.save(livre);
             }
             else
             {
-                livre.setActif(true);
+                for (LivresAuteurs livresAuteurs : livre.getLivresAuteurs()){
+                    if (!livresAuteurs.getAuteur().isActif()) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag){
+                    livre.setActif(true);
+                    service.save(livre);
+                }
             }
-            service.save(livre);
 
             transaction.commit();
-            FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().getFlash().setKeepMessages(true);
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+            if(!flag) {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
+            }
+            else{
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Le livre ne peut être réactivé tant qu'un des auteurs est désactivé", null));
+            }
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
@@ -273,7 +290,6 @@ public class LivresBean implements Serializable {
      */
     public String verifDispo(Livres liv)
     {
-
         boolean flag1=false;
         boolean flag2=false;
         boolean flag3=false;
@@ -291,16 +307,15 @@ public class LivresBean implements Serializable {
                     // le livre est disponible mais pas dans la bibliothèque actuelle.
                     flag2 = true;
                 }
-                else if (el.isLoue())
+                else if (el.isLoue() && el.isActif())
                 {
-                    // Le livre est loué
+                    // Le livre est loué (et actif)
                     flag3 = true;
                 }
             }
         }
         if(flag1)
         {
-
             return "Images/vert2.png";
         }
         else if(flag2)

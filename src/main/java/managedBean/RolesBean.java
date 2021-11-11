@@ -233,6 +233,13 @@ public class RolesBean implements Serializable {
     /*Cette méthode permet la désactivation d'un objet "rôle" TANT que ce n'est pas l'archétype de base du programme et permet également la réactivation d'un rôle*/
     public String activdesactivRol()
     {
+        listPerm=new ArrayList<>();
+        if(role.getPermissionsRoles().size()>0) {
+            for (PermissionsRoles pr : role.getPermissionsRoles()) {
+                listPerm.add(pr.getPermissions());
+            }
+        }
+
         if(role.isActif())
         {
             if(role.getDenomination().equals("Client") || role.getDenomination().equals("Employe") || role.getDenomination().equals("Manager") || role.getDenomination().equals("Administrateur"))
@@ -253,6 +260,7 @@ public class RolesBean implements Serializable {
             role.setActif(true);
         }
         save();
+        listPerm=new ArrayList<>();
         return "/tableRoles.xhtml?faces-redirect=true";
     }
     /*il faut un commentaire*/

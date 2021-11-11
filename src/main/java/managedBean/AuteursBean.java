@@ -57,8 +57,8 @@ public class AuteursBean implements Serializable {
         return "/tableAuteurs.xhtml?faces-redirect=true";
     }
     /*
-    * Méthode qui permet de travailler sur le selectCheckboxMenu et de voir les éléments qui ne sont pas selectionné
-    * */
+    * Méthode qui permet de travailler sur le selectCheckboxMenu via AJAX
+    */
     public void onItemUnselect(UnselectEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
 
@@ -133,15 +133,24 @@ public class AuteursBean implements Serializable {
             }
             else
             {
+                auteur.setActif(true);
                 /*Sinon, alors l'auteur est désactivé, du coup on activera l'auteur ainsi que ces livres (les exemplaires de livres ne seront pas réactivés)*/
                 if (auteur.getLivresAuteur().size()>=1){
                     for (LivresAuteurs LA: auteur.getLivresAuteur()){
                         Livres livres = LA.getLivre();
+                        boolean flag=false;
+                        for (LivresAuteurs livresAuteurs : livres.getLivresAuteurs()){
+                            if(!livresAuteurs.getAuteur().isActif()){
+                                flag=true;
+                            }
+                        }
+                        if(!flag){
                         livres.setActif(true);
                         serviceL.save(livres);
+                        }
                     }
                 }
-                auteur.setActif(true);
+
             }
             service.save(auteur);
             transaction.commit();

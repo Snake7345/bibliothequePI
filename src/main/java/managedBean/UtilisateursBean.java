@@ -144,10 +144,25 @@ public class UtilisateursBean implements Serializable {
     /*Méthode qui permet la sauvegarde de la modification d'un objet "utilisateur"*/
     public void saveActif() {
         SvcUtilisateurs service = new SvcUtilisateurs();
+        SvcReservations serviceR = new SvcReservations();
+        serviceR.setEm(service.getEm());
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
             service.save(utilisateur);
+
+            if((!utilisateur.isActif()) && (utilisateur.getRoles().getDenomination().equals("Client"))){
+
+                List<Reservation> listR= serviceR.findAllbyClient(utilisateur);
+                if(listR.size()>0) {
+                    for (Reservation r :listR) {
+                        if (r.isActif()) {
+                            r.setActif(false);
+                            serviceR.save(r);
+                        }
+                    }
+                }
+            }
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("messageGenre", new FacesMessage("Modification réussie"));
@@ -533,7 +548,6 @@ public class UtilisateursBean implements Serializable {
                     }
                 }
             }
-
             saveUtilisateur();
         }else {
 
@@ -544,6 +558,7 @@ public class UtilisateursBean implements Serializable {
 
         init();
         return "/bienvenue.xhtml?faces-redirect=true";
+
     }
 
     /*Cette méthode verifie si un utilisateur existe déjà*/
@@ -651,6 +666,9 @@ public class UtilisateursBean implements Serializable {
         if (utilisateur.isActif()) {
             utilisateur.setActif(false);
             saveActif();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'utilisateur a été désactivé",null));
         }
         else {
             if ((!utilisateur.isActif()) && (!utilisateur.getRoles().isActif())) {
@@ -661,6 +679,9 @@ public class UtilisateursBean implements Serializable {
             } else {
                 utilisateur.setActif(true);
                 saveActif();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"l'utilisateur a été activé",null));
             }
         }
         if (utilisateur.getRoles().getDenomination().equals("Client"))
@@ -709,9 +730,10 @@ public class UtilisateursBean implements Serializable {
 
     public List<Utilisateurs> getReadUtilActiv()
     {
+        log.debug("entrée dans getReadUtilActiv");
         SvcUtilisateurs service = new SvcUtilisateurs();
         listUtil = service.findAllUtilisateursActiv();
-
+        listUtilBib = service.findAllUtilisateursUtilBibActiv(bibliothequeActuelle);
         service.close();
         return listUtil;
     }
@@ -720,9 +742,10 @@ public class UtilisateursBean implements Serializable {
      */
     public List<Utilisateurs> getReadUtilInactiv()
     {
+        log.debug("entrée dans getReadUtilInactiv");
         SvcUtilisateurs service = new SvcUtilisateurs();
         listUtil = service.findAllUtilisateursInactiv();
-
+        listUtilBib = service.findAllUtilisateursUtilBibInactiv(bibliothequeActuelle);
         service.close();
         return listUtil;
     }

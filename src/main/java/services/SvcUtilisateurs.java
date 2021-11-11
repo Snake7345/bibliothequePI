@@ -116,6 +116,20 @@ public class SvcUtilisateurs extends Service<Utilisateurs> implements Serializab
 		return finder.findByNamedQuery("Utilisateurs.findAllUtilBib", param);
 	}
 
+	public List<Utilisateurs> findAllUtilisateursUtilBibActiv (Bibliotheques bib) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("bib", bib);
+
+		return finder.findByNamedQuery("Utilisateurs.findAllUtilBibActiv", param);
+	}
+
+	public List<Utilisateurs> findAllUtilisateursUtilBibInactiv (Bibliotheques bib) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("bib", bib);
+
+		return finder.findByNamedQuery("Utilisateurs.findAllUtilBibInactiv", param);
+	}
+
 	public List<Utilisateurs> reinitialisation(String login, String courriel) {
 		Map<String, String> param = new HashMap<>();
 		param.put("login", login);

@@ -11,7 +11,7 @@ import java.io.Serializable;
                         "and r.livre=:livre"),
                 @NamedQuery(name = "Reservation.findAllActivByLivre", query = "SELECT r FROM Reservation r where r.actif=TRUE and r.livre=:livre and r.bibliotheques=:bibliotheque"),
                 @NamedQuery(name = "Reservation.findAllActivByClient", query = "SELECT r FROM Reservation r where r.actif=TRUE and r.utilisateur=:utilisateur and r.bibliotheques=:bibliotheque"),
-
+                @NamedQuery(name = "Reservation.findAllByClient", query = "SELECT r FROM Reservation r where r.utilisateur=:utilisateur"),
         })
 
 public class Reservation implements Serializable {

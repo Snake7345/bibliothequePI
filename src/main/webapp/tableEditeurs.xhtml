@@ -17,10 +17,6 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.editeur.title']}</h2>
-                    <p:breadCrumb>
-                        <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
-                        <p:menuitem value="Table des éditeurs" action="#{editeursBean.flushEd}" />
-                    </p:breadCrumb>
                     <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{editeursBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="ed" id="tableEditeurs"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <p:column headerText="#{I18N['editeur.label.Nom']}" style="text-align: center" sortBy="#{ed.nom}" filterBy="#{ed.nom}">

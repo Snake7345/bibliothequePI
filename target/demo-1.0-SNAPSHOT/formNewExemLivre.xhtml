@@ -32,7 +32,7 @@
                         <f:validateLength minimum="0" maximum="4"/>
                     </p:spinner>
                     <p:tooltip for="nbrExemp" value="#{I18N['tooltip.exempl.nbrCB']}" position="right"/>
-                    <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="tableLivres" immediate="true"/>
+                    <p:commandButton style="float: left" icon="fa fa-fw fa-home" value="#{I18N['application.button.return']}" action="#{livresBean.flushLiv}" immediate="true"/>
                     <p:commandButton style="float: right" icon="fa fa-fw fa-check-circle" value="#{I18N['application.button.validate']}" action="#{exemplairesLivresBean.addExemplaireLivre}" ajax="false"/>
                 </p:panelGrid>
             </h:form>

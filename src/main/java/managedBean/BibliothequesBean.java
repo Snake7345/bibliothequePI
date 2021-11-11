@@ -107,10 +107,12 @@ public class BibliothequesBean implements Serializable {
         EntityTransaction transaction = service.getTransaction();
         transaction.begin();
         try {
+            /*Sauvegarde une modification de l'objet bibliothèque*/
             if(bibliotheque.getIdBibliotheques()!= 0)
             {
                 service.save(bibliotheque);
             }
+            /*Sauvegarde une nouvel objet bibliothèque*/
             else
             {
                 bibliotheque=service.save(bibliotheque);
@@ -146,7 +148,7 @@ public class BibliothequesBean implements Serializable {
 
     /*Méthode permettant la réinitialisation de la bibliothèque liée au programme.
     * En supprimant le fichier bibliotheque.txt, l'utilisateur sera déconnecté de la session
-    * et renvoyer sur la page de selection de la bibliothèque*/
+    * et renvoyer sur la page d'index*/
     public void reinitialisation()
     {
         try{
@@ -276,7 +278,7 @@ public class BibliothequesBean implements Serializable {
     }
     /*
      * Cette méthode va permettre de désactiver un objet "bibliothèque" ainsi que les exemplaires des livres sauf si ils sont loué ou reservé.
-     * Cette méthode permet aussi la réactivation de la bibliothèque
+     * Cette méthode permet aussi la réactivation de la bibliothèque.
      */
     public String ActivDesactivBiblio()
     {

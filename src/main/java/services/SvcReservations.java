@@ -60,4 +60,10 @@ public class SvcReservations extends Service<Reservation> implements Serializabl
         param.put("utilisateur", u);
         return finder.findByNamedQuery("Reservation.findAllActivByClient",param);
     }
+    public List<Reservation> findAllbyClient(Utilisateurs u)
+    {
+        Map<String, Object> param = new HashMap<>();
+        param.put("utilisateur", u);
+        return finder.findByNamedQuery("Reservation.findAllByClient",param);
+    }
 }

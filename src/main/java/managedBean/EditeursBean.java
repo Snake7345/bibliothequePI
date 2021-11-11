@@ -64,7 +64,7 @@ public class EditeursBean implements Serializable {
 
     }
 
-    // Méthode qui sauvegarde un objet "éditeur" en base de donnée
+    // Méthode qui permet la sauvegarde d'un objet "éditeur" en base de donnée
     public void save()
     {
         SvcEditeurs service = new SvcEditeurs();

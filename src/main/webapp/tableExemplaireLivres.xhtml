@@ -18,12 +18,6 @@
             <p:panel layout="block" id="content">
                 <p:growl id="growl" sticky="true" />
                 <h2 style="text-align:center">#{I18N['application.exempl.title']}</h2>
-                <p:breadCrumb>
-                    <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
-                    <p:menuitem value="Table des Livres" action="#{livresBean.flushLiv}" />
-                    <p:menuitem value="Detail du livre" action="livreDetail?faces-redirect=true" />
-                    <p:menuitem value="Table des Exemplaires" action="tableExemplaireLivres?faces-redirect=true" />
-                </p:breadCrumb>
                 <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{exemplairesLivresBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="livexemL" id="tableExemplairesLivres"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <p:column headerText="#{I18N['exemplaireslivres.label.CodeBarre']}" style="text-align: center" sortBy="#{livexemL.codeBarre}" filterBy="#{livexemL.codeBarre}">
@@ -68,13 +62,23 @@
                         </p:commandButton>
                     </p:column>
                     </shiro:hasPermission>
+                    <f:facet name="footer">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton icon="fa fa-fw fa-home" value="Retour livres detail" action="livreDetail?faces-redirect=true"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <shiro:hasPermission name="Exemplaires:Creer">
+                                    <p:commandButton style="text-align: center" icon="fa fa-fw fa-plus" value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre?faces-redirect=true" ajax="false">
+                                        <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
+                                    </p:commandButton>
+                                </shiro:hasPermission>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                 </p:dataTable>
             </p:panel>
-            <shiro:hasPermission name="Exemplaires:Creer">
-            <p:commandButton style="text-align: center" icon="fa fa-fw fa-plus" value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre?faces-redirect=true" ajax="false">
-                <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
-            </p:commandButton>
-            </shiro:hasPermission>
+
         </h:form>
         </shiro:hasPermission>
         <shiro:lacksPermission name="Exemplaires:Lire">

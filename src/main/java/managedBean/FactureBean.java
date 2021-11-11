@@ -132,7 +132,7 @@ public class FactureBean implements Serializable {
         double prixTVAC = 0;
         long now =  System.currentTimeMillis();
         long rounded = now - now % 60000;
-        Timestamp timestampdebut = new Timestamp(rounded);
+
         Date date = new Date();
         Tarifs T= new Tarifs();
 
@@ -180,10 +180,7 @@ public class FactureBean implements Serializable {
             try {
 
                 //création de la facture
-                factures.setBibliotheques(bibliothequeActuelle);
-                factures.setDateDebut(timestampdebut);
-                factures.setEtat(FactureEtatEnum.en_cours);
-                factures.setUtilisateurs(u);
+
                 // parcour de la liste des location a inscrire dans la facture
                 for (locationCustom lc : listLC) {
 
@@ -236,6 +233,7 @@ public class FactureBean implements Serializable {
         long now =  System.currentTimeMillis();
         long rounded = now - now % 60000;
         Date date = new Date();
+        Timestamp timestampdebut = new Timestamp(rounded);
         ModelFactBiblio MFB =new ModelFactBiblio();
         Tarifs T= new Tarifs();
 
@@ -251,6 +249,10 @@ public class FactureBean implements Serializable {
         transaction.begin();
         try {
             //création de la facture
+            factures.setBibliotheques(bibliothequeActuelle);
+            factures.setDateDebut(timestampdebut);
+            factures.setEtat(FactureEtatEnum.en_cours);
+            factures.setUtilisateurs(u);
             factures.setNumeroFacture(createNumFact());
             String path = "Factures\\" + factures.getNumeroFacture() + ".pdf";
             factures.setLienPdf(path);
@@ -281,6 +283,9 @@ public class FactureBean implements Serializable {
             MFB.creation(factures, bibliothequeActuelle);
             sendMessage(factures.getNumeroFacture()+".pdf",factures.getUtilisateurs().getCourriel(),"vous trouverez la facture concernant votre location en piece jointe","Facture de location");
             factures=new Factures();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Faccture créée",null));
             return "/tableFactures.xhtml?faces-redirect=true";
         }
         finally

@@ -15,10 +15,6 @@
                 <p:panel layout="block" id="content">
                     <p:growl id="growl" sticky="true" />
                     <h2 style="text-align:center">#{I18N['application.utilisateurCli.title']}</h2>
-                    <p:breadCrumb>
-                        <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
-                        <p:menuitem value="Table des Clients" action="#{utilisateursBean.flushUtilCli}" />
-                    </p:breadCrumb>
                     <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{utilisateursBean.listCli}" emptyMessage="Aucun enregistrement trouvé" var="ut" id="tableUtilisateurs"
                                  Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                         <f:facet name="header">
@@ -69,7 +65,7 @@
                             </p:column>
                         </shiro:hasPermission>
                         <p:column>
-                            <p:commandButton icon="fa fa-fw fa-check" style="float: right" value="Voir les réservations" action="#{utilisateursBean.afficheReservations}"
+                            <p:commandButton icon="fa fa-fw fa-check" style="float: right" rendered="#{ut.actif}" value="Voir les réservations" action="#{utilisateursBean.afficheReservations}"
                                              onclick="PF('dlg2').show();" update="DetailReservation">
                                 <f:setPropertyActionListener target="#{utilisateursBean.utilisateur}" value="#{ut}"/> </p:commandButton>
                         </p:column>

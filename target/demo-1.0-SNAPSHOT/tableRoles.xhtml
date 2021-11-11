@@ -15,10 +15,6 @@
             <p:panel layout="block" id="content">
                 <p:growl id="growl" sticky="true" />
                 <h2 style="text-align:center">#{I18N['application.roles.title']}</h2>
-                <p:breadCrumb>
-                    <p:menuitem value="Accueil" action="bienvenue.xhtml?faces-redirect=true" />
-                    <p:menuitem value="Table des Roles" action="#{rolesBean.flushRol}" />
-                </p:breadCrumb>
                 <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{rolesBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="rol" id="tableRoles"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
                     <p:column headerText="#{I18N['commune.label.denomination']}" style="text-align: center" sortBy="#{rol.denomination}" filterBy="#{rol.denomination}">

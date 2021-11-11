@@ -49,9 +49,6 @@ public class ReinitialisationBean implements Serializable {
         {
             if (results.isEmpty())
             {
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.getExternalContext().getFlash().setKeepMessages(true);
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
                 return "/envoiInfo?faces-redirect=true";
             }
             else
@@ -62,10 +59,7 @@ public class ReinitialisationBean implements Serializable {
                 utilisateur.setMdp(mdp);
                 serviceU.save(utilisateur);
                 transaction.commit();
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.getExternalContext().getFlash().setKeepMessages(true);
                 sendMessage(utilisateur.getCourriel(),"Vous avez demandé une réinitialisation du mot de passe, désormais votre nouveau mot de passe sera : " + mdp,"Réinitialisation du mot de passe");
-                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "L'operation a reussie", null));
             }
         }
         finally {

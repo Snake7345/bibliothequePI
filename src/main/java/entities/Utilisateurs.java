@@ -25,11 +25,13 @@ import security.SecurityManager;
                 @NamedQuery(name = "Utilisateurs.findLastMembre", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NOT NULL ORDER BY u.numMembre DESC"),
                 @NamedQuery(name = "Utilisateurs.searchMembre", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre=:numMembre"),
                 @NamedQuery(name = "Utilisateurs.findByLogin", query = "SELECT u FROM Utilisateurs u WHERE u.login=:login"),
-                @NamedQuery(name = "Utilisateurs.findByLoginMail", query = "SELECT u FROM Utilisateurs u WHERE u.login=:login AND u.courriel=:courriel"),
+                @NamedQuery(name = "Utilisateurs.findByLoginMail", query = "SELECT u FROM Utilisateurs u WHERE u.login=:login AND u.courriel=:courriel AND u.actif = true"),
                 @NamedQuery(name = "Utilisateurs.findAllCli", query = "SELECT u FROM Utilisateurs u WHERE u.numMembre IS NOT NULL"),
                 @NamedQuery(name = "Utilisateurs.findCliActiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=TRUE AND u.numMembre IS NOT NULL"),
                 @NamedQuery(name = "Utilisateurs.findCliInactiv", query = "SELECT u FROM Utilisateurs u WHERE u.actif=FALSE AND u.numMembre IS NOT NULL"),
                 @NamedQuery(name = "Utilisateurs.findAllUtilBib", query = "SELECT u FROM Utilisateurs u, UtilisateursBibliotheques ub WHERE u.numMembre IS NULL AND u.roles.idRoles <> 1 AND ub.utilisateur=u AND ub.bibliotheques=:bib"),
+                @NamedQuery(name = "Utilisateurs.findAllUtilBibActiv", query = "SELECT u FROM Utilisateurs u, UtilisateursBibliotheques ub WHERE u.numMembre IS NULL AND u.roles.idRoles <> 1 AND ub.utilisateur=u AND ub.bibliotheques=:bib AND u.actif = true"),
+                @NamedQuery(name = "Utilisateurs.findAllUtilBibInactiv", query = "SELECT u FROM Utilisateurs u, UtilisateursBibliotheques ub WHERE u.numMembre IS NULL AND u.roles.idRoles <> 1 AND ub.utilisateur=u AND ub.bibliotheques=:bib AND u.actif = false"),
                 @NamedQuery(name = "Utilisateurs.findAllByRole", query = "SELECT u FROM Utilisateurs u WHERE u.roles =:role"),
         })
 public class Utilisateurs implements Serializable {

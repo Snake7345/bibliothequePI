@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,7 @@ public class TarifsBean implements Serializable {
     private static final Logger log = Logger.getLogger(TarifsBean.class);
     private static final long serialVersionUID = 1L;
     private Tarifs tarif;
-
+    private double prixdefaut = 0.0;
     private List<PenaCustom> grillePena = new ArrayList<>();
     private List<JourCustom> grilleJour = new ArrayList<>();
     private final Bibliotheques bibliothequeActuelle = (Bibliotheques) SecurityUtils.getSubject().getSession().getAttribute("biblio");
@@ -106,6 +107,11 @@ public class TarifsBean implements Serializable {
             flagV1= (service.getById(tarif.getIdTarifs()).getDenomination().equals(tarif.getDenomination())|| service.findOneTarifByDenom(tarif).size()==0);}
         else {
             flagV1=service.findOneTarifByDenom(tarif).size()==0;
+        }
+
+        if(prixdefaut!=0.0)
+        {
+            grilleJour.add(new JourCustom(1,prixdefaut,tarif.getDateDebut(),Date.from(Instant.parse("2100-01-01T01:00:00Z"))));
         }
 
         for (JourCustom j: grilleJour){
@@ -324,5 +330,13 @@ public class TarifsBean implements Serializable {
 
     public Bibliotheques getBib() {
         return bibliothequeActuelle;
+    }
+
+    public double getPrixdefaut() {
+        return prixdefaut;
+    }
+
+    public void setPrixdefaut(double prixdefaut) {
+        this.prixdefaut = prixdefaut;
     }
 }

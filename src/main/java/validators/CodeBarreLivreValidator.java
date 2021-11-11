@@ -29,7 +29,7 @@ public class CodeBarreLivreValidator implements Validator
         {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Le livre est déjà loué",null));
         }
-        else if(!L.get(0).isActif()){throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Le livre ne peut être loué",null));}
+        else if(!L.get(0).isActif()){throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Le livre ne peut être loué ou transferé",null));}
 
         serviceEL.close();
     }

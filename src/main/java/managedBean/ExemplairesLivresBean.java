@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import services.SvcBibliotheques;
 import services.SvcExemplairesLivres;
+import services.SvcLivres;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -58,7 +59,8 @@ public class ExemplairesLivresBean implements Serializable {
         listCB.add(new ExemplairesLivres());
     }
 
-    /*Cette méthode permet de supprimer une ligne dans un formulaire concernant le code barre d'un exemplaire livre*/
+    /*Cette méthode permet de supprimer une ligne dans un formulaire concernant le code barre d'un exemplaire livre
+    * Si jamais on veut supprimer la première ligne, le programme nous le refusera*/
     public void delListRow() {
         if (listCB.size() >1)
         {
@@ -68,13 +70,14 @@ public class ExemplairesLivresBean implements Serializable {
     /*
      * Méthode qui permet de vider les variables et de revenir sur la table des livres
      */
-    public String flush()
+    public String flushLivres()
     {
         init();
         return "/tableLivres.xhtml?faces-redirect=true";
     }
 
     // Méthode qui permet d'ajouter autant d'exemplaire de livre que demande l'utilisateur en fonction du livre qu'il a choisit
+    // et nous renvoi sur la table des exemplaires
     public String addExemplaireLivre(){
         init();
         SvcExemplairesLivres service = new SvcExemplairesLivres();
@@ -135,8 +138,8 @@ public class ExemplairesLivresBean implements Serializable {
         }
         return LastBarCode;
     }
-    // Méthode qui permet via le service de confirmer la réception d'un objet "exemplaire livre" via le code barre de cet exemplaire SAUF si il est
-    // déjà loué ou n'est pas reservé un message s'affiche
+    // Méthode qui permet de confirmer la réception d'un objet "exemplaire livre" via le code barre de cet exemplaire SAUF si il est
+    // déjà loué ou n'est pas reservé, ou n'est pas en transfert un message s'affiche
     public String reception()
     {
         boolean flag = false;
@@ -168,7 +171,6 @@ public class ExemplairesLivresBean implements Serializable {
                 }
             }
 
-
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().getFlash().setKeepMessages(true);
@@ -189,7 +191,7 @@ public class ExemplairesLivresBean implements Serializable {
         }
         return "/tableLivres.xhtml?faces-redirect=true";
     }
-    // Méthode qui permet via le service de transférer un objet "exemplaire de livre" via le code barre de cet exemplaire livre SAUF si l'exemplaire est
+    // Méthode qui permet de transférer un objet "exemplaire de livre" via le code barre de cet exemplaire livre SAUF si l'exemplaire est
     // déjà reservé ou n'est pas dans la bibliothèque actuellement connecté
     public String transfer()
     {
@@ -229,7 +231,6 @@ public class ExemplairesLivresBean implements Serializable {
                     serviceEL.save(EL);
                 }
             }
-
 
             transaction.commit();
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -276,6 +277,40 @@ public class ExemplairesLivresBean implements Serializable {
         }
     }
 
+    public void deactivateAllExLiv()
+    {
+        log.debug("entree desactive ex liv");
+        log.debug("titre livre : "+livre.getTitre());
+        SvcExemplairesLivres service = new SvcExemplairesLivres();
+        SvcLivres serviceL = new SvcLivres();
+        livre= serviceL.findByIsbn(livre.getIsbn()).get(0);
+        serviceL.close();
+        EntityTransaction transaction = service.getTransaction();
+        transaction.begin();
+        try {
+            for(ExemplairesLivres el : livre.getExemplairesLivres())
+            {
+                if(el.getBibliotheques().equals(bibliothequeActuelle)){
+                    log.debug("Code bare trouve : "+el.getCodeBarre());
+                    el.setActif(false);
+                    service.save(el);
+                }
+            }
+            transaction.commit();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().getFlash().setKeepMessages(true);
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation a reussie",null));
+        } finally {
+            if (transaction.isActive()) {
+                transaction.rollback();
+                FacesContext fc = FacesContext.getCurrentInstance();
+                fc.getExternalContext().getFlash().setKeepMessages(true);
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"L'operation n'a pas reussie",null));
+            }
+            service.close();
+        }
+    }
+
     // Méthode qui permet la désactivation de l'exemplaire livre et renvoi vers la table des livres
     public String activdesactivExLiv()
     {
@@ -286,7 +321,7 @@ public class ExemplairesLivresBean implements Serializable {
         }
 
         save();
-        return "/tableLivres.xhtml?faces-redirect=true";
+        return "/tableExemplaireLivres.xhtml?faces-redirect=true";
         }
     /*
      * Méthode qui permet via le service de retourner la liste de tous les exemplaires livres
