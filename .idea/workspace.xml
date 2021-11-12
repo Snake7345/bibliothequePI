@@ -12,35 +12,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.3.2 Version finale">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.3.3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enumeration/FactureEtatEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enumeration/FactureEtatEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managedBean/TarifsBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formDesactivBiblio.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formDesactivBiblio.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formEditTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formEditTarif.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/formNewTarif.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableAuteurs.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tableExemplaireLivres.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/FactureDetailBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/PaysBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/PermissionsBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/PermissionsBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/ReinitialisationBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/ReinitialisationBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/TarifsJoursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/TarifsPenalitesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managedBean/UtilisateursBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managedBean/UtilisateursBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validators/CheckMdpValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/validators/CheckMdpValidator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/FactureDetailBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/PaysBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/PermissionsBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/PermissionsBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ReinitialisationBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/ReinitialisationBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/TarifsJoursBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/TarifsPenalitesBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/UtilisateursBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/managedBean/UtilisateursBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/CheckMdpValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/validators/CheckMdpValidator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formDesactivBiblio.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formDesactivBiblio.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditProfil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/formEditProfil.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateursCli.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/tableUtilisateursCli.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,7 +288,7 @@
       <workItem from="1636628144415" duration="28107000" />
       <workItem from="1636666082510" duration="8347000" />
       <workItem from="1636684729217" duration="614000" />
-      <workItem from="1636720024015" duration="6059000" />
+      <workItem from="1636720024015" duration="6274000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -609,7 +584,21 @@
       <option name="project" value="LOCAL" />
       <updated>1636678167875</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="V1.3.3">
+      <created>1636734677323</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1636734677323</updated>
+    </task>
+    <task id="LOCAL-00044" summary="V1.3.3">
+      <created>1636734692409</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1636734692409</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,7 +617,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.2.13 Multiples corrections concernant certains bugs mineurs et un majeur, réarangement de la création du rôle + ajout du bouton Mon profil" />
     <MESSAGE value="v1.2.14 Mise a jour avant modification entities" />
     <MESSAGE value="V1.2.17 Multiples corrections graphiques et correction des quelques fonctions restantes" />
     <MESSAGE value="V1.2.18 Correction des bugs" />
@@ -653,6 +641,7 @@
     <MESSAGE value="V1.3 Version finale" />
     <MESSAGE value="V1.3.1 Version finale" />
     <MESSAGE value="V1.3.2 Version finale" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.3.2 Version finale" />
+    <MESSAGE value="V1.3.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.3.3" />
   </component>
 </project>

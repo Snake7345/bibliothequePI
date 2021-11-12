@@ -58,8 +58,7 @@ public class ModelFactBiblio implements Serializable
 			}
 		}
 		String laDateDuJour = sf.format(new java.util.Date());
-		
-		//calcule main d'oeuvre
+
 		Double PTVAC = fact.getPrixTvac();
 
 		//String total4 = String.format("%5.02f €", TVA);

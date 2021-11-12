@@ -67,10 +67,7 @@ public class ModelFactBiblioPena implements Serializable
 			}
 			String laDateDuJour = sf.format(new java.util.Date());
 
-			//calcule main d'oeuvre
 			Double PTVAC = fact.getPrixTvac();
-
-			//String total4 = String.format("%5.02f €", TVA);
 
 			//Creer le pdf
 			PDDocument doc = new PDDocument();
@@ -245,7 +242,7 @@ public class ModelFactBiblioPena implements Serializable
 			String pdp2 = "Toutes nos factures doivent etre paye au moment de la creation de la facture.";
 			String pdp3 = "Les reclamations doivent etre introduites par lettre recommandee, sous peine de decheance, dans les 8 jours de la reception de la facture.";
 			String pdp4 = "Toutes pénalités sont appliquées en fonction de la grille tarifaire de la bibliothèque au moment et au lieu où le livre a été loué.";
-			String pdp5 = "A defaut, nos factures sont reputees conformes.";
+			String pdp5 = "A defaut, nos factures sont reputees conformes. Les factures de pénalité doivent être payées au maximum 14 jours après la date de celle-ci.";
 
 
 			contentStream.showText(pdp1);
