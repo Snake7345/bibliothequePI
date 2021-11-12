@@ -20,10 +20,10 @@
                         <f:facet name="header">
                             <p:toolbar style="border-color:#f8f9fa!important;">
                                 <f:facet name="left">
-                                    <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}" ajax="false"/>
+                                    <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.cliInactiv']}" action="#{utilisateursBean.getReadCliInactiv}" ajax="false"/>
                                 </f:facet>
                                 <f:facet name="right">
-                                    <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}" ajax="false"/>
+                                    <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.cliActiv']}" action="#{utilisateursBean.getReadCliActiv}" ajax="false"/>
                                 </f:facet>
                             </p:toolbar>
                         </f:facet>
@@ -72,10 +72,10 @@
                         <f:facet name="footer">
                             <p:toolbar style="border-color:#f8f9fa!important;">
                                 <f:facet name="left">
-                                    <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.utilInactiv']}" action="#{utilisateursBean.getReadCliInactiv}" ajax="false"/>
+                                    <p:commandButton icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.cliInactiv']}" action="#{utilisateursBean.getReadCliInactiv}" ajax="false"/>
                                 </f:facet>
                                 <f:facet name="right">
-                                    <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.utilActiv']}" action="#{utilisateursBean.getReadCliActiv}" ajax="false"/>
+                                    <p:commandButton icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.cliActiv']}" action="#{utilisateursBean.getReadCliActiv}" ajax="false"/>
                                 </f:facet>
                             </p:toolbar>
                         </f:facet>
@@ -86,7 +86,7 @@
         <shiro:lacksPermission name="Client:Lire">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
         </shiro:lacksPermission>
-        <p:dialog header="Detail des réservation du clients" widgetVar="dlg2" minHeight="40" >
+        <p:dialog header="Detail des réservation du client" widgetVar="dlg2" minHeight="40" >
             <p:ajax event="close" update="DetailReservation" resetValues="true" />
             <p:ajax event="open" update="DetailReservation" resetValues="true" />
             <h:form id="DetailReservation" prependId = "false">

@@ -5,7 +5,7 @@ public enum FactureEtatEnum
 
     terminer("terminer"),
     annule("annule"),
-    en_cours("en_cours");
+    en_cours("en cours");
 
     private String label;
 

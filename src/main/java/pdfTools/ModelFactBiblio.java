@@ -221,10 +221,10 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.setLeading(7.25f);
 	    contentStream.newLineAtOffset(57, 90);	 
 	    String pdp1 = "Conditions generales";
-	    String pdp2 = "Toutes nos factures doivent etre paye au moment de la creation de la facture.";
-	    String pdp3 = "Les reclamations doivent etre introduites par lettre recommandee, sous peine de decheance, dans les 8 jours de la reception de la facture.";
+	    String pdp2 = "Toutes nos factures doivent être payées au moment de la creation de la facture.";
+	    String pdp3 = "Les reclamations doivent être introduites par lettre recommandee, sous peine de decheance, dans les 8 jours de la reception de la facture.";
 		String pdp4 = "Toutes pénalités sont appliquées en fonction de la grille tarifaire de la bibliothèque au moment et au lieu où le livre a été loué.";
-	    String pdp5 = "A defaut, nos factures sont reputees conformes.";
+	    String pdp5 = "A defaut, nos factures sont reputees conformes. Les factures de pénalité doivent être payées au maximum 14 jours après la date de celle-ci.";
 	    
 
 	    contentStream.showText(pdp1);

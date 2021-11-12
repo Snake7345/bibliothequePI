@@ -65,6 +65,16 @@
                                 <f:setPropertyActionListener target="#{auteursBean.auteur}" value="#{aut}" />
                             </p:commandButton>
                         </p:column>
+                            <f:facet name="footer">
+                                <p:toolbar style="border-color:#f8f9fa!important;">
+                                    <f:facet name="left">
+                                        <p:commandButton style="text-align: center" icon="fa fa-fw fa-search-minus" value="#{I18N['application.button.autInactiv']}" action="#{auteursBean.getReadInactiv}" ajax="false"/>
+                                    </f:facet>
+                                    <f:facet name="right">
+                                        <p:commandButton style="text-align: center" icon="fa fa-fw fa-search-plus" value="#{I18N['application.button.autActiv']}" action="#{auteursBean.getReadActiv}" ajax="false"/>
+                                    </f:facet>
+                                </p:toolbar>
+                            </f:facet>
                         </shiro:hasPermission>
                     </p:dataTable>
                 </p:panel>

@@ -37,6 +37,7 @@ public class TarifsBean implements Serializable {
     public void init()
     {
         tarif=new Tarifs();
+        prixdefaut = 0.0;
         grilleJour.clear();
         grillePena.clear();
         grillePena.add(new PenaCustom());
@@ -91,7 +92,7 @@ public class TarifsBean implements Serializable {
         }
 
     }
-    /*Cette méthode permet d'ajouter une grille tarifaire et vérifier si les données sont correctes (date de début et de fin de tarif cohérente,...)*/
+    /*Cette méthode permet d'ajouter ou de modifier une grille tarifaire et vérifier si les données sont correctes (date de début et de fin de tarif cohérente,...)*/
     public String newTarif()
     {
 
@@ -136,7 +137,7 @@ public class TarifsBean implements Serializable {
 
         if (flagJ && !flagD1 && !flagD2 && flagV1 && !flagD3) {
 
-            if(prixdefaut!=0.0)
+            if(prixdefaut!=0.0 && tarif.getIdTarifs()==0)
             {
                 grilleJour.add(new JourCustom(1,prixdefaut,tarif.getDateDebut(),Date.from(Instant.parse("2100-01-01T01:00:00Z"))));
             }

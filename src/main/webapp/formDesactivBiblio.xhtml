@@ -11,19 +11,19 @@
     <ui:define name="title">Mode de désactivation de la bibliotheque</ui:define>
     <ui:define name="content">
         <p:growl id="growl" sticky="true" />
-        <shiro:hasRole name="1">
+        <shiro:hasPermission name="Bibliotheques:ActiveDesactive">
         <h:form>
             <p:panelGrid style="margin: 0 auto;" styleClass="ui-noborder" id="newrecform" columns="2" columnClasses="col1Newrec,col2Newrec,col3Newrec">
         <h2 style="text-align:center">Quel moyen choissisez vous pour désactiver la bibliothèque ?</h2>
                 <p:outputLabel/>
             <p:commandButton icon="fa fa-fw fa-check-circle" value="Désactivation bibliotheque simple" action="#{bibliothequesBean.ActivDesactivBiblio}"/>
-            <p:commandButton icon="fa fa-fw fa-check-circle" value="Désactivation et transfert des livres dans la bibliotheque actuel" action="#{bibliothequesBean.DesactivBiblioTransfert}" immediate="true"/>
+            <p:commandButton icon="fa fa-fw fa-check-circle" value="Désactivation et transfert des livres dans la bibliotheque actuelle" action="#{bibliothequesBean.DesactivBiblioTransfert}" immediate="true"/>
             </p:panelGrid>
     </h:form>
-        </shiro:hasRole>
-        <shiro:lacksRole name="1">
+        </shiro:hasPermission>
+        <shiro:lacksPermission name="Bibliotheques:ActiveDesactive">
             <p:outputLabel value="#{I18N['application.page.accessrefuse']}"/>
-        </shiro:lacksRole>
+        </shiro:lacksPermission>
     </ui:define>
 </ui:composition>
 
