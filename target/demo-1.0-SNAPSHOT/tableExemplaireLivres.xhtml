@@ -20,6 +20,20 @@
                 <h2 style="text-align:center">#{I18N['application.exempl.title']}</h2>
                 <p:dataTable style="text-align: center" tableStyle="table-layout: auto;" value="#{exemplairesLivresBean.readAll}" emptyMessage="Aucun enregistrement trouvé" var="livexemL" id="tableExemplairesLivres"
                              Class="table" headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+                    <f:facet name="header">
+                        <p:toolbar style="border-color:#f8f9fa!important;">
+                            <f:facet name="left">
+                                <p:commandButton icon="fa fa-fw fa-home" value="Retour livres detail" action="livreDetail?faces-redirect=true"/>
+                            </f:facet>
+                            <f:facet name="right">
+                                <shiro:hasPermission name="Exemplaires:Creer">
+                                    <p:commandButton style="text-align: center" icon="fa fa-fw fa-plus" value="#{I18N['application.button.newExem']}" rendered="#{livresBean.livre.actif}" action="formNewExemLivre?faces-redirect=true" ajax="false">
+                                        <f:setPropertyActionListener target="#{exemplairesLivresBean.livre}" value="#{livresBean.livre}" />
+                                    </p:commandButton>
+                                </shiro:hasPermission>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
                     <p:column headerText="#{I18N['exemplaireslivres.label.CodeBarre']}" style="text-align: center" sortBy="#{livexemL.codeBarre}" filterBy="#{livexemL.codeBarre}">
                         <p:outputLabel value ="#{livexemL.codeBarre}"/>
                     </p:column>
