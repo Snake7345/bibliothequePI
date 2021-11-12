@@ -210,9 +210,8 @@ public class UtilisateursBean implements Serializable {
                     }
                 }
             }
-            else{
-                serviceUA.save(UA);
-            }
+            serviceUA.save(UA);
+
             if(listUB.size() > 0)
             {
                 for(UtilisateursBibliotheques ub : listUB)

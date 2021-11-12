@@ -536,7 +536,7 @@ public class FactureBean implements Serializable {
                     service.close();
                     SvcReservations serviceR = new SvcReservations();
                     /*On vérifie si jamais le livre a été reservé et donc doit être mis de coté*/
-                    if(serviceR.findAllActivbyLivre(bibliothequeActuelle, exemplairesLivres.getLivres()).size()>0)
+                    if(serviceR.findAllActivbyLivre(bibliothequeActuelle, exemplairesLivres.getLivres()).size()>0 && exemplairesLivres.isActif())
                     {
                         log.debug("13");
                         reserve = true;
