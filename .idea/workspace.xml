@@ -14,8 +14,12 @@
   <component name="ChangeListManager">
     <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.3.3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enumeration/FactureEtatEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enumeration/FactureEtatEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Factures/FB202111000001.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Factures/FB202111000001.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblioPena.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblioPena.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblioPena.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblioPena.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +292,7 @@
       <workItem from="1636628144415" duration="28107000" />
       <workItem from="1636666082510" duration="8347000" />
       <workItem from="1636684729217" duration="614000" />
-      <workItem from="1636720024015" duration="6274000" />
+      <workItem from="1636720024015" duration="7146000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -598,7 +602,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636734692409</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="V1.3.3">
+      <created>1636734829202</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1636734829202</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
