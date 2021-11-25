@@ -153,8 +153,8 @@ public class ModelFactBiblioPena implements Serializable
 			contentStream.setFont(PDType1Font.TIMES_BOLD,12);
 			contentStream.setLeading(14.5f);
 			contentStream.newLineAtOffset(80, 600);
-			String entetef1 = "Facture de penalite num : " + numfacture;
-			String entetef2 = " creee le " + laDateDuJour;
+			String entetef1 = "Facture de pénalité num : " + numfacture;
+			String entetef2 = " créée le " + laDateDuJour;
 
 			contentStream.showText(entetef1);
 			contentStream.newLine();
@@ -174,7 +174,7 @@ public class ModelFactBiblioPena implements Serializable
 			//travaux effectues
 			contentStream.beginText();
 			contentStream.newLineAtOffset(80, 455);
-			contentStream.showText("Penalites concernant l'exemplaire de : ");
+			contentStream.showText("Pénalités concernant l'exemplaire de : ");
 			contentStream.newLine();
 			contentStream.showText(fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getLivres().getTitre() + " sous le code barre " + fact.getFactureDetails().stream().findAny().get().getExemplairesLivre().getCodeBarre());
             contentStream.newLine();
@@ -240,9 +240,9 @@ public class ModelFactBiblioPena implements Serializable
 			contentStream.newLineAtOffset(57, 90);
 			String pdp1 = "Conditions generales";
 			String pdp2 = "Toutes nos factures doivent etre paye au moment de la creation de la facture.";
-			String pdp3 = "Les reclamations doivent etre introduites par lettre recommandee, sous peine de decheance, dans les 8 jours de la reception de la facture.";
+			String pdp3 = "Les reclamations doivent etre introduites par lettre recommandée, sous peine de déchéance, dans les 8 jours de la reception de la facture.";
 			String pdp4 = "Toutes pénalités sont appliquées en fonction de la grille tarifaire de la bibliothèque au moment et au lieu où le livre a été loué.";
-			String pdp5 = "A defaut, nos factures sont reputees conformes. Les factures de pénalité doivent être payées au maximum 14 jours après la date de celle-ci.";
+			String pdp5 = "A defaut, nos factures sont reputées conformes. Les factures de pénalité doivent être payées au maximum 14 jours après la date de celle-ci.";
 
 
 			contentStream.showText(pdp1);
@@ -265,7 +265,7 @@ public class ModelFactBiblioPena implements Serializable
 			File file = new File(path);
 			if(file.mkdir())
 			{
-				log.debug("Le dossier a bien été cree");
+				log.debug("Le dossier a bien été créé");
 			}
 			doc.save(path + numfacture + ".pdf");
 

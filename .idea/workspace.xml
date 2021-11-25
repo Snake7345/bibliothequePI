@@ -12,14 +12,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.3.3">
+    <list default="true" id="0f1f625d-e61b-4396-98bc-6d9c32296b3c" name="Changes" comment="V1.3.4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enumeration/FactureEtatEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enumeration/FactureEtatEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pdfTools/ModelFactBiblioPena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bundle/messages.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/Factures/FB202111000001.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Factures/FB202111000001.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblioPena.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pdfTools/ModelFactBiblioPena.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblioPena.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/pdfTools/ModelFactBiblioPena.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Factures/FB202111000002.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Factures/FB202111000002.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Factures/FB202111000003.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Factures/FB202111000003.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/enumeration/FactureEtatEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/enumeration/FactureEtatEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000001.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000001.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000002.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000002.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000003.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Factures/FB202111000003.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/bundle/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/enumeration/FactureEtatEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/enumeration/FactureEtatEnum.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,7 +299,13 @@
       <workItem from="1636628144415" duration="28107000" />
       <workItem from="1636666082510" duration="8347000" />
       <workItem from="1636684729217" duration="614000" />
-      <workItem from="1636720024015" duration="7146000" />
+      <workItem from="1636720024015" duration="7185000" />
+      <workItem from="1636736800721" duration="14000" />
+      <workItem from="1636742131679" duration="59000" />
+      <workItem from="1637707036186" duration="2455000" />
+      <workItem from="1637777926393" duration="1252000" />
+      <workItem from="1637792752483" duration="4506000" />
+      <workItem from="1637852769601" duration="123000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0.43 Mise a jour en tout genre">
       <created>1631641720041</created>
@@ -609,7 +622,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636734829202</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="V1.3.4">
+      <created>1636736184189</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1636736184190</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,7 +648,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.2.14 Mise a jour avant modification entities" />
     <MESSAGE value="V1.2.17 Multiples corrections graphiques et correction des quelques fonctions restantes" />
     <MESSAGE value="V1.2.18 Correction des bugs" />
     <MESSAGE value="V1.2.25 Correction multiples au niveau graphiques, ajout des recherches sur tous les formulaires + correction des colonnes où on mets un headertext pour que ça soit plus propres" />
@@ -653,6 +672,7 @@
     <MESSAGE value="V1.3.1 Version finale" />
     <MESSAGE value="V1.3.2 Version finale" />
     <MESSAGE value="V1.3.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.3.3" />
+    <MESSAGE value="V1.3.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.3.4" />
   </component>
 </project>

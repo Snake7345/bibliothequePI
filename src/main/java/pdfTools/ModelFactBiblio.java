@@ -147,7 +147,7 @@ public class ModelFactBiblio implements Serializable
 	    contentStream.setFont(PDType1Font.TIMES_BOLD,12);
 	    contentStream.setLeading(14.5f);
 	    contentStream.newLineAtOffset(80, 600);	 
-	    String entetef1 = "Facture n° : " + numfacture + " creee le " + laDateDuJour;
+	    String entetef1 = "Facture n° : " + numfacture + " créée le " + laDateDuJour;
 	   
 	    contentStream.showText(entetef1);
 	    contentStream.newLine();
@@ -165,7 +165,7 @@ public class ModelFactBiblio implements Serializable
 	    //travaux effectues
 	    contentStream.beginText();
 	    contentStream.newLineAtOffset(80, 455);	
-	    contentStream.showText("Exemplaire loue :");
+	    contentStream.showText("Exemplaire(s) loué(s) :");
 	    contentStream.newLine();
 	    contentStream.newLine();
 	    for (FacturesDetail fd: fact.getFactureDetails())
@@ -223,7 +223,7 @@ public class ModelFactBiblio implements Serializable
 	    String pdp2 = "Toutes nos factures doivent être payées au moment de la creation de la facture.";
 	    String pdp3 = "Les reclamations doivent être introduites par lettre recommandee, sous peine de decheance, dans les 8 jours de la reception de la facture.";
 		String pdp4 = "Toutes pénalités sont appliquées en fonction de la grille tarifaire de la bibliothèque au moment et au lieu où le livre a été loué.";
-	    String pdp5 = "A defaut, nos factures sont reputees conformes. Les factures de pénalité doivent être payées au maximum 14 jours après la date de celle-ci.";
+	    String pdp5 = "A defaut, nos factures sont reputées conformes. Les factures de pénalité doivent être payées au maximum 14 jours après la date de celle-ci.";
 	    
 
 	    contentStream.showText(pdp1);
